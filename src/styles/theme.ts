@@ -1,10 +1,10 @@
 
 const media = {
-  xLarge: `(max-width: 1200px)`,
-  large: `(max-width: 990px)`,
-  medium: `(max-width: 768px)`,
-  small: `(max-width: 574px)`,
-  size: "500px",
+  xLarge: `1200px`,
+  large: `990px`,
+  medium: `768px`,
+  small: `574px`,
+  min: `360px`,
 };
 
 const color = {
