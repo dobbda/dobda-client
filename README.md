@@ -4,7 +4,8 @@ Programmer-only Q&amp;A web community
 
 Framework : Nextjs  
 
-커밋 메시지 형식 (예시)  
+커밋 메시지 형식 (예시) 
+https://koreapy.tistory.com/1150
 ```
 feat : 새로운 기능에 대한 커밋
 fix : build 빌드 관련 파일 수정에 대한 커밋
@@ -17,7 +18,7 @@ refactor : 코드 리팩토링에 대한 커밋
 test : 테스트 코드 수정에 대한 커밋
 https://koreapy.tistory.com/1150
 ```
-https://koreapy.tistory.com/1150
+
 
 브랜치 전략  
 https://tecoble.techcourse.co.kr/post/2021-07-15-git-branch/
