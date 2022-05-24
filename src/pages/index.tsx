@@ -1,13 +1,16 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Header from 'src/components/common/Header';
-import styles from 'styles/Home.module.css';
-
+import { ThemeProvider } from 'styled-components';
+import { theme } from 'src/styles/theme';
+import Layout from "../components/common/Layout/Layout"
 const Home: NextPage = () => {
   return (
-    <>
-      <h1>hello world</h1>
-    </>
+    <ThemeProvider theme={theme}>
+      <Layout >
+      <h1>hello children</h1>
+      </Layout>
+
+    </ThemeProvider>
   );
 };
 
