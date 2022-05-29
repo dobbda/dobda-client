@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { Container } from './Layout.Element';
-
+import MainContent from 'src/components/MainContent/MainContent';
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const arr = [{num:1},{num:2},{num:3}];
   return (
     <Container className="container">
       <div className="wrapper">
@@ -10,9 +11,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
         <div className="main">
           <nav className="window-nav">full screen navbar</nav>
-
+          
           <div className="content">
-            <div>메인 콘텐츠 관련</div>
+            <MainContent>
+              <li> <h2>카드</h2> </li>
+            </MainContent>
           </div>
 
           <aside>사이드바</aside>
