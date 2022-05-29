@@ -8,10 +8,10 @@ const media = {
 };
 
 const color = {
-  main: '#000000',
-  q_header: '#000000',
-  q_body: '#000000',
-  b_bot: '#000000',
+  main2: "#00C6FF",
+  main1: "#3282B8",
+  qcard: "#00ADB5",
+  rcard: "#BEAEE2"
 }
 
 export const theme = {
