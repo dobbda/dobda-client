@@ -4,14 +4,15 @@ const media = {
   large: `990px`,
   medium: `768px`,
   small: `574px`,
-  minWidth: `360px`,
+  minWidth: `400px`,
+  cardWidth: "320px"
 };
 
 const color = {
   main2: "#00C6FF",
   main1: "#3282B8",
-  qcard: "#00ADB5",
-  rcard: "#BEAEE2"
+  Qcard: "#00C6FF",
+  Rcard: "#BEAEE2"
 }
 
 export const theme = {
