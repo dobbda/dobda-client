@@ -4,11 +4,15 @@ export const Main = styled.main`
   margin:20px;
   margin-top: 50px; //임시로
   
-
   max-width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: ${({theme})=> theme.media.minWidth}){
+    margin:0;
+    padding:5px;
+    
+  }
 
   .category-wrapper{
     
