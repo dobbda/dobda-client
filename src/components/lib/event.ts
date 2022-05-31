@@ -1,3 +1,5 @@
+
+// 카테고리 선택바 hover event
 export function CategoriesEvent() {
 
   if (typeof document !== 'undefined') {

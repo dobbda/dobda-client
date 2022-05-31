@@ -10,13 +10,8 @@ export const Tag = styled.div<CardProps>`
   border-radius: 15px;
   background-color: ${({type, theme})=> type==="R" ? theme.color.Rcard : theme.color.Qcard};
   :hover {
-    border: 1px solid gray;
-    /* padding: 2px 5px 4px; */
-
-    transform: scale(1.1);
+    border: 1px solid rgba(0,0,0,0.2);
+    transform: scale(1.15);
     transition: all 0.3s;
-
   }
-
   `
-

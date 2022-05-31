@@ -4,17 +4,20 @@ import {CardWrapper, CardContainer} from './style/Card.Element'
 import {RHeader} from './atom/CardHeader'
 import {RBody} from './atom/CardBody'
 import {RFooter} from './atom/CardFooter'
-type Props = {} 
+type Props = {
+  question?:number[],
 
-const RCard = (props: Props) => {
+} 
+
+const RCard = ({question}: Props) => {
   return (
-<CardContainer type="R">
+    <CardContainer type="R">
       <CardWrapper >
         <RHeader />
         <RBody/>
         <RFooter />
       </CardWrapper>
-      </CardContainer>
+    </CardContainer>
   )
 }
 
