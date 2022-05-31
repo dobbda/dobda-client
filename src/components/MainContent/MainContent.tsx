@@ -2,6 +2,9 @@ import React from 'react';
 import { CategoriesEvent } from '../lib/event';
 import { Main } from './style/MainContent.Element';
 import SearchBox from './SearchBox'
+import QCard from '../Card/QCard'
+import RCard from '../Card/RCard'
+
 interface Props {
   children: React.ReactNode;
 }
@@ -24,7 +27,8 @@ const MainContent = ({ children }: Props) => {
       {/** main content card  **/}
       <div className="main-content">
         <ul className="card-grid">
-          {children} {/** cards that <li>tag as parent */}
+          <QCard />
+          <RCard />
         </ul>
       </div>
 
