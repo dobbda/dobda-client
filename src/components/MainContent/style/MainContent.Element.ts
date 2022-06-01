@@ -4,14 +4,14 @@ export const Main = styled.main`
   margin:20px;
   margin-top: 50px; //임시로
   
-  max-width: 100%;
+  max-width: 1100px;
   height: 100%;
   display: flex;
   flex-direction: column;
   @media screen and (max-width: ${({theme})=> theme.media.minWidth}){
     margin:0;
     padding:5px;
-    
+
   }
 
   .category-wrapper{
@@ -42,16 +42,18 @@ export const Main = styled.main`
     height: 100%;
     /* padding:10px; */
 
-    ul{
+    .card-grid{
       margin:0;
       padding: 0;
-      display: flex;
-      gap: 20px;
       width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 30px;
       /* flex-wrap: wrap; */
 
-      @media screen and (max-width: ${({ theme })=> theme.media.minWidth}){
-        flex-direction: column;
+      @media screen and (max-width: ${({ theme })=> theme.media.small}){
+        grid-template-columns: repeat(1, 1fr);
+
       }
     }
   }

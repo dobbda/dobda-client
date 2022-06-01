@@ -19,9 +19,10 @@ interface CardProps {
 
 export const CardContainer = styled.li<CardProps>`
   background:  ${({type,theme})=> type==="R" ? theme.color.Rcard : theme.color.Qcard};
-  max-width: 500px;
+  /* max-width: 100%; */
   width: 100%;
-  min-width: ${({theme})=> theme.media.cardWidth};
+  max-width:${({theme})=> theme.media.cardMaxWidth};
+  min-width: ${({theme})=> theme.media.cardMinWidth};
   border-radius: 3px;
   display: inline-block;
 `

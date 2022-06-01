@@ -16,6 +16,6 @@
     "incremental": true,
     "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "styled.d.ts","index.d.ts","**/*.ts", "**/*.tsx", "src/components/lib/event.ts"],
+  "include": ["next-env.d.ts", "styled.d.ts","index.d.ts","**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

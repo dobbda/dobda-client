@@ -3,9 +3,10 @@ const media = {
   maxWidth: `1200px`,
   large: `990px`,
   medium: `768px`,
-  small: `574px`,
+  small: `574px`, //card culumn
   minWidth: `400px`,
-  cardWidth: "320px"
+  cardMinWidth: "320px",
+  cardMaxWidth: "450px",
 };
 
 const color = {

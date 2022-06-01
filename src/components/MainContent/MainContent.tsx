@@ -1,5 +1,5 @@
 import React from 'react';
-import { CategoriesEvent } from '../lib/event';
+import { CategoriesEvent } from '../lib/categoryHover';
 import { Main } from './style/MainContent.Element';
 import SearchBox from './SearchBox'
 import QCard from '../Card/QCard'
@@ -27,6 +27,10 @@ const MainContent = ({ children }: Props) => {
       {/** main content card  **/}
       <div className="main-content">
         <ul className="card-grid">
+          <QCard />
+          <RCard />
+          <QCard />
+          <RCard />          
           <QCard />
           <RCard />
         </ul>

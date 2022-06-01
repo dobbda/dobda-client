@@ -7,6 +7,12 @@ export const Div = styled.div`
   width: 300px;
   box-shadow: 0px 0px 0.5px 1px ${({theme})=> theme.color.main2};
   border-radius: 2px;
+  @media screen and (max-width:${({theme})=> theme.media.small}) {
+    max-width: ${({theme})=> theme.media.cardMaxWidth};
+    width: 100%;
+    min-width: ${({theme})=> theme.media.cardMinWidth};
+    margin-top: 10px;
+  }
 
   margin-bottom: 20px;
   input {

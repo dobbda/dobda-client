@@ -8,7 +8,7 @@ type Props = {}
 
 const QCard = (props: Props) => {
   return (
-<CardContainer>
+<CardContainer className="card-items">
       <CardWrapper>
         <QHeader />
         <QBody/>

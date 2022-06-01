@@ -9,7 +9,7 @@ interface CardProps {
 
 // header
 export const HeaderWrapper = styled.header`
-  width: ${({theme})=> theme.media.cardWidth};
+  width: ${({theme})=> theme.media.cardMinWidth};
   height: 52px;
   align-items: center;
   padding: 0 10px;

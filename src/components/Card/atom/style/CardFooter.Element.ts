@@ -9,7 +9,7 @@ interface CardProps {
 
 //footer
 export const FooterWrapper = styled.div`
-  width: ${({theme})=> theme.media.cardWidth};
+  width: ${({theme})=> theme.media.cardMinWidth};
   height: 52px;
   margin: 0 auto;
 
