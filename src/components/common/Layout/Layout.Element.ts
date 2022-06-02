@@ -13,7 +13,7 @@ export const Container = styled.div`
 
     .tablet-nav {
       display: none;
-      height: 80px;
+      height: 40px;
       background: #00c6ff;
 
       @media screen and (max-width: ${({ theme }) => theme.media.medium}) and (min-width: ${({ theme }) => theme.media.small}) {
@@ -22,7 +22,7 @@ export const Container = styled.div`
     }
 
     .mobile-nav {
-      height: 80px;
+      height: 40px;
       background: #00c6ff;
 
       display: none;
@@ -36,7 +36,7 @@ export const Container = styled.div`
       display: flex;
       justify-content: space-between;
       height: 100%;
-      .content {
+      & > .content {
         width: 100%;
         height: 100%;
         background-color: #fff;
