@@ -21,7 +21,7 @@ export const QBody = (props: Props) => {
         제목입니다
       </Title>
       <Content>
-        battery cathodes. He earned a BS in Mechanical Engineeringbattery battery cathodes. He earned a BS in Mechanical Engineering  ....cathodes. He earned a BS in Mechanical Engineering  ....  ....
+         Engineeringbattery battery ery cathodes. He earned a BS in Mechanicalcathodes. He earned a BS in Mechanical Engineering  ....cathodes. He earned a BS in Mechanical 
       </Content>
       <TagWrapper>
         {tagList.map((tag,i)=> <Tag key={i}>{tag}</Tag>)}

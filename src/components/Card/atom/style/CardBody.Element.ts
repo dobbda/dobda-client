@@ -28,13 +28,15 @@ export const BodyWrapper = styled.div`
 export const Title = styled.h1`
   font-size:20px;
   margin:0;
+  max-height: 32px;
+  overflow: hidden;
   padding: 0;
   cursor: pointer;
 `
 
 export const Content = styled.p`
   color: #969696;
-  max-height: 69px;
+  max-height: 66px;
   overflow: hidden;
   cursor: pointer;
 
@@ -45,6 +47,6 @@ export const Content = styled.p`
 
 export const TagWrapper = styled.div`
   display: flex;
-  margin: 10px auto;
+  margin: 5px auto;
   cursor: pointer;
 `
