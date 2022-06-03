@@ -25,18 +25,21 @@ export const QHeader = (props: Props) => {
   return (
   <HeaderWrapper>
     <HeaderContent>
-      <Group><Qicon /><p>한시간전</p></Group>
-      <Group color="#8400EC"><p>2200</p><CoinIcon /></Group>
+      <Group color="#8400EC"><Qicon /><p>2200</p><CoinIcon /></Group>
+      
+      <Group><p>한시간전</p></Group>
+      
     </HeaderContent>
-  </HeaderWrapper>); 
+  </HeaderWrapper>);
 };
 
 export const RHeader = (props: Props) => {
   return (
   <HeaderWrapper>
     <HeaderContent>
-      <Group><Ricon /><p>한시간전</p></Group>
-      <Group color="#8400EC"><P>D-3일</P><p>2200</p><CoinIcon /></Group>
+      <Group ><Ricon /> <P color="#8400EC">2200</P > <CoinIcon /><P>D-3일</P></Group>
+      <Group><p>한시간전</p></Group>
+
     </HeaderContent>
   </HeaderWrapper>);
 };

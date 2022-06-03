@@ -8,7 +8,8 @@ export const Tag = styled.div<CardProps>`
   margin-right: 2px;
   font-size: 14px;
   border-radius: 5px;
-  background-color: ${({type, theme})=> type==="R" ? theme.color.Rcard : theme.color.Qcard};
+  background-color: ${({theme})=>theme.color.secondary};
+  color: #fff;
   :hover {
     transform: scale(1.1);
     transition: all 0.3s;

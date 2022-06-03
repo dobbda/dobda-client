@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 export const Main = styled.main`
-  margin:20px;
-  /* margin-top: 50px; //임시로 */
-  
+  margin:20px;  
   max-width: 1100px;
   /* height: 100%; */
   display: flex;

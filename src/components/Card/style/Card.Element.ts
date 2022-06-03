@@ -1,3 +1,4 @@
+import { blob } from 'stream/consumers'
 import styled from 'styled-components'
 // ({theme})=> theme.color
 interface CardProps {
@@ -5,24 +6,14 @@ interface CardProps {
   color?: string,
 }
 
-// export const CardWrapper = styled.li<CardProps>`
-//   max-width: 400px;
-//   width: 100%;
-//   height: 236px;
-//   min-width: 340px;
-//   background:  ${({type,theme})=> type==="R" ? theme.color.Rcard : theme.color.Qcard};
-//   border-radius: 3px;
-//   display: flex;
-//   flex-direction: column;
-  
-// `
 
 export const CardContainer = styled.li<CardProps>`
-  background:  ${({type,theme})=> type==="R" ? theme.color.Rcard : theme.color.Qcard};
+  background:  ${({theme})=> theme.color.card};
   /* max-width: 100%; */
-  width: 100%;
+  /* width: 100%; */
   max-width:${({theme})=> theme.media.cardMaxWidth};
   min-width: ${({theme})=> theme.media.cardMinWidth};
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 3px;
   display: inline-block;
 `
@@ -42,7 +33,7 @@ export const Group = styled.div`
   user-select:none;
 
   p{
-    color: ${({color}) => color ? color : "#686868"};
+    color: #686868;
   }
   * {
     margin:3px;
@@ -52,7 +43,9 @@ export const Group = styled.div`
 
 
 export const P = styled.div`
-  color: #000;
+  font-weight: bold;
+  color: ${({color}) => color ? color : "#686868"};
+  margin-left: 10px;
 `
 
 export const AddBell = styled.div`

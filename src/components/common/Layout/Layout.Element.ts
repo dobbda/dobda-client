@@ -3,10 +3,11 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
+  background-color: ${({theme})=>theme.color.bg};
+  
   .wrapper {
     max-width: ${({ theme }) => theme.media.large}; //1200px
     height: 100%;
-    background: #0005;
 
     display: flex;
     flex-direction: column;
@@ -33,7 +34,6 @@ export const Container = styled.div`
       }
     }
 
-
     .main {
       //윈도우 메인화면
       display: flex;
@@ -41,7 +41,6 @@ export const Container = styled.div`
       height: 100%;
       .layout-content {
         width: 100%;
-        background-color: #fff;
       }
       .window-nav {
         z-index: 1;

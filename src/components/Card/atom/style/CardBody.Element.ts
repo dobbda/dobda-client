@@ -16,8 +16,6 @@ export const BodyWrapper = styled.div`
   background: #fff;
   padding: 5px 10px;
   
-
-  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   .body-column{
     width: 100%;
     margin: 0 auto;
