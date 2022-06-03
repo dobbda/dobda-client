@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Div = styled.div`
   background-color: ${({ theme }) => theme.color.main2};
   height: 100%;
+  width: 200px;
   display: flex;
   flex-direction: column;
   padding: 36px 0 0 0;

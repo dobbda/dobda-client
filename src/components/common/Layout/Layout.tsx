@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Container } from './Layout.Element';
+import { Container ,Banner, Footer} from './Layout.Element';
 import MainContent from 'src/components/MainContent/MainContent';
 import Navbar from 'src/components/Navbar/Navbar';
 import NavbarUp from 'src/components/Navbar/NavbarUp';
@@ -20,21 +20,20 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <Navbar />
           </nav>
 
-          <div className="content">
+          <div className="layout-content">
             <MainContent>
-              <li>
-                {' '}
-                <h2>카드</h2>{' '}
-              </li>
+
             </MainContent>
           </div>
 
-          <aside>사이드바</aside>
+
         </div>
-      </div>
-      <footer>
+        {/* <Footer>
         <h1>footer</h1>
-      </footer>
+      </Footer> */}
+      </div>
+      <Banner className="banner">사이드바</Banner>
+
     </Container>
   );
 };

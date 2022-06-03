@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const Main = styled.main`
   margin:20px;
-  margin-top: 50px; //임시로
+  /* margin-top: 50px; //임시로 */
   
   max-width: 1100px;
   min-width: ${({theme})=> theme.media.minWidth};
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   @media screen and (max-width: ${({theme})=> theme.media.minWidth}){

@@ -4,7 +4,7 @@ const media = {
   large: `990px`,
   medium: `768px`,
   small: `574px`, //card culumn
-  minWidth: `400px`,
+  minWidth: `360px`,
   cardMinWidth: "320px",
   cardMaxWidth: "450px",
 };
