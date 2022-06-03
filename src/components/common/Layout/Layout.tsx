@@ -1,26 +1,39 @@
 import React, { FC } from 'react';
-import { Container } from './Layout.Element';
-
+import { Container ,Banner, Footer} from './Layout.Element';
+import MainContent from 'src/components/MainContent/MainContent';
+import Navbar from 'src/components/Navbar/Navbar';
+import NavbarUp from 'src/components/Navbar/NavbarUp';
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const arr = [{ num: 1 }, { num: 2 }, { num: 3 }];
   return (
     <Container className="container">
       <div className="wrapper">
-        <nav className="tablet-nav">tablet size navbar</nav>
-        <nav className="mobile-nav">mobile size navbar</nav>
+        <nav className="tablet-nav">
+          <NavbarUp />
+        </nav>
+        <nav className="mobile-nav">
+          <NavbarUp />
+        </nav>
 
         <div className="main">
-          <nav className="window-nav">full screen navbar</nav>
+          <nav className="window-nav">
+            <Navbar />
+          </nav>
 
-          <div className="content">
-            <div>메인 콘텐츠 관련</div>
+          <div className="layout-content">
+            <MainContent>
+
+            </MainContent>
           </div>
 
-          <aside>사이드바</aside>
+
         </div>
-      </div>
-      <footer>
+        {/* <Footer>
         <h1>footer</h1>
-      </footer>
+      </Footer> */}
+      </div>
+      <Banner className="banner">사이드바</Banner>
+
     </Container>
   );
 };

@@ -2,9 +2,9 @@ import styled from 'styled-components';
 // height: ${({theme})=>theme.media.size};
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   .wrapper {
-    max-width: ${({ theme }) => theme.media.maxWidth}; //1200px
+    max-width: ${({ theme }) => theme.media.large}; //1200px
     height: 100%;
     background: #0005;
 
@@ -12,17 +12,19 @@ export const Container = styled.div`
     flex-direction: column;
 
     .tablet-nav {
+      z-index: 1;
       display: none;
-      height: 80px;
+      height: 40px;
       background: #00c6ff;
-
+      
       @media screen and (max-width: ${({ theme }) => theme.media.medium}) and (min-width: ${({ theme }) => theme.media.small}) {
         display: block;
       }
     }
 
     .mobile-nav {
-      height: 80px;
+      z-index: 1;
+      height: 40px;
       background: #00c6ff;
 
       display: none;
@@ -31,18 +33,18 @@ export const Container = styled.div`
       }
     }
 
+
     .main {
       //윈도우 메인화면
       display: flex;
       justify-content: space-between;
       height: 100%;
-      .content {
+      .layout-content {
         width: 100%;
-        height: 100%;
         background-color: #fff;
       }
       .window-nav {
-        //사이드 내비게이션
+        z-index: 1;
         height: 100vh;
         width: 200px;
         background-color: #00c6ff;
@@ -52,21 +54,31 @@ export const Container = styled.div`
       }
     }
 
-    aside {
-      //오른쪽 사이드바
-      max-width: 180px;
-      min-width: 180px;
-      height: 500px;
-      background: #0005;
-      @media screen and (max-width: ${({ theme }) => theme.media.large}) {
-        display: none;
-      }
-    }
   }
 
-  footer {
-    background: red;
-    height: 180px;
-    max-width: ${({ theme }) => theme.media.maxWidth};
-  }
+
 `;
+
+
+export const Banner = styled.aside`
+  position: fixed;
+  left: ${({ theme }) => theme.media.large};
+  top: 50px;
+  max-width: 180px;
+    min-width: 180px;
+    height: 500px;
+  border: 1px solid #0005;
+`
+
+export const Footer = styled.footer`
+    position: relative;
+    bottom: 0;
+    left: 200px;
+    background: red;
+    height: 100px;
+    width: 100%;
+    @media screen and (max-width: ${({ theme }) => theme.media.large}){
+      left: 0;
+    }
+
+`

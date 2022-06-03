@@ -3,15 +3,17 @@ const media = {
   maxWidth: `1200px`,
   large: `990px`,
   medium: `768px`,
-  small: `574px`,
+  small: `574px`, //card culumn
   minWidth: `360px`,
+  cardMinWidth: "320px",
+  cardMaxWidth: "450px",
 };
 
 const color = {
-  main: '#000000',
-  q_header: '#000000',
-  q_body: '#000000',
-  b_bot: '#000000',
+  main2: "#00C6FF",
+  main1: "#3282B8",
+  Qcard: "#00C6FF",
+  Rcard: "#BEAEE2"
 }
 
 export const theme = {
