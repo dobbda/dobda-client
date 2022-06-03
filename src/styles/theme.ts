@@ -10,6 +10,10 @@ const media = {
 };
 
 const color = {
+  bg: "#EAEEF2", //background color
+  card: "#fff",
+  primary:"#33404D",
+  secondary:"#465666",
   main2: "#00C6FF",
   main1: "#3282B8",
   Qcard: "#00C6FF",
