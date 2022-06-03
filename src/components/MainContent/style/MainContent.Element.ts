@@ -5,11 +5,10 @@ export const Main = styled.main`
   /* margin-top: 50px; //임시로 */
   
   max-width: 1100px;
-  min-width: ${({theme})=> theme.media.minWidth};
   /* height: 100%; */
   display: flex;
   flex-direction: column;
-  @media screen and (max-width: ${({theme})=> theme.media.minWidth}){
+  @media screen and (max-width: 400px){
     margin:0;
     padding:5px;
 
