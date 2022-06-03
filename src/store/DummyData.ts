@@ -31,8 +31,8 @@ export const me = {
   //-----------내가쓴 답글----------------------------------------------
   question_answers: [
     //답글 달아서 채택 받은 질문포스트
-    { id: 1, complited: true }, //id:질문포스트id
-    { id: 2 , complited: true},
+    { id: 1 }, //id:질문포스트id
+    { id: 2},
   ],
   request_answers: [
     // 기능요청글에서 내가 선택된 글
