@@ -11,7 +11,6 @@ export const Tag = styled.div<CardProps>`
   background-color: ${({theme})=>theme.color.secondary};
   color: #fff;
   :hover {
-    transform: scale(1.1);
-    transition: all 0.3s;
+    color:#00C6FF;
   }
   `

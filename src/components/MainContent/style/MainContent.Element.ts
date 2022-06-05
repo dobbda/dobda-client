@@ -47,12 +47,12 @@ export const Main = styled.main`
       display: grid;
       place-items: center;
       grid-template-columns: repeat(2, 1fr);
-      grid-gap: 30px;
+      gap:30px 20px;
       /* flex-wrap: wrap; */
 
       @media screen and (max-width: ${({ theme })=> theme.media.small}){
         grid-template-columns: repeat(1, 1fr);
-
+        transition: grid-template-columns all 1s;
       }
     }
   }

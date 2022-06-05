@@ -1,6 +1,6 @@
 import { FooterWrapper, FooterContent} from './style/CardFooter.Element';
 import { Group, P,AddBell} from '../style/Card.Element';
-
+import { Tooltip } from 'antd';
 
 import AddBellIcon from '../../icon/svg/b_add_bell.svg';
 import WatchIcon from '../../icon/svg/b_watch.svg';
@@ -14,7 +14,7 @@ export const QFooter = (props: Props) => {
     <FooterWrapper>
       <FooterContent>
         <Group>
-          <AddBell><AddBellIcon /></AddBell>
+          <AddBell><Tooltip placement="right" color="cyan" title="댓글알림받기"><AddBellIcon /></Tooltip></AddBell>
           <p>(10)</p>
         </Group>
         <Group>

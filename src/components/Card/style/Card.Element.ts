@@ -51,7 +51,7 @@ export const P = styled.div`
 export const AddBell = styled.div`
   cursor: pointer;
   :hover {
-    transform: scale(1.3);
+    transform: scale(1.1);
     transition: all 0.3s;
   }
   
