@@ -14,3 +14,10 @@ export const Tag = styled.div<CardProps>`
     color:#00C6FF;
   }
   `
+
+export const TagWrapper = styled.div`
+  display: flex;
+  margin: 5px auto;
+  cursor: pointer;
+
+`

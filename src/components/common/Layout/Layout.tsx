@@ -3,6 +3,7 @@ import { Container ,Banner, Footer} from './Layout.Element';
 import MainContent from 'src/components/MainContent/MainContent';
 import Navbar from 'src/components/Navbar/Navbar';
 import NavbarUp from 'src/components/Navbar/NavbarUp';
+
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const arr = [{ num: 1 }, { num: 2 }, { num: 3 }];
   return (
@@ -21,9 +22,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </nav>
 
           <div className="layout-content">
-            <MainContent>
-
-            </MainContent>
+            {children}
           </div>
 
 
