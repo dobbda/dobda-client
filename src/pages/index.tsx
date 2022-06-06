@@ -1,8 +1,9 @@
 import type { NextPage } from 'next';
 import React, {useEffect} from 'react';
 import { useQueryClient } from 'react-query';
-import Layout from '../components/common/Layout/Layout';
+import {Layout} from '../components/common';
 import { me } from 'src/store/response_structure';
+import  {MainContent}  from 'src/components/MainContent';
 
 const Home: NextPage = () => {
   const queryClient = useQueryClient();
@@ -12,7 +13,7 @@ const Home: NextPage = () => {
   
   return (
     <Layout>
-      <h1>hello children</h1>
+      <MainContent/>
     </Layout>
   );
 };
