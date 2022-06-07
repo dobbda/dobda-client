@@ -2,13 +2,15 @@ import type { NextPage } from 'next';
 import React, {useEffect} from 'react';
 import { useQueryClient } from 'react-query';
 import {Layout} from '../components/common';
-import { me } from 'src/store/response_structure';
+import { me ,questions,users, requests} from 'src/store/DummyData';
 import  {MainContent}  from 'src/components/MainContent';
-
 const Home: NextPage = () => {
   const queryClient = useQueryClient();
   useEffect(() => {
-    queryClient.setQueryData('me', me) //임시
+    queryClient.setQueryData('me', me)
+    queryClient.setQueryData('questions', questions())
+    queryClient.setQueryData('requests', requests())
+    queryClient.setQueryData('users', users()) //임시
   }, [])
   
   return (
