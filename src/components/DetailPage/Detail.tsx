@@ -4,11 +4,11 @@ import {Tag} from '../common/Tag'
 import {
   PostContainer, 
   ContentWrapper, 
-  ContentHeader,
-  ContentDetail, 
+  ContentHeader, 
   CommentWrapper,
   CoinWrapper,
-  TagWrapper } 
+  TagWrapper,
+  ContentView } 
 from './style/Detail.Element'
 import Coin from '../icon/svg/coin.svg'
 
@@ -23,17 +23,17 @@ const Detail = ({children}: Props) => {
     <PostContainer>
       <ContentWrapper>
         <ContentHeader>
-          <h1 className='content-title'>apple system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Canta</h1>
-          <TagWrapper><Tag>python</Tag> <Tag>java</Tag> <Tag>matlab</Tag></TagWrapper> {/* map tags*/}
+          <h1 className='content-title'>apple system, BlinkMacSystemFont,Segoe UI,Roboto, Oxygen,Ubuntu, Canta</h1>
+          <TagWrapper><Tag>python</Tag> <Tag>java</Tag><Tag>java</Tag><Tag>java</Tag> <Tag>matlab</Tag></TagWrapper> {/* map tags*/}
           <div className='deadline'>마감기한: {"2022-12-12"} </div>
           <CoinWrapper>코인: <p>9999</p><Coin/> </CoinWrapper>
           <div className='createdAt'>createdAt: {"2022-12-12/12:24"}</div>
         </ContentHeader>
 
-        <ContentDetail>
+        <ContentView>
         
           <h3>markdown viewer components</h3>
-        </ContentDetail>
+        </ContentView>
 
       </ContentWrapper>
 

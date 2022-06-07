@@ -5,7 +5,7 @@ interface Props {
 
 export const TagWord = styled.div`
   padding: 2px 8px 4px;
-  margin-right: 2px;
+  margin: auto 2px 2px;
   font-size: 14px;
   border-radius: 5px;
   background-color: ${({theme,color})=>color? color : theme.color.secondary};

@@ -25,7 +25,7 @@ export const QHeader = (props: Props) => {
   return (
   <HeaderWrapper>
     <HeaderContent>
-      <Group color="#8400EC"><Qicon /><p>2200</p><CoinIcon /></Group>
+      <Group ><Qicon /><P color="#8400EC">2200</P><CoinIcon /></Group>
       
       <Group><p>한시간전</p></Group>
       
