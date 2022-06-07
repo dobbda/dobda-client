@@ -33,6 +33,12 @@ const MainContent = ({ children }: Props) => {
           <RCard />          
           <QCard />
           <RCard />
+          <QCard />
+          <RCard />
+          <QCard />
+          <RCard />          
+          <QCard />
+          <RCard />
         </ul>
       </div>
 

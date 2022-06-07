@@ -6,9 +6,12 @@ export const Main = styled.main`
   /* height: 100%; */
   display: flex;
   flex-direction: column;
+  transition: all 0.2s;
   @media screen and (max-width: 400px){
     margin:0;
-    padding:5px;
+    margin-top: 20px;
+    padding:0 5px 5px;
+    transition: all 0.2s;
 
   }
 
@@ -52,7 +55,6 @@ export const Main = styled.main`
 
       @media screen and (max-width: ${({ theme })=> theme.media.small}){
         grid-template-columns: repeat(1, 1fr);
-        transition: grid-template-columns all 1s;
       }
     }
   }
