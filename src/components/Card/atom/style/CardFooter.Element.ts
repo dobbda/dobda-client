@@ -10,9 +10,10 @@ interface CardProps {
 //footer
 export const FooterWrapper = styled.div`
   width: 100%;
-  height: 50px;
+  height: 45px;
   margin: 0 auto;
   padding: 0 10px;
+  border-top: 1px solid #efefef;
 
 `
 export const FooterContent = styled.div`

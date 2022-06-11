@@ -3,7 +3,9 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-
+  images: {
+    domains: ['i.pravatar.cc']
+  },
   webpack(nextConfig) {
     nextConfig.module.rules.push({
       test: /\.svg$/i,
