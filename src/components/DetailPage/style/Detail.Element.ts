@@ -2,17 +2,17 @@ import styled from 'styled-components'
 
 const headerFont = "22px"
 const wrapperPadding = "20px"
+
 export const PostContainer = styled.div`
 
   height: 100%;
   margin:20px;
   
-  @media screen and (max-width: 400px){
-    margin:0;
+  @media screen and (max-width: ${({ theme }) => theme.media.medium}){
+    margin:5px;
   }
 
 `
-
 
 export const ContentWrapper = styled.div`
   border-radius: 5px;
@@ -21,7 +21,6 @@ export const ContentWrapper = styled.div`
   width: 100%;
   min-height: 600px;
   background-color: #fff;
-
 `
 export const CoinWrapper = styled.div`
   color: #666666;
@@ -60,7 +59,7 @@ export const ContentHeader = styled.header`
     margin-bottom: 30px;
   }
 `
-export const ContentDetail = styled.header`
+export const ContentView = styled.header`
 
 
 `
@@ -72,8 +71,9 @@ export const CommentWrapper = styled.div`
 `
 
 export const TagWrapper = styled.div`
-  
   display: flex;
+  flex-wrap: wrap;
   margin: 20px auto;
+
   cursor: pointer;
   `
