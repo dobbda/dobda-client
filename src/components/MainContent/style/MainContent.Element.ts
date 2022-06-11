@@ -26,13 +26,13 @@ export const Main = styled.main`
       font-size:20px;
       font-weight:800;
       margin-right: 15px;
-      color: #686868;
+      color: #b9b9b9;
     }
     .selected{
 
-        border-bottom: 6px solid ${({ theme }) => theme.color.main2};
+        border-bottom: 6px solid ${({ theme }) => theme.color.primary};
         margin-bottom: -3px;
-        color: ${({ theme }) => theme.color.main2};
+        color: ${({ theme }) => theme.color.secondary};
         transition:  0.3s ease-in-out border-bottom;
       }
   }
