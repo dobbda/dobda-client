@@ -1,33 +1,36 @@
 import React from 'react'
+import moment from "moment";
+import "moment/locale/ko";
 
 import {Tag} from '../common/Tag'
 import {
   PostContainer, 
   ContentWrapper, 
   ContentHeader, 
-  CommentWrapper,
+  CommentContainer,
   CoinWrapper,
   TagWrapper,
-  ContentView } 
+  ContentView, 
+  } 
 from './style/Detail.Element'
 import Coin from '../icon/svg/coin.svg'
 
-
+import {QComment, RComment} from './Comment/'
 
 type Props = {
   children?: React.ReactElement // commentComponent
 }
 
-const Detail = ({children}: Props) => {
+const QDetail = ({children}: Props) => {
   return (
     <PostContainer>
       <ContentWrapper>
         <ContentHeader>
           <h1 className='content-title'>apple system, BlinkMacSystemFont,Segoe UI,Roboto, Oxygen,Ubuntu, Canta</h1>
-          <TagWrapper><Tag>python</Tag> <Tag>java</Tag><Tag>java</Tag><Tag>java</Tag> <Tag>matlab</Tag></TagWrapper> {/* map tags*/}
-          <div className='deadline'>마감기한: {"2022-12-12"} </div>
+          <TagWrapper><Tag  bg={true}>python</Tag> <Tag bg={true}>java</Tag><Tag>java</Tag><Tag>java</Tag> <Tag>matlab</Tag></TagWrapper> {/* map tags*/}
+          <div className='deadline'>마감기한: {moment("2021-10-09T00:44:52+09:00").format('YYYY-MM-DD HH:mm:ss')} </div>
           <CoinWrapper>코인: <p>9999</p><Coin/> </CoinWrapper>
-          <div className='createdAt'>createdAt: {"2022-12-12/12:24"}</div>
+          <div className='createdAt'>createdAt: {moment("2021-10-09T00:44:52+09:00").format('YYYY-MM-DD HH:mm:ss')}</div>
         </ContentHeader>
 
         <ContentView>
@@ -39,14 +42,15 @@ const Detail = ({children}: Props) => {
 
       <input type="text" placeholder="임시 input form" className='comment-form'/>
 
-      <CommentWrapper >
-        
-        <h1>comment components {children}</h1>
-        
-      </CommentWrapper>
+      <CommentContainer >
+        <QComment acceped_answer={true}/>
+        <QComment/>
+        <QComment/>
+        <QComment/>
+      </CommentContainer>
 
     </PostContainer>
   )
 }
 
-export default Detail
+export default QDetail

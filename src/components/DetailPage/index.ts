@@ -1,2 +1,2 @@
-export {default as Detail} from "./Detail";
-export {default as Component} from "./Comment/Comment";
+export {default as QDetail} from "./QDetail";
+// export {default as RDetail} from "./RDetail";
