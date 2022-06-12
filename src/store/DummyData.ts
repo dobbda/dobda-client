@@ -134,7 +134,7 @@ const request =
 
         createdAt: name,
 
-        chileds: [
+        childs: [
           // 기능요청 계시글의 대댓유저는 정해져있음
           {
             id: id(), //int
