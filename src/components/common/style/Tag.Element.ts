@@ -15,6 +15,7 @@ export const TagWord = styled.div<Props>`
   border-radius: 5px;
   background-color: ${({theme,bg})=>bg && theme.color.secondary };
   color: ${({theme,bg})=> bg?"#fff":theme.color.secondary};
+  cursor:pointer;
   :hover {
     color:#00C6FF;
   }
