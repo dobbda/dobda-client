@@ -52,18 +52,6 @@ export const Header = styled.div<Props>`
   .gc-left {
     display: flex;
     align-items: center;
-    > * {
-      margin-right: 5px;
-    }
-    .avatar {
-      border-radius: 100%;
-    }
-    h3 {
-      margin-left:10px;
-      display: inline-block;
-      font-size: 18px;
-      color: ${({ acceped_answer,theme }) => acceped_answer  ? "#fff" : "#484848"};
-    }
   }
 
   .gc-right{
@@ -75,8 +63,8 @@ export const Header = styled.div<Props>`
       font-weight: bold;
       letter-spacing: 0.5em;
       border: 1px solid #cacaca;
-    padding: 0 6px 0 10px;
-    border-radius: 5px;
+      padding: 0 6px 0 10px;
+      border-radius: 5px;
       :hover {
         color: #28DA84;
       }

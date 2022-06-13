@@ -7,7 +7,7 @@ import { CommentWrapper, ChildView, Viewer, Header } from './style/style';
 import Reply from './Reply';
 import More_btn_icon from "../../icon/svg/more_btn.svg"
 import Select_icon from "../../icon/svg/select.svg"
- 
+import Avatar from "../../common/Avatar"
 type Props = {
   acceped_answer?:boolean,
 };
@@ -17,11 +17,9 @@ const QComment = (props: Props) => {
   return (
     <CommentWrapper>
         <Header className="header" acceped_answer={props.acceped_answer}> 
-          <div className="gc-left">
-          <Image height={25} width={25} src="https://i.pravatar.cc/25" alt='avatar' className='avatar'/>
 
-            <h3>쭈꾸미</h3>
-          </div>
+            <Avatar acceped_answer={props.acceped_answer} nickname='쭈꾸미' url='https://i.pravatar.cc/25'/>
+
           <div className="gc-right">
             {props.acceped_answer ? <Select_icon/> : <><span>채택</span><More_btn_icon /></>}
           </div>

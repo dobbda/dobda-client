@@ -18,15 +18,16 @@ export const QBody = (props: Props) => {
   <BodyWrapper>
     <div className='body-column'>
       <Title>
-        제목입니다
+        제목입니다 제목입니다제목입니다제목입니다제목입니다제목입니다
       </Title>
       <Content>
          Engineeringbattery battery ery cathodes. He earned a BS in Mechanicalcathodes. He earned a BS in Mechanical Engineering  ....cathodes. He earned a BS in Mechanical 
       </Content>
-      <TagWrapper>
-        {tagList.map((tag,i)=> <Tag key={i}>{tag}</Tag>)}
-      </TagWrapper>
+
     </div>
+    <TagWrapper>
+        {tagList.map((tag,i)=> <Tag key={i}>{tag}</Tag>)}
+    </TagWrapper>
   </BodyWrapper>
   );
 };
@@ -42,10 +43,11 @@ export const RBody = (props: Props) => {
       <Content>
         battery cathodes. He earned a BS in Mechanical Engineeringbattery battery cathodes. He earned a BS in Mechanical Engineering  ....cathodes. He earned a BS in Mechanical Engineering  ....  ....
       </Content>
-      <TagWrapper>
-        {tagList.map((tag,i)=> <Tag key={i} type="R">{tag}</Tag>)}
-      </TagWrapper>
+
     </div>
+    <TagWrapper >
+        {tagList.map((tag,i)=> <Tag key={i} >{tag}</Tag>)}
+      </TagWrapper>
   </BodyWrapper>
   );
 };
