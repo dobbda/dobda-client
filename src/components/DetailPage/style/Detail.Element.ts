@@ -39,25 +39,37 @@ export const CoinWrapper = styled.div`
 export const ContentHeader = styled.header`
 
    border-bottom: 3px solid #C9C9C9; 
-   
+   cursor: pointer;
   .deadline {
   color: #666666;
   font-size: ${headerFont};
   font-weight: bold;
   }  
-  .createdAt{
-    color: #666666;
-    font-size: 15px;
-    margin:0;
-  }
+
+  
   >*  {
     margin-top:10px;
   }
-  h1,h2 {
+  h1,h2 { //제목
     display: inline;
     font-weight:650;
     line-height: 1.4;
     margin-bottom: 30px;
+  }
+
+  .created-user{
+    padding-right:10px;
+    display: inline-flex;
+
+    align-items: flex-end;
+    margin-bottom: 5px;
+    .createdAt{
+    color: ${({ theme }) => theme.color.date};
+    font-size: 15px;
+    font-weight: bold;
+    margin-left:10px;
+  }
+
   }
 `
 export const ContentView = styled.header`

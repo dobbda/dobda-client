@@ -16,6 +16,8 @@ const color = {
   secondary:"#465666",
   border: "#c9c9c9",
   border2:  "#e3e3e3",
+  coin: "#8400EC",
+  date: "#b9b9b9",
   comment_border: "#cacaca",
   main2: "#00C6FF",
   main1: "#3282B8",
