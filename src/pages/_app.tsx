@@ -12,6 +12,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <React.StrictMode>
+
       <Hydrate state={pageProps.dehydratedState}>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
@@ -19,6 +21,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         </ThemeProvider>
       </Hydrate>
       {process.env.NODE_ENV === 'development' ? <ReactQueryDevtools /> : null}
+      </React.StrictMode>
+
     </QueryClientProvider>
   );
 }
