@@ -1,6 +1,6 @@
 import React from 'react'
 import {Div} from './style/SearchBox.Element'
-import Enter from '../icon/svg/enter.svg'
+import Enter from 'src/assets/icon/enter.svg'
 type Props = {}
 
 const SearchBox = (props: Props) => {

@@ -1,12 +1,12 @@
 import React from 'react';
-import { CategoriesEvent } from '../lib/categoryHover';
+import { CategoriesEvent } from '../../lib/categoryHover';
 import { Main } from './style/MainContent.Element';
 import SearchBox from './SearchBox'
 import QCard from '../Card/QCard'
 import RCard from '../Card/RCard'
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const MainContent = ({ children }: Props) => {

@@ -21,7 +21,7 @@ const Div = styled.div<{ acceped_answer?: boolean }>`
   }
 `;
 
-const Avatar = ({ nickname, acceped_answer = false, url }: Props) => {
+export const Avatar = ({ nickname, acceped_answer = false, url }: Props) => {
   return (
     <Div acceped_answer={acceped_answer}>
       <Image src={url} alt="avatar" width={25} height={25} />
@@ -30,4 +30,4 @@ const Avatar = ({ nickname, acceped_answer = false, url }: Props) => {
   );
 };
 
-export default Avatar;
+

@@ -39,7 +39,6 @@ export const CoinWrapper = styled.div`
 export const ContentHeader = styled.header`
 
    border-bottom: 3px solid #C9C9C9; 
-   cursor: pointer;
   .deadline {
   color: #666666;
   font-size: ${headerFont};
@@ -86,6 +85,4 @@ export const TagWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 10px auto 0;
-
-  cursor: pointer;
   `

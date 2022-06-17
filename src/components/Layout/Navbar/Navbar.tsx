@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Bell from '../icon/svg/bell.svg';
-import List from '../icon/svg/list.svg';
-import Mycoin from '../icon/svg/mycoin.svg';
-import Rule from '../icon/svg/rule.svg';
-import Notice from '../icon/svg/notice.svg';
-import User from '../icon/svg/user.svg';
+import Bell from 'src/assets/icon/bell.svg';
+import List from 'src/assets/icon/list.svg';
+import Mycoin from 'src/assets/icon/mycoin.svg';
+import Rule from 'src/assets/icon/rule.svg';
+import Notice from 'src/assets/icon/notice.svg';
+import User from 'src/assets/icon/user.svg';
 import { Div } from './style/Navbar.Element';
 type Props = {};
 

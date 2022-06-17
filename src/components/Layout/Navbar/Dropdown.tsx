@@ -1,8 +1,8 @@
-import ListIcon from '../icon/svg/b_list.svg';
-import MycoinIcon from '../icon/svg/b_mycoin.svg';
-import RuleIcon from '../icon/svg/b_rule.svg';
-import NoticeIcon from '../icon/svg/b_notice.svg';
-import UserIcon from '../icon/svg/b_user.svg';
+import ListIcon from 'src/assets/icon/b_list.svg';
+import MycoinIcon from 'src/assets/icon/b_mycoin.svg';
+import RuleIcon from 'src/assets/icon/b_rule.svg';
+import NoticeIcon from 'src/assets/icon/b_notice.svg';
+import UserIcon from 'src/assets/icon/b_user.svg';
 import {
   AlarmContent,
   AlarmContentWrapper,

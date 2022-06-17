@@ -5,7 +5,7 @@ import {
   TagWrapper,
 
 } from './style/CardBody.Element';
-import {Tag} from '../../common/Tag'
+import {Tag} from 'src/components/common'
 
 import React from 'react';
 

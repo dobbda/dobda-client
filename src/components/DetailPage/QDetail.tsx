@@ -1,7 +1,6 @@
 import React from 'react';
 
-import getDate from '../lib/dateForm';
-import { Tag } from '../common/Tag';
+import { Tag } from '../common';
 import {
   PostContainer,
   ContentWrapper,
@@ -11,10 +10,11 @@ import {
   TagWrapper,
   ContentView,
 } from './style/Detail.Element';
-import Avatar from '../common/Avatar';
-import Coin from '../icon/svg/coin.svg';
+import {Avatar} from '../common';
+import Coin from 'src/assets/icon/coin.svg';
 
 import { QComment, RComment } from './Comment/';
+import getDate from 'src/lib/dateForm';
 
 type Props = {
   children?: React.ReactElement; // commentComponent
@@ -32,14 +32,14 @@ const QDetail = ({ children }: Props) => {
             <Tag>java</Tag> <Tag>matlab</Tag>
           </TagWrapper>{' '}
           {/* map tags*/}
-          <div className="deadline">마감기한: {getDate('2021-10-09T00:44:52+09:00')} </div>
+          <div className="deadline" key={"comments"}>마감기한: {getDate("2001-09-28 03:00:00")} </div>
           <CoinWrapper>
             코인: <p>9999</p>
-            <Coin />{' '}
+            <Coin />
           </CoinWrapper>
           <div className="created-user">
             <Avatar nickname="Robot" url="https://i.pravatar.cc/25" acceped_answer={false} />
-            <div className="createdAt"> {getDate('2021-10-09T00:44:52+09:00')}</div>
+            <div className="createdAt"> {getDate("2001-09-28 03:00:00")}</div>
           </div>
         </ContentHeader>
 

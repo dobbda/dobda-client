@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Container ,Banner} from './Layout.Element';
 import MainContent from 'src/components/MainContent/MainContent';
-import Navbar from 'src/components/Navbar/Navbar';
-import NavbarUp from 'src/components/Navbar/NavbarUp';
+import Navbar from './Navbar/Navbar';
+import NavbarUp from './Navbar/NavbarUp';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   

@@ -1,9 +1,9 @@
-import { Layout } from "src/components/common";
+import { Layout } from "src/components/Layout";
 import { QDetail } from "src/components/DetailPage";
 import { NextPage } from "next";
 
 
-const DetailPage: NextPage = () => {
+const QuestionDetailPage: NextPage = () => {
   
   return (
     <Layout>
@@ -12,4 +12,4 @@ const DetailPage: NextPage = () => {
   );
 };
 
-export default DetailPage;
+export default QuestionDetailPage;

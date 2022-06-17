@@ -2,9 +2,9 @@ import { FooterWrapper, FooterContent} from './style/CardFooter.Element';
 import { Group, P,AddBell} from '../style/Card.Element';
 import { Tooltip } from 'antd';
 
-import AddBellIcon from '../../icon/svg/b_add_bell.svg';
-import WatchIcon from '../../icon/svg/b_watch.svg';
-import ChatIcon from '../../icon/svg/b_chat.svg';
+import AddBellIcon from 'src/assets/icon/b_add_bell.svg';
+import WatchIcon from 'src/assets/icon/b_watch.svg';
+import ChatIcon from 'src/assets/icon/b_chat.svg';
 
 import React from 'react';
 

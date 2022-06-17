@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Bell from '../icon/svg/bell.svg';
-import List from '../icon/svg/list.svg';
-import User from '../icon/svg/user.svg';
+import Bell from 'src/assets/icon/bell.svg';
+import List from 'src/assets/icon/list.svg';
+import User from 'src/assets/icon/user.svg';
 
 import { Dropdown } from 'antd';
 import 'antd/dist/antd.css';

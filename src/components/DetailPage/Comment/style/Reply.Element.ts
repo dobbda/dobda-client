@@ -27,15 +27,10 @@ export const Header = styled.div<Props>`
     > * {
       margin-right: 5px;
     }
-      .avatar {
-      border-radius: 100%;
-    }
+
     h3 {
-      margin-left:10px;
-      display: inline-block;
       font-weight: bold;
       font-size: 15px;
-      color: ${({ theme }) => theme.color.primary};
     }
     span{ //시간
       margin-left: 10px;

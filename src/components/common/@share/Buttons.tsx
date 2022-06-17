@@ -25,3 +25,9 @@ export const Button = styled.button<Props>`
   }
 `
 
+
+// export const Button = (props: Props) => {
+//   return (
+//     <div>Buttons</div>
+//   )
+// }

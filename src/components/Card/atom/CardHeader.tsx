@@ -9,11 +9,11 @@ import {
 
 } from './style/CardHeader.Element';
 
-import Qicon from '../../icon/svg/question.svg'
-import Ricon from '../../icon/svg/Request.svg'
-import CoinIcon from '../../icon/svg/coin.svg'
+import Qicon from 'src/assets/icon/question.svg'
+import Ricon from 'src/assets/icon/Request.svg'
+import CoinIcon from 'src/assets/icon/coin.svg'
 
-import getDate from 'src/components/lib/dateForm';
+import getDate from 'src/lib/dateForm';
 
 
 import React from 'react';

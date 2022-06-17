@@ -2,10 +2,10 @@ import React from 'react'
 import Image from 'next/image'
 import moment from "moment";
 import "moment/locale/ko";
-import getDate from 'src/components/lib/dateForm';
+import getDate from 'src/lib/dateForm';
 import { ReplyItem, Header } from './style/Reply.Element';
-import Reply_icon from "../../icon/svg/reply.svg"
-import Avatar from 'src/components/common/Avatar';
+import Reply_icon from "src/assets/icon/reply.svg"
+import {Avatar} from 'src/components/common';
 
 type Props = {}
 
@@ -16,7 +16,7 @@ const Reply = () => {
         <div className="rc-left">
           <div><Reply_icon /></div>
           <Avatar nickname="꼴뚜기" url='https://i.pravatar.cc/25' />
-          <span>{getDate("2021-10-09T00:44:52+09:00", true)}</span>
+          <span>{getDate("2001-09-28 03:00:00", true)}</span>
         </div>
       </Header>
 
