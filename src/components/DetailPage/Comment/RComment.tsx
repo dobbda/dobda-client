@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import getDate from 'src/lib/dateForm';
 
 import { CommentWrapper, ChildView, Viewer, Header } from './style/style';
 import Reply from './Reply';
-import More_btn_icon from "src/assets/icon/more_btn.svg"
+import {Avatar} from "src/components/common"
+import getDate from "src/lib/dateForm"
+
+import MoreBtn_icon from "src/assets/icon/more_btn.svg"
 import Select_icon from "src/assets/icon/select.svg"
- import {Avatar} from "src/components/common"
 type Props = {
   acceped_answer?:boolean,
 };
@@ -16,9 +17,11 @@ const RComment = (props: Props) => {
   return (
     <CommentWrapper>
         <Header className="header" acceped_answer={props.acceped_answer}> 
-        <Avatar nickname="꼴뚜기" url='https://i.pravatar.cc/25' />
+
+            <Avatar acceped_answer={props.acceped_answer} nickname='쭈꾸미' url='https://i.pravatar.cc/25'/>
+
           <div className="gc-right">
-            {props.acceped_answer ? <Select_icon/> : <><span>채택</span><More_btn_icon /></>}
+            {props.acceped_answer ? "진행 중..." : <><span>채택</span><MoreBtn_icon /></>}
           </div>
         </Header>
 

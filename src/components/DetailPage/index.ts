@@ -1,2 +1,2 @@
 export {default as QDetail} from "./QDetail";
-// export {default as RDetail} from "./RDetail";
+export {default as RDetail} from "./RDetail";

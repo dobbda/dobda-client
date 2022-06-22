@@ -61,7 +61,6 @@ export const Header = styled.div<Props>`
       color: #656565;
       margin-right: 20px;
       font-weight: bold;
-      letter-spacing: 0.5em;
       border: 1px solid #cacaca;
       padding: 0 6px 0 10px;
       border-radius: 5px;

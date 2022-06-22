@@ -1,20 +1,22 @@
 import styled from 'styled-components'
 
-const headerFont = "22px"
+const headerFont = "20px"
 const wrapperPadding = "20px"
 
 export const PostContainer = styled.div`
 
   height: 100%;
   margin:20px;
+  margin-top:10px;
   
   @media screen and (max-width: ${({ theme }) => theme.media.medium}){
-    margin:5px;
+    margin:-1px;
   }
 
 `
 
 export const ContentWrapper = styled.div`
+
   border-radius: 4px;
   /* word-wrap:break-word; */
   padding: ${wrapperPadding};
@@ -31,14 +33,13 @@ export const CoinWrapper = styled.div`
   align-items: center;
   p {
     margin:0;
-    padding:0 10px;
+    margin-right: 5px;
     color: #8400EC;
 
   }
 `
 export const ContentHeader = styled.header`
 
-   border-bottom: 3px solid #C9C9C9; 
   .deadline {
   color: #666666;
   font-size: ${headerFont};
@@ -49,7 +50,7 @@ export const ContentHeader = styled.header`
   >*  {
     margin-top:10px;
   }
-  h1,h2 { //제목
+  h1, h2, h3 { //제목
     display: inline;
     font-weight:650;
     line-height: 1.4;
@@ -58,14 +59,17 @@ export const ContentHeader = styled.header`
 
   .created-user{
     padding-right:10px;
-    display: inline-flex;
+    display: flex;
+    justify-content: space-between;
 
-    align-items: flex-end;
-    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #e9ecef;
+    border-bottom: 3px solid #C9C9C9;
     .createdAt{
     color: ${({ theme }) => theme.color.date};
+    padding-top: 3px;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 600;
     margin-left:10px;
   }
 

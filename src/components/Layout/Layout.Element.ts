@@ -6,7 +6,7 @@ export const Container = styled.div`
   .wrapper {
     position: relative;
     margin-left: 200px;
-    max-width: 1000px; 
+    /* max-width: 1000px;  */
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@ export const Container = styled.div`
     display: block;
   }
 
-  .tablet-nav {
+  .tablet-nav { //small width size
     z-index: 999;
     position: fixed;
     top:0;

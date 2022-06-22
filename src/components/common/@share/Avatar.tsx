@@ -10,6 +10,7 @@ type Props = {
 
 const Div = styled.div<{ acceped_answer?: boolean }>`
   display:inline-flex;
+  height: 25px;
   img {
     border-radius: 100%;
   }

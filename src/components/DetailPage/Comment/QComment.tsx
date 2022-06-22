@@ -4,6 +4,7 @@ import { CommentWrapper, ChildView, Viewer, Header } from './style/style';
 import Reply from './Reply';
 import More_btn_icon from "src/assets/icon/more_btn.svg"
 import Select_icon from "src/assets/icon/select.svg"
+
 import {Avatar} from "src/components/common"
 import getDate from "src/lib/dateForm"
 type Props = {
