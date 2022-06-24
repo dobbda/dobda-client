@@ -5,8 +5,7 @@ export const Container = styled.div`
   
   .wrapper {
     position: relative;
-    margin-left: 200px;
-    /* max-width: 1000px;  */
+    margin-left: ${({ theme }) => theme.media.navbarWidth};
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -30,22 +29,14 @@ export const Container = styled.div`
 
   .window-nav {
     z-index: 999;
-    width: 200px;
-    position: fixed;
-    top:0;
-    left:0;
-    bottom:0;
+    position: relative;
     display: block;
   }
 
   .tablet-nav { //small width size
     z-index: 999;
-    position: fixed;
-    top:0;
-    left:0;
-    right:0;
-    display: none;
-    height:40px;
+    position: relative;
+    display: none; 
   }
 
 `;

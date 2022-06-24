@@ -7,6 +7,8 @@ const media = {
   minWidth: `360px`,
   cardMinWidth: "320px",
   cardMaxWidth: "450px",
+  navbarWidth: "240px",
+  navbarMobiHeight: "50px",
 };
 
 const color = {
