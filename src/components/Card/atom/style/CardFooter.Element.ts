@@ -13,7 +13,7 @@ export const FooterWrapper = styled.div`
   height: 45px;
   margin: 0 auto;
   padding: 0 10px;
-  border-top: 1px solid #efefef;
+  /* border-top: 1px solid #efefef; */
 
 `
 export const FooterContent = styled.div`

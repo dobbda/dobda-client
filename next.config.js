@@ -4,7 +4,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['i.pravatar.cc',"icon/svg"]
+    domains: ['i.pravatar.cc',"icon/svg","joeschmoe.io"]
   },
   webpack(nextConfig) {
     nextConfig.module.rules.push({

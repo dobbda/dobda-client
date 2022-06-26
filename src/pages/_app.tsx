@@ -6,9 +6,15 @@ import { ThemeProvider } from 'styled-components';
 
 import { GlobalStyle } from 'src/styles/GlobalStyle';
 import { theme } from 'src/styles/Theme';
-
+import axios from 'axios';
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const [queryClient] = React.useState(() => new QueryClient());
+  const [queryClient] = React.useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+      },
+    },
+  }));
 
   return (
     <QueryClientProvider client={queryClient}>
