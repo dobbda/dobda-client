@@ -1,18 +1,16 @@
-
-import Document, {
-  Html, Head, Main, NextScript, DocumentContext
-} from 'next/document';
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-
+import React from 'react';
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx:DocumentContext) {
+  static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
     try {
-      ctx.renderPage = () => originalRenderPage({
-        enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
-      });
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+        });
 
       const initialProps = await Document.getInitialProps(ctx);
       return {
@@ -21,7 +19,7 @@ export default class MyDocument extends Document {
           <>
             {initialProps.styles}
             {sheet.getStyleElement()}
-          </>
+          </>,
         ],
       };
     } finally {
@@ -33,8 +31,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-       <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
-
+          <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
         </Head>
         <body>
           <Main />

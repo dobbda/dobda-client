@@ -1,4 +1,6 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+
 import { CategoriesEvent } from '../../lib/categoryHover';
 import { Main } from './style/MainContent.Element';
 import SearchBox from './SearchBox'
@@ -11,10 +13,14 @@ interface Props {
 
 const MainContent = ({ children }: Props) => {
   CategoriesEvent(); // Category Click Hover Events
+  const {data, error} = useQuery("questions", {
+    initialData: '',
+    staleTime: Infinity,
+  })
 
   return (
     <Main>
-      <div> 
+      <div className="search-wrapper"> 
       <SearchBox/>
 
       </div>
@@ -23,13 +29,16 @@ const MainContent = ({ children }: Props) => {
         <span className="selected">전체</span>
         <span>질문</span>
         <span>요청</span>
+        <span>댓글</span>
+
       </div>
       {/** main content card  **/}
       <div className="main-content">
         <ul className="card-grid">
           <QCard />
-          <RCard />
           <QCard />
+          <RCard />
+
           <RCard />          
           <QCard />
           <RCard />

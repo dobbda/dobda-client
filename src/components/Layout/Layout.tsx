@@ -1,5 +1,5 @@
 import React, { FC,useState } from 'react';
-import { Container ,Banner} from './Layout.Element';
+import { Container ,Banner} from './style/Layout.Element';
 import MainContent from 'src/components/MainContent/MainContent';
 
 import { NavbarMobile, Navbar } from './Navigation';
@@ -15,7 +15,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
         <div className="main">
           <nav className="window-nav">
-            <Navbar  setMobileOn={setfake}/>
+            <Navbar />
           </nav>
 
           <div className="layout-content">

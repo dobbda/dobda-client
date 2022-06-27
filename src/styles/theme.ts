@@ -2,7 +2,9 @@
 const media = {
   maxWidth: `1200px`,
   large: `1080px`,
-  medium: `768px`,
+  medium: `788px`,
+  tablet: `788px`,
+
   small: `574px`, //card culumn
   minWidth: `360px`,
   cardMinWidth: "320px",

@@ -12,6 +12,11 @@ export const ReplyItem = styled.div<Props>`
   border-bottom: 1px solid ${({theme})=> theme.color.comment_border};
   border-top: 1px solid ${({theme})=> theme.color.comment_border};
   background-color: #FDFDFD;
+
+  i.reply{ // icons
+    transform: rotate(180deg);
+    color:gray;
+  }
 `;
 
 export const Header = styled.div<Props>`
