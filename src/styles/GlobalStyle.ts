@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 14px;
   }
-
+  .ant-popover-inner-content{padding:0};
   a {
     color: inherit;
   }
@@ -30,4 +30,5 @@ export const GlobalStyle = createGlobalStyle`
   .navbar-dropdown {
     top: 40px !important;
   }
+  
 `;

@@ -11,7 +11,6 @@ export const Li = styled.li<Props>`
     display: flex;
     align-items: center;
     color: #1616ad;
-
   }
 
   .msg-title::before {
@@ -21,23 +20,23 @@ export const Li = styled.li<Props>`
     height: 7px;
     margin-right: 10px;
     border-radius: 100%;
-    background-color: ${({ checked})=>checked ? "#ff5b16": "#a9a9a9"};
+    background-color: ${({ checked }) => (checked ? '#ff5b16' : '#a9a9a9')};
   }
 
-  div:nth-child(1){
-    display: block;
-    margin-left: 16px;
-    font-weight: bold;
-    font-size: 12px;
-  }
-  div:nth-last-child(1){
-    text-align: right;
-    
-    
-    color: #7a7899;
-    margin-right: 5px;
+  .message-information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span:nth-child(1) {
+      margin-left: 16px;
+      font-weight: bold;
+      font-size: 12px;
+    }
+    span:nth-last-child(1) {
+      text-align: right;
 
+      color: #7a7899;
+      margin-right: 5px;
+    }
   }
-
 `;
-

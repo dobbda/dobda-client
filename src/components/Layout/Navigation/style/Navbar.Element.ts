@@ -11,6 +11,18 @@ export const Navheader = styled.div`
   background-color: ${({ theme }) => theme.color.primary};
   box-shadow: 0px 2px 2px #4c42e1;
   margin-bottom: 28px;
+
+  .display-none{
+    cursor: pointer;
+    position: relative;
+    right: -45px;
+    transform:scale(1.3);
+    color: #4c42e1;
+    :hover{
+      color: #fff;
+    }
+    
+  }
 `
 
 export const LayerMask = styled.div<StyleProps>`

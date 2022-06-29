@@ -10,7 +10,7 @@ import {
 } from './style/CardHeader.Element';
 
 import Qicon from 'src/assets/icon/question.svg'
-import Ricon from 'src/assets/icon/Request.svg'
+import Ricon from 'src/assets/icon/request.svg'
 import CoinIcon from 'src/assets/icon/coin.svg'
 
 import getDate from 'src/lib/dateForm';

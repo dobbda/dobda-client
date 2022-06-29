@@ -14,11 +14,14 @@ export const Container = styled.div`
     left: ${({ theme }) => theme.media.navbarWidth};
     max-width: 800px;
 
-    /* padding-left: ${({ theme }) => theme.media.navbarWidth};*/
     @media screen and (max-width: ${({ theme }) => theme.media.tablet}) {
       left: 0;
       margin-top: 60px;
     }
+  }
+  nav{
+    z-index: 111;
+    position: relative;
   }
 `;
 

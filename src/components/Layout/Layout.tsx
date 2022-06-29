@@ -9,14 +9,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Container className="container">
       <div className="wrapper">
-        <nav className="tablet-nav">
+        <nav className="navigation">
           <NavbarMobile />
+          <Navbar />
+        </nav>
+        <nav className="window-nav">
+
         </nav>
 
         <div className="main">
-          <nav className="window-nav">
-            <Navbar />
-          </nav>
+
 
           <div className="layout-content">
             {children}
