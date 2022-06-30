@@ -12,7 +12,7 @@ export const CardContainer = styled.li<CardProps>`
   /* max-width: 100%; */
   /* width: 100%; */
   max-width:${({theme})=> theme.media.cardMaxWidth};
-  min-width: ${({theme})=> theme.media.cardMinWidth};
+  min-width: 250px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 3px;
   display: inline-block;

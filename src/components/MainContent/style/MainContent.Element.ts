@@ -1,36 +1,37 @@
 import styled from 'styled-components';
 
-export const Main = styled.main`
+export const Main = styled.div`
   margin:20px;  
-  max-width: 1100px;
-  /* height: 100%; */
   display: flex;
   flex-direction: column;
   transition: all 0.2s;
   @media screen and (max-width: 400px){
     margin:0;
     margin-top: 20px;
-    padding:0 5px 5px;
+    /* padding:0 5px 5px; */
     transition: all 0.2s;
 
+  }
+  .search-wrapper{
+    margin-left: 15px;
   }
 
   .category-wrapper{
     
-    height: 45px;
+    height: 40px;
     display: flex;
     margin-bottom: 20px;
     border-bottom: 3px solid #D3D3D3;
     span{
       cursor: pointer;
       font-size:20px;
-      font-weight:800;
-      margin-right: 15px;
+      font-weight:bold;
+      margin-left: 15px;
       color: #b9b9b9;
     }
     .selected{
 
-        border-bottom: 6px solid ${({ theme }) => theme.color.primary};
+        /* border-bottom: 6px solid ${({ theme }) => theme.color.primary}; */
         margin-bottom: -3px;
         color: ${({ theme }) => theme.color.secondary};
         transition:  0.3s ease-in-out border-bottom;

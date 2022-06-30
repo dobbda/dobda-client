@@ -1,16 +1,16 @@
-import React, { FC } from 'react';
-import { Container ,Banner} from './Layout.Element';
+import React, { FC,useState } from 'react';
+import { Container ,Banner} from './style/Layout.Element';
 import MainContent from 'src/components/MainContent/MainContent';
-import Navbar from './Navbar/Navbar';
-import NavbarUp from './Navbar/NavbarUp';
+
+import { NavbarMobile, Navbar } from './Navigation';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  
+  const [fake, setfake] = useState(false)
   return (
     <Container className="container">
       <div className="wrapper">
         <nav className="tablet-nav">
-          <NavbarUp />
+          <NavbarMobile />
         </nav>
 
         <div className="main">

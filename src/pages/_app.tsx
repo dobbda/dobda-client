@@ -6,14 +6,19 @@ import { ThemeProvider } from 'styled-components';
 
 import { GlobalStyle } from 'src/styles/GlobalStyle';
 import { theme } from 'src/styles/Theme';
-
+import axios from 'axios';
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const [queryClient] = React.useState(() => new QueryClient());
+  const [queryClient] = React.useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+      },
+    },
+  }));
 
   return (
+      <React.Fragment>
     <QueryClientProvider client={queryClient}>
-      <React.StrictMode>
-
       <Hydrate state={pageProps.dehydratedState}>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
@@ -21,8 +26,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         </ThemeProvider>
       </Hydrate>
       {process.env.NODE_ENV === 'development' ? <ReactQueryDevtools /> : null}
-      </React.StrictMode>
-
     </QueryClientProvider>
+
+      </React.Fragment>
+
   );
 }

@@ -6,7 +6,7 @@ import getDate from 'src/lib/dateForm';
 import { ReplyItem, Header } from './style/Reply.Element';
 import Reply_icon from "src/assets/icon/reply.svg"
 import {Avatar} from 'src/components/common';
-
+import {FaReply} from 'react-icons/fa'
 type Props = {}
 
 const Reply = () => {
@@ -14,7 +14,7 @@ const Reply = () => {
     <ReplyItem className="comment reply-items" >
       <Header className="header">
         <div className="rc-left">
-          <div><Reply_icon /></div>
+          <i className="reply"> <FaReply rotate={"90deg"}/></i>
           <Avatar nickname="꼴뚜기" url='https://i.pravatar.cc/25' />
           <span>{getDate("2001-09-28 03:00:00", true)}</span>
         </div>

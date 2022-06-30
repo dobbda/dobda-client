@@ -16,9 +16,19 @@ import getDate from 'src/lib/dateForm';
 
 import Coin from 'src/assets/icon/coin.svg';
 import Question_icon from "src/assets/icon/question.svg"
+import {Button} from 'antd'
+import styled from 'styled-components'
+
 type Props = {
   children?: React.ReactElement; // commentComponent
 };
+
+const Buttons = styled(Button)`
+  .ant-btn{
+    background-color: gray;
+
+  }
+`
 
 const QDetail = ({ children }: Props) => {
   return (
@@ -30,6 +40,7 @@ const QDetail = ({ children }: Props) => {
             <Tag bg={true}>python</Tag> <Tag bg={true}>java</Tag>
             <Tag bg={true}>java</Tag>
             <Tag bg={true}>java</Tag> <Tag bg={true}>matlab</Tag>
+            <Buttons>안녕</Buttons>
           </TagWrapper>
           
 <br/>
