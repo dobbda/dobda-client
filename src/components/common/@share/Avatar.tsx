@@ -1,9 +1,12 @@
 import Image from 'next/image';
 import React,{useState} from 'react';
-import { Popover } from 'src/components/common';
 import 'antd/dist/antd.min.css';
-
 import styled from 'styled-components';
+
+
+import { Popover } from 'src/components/common';
+import {UserInfo} from '../../UserInfo'
+
 type Props = {
   nickname: string;
   acceped_answer?: boolean;
@@ -42,12 +45,10 @@ export const Avatar = ({ nickname, acceped_answer = false, url }: Props) => {
 
   return (
     <Popover 
-      title={<><h3>I am title</h3><p>hello I am JjuGgumi</p></>}
+      content={<UserInfo/>}
       trigger="click"
       visible={visible}
-      onVisibleChange={handleVisibleChange}
-      placement="bottomLeft"
-      // isArrow={false}{
+      
     >
       <Div acceped_answer={acceped_answer}>
         <Image src={url} alt="avatar" width={25} height={25} />
