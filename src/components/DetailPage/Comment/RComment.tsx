@@ -18,7 +18,7 @@ const RComment = (props: Props) => {
     <CommentWrapper>
         <Header className="header" acceped_answer={props.acceped_answer}> 
 
-            <Avatar acceped_answer={props.acceped_answer} nickname='쭈꾸미' url='https://i.pravatar.cc/25'/>
+            <Avatar acceped_answer={props.acceped_answer} nickname='쭈꾸미' url='https://joeschmoe.io/api/v1/random'/>
 
           <div className="gc-right">
             {props.acceped_answer ? "진행 중..." : <><span>채택</span><MoreBtn_icon /></>}

@@ -35,6 +35,6 @@ export const Tag = ({children, bg}: Props) => {
     console.log(children)
   }
   return (
-    <Div onClick={onClicked}  bg={bg}>#{children}</Div>
+    <Div onClick={onClicked}  bg={bg}>{!bg && "#"}{children}</Div>
   )
 }
