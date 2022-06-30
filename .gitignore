@@ -33,3 +33,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+
+src/pages/test.tsx
+src/pages/test.tsx
