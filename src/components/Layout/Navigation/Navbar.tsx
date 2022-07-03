@@ -12,7 +12,7 @@ import User from 'src/assets/icon/user.svg';
 import { SideNav, LayerMask, Navheader } from './style/Navbar.Element';
 import { delay } from 'src/lib/delay';
 import { Menu } from './atom/Menu';
-import { Logo } from 'src/components/common';
+import { Logo,A } from 'src/components/common';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import { Modal } from 'src/components/common';
 import { SocialLogin} from 'src/components/SocialLogin'
@@ -52,6 +52,9 @@ const Navbar = () => {
               <SocialLogin />
             </Modal>
           )}
+
+          <A href="#">로그인</A>
+
 
           {/*주요메뉴*/}
           <Menu icon={<Bell />} childMenu={'NO data'}>
