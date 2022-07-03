@@ -12,14 +12,14 @@ import User from 'src/assets/icon/user.svg';
 import { SideNav, LayerMask, Navheader } from './style/Navbar.Element';
 import { delay } from 'src/lib/delay';
 import { Menu } from './atom/Menu';
-import { Logo,A } from 'src/components/common';
+import { Logo, A } from 'src/components/common';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import { Modal } from 'src/components/common';
-import { SocialLogin} from 'src/components/SocialLogin'
+import { SocialLogin } from 'src/components/SocialLogin';
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const useClient = useQueryClient();
-  console.log(visible)
+  console.log(visible);
   const { data: mobileOn, error } = useQuery<boolean>('mobileOn', { initialData: false });
 
   const clickMask = useCallback(() => {
@@ -39,22 +39,14 @@ const Navbar = () => {
               {mobileOn && <IoMdArrowRoundBack viewBox="0 0 400 400" />}
             </span>
           </Navheader>
-          <p  onClick={() => setVisible(true)}>
-            로그인
+          <p onClick={() => setVisible(true)}>
+            <A href="#">로그인</A>
           </p>
           {visible && (
-            <Modal
-            title="1"
-            visible={visible} 
-            onCancel={()=>setVisible(false)}
-
-            >
+            <Modal title="1" visible={visible} onCancel={() => setVisible(false)}>
               <SocialLogin />
             </Modal>
           )}
-
-          <A href="#">로그인</A>
-
 
           {/*주요메뉴*/}
           <Menu icon={<Bell />} childMenu={'NO data'}>
