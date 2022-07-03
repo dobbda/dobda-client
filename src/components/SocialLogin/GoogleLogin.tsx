@@ -12,8 +12,6 @@ const Logo = styled(FcGoogle)`
 `;
 export const GoogleLogin = (props: Props) => {
   const { data} = useSession()
-  const client_id = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-
   useEffect(() => {
     console.log("data:  ", data)
   }, [data])

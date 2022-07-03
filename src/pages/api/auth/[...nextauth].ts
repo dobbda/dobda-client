@@ -1,23 +1,27 @@
 import NextAuth, { NextAuthOptions } from "next-auth"
 import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github';
+import NaverProvider from 'next-auth/providers/Naver';
 
 
 const googleid = process.env.GOOGLE_CLIENT_ID
 const googleSecret = process.env.GOOGLE_CLIENT_SECRET
-const authorization = process.env.AUTHORIZATION
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
-      clientId: googleid&& googleid,
-      clientSecret: googleSecret && googleSecret,
+      clientId: googleid,
+      clientSecret: googleSecret,
       // authorization: authorization&& authorization
     }),
-    // GithubProvider({
-    //   clientId: process.env.GOOGLE_CLIENT_ID,
-    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    // }),
+    GithubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    }),
     
+    NaverProvider({
+      clientId: process.env.NAVER_CLIENT_ID,
+      clientSecret: process.env.NAVER_CLIENT_SECRET,
+    }),
   ],
   callbacks: {
     async jwt({ token, account } ){

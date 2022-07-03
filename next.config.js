@@ -9,12 +9,13 @@ module.exports = withPlugins([],{
     domains: ['i.pravatar.cc', "icon/svg", "joeschmoe.io"]
   },
   async rewrites(){
-    console.log(process.env.NODE_ENV)
+    console.log("tsconfig: ",process.env.NODE_ENV)
     if (process.env.NODE_ENV !== 'production') {
       return [
+
         {
           source: process.env.SOURCE_PATH,
-          destination: process.env.DESTINATION_URL,
+          destination: process.env.DEV_DESTINATION_URL,
         },
       ];
     }
@@ -22,7 +23,7 @@ module.exports = withPlugins([],{
       return [
         {
           source: process.env.SOURCE_PATH,
-          destination: process.env.DESTINATION_URL,
+          destination: process.env.PROD_DESTINATION_URL,
         },
       ];
     }
