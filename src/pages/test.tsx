@@ -1,18 +1,24 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
+import type { NextPage } from 'next';
 import {MessageBox} from 'src/components/MessageBox/MessageBox';
 import {Popover} from 'src/components/common';
-import {UserInfo} from 'src/components/UserInfo'
+import { SocialLogin} from 'src/components/SocialLogin'
+import {Layout} from 'src/components/Layout'
 type Props = {}
+const client_id = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
-const Test:React.FC = (props: Props) => {
+const Test:NextPage = () => {
   const [visible, setVisible] = useState<boolean>(false)
   const closed = () => {
     setVisible(false)
   }
+
+  
+
   return (
-    <>
+    <Layout>
           <div><MessageBox /></div>
-    <div style={{width:"300px",height:"300px", backgroundColor:"#0005", overflow: "hidden"}}>
+    <div >
 
       <Popover 
         visible={visible} // false 넘겨주면 모달 popover modal 닫힘
@@ -26,8 +32,9 @@ const Test:React.FC = (props: Props) => {
 
       </Popover>
       </div>
-      <UserInfo/>
-    </>
+      <SocialLogin/>
+
+    </Layout>
   )
 }
 
