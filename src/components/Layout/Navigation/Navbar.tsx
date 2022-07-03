@@ -4,7 +4,6 @@ import { useQuery, useQueryClient } from 'react-query';
 
 import Bell from 'src/assets/icon/bell.svg';
 import BellOn from 'src/assets/icon/bell_on.svg';
-import List from 'src/assets/icon/list.svg';
 import Mycoin from 'src/assets/icon/mycoin.svg';
 import Rule from 'src/assets/icon/rule.svg';
 import Notice from 'src/assets/icon/notice.svg';
@@ -15,10 +14,12 @@ import { delay } from 'src/lib/delay';
 import { Menu } from './atom/Menu';
 import { Logo } from 'src/components/common';
 import { IoMdArrowRoundBack } from 'react-icons/io';
-
+import { Modal } from 'src/components/common';
+import { SocialLogin} from 'src/components/SocialLogin'
 const Navbar = () => {
+  const [visible, setVisible] = useState(false);
   const useClient = useQueryClient();
-
+  console.log(visible)
   const { data: mobileOn, error } = useQuery<boolean>('mobileOn', { initialData: false });
 
   const clickMask = useCallback(() => {
@@ -38,8 +39,19 @@ const Navbar = () => {
               {mobileOn && <IoMdArrowRoundBack viewBox="0 0 400 400" />}
             </span>
           </Navheader>
-          
-          <Link href={'#'}>로그인</Link>
+          <p  onClick={() => setVisible(true)}>
+            로그인
+          </p>
+          {visible && (
+            <Modal
+            title="1"
+            visible={visible} 
+            onCancel={()=>setVisible(false)}
+
+            >
+              <SocialLogin />
+            </Modal>
+          )}
 
           {/*주요메뉴*/}
           <Menu icon={<Bell />} childMenu={'NO data'}>

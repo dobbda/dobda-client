@@ -8,6 +8,7 @@ const H1 = styled.h1`
   font-weight: bold;
   font-size: 30px;
   color: #4c42e1;
+  text-align: center;
   cursor: pointer;
 `;
 

@@ -17,6 +17,7 @@
     "incremental": true,
     "baseUrl": ".",
   },
-  "include": ["next-env.d.ts", "styled.d.ts","index.d.ts","**/*.ts", "**/*.tsx",],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "styled.d.ts","index.d.ts","**/*.ts", "**/*.tsx", "src/components/SocialLogin/example.js",],
+  "exclude": ["node_modules"],
+  "types": ["gapi", "gapi.auth2"],
 }
