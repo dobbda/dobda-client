@@ -27,7 +27,7 @@ export const Navheader = styled.div`
 
 export const LayerMask = styled.div<StyleProps>`
   display: ${({mobileOn }) => mobileOn ? `block`: `none`};
-  z-index: 998;
+  z-index: 111;
   position:fixed;
   top: 0;
   left: 0;
@@ -57,7 +57,7 @@ export const SideNav = styled.div<StyleProps>`
 
   }
 
-  z-index: 999;
+  z-index: 111;
 
 `;
 

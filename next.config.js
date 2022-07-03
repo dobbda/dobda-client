@@ -8,6 +8,26 @@ module.exports = withPlugins([],{
   images: {
     domains: ['i.pravatar.cc', "icon/svg", "joeschmoe.io"]
   },
+  async rewrites(){
+    console.log("tsconfig: ",process.env.NODE_ENV)
+    if (process.env.NODE_ENV !== 'production') {
+      return [
+
+        {
+          source: process.env.SOURCE_PATH,
+          destination: process.env.DEV_DESTINATION_URL,
+        },
+      ];
+    }
+    else {
+      return [
+        {
+          source: process.env.SOURCE_PATH,
+          destination: process.env.PROD_DESTINATION_URL,
+        },
+      ];
+    }
+  },
   webpack(nextConfig,{webpack}) {
     nextConfig.module.rules.push({
       test: /\.svg$/,
@@ -25,26 +45,3 @@ module.exports = withPlugins([],{
   },
 });
 
-// const withSvgr = require('next-plugin-svgr');
-
-// module.exports = withPlugins(
-//   [withSvgr,
-//     withImages,{
-//       unoptimized: true,
-//       loader: 'imgix'
-//     }],{
-//   reactStrictMode: true,
-//   images: {
-//     domains: ['i.pravatar.cc', "localhost", "joeschmoe.io"]
-//   },
-//   webpack(nextConfig) {
-//     // nextConfig.module.rules.push({
-//     //   test: /\.svg$/i,
-//     //   issuer: { and: [/\.(js|ts|md)x?$/] },
-//     //   use: ['@svgr/webpack']
-
-      
-//     // });
-//     return nextConfig;
-//   },
-// });

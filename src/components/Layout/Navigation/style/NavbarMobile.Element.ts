@@ -5,6 +5,7 @@ import styled from 'styled-components';
 export const Mobilebar = styled.div`
   /* overflow: hidden; */
   position: fixed;
+  z-index: 100;
   top: 0;
   left: 0;
   right: 0;
