@@ -3,12 +3,12 @@
 Programmer-only Q&amp;A web community
 
 dev tech
-Framework : Nextjs  
-styling: styled-components
+```
+Framework : Next.js | TypeScript 
+Styling: styled-components
 state management: react-query, SWR
-
 Editor: Toast ui editor
-
+```
 
 커밋 메시지 형식
 ```
