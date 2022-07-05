@@ -1,17 +1,11 @@
 import styled from 'styled-components';
 
 export const Main = styled.div`
-  margin:20px;  
+  /* margin:20px;   */
   display: flex;
   flex-direction: column;
   transition: all 0.2s;
-  @media screen and (max-width: 400px){
-    margin:0;
-    margin-top: 20px;
-    /* padding:0 5px 5px; */
-    transition: all 0.2s;
 
-  }
   .search-wrapper{
     margin-left: 15px;
   }
@@ -31,7 +25,6 @@ export const Main = styled.div`
     }
     .selected{
 
-        /* border-bottom: 6px solid ${({ theme }) => theme.color.primary}; */
         margin-bottom: -3px;
         color: ${({ theme }) => theme.color.secondary};
         transition:  0.3s ease-in-out border-bottom;

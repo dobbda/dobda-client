@@ -9,5 +9,7 @@ export const Modal = styled(AntModal)`
   border-radius: 5px;
   /* width: 100%; */
 }
-
+.ant-modal-body{
+  padding:2px 24px;
+}
 `

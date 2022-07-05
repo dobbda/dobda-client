@@ -11,21 +11,16 @@ module.exports = withPlugins([],{
   async rewrites(){
     console.log("tsconfig: ",process.env.NODE_ENV)
     if (process.env.NODE_ENV !== 'production') {
-      return [
-
-        {
+      return [{
           source: process.env.SOURCE_PATH,
           destination: process.env.DEV_DESTINATION_URL,
-        },
-      ];
+        }];
     }
     else {
-      return [
-        {
+      return [{
           source: process.env.SOURCE_PATH,
           destination: process.env.PROD_DESTINATION_URL,
-        },
-      ];
+        }];
     }
   },
   webpack(nextConfig,{webpack}) {
@@ -37,9 +32,7 @@ module.exports = withPlugins([],{
         // options:{
         //   icon:true,
         // }
-    }]
-
-      
+    }]      
     });
     return nextConfig;
   },

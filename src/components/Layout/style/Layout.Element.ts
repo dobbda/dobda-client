@@ -23,6 +23,17 @@ export const Container = styled.div`
     z-index: 111;
     position: relative;
   }
+
+  .layout-content{
+    padding:10px;
+    min-width: 350px;
+
+    @media screen and (max-width: 786px){
+      padding:2px;
+      /* padding-top: 20px; */
+      transition: all 0.2s;
+  }
+  }
 `;
 
 export const Banner = styled.aside`

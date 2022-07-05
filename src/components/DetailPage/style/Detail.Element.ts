@@ -6,12 +6,11 @@ const wrapperPadding = "20px"
 export const PostContainer = styled.div`
 
   height: 100%;
-  margin:20px;
-  margin-top:10px;
+  margin-top:-20px;
   
-  @media screen and (max-width: ${({ theme }) => theme.media.medium}){
-    margin:-1px;
-  }
+  @media screen and (max-width: ${({ theme }) => theme.media.tablet}){
+    margin-top:-10px;
+  } 
 
 `
 
