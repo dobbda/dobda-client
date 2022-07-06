@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState,useCallback } from 'react';
 import styled, { css } from 'styled-components';
 type StyleProps = {
   top?: number;
@@ -13,35 +13,37 @@ const PopoverContainer = styled.div<StyleProps>`
       z-index: 9999;
       position: absolute;
       top: ${props.top != null ? '100%' : 'auto'};
-      bottom: ${props.bottom != null ? "100%" : 'auto'};
+      bottom: ${props.bottom != null ? '100%' : 'auto'};
       left: ${props.left != null ? props.left + 'px' : 'auto'};
       right: ${props.right != null ? props.right + 'px' : 'auto'};
 
       min-width: 100px;
       min-height: 100px;
 
-      .top-area{ //
-        height:  ${props.top != null ? props.top+"px" : 0};
-        width: 100% ;
+      .top-area {
+        //
+        height: ${props.top != null ? props.top + 'px' : 0};
+        width: 100%;
       }
-      .bottom-area{
-        height:  ${props.bottom != null ? props.bottom+"px" : 0};
-        width: 100% ;
+      .bottom-area {
+        height: ${props.bottom != null ? props.bottom + 'px' : 0};
+        width: 100%;
       }
     `;
   }}
 `;
 // popover container parents element
 const Span = styled.span`
-  overflow:visible !important;
+  overflow: visible !important;
 
   position: relative;
 `;
 
 type Props = {
   children: React.ReactNode;
-  content: React.ReactNode;
+  content: React.ReactNode | JSX.Element;
   trigger?: string;
+  outClick?: boolean;
   top?: number;
   left?: number;
   bottom?: number;
@@ -49,11 +51,12 @@ type Props = {
   visible?: boolean; //내용완료시 자동 닫기를 원할시 close로 boolean 전달; true일시 모달close
 };
 
-export function Popover({
+function Popover({
   children,
   content,
   trigger = 'click',
-  visible = false,
+  outClick = true,
+  visible =false,
   top = null,
   left = null,
   bottom = null,
@@ -62,50 +65,56 @@ export function Popover({
   const setUseRef = useRef<HTMLDivElement>(null);
   const [isShow, setIsShow] = useState(false);
   // mouse hover event
-  const onMouseOver = () => {
+  const onMouseOver = useCallback(() => {
     if (trigger == 'hover') {
       setIsShow(true);
     }
-  };
-  const onMouseLeave = () => {
+  },[trigger]);
+
+  const onMouseLeave = useCallback(() => {
     if (trigger == 'hover') {
       setIsShow(false);
     }
-  };
+  },[trigger]);
+
   // mouse click event
-  const onClickIsShow = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickIsShow = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     setIsShow(true);
-  };
+  },[]);
+
+  const pageClickEvent = useCallback((e: any) => {
+    if (!setUseRef.current.contains(e.target)) {
+      setIsShow(false);
+    }
+  },[]);
+
   useEffect(() => {
-    if(visible){
+    if (visible) {
       setIsShow(true);
-    }else{setIsShow(false);}
+    } else {
+      setIsShow(false);
+    }
 
-    const pageClickEvent = (e: any) => {
-      if (!setUseRef.current.contains(e.target)) {
-        setIsShow(false);
-      }
-    };
-
-    window.addEventListener('click', pageClickEvent, true);
+    outClick && window.addEventListener('click', pageClickEvent, true);
+    console.log("popover: ")
 
     return () => {
       window.removeEventListener('click', pageClickEvent, true);
     };
-  },[visible,]);
-
+  }, [visible, outClick, pageClickEvent]);
   return (
     <Span onClick={onClickIsShow} ref={setUseRef} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-      < >{children}</>
+      <>{children}</>
       {isShow && (
         <PopoverContainer top={top} left={left} bottom={bottom} right={right}>
-          <div className="top-area"> </div> 
+          <div className="top-area"> </div>
           {content}
 
           <div className="bottom-area"> </div>
-
         </PopoverContainer>
       )}
     </Span>
   );
 }
+
+export default React.memo(Popover)

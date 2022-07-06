@@ -26,10 +26,11 @@ export const Container = styled.div`
 
   .layout-content{
     padding:10px;
+    padding-left: 20px;
     min-width: 350px;
 
     @media screen and (max-width: 786px){
-      padding:2px;
+      padding:5px;
       /* padding-top: 20px; */
       transition: all 0.2s;
   }

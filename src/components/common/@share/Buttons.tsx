@@ -4,30 +4,17 @@ import styled from 'styled-components'
 interface Props {
   color?: string,
   border?: boolean,
+  types?: string,
 }
+
+
 export const Button = styled.button<Props>`
-  border: none;
-  background-color: ${({color})=>color ? color : "#0088FF"};
-  border-radius: 10px;
-  min-width: 100px;
-  height:22px;
-  letter-spacing: 0.18em;
-
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 18px;
-  color: #FFFFFF;
-
-  cursor: pointer;
-  :hover{
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    transform: scale(1.01);
+  background-color: ${({ types }) => (types === 'cancel' ? 'rgba(255, 255, 255, 0.1)' : '#0088FF')};
+  color: #fff;
+  border: 1px solid ${({ types }) => (types === 'cancel' ? '#ACACAC' : '#0000')};
+  padding: 2px 20px;
+  border-radius: 2px;
+  :hover {
+    color: #9e08da;
   }
-`
-
-
-// export const Button = (props: Props) => {
-//   return (
-//     <div>Buttons</div>
-//   )
-// }
+`;
