@@ -96,7 +96,6 @@ function Popover({
     }
 
     outClick && window.addEventListener('click', pageClickEvent, true);
-    console.log("popover: ")
 
     return () => {
       window.removeEventListener('click', pageClickEvent, true);
