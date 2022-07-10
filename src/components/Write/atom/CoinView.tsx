@@ -13,6 +13,8 @@ export const CoinView = (props: Props) => {
   const coin = useClientValue('coin', 0);
   const [newCoin, setNewCoin] = useState<number|string>(coin);
   const queryClient = useQueryClient();
+  const [total, setTotal] = useState<number|string>("");
+
   const myTotalCoin = 10000;
   const onChangeCoin = (e: any) => {
     setNewCoin(Number(`${e.target.value}`));
@@ -32,11 +34,14 @@ export const CoinView = (props: Props) => {
     console.log('query coin:', coin);
   };
   
+  const loadMyCoin = () => { 
+    setTotal(myTotalCoin)
+   }
 
   return (
     <Div>
       <div className="coin-setting-group">
-        <Input type="button" value={'보유코인 불러오기'} />
+        <Input type="button" onClick={loadMyCoin} value={`보유코인: ${total}`} />
         <br/><br />
         <Input type="number" placeholder="지불할 코인" value={Number(`${newCoin}`)} onChange={onChangeCoin} />
         <p className="err-message">{errMessage && errMessage}</p>

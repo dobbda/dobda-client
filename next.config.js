@@ -8,6 +8,7 @@ module.exports = withPlugins([],{
   images: {
     domains: ['i.pravatar.cc', "icon/svg", "joeschmoe.io"]
   },
+
   async rewrites(){
     console.log("tsconfig: ",process.env.NODE_ENV)
     if (process.env.NODE_ENV !== 'production') {
