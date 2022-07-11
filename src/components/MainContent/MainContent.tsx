@@ -34,20 +34,20 @@ const MainContent = ({ children }: Props) => {
       </div>
       {/** main content card  **/}
       <div className="main-content">
-        <ul className="card-grid">
-          <QCard />
-          <QCard />
-          <RCard />
+        {/* <ul className="request-list">
 
+          <RCard />
           <RCard />          
-          <QCard />
           <RCard />
-          <QCard />
           <RCard />
-          <QCard />
           <RCard />          
-          <QCard />
           <RCard />
+        </ul> */}
+        <ul className="question-list">
+        <QCard />
+        <QCard />
+        <RCard />
+
         </ul>
       </div>
 

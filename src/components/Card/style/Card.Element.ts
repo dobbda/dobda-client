@@ -1,4 +1,3 @@
-import { blob } from 'stream/consumers'
 import styled from 'styled-components'
 // ({theme})=> theme.color
 interface CardProps {
@@ -7,24 +6,19 @@ interface CardProps {
 }
 
 
-export const CardContainer = styled.li<CardProps>`
-  background:  ${({theme})=> theme.color.card};
-
-  /* max-width:${({theme})=> theme.media.cardMaxWidth}; */
-  min-width: 300px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 3px;
-  display: inline-block;
+export const ContentWrapper = styled.li<CardProps>`
+  margin-top:10px;
+  border-bottom: solid 1px #D3D3D3;
+  .diff-styles{
+    padding-left: 45px;
+  }
 `
- export const CardWrapper = styled.div`
-   display: flex;
-   flex-direction: column;
- `
 
 
 export const Group = styled.div`
   display: flex;
   align-items: center;
+  text-align: center;
   //스크롤 방지
   -webkit-user-select:none;
   -moz-user-select:none;
@@ -45,13 +39,4 @@ export const P = styled.div`
   font-weight: bold;
   color: ${({color}) => color ? color : "#686868"};
   margin-left: 10px;
-`
-
-export const AddBell = styled.div`
-  cursor: pointer;
-  :hover {
-    transform: scale(1.1);
-    transition: all 0.3s;
-  }
-  
 `

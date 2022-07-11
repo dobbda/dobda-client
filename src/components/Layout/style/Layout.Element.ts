@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   .layout-container {
     /* position: relative; */
-    width: 1280px;
+    /* width: 1280px; */
     display: flex;
     flex-direction: column;
   }
@@ -13,6 +13,7 @@ export const Container = styled.div`
     bottom: 0;
     left: ${({ theme }) => theme.media.navbarWidth};
     max-width: 800px;
+    width: 100%;
 
     @media screen and (max-width: ${({ theme }) => theme.media.tablet}) {
       left: 0;
@@ -30,7 +31,7 @@ export const Container = styled.div`
     min-width: 350px;
 
     @media screen and (max-width: 786px){
-      padding:5px;
+      padding: 0;
       /* padding-top: 20px; */
       transition: all 0.2s;
   }

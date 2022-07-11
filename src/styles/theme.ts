@@ -14,7 +14,7 @@ const media = {
 };
 
 const color = {
-  bg: "#EAEEF2", //background color
+  bg: "#fff",//"#EAEEF2", //background color
   card: "#fff",
   primary:"#33404D",
   secondary:"#465666",

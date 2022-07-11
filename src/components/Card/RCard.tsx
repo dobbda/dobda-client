@@ -1,5 +1,5 @@
 import React from 'react'
-import {CardWrapper, CardContainer} from './style/Card.Element'
+import { ContentWrapper} from './style/Card.Element'
 
 import {RHeader} from './atom/CardHeader'
 import {RBody} from './atom/CardBody'
@@ -11,13 +11,14 @@ type Props = {
 
 const RCard = ({question}: Props) => {
   return (
-    <CardContainer type="R">
-      <CardWrapper >
+    <ContentWrapper type="R">
         <RHeader />
+      <div className="diff-styles">
+
         <RBody/>
         <RFooter />
-      </CardWrapper>
-    </CardContainer>
+        </div>
+    </ContentWrapper>
   )
 }
 
