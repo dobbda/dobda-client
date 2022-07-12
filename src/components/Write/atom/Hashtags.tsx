@@ -1,15 +1,16 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { Tag } from 'antd';
-
 import { BiHash } from 'src/assets/icons';
 
-type Props = {};
+type Props = {
+  tags?: string[],
+  setTags?: React.Dispatch<React.SetStateAction<string[]>>
+};
 
-export function Hashtags({}: Props) {
+export function Hashtags({tags, setTags}: Props) {
   const ref = useRef<HTMLInputElement>();
   const [tag, setTag] = useState<string>("");
-  const [tags, setTags] = useState<string[]>([]);
   const [focus, setFocus] = useState(false);
   const tagHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setTag(e.target.value);
@@ -43,7 +44,7 @@ export function Hashtags({}: Props) {
       setTags((tags) => [...tags, tag]);
       setTag('');
     },
-    [tag],
+    [setTags, tag],
   );
 //태그삭제
   const removeHandler = useCallback(
@@ -51,7 +52,7 @@ export function Hashtags({}: Props) {
       const newTags = tags.filter((tag) => tag !== removedTag);
       setTags(newTags);
     },
-    [tags],
+    [setTags, tags],
   );
   return (
     <>

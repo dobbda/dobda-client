@@ -1,11 +1,14 @@
 import React from 'react'
 import type { NextPage } from 'next';
-import {Write} from 'src/components/Write'
 import {Layout} from 'src/components/Layout'
+import dynamic from 'next/dynamic';
+const Write = dynamic(() => 
+import('src/components/Write/Write'),
+{ ssr: false }); // client 사이드에서만 동작되기 때문에 ssr false로 설정
 
 type Props = {}
 
- const Posting:NextPage = (props: Props) => {
+ const WriteBoard:NextPage = (props: Props) => {
   return (
     <Layout>
      <Write />
@@ -14,4 +17,4 @@ type Props = {}
   )
 }
 
-export default Posting
+export default WriteBoard
