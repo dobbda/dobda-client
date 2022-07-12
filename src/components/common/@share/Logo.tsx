@@ -1,5 +1,5 @@
 import React from 'react';
-import { A } from './Link';
+import { Link } from 'src/components/common';
 import styled from 'styled-components';
 
 type Props = {};
@@ -22,9 +22,9 @@ export const Logo = (props: Props) => {
   return (
     <>
       <Div>
-        <A href="/">
+        <Link href="/">
           <h1>{'Dev<Q>'}</h1>
-        </A>
+        </Link>
       </Div>
     </>
   );

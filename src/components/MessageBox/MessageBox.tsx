@@ -1,6 +1,6 @@
 import React from 'react';
 import Message from './Message';
-import { A } from 'src/components/common';
+import { Link } from 'src/components/common';
 import {Div} from './style/style'
 import {createGlobalStyle} from 'styled-components'
 type Props = {};
@@ -22,7 +22,7 @@ export const MessageBox = (props: Props) => {
         <Message />
       </ul>
       <div className='show-all-messages'>
-        <A href="#">전체알림 보기</A>
+        <Link href="#">전체알림 보기</Link>
       </div>
     </Div>
   );
