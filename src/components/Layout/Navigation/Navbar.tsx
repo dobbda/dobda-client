@@ -13,7 +13,7 @@ import { SideNav, LayerMask, Navheader } from './style/Navbar.Element';
 import { delay } from 'src/lib/delay';
 import { Menu } from './atom/Menu';
 import { Logo, Button } from 'src/components/common';
-import { IoMdArrowRoundBack } from 'react-icons/io';
+import { BackArrow } from 'src/assets/icons';
 import { Modal } from 'src/components/common';
 import { SocialLogin } from 'src/components/SocialLogin';
 const Navbar = () => {
@@ -36,7 +36,7 @@ const Navbar = () => {
               <Logo />
             </span>
             <span className="display-none" onClick={clickMask}>
-              {mobileOn && <IoMdArrowRoundBack viewBox="0 0 400 400" />}
+              {mobileOn && <BackArrow viewBox="0 0 400 400" />}
             </span>
           </Navheader>
           <Button onClick={() => setVisible(true)} color="gray">
