@@ -1,5 +1,6 @@
 import React, { FC,useState } from 'react';
-import { Container,Banner } from './style/Layout.Element';
+import { Container } from './style/Layout.Element';
+import Banner from '../Banner/Banner';
 import MainContent from 'src/components/MainContent/MainContent';
 
 import { NavbarMobile, Navbar } from './Navigation';
@@ -7,17 +8,17 @@ import { NavbarMobile, Navbar } from './Navigation';
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Container className="container">
-        <nav className="navigation">
+        <div className="navigation-caontainer">
           <NavbarMobile />
           <Navbar />
-        </nav>
-        <div className="main">
-          <div className="layout-content">
+        </div>
+        <div className="main-wrapper">
+          <main className="layout-content">
             {children}
-          </div>
+          </main>
         </div>
 
-      <Banner className="banner">사이드바</Banner>
+      <Banner ></Banner>
     </Container>
   );
 };

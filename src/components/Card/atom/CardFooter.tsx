@@ -14,7 +14,7 @@ export const QFooter = (props: Props) => {
   return (
     <FooterWrapper>
         <Group>
-          <Tooltip placement="right" color="cyan" title="댓글알림받기"><AddBellIcon /></Tooltip>
+          <Tooltip placement="right" color="cyan" title="댓글알림받기"><em><AddBellIcon /></em></Tooltip>
           <p>(10)</p>
         </Group>
         <Group>
@@ -47,5 +47,9 @@ export const RFooter = (props: Props) => {
 };
 
 const AddBellIcon = styled(AddBell)`
-  
+  cursor: pointer;
+  :hover path{
+    fill: red;
+  }
 `
+

@@ -1,28 +1,27 @@
 import styled from 'styled-components';
 // height: ${({theme})=>theme.media.size};
+const padding = ""
 export const Container = styled.div`
-  .layout-container {
-    /* position: relative; */
-    /* width: 1280px; */
-    display: flex;
-    flex-direction: column;
-  }
-  .main {
+  height: 100%;
+  display: flex;
+  .navigation-caontainer{
+    z-index: 111;
     position: relative;
-    top: 0;
-    bottom: 0;
-    left: ${({ theme }) => theme.media.navbarWidth};
-    max-width: 800px;
-    width: 100%;
-
-    @media screen and (max-width: ${({ theme }) => theme.media.tablet}) {
-      left: 0;
+    min-width:${({ theme }) => theme.media.navbarWidth} ;
+    @media screen and (max-width: 788px) {
+      width: 0;
+      min-width: 0;
       margin-top: 60px;
     }
   }
-  nav{
-    z-index: 111;
+
+  .main-wrapper {
     position: relative;
+    max-width: 800px;
+    height: 100%;
+    @media screen and (max-width: 788px) {
+      margin-top: 60px;
+    }
   }
 
   .layout-content{
@@ -30,7 +29,7 @@ export const Container = styled.div`
     padding-left: 20px;
     min-width: 350px;
 
-    @media screen and (max-width: 786px){
+    @media screen and (max-width: 788px){
       padding: 0;
       /* padding-top: 20px; */
       transition: all 0.2s;
@@ -38,12 +37,3 @@ export const Container = styled.div`
   }
 `;
 
-export const Banner = styled.aside`
-  position: fixed;
-  left: ${({ theme }) => theme.media.large};
-  top: 50px;
-  max-width: 180px;
-  min-width: 180px;
-  height: 500px;
-  border: 1px solid #0005;
-`;
