@@ -28,7 +28,7 @@ const Write = () => {
     setDeadline(dateString);
     console.log(date, dateString);
   }, []);
-  
+
   return (
     <Write_Wrapper>
       <EnrQorl>
@@ -72,9 +72,7 @@ const Write = () => {
       </Label>
       <InputTitle value={contentTitle} onChange={(e) => setContentTitle(e.target.value)} />
       <EditorContainer>
-
-      <Editor mdStr={mdStr} setMdStr={setMdStr} />
-
+        <Editor mdStr={mdStr} setMdStr={setMdStr} />
       </EditorContainer>
     </Write_Wrapper>
   );
@@ -90,7 +88,6 @@ const InputTitle = styled(AntInput)`
 
 const EditorContainer = styled.div`
   width: 100%;
-  height:800px;
+  height: 800px;
   margin-top: 20px;
-
-`
+`;

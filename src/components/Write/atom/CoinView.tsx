@@ -5,7 +5,7 @@ import { useQueryClient, useQuery } from 'react-query';
 import { Div, ButtonGroup } from './style/inputCoinPopover.element';
 import { Button, Input } from 'antd';
 import { useClientValue } from 'src/hooks/queryHooks';
-import { minCoin } from 'src/config/defaultValue';
+import { variable } from 'src/config/defaultValue';
 type Props = {};
 
 export const CoinView = (props: Props) => {
@@ -16,7 +16,7 @@ export const CoinView = (props: Props) => {
   const [total, setTotal] = useState<number|string>("");
 
   const myTotalCoin = 10000;
-  const onChangeCoin = (e: any) => {
+  const onChangeCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewCoin(Number(`${e.target.value}`));
   };
   const onclickOk = () => {
@@ -24,12 +24,12 @@ export const CoinView = (props: Props) => {
       queryClient.setQueriesData('coin', newCoin)
       queryClient.setQueriesData('coinVisible', false)
     }
-    if (newCoin >= minCoin) {
+    if (newCoin >= variable.minCoin) {
       newCoin < myTotalCoin
         ? (queryClient.setQueriesData('coin', newCoin), queryClient.setQueriesData('coinVisible', false))
         : setErrMessage('보유코인이 부족합니다');
     } else {
-      setErrMessage(`최소 ${minCoin}코인 이상부터 가능합니다 `);
+      setErrMessage(`최소 ${variable.minCoin}코인 이상부터 가능합니다 `);
     }
     console.log('query coin:', coin);
   };

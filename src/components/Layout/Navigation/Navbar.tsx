@@ -35,13 +35,19 @@ const Navbar = () => {
             <span>
               <Logo />
             </span>
+            
             <span className="display-none" onClick={clickMask}>
               {mobileOn && <BackArrow viewBox="0 0 400 400" />}
             </span>
+
+
           </Navheader>
+          <div style={{width:"200px"}}>
           <Button onClick={() => setVisible(true)} color="gray">
             로그인
           </Button>
+          </div>
+
           {visible && (
             <Modal title="1" visible={visible} onCancel={() => setVisible(false)}>
               <div onClick={() => setVisible(false)}>

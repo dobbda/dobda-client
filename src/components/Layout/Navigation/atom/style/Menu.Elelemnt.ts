@@ -7,6 +7,7 @@ export const Div = styled.div`
   user-select: none;
   position: relative;
   overflow: hidden;
+  width: ${({ theme }) => theme.media.navbarWidth};
   :hover {
     background-color: ${({ theme }) => theme.color.primary};
   }

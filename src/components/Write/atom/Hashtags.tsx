@@ -6,9 +6,11 @@ import { BiHash } from 'src/assets/icons';
 type Props = {
   tags?: string[],
   setTags?: React.Dispatch<React.SetStateAction<string[]>>
+  tagColor?:string
+
 };
 
-export function Hashtags({tags, setTags}: Props) {
+export function Hashtags({tags, setTags, tagColor}: Props) {
   const ref = useRef<HTMLInputElement>();
   const [tag, setTag] = useState<string>("");
   const [focus, setFocus] = useState(false);
@@ -62,7 +64,7 @@ export function Hashtags({tags, setTags}: Props) {
           {tags.map((word,index) => {
             return (
 
-                <AntTag key={index} color={'#55acee'} closable onClose={() => removeHandler(word)}>
+                <AntTag key={index} color={tagColor ? tagColor : '#55acee'} closable onClose={() => removeHandler(word)}>
                   {word}
                 </AntTag>
 
