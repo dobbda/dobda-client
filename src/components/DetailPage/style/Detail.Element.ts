@@ -62,7 +62,7 @@ export const ContentHeader = styled.header`
     justify-content: space-between;
 
     padding: 5px;
-    background-color: #e9ecef;
+    
     border-bottom: 3px solid #C9C9C9;
     .createdAt{
     color: ${({ theme }) => theme.color.date};
@@ -80,7 +80,7 @@ export const ContentView = styled.header`
 `
 
 export const CommentContainer = styled.div`
-
+  margin: 20px 0; 
 
 `
 
@@ -89,3 +89,8 @@ export const TagWrapper = styled.div`
   flex-wrap: wrap;
   margin: 10px auto 0;
   `
+
+export const EditorWrapper = styled.div`
+margin:50px 0;
+
+`

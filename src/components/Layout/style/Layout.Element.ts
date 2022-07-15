@@ -17,6 +17,7 @@ export const Container = styled.div`
 
   .main-wrapper {
     position: relative;
+    width: 100%;
     max-width: 800px;
     height: 100%;
     @media screen and (max-width: 788px) {

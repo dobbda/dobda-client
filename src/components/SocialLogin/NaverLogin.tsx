@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { FcGoogle } from 'react-icons/fc';
 import { Wrap, Item, Text } from './style/Button';
 import { useSession, signIn, signOut } from "next-auth/react"
-import {SiNaver} from 'react-icons/si'
-
+import {NaverIcon} from 'src/assets/icons'
 type Props = {};
-const Logo = styled(SiNaver)`
+const Logo = styled(NaverIcon)`
   width: 30px;
   height: 30px;
   /* background-color: #19ce60; */

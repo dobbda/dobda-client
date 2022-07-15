@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { FcGoogle } from 'react-icons/fc';
 import { Wrap, Item, Text } from './style/Button';
 import { useSession, signIn, signOut } from "next-auth/react"
 
+import {GoogleIcon} from 'src/assets/icons'
 
 type Props = {};
-const Logo = styled(FcGoogle)`
+const Logo = styled(GoogleIcon)`
   width: 30px;
   height: 30px;
 `;

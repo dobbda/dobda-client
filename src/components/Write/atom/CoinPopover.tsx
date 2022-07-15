@@ -6,7 +6,7 @@ import { Popover } from 'src/components/common';
 import { CoinView } from './CoinView';
 import { useClientValue } from 'src/hooks/queryHooks';
 import { useQuery, useQueryClient } from 'react-query';
-import { RiBitCoinFill, BiHash } from 'src/assets/icons';
+import { CoinIcon, HashIcon } from 'src/assets/icons';
 
 type Props = {};
 
@@ -44,7 +44,7 @@ const Input = styled(AntInput)`
   }
 `;
 
-const CoinFill = styled(RiBitCoinFill)`
+const CoinFill = styled(CoinIcon)`
   width: 20px;
   height: 20px;
   color: #f2bc1a;

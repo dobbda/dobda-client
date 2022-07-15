@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { Tag } from 'antd';
-import { BiHash } from 'src/assets/icons';
+import { HashIcon } from 'src/assets/icons';
 
 type Props = {
   tags?: string[],
@@ -115,7 +115,7 @@ const Input = styled.input`
   }
 `;
 
-const Hash = styled(BiHash)`
+const Hash = styled(HashIcon)`
   width: 18px;
   height: 20px;
   margin-right: 5px;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSession, signIn, signOut } from "next-auth/react"
 
 
-import { GoMarkGithub } from 'react-icons/go';
+import {GithubIcon} from "src/assets/icons"
 import { Wrap, Item, Text } from './style/Button';
 type Props = {};
 
@@ -29,7 +29,7 @@ export const GithubLogin = (props: Props) => {
   );
 };
 
-const Logo = styled(GoMarkGithub)`
+const Logo = styled(GithubIcon)`
   width: 30px;
   height: 30px;
   fill:#fff;

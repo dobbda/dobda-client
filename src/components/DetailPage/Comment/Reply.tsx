@@ -4,9 +4,9 @@ import moment from "moment";
 import "moment/locale/ko";
 import getDate from 'src/lib/dateForm';
 import { ReplyItem, Header } from './style/Reply.Element';
-import Reply_icon from "src/assets/icon/reply.svg"
 import {Avatar} from 'src/components/common';
-import {FaReply} from 'react-icons/fa'
+import {ReplyIcon} from 'src/assets/icons'
+
 type Props = {}
 
 const Reply = () => {
@@ -14,7 +14,7 @@ const Reply = () => {
     <ReplyItem className="comment reply-items" >
       <Header className="header">
         <div className="rc-left">
-          <i className="reply"> <FaReply rotate={"90deg"}/></i>
+          <i className="reply"> <ReplyIcon /></i>
           <Avatar nickname="꼴뚜기" url='https://i.pravatar.cc/25' />
           <span>{getDate("2001-09-28 03:00:00", true)}</span>
         </div>
