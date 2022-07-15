@@ -1,6 +1,5 @@
 import React,{ useState, useEffect, useCallback,useRef} from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import { NextPage } from 'next';
 import { Editor as ToastEditor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -17,8 +16,8 @@ import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 
-import { Input as AntInput, Button } from 'antd';
-import { ReplyIcon, ReplyFillIcon } from 'src/assets/icons';
+import * as S from './style/style'
+
 interface Props {
   mdStr: string;
   setMdStr: React.Dispatch<React.SetStateAction<string>>;
@@ -68,7 +67,7 @@ const Editor: NextPage<Props> = ({ mdStr, setMdStr, onClickShow = false, height 
 
 
   const EditorElement = (
-    <CustomReactQuill
+    <ToastEditor
       
       initialValue=' '
       previewStyle="vertical"
@@ -90,11 +89,11 @@ const Editor: NextPage<Props> = ({ mdStr, setMdStr, onClickShow = false, height 
     />
   );
   return (
-    <EditorStyle>
-
+    <S.EditorStyle>
+      <S.ToastEditorGlobalStyles/>
       {onClickShow && !showEditor && (
         <div onClick={onClickShowEditorHandler}>
-          <ShowEditorBtn prefix={<ReplyIconS />} placeholder="답글 작성..." readOnly />
+          <S.ShowEditorBtn prefix={<S.ReplyIconS />} placeholder="답글 작성..." readOnly />
         </div>
       )}
 
@@ -103,53 +102,10 @@ const Editor: NextPage<Props> = ({ mdStr, setMdStr, onClickShow = false, height 
       }
 
     {onClickShow && showEditor &&
-      <CloseEditor onClick={()=>setShowEditor(false)} >Editor 접기</CloseEditor>
+      <S.CloseEditor onClick={()=>setShowEditor(false)} >Editor 접기</S.CloseEditor>
     }
-    </EditorStyle>
+    </S.EditorStyle>
   );
 };
 
 export default Editor;
-
-// style
-const CustomReactQuill = styled(ToastEditor)`
-  .toastui-editor-defaultUI{
-    border: 1px solid red !important;
-
-  }
-`;
-
-const EditorStyle = styled.div`
-  margin-top: 10px 0;
-  position: relative;
-`
-
-const ReplyIconS = styled(ReplyIcon)`
-  fill: gray;
-  transform: rotate(180deg);
-  height: 20px;
-  width: 20px;
-  
-`;
-const ShowEditorBtn = styled(AntInput)`
-  height: 50px;
-  background-color: #fff;
-  border-radius: 10px;
-  /* border: px solid #465666; */
-  input{
-    /* background-color: #f5f5f5; */
-  }
-  input::placeholder {
-    font-size: 15px;
-    color: gray;
-  /* background-color: #f5f5f5; */
-
-  }
-`;
-
-const CloseEditor = styled(Button)`
-position: absolute;
-bottom: 0;
-height: 29px;
-background-color: #f7f9fc;
-`
