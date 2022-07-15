@@ -4,18 +4,21 @@ interface Props {
 }
 
 export const ReplyItem = styled.div<Props>`
-  /* padding:10px 25px; */
+  /* margin-top: 15px; */
+  margin-top: 30px;
+  margin-bottom: 5px;
+  background-color: #e2f8ff;
+  border-radius: 10px;
+
+  /* border-bottom: 1px solid ${({ theme }) => theme.color.comment_border};
+  border-top: 1px solid ${({ theme }) => theme.color.comment_border}; */
   .content-viewer {
     padding: 10px 25px;
-  };
-  margin-top:-1px;
-  border-bottom: 1px solid ${({theme})=> theme.color.comment_border};
-  border-top: 1px solid ${({theme})=> theme.color.comment_border};
-  background-color: #FDFDFD;
-
-  i.reply{ // icons
+  }
+  i.reply {
+    // icons
     transform: rotate(180deg);
-    color:gray;
+    /* color:gray; */
   }
 `;
 
@@ -25,7 +28,7 @@ export const Header = styled.div<Props>`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border-bottom: 1px solid #ECEEF1;
+  border-bottom: 1px solid #eceef1;
   .rc-left {
     display: flex;
     align-items: center;
@@ -37,7 +40,8 @@ export const Header = styled.div<Props>`
       font-weight: bold;
       font-size: 15px;
     }
-    span{ //시간
+    span {
+      //시간
       margin-left: 10px;
       font-weight: 600;
       color: #959595aa;

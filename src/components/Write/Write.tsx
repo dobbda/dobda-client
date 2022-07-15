@@ -2,8 +2,11 @@ import React, { useState, useCallback } from 'react';
 import { useClientValue } from 'src/hooks/queryHooks';
 import { useQuery, useQueryClient } from 'react-query';
 import styled from 'styled-components';
-import Editor from 'src/components/Editor/Editor';
+// import Editor from 'src/components/Editor/Editor';
+import dynamic from 'next/dynamic';
+// const Editor = dynamic(() => import('src/components/Editor/Editor'), { ssr: false }); // client 사이드에서만 동작되기 때문에 ssr false로 설정
 
+import {Editor} from 'src/components/Editor'
 import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.element';
 import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag } from 'antd';
 
@@ -72,7 +75,7 @@ const Write = () => {
       </Label>
       <InputTitle value={contentTitle} onChange={(e) => setContentTitle(e.target.value)} />
       <EditorContainer>
-        <Editor mdStr={mdStr} setMdStr={setMdStr} />
+        <Editor mdStr={mdStr} setMdStr={setMdStr}  height="800px"/>
       </EditorContainer>
     </Write_Wrapper>
   );
@@ -87,7 +90,6 @@ const InputTitle = styled(AntInput)`
 `;
 
 const EditorContainer = styled.div`
-  width: 100%;
-  height: 800px;
+
   margin-top: 20px;
 `;

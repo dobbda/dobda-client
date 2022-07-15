@@ -19,7 +19,7 @@ export const ChildView = styled.div`
   padding-left: 25px;
   padding: 6px 0 6px 25px;
   border-top: 1px solid #F2F2F2;
-  background-color: #f9f9f9;
+  background-color: #ddd4ff;
   border-radius: 0 0 5px 5px;
   user-select: none;
 
@@ -29,7 +29,7 @@ export const ChildView = styled.div`
   span {
     margin-right: 10px;
     font-weight: 600;
-    color: #959595aa;
+    color: #2e2e2eaa;
     cursor: pointer;
   }
 `;

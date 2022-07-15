@@ -14,7 +14,7 @@ const Reply = () => {
     <ReplyItem className="comment reply-items" >
       <Header className="header">
         <div className="rc-left">
-          <i className="reply"> <ReplyIcon rotate={"90deg"}/></i>
+          <i className="reply"> <ReplyIcon /></i>
           <Avatar nickname="꼴뚜기" url='https://i.pravatar.cc/25' />
           <span>{getDate("2001-09-28 03:00:00", true)}</span>
         </div>

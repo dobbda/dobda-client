@@ -2,10 +2,9 @@ import styled from 'styled-components';
 import { Select as AntSelect, Input } from 'antd';
 
 export const Write_Wrapper = styled.div`
-  padding: 30px 20px;
+  padding: 30px 5px;
   background-color: #fff;
   margin-top: -13px;
-  margin-right: -50px;
   min-height: 800px;
 `;
 
