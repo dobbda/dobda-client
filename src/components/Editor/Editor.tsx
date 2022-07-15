@@ -133,15 +133,16 @@ const ReplyIconS = styled(ReplyIcon)`
 `;
 const ShowEditorBtn = styled(AntInput)`
   height: 50px;
-  background-color: #f5f5f5;
-  border-radius: 50px;
+  background-color: #fff;
+  border-radius: 10px;
+  /* border: px solid #465666; */
   input{
-    background-color: #f5f5f5;
+    /* background-color: #f5f5f5; */
   }
   input::placeholder {
     font-size: 15px;
     color: gray;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
 
   }
 `;

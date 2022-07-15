@@ -54,17 +54,18 @@ const QDetail = ({ children }: Props) => {
           <h3>markdown viewer components</h3>
         </S.ContentView>
       </S.ContentWrapper>
-
       <S.EditorWrapper> 
+    <h2>답변을 작성해주세요</h2>
+
         <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="600px"/>
       </S.EditorWrapper>
 
-      <S.CommentContainer>
+      <S.CommentList>
         <QComment acceped_answer={true} />
         <QComment />
         <QComment />
         <QComment />
-      </S.CommentContainer>
+      </S.CommentList>
     </S.PostContainer>
   );
 };

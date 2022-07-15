@@ -79,9 +79,12 @@ export const ContentView = styled.header`
 
 `
 
-export const CommentContainer = styled.div`
+export const CommentList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
   margin: 20px 0; 
-
+  padding: 10px;
 `
 
 export const TagWrapper = styled.div`
@@ -91,6 +94,6 @@ export const TagWrapper = styled.div`
   `
 
 export const EditorWrapper = styled.div`
-margin:50px 0;
-
+margin-top:50px;
+padding: 10px;
 `

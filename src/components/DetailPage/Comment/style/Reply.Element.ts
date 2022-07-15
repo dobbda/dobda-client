@@ -5,13 +5,12 @@ interface Props {
 
 export const ReplyItem = styled.div<Props>`
   /* margin-top: 15px; */
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 5px;
-  background-color: #e2f8ff;
+  /* background-color: #e2f8ff; */
   border-radius: 10px;
+  border : 3px solid #ddd4ff;
 
-  /* border-bottom: 1px solid ${({ theme }) => theme.color.comment_border};
-  border-top: 1px solid ${({ theme }) => theme.color.comment_border}; */
   .content-viewer {
     padding: 10px 25px;
   }

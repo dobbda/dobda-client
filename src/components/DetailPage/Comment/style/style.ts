@@ -5,10 +5,11 @@ interface Props {
   acceped_answer?: boolean;
 }
 export const CommentWrapper = styled.div<Props>`
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  margin-right: -1px;
   border-radius: 5px;
   background-color: #ffff;
-  border: 1px solid ${({theme})=>theme.color.comment_border};
+  /* border: 1px solid ${({theme})=>theme.color.comment_border}; */
 
   input {
     margin: 10px 20px;
@@ -19,18 +20,27 @@ export const ChildView = styled.div`
   padding-left: 25px;
   padding: 6px 0 6px 25px;
   border-top: 1px solid #F2F2F2;
-  background-color: #ddd4ff;
+  background-color: #eeee;
   border-radius: 0 0 5px 5px;
   user-select: none;
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
-  span {
+  .show-replybtn {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    :hover {
+      color: gray;
+    }
+  }
+  
+  .createdAt {
     margin-right: 10px;
     font-weight: 600;
     color: #2e2e2eaa;
-    cursor: pointer;
   }
 `;
 

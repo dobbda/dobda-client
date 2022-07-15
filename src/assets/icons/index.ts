@@ -8,3 +8,5 @@ export { FcGoogle as GoogleIcon } from 'react-icons/fc';
 export {SiNaver as NaverIcon} from 'react-icons/si'
 export { GoMarkGithub as GithubIcon} from 'react-icons/go';
 export {VscReply as ReplyIcon} from 'react-icons/vsc';
+export {VscCommentDiscussion as ReCommentIcon} from 'react-icons/vsc';
+

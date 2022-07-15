@@ -45,16 +45,17 @@ const RDetail = ({ children }: Props) => {
         </S.ContentView>
       </S.ContentWrapper>
 
-      <S.EditorWrapper> 
-        <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="600px"/>
-      </S.EditorWrapper>
 
-      <S.CommentContainer>
+      <S.EditorWrapper> 
+        <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px"/>
+      </S.EditorWrapper>
+      <S.CommentList>
+
         <RComment acceped_answer={true} />
         <RComment />
         <RComment />
         <RComment />
-      </S.CommentContainer>
+      </S.CommentList>
     </S.PostContainer>
   );
 };

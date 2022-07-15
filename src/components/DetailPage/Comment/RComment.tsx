@@ -8,12 +8,15 @@ import getDate from "src/lib/dateForm"
 
 import MoreBtn_icon from "src/assets/icon/more_btn.svg"
 import Select_icon from "src/assets/icon/select.svg"
+import {Editor} from 'src/components/Editor';
+import { ReCommentIcon } from 'src/assets/icons';
 type Props = {
   acceped_answer?:boolean,
 };
 
 const RComment = (props: Props) => {
   const [viewChild, setviewChild] = useState<boolean>(false);
+  const [mdStr, setMdStr] = useState("")
   return (
     <CommentWrapper>
         <Header className="header" acceped_answer={props.acceped_answer}> 
@@ -34,15 +37,18 @@ const RComment = (props: Props) => {
         </Viewer>
 {/*Reply ---------------------------*/}
       <ChildView>
-        <span onClick={() => setviewChild(!viewChild)}>답글(2개) {viewChild ? '▽숨기기' : '△보기'}</span>
-        <span>   {getDate("2001-09-28 03:00:00")}</span>
+      <span className="show-replybtn" onClick={() => setviewChild(!viewChild)}>
+          <ReCommentIcon />2 {viewChild ? '닫기' : '보기'}
+        </span>
+        <span className="createdAt"> {getDate('2001-09-28 03:00:00')}</span>
 
       </ChildView>
       {viewChild && (
         <>
           <Reply></Reply>
           <Reply></Reply>
-          <input placeholder="input form"></input>
+          <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="300px"/>
+
         </>
       )}
     </CommentWrapper>

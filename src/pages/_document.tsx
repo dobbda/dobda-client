@@ -32,10 +32,6 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* jQuery */}
-          {/* <Script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></Script> */}
-          {/* iamport.payment.js  */}
-          {/* <Script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></Script> */}
           <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
         </Head>
         <body>
