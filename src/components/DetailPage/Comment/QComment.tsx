@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 import Reply from './Reply';
-import { Editor } from 'src/components/Editor';
+import { Editor, MarkDownViewer } from 'src/components/Editor';
 import { Avatar } from 'src/components/common';
 import getDate from 'src/lib/dateForm';
 
@@ -35,11 +35,7 @@ const QComment = (props: Props) => {
       </S.Header>
 
       <S.Viewer>
-        <span>
-          댓글 뷰어 코스닥 지수도 하락 출발해 870선 등락 OECD 등 경제성장 전망치 하향 조정 전날 美 주요 3대 지수 하락 마감 영향
-          코스피 코스닥 시총 상위 종목 대부분 코스닥 지수도 하락 출발해 870선 등락 OECD 등 경제성장 전망치 하향 조정 전날 美 주요
-          3대 지수 하락 마감 영향 코스피 코스닥 시총 상위 종목 대부분 파란불
-        </span>
+        <MarkDownViewer content='### content viewer 입니다'/>
       </S.Viewer>
       {/*Reply ---------------------------*/}
       <S.ChildView>

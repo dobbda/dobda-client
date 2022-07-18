@@ -11,6 +11,7 @@ import Question_icon from "src/assets/icon/question.svg"
 import {Button} from 'antd'
 import styled from 'styled-components'
 import {Editor} from 'src/components/Editor'
+import {MarkDownViewer,ReactMarkdownViewer} from 'src/components/Editor';
 
 
 type Props = {
@@ -51,7 +52,7 @@ const QDetail = ({ children }: Props) => {
         </S.ContentHeader>
 
         <S.ContentView>
-          <h3>markdown viewer components</h3>
+          <MarkDownViewer content={mdStr}/>
         </S.ContentView>
       </S.ContentWrapper>
       <S.EditorWrapper> 

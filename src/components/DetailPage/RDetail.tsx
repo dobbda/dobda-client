@@ -4,7 +4,7 @@ import { Tag, Avatar } from '../common';
 import getDate from 'src/lib/dateForm';
 import * as S from './style/Detail.Element';
 import Coin_icon from 'src/assets/icon/coin.svg';
-import {Editor} from 'src/components/Editor'
+import {Editor, MarkDownViewer} from 'src/components/Editor'
 import { RComment } from './Comment/';
 
 type Props = {
@@ -41,7 +41,9 @@ const RDetail = ({ children }: Props) => {
         </S.ContentHeader>
 
         <S.ContentView>
-          <h3>markdown viewer components</h3>
+        <S.ContentView>
+          <MarkDownViewer content='# content viewer 입니다'/>
+        </S.ContentView>
         </S.ContentView>
       </S.ContentWrapper>
 

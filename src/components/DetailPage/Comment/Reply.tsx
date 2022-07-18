@@ -1,27 +1,31 @@
-import React from 'react'
-import Image from 'next/image'
-import moment from "moment";
-import "moment/locale/ko";
+import React from 'react';
+import Image from 'next/image';
+import moment from 'moment';
+import 'moment/locale/ko';
 import getDate from 'src/lib/dateForm';
 import { ReplyItem, Header } from './style/Reply.Element';
-import {Avatar} from 'src/components/common';
-import {ReplyIcon} from 'src/assets/icons'
+import { Avatar } from 'src/components/common';
+import { ReplyIcon } from 'src/assets/icons';
+import { MarkDownViewer } from 'src/components/Editor';
 
-type Props = {}
+type Props = {};
 
 const Reply = () => {
   return (
-    <ReplyItem className="comment reply-items" >
+    <ReplyItem className="comment reply-items">
       <Header className="header">
         <div className="rc-left">
-          <i className="reply"> <ReplyIcon /></i>
-          <Avatar nickname="꼴뚜기" url='https://i.pravatar.cc/25' />
-          <span>{getDate("2001-09-28 03:00:00", true)}</span>
+          <i className="reply">
+            {' '}
+            <ReplyIcon />
+          </i>
+          <Avatar nickname="꼴뚜기" url="https://i.pravatar.cc/25" />
+          <span>{getDate('2001-09-28 03:00:00', true)}</span>
         </div>
       </Header>
 
-      <div className="content-viewer" >
-        <span>이날 코스피는 전일 대비 7.23포인트(0.28%) 내린 2618.92에 출발했다.이날 코스피는 전일 대비 7.23포인트(0.28%) 내린 2618.92에 출발했다.</span>
+      <div className="content-viewer">
+        <MarkDownViewer content="### content viewer 입니다" />
       </div>
     </ReplyItem>
   );
