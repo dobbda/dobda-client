@@ -1,13 +1,15 @@
-import React, { FC,useState } from 'react';
+import React, { FC,useState ,PropsWithChildren} from 'react';
 import { Container } from './style/Layout.Element';
 import Banner from '../Banner/Banner';
 import MainContent from 'src/components/MainContent/MainContent';
 
 import { NavbarMobile, Navbar } from './Navigation';
-
-const Layout = ({ children }: { children: React.ReactNode }) => {
+type Props = {
+  paddingLeft?: boolean;
+}
+const Layout = ({ children,paddingLeft=true }: PropsWithChildren<Props>) => {
   return (
-    <Container className="container">
+    <Container className="container" paddingLeft={paddingLeft}>
         <div className="navigation-caontainer">
           <NavbarMobile />
           <Navbar />

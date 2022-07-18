@@ -36,7 +36,7 @@ export function UserInfo({}: Props) {
         </Item>
       </UserActive>
       <UserTech>
-        <h3>stech</h3>
+        <h3>Tech Stacks</h3>
         <br />
         <div>
           <Tag>python</Tag>

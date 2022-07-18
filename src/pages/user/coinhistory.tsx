@@ -1,9 +1,11 @@
+import { NextPage } from 'next'
 import React from 'react'
 
-type Props = {}
 
-export default function coinhistory({}: Props) {
+const  coinhistory: NextPage=()=> {
   return (
     <div>coinhistory</div>
   )
 }
+
+export default coinhistory

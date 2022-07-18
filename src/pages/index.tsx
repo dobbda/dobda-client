@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Layout>
+      <Layout paddingLeft={false}>
         <MainContent />
       </Layout>
     </>

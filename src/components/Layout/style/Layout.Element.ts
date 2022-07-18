@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 // height: ${({theme})=>theme.media.size};
 const padding = ""
-export const Container = styled.div`
+type Props = {
+  paddingLeft?:boolean
+}
+export const Container = styled.div<Props>`
   height: 100%;
   display: flex;
   .navigation-caontainer{
@@ -27,9 +30,10 @@ export const Container = styled.div`
 
   .layout-content{
     padding:10px;
-    padding-left: 20px;
+    /* padding-left: 20px; */
+    padding-left: ${({paddingLeft})=> paddingLeft ? "10px" : 0};
     min-width: 350px;
-
+    height: 100%;
     @media screen and (max-width: 788px){
       padding: 0;
       /* padding-top: 20px; */

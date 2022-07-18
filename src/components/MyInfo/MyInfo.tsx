@@ -15,7 +15,7 @@ export const MyInfo = (props: Props) => {
   return (
     <>
       <S.InfoWrapper>
-        <h2>내 정보</h2>
+        <h1>내 정보</h1>
         <UserUpdate />
 <br/>
 <br/>

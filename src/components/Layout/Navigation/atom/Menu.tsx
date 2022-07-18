@@ -1,18 +1,22 @@
-import Link from 'next/link';
 import React from 'react';
 
 import { Div, Label, CheckBox, ChildMenu, Icon } from './style/Menu.Elelemnt';
+import {Link} from 'src/components/common'
 import UpIcon from 'src/assets/icon/upDown.svg';
 type Props = {
   children: string;
   icon?: React.ReactNode;
   childMenu?: any;
+  href?: string
 };
 
-export const Menu = ({ children, icon, childMenu }: Props) => {
+export const Menu = ({ children, icon, childMenu, href }:React.PropsWithChildren< Props>) => {
   return (
     <Div>
-      <Icon>{icon}</Icon>
+<Link href={href ? href : '#'} >
+  <Icon >{icon}</Icon>
+
+</Link>
 
       <CheckBox defaultChecked={false} id={childMenu} />
       <Label htmlFor={childMenu}>

@@ -40,6 +40,7 @@ export const Title = styled.h3`
 export const TagWrapper = styled.div`
   display: flex;
   margin-top: 10px;
+  cursor: default;
 `
 
 //footer

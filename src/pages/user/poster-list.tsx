@@ -1,9 +1,11 @@
+import { NextPage } from 'next'
 import React from 'react'
 
-type Props = {}
 
-export default function posterList({}: Props) {
+const PosterList: NextPage=()=> {
   return (
     <div>poster-list</div>
   )
 }
+
+export default PosterList

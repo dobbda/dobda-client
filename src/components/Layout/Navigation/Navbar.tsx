@@ -60,7 +60,7 @@ const Navbar = () => {
           <Menu icon={<Bell />} childMenu={'NO data'}> 알림 </Menu>
           <Menu icon={<Notice />}>Notice</Menu>
           <Menu icon={<Rule />}>Rule</Menu>
-          <Menu icon={<User />} childMenu={'aht하세요'}>내정보 </Menu>
+          <Menu icon={<User />} childMenu={'aht하세요'} href="/user/profile">내정보 </Menu>
         </div>
         <footer>footer에유</footer>
       </SideNav>

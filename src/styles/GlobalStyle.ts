@@ -11,8 +11,11 @@ export const GlobalStyle = createGlobalStyle`
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 14px;
+    #__next{
+      height: 100%;
+    }
   }
-  .ant-popover-inner-content{padding:0};
+  /* .ant-popover-inner-content{padding:0}; */
   a {
     color: inherit;
   }

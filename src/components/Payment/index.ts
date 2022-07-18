@@ -1,0 +1,1 @@
+export { CoinDeposit } from './deposit/ImpPayment';
