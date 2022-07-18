@@ -4,7 +4,7 @@ import { NextPage } from 'next';
 import styled from 'styled-components';
 import AWS from 'aws-sdk';
 
-import { getUrl } from './getUrl';
+import { uploadS3 } from './upload-s3';
 
 import { Editor as ToastEditor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -32,6 +32,7 @@ interface Props {
 
 const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
   const fileName = Date.now(); // 이미지 이름
+  
   // 에디터 보여지는 핸들러
   const [showEditor, setShowEditor] = React.useState(onClickShow ? false : true);
   const onClickShowEditorHandler = useCallback(() => {
@@ -42,36 +43,13 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
   // Editor Change 이벤트
 
   const onChangeEditor = () => {
-    setMdStr(editorRef.current?.getInstance().getHTML() || '');
+    setMdStr(editorRef.current?.getInstance().getMarkdown() || '');
     editorRef.current?.getInstance().removeHook('addImageBlobHook');
     editorRef.current?.getInstance().addHook('addImageBlobHook', (blob, callback) => {
       (async () => {
-        // const url = await getUrl(blob)
-        // callback(url,"설명")
+        const url = await uploadS3(blob)
+        callback(url&& url,"image-url")
 
-        AWS.config.update({
-          region: process.env.NEXT_PUBLIC_REGION,
-          accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
-          secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
-        });
-
-        const upload = new AWS.S3.ManagedUpload({
-          params: {
-            Bucket: process.env.NEXT_PUBLIC_BUKET, // 버킷 이름
-            Key: fileName.toString() + '.png', // 유저 아이디
-            Body: blob, // 파일 객체
-          },
-        });
-
-        await upload.promise().then(
-          (res) => {
-            console.log('에딧이미지  ', res);
-            callback(decodeURI(res.Location), res.Key);
-          },
-          (err) => {
-            console.log(err);
-          },
-        );
       })();
       return false;
     });
