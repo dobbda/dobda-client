@@ -1,10 +1,10 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 
 import { Tag, Avatar } from '../common';
 import getDate from 'src/lib/dateForm';
 import * as S from './style/Detail.Element';
 import Coin_icon from 'src/assets/icon/coin.svg';
-import {Editor, MarkDownViewer} from 'src/components/Editor'
+import { Editor, MarkDownViewer } from 'src/components/Editor';
 import { RComment } from './Comment/';
 
 type Props = {
@@ -12,10 +12,10 @@ type Props = {
 };
 
 const RDetail = ({ children }: Props) => {
-  const [mdStr, setMdStr] = useState("")
+  const [mdStr, setMdStr] = useState('');
 
   return (
-    <S.PostContainer>
+    <>
       <S.ContentWrapper>
         <S.ContentHeader>
           <h1 className="content-title">apple system, BlinkMacSystemFont,Segoe UI,Roboto, Oxygen,Ubuntu, Canta</h1>
@@ -41,24 +41,22 @@ const RDetail = ({ children }: Props) => {
         </S.ContentHeader>
 
         <S.ContentView>
-        <S.ContentView>
-          <MarkDownViewer content='# content viewer 입니다'/>
-        </S.ContentView>
+          <S.ContentView>
+            <MarkDownViewer content="# content viewer 입니다" />
+          </S.ContentView>
         </S.ContentView>
       </S.ContentWrapper>
 
-
-      <S.EditorWrapper> 
-        <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px"/>
+      <S.EditorWrapper>
+        <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
       </S.EditorWrapper>
       <S.CommentList>
-
         <RComment acceped_answer={true} />
         <RComment />
         <RComment />
         <RComment />
       </S.CommentList>
-    </S.PostContainer>
+    </>
   );
 };
 

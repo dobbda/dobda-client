@@ -1,21 +1,14 @@
 import React, { useState, Dispatch, ElementType, useEffect, useCallback } from 'react';
-import Link from 'next/link';
 import { useQuery, useQueryClient } from 'react-query';
 
-import Bell from 'src/assets/icon/bell.svg';
-import BellOn from 'src/assets/icon/bell_on.svg';
-import Mycoin from 'src/assets/icon/mycoin.svg';
-import Rule from 'src/assets/icon/rule.svg';
-import Notice from 'src/assets/icon/notice.svg';
-import NoticeOn from 'src/assets/icon/notice_on.svg';
-import User from 'src/assets/icon/user.svg';
+
 import { SideNav, LayerMask, Navheader } from './style/Navbar.Element';
-import { delay } from 'src/lib/delay';
 import { Menu } from './atom/Menu';
-import { Logo, Button } from 'src/components/common';
-import { BackArrow } from 'src/assets/icons';
-import { Modal } from 'src/components/common';
+import { Logo, Button, Link, Modal } from 'src/components/common';
 import { SocialLogin } from 'src/components/SocialLogin';
+
+import * as I from 'src/assets/icons' //icon
+
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const useClient = useQueryClient();
@@ -35,17 +28,14 @@ const Navbar = () => {
             <span>
               <Logo />
             </span>
-            
-            <span className="display-none" onClick={clickMask}>
-              {mobileOn && <BackArrow viewBox="0 0 400 400" />}
-            </span>
 
-
+            <div className="display-none" onClick={clickMask}>
+              {mobileOn && <I.BackArrow viewBox="0 0 400 400" />}
+            </div>
           </Navheader>
-          <div style={{width:"200px"}}>
-          <Button onClick={() => setVisible(true)} color="gray">
-            로그인
-          </Button>
+
+          <div className="login-btn">
+            <button onClick={() => setVisible(true)} ><I.LoginIcon/> 로그인</button>
           </div>
 
           {visible && (
@@ -57,10 +47,14 @@ const Navbar = () => {
           )}
 
           {/*주요메뉴*/}
-          <Menu icon={<Bell />} childMenu={'NO data'}> 알림 </Menu>
-          <Menu icon={<Notice />}>Notice</Menu>
-          <Menu icon={<Rule />}>Rule</Menu>
-          <Menu icon={<User />} childMenu={'aht하세요'} href="/user/profile">내정보 </Menu>
+          <Menu icon={<I.Bell />} childMenu={'NO data'}>
+            알림
+          </Menu>
+          <Menu icon={<I.Notice />}>Notice</Menu>
+          <Menu icon={<I.Rule />}>Rule</Menu>
+          <Menu icon={<I.User />} childMenu={'aht하세요'} href="/user/profile">
+            내정보
+          </Menu>
         </div>
         <footer>footer에유</footer>
       </SideNav>

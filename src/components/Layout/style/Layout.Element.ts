@@ -14,7 +14,7 @@ export const Container = styled.div<Props>`
     @media screen and (max-width: 788px) {
       width: 0;
       min-width: 0;
-      margin-top: 60px;
+      margin-top: ${({ theme }) => theme.media.navbarMobiHeight};
     }
   }
 
@@ -24,7 +24,8 @@ export const Container = styled.div<Props>`
     max-width: 800px;
     height: 100%;
     @media screen and (max-width: 788px) {
-      margin-top: 60px;
+      margin-top: ${({ theme }) => theme.media.navbarMobiHeight};
+
     }
   }
 

@@ -23,6 +23,7 @@ export const Navheader = styled.div`
     }
     
   }
+
 `
 
 export const LayerMask = styled.div<StyleProps>`
@@ -39,6 +40,8 @@ export const LayerMask = styled.div<StyleProps>`
 export const SideNav = styled.div<StyleProps>`
   overflow: hidden;
   position: fixed;
+  z-index: 111;
+
   top: 0;
   left: 0;
   bottom: 0;
@@ -57,7 +60,18 @@ export const SideNav = styled.div<StyleProps>`
 
   }
 
-  z-index: 111;
 
+  .login-btn{
+    button{
+      cursor: pointer;
+      color: #fff;
+      background: none;
+      border-top: solid 1px rgba(102 102 102 / 50%);
+      border-bottom: solid 1px rgba(102 102 102 / 50%);
+      border-left: none;
+      border-right: none;
+      width: 240px;
+    }
+  }
 `;
 
