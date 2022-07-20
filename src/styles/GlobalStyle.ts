@@ -2,18 +2,17 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   html,
-  body {
-    width: 100%;
-    height: 100vh;
-    padding: 0;
-    margin: 0;
-    background-color: #f2f2f2;//${({ theme }) => theme.color.bg};
+  body,
+  #__next {
+    min-height: 100% !important;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #fcfcfc;//${({ theme }) => theme.color.bg};
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 14px;
-    #__next{
-      height: 100%;
-    }
+
+
   }
   /* .ant-popover-inner-content{padding:0}; */
   a {

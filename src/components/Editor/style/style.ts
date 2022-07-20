@@ -1,8 +1,8 @@
 import { Input as AntInput, Button } from 'antd';
 import { ReplyIcon, ReplyFillIcon } from 'src/assets/icons';
-import styled, { createGlobalStyle } from 'styled-components';
-
-export const ToastEditorGlobalStyles = createGlobalStyle`
+import styled from 'styled-components';
+import { GlobalStyle } from 'src/styles/GlobalStyle';
+export const ToastEditorGlobalStyles = styled(GlobalStyle)`
   body{
     .toastui-editor-defaultUI{
       border:1px solid #ccc;

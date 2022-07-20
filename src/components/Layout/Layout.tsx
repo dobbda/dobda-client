@@ -15,7 +15,7 @@ const Layout = ({ children, paddingLeft = true }: PropsWithChildren<Props>) => {
           <SideNav/>
         </div>
         <div className="ContentWrapper">
-          <div className="layout-content">{children}</div>
+          {children}
         </div>
       </S.Wrapper>
     </S.Container>
