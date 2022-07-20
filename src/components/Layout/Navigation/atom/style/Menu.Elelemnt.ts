@@ -63,6 +63,8 @@ export const CheckBox = styled.input.attrs({
 
 
   &:checked + ${Label} + ${ChildMenu} {
+    padding:5px;
+
     border-bottom: 1px solid #5a6f83;
     border-top: 1px solid #5a6f83;
     height: 100px;

@@ -47,7 +47,7 @@ const Navbar = () => {
           )}
 
           {/*주요메뉴*/}
-          <Menu icon={<I.Bell />} childMenu={'NO data'}>
+          <Menu icon={<I.Bell />} childMenu={'NO data'} >
             알림
           </Menu>
           <Menu icon={<I.Notice />}>Notice</Menu>
