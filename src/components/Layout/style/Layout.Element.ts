@@ -4,42 +4,37 @@ const padding = ""
 type Props = {
   paddingLeft?:boolean
 }
-export const Container = styled.div<Props>`
+export const Container = styled.div`
+  /* width: 100%; */
+  height:100% ;
+`
+export const Wrapper = styled.div<Props>`
   height: 100%;
   display: flex;
-  .navigation-caontainer{
-    z-index: 111;
+  margin: auto;
+  max-width: 1100px;
+  min-width:360px;
+  margin-top:10px;
+  gap: 20px;
+  /* border: 1px solid ${({theme})=>theme.color.border}; */
+  .ContentWrapper {
+    background-color: #fff;
+    backdrop-filter: blur(4px);
     position: relative;
-    min-width:${({ theme }) => theme.media.navbarWidth} ;
-    @media screen and (max-width: 788px) {
-      width: 0;
-      min-width: 0;
-      margin-top: ${({ theme }) => theme.media.navbarMobiHeight};
-    }
-  }
-
-  .main-wrapper {
-    position: relative;
+    margin: auto;
     width: 100%;
-    max-width: 800px;
     height: 100%;
-    @media screen and (max-width: 788px) {
-      margin-top: ${({ theme }) => theme.media.navbarMobiHeight};
-
-    }
   }
-
-  .layout-content{
-    padding:10px;
-    /* padding-left: 20px; */
-    padding-left: ${({paddingLeft})=> paddingLeft ? "10px" : 0};
-    min-width: 350px;
+  .sideMenuWrapper{
+    position: relative;
     height: 100%;
-    @media screen and (max-width: 788px){
-      padding: 0;
-      /* padding-top: 20px; */
-      transition: all 0.2s;
+    min-width: 200px;
+    /* border: 1px solid gray; */
+    margin-left: 10px;
+    @media screen and ( max-width: 678px){
+      display: none;
+    };
   }
-  }
+
 `;
 

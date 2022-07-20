@@ -1,22 +1,21 @@
 import React from 'react';
 
 import { Div, Label, CheckBox, ChildMenu, Icon } from './style/Menu.Elelemnt';
-import {Link} from 'src/components/common'
+import { Link } from 'src/components/common';
 import UpIcon from 'src/assets/icon/upDown.svg';
 type Props = {
   children: string;
   icon?: React.ReactNode;
   childMenu?: any;
-  href?: string
+  href?: string;
 };
 
-export const Menu = ({ children, icon, childMenu, href }:React.PropsWithChildren< Props>) => {
+export const Menu = ({ children, icon, childMenu, href }: React.PropsWithChildren<Props>) => {
   return (
     <Div>
-<Link href={href ? href : '#'} >
-  <Icon >{icon}</Icon>
-
-</Link>
+      <Link href={href ? href : '#'}>
+        <Icon>{icon}</Icon>
+      </Link>
 
       <CheckBox defaultChecked={false} id={childMenu} />
       <Label htmlFor={childMenu}>
@@ -26,7 +25,7 @@ export const Menu = ({ children, icon, childMenu, href }:React.PropsWithChildren
         )}
       </Label>
 
-      {childMenu && <ChildMenu >{childMenu}</ChildMenu>}
+      {childMenu && <ChildMenu>{childMenu}</ChildMenu>}
     </Div>
   );
 };

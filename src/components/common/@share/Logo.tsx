@@ -4,8 +4,7 @@ import styled from 'styled-components';
 
 type Props = {};
 
-const Div = styled.div`
-  width: 100%;
+const Div = styled.span`
   text-align: center;
   H1 {
     font-weight: bold;
