@@ -4,42 +4,40 @@ const padding = ""
 type Props = {
   paddingLeft?:boolean
 }
-export const Container = styled.div<Props>`
-  height: 100%;
+export const Container = styled.div`
+  width: 100%;
+  height:100% ;
+  line-height: normal;
+    box-sizing: border-box;
+`
+export const Wrapper = styled.div<Props>`
+  min-height: 100%;
   display: flex;
-  .navigation-caontainer{
-    z-index: 111;
-    position: relative;
-    min-width:${({ theme }) => theme.media.navbarWidth} ;
-    @media screen and (max-width: 788px) {
-      width: 0;
-      min-width: 0;
-      margin-top: ${({ theme }) => theme.media.navbarMobiHeight};
-    }
-  }
-
-  .main-wrapper {
-    position: relative;
+  margin: auto;
+  max-width: 1100px;
+  min-width:360px;
+  margin-top:10px;
+  gap: 20px;
+  .ContentWrapper {
     width: 100%;
-    max-width: 800px;
-    height: 100%;
-    @media screen and (max-width: 788px) {
-      margin-top: ${({ theme }) => theme.media.navbarMobiHeight};
+    min-height: 100%;
+    background-color: #fff;
+    backdrop-filter: blur(4px);
+    position: relative;
+    border: 1px solid hsl(210deg 8% 85%);
 
-    }
+  }
+  .sideMenuWrapper{
+    position: relative;
+    min-height: 100%;
+
+    min-width: 200px;
+    /* border: 1px solid gray; */
+    margin-left: 10px;
+    @media screen and ( max-width: 678px){
+      display: none;
+    };
   }
 
-  .layout-content{
-    padding:10px;
-    /* padding-left: 20px; */
-    padding-left: ${({paddingLeft})=> paddingLeft ? "10px" : 0};
-    min-width: 350px;
-    height: 100%;
-    @media screen and (max-width: 788px){
-      padding: 0;
-      /* padding-top: 20px; */
-      transition: all 0.2s;
-  }
-  }
 `;
 

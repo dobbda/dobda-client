@@ -2,6 +2,7 @@ import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/do
 import Script from 'next/script';
 import { ServerStyleSheet } from 'styled-components';
 import React from 'react';
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();

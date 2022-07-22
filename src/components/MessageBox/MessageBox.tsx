@@ -2,16 +2,10 @@ import React from 'react';
 import Message from './Message';
 import { Link } from 'src/components/common';
 import {Div} from './style/style'
-import {createGlobalStyle} from 'styled-components'
 type Props = {};
 
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    .ant-popover-inner-content{padding:0};
-    .ant-popover-arrow{display:none}
-  }
-`;
+
 export const MessageBox = (props: Props) => {
   return (
     <Div>

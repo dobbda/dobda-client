@@ -5,8 +5,8 @@ type Props = {
   checked: boolean;
 };
 export const Li = styled.li<Props>`
-  padding: 10px 5px 5px;
-  cursor: default;
+  padding: 10px 5px;
+  border-bottom: 1px solid hsl(210,8%,95%);
   .msg-title {
     display: flex;
     align-items: center;

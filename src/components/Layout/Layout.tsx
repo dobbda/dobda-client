@@ -1,27 +1,24 @@
-import React, { FC,useState ,PropsWithChildren} from 'react';
-import { Container } from './style/Layout.Element';
+import React, { FC, useState, PropsWithChildren } from 'react';
+import * as S from './style/Layout.Element';
 import Banner from '../Banner/Banner';
-import MainContent from 'src/components/MainContent/MainContent';
 
-import { NavbarMobile, Navbar } from './Navigation';
+import { HeaderNav, SideNav } from './Navigation';
 type Props = {
   paddingLeft?: boolean;
-}
-const Layout = ({ children,paddingLeft=true }: PropsWithChildren<Props>) => {
+};
+const Layout = ({ children, paddingLeft = true }: PropsWithChildren<Props>) => {
   return (
-    <Container className="container" paddingLeft={paddingLeft}>
-        <div className="navigation-caontainer">
-          <NavbarMobile />
-          <Navbar />
+    <S.Container>
+      <HeaderNav />
+      <S.Wrapper paddingLeft={paddingLeft}>
+        <div className="sideMenuWrapper">
+          <SideNav/>
         </div>
-        <div className="main-wrapper">
-          <main className="layout-content">
-            {children}
-          </main>
+        <div className="ContentWrapper">
+          {children}
         </div>
-
-      <Banner ></Banner>
-    </Container>
+      </S.Wrapper>
+    </S.Container>
   );
 };
 

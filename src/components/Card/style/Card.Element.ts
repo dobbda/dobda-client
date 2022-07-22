@@ -7,7 +7,7 @@ interface CardProps {
 
 
 export const ContentWrapper = styled.li<CardProps>`
-  border-bottom: solid 1px #D3D3D3;
+  border-bottom: solid 1px #e3e3e3;
   margin-top:10px;
   padding-right:10px;
   padding-left: 20px;
@@ -21,6 +21,7 @@ export const Group = styled.div`
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content: center;
   //스크롤 방지
   -webkit-user-select:none;
   -moz-user-select:none;
@@ -28,10 +29,17 @@ export const Group = styled.div`
   user-select:none;
 
   p{
+    padding:0;
+    margin:0;
     color: #686868;
+    font-size: 12px;
+
   }
   * {
     margin:3px;
+    
+  }
+  svg{
     font-size: 15px;
   }
 `

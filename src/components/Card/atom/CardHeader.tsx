@@ -8,9 +8,7 @@ import {
 
 } from './style/Element';
 
-import QSVG from 'src/assets/icon/question.svg'
-import RSVG from 'src/assets/icon/request.svg'
-import CoinIcon from 'src/assets/icon/coin.svg'
+import * as I from 'src/assets/icons'
 
 import getDate from 'src/lib/dateForm';
 import React from 'react';
@@ -22,7 +20,7 @@ type Props = {};
 export const QHeader = (props: Props) => {
   return (
   <HeaderWrapper>
-      <Group ><Qicon /><P color="#8400EC">2200</P><CoinIcon /></Group>
+      <Group ><Qicon /><P color="#8400EC">2200</P><I.CoinIcon /></Group>
       <Group ><p className='createdAt'>{getDate("2021-10-09T00:44:52+09:00")}</p></Group>
   </HeaderWrapper>);
 };
@@ -30,15 +28,15 @@ export const QHeader = (props: Props) => {
 export const RHeader = (props: Props) => {
   return (
   <HeaderWrapper>
-      <Group ><Ricon /> <P color="#8400EC">2200</P > <CoinIcon /><P>D-3일</P></Group>
+      <Group ><Ricon /> <P color="#8400EC">2200</P > <I.CoinIcon /><P>D-3일</P></Group>
       <Group><p className='createdAt'>{getDate("2021-10-09T00:44:52+09:00",true)}</p></Group>
   </HeaderWrapper>);
 };
 
-const Qicon = styled(QSVG)`
+const Qicon = styled(I.QSVG)`
   margin-right: 10px;
 `
 
-const Ricon = styled(RSVG)`
+const Ricon = styled(I.RSVG)`
   margin-right: 10px;
 `

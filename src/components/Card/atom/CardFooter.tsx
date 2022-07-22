@@ -2,9 +2,7 @@ import { FooterWrapper} from './style/Element';
 import { Group, } from '../style/Card.Element';
 import { Tooltip } from 'antd';
 
-import AddBell from 'src/assets/icon/b_add_bell.svg';
-import WatchIcon from 'src/assets/icon/b_watch.svg';
-import ChatIcon from 'src/assets/icon/b_chat.svg';
+import * as I from 'src/assets/icons'
 
 import React from 'react';
 import styled from 'styled-components';
@@ -14,16 +12,16 @@ export const QFooter = (props: Props) => {
   return (
     <FooterWrapper>
         <Group>
-          <Tooltip placement="right" color="cyan" title="댓글알림받기"><em><AddBellIcon /></em></Tooltip>
+          <Tooltip placement="right" color="cyan" title="댓글알림받기"><em>알림받기</em></Tooltip>
           <p>(10)</p>
         </Group>
         <Group>
           <Group>
-            <WatchIcon />
+            <I.WatchIcon />
             <p>(10)</p>
           </Group>
           <Group>
-            <ChatIcon />
+            <I.ChatIcon />
             <p>(10)</p>
           </Group>
         </Group>
@@ -35,21 +33,21 @@ export const RFooter = (props: Props) => {
   return (
     <FooterWrapper>
           <Group>
-            <WatchIcon />
+            <I.WatchIcon />
             <p>(10)</p>
           </Group>
           <Group>
-            <ChatIcon />
+            <I.ChatIcon />
             <p>(10)</p>
           </Group>
     </FooterWrapper>
   );
 };
 
-const AddBellIcon = styled(AddBell)`
+const AddBellIcon = styled(I.AddBellIcon)`
   cursor: pointer;
   :hover path{
-    fill: red;
+    color: blue;
   }
 `
 
