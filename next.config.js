@@ -2,7 +2,7 @@
 // https://github.com/gregberge/svgr/issues/551#issuecomment-839772396
 /** @type {import('next').NextConfig} */
 const withPlugins = require("next-compose-plugins");
-
+const api = process.env.API_URL
 module.exports = withPlugins([],{
   reactStrictMode: true,
   images: {
@@ -10,19 +10,15 @@ module.exports = withPlugins([],{
   },
 
   async rewrites(){
-    console.log("tsconfig: ",process.env.NODE_ENV)
-    if (process.env.NODE_ENV !== 'production') {
-      return [{
-          source: process.env.SOURCE_PATH,
-          destination: process.env.DEV_DESTINATION_URL,
-        }];
-    }
-    else {
-      return [{
-          source: process.env.SOURCE_PATH,
-          destination: process.env.PROD_DESTINATION_URL,
-        }];
-    }
+      console.log('api: ', api)
+      return [
+        {
+          source: "/fake/:path*",
+          destination: `${api}/:path*`,
+        },
+
+      ];
+  
   },
   webpack(nextConfig,{webpack}) {
     nextConfig.module.rules.push({

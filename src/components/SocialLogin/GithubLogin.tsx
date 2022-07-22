@@ -5,25 +5,23 @@ import { useSession, signIn, signOut } from "next-auth/react"
 
 import {GithubIcon} from "src/assets/icons"
 import { Wrap, Item, Text } from './style/Button';
+import Link from 'next/link';
 type Props = {};
 
 export const GithubLogin = (props: Props) => {
-  const { data} = useSession()
-  useEffect(() => {
-    console.log("data:  ", data)
-  }, [data])
-  
-  const onClickSignIn = () => {
-    // signIn("google",{ callbackUrl: 'http://localhost:3000/test' })
-    signIn("github")
-  }
+  const client_id = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID;
+  const redirect_uri= "http://localhost:3000/login/callback/github";
+  const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?client_id=${client_id}`
+
   return (
 
-        <Wrap name="github" onClick={onClickSignIn}>
+        <Wrap bg='#3c4043' color= "#ebe9e9" >
+          <Link href={GITHUB_AUTH_URL}>
           <Item>
             <Logo/>
-            <Text >Github 계정으로 로그인</Text>
+            <Text >Login with Github</Text>
           </Item>
+          </Link>
         </Wrap>
 
   );

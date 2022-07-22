@@ -2,15 +2,17 @@ import styled from 'styled-components';
 import { css } from 'styled-components';
 
 type Props = {
-  name: string;
+  bg: string;
+  color: string;
 };
 
 export const Text = styled.span`
   margin-left: 20px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   text-align: center;
   height : 30px; 
+  font-weight: bold;
   overflow : hidden;
   text-overflow : ellipsis;
   -webkit-line-clamp : 1; 
@@ -33,7 +35,6 @@ export const Wrap = styled.div<Props>`
   cursor: pointer;
   width: 100%;
   height: 50px;
-  background-color: ${({ name }) => (name === 'google' ? '#fff' : '#3c4043')};
 
   display: flex;
   align-items: center;
@@ -44,34 +45,6 @@ export const Wrap = styled.div<Props>`
   :hover {
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.5);
   }
-  ${(props) => {
-    switch (props.name) {
-      case 'google':
-        return css`
-          background-color: #fff;
-          color: #3c4043;
-
-
-        `;
-      case 'github':
-        return css`
-          background-color: #3c4043;
-          color: #ebe9e9;
-
-        `;
-      case 'naver':
-        return css`
-          background-color: #fff;
-          color: #19ce60;
-
-        `;
-      default:
-        return css`
-          background-color: #fff;
-          color: #3c4043;
-
-        `
-      
-    }
-  }}
+  background-color: ${({bg})=> bg};
+  color: ${({color})=> color};
 `;

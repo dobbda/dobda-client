@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Wrap, Item, Text } from './style/Button';
-import { useSession, signIn, signOut } from "next-auth/react"
-import {NaverIcon} from 'src/assets/icons'
+import { useSession, signIn, signOut } from 'next-auth/react';
+import { NaverIcon } from 'src/assets/icons';
+import Link from 'next/link';
 type Props = {};
 const Logo = styled(NaverIcon)`
   width: 30px;
@@ -10,28 +11,21 @@ const Logo = styled(NaverIcon)`
   /* background-color: #19ce60; */
 `;
 export const NaverLogin = (props: Props) => {
-  const { data} = useSession()
-  const client_id = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+  const client_id = process.env.NEXT_PUBLIC_NAVER_CLIENT_ID;
+  const redirect_uri = 'http://localhost:3000/login/callback/kakao';
+  const state = "tests"
+  const apiURL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}`;
 
-  useEffect(() => {
-    console.log("data:  ", data)
-  }, [data])
-  
-  const onClickSignIn = () => {
-    // signIn("google",{ callbackUrl: 'http://localhost:3000/test' })
-    signIn("naver")
-  }
-  const onClickSignOut = () => {
-    signOut()
-  }
   return (
-    <Wrap name="naver" onClick={data? onClickSignOut : onClickSignIn}>
-      <Item >
-        <Logo />
-        <Text >
-          {data? "Naver 로그아웃":"Naver 계정으로 로그인"}
-        </Text>
+    <Wrap bg="#19c260" color="#fff" >
+        <Link href={apiURL}>
+      <Item>
+
+          <Logo />
+          <Text>Login with Naver</Text>
       </Item>
+
+        </Link>
     </Wrap>
   );
 };

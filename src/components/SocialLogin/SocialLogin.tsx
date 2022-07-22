@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {GoogleLogin} from './GoogleLogin'
 import {GithubLogin} from './GithubLogin'
+import { GoogleCDN } from './KakaorLogin';
 import { NaverLogin } from './NaverLogin';
 import {Logo} from 'src/components/common';
 type Props = {};
@@ -18,6 +19,8 @@ export const SocialLogin = (props: Props) => {
         <GithubLogin/>
         <br/>
         <NaverLogin/>
+        <br />
+        <GoogleCDN/>
       </Style.LoginList>
     </Style.LoginWrapper>
   );
