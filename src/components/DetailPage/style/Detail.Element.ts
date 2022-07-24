@@ -3,11 +3,6 @@ import styled from 'styled-components'
 const headerFont = "20px"
 const wrapperPadding = "20px"
 
-export const PostContainer = styled.div`
-
-
-`
-
 export const ContentWrapper = styled.div`
 
   border-radius: 4px;
@@ -16,7 +11,7 @@ export const ContentWrapper = styled.div`
   width: 100%;
   min-height: 600px;
   background-color: #fff;
-  border: 1px solid ${({ theme }) => theme.color.border};
+  border: 1px solid #eeee;
 `
 export const CoinWrapper = styled.div`
   color: #666666;
@@ -89,5 +84,4 @@ export const TagWrapper = styled.div`
 
 export const EditorWrapper = styled.div`
 margin-top:50px;
-padding: 10px;
 `

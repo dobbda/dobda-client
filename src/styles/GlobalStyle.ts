@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100% !important;
     height: 100%;
     box-sizing: border-box;
-    background-color: #fcfcfc;//${({ theme }) => theme.color.bg};
+    background-color: #f8f9fa;//${({ theme }) => theme.color.bg};
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 14px;

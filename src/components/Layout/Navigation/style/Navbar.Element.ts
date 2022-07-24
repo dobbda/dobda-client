@@ -7,7 +7,7 @@ interface StyleProps {
 export const SideNavWrapper = styled.nav`
 position: -webkit-sticky;
   position: sticky;
-  top: 10px;
+  top: 60px;
   left:0;
   right: 0;
   width: 100%;

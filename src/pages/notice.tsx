@@ -1,12 +1,15 @@
-import React,{} from 'react'
+import React from 'react';
 import type { NextPage } from 'next';
+import { Layout } from 'src/components/Layout';
 
-type Props = {}
+type Props = {};
 
-const notice:NextPage=()=> {
+const notice: NextPage = () => {
   return (
-    <h1>notice</h1>
-  )
-}
+    <Layout>
+      <h1>notice</h1>
+    </Layout>
+  );
+};
 
-export default notice
+export default notice;

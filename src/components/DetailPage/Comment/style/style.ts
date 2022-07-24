@@ -5,11 +5,9 @@ interface Props {
   acceped_answer?: boolean;
 }
 export const CommentWrapper = styled.div<Props>`
-  /* margin-top: 20px; */
   margin-right: -1px;
   border-radius: 5px;
-  background-color: #ffff;
-  /* border: 1px solid ${({theme})=>theme.color.comment_border}; */
+  /* background-color: #ffff; */
 
   input {
     margin: 10px 20px;
@@ -45,7 +43,7 @@ export const ChildView = styled.div`
 `;
 
 export const Viewer = styled.div<Props>`
-
+    background-color: #fff;
     padding:10px 25px;
   
 `;

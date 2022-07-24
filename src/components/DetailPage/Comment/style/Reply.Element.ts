@@ -4,10 +4,9 @@ interface Props {
 }
 
 export const ReplyItem = styled.div<Props>`
-  /* margin-top: 15px; */
   margin-top: 20px;
   margin-bottom: 5px;
-  /* background-color: #e2f8ff; */
+  background-color: #fff;
   border-radius: 10px;
   border : 3px solid #ddd4ff;
 

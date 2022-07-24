@@ -65,7 +65,8 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
       ref={editorRef}
       plugins={[colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]]}
       onChange={onChangeEditor}
-      height={height}
+      minHeight={height}
+      height={"auto"}
       language="ko-kr"
       toolbarItems={[
         ['heading', 'bold', 'italic', 'strike'],

@@ -7,17 +7,18 @@ type Props = {
   children: string;
   icon?: React.ReactNode;
   childMenu?: any;
+  childOpen?: boolean;
   href?: string;
 };
 
-export const Menu = ({ children, icon, childMenu, href }: React.PropsWithChildren<Props>) => {
+export const Menu = ({ children, icon, childMenu, href,childOpen=false }: React.PropsWithChildren<Props>) => {
   return (
     <Div>
-      <Link href={href ? href : '#'}>
+      <Link href={href ? href : ''}>
         <Icon>{icon}</Icon>
       </Link>
 
-      <CheckBox defaultChecked={false} id={childMenu} />
+      <CheckBox defaultChecked={childOpen} id={childMenu} />
       <Label htmlFor={childMenu}>
         <h3>{children}</h3>
         {childMenu && ( // whether to display the up-down icon or not

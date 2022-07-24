@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
 export const Div = styled.div`
-  /* -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; */
-  position: relative;
-  overflow: hidden;
-background-color: ${({ theme }) => theme.color.primary} ;
+
+    position: relative;
+    overflow: hidden;
+    background-color: ${({ theme }) => theme.color.primary} ;
 
 `;
 

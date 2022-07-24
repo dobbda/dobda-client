@@ -1,1 +1,1 @@
-export { CoinDeposit } from './deposit/ImpPayment';
+export { CoinDeposit } from './deposit/Deposit';

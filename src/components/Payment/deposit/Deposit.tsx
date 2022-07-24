@@ -15,7 +15,7 @@ export const CoinDeposit = () => {
 
   const IMP_UID = process.env.NEXT_PUBLIC_IMP_UID;
   const [result, setResult] = useState<RequestPayResponse>();
-  const [depositValue, setDepositValue] = useState(0);
+  const [depositValue, setDepositValue] = useState(1000);
 
 
 
@@ -137,7 +137,7 @@ const RadioStyles = styled(Radio.Button)`
   height: 50px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   width: 100%;
-  /* max-width: 800px; */
+  background:#ededed;
 `;
 
 const CoinFill = styled(CoinIcon)`

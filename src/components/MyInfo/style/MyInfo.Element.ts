@@ -3,11 +3,13 @@ import { Input as AntInput} from "antd";
 export const InfoWrapper = styled.div`
   background-color: #fff;
   padding: 10px;
+  border: 1px solid #eee;
+    padding-bottom: 100px;
 `
 //// 업데이트 가능한 유저 정보 components style
 export const EditInfoWrapper = styled.div`
   /* background-color: #a8a7a7; */
-  border: 1px solid #CDCDCD;
+  border: 1px solid #eee;
 `
 
 export const Culumn = styled.div`

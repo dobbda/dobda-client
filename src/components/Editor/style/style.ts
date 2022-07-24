@@ -7,7 +7,10 @@ export const ToastEditorGlobalStyles = styled(GlobalStyle)`
     .toastui-editor-defaultUI{
       border:1px solid #ccc;
       border-radius: 0;
+      background: #fff;
+
     }
+
     .toastui-editor-defaultUI-toolbar{
       background-color: none;
       border-bottom:1px solid #ccc;
@@ -23,6 +26,7 @@ export const ToastEditorGlobalStyles = styled(GlobalStyle)`
 export const EditorStyle = styled.div`
   margin-top: 10px 0;
   position: relative;
+  background-color: #fff;
 `;
 
 export const ReplyIconS = styled(ReplyIcon)`

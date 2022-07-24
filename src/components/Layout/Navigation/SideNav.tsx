@@ -14,13 +14,13 @@ const SideNav = () => {
   return (
     <>
       <SideNavWrapper >
-        <Menu icon={<I.User />} childMenu={'유저 정보 몇가지 보여주기'} href="/user/profile">
+        <Menu icon={<I.User />} childMenu={'유저 정보 몇가지 보여주기'} childOpen={true} href="/user/profile">
             쭈꾸미
           </Menu>
-          <Menu icon={<I.Bell />} childMenu={'NO data'}>
+          <Menu icon={<I.Bell />} childMenu={'NO data'} href="/user/dingdong">
             알림
           </Menu>
-          <Menu icon={<I.Notice />} childMenu={'공지사항 목록'}>Notice</Menu>
+          <Menu icon={<I.Notice />} childMenu={'공지사항 목록'} href="/notice">Notice</Menu>
           <Menu icon={<I.Rule />}>Rule</Menu>
 
       </SideNavWrapper>

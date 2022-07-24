@@ -18,7 +18,8 @@ export const GoogleLogin = (props: Props) => {
     redirect_uri: 'http://localhost:3000/login/callback/google',
     response_type: 'code',
     access_type: 'offline',
-    scope: 'https://www.googleapis.com/auth/contacts.readonly',
+    include_granted_scopes:true,
+    scope:"https://www.googleapis.com/auth/userinfo.email"
   });
 
   const loginUrl = AUTHORIZE_URI + '?' + queryStr;

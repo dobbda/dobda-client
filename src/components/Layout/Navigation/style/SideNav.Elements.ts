@@ -4,7 +4,7 @@ export const Header = styled.header`
   z-index: 999;
   width: 100%;
   height: fit-content;
-  position: static;
+  position: fixed;
   top: 0px;
   left: 0px;
   right: 0px;
@@ -27,6 +27,7 @@ export const Mobilebar = styled.div`
     transform: scale(0.8);
     cursor: pointer;
   }
+
 `;
 
 export const MenuWrapper = styled.div`
@@ -36,6 +37,7 @@ export const MenuWrapper = styled.div`
 `;
 
 export const Btn = styled.button`
+    cursor: pointer;
     padding: 3px 10px 5px 13px;
     border: 1px solid #fbfbfb;
     height: 28px;
