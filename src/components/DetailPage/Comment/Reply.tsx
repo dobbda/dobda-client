@@ -19,7 +19,7 @@ const Reply = () => {
             {' '}
             <ReplyIcon />
           </i>
-          <Avatar nickname="꼴뚜기" url="https://i.pravatar.cc/25" />
+          <Avatar nickname="꼴뚜기" url="https://joeschmoe.io/api/v1/cc" />
           <span>{getDate('2001-09-28 03:00:00', true)}</span>
         </div>
       </Header>

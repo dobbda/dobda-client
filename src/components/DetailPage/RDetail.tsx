@@ -35,16 +35,14 @@ const RDetail = ({ children }: Props) => {
             </S.CoinWrapper>
           </div>
           <div className="created-user">
-            <Avatar nickname="Robot" url="https://i.pravatar.cc/25" acceped_answer={false} />
+            <Avatar nickname="Robot" url="https://joeschmoe.io/api/v1/aa" acceped_answer={false} />
             <div className="createdAt"> {getDate('2001-09-28 03:00:00')}</div>
           </div>
         </S.ContentHeader>
 
-        <S.ContentView>
-          <S.ContentView>
+          <S.ContentViewWrapper>
             <MarkDownViewer content="# content viewer 입니다" />
-          </S.ContentView>
-        </S.ContentView>
+          </S.ContentViewWrapper>
       </S.ContentWrapper>
 
       <S.EditorWrapper>

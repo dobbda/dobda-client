@@ -27,6 +27,7 @@ export const EditorStyle = styled.div`
   margin-top: 10px 0;
   position: relative;
   background-color: #fff;
+  border-radius: 4px;
 `;
 
 export const ReplyIconS = styled(ReplyIcon)`

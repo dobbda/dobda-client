@@ -1,8 +1,5 @@
 import React, {useEffect} from 'react';
 import styled from 'styled-components';
-import { useSession, signIn, signOut } from "next-auth/react"
-
-
 import {GithubIcon} from "src/assets/icons"
 import { Wrap, Item, Text } from './style/Button';
 import Link from 'next/link';

@@ -20,7 +20,7 @@ export const Wrapper = styled.div<Props>`
   margin-top:10px;
   gap: 20px;
   .ContentWrapper {
-    margin-top:60px;
+    margin:60px 0;
 
     width: 100%;
     min-height: 100%;
@@ -32,12 +32,12 @@ export const Wrapper = styled.div<Props>`
   }
   .sideMenuWrapper{
     margin-top:60px;
-
+    margin-left:10px;
     position: relative;
     min-height: 100%;
 
     min-width: 200px;
-    @media screen and ( max-width: 678px){
+    @media screen and ( max-width: 789px){
       display: none;
     };
   }

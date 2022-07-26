@@ -2,19 +2,18 @@
 // https://github.com/gregberge/svgr/issues/551#issuecomment-839772396
 /** @type {import('next').NextConfig} */
 const withPlugins = require("next-compose-plugins");
-const api = process.env.API_URL
+const apiUrl = process.env.API_URL
 module.exports = withPlugins([],{
   reactStrictMode: true,
   images: {
-    domains: ['i.pravatar.cc', "icon/svg", "joeschmoe.io"]
+    domains: ["icon/svg", "joeschmoe.io","avatars.dicebear.com"]
   },
 
   async rewrites(){
-      console.log('api: ', api)
       return [
         {
-          source: "/fake/:path*",
-          destination: `${api}/:path*`,
+          source: "/api/:path*",
+          destination: `${apiUrl}/:path*`,
         },
 
       ];

@@ -47,14 +47,14 @@ const QDetail = ({ children }: Props) => {
           </S.CoinWrapper>
 
           <div className="created-user">
-            <Avatar nickname="Robot" url="https://i.pravatar.cc/25" acceped_answer={false} />
+            <Avatar nickname="Robot" url="https://joeschmoe.io/api/v1/fs" acceped_answer={false} />
             <div className="createdAt"> {getDate('2001-09-28 03:00:00')}</div>
           </div>
         </S.ContentHeader>
 
-        <S.ContentView>
+        <S.ContentViewWrapper>
           <MarkDownViewer content={mdStr} />
-        </S.ContentView>
+        </S.ContentViewWrapper>
       </S.ContentWrapper>
       <S.EditorWrapper>
         <h2>답변을 작성해주세요</h2>

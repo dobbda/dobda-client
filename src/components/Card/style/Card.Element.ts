@@ -8,8 +8,7 @@ interface CardProps {
 
 export const ContentWrapper = styled.li<CardProps>`
   border-bottom: solid 1px #e3e3e3;
-  margin-top:10px;
-  padding-right:10px;
+  padding-right:20px;
   padding-left: 20px;
   .diff-styles{
     padding-left: 45px;

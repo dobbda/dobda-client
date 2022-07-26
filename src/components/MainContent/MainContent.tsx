@@ -7,6 +7,7 @@ import { Main } from './style/MainContent.Element';
 import SearchBox from './SearchBox';
 import QCard from '../Card/QCard';
 import RCard from '../Card/RCard';
+import { PenIcon } from 'src/assets/icons';
 
 interface Props {
   children?: React.ReactNode;
@@ -33,16 +34,17 @@ const MainContent = ({ children }: Props) => {
           <span>댓글</span>
         </div>
         <Link href="/write-board" passHref>
-          <button className='writeBtn'  >질문하기</button>
+          <button className='writeBtn'  >글 작성 <PenIcon/></button>
         </Link>
       </div>
-
+      <section>
       {/** main content card  **/}
       <ul className="content-list">
         <QCard />
         <QCard />
         <RCard />
       </ul>
+      </section>
     </Main>
   );
 };

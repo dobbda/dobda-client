@@ -7,7 +7,6 @@ export const ContentWrapper = styled.div`
 
   border-radius: 4px;
   /* word-wrap:break-word; */
-  padding: ${wrapperPadding};
   width: 100%;
   min-height: 600px;
   background-color: #fff;
@@ -27,7 +26,10 @@ export const CoinWrapper = styled.div`
   }
 `
 export const ContentHeader = styled.header`
-
+    background-color: #fbfbfb;
+    padding: 20px;
+    padding-bottom: 0;
+    border-bottom: 1px solid #ccc;
   .deadline {
   color: #666666;
   font-size: ${headerFont};
@@ -50,9 +52,7 @@ export const ContentHeader = styled.header`
     display: flex;
     justify-content: space-between;
 
-    padding: 5px;
-    
-    border-bottom: 3px solid #C9C9C9;
+    padding: 5px;    
     .createdAt{
     color: ${({ theme }) => theme.color.date};
     padding-top: 3px;
@@ -63,9 +63,9 @@ export const ContentHeader = styled.header`
 
   }
 `
-export const ContentView = styled.header`
-
-
+export const ContentViewWrapper = styled.div`
+padding: 10px 20px;
+height: 100%;
 `
 
 export const CommentList = styled.div`

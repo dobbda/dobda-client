@@ -20,7 +20,7 @@ const QComment = (props: Props) => {
   return (
     <S.CommentWrapper>
       <S.Header className="header" acceped_answer={props.acceped_answer}>
-        <Avatar acceped_answer={props.acceped_answer} nickname="쭈꾸미" url="https://i.pravatar.cc/25" />
+        <Avatar acceped_answer={props.acceped_answer} nickname="쭈꾸미" url="https://joeschmoe.io/api/v1/bb" />
 
         <div className="gc-right">
           {props.acceped_answer ? (

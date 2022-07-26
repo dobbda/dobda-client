@@ -82,7 +82,7 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
     <S.EditorStyle>
       <S.ToastEditorGlobalStyles />
       {onClickShow && !showEditor && (
-        <div onClick={onClickShowEditorHandler}>
+        <div onClick={onClickShowEditorHandler} id="clickEvent-handler">
           <S.ShowEditorBtn prefix={<S.ReplyIconS />} placeholder="답글 작성..." readOnly />
         </div>
       )}

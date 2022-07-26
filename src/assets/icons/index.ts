@@ -14,6 +14,9 @@ export {AiOutlineComment as ChatIcon} from 'react-icons/ai';
 export {IoIosEye as WatchIcon} from 'react-icons/io';
 export {TbBellPlus as AddBellIcon} from 'react-icons/tb';
 export {RiKakaoTalkFill as KakaoIcon} from 'react-icons/ri';
+export {FaPen as PenIcon} from 'react-icons/fa';
+export {AiOutlineSearch as SearchIcon} from 'react-icons/ai';
+
 
 export {default as Bell} from 'src/assets/icon/bell.svg';
 export {default as BellOn} from 'src/assets/icon/bell_on.svg';
