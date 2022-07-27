@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Div = styled.div`
-  background-color: #fff;
+  background-color: #fff !important;
   border: 1px solid ${({theme})=> theme.color.border};
   width: 300px;
   height: 400px;

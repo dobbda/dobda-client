@@ -16,6 +16,12 @@ export {TbBellPlus as AddBellIcon} from 'react-icons/tb';
 export {RiKakaoTalkFill as KakaoIcon} from 'react-icons/ri';
 export {FaPen as PenIcon} from 'react-icons/fa';
 export {AiOutlineSearch as SearchIcon} from 'react-icons/ai';
+export {AiOutlineUp as ArowIcon} from 'react-icons/ai';
+export {FaUserAlt as UserIcon} from 'react-icons/fa';
+export {AiFillNotification as NoticeIcon} from 'react-icons/ai';
+export {IoIosNotifications as BellIcon} from 'react-icons/io';
+export {ImNotification as RuleIcon} from 'react-icons/im';
+// export {AiFillBell as BellIcon} from 'react-icons/ai';
 
 
 export {default as Bell} from 'src/assets/icon/bell.svg';

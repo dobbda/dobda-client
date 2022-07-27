@@ -1,22 +1,31 @@
 import styled from 'styled-components';
 
+export const Icon = styled.div`
+
+  position: absolute;
+  top: 10px;
+  height: 25px;
+  left: 10px;
+  font-size: 22px;
+  font-weight: bold;
+
+`
 export const Div = styled.div`
 
     position: relative;
     overflow: hidden;
-    background-color: ${({ theme }) => theme.color.primary} ;
+    /* background-color: ${({ theme }) => theme.color.primary} ; */
+	color: #000500;
+	overflow: hidden;
+	:hover {
+		h1, ${Icon}, svg{
+			color: #FFAB00;
+		}	
 
+	}
 `;
 
-export const Icon = styled.div`
 
-  position: absolute;
-  top: 6px;
-  height: 25px;
-  left: 10px;
-  transform: scale(0.8);
-
-`
 
 
 export const Label = styled.label`
@@ -29,10 +38,11 @@ export const Label = styled.label`
   margin: 0 10px 0 60px;
   cursor: pointer;
 
-  h3 {
-    color: #fff;
-    font-size: 14px;
+  h1 {
+	margin:0;
+    font-size: 17px;
     font-weight: bold;
+
   }
   .rotate {
     transition: all 0.3s;
@@ -41,11 +51,13 @@ export const Label = styled.label`
 `;
 
 export const ChildMenu = styled.div`
-  background-color: #fff;//${({ theme }) => theme.color.primary};
 
   height: 0;
-  transition: all 0.3s;
   overflow: hidden;
+  transition: height 0.3s;
+  background-color: #f6f6f6;
+  box-shadow: inset -1px 2px 5px -3px rgba(0, 0, 0, 0.25);
+  
 `;
 
 export const CheckBox = styled.input.attrs({
@@ -57,11 +69,12 @@ export const CheckBox = styled.input.attrs({
   &:checked + ${Label} + ${ChildMenu} {
     height: 100px;
     max-height: 200px;
-    padding:5px;
 
   }
 
-  &:checked + ${Label} .rotate {
+  &:checked + ${Label} .rotate   {
     transform: rotate(3.142rad);
+	color:#FFAB00;
+
   }
 `;

@@ -9,37 +9,57 @@ export const Container = styled.div`
   height:100% ;
   line-height: normal;
   box-sizing: border-box;
-  position: relative;
 `
 export const Wrapper = styled.div<Props>`
   min-height: 100%;
   display: flex;
   justify-content:space-between;
   min-width:360px;
-  gap: 20px;
+  /* position: relative; */
 `;
 
 export const CenterSection = styled.section`
-
+width: 100%;
+min-height: 100%;
 	max-width: 800px;
     position: relative;
-
-
+	margin:0 auto;
 `
 
-export const SideNavWrapper = styled.section`
+export const SideNavWrapper = styled.div`
     min-width: 200px;
+	min-height: 100%;
+	margin-right: 5px;
+	position: fixed;
+	top: 50px;
+	left: 0;
+	bottom: 0;
     @media screen and ( max-width: 789px){
       display: none;
     };
 `
+export const SideAreas= styled.em`
+  min-width: 200px;
+  height: 100%;
+  margin-right: 5px;
+  @media screen and ( max-width: 789px){
+      display: none;
+    };
+`
+
 export const Aside = styled.aside`
-	min-width: 200px;
-	max-width: 200px;
+	width: 200px;
+	height: 100%;
+	top: 0;
+	position: absolute;
+	right: -220px;
+	text-align: center;
+
 `
 
 
 export const HeaderAreas = styled.div`
+	
 	height: ${({ theme})=> theme.media.headerHeight};
 	width: 100%;
 `

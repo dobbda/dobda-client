@@ -35,7 +35,7 @@ const HeaderNav = () => {
             <S.Btn>마이페이지</S.Btn>
           </Link>
           <Popover trigger="click" content={<MessageBox />} top={10} right={-10}>
-            <I.Bell />
+            <I.BellIcon color={"#545dd8"} size={"35px"}/>
           </Popover>
           {/* <User /> */}
         </S.MenuWrapper>

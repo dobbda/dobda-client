@@ -3,6 +3,8 @@ import React from 'react';
 import { Div, Label, CheckBox, ChildMenu, Icon } from './style/Menu.Elelemnt';
 import { Link } from 'src/components/common';
 import UpIcon from 'src/assets/icon/upDown.svg';
+import {ArowIcon} from 'src/assets/icons';
+
 type Props = {
   children: string;
   icon?: React.ReactNode;
@@ -11,7 +13,9 @@ type Props = {
   href?: string;
 };
 
-export const Menu = ({ children, icon, childMenu, href,childOpen=false }: React.PropsWithChildren<Props>) => {
+export const Menu = (
+	{ children, icon, childMenu, href,childOpen=false }: 
+	React.PropsWithChildren<Props>) => {
   return (
     <Div>
       <Link href={href ? href : ''}>
@@ -20,9 +24,9 @@ export const Menu = ({ children, icon, childMenu, href,childOpen=false }: React.
 
       <CheckBox defaultChecked={childOpen} id={childMenu} />
       <Label htmlFor={childMenu}>
-        <h3>{children}</h3>
+        <h1>{children}</h1>
         {childMenu && ( // whether to display the up-down icon or not
-          <UpIcon className="rotate" />
+          <ArowIcon  className="rotate" />
         )}
       </Label>
 
