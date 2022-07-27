@@ -2,7 +2,7 @@ import React, { useState, Dispatch, ElementType, useEffect, useCallback } from '
 import { useQuery, useQueryClient } from 'react-query';
 
 
-import { SideNavWrapper } from './style/Navbar.Element';
+import { SideNavWrapper } from './style/SideNav.Element';
 import { Menu } from './atom/Menu';
 
 import * as I from 'src/assets/icons' //icon

@@ -9,38 +9,38 @@ export const Container = styled.div`
   height:100% ;
   line-height: normal;
   box-sizing: border-box;
+  position: relative;
 `
 export const Wrapper = styled.div<Props>`
   min-height: 100%;
-  
   display: flex;
-  margin: auto;
-  max-width: 1100px;
+  justify-content:space-between;
   min-width:360px;
-  margin-top:10px;
   gap: 20px;
-  .ContentWrapper {
-    margin:60px 0;
+`;
 
-    width: 100%;
-    min-height: 100%;
-    /* background-color: #fff; */
-    backdrop-filter: blur(4px);
+export const CenterSection = styled.section`
+
+	max-width: 800px;
     position: relative;
-    /* border: 1px solid hsl(210deg 8% 85%); */
 
-  }
-  .sideMenuWrapper{
-    margin-top:60px;
-    margin-left:10px;
-    position: relative;
-    min-height: 100%;
 
+`
+
+export const SideNavWrapper = styled.section`
     min-width: 200px;
     @media screen and ( max-width: 789px){
       display: none;
     };
-  }
+`
+export const Aside = styled.aside`
+	min-width: 200px;
+	max-width: 200px;
+`
 
-`;
+
+export const HeaderAreas = styled.div`
+	height: ${({ theme})=> theme.media.headerHeight};
+	width: 100%;
+`
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useQueryClient } from 'react-query';
 
-import * as S from './style/SideNav.Elements';
+import * as S from './style/HeaderNav.Elements';
 import { Logo, Popover, Modal } from 'src/components/common';
 import { MessageBox } from 'src/components/MessageBox/MessageBox';
 import { SocialLogin } from 'src/components/SocialLogin';
@@ -17,7 +17,7 @@ const HeaderNav = () => {
 
   return (
     <S.Header>
-      <S.Mobilebar className="top-navigation">
+      <S.Headercontainer className="top-navigation">
         <Logo />
 
         <S.MenuWrapper>
@@ -39,7 +39,7 @@ const HeaderNav = () => {
           </Popover>
           {/* <User /> */}
         </S.MenuWrapper>
-      </S.Mobilebar>
+      </S.Headercontainer>
     </S.Header>
   );
 };

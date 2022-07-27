@@ -15,13 +15,13 @@ export const Header = styled.header`
   }
 `;
 
-export const Mobilebar = styled.div`
+export const Headercontainer = styled.div`
   /* overflow: hidden; */
   margin: auto;
   display: flex;
   justify-content: space-between;
   max-width: 1100px;
-  height: 50px;
+  height: ${({ theme})=> theme.media.headerHeight};
   padding: 0 10px;
   > * svg {
     transform: scale(0.8);
