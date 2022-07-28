@@ -27,7 +27,7 @@ export const CoinPopover = (props: Props) => {
       {' '}
       <Popover trigger="click" outClick={false} content={<CoinView />} top={30} visible={coinVisible}>
 
-          <Input value={coin} prefix={<CoinFill />} height={48}  onClick={popoverHandler} readOnly />
+          <Input value={typeof coin === "number" && coin} prefix={<CoinFill />} height={48}  onClick={popoverHandler} readOnly />
 
       </Popover>
     </div>

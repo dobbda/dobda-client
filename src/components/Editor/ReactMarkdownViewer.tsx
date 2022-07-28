@@ -13,7 +13,6 @@ interface MarkdownViewProps {
 }
 
 const ReactMarkdownViewer = ({ content }: MarkdownViewProps) => {
-  console.log(content)
   const markdown = `# Your markdown here \n <h1>안녕 클레오 파트라</h1>`
   return (
     <ReactMarkdown

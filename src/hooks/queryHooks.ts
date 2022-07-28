@@ -1,8 +1,8 @@
 import { useQuery, useQueryClient } from 'react-query';
-type InitialData = string |number 
+type InitialData = string |number |boolean;
 type Key = string | string 
 
-export const useClientValue = (key:Key, initialData:InitialData) =>
+export const useClientValue = (key:any, initialData:any) =>
   useQuery(key, {
     initialData,
     staleTime: Infinity,
@@ -10,7 +10,7 @@ export const useClientValue = (key:Key, initialData:InitialData) =>
 // ex: const username = useClientValue('key', '');
 
 
-export const useSetClientValue = (key: Key) => {
+export const useSetClient = (key: Key, value:any) => {
   const queryClient = useQueryClient();
-  return (value:any) => queryClient.setQueryData(key, value);
+  queryClient.setQueryData(key, value);
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Wrap, Item, Text } from './style/Button';
 import { GoogleIcon } from 'src/assets/icons';
@@ -15,22 +15,28 @@ export const GoogleLogin = (props: Props) => {
 
   const queryStr = qs.stringify({
     client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-    redirect_uri: 'http://localhost:3000/login/callback/google',
+    redirect_uri: `${process.env.NEXT_PUBLIC_BASE_CLIENT_URL}/login/callback/google`,
     response_type: 'code',
     access_type: 'offline',
     include_granted_scopes:true,
     scope:"https://www.googleapis.com/auth/userinfo.email"
   });
-
   const loginUrl = AUTHORIZE_URI + '?' + queryStr;
+
+  const onWindow = useCallback(() => {
+	window.open(
+		loginUrl,
+		undefined,
+		"height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes"
+	)
+  },[loginUrl])
+  
   return (
-    <Wrap bg='#fff' color="#3c4043">
-      <Link href={loginUrl}>
+    <Wrap bg='#fff' color="#3c4043" onClick={onWindow}>
         <Item>
           <Logo />
           <Text>Login with Google</Text>
         </Item>
-      </Link>
     </Wrap>
   );
 };

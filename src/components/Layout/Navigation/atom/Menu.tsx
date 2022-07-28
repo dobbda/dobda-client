@@ -18,7 +18,7 @@ export const Menu = (
 	React.PropsWithChildren<Props>) => {
   return (
     <Div>
-      <Link href={href ? href : ''}>
+      <Link href={href ? href : '#'}>
         <Icon>{icon}</Icon>
       </Link>
 
