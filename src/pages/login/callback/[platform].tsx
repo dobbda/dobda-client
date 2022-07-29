@@ -10,7 +10,7 @@ const Lodding = (props: Props) => {
   // 인가코드
   const router = useRouter();
   const { platform, code } = router.query;
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (code && platform) {
       axios.get(`/api/auth/${platform}?code=${code}`).then((res) => {
         if (window.opener) {

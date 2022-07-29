@@ -8,13 +8,11 @@ import { NextPageContext } from 'next'
 import { GetServerSideProps } from 'next';
 import  axios  from 'axios';
 import { cookieManager } from 'src/lib/cookieManager';
-
-
-
 const Home: NextPage = () => {
   const queryClient = useQueryClient();
   useEffect(() => {
     queryClient.setQueryData('me', me);
+		
     queryClient.setQueryData('questions', questions());
     queryClient.setQueryData('requests', requests());
     queryClient.setQueryData('users', users()); //임시
@@ -29,9 +27,16 @@ const Home: NextPage = () => {
   );
 };
 
+
+
 export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
-			console.log( await cookieManager(req.headers.cookie))
-			return { props: {} }
+			if (req.headers.cookie) {
+				// axios.defaults.headers.common['set-cookie']
+
+			}`enter code here`
+			return {
+				props: {}, // will be passed to the page component as props
+			}
 
 }
 

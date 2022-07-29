@@ -1,12 +1,8 @@
-
 import { NextApiRequestCookies } from 'next/dist/server/api-utils';
-import cookie from "cookie";
+import cookie from 'cookie';
 
+export const cookieManager = async (req: any) => {
+  const all = cookie.parse(req&&req);
 
-
-export const cookieManager = async(req: any) => {
-
-const all = cookie.parse(req)
-
-return all;
-}
+  return all;
+};
