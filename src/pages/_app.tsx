@@ -1,6 +1,6 @@
 import type { AppContext, AppProps } from 'next/app';
 import NextApp from 'next/app';
-
+import Cookies from 'cookies'
 import React, { useEffect } from 'react';
 
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
@@ -12,7 +12,7 @@ import axios from 'axios'
 
 import { GetServerSideProps, NextPageContext } from 'next';
 import { cookieManager } from 'src/lib/cookieManager';
-import { Auth } from 'src/api';
+import { Auth, http } from 'src/api';
 import { requests } from 'src/store/DummyData';
 
 function MyApp({ Component, initialAuth, pageProps: { session, ...pageProps } }: AppProps & any) {
@@ -50,10 +50,32 @@ MyApp.getInitialProps = async (context: AppContext) => {
   try {
     if (!req || req?.url?.startsWith('/_next/')) return initialProps;
     const cookie = req?.headers.cookie;
-   	const allCookies = await cookieManager(cookie);
+		const cookies = new Cookies(req, res);
 
-		if(allCookies['jwt-access'] ){
-			const initialAuth = (await axios.get(`${process.env.API_URL}/auth`,{
+		//리프레쉬 토큰이 있고 액세스 토큰이 없을때 토큰 재발급
+		if(!cookies.get('jwt-access') && cookies.get('jwt-refresh')){ 
+			console.log('쿠쿠')
+			const neTokens = (await http.get(`/auth/refresh`,{
+				headers: {...(cookie&& {cookie})}
+			})).data.response;
+			console.log(neTokens)
+			cookies.set('jwt-access', neTokens.tokens.accessToken, {// access쿠키 재세팅
+        httpOnly: true,
+				expires: new Date(neTokens.tokens.accessExpires) // true by default
+    	})
+			cookies.set('jwt-refresh', neTokens.tokens.refreshToken, {// refresh쿠키 재세팅
+        httpOnly: true, // true by default
+				expires: new Date(neTokens.tokens.refreshExpires),
+    	})
+			return {
+				...initialProps,
+				initialAuth:neTokens.user
+			};
+
+		}
+// 유저 확인 및 저장
+		if(cookies.get('jwt-access')){
+			const initialAuth = (await http.get(`/auth`,{
 				headers: {...(cookie&& {cookie})}
 			})).data.response;
 			return {
