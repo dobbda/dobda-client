@@ -28,12 +28,14 @@ export const SocialLogin = (props: Props) => {
 
 const Style = {
   LoginWrapper: styled.div`
+		opacity: 1 !important;
     outline: none;
     /* max-width: 400px; */
     min-height: 350px;
-    padding: 10px 0;
+    padding: 25px 20px;
     background-color: #fff;
     text-align: center;
+		border-radius: 1em;
   `,
   LoginList: styled.div`
     text-align: center;

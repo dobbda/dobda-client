@@ -10,7 +10,7 @@ import 'antd/dist/antd.css';
 
 import * as I from 'src/assets/icons';
 import Link from 'next/link';
-import { useClientValue } from 'src/hooks/queryHooks';
+import { useClientValue } from 'src/hooks/queries/queryHooks';
 import { useLoginModalhandler } from 'src/hooks/loginModalHandler';
 
 const HeaderNav = () => {
@@ -18,14 +18,13 @@ const HeaderNav = () => {
 
   const [loginModal, setLoginModal] = useLoginModalhandler();
   return (
+		<>
     <S.Header>
       <S.Headercontainer className="top-navigation">
         <Logo />
 
         <S.MenuWrapper>
-          <div>
             <S.Btn onClick={setLoginModal}> 로그인</S.Btn>
-          </div>
           <Link href="/user/profile" passHref>
             <S.Btn>마이페이지</S.Btn>
           </Link>
@@ -35,11 +34,13 @@ const HeaderNav = () => {
           {/* <User /> */}
         </S.MenuWrapper>
       </S.Headercontainer>
-{/* 로그인 모달  */}
-      <Modal title="1" visible={loginModal} onCancel={setLoginModal}>
+
+    </S.Header>
+		{/* 로그인 모달  */}
+		<Modal  visible={loginModal} onClickHandler={setLoginModal}>
         <SocialLogin />
       </Modal>
-    </S.Header>
+		</>
   );
 };
 
