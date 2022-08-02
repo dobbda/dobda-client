@@ -2,18 +2,15 @@ import type { AppContext, AppProps } from 'next/app';
 import NextApp from 'next/app';
 import Cookies from 'cookies'
 import React, { useEffect } from 'react';
-
-import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { Hydrate, QueryClient, QueryClientProvider,useQueryClient  } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { ThemeProvider } from 'styled-components';
+
 import { GlobalStyle } from 'src/styles/GlobalStyle';
 import { theme } from 'src/styles/Theme';
-import axios from 'axios'
-
-import { GetServerSideProps, NextPageContext } from 'next';
-import { cookieManager } from 'src/lib/cookieManager';
-import { Auth, http } from 'src/api';
-import { requests } from 'src/store/DummyData';
+import { http } from 'src/api';
+import { useAuth } from 'src/hooks/useAuth';
+import { Auth } from 'src/types';
 
 function MyApp({ Component, initialAuth, pageProps: { session, ...pageProps } }: AppProps & any) {
   const [queryClient] = React.useState(
@@ -22,11 +19,19 @@ function MyApp({ Component, initialAuth, pageProps: { session, ...pageProps } }:
         defaultOptions: {
           queries: {
             staleTime: Infinity,
+						// cacheTime: 1000,
+						retry:0,
+						// refetchOnWindowFocus: false,
           },
         },
       }),
   );
-	queryClient.setQueryData('authUser', initialAuth)
+
+	// QueryClientProvider가 적용후 useQuery 사용
+	const AuthQuery = ({initialAuth}: {initialAuth:Auth|any}):null => {
+		useAuth(initialAuth&&initialAuth)
+		return null
+	}
 
   return (
 		
@@ -35,6 +40,7 @@ function MyApp({ Component, initialAuth, pageProps: { session, ...pageProps } }:
         <Hydrate state={pageProps.dehydratedState}>
           <ThemeProvider theme={theme}>
             <GlobalStyle />
+						<AuthQuery initialAuth={initialAuth}/>
             <Component {...pageProps} />
           </ThemeProvider>
         </Hydrate>
@@ -54,22 +60,30 @@ MyApp.getInitialProps = async (context: AppContext) => {
 
 		//리프레쉬 토큰이 있고 액세스 토큰이 없을때 토큰 재발급
 		if(!cookies.get('jwt-access') && cookies.get('jwt-refresh')){ 
-			console.log('쿠쿠')
-			const neTokens = (await http.get(`/auth/refresh`,{
+			const newTokens = (await http.get(`/auth/refresh`,{
 				headers: {...(cookie&& {cookie})}
 			})).data.response;
-			console.log(neTokens)
-			cookies.set('jwt-access', neTokens.tokens.accessToken, {// access쿠키 재세팅
+
+			cookies.set('jwt-access', newTokens.tokens.accessToken, {// access쿠키 재세팅
         httpOnly: true,
-				expires: new Date(neTokens.tokens.accessExpires) // true by default
+				expires: new Date(Date.now() + process.env.NEXT_PUBLIC_ACCESS_EXPIRES) // true by default
     	})
-			cookies.set('jwt-refresh', neTokens.tokens.refreshToken, {// refresh쿠키 재세팅
+			cookies.set('jwt-refresh', newTokens.tokens.refreshToken, {// refresh쿠키 재세팅
         httpOnly: true, // true by default
-				expires: new Date(neTokens.tokens.refreshExpires),
+				expires: new Date(Date.now() + process.env.NEXT_PUBLIC_REFRESH_EXPIRES),
+    	})
+
+			cookies.set('access-expires', 'access-expires', {// access쿠키 재세팅
+				httpOnly: false,
+				expires: new Date(Date.now() + process.env.NEXT_PUBLIC_ACCESS_EXPIRES) // true by default
+    	})
+			cookies.set('refresh-expires', "refresh-expires", {// refresh쿠키 재세팅
+				httpOnly: false,
+				expires: new Date(Date.now() + process.env.NEXT_PUBLIC_REFRESH_EXPIRES),
     	})
 			return {
 				...initialProps,
-				initialAuth:neTokens.user
+				initialAuth: newTokens
 			};
 
 		}
@@ -87,6 +101,7 @@ MyApp.getInitialProps = async (context: AppContext) => {
 			...initialProps,
 		};
   } catch (e) {
+		console.log("_app: ",e)
     return initialProps;
   }
 };

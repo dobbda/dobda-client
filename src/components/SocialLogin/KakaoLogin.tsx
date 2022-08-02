@@ -1,21 +1,22 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Wrap, Item, Text } from './style/Button';
-import { NaverIcon } from 'src/assets/icons';
+import qs from 'qs';
+import { KakaoIcon } from 'src/assets/icons';
 import Link from 'next/link';
+
 type Props = {};
-const Logo = styled(NaverIcon)`
+const Logo = styled(KakaoIcon)`
   width: 30px;
   height: 30px;
-  /* background-color: #19ce60; */
 `;
-export const NaverLogin = (props: Props) => {
+export const KakaoLogin = (props: Props) => {
 
   return (
-    <Wrap bg="#19c260" color="#fff" >
+    <Wrap bg="#fee500" color="#000">
       <Item>
         <Logo />
-        <Text>Login with Naver</Text>
+        <Text>Login with Kakao</Text>
       </Item>
     </Wrap>
   );

@@ -11,9 +11,9 @@ export const Header = styled.header`
   opacity: 0.95;
   background-color: #f4faff ;//${({ theme }) => theme.color.primary};
 	border-bottom: solid 1px #cacaca;
-  .headerWrapper{
-
-  }
+	p{
+		margin: 0;
+	}
 `;
 
 export const Headercontainer = styled.div`

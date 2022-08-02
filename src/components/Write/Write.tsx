@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { useClientValue } from 'src/hooks/queryHooks';
+import { useClientValue } from 'src/hooks/queries/queryHooks';
 import { useQuery, useQueryClient } from 'react-query';
 import styled from 'styled-components';
 // import Editor from 'src/components/Editor/Editor';
