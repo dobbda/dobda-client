@@ -1,8 +1,4 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import axios from 'axios';
-import { NextPage } from 'next';
-import styled from 'styled-components';
-import AWS from 'aws-sdk';
 
 import { uploadS3 } from './upload-s3';
 
@@ -31,7 +27,6 @@ interface Props {
 }
 
 const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
-  const fileName = Date.now(); // 이미지 이름
   
   // 에디터 보여지는 핸들러
   const [showEditor, setShowEditor] = React.useState(onClickShow ? false : true);
@@ -40,8 +35,8 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
   }, [showEditor]);
 
   const editorRef = useRef<ToastEditor>(null);
-  // Editor Change 이벤트
 
+  // Editor Change 이벤트
   const onChangeEditor = () => {
     setMdStr(editorRef.current?.getInstance().getMarkdown() || '');
     editorRef.current?.getInstance().removeHook('addImageBlobHook');
@@ -49,16 +44,21 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
       (async () => {
         const url = await uploadS3(blob)
         callback(url&& url,"image-url")
-
       })();
       return false;
     });
   };
 
+	// height을 auto로 할시 focus가 풀림현상 해결
+	const setFocusHandler = (e: any) => {
+		if(e.target.className === "toastui-editor md-mode active" || e.target.className === "toastui-editor ww-mode"){
+			editorRef.current.getInstance().focus();
+		}
+	}
   const EditorElement = (
     <ToastEditor
       initialValue=" "
-      previewStyle="vertical"
+      previewStyle="tab"
       initialEditType="wysiwyg"
       useCommandShortcut={false}
       usageStatistics={false}
@@ -67,7 +67,7 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
       onChange={onChangeEditor}
       minHeight={height}
       height={"auto"}
-      language="ko-kr"
+      language="ko-kr"			
       toolbarItems={[
         ['heading', 'bold', 'italic', 'strike'],
         ['hr', 'link'],
@@ -79,16 +79,14 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
   );
 
   return (
-    <S.EditorStyle>
-      <S.ToastEditorGlobalStyles />
+    <S.EditorStyle onClick={setFocusHandler}>
       {onClickShow && !showEditor && (
-        <div onClick={onClickShowEditorHandler} id="clickEvent-handler">
+        <div onClick={onClickShowEditorHandler} id="clickEvent-handler" >
           <S.ShowEditorBtn prefix={<S.ReplyIconS />} placeholder="답글 작성..." readOnly />
         </div>
       )}
 
       {showEditor && EditorElement}
-
       {onClickShow && showEditor && <S.CloseEditor onClick={() => setShowEditor(false)}>Editor 접기</S.CloseEditor>}
     </S.EditorStyle>
   );

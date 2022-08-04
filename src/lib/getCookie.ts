@@ -9,9 +9,9 @@ function setCookie(key:string, value:string,) {
 
 
 // 쿠키 가져오기 함수
-export function getCookie(key:string):boolean {
+export function getCookie (key:string):boolean {
 	if (typeof window !== 'undefined' && typeof document !== 'undefined' ) {
 		var cookieData = document.cookie;
-		return cookieData.match(key) !== undefined;
+		return cookieData.includes(key);
 	}  
 }

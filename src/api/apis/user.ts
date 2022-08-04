@@ -7,17 +7,16 @@ import { variable } from 'src/config/defaultValue';
 import { useQueryClient } from 'react-query';
 import { getCookie } from 'src/lib/getCookie';
 
-const auth = async () => {
+const auth = async (): Promise<Auth>  => {
   //로그인확인용
   if (getCookie('access-expires')) {
 		console.log('Access expires')
     return await axios
       .get(REQUEST_URL.get_auth)
       .then((res) => res.data.response)
-      .catch((err) => console.log('d', err));
+      .catch((err) => console.log('err', err));
   } else if (getCookie('refresh-expires')) {
 		console.log('refres expires')
-
     return await axios.get(REQUEST_URL.get_refresh).then((res) => res.data.response.user);
   } else {
     null;

@@ -5,7 +5,7 @@ export interface BaseUser {
 }
 
 export interface Default {
-  id: string,
+  id: number,
   createdAt?: Date,
 	updatedAt?: Date,
 }
@@ -17,32 +17,44 @@ export interface Auth extends Default{// 유저확인용
 	nickname: string,
 	coin: number,
 	score: number,
+	skill: string[],
+}
+
+export interface Answer extends Default  {
+	content: string,
+	accepted: boolean,
+	author:BaseUser,
 }
 
 export interface Comment extends Default {
 	content: string,
 	accepted: boolean,
-	user:BaseUser,
+	author:BaseUser,
 }
 
 ////////////////////////////////////////////////////////////////
 //// 								questions 															////
 ////////////////////////////////////////////////////////////////
-export interface Question {
-	title:string,
-	content:string,
+export interface ReqQuestion { // add
+	title: string,
+	content: string,
 	coin: number,
-	tagNames: string[],
+	tagNames: string[]
 }
 
-export interface ResQuestion extends Question, Default {
-  deadline: string,
-  watch: number,
-  user: BaseUser, 
-  comments: Comment[],
-	
+export interface ResQuestion extends ReqQuestion, Default { //get
+	title: string,
+	watch: number,
+	coin: number,
+	authorId: number,
+	accepteAnswerId: boolean,
+	tagNames: string[]
+  author: BaseUser,
 }
 
+export interface DetailQuestion extends ResQuestion {
+	answer: Answer[]
+}
 
 ////////////////////////////////////////////////////////////////
 //// 						featureRequest 							     						////
@@ -59,7 +71,7 @@ export interface FeatureRequest {
 export interface ResFeatureRequest extends FeatureRequest, Default {
   deadline: string,
   watch: number,
-  user: BaseUser, 
+  author: BaseUser, 
   comments: Comment[],
 	
 }

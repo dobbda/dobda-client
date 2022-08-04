@@ -3,23 +3,8 @@ import { ReplyIcon, ReplyFillIcon } from 'src/assets/icons';
 import styled from 'styled-components';
 import { GlobalStyle } from 'src/styles/GlobalStyle';
 export const ToastEditorGlobalStyles = styled(GlobalStyle)`
-  body{
-    .toastui-editor-defaultUI{
-      border:1px solid #ccc;
-      border-radius: 0;
-      background: #fff;
 
-    }
 
-    .toastui-editor-defaultUI-toolbar{
-      background-color: none;
-      border-bottom:1px solid #ccc;
-      *>{
-        color:#000;
-
-      }
-    }
-}
 
 `;
 

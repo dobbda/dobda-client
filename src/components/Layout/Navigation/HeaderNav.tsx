@@ -16,19 +16,25 @@ import { useAuth } from 'src/hooks/useAuth';
 import { removeLocalStorage } from 'src/lib/localStorage';
 import { useLogout } from 'src/hooks/useLogout';
 import { user } from 'src/api';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const HeaderNav = () => {
 	const queryClient = useQueryClient();
   const auth = useAuth();
   const [loginModal, setLoginModal] = useLoginModalhandler();
-
+	const router = useRouter()
 	 const userlogout = useCallback(async() => {
-		console.log('실행됨')
-		auth?.id && await user.logout();
-		queryClient.cancelQueries(["auth"]);
-		queryClient.setQueryData(["auth"], null)
-
-	},[auth?.id, queryClient]);
+		var result = confirm("로그아웃 확인");
+		if(result){
+			try {
+				await axios.delete("/api/auth/logout");
+			} catch (e) {}
+			queryClient.removeQueries(["auth"])
+			router.replace(router.asPath)
+		};
+		
+	},[auth?.name, queryClient]);
   return (
     <>
       <S.Header>
