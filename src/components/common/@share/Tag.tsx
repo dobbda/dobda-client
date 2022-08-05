@@ -18,14 +18,11 @@ const Div = styled.div<StyleProps>`
   padding: ${({bg})=>bg && "0 8px 3px"} ;
   margin: auto 3px;
   font-size: 12px;
-  /* font-weight: bold; */
-  font-style: italic;
-  border-radius: 5px;
-  background-color: ${({bg})=>bg && "#C7DDF2" };
+  background-color: ${({bg})=>bg && "rgba(0, 87, 255, 0.08);" };
   color: ${({theme})=> theme.color.secondary};
   cursor:pointer;
   :hover {
-    color:#00C6FF;
+    color:#000888;
   }
   `
 

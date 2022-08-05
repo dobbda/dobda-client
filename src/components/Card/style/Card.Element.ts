@@ -8,8 +8,10 @@ interface CardProps {
 
 export const ContentWrapper = styled.li<CardProps>`
   border-bottom: solid 1px #e3e3e3;
-  padding-right:20px;
-  padding-left: 20px;
+  padding: 20px;
+	background-color: #fff;
+	border-radius: 4px;
+	filter: drop-shadow(0px 2px 8px rgba(140, 140, 140, 0.25));
   .diff-styles{
     padding-left: 45px;
   }
