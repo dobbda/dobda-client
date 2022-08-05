@@ -11,6 +11,24 @@ export const GlobalStyle = createGlobalStyle`
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 14px;
+    .toastui-editor-defaultUI-toolbar,
+		.toastui-editor-md-tab-container,
+		.toastui-editor-toolbar-icons
+		{
+      background-color: rgba(0,0,0,0);
+			border:none;
+    }
+    .toastui-editor-defaultUI{
+      border:1px solid #dadada;
+      border-radius: 0;
+      background: #fff;
+
+			.toastui-editor-toolbar{
+				background-color: #fff;
+				border-bottom: 1px solid #dadada;
+			}
+    }
+
 
 
   }

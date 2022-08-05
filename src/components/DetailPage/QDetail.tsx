@@ -59,7 +59,7 @@ const QDetail = ({ children }: Props) => {
       <S.EditorWrapper>
         <h2>답변을 작성해주세요</h2>
 
-        <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="600px" />
+        <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
       </S.EditorWrapper>
 
       <S.CommentList>

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { useClientValue } from 'src/hooks/queryHooks';
+import { useClientValue } from 'src/hooks/queries/queryHooks';
 import { useQuery, useQueryClient } from 'react-query';
 import styled from 'styled-components';
 // import Editor from 'src/components/Editor/Editor';
@@ -75,7 +75,7 @@ const Write = () => {
       </Label>
       <InputTitle value={contentTitle} onChange={(e) => setContentTitle(e.target.value)} />
       <EditorContainer>
-        <Editor mdStr={mdStr} setMdStr={setMdStr}  height="800px"/>
+        <Editor mdStr={mdStr} setMdStr={setMdStr}  height="600px"/>
       </EditorContainer>
     </Write_Wrapper>
   );

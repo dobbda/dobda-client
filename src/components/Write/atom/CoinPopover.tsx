@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Input as AntInput, Tag } from 'antd';
 import { Popover } from 'src/components/common';
 import { CoinView } from './CoinView';
-import { useClientValue } from 'src/hooks/queryHooks';
+import { useClientValue } from 'src/hooks/queries/queryHooks';
 import { useQuery, useQueryClient } from 'react-query';
 import { CoinIcon, HashIcon } from 'src/assets/icons';
 

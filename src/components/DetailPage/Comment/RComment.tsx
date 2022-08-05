@@ -44,7 +44,7 @@ const RComment = (props: Props) => {
         <>
           <Reply></Reply>
           <Reply></Reply>
-          <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="300px"/>
+          <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px"/>
 
         </>
       )}

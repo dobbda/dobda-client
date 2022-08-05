@@ -4,7 +4,7 @@ import { useQueryClient, useQuery } from 'react-query';
 
 import { Div, ButtonGroup } from './style/inputCoinPopover.element';
 import { Button, Input } from 'antd';
-import { useClientValue } from 'src/hooks/queryHooks';
+import { useClientValue } from 'src/hooks/queries/queryHooks';
 import { variable } from 'src/config/defaultValue';
 type Props = {};
 
