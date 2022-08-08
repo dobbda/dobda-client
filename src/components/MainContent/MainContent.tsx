@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useQuery } from 'react-query';
 
@@ -8,13 +8,15 @@ import SearchBox from './SearchBox';
 import QCard from '../Card/QCard';
 import RCard from '../Card/RCard';
 import { PenIcon } from 'src/assets/icons';
+import Radio from './RadioButton';
+import styled from 'styled-components';
+import {Radio as antRadio} from 'antd'
 
 interface Props {
   children?: React.ReactNode;
 }
 
 const MainContent = ({ children }: Props) => {
-  CategoriesEvent(); // Category Click Hover Events
   const { data, error } = useQuery('questions', {
     initialData: '',
     staleTime: Infinity,
@@ -28,23 +30,32 @@ const MainContent = ({ children }: Props) => {
 
       <div className="categories-menubar">
         <div className="category-wrapper">
-          <span className="selected">전체</span>
-          <span>질문</span>
-          <span>요청</span>
-          <span>댓글</span>
+          <Radio id={'wjscp'} name="질문"  />
+					<Radio id={'dhlwn'} name="외주" defaultChecked={true}/>
+          <Radio id={'wjscp'} name="내글"  />
+
         </div>
         <Link href="/write-board" passHref>
           <button className='writeBtn'  >글 작성 <PenIcon/></button>
         </Link>
       </div>
-      <section>
+      <main>
       {/** main content card  **/}
       <ul className="content-list">
         <QCard />
         <QCard />
         <RCard />
+				<QCard />
+        <QCard />
+        <RCard />        <QCard />
+        <QCard />
+        <RCard />        <QCard />
+        <QCard />
+        <RCard />        <QCard />
+        <QCard />
+        <RCard />
       </ul>
-      </section>
+      </main>
     </Main>
   );
 };

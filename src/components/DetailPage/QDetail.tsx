@@ -6,7 +6,7 @@ import { Avatar } from '../common';
 import { QComment, RComment } from './Comment/';
 import getDate from 'src/lib/dateForm';
 
-import Coin from 'src/assets/icon/coin.svg';
+import { CoinIcon } from 'src/assets/icons';
 import Question_icon from 'src/assets/icon/question.svg';
 import { Button } from 'antd';
 import styled from 'styled-components';
@@ -17,39 +17,35 @@ type Props = {
   children?: React.ReactElement; // commentComponent
 };
 
-const Buttons = styled(Button)`
-  .ant-btn {
-    background-color: gray;
-  }
-`;
-
 const QDetail = ({ children }: Props) => {
   const [mdStr, setMdStr] = useState('');
   return (
     <>
       <S.ContentWrapper>
         <S.ContentHeader>
+          {/* <S.CoinWrapper>
+                <CoinIcon />
+                <p>9999</p>
+              </S.CoinWrapper> */}
+          <div className="detailInfo">
+            <div>
+              <Avatar nickname="Robot" url="https://joeschmoe.io/api/v1/asdf" />
+              <S.CoinWrapper>
+                <CoinIcon />
+                <p>9999</p>
+              </S.CoinWrapper>
+            </div>
+            <S.CreatedAt>{getDate('2001-09-28 03:00:00')}</S.CreatedAt>
+          </div>
           <Question_icon />
-          <h1 className="content-title"> apple system, BlinkMacSystemFont,Segoe UI,Roboto, Oxygen,Ubuntu, Canta</h1>
+          <S.Title> apple system, BlinkMacSystemFont,Segoe UI,Roboto, Oxygen,Ubuntu, Canta</S.Title>
           <S.TagWrapper>
             {' '}
             {/* map tags*/}
             <Tag bg={true}>python</Tag> <Tag bg={true}>java</Tag>
             <Tag bg={true}>java</Tag>
             <Tag bg={true}>java</Tag> <Tag bg={true}>matlab</Tag>
-            <Buttons>안녕</Buttons>
           </S.TagWrapper>
-
-          <br />
-          <S.CoinWrapper>
-            <p>9999</p>
-            <Coin />
-          </S.CoinWrapper>
-
-          <div className="created-user">
-            <Avatar nickname="Robot" url="https://joeschmoe.io/api/v1/fs" acceped_answer={false} />
-            <div className="createdAt"> {getDate('2001-09-28 03:00:00')}</div>
-          </div>
         </S.ContentHeader>
 
         <S.ContentViewWrapper>
@@ -57,17 +53,21 @@ const QDetail = ({ children }: Props) => {
         </S.ContentViewWrapper>
       </S.ContentWrapper>
       <S.EditorWrapper>
-        <h2>답변을 작성해주세요</h2>
-
+        <h3>답변을 작성해주세요</h3>
+        <br />
         <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
+        <br />
+        <br />
+
+        <S.SubmitBtn>등록</S.SubmitBtn>
       </S.EditorWrapper>
 
-      <S.CommentList>
+      <S.AnswerContainer>
         <QComment acceped_answer={true} />
         <QComment />
         <QComment />
         <QComment />
-      </S.CommentList>
+      </S.AnswerContainer>
     </>
   );
 };

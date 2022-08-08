@@ -3,7 +3,7 @@ import Image from 'next/image';
 import moment from 'moment';
 import 'moment/locale/ko';
 import getDate from 'src/lib/dateForm';
-import { ReplyItem, Header } from './style/Reply.Element';
+import { ReplyItem, Header, CommentContent } from './style/Reply.Element';
 import { Avatar } from 'src/components/common';
 import { ReplyIcon } from 'src/assets/icons';
 import { MarkDownViewer } from 'src/components/Editor';
@@ -24,9 +24,9 @@ const Reply = () => {
         </div>
       </Header>
 
-      <div className="content-viewer">
+      <CommentContent>
         <MarkDownViewer content="### content viewer 입니다" />
-      </div>
+      </CommentContent>
     </ReplyItem>
   );
 };

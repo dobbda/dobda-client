@@ -6,5 +6,6 @@ export { Modal } from "./@share/Modal";
 export {Button } from "./@share/Buttons";
 export {Logo } from "./@share/Logo";
 export {A as Link} from "./@share/Link"
+export {CreatedAt} from "./@share/CreatedAt"
 
 

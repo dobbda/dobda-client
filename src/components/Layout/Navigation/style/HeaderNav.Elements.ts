@@ -11,9 +11,9 @@ export const Header = styled.header`
   opacity: 0.95;
   background-color: #f4faff ;//${({ theme }) => theme.color.primary};
 	border-bottom: solid 1px #cacaca;
-	p{
-		margin: 0;
-	}
+  .headerWrapper{
+
+  }
 `;
 
 export const Headercontainer = styled.div`
@@ -38,15 +38,16 @@ export const MenuWrapper = styled.div`
 `;
 
 export const Btn = styled.button`
-background-color: #4c42e1;
+		background-color: #FFFFFF;
     cursor: pointer;
     padding: 3px 10px 5px 13px;
-    border: 1px solid #fbfbfb;
+    border: 1px solid #717171;
     height: 28px;
-    border: solid 1px #fbfbfb;
     border-radius: 1em;
     font-weight: bold;
-	color: #fff;
+    white-space: nowrap;
+
+	color: #000;
     a{
       padding:0;
     }

@@ -27,6 +27,7 @@ interface Props {
 }
 
 const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
+  const editorRef = useRef<ToastEditor>(null);
   
   // 에디터 보여지는 핸들러
   const [showEditor, setShowEditor] = React.useState(onClickShow ? false : true);
@@ -34,11 +35,14 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
     setShowEditor(!showEditor);
   }, [showEditor]);
 
-  const editorRef = useRef<ToastEditor>(null);
+	// useEffect(()=>{
+	// 	editorRef.current?.getInstance().setMarkdown("# mdStr")
+
+	// },[showEditor])
 
   // Editor Change 이벤트
   const onChangeEditor = () => {
-    setMdStr(editorRef.current?.getInstance().getMarkdown() || '');
+    setMdStr(editorRef.current?.getInstance().getMarkdown());
     editorRef.current?.getInstance().removeHook('addImageBlobHook');
     editorRef.current?.getInstance().addHook('addImageBlobHook', (blob, callback) => {
       (async () => {
@@ -57,7 +61,7 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
 	}
   const EditorElement = (
     <ToastEditor
-      initialValue=" "
+      initialValue={mdStr? mdStr : " "}
       previewStyle="tab"
       initialEditType="wysiwyg"
       useCommandShortcut={false}

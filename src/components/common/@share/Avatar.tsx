@@ -22,12 +22,14 @@ const Div = styled.div<{ acceped_answer?: boolean }>`
     position: static
   }
   h3 {
+		font-weight: 600;
+		padding-top:5px;
     margin-left: 10px;
-    display: inline-block;
-    font-size: 18px;
-    color: ${({ acceped_answer, theme }) => (acceped_answer ? '#fff' : '#484848')};
+		text-align: center;
+    font-size: 15px;
+    color: ${({ acceped_answer, theme }) => (acceped_answer ? '#fff' : '#131313')};
     :hover {
-      color: #00C6FF;
+      color: #013d4e;
     }
   }
 `;
