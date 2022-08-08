@@ -5,12 +5,12 @@ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   transition: all 0.2s;
-  section {
+  main {
     /* background-color: #fff; */
     /* border: 1px solid #eee; */
     padding-top: 10px;
     /* padding-bottom: 100px; */
-    min-height: 1300px;
+    /* min-height: 1300px; */
   }
 
   .content-list {
@@ -34,7 +34,7 @@ export const Main = styled.div`
     :hover {
       color: #11a14a;
     }
-    span {
+    /* span {
       cursor: pointer;
       background: #ffffff;
       border: 1px solid #c8c8c8;
@@ -42,14 +42,7 @@ export const Main = styled.div`
       color: #000;
       padding: 5px 25px;
       margin: 10px;
-    }
-    .selected {
-      background: #212121;
-      border: 1px solid #212121;
-      border-radius: 30px;
-      padding: 5px 25px;
-      color: #fff;
-    }
+    } */
   }
 
   .writeBtn {

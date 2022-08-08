@@ -1,87 +1,115 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-const headerFont = "20px"
-const wrapperPadding = "20px"
+const headerFont = '20px';
+const wrapperPadding = '30px';
 
 export const ContentWrapper = styled.div`
-
+  margin-top: 10px;
   border-radius: 4px;
   /* word-wrap:break-word; */
   width: 100%;
   min-height: 600px;
   background-color: #fff;
   border: 1px solid #eeee;
-`
-export const CoinWrapper = styled.div`
-  color: #666666;
-  font-size: ${headerFont};
-  display: flex;
-  font-weight: bold;
+`;
+export const CoinWrapper = styled.span`
+  font-weight: 600;
   align-items: center;
+  display: inline-flex;
+  margin-left: 20px;
   p {
-    margin:0;
-    margin-right: 5px;
-    color: #8400EC;
-
-  }
-`
-export const ContentHeader = styled.header`
-    background-color: #fbfbfb;
-    padding: 20px;
-    padding-bottom: 0;
-    border-bottom: 1px solid #ccc;
-  .deadline {
-  color: #666666;
-  font-size: ${headerFont};
-  font-weight: bold;
-  }  
-
-  
-  >*  {
-    margin-top:10px;
-  }
-  h1, h2, h3 { //제목
     display: inline;
-    font-weight:650;
+    color: #eda200;
+    margin: 0 5px;
+    font-size: 14px;
+  }
+`;
+export const ContentHeader = styled.header`
+  /* background-color: #fbfbfb; */
+  padding: ${wrapperPadding};
+  border-bottom: 1px solid #ccc;
+
+  h1,
+  h2,
+  h3 {
+    //제목
+    display: inline;
+    font-weight: 650;
     line-height: 1.4;
     margin-bottom: 30px;
   }
 
-  .created-user{
-    padding-right:10px;
+  .detailInfo {
+    padding-right: 10px;
     display: flex;
     justify-content: space-between;
-
-    padding: 5px;    
-    .createdAt{
-    color: ${({ theme }) => theme.color.date};
-    padding-top: 3px;
-    font-size: 15px;
-    font-weight: 600;
-    margin-left:10px;
+    margin-bottom: 20px;
   }
-
-  }
-`
+`;
 export const ContentViewWrapper = styled.div`
-padding: 10px 20px;
-height: 100%;
-`
+  padding: 10px 20px;
+  height: 100%;
+`;
 
-export const CommentList = styled.div`
+export const AnswerContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  margin: 20px 0; 
-  padding: 10px;
-`
+  gap: 25px;
+  padding: ${wrapperPadding};
+  background-color: #fff;
+  border-radius: 4px;
+
+	@media screen and (max-width: 768px) {
+		padding: 0;
+	}
+`;
 
 export const TagWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 10px auto 0;
-  `
+`;
 
 export const EditorWrapper = styled.div`
-margin-top:50px;
-`
+  position: relative;
+
+  background-color: #fff;
+  border-radius: 4px;
+  margin: 25px 0;
+  padding: 30px;
+  h3 {
+    color: #000;
+    font-weight: bold;
+  }
+	@media screen and (max-width: 768px) {
+		padding: 10px;
+	}
+`;
+
+export const SubmitBtn = styled.button`
+	cursor: pointer;
+	display: block;
+  width: 100px;
+
+  margin: 5px auto;
+  padding: 5px;
+
+  background-color: #212121;
+  color: #fff;
+	border-radius: 4px;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: -0.06em;
+`;
+
+export const CreatedAt = styled.span`
+  color: rgba(0, 0, 0, 0.4);
+  padding-top: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-left: 10px;
+`;
+export const Title = styled.h1``;

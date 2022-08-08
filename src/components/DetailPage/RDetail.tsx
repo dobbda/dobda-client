@@ -1,61 +1,75 @@
 import React, { useState } from 'react';
 
-import { Tag, Avatar } from '../common';
-import getDate from 'src/lib/dateForm';
+import { Tag } from '../common';
 import * as S from './style/Detail.Element';
-import Coin_icon from 'src/assets/icon/coin.svg';
-import { Editor, MarkDownViewer } from 'src/components/Editor';
-import { RComment } from './Comment/';
+import { Avatar } from '../common';
+import {RComment } from './Comment/';
+import getDate from 'src/lib/dateForm';
+
+import { CoinIcon } from 'src/assets/icons';
+import Question_icon from 'src/assets/icon/question.svg';
+import { Button } from 'antd';
+import styled from 'styled-components';
+import { Editor } from 'src/components/Editor';
+import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 
 type Props = {
   children?: React.ReactElement; // commentComponent
 };
 
-const RDetail = ({ children }: Props) => {
+const QDetail = ({ children }: Props) => {
   const [mdStr, setMdStr] = useState('');
-
   return (
     <>
       <S.ContentWrapper>
         <S.ContentHeader>
-          <h1 className="content-title">apple system, BlinkMacSystemFont,Segoe UI,Roboto, Oxygen,Ubuntu, Canta</h1>
+          {/* <S.CoinWrapper>
+                <CoinIcon />
+                <p>9999</p>
+              </S.CoinWrapper> */}
+          <div className="detailInfo">
+            <div>
+              <Avatar nickname="Robot" url="https://joeschmoe.io/api/v1/asdf" />
+              <S.CoinWrapper>
+                <CoinIcon />
+                <p>9999</p>
+              </S.CoinWrapper>
+            </div>
+            <S.CreatedAt>{getDate('2001-09-28 03:00:00')}</S.CreatedAt>
+          </div>
+          <Question_icon />
+          <S.Title> apple system, BlinkMacSystemFont,Segoe UI,Roboto, Oxygen,Ubuntu, Canta</S.Title>
           <S.TagWrapper>
             {' '}
+            {/* map tags*/}
             <Tag bg={true}>python</Tag> <Tag bg={true}>java</Tag>
             <Tag bg={true}>java</Tag>
             <Tag bg={true}>java</Tag> <Tag bg={true}>matlab</Tag>
-          </S.TagWrapper>{' '}
-          {/* map tags*/}
-          <br />
-          <div>
-            <span className="deadline">마감기한: {getDate('2022-12-12/12:24')} </span>
-            <S.CoinWrapper>
-              <p>9999</p>
-              <Coin_icon />
-            </S.CoinWrapper>
-          </div>
-          <div className="created-user">
-            <Avatar nickname="Robot" url="https://joeschmoe.io/api/v1/aa" acceped_answer={false} />
-            <div className="createdAt"> {getDate('2001-09-28 03:00:00')}</div>
-          </div>
+          </S.TagWrapper>
         </S.ContentHeader>
 
-          <S.ContentViewWrapper>
-            <MarkDownViewer content="# content viewer 입니다" />
-          </S.ContentViewWrapper>
+        <S.ContentViewWrapper>
+          <MarkDownViewer content={mdStr} />
+        </S.ContentViewWrapper>
       </S.ContentWrapper>
-
       <S.EditorWrapper>
+        <h3>대화를 나눠보세요</h3>
+        <br />
         <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
+        <br />
+        <br />
+
+        <S.SubmitBtn>등록</S.SubmitBtn>
       </S.EditorWrapper>
-      <S.CommentList>
+
+      <S.AnswerContainer>
         <RComment acceped_answer={true} />
         <RComment />
         <RComment />
         <RComment />
-      </S.CommentList>
+      </S.AnswerContainer>
     </>
   );
 };
 
-export default RDetail;
+export default QDetail;

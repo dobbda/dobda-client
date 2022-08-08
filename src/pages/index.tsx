@@ -10,7 +10,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Layout >
+      <Layout aside={<p>인기글/ \n 태그모음  최신글...</p>}>
         <MainContent />
       </Layout>
     </>

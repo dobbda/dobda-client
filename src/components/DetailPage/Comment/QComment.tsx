@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { useClientValue } from 'src/hooks/queries/queryHooks';
 
 import Reply from './Reply';
 import { Editor, MarkDownViewer } from 'src/components/Editor';
-import { Avatar } from 'src/components/common';
+import { Avatar, CreatedAt } from 'src/components/common';
 import getDate from 'src/lib/dateForm';
 
 import * as S from './style/style';
 import More_btn_icon from 'src/assets/icon/more_btn.svg';
 import Select_icon from 'src/assets/icon/select.svg';
 import { ReCommentIcon } from 'src/assets/icons';
+import { SubmitBtn } from '../style/Detail.Element';
 type Props = {
   acceped_answer?: boolean;
 };
@@ -17,10 +19,11 @@ type Props = {
 const QComment = (props: Props) => {
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
+	const isCommentSummitBtn = useClientValue(['isCommentSummitBtn'],false)
   return (
     <S.CommentWrapper>
       <S.Header className="header" acceped_answer={props.acceped_answer}>
-        <Avatar acceped_answer={props.acceped_answer} nickname="쭈꾸미" url="https://joeschmoe.io/api/v1/bb" />
+        <Avatar nickname="쭈꾸미" url="https://joeschmoe.io/api/v1/bb" />
 
         <div className="gc-right">
           {props.acceped_answer ? (
@@ -35,22 +38,31 @@ const QComment = (props: Props) => {
       </S.Header>
 
       <S.Viewer>
-        <MarkDownViewer content='### content viewer 입니다'/>
+        <MarkDownViewer content="### content viewer 입니다" />
       </S.Viewer>
       {/*Reply ---------------------------*/}
       <S.ChildView>
-        <span className="show-replybtn" onClick={() => setviewChild(!viewChild)}>
-          <ReCommentIcon />2 {viewChild ? '닫기' : '보기'}
-        </span>
-        <span className="createdAt"> {getDate('2001-09-28 03:00:00')}</span>
+        <div className="show-replybtn">
+          <ReCommentIcon />{' '}
+          <span>
+            2 <span onClick={() => setviewChild(!viewChild)}>{viewChild ? 'close' : 'show'}</span>
+          </span>
+        </div>
+        <CreatedAt> {getDate('2001-09-28 03:00:00')}</CreatedAt>
       </S.ChildView>
+
       {viewChild && (
         <>
           <Reply></Reply>
           <Reply></Reply>
-          <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
         </>
       )}
+      <S.CommentEditor >
+        <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
+
+				{mdStr && <SubmitBtn>등록</SubmitBtn> }
+
+      </S.CommentEditor>
     </S.CommentWrapper>
   );
 };

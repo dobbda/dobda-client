@@ -1,66 +1,76 @@
 import styled from 'styled-components';
 // height: ${({theme})=>theme.media.size};
-const padding = ""
+const padding = '';
 type Props = {
-  paddingLeft?:boolean
-}
+  setWidth: boolean;
+};
 export const Container = styled.div`
-  width: 100%;
-  height:100% ;
+  min-width: 100%;
+  height: 100%;
   line-height: normal;
   box-sizing: border-box;
-`
-export const Wrapper = styled.div<Props>`
-  min-height: 100%;
-  display: flex;
-  justify-content:space-between;
-  min-width:360px;
-  /* position: relative; */
+  padding: 0;
+  margin: 0;
+`;
+export const Position = styled.div<Props>`
+	/* height: 100%; */
+  max-width: ${({setWidth})=> setWidth ? "1260px" : "1180px" };
+  min-width: 360px;
+  margin: 0 auto;
+	background-color: #f8f9fa;
+
 `;
 
-export const CenterSection = styled.section`
-width: 100%;
-min-height: 100%;
-	max-width: 800px;
-    position: relative;
-	margin:0 auto;
-`
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+	height: 100%;
+  padding: 0;
+  margin: 0;
+`;
+
+export const MainWrapper = styled.div`
+	width: 100%;
+	margin: 0 20px;
+	position: relative;
+
+	@media screen and (max-width: 768px) {
+    margin: 0 5px;
+  } ;
+`;
 
 export const SideNavWrapper = styled.div`
-    min-width: 200px;
-	min-height: 100%;
-	margin-right: 5px;
-	position: fixed;
-	top: 50px;
-	left: 0;
-	bottom: 0;
-    @media screen and ( max-width: 789px){
-      display: none;
-    };
-`
-export const SideAreas= styled.em`
+  flex: 0 0 auto;
+  position: sticky;
+  top: 50px;
+  width: 220px;
+	height: 96vh;
+  box-sizing: border-box;
+  @media screen and (max-width: 768px) {
+    display: none;
+  } ;
+`;
+
+
+export const AsideContent = styled.div`
   min-width: 200px;
-  height: 100%;
-  margin-right: 5px;
-  @media screen and ( max-width: 789px){
-      display: none;
-    };
-`
+	height: 500px;
+  position: sticky;
+	margin-top:80px;
+  top: 50px;
+	right: 0;
 
-export const Aside = styled.aside`
-	width: 200px;
-	height: 100%;
-	top: 0;
-	position: absolute;
-	right: -220px;
-	text-align: center;
+	background-color: #dedede;
+  text-align: center;
 
-`
-
+	@media screen and (max-width: 1080px) {
+    display: none;
+  } ;
+`;
 
 export const HeaderAreas = styled.div`
-	
-	height: ${({ theme})=> theme.media.headerHeight};
-	width: 100%;
-`
-
+  height: ${({ theme }) => theme.media.headerHeight};
+  width: 100%;
+`;

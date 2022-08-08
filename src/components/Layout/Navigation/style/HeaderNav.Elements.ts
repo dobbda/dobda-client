@@ -45,6 +45,8 @@ export const Btn = styled.button`
     height: 28px;
     border-radius: 1em;
     font-weight: bold;
+    white-space: nowrap;
+
 	color: #000;
     a{
       padding:0;

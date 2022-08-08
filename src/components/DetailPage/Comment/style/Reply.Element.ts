@@ -4,29 +4,27 @@ interface Props {
 }
 
 export const ReplyItem = styled.div<Props>`
-  margin-top: 20px;
-  margin-bottom: 5px;
-  background-color: #fff;
-  border-radius: 10px;
-  border : 3px solid #ddd4ff;
-
+	background-color: #f8f9fa;
+	border: 1px solid rgba(217, 217, 217, 1);
+	margin: -1px;
+	padding-left: 25px;
   .content-viewer {
     padding: 10px 25px;
+
   }
   i.reply {
     // icons
     transform: rotate(180deg);
-    /* color:gray; */
+    color:rgba(0, 0, 0, 0.35);
+		font-size: 25px;
   }
 `;
 
 export const Header = styled.div<Props>`
-  height: 45px;
-
+  	    padding: 10px 20px;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px solid #eceef1;
+  /* padding: 10px; */
   .rc-left {
     display: flex;
     align-items: center;
@@ -47,4 +45,6 @@ export const Header = styled.div<Props>`
   }
 `;
 
-export const Content = styled.div<Props>``;
+export const CommentContent = styled.div`
+	    padding: 0 25px 25px;
+`;

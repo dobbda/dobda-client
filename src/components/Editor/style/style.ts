@@ -2,11 +2,7 @@ import { Input as AntInput, Button } from 'antd';
 import { ReplyIcon, ReplyFillIcon } from 'src/assets/icons';
 import styled from 'styled-components';
 import { GlobalStyle } from 'src/styles/GlobalStyle';
-export const ToastEditorGlobalStyles = styled(GlobalStyle)`
 
-
-
-`;
 
 export const EditorStyle = styled.div`
   margin-top: 10px 0;
@@ -24,11 +20,8 @@ export const ReplyIconS = styled(ReplyIcon)`
 export const ShowEditorBtn = styled(AntInput)`
   height: 50px;
   background-color: #fff;
-  border-radius: 10px;
-  /* border: px solid #465666; */
-  input {
-    /* background-color: #f5f5f5; */
-  }
+  border-radius: 5px;
+
   input::placeholder {
     font-size: 15px;
     color: gray;

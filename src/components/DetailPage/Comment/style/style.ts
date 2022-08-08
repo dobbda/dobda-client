@@ -4,59 +4,50 @@ interface Props {
   selected?: boolean;
   acceped_answer?: boolean;
 }
-export const CommentWrapper = styled.div<Props>`
-  margin-right: -1px;
-  border-radius: 5px;
-  /* background-color: #ffff; */
 
-  input {
-    margin: 10px 20px;
-  }
+const wrapperPadding = "25px";
+export const CommentWrapper = styled.div<Props>`
+	background-color: #fff;
+	border: 1px solid #D9D9D9;
+	border-radius: 4px;
+  filter: drop-shadow(0px 2px 10px rgba(168, 168, 168, 0.25));
+
 `;
 
 export const ChildView = styled.div`
-  padding-left: 25px;
-  padding: 6px 0 6px 25px;
-  border-top: 1px solid #F2F2F2;
-  background-color: #eeee;
-  border-radius: 0 0 5px 5px;
+	border: 1px solid #D9D9D9;
   user-select: none;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+	margin:-1px;
+	height: 40px;
+	padding: 0 40px;
   .show-replybtn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     text-align: center;
-    :hover {
-      color: gray;
-    }
+		span{
+			cursor: pointer;
+			margin: 0 10px;
+			margin-bottom: 3px;;
+			font-weight: 500;
+		}
   }
   
-  .createdAt {
-    margin-right: 10px;
-    font-weight: 600;
-    color: #2e2e2eaa;
-  }
 `;
 
 export const Viewer = styled.div<Props>`
     background-color: #fff;
-    padding:10px 25px;
+    padding: 0 25px 25px;
   
 `;
 
 export const Header = styled.div<Props>`
-  background-color: ${({acceped_answer,theme})=>acceped_answer ? theme.color.secondary:  "#EEEEEE"};
-  height: 45px;
-  padding: 0 15px;
+  padding: 20px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #c9c9c9;
-  border-radius: 5px 5px 0 0;
   .gc-left {
     display: flex;
     align-items: center;
@@ -80,4 +71,6 @@ export const Header = styled.div<Props>`
   }
 `;
 
-
+export const CommentEditor = styled.div`
+	padding: 8px;
+`

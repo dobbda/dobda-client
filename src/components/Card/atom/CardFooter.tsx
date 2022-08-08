@@ -1,5 +1,5 @@
 import { FooterWrapper} from './style/Element';
-import { Group, } from '../style/Card.Element';
+import { Group, P, } from '../style/Card.Element';
 import { Tooltip } from 'antd';
 
 import * as I from 'src/assets/icons'
@@ -10,11 +10,7 @@ import styled from 'styled-components';
 interface Props {}
 export const QFooter = (props: Props) => {
   return (
-    <FooterWrapper>
-        <Group>
-          <Tooltip placement="right" color="cyan" title="댓글알림받기"><em>알림받기</em></Tooltip>
-          <p>(10)</p>
-        </Group>
+    <FooterWrapper>	
         <Group>
           <Group>
             <I.WatchIcon />
@@ -25,6 +21,8 @@ export const QFooter = (props: Props) => {
             <p>(10)</p>
           </Group>
         </Group>
+				<Group ><P color="#8400EC">2200</P><I.CoinIcon /></Group>
+
     </FooterWrapper>
   );
 };

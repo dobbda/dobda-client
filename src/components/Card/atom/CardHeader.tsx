@@ -20,7 +20,7 @@ type Props = {};
 export const QHeader = (props: Props) => {
   return (
   <HeaderWrapper>
-      <Group ><Qicon /><P color="#8400EC">2200</P><I.CoinIcon /></Group>
+      <Group ><Qicon /><P >uwerName</P></Group>
       <Group ><p className='createdAt'>{getDate("2021-10-09T00:44:52+09:00")}</p></Group>
   </HeaderWrapper>);
 };

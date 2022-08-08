@@ -11,7 +11,6 @@ interface Props {
 }
 
 const MyPost = ({ children }: Props) => {
-  CategoriesEvent(); // Category Click Hover Events
   const { data, error } = useQuery('questions', {
     initialData: '',
     staleTime: Infinity,

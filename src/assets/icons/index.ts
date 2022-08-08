@@ -7,10 +7,9 @@ export { IoMdArrowRoundBack as BackArrow } from 'react-icons/io';
 export { FcGoogle as GoogleIcon } from 'react-icons/fc';
 export {SiNaver as NaverIcon} from 'react-icons/si'
 export { GoMarkGithub as GithubIcon} from 'react-icons/go';
-export {VscReply as ReplyIcon} from 'react-icons/vsc';
-export {VscCommentDiscussion as ReCommentIcon} from 'react-icons/vsc';
+export {BiReply as ReplyIcon} from 'react-icons/bi';
 export {BiLogInCircle as LoginIcon} from 'react-icons/bi';
-export {AiOutlineComment as ChatIcon} from 'react-icons/ai';
+export {BsChatLeft as ChatIcon} from 'react-icons/bs';
 export {IoIosEye as WatchIcon} from 'react-icons/io';
 export {TbBellPlus as AddBellIcon} from 'react-icons/tb';
 export {RiKakaoTalkFill as KakaoIcon} from 'react-icons/ri';
@@ -38,6 +37,13 @@ export { default as RSVG} from 'src/assets/icon/request.svg'
 
 import {RiBitCoinFill} from 'react-icons/ri';
 export const CoinIcon = styled(RiBitCoinFill)`
-  font-size: 14px;
+  font-size: 17px;
   color: #F3AA0F;
+`
+
+
+import {BsChatLeftDotsFill} from 'react-icons/bs';
+export const ReCommentIcon = styled(BsChatLeftDotsFill)`
+  font-size: 17px;
+	font-weight: bold;
 `
