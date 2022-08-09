@@ -92,7 +92,6 @@ MyApp.getInitialProps = async (context: AppContext) => {
 			...initialProps,
 		};
   } catch (e) {
-		console.log("_app: ",e)
     return initialProps;
   }
 };

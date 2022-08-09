@@ -10,7 +10,6 @@ type Props = {
 };
 const Layout = ({ children, aside }: PropsWithChildren<Props>) => {
 	const setMainWidth = aside !== undefined;
-	console.log('aaa: ', aside)
   return (
     <S.Container>
 			<GlobalStyle/>

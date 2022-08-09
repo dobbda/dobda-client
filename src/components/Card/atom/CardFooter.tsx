@@ -7,21 +7,25 @@ import * as I from 'src/assets/icons'
 import React from 'react';
 import styled from 'styled-components';
 
-interface Props {}
+interface Props {
+	watch: number;
+	answersCount: number;
+	coin: number;
+}
 export const QFooter = (props: Props) => {
   return (
     <FooterWrapper>	
         <Group>
           <Group>
             <I.WatchIcon />
-            <p>(10)</p>
+            <p>({props.watch})</p>
           </Group>
           <Group>
             <I.ChatIcon />
-            <p>(10)</p>
+            <p>({props.answersCount})</p>
           </Group>
         </Group>
-				<Group ><P color="#8400EC">2200</P><I.CoinIcon /></Group>
+				<Group ><P color="#8400EC">{props.coin}</P><I.CoinIcon /></Group>
 
     </FooterWrapper>
   );

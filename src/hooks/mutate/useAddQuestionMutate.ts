@@ -2,7 +2,7 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { ReqQuestion, ResQuestion } from 'src/types';
-import { queryKeys } from './queries/queryKeys';
+import { queryKeys } from '../queries/queryKeys';
 
 
 

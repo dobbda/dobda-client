@@ -19,7 +19,6 @@ type Props = {
 const QComment = (props: Props) => {
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
-	const isCommentSummitBtn = useClientValue(['isCommentSummitBtn'],false)
   return (
     <S.CommentWrapper>
       <S.Header className="header" acceped_answer={props.acceped_answer}>

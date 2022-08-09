@@ -10,7 +10,6 @@ import { variable } from 'src/config/defaultValue';
 type Props = {};
 
 const Lodding = (props: Props) => {
-	const queryClient =  useQueryClient();
   // 인가코드
   const router = useRouter();
   const { platform, code } = router.query;

@@ -10,8 +10,8 @@ import { queryKeys } from "./queries/queryKeys";
 export function useAuth(data?: any): Auth {
 
 		const { data: auth } = useQuery([queryKeys.AUTH], user.auth?()=>user.auth(): null, {
-			staleTime:Infinity,
-
+			refetchOnMount:true,
+			staleTime:1000*60*5, //5분후 api 요청
 			// cacheTime:0,
 			...(data?.user && { initialData: data.user || data}),
 			onError: (err)=>{if(err==='Missing queryFn')console.log('auth err', err)}

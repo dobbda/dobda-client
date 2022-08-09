@@ -8,11 +8,6 @@ const addQuestion = async (question: ReqQuestion): Promise<ResQuestion> => {
 }
 
 // 질문글 전체조회
-const getQuestions = async(): Promise<ResQuestion> => {
-	return await axios.get('/api/questions')
-	.then(res=>{if(res.data.success) return res.data.response.result})
-	.catch(err=>console.log("axios error: " + err))
-};
 
 //질문글 상세조회
 const detailQuestion = async(id:number) : Promise<AxiosResponse> => {
@@ -25,4 +20,4 @@ const updateQuestion = async({id, data}:{id:number, data: ReqQuestion}):Promise<
 };
 
 
-export {getQuestions, detailQuestion, updateQuestion, addQuestion }
+export {detailQuestion, updateQuestion, addQuestion }
