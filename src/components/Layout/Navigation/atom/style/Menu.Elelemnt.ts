@@ -4,10 +4,9 @@ export const Icon = styled.div`
 
   position: absolute;
   top: 10px;
-  height: 25px;
   left: 10px;
   font-size: 22px;
-  font-weight: bold;
+  /* font-weight: bold; */
 	
 `
 export const Div = styled.div<{checked: boolean}>`
@@ -74,7 +73,7 @@ export const CheckBox = styled.input.attrs({
   }
 
   &:checked + ${Label} .rotate   {
-    transform: rotate(3.142rad);
+    transform: rotate(90deg);
 		color:#ffff;
 
   }

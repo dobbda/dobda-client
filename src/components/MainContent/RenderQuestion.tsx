@@ -3,11 +3,18 @@ import { useGetInfinityQ } from 'src/hooks/useQuery/useGetInfinityQ';
 import { useInView } from 'react-intersection-observer';
 import QCard from '../Card/QCard';
 import styled from 'styled-components';
+import { q } from 'src/api';
 
 function RenderQuestion() {
 	const [shearchTitle, setShearchTitle] = useState<string>()
 	const [shearchTag, setShearchTag] = useState<string>()
-  const { data, fetchNextPage, hasNextPage, isSuccess } = useGetInfinityQ({title:shearchTitle, tag:shearchTag});
+  const { data, fetchNextPage, hasNextPage, isSuccess } = useGetInfinityQ(
+		{	queryKey:'questions',
+			title:shearchTitle, 
+			tag:shearchTag, 
+			fetch: q.getInfinityQ
+		});
+		
   const [ref, isView] = useInView();
   useEffect(() => { // 무한 스크롤 
     if (isView && hasNextPage) {

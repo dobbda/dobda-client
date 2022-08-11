@@ -1,2 +1,2 @@
-export {default as QComment} from './QComment';
-export {default as RComment} from './RComment'
+export {default as QAnswer} from './QAnswer';
+export {default as RAnswer} from './RAnswer'

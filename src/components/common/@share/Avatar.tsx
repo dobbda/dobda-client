@@ -24,7 +24,7 @@ const Div = styled.div<{ acceped_answer?: boolean }>`
   h3 {
 		font-weight: 600;
 		padding-top:5px;
-    margin-left: 10px;
+    margin-left: 20px;
 		text-align: center;
     font-size: 15px;
     color: ${({ acceped_answer, theme }) => (acceped_answer ? '#fff' : '#131313')};
@@ -53,7 +53,7 @@ export const Avatar = ({ nickname, acceped_answer = false, url }: Props) => {
       
     >
       <Div acceped_answer={acceped_answer}>
-        <Image src={url} alt="avatar" width={25} height={25} />
+        <img src={url} alt="avatar" />
         <h3>{nickname}</h3>
       </Div>
     </Popover>

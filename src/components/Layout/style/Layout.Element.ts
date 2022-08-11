@@ -14,7 +14,8 @@ export const Container = styled.div`
 `;
 export const Position = styled.div<Props>`
 	/* height: 100%; */
-  max-width: ${({setWidth})=> setWidth ? "1260px" : "1180px" };
+  /* max-width: ${({setWidth})=> setWidth ? "1260px" : "1180px" }; */
+  max-width: 1260px;
   min-width: 360px;
   margin: 0 auto;
 	background-color: #f8f9fa;
@@ -32,10 +33,11 @@ export const Wrapper = styled.div`
 `;
 
 export const MainWrapper = styled.div`
+	min-height: 100vh;
 	width: 100%;
 	margin: 0 20px;
 	position: relative;
-
+	padding-top: 10px;
 	@media screen and (max-width: 768px) {
     margin: 0 5px;
   } ;
@@ -46,7 +48,7 @@ export const SideNavWrapper = styled.div`
   position: sticky;
   top: 50px;
   width: 220px;
-	height: 96vh;
+	height: calc(100vh - 50px);
   box-sizing: border-box;
   @media screen and (max-width: 768px) {
     display: none;

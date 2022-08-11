@@ -2,9 +2,12 @@ import styled from 'styled-components';
 
 const headerFont = '20px';
 const wrapperPadding = '30px';
+export const DetailContainer = styled.div`
+	/* min-height: 100vh; */
+`
+
 
 export const ContentWrapper = styled.div`
-  margin-top: 10px;
   border-radius: 4px;
   /* word-wrap:break-word; */
   width: 100%;
@@ -58,7 +61,6 @@ export const AnswerContainer = styled.div`
   padding: ${wrapperPadding};
   background-color: #fff;
   border-radius: 4px;
-
 	@media screen and (max-width: 768px) {
 		padding: 0;
 	}

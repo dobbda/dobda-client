@@ -26,11 +26,15 @@ export interface Answer extends Default  {
 	content: string,
 	accepted: boolean,
 	author:Author,
+	commentsCount:number,
+	authorId:number,
+	questionId:number,
 }
 
 export interface Comment extends Default {
 	content: string,
-	accepted: boolean,
+	authorId:number,
+	answerId:number,
 	author:Author,
 }
 
@@ -41,7 +45,7 @@ export interface Comment extends Default {
 export type Tags = {
 	name: string,
 }
-export interface ReqQuestion { // add
+export interface CreateQuestion { // add
 	title: string,
 	content: string,
 	coin: number,
@@ -49,7 +53,7 @@ export interface ReqQuestion { // add
 }
 
 
-export interface ResQuestion extends ReqQuestion, Default { //get
+export interface Question extends CreateQuestion, Default { //get
 	title: string,
 	watch: number,
 	coin: number,
@@ -59,8 +63,9 @@ export interface ResQuestion extends ReqQuestion, Default { //get
 	answersCount: number,
 }
 
-export interface DetailQuestion extends ResQuestion {
-	answer: Answer[]
+export interface QuestionDetail extends Question {
+	// answer: Answer[],
+	content: string
 }
 
 ////////////////////////////////////////////////////////////////
@@ -92,3 +97,9 @@ export interface UserProfile extends Default {
 
 }
 
+
+export type InfinityProps = {
+  result: Question[];
+  pageNum: number;
+  isLast: boolean;
+};

@@ -27,12 +27,16 @@ export const GlobalStyle = createGlobalStyle`
       background: #fff;
 			h1,h2,h3,h4,h5,h6{
 				margin:5px 0 2px;
+				border-bottom: none;
 			}
 			.toastui-editor-toolbar{
 				background-color: #fff;
 				border-bottom: 1px solid #dadada;
 			}
     }
+		.toastui-editor-contents h1,h2,h3{
+			border:none;
+		}
 
 
 

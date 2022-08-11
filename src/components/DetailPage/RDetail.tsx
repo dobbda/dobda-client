@@ -12,12 +12,14 @@ import { Button } from 'antd';
 import styled from 'styled-components';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
+import { QuestionDetail } from 'src/types';
 
 type Props = {
   children?: React.ReactElement; // commentComponent
+	data?: QuestionDetail
 };
 
-const QDetail = ({ children }: Props) => {
+const QDetail = ({ children, data }: Props) => {
   const [mdStr, setMdStr] = useState('');
   return (
     <>

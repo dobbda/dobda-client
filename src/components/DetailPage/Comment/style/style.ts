@@ -24,14 +24,14 @@ export const ChildView = styled.div`
 	height: 40px;
 	padding: 0 40px;
   .show-replybtn {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     text-align: center;
 		span{
-			cursor: pointer;
 			margin: 0 10px;
 			margin-bottom: 3px;;
 			font-weight: 500;
+			text-align: center;
 		}
   }
   

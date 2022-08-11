@@ -1,7 +1,7 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
 import { q } from 'src/api';
-import { ReqQuestion, ResQuestion } from 'src/types';
+import { CreateQuestion, Question } from 'src/types';
 import { queryKeys } from '../queries/queryKeys';
 
 
@@ -9,7 +9,7 @@ import { queryKeys } from '../queries/queryKeys';
 export default function useAddQuestionMutate() {
   const queryClient = useQueryClient();
   return useMutation(q.addQuestion, {
-    onSuccess: async (newQuestion: ResQuestion) => { // mutate가 호출될 때
+    onSuccess: async (newQuestion: Question) => { // mutate가 호출될 때
 			console.log('성공', newQuestion)
       await queryClient.cancelQueries([queryKeys.QUESTIONS]);
       queryClient.invalidateQueries([queryKeys.QUESTIONS]);

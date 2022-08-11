@@ -7,13 +7,14 @@ import { Tags } from 'src/types';
 interface Props {
 	title: string,
 	tagNames: Tags[],
+	createdAt: Date,
 	id: number,
 }
 export const QBody = (props: Props) => {
   const tagList = ['python', 'Java', 'JavaScript'];
   return (
     <BodyWrapper>
-      <Lib.Link href={`/questions/${encodeURIComponent(props.id)}`} >
+      <Lib.Link href={`/questions/detail?createdAt=${props.createdAt}&qid=${encodeURIComponent(props.id)}`} >
         <Title>
 						{props.title}
         </Title>
