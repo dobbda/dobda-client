@@ -16,6 +16,10 @@ export const ContentWrapper = styled.div<CardProps>`
   .diff-styles{
     padding-left: 45px;
   }
+
+	@media screen and (max-width:450px) {
+		padding: 20px 10px;
+	}
 `
 
 
@@ -29,13 +33,14 @@ export const Group = styled.div`
   -moz-user-select:none;
   -ms-user-select:none;
   user-select:none;
-
+	height: fit-content;
   p{
     padding:0;
     margin:0;
+		margin-right: 5px;
     color: #686868;
     font-size: 12px;
-
+		white-space: nowrap;
   }
   * {
     margin:3px;

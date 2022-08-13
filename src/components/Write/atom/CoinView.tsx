@@ -10,7 +10,7 @@ type Props = {};
 
 export const CoinView = (props: Props) => {
   const [errMessage, setErrMessage] = useState('');
-  const coin = useClientValue('coin', 0);
+  const coin = useClientValue(['coin'], 0);
   const [newCoin, setNewCoin] = useState<number|string>(coin);
   const queryClient = useQueryClient();
   const [total, setTotal] = useState<number|string>("");
@@ -22,11 +22,11 @@ export const CoinView = (props: Props) => {
   const onclickOk = () => {
     if(newCoin===0){
       queryClient.setQueriesData('coin', newCoin)
-      queryClient.setQueriesData('coinVisible', false)
+      queryClient.setQueriesData(['coinVisible'], false)
     }
     if (newCoin >= variable.minCoin) {
       newCoin < myTotalCoin
-        ? (queryClient.setQueriesData('coin', newCoin), queryClient.setQueriesData('coinVisible', false))
+        ? (queryClient.setQueriesData('coin', newCoin), queryClient.setQueriesData(['coinVisible'], false))
         : setErrMessage('보유코인이 부족합니다');
     } else {
       setErrMessage(`최소 ${variable.minCoin}코인 이상부터 가능합니다 `);
@@ -51,7 +51,7 @@ export const CoinView = (props: Props) => {
         <em>
           <Link href={'#'}>충전</Link>
         </em>
-        <Button onClick={() => queryClient.setQueriesData('coinVisible', false)}>취소</Button> &nbsp; &nbsp;
+        <Button onClick={() => queryClient.setQueriesData(['coinVisible'], false)}>취소</Button> &nbsp; &nbsp;
         <Button type="primary" onClick={onclickOk}>
 
           확인

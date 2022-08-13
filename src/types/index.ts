@@ -11,6 +11,15 @@ export interface Default {
   createdAt: Date,
 	updatedAt: Date,
 }
+export interface CreateAnswer {
+	qid?:number,
+	answerId?:number,
+	content: string,
+}
+export interface CreateComment {
+	qid:number,
+	content: string,
+}
 
 export interface Auth extends Default{// 유저확인용
 	email: string,
@@ -49,11 +58,11 @@ export interface CreateQuestion { // add
 	title: string,
 	content: string,
 	coin: number,
-	tagNames: Tags[]
+	tagNames: string[]|Tags[],
 }
 
 
-export interface Question extends CreateQuestion, Default { //get
+export interface Question extends Default { //get
 	title: string,
 	watch: number,
 	coin: number,
@@ -61,11 +70,14 @@ export interface Question extends CreateQuestion, Default { //get
 	accepteAnswerId: boolean,
   author: Author,
 	answersCount: number,
+	tagNames:Tags[],
+	
 }
 
 export interface QuestionDetail extends Question {
 	// answer: Answer[],
-	content: string
+	content: string,
+
 }
 
 ////////////////////////////////////////////////////////////////

@@ -2,25 +2,32 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { CreateQuestion, Question } from 'src/types';
-import { queryKeys } from '../queries/queryKeys';
+import { keys } from '../queries/queryKeys';
+import produce from 'immer';
 
-
-
-export default function useAddQuestionMutate() {
+const useAddQuestionMutate = () => {
   const queryClient = useQueryClient();
-  return useMutation(q.addQuestion, {
-    onSuccess: async (newQuestion: Question) => { // mutate가 호출될 때
-			console.log('성공', newQuestion)
-      await queryClient.cancelQueries([queryKeys.QUESTIONS]);
-      queryClient.invalidateQueries([queryKeys.QUESTIONS]);
-      },
-
-		onError: (error) => { // 요청에 에러가 발생된 경우
-        console.log('onError');
+  return useMutation((data: CreateQuestion) => q.addQuestion(data), {
+		
+    onSuccess: async (newQuestion: Question) => {
+      queryClient.cancelQueries([keys.questions()]);
+      const oldData = queryClient.getQueryData(keys.questions());
+      if (oldData) {
+        queryClient.setQueryData(keys.questions(), (oldData: any) => {
+          const updatedData = produce(oldData, (draft: any) => {
+            draft.pages[0].result.unshift(newQuestion);
+          });
+          return updatedData;
+        });
+      } else {
+        queryClient.invalidateQueries(keys.questions());
+      }
     },
-    onSettled: () => { // 요청이 성공하든, 에러가 발생되든 실행하고 싶은 경우
-        console.log('onSettled');
-    }
-    },)
-  
-  }
+
+    onError: (error) => {
+      console.log('onError: ', error);
+    },
+  });
+};
+
+export default useAddQuestionMutate;

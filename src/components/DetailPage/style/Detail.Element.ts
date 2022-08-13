@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import styled from 'styled-components';
 
 const headerFont = '20px';
@@ -19,7 +20,8 @@ export const CoinWrapper = styled.span`
   font-weight: 600;
   align-items: center;
   display: inline-flex;
-  margin-left: 20px;
+	padding: 3px 5px;
+	background-color: moccasin;
   p {
     display: inline;
     color: #eda200;
@@ -66,12 +68,6 @@ export const AnswerContainer = styled.div`
 	}
 `;
 
-export const TagWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 10px auto 0;
-`;
-
 export const EditorWrapper = styled.div`
   position: relative;
 
@@ -88,14 +84,13 @@ export const EditorWrapper = styled.div`
 	}
 `;
 
-export const SubmitBtn = styled.button`
+export const SubmitBtn = styled(Button)`
 	cursor: pointer;
 	display: block;
   width: 100px;
 
   margin: 5px auto;
-  padding: 5px;
-
+  padding:2px 10px 5px;
   background-color: #212121;
   color: #fff;
 	border-radius: 4px;
@@ -105,6 +100,7 @@ export const SubmitBtn = styled.button`
   font-size: 16px;
   text-align: center;
   letter-spacing: -0.06em;
+
 `;
 
 export const CreatedAt = styled.span`

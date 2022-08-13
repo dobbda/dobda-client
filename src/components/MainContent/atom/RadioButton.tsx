@@ -36,7 +36,7 @@ export default Radio;
 
 const FormCheckText = styled.span`
   font-size: 18px;
-  width: 90px;
+  padding: 3px 15px 5px;
   height: 30px;
   background: #fff;
 	border: 1px solid #c8c8c8;
@@ -55,7 +55,7 @@ const FormCheckText = styled.span`
 const FormCheckLeft = styled.input.attrs({ type: 'radio' })`
 
   &:checked + ${FormCheckText} {
-    background: #e4794d;
+    background: #242424;
     color: #fff;
   }
   display: none;

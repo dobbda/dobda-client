@@ -22,31 +22,24 @@ export const HeaderWrapper = styled.header`
 //body 
 export const BodyWrapper = styled.div`
   width: 100%;
-  cursor: pointer;
 `
 
 export const Title = styled.h3`
   overflow: hidden;
   margin:0;
   padding: 0;
-
+	display: inline;
   :hover{
     color: #23629f;
 
   }
 `
 
-
-export const TagWrapper = styled.div`
-  display: flex;
-  margin-top: 10px;
-  cursor: default;
-`
-
 //footer
 export const FooterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+	flex-wrap: wrap-reverse;
   width: 100%;
   padding-right: 10px;
   padding-top:5px;

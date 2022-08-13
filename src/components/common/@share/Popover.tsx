@@ -79,7 +79,7 @@ export function Popover({
 
   // mouse click event
   const onClickIsShow = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    setIsShow(true);
+    setIsShow(!isShow);
   }, []);
 
   const pageClickEvent = useCallback((e: any) => {
@@ -98,7 +98,8 @@ export function Popover({
     outClick && window.addEventListener('click', pageClickEvent, true);
 
     return () => {
-      window.removeEventListener('click', pageClickEvent, true);
+			window.removeEventListener('click', pageClickEvent, true);
+
     };
   }, [visible, outClick, pageClickEvent]);
   return (

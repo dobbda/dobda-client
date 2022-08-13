@@ -1,8 +1,9 @@
-import { BodyWrapper, Title, TagWrapper } from './style/Element';
+import { BodyWrapper, Title } from './style/Element';
 import * as Lib from 'src/components/common';
 
 import React from 'react';
 import { Tags } from 'src/types';
+import { atom } from 'src/components/common';
 
 interface Props {
 	title: string,
@@ -19,13 +20,13 @@ export const QBody = (props: Props) => {
 						{props.title}
         </Title>
       </Lib.Link>
-      <TagWrapper>
-        {props.tagNames.map((tag) => (
-          <Lib.Tag bg={true} key={tag.name}>
+      <atom.TagWrapper>
+        {props.tagNames.map((tag,i) => (
+          <Lib.Tag bg={true} key={tag.name+i}>
             {tag.name}
           </Lib.Tag>
         ))}
-      </TagWrapper>
+      </atom.TagWrapper>
     </BodyWrapper>
   );
 };
@@ -43,11 +44,11 @@ export const RBody = (props: Props) => {
         </Title>
         </Lib.Link>
       </div>
-      <TagWrapper>
+      <atom.TagWrapper>
         {tagList.map((tag, i) => (
           <Lib.Tag key={i}>{tag}</Lib.Tag>
         ))}
-      </TagWrapper>
+      </atom.TagWrapper>
     </BodyWrapper>
   );
 };

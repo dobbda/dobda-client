@@ -4,12 +4,12 @@ import { user } from "src/api";
 import { variable } from "src/config/defaultValue";
 import { getLocalStorage, setLocalStorage } from "src/lib/localStorage";
 import { Auth } from "src/types";
-import { queryKeys } from "./queries/queryKeys";
+import { keys } from "./queries/queryKeys";
 
 
 export function useAuth(data?: any): Auth {
 
-		const { data: auth } = useQuery([queryKeys.AUTH], user.auth?()=>user.auth(): null, {
+		const { data: auth } = useQuery([keys.auth], user.auth?()=>user.auth(): null, {
 			refetchOnMount:true,
 			staleTime:1000*60*5, //5분후 api 요청
 			// cacheTime:0,

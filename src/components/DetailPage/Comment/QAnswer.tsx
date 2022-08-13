@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import Reply from './Comment';
 import { Editor, MarkDownViewer } from 'src/components/Editor';
 import { Avatar, atom } from 'src/components/common';
@@ -13,6 +13,9 @@ import { Answer } from 'src/types';
 import { useQuery } from 'react-query';
 import { q } from 'src/api';
 import styled from 'styled-components';
+import { keys } from 'src/hooks/queries/queryKeys';
+import useAddCommentMutate from 'src/hooks/mutate/useAddCommentMutate';
+import { addAnswer } from 'src/api/apis/questions';
 type Props = {
   data: Answer;
 };
@@ -20,10 +23,21 @@ type Props = {
 const QComment = ({ data }: Props) => {
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
-
-  const { data: comments } = useQuery(['question', { detail: data?.id }, 'answers'], () => q.getComments(data.id), {
-    enabled: data.commentsCount > 0,
+  const { data: comments } = useQuery(keys.comment(data.id), () => q.getComments(data.id), {
+    enabled: data.commentsCount > 0 && viewChild,
   });
+
+  const { mutate, isLoading, isSuccess } = useAddCommentMutate(data?.id);
+  const onSubmitComment = useCallback(() => {
+    const answerData = { content: mdStr, answerId: data.id };
+    mutate(answerData);
+  }, [mdStr, data.id, mutate]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setMdStr('');
+    }
+  }, [isSuccess]);
 
   return (
     <S.CommentWrapper>
@@ -48,9 +62,9 @@ const QComment = ({ data }: Props) => {
       {/*Reply ---------------------------*/}
       <S.ChildView>
         <div className="show-replybtn">
-          <ReCommentIcon style={{color: "rgba(0, 0, 0, 0.6)"}}/> <span>{data.commentsCount} </span>
+          <ReCommentIcon style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{data.commentsCount} </span>
           <span onClick={() => setviewChild(!viewChild)}>
-            <CommentRotate viewChild={viewChild} />
+            <CommentRotate viewchild={viewChild.toString()} />
           </span>
         </div>
         <atom.CreatedAt> {getDate('2001-09-28 03:00:00')}</atom.CreatedAt>
@@ -67,7 +81,11 @@ const QComment = ({ data }: Props) => {
       )}
       <S.CommentEditor>
         <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
-        {mdStr && <SubmitBtn>등록</SubmitBtn>}
+        {mdStr && (
+          <SubmitBtn onClick={onSubmitComment} loading={isLoading}>
+            등록
+          </SubmitBtn>
+        )}
       </S.CommentEditor>
     </S.CommentWrapper>
   );
@@ -75,10 +93,10 @@ const QComment = ({ data }: Props) => {
 
 export default QComment;
 
-const CommentRotate = styled(ArrowIcon)<{ viewChild: boolean }>`
-cursor: pointer;
-	margin-top: 7px;
+const CommentRotate = styled(ArrowIcon)<{ viewchild: string }>`
+  cursor: pointer;
+  margin-top: 7px;
   color: rgba(0, 0, 0, 0.6);
   transition: all 0.3s;
-  transform: ${({ viewChild }) => (viewChild ? 'rotate(90deg)' : null)};
+  transform: ${({ viewchild }) => (viewchild ? 'rotate(90deg)' : null)};
 `;

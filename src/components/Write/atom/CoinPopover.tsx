@@ -12,14 +12,14 @@ type Props = {};
 
 export const CoinPopover = (props: Props) => {
   const queryClient = useQueryClient();
-  const coin = useClientValue('coin', 0);
-  const { data: coinVisible } = useQuery('coinVisible', {
+  const coin = useClientValue(['coin'], 0);
+  const { data: coinVisible } = useQuery(['coinVisible'], {
     initialData: false,
     staleTime: Infinity,
   });
 
   const popoverHandler = useCallback(() => {
-    queryClient.setQueriesData('coinVisible', true);
+    queryClient.setQueriesData(['coinVisible'], true);
   }, [queryClient]);
 
   return (

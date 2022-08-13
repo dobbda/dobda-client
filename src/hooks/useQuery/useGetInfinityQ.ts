@@ -4,18 +4,18 @@ import styled from 'styled-components';
 import { useInfiniteQuery } from 'react-query';
 import { q } from 'src/api';
 import { InfinityProps, Question } from 'src/types';
+import { keys } from '../queries/queryKeys';
 
 
 type Props = {
 	title?: string, 
 	tag?:string, 
-	queryKey:string,
 	fetch:(pageParam:number,title:string)=>Promise<InfinityProps>,
 }
 
-export const useGetInfinityQ = ({queryKey, title, tag, fetch}:Props) => {
+export const useGetInfinityQ = ({ title, tag, fetch}:Props) => {
 
-  const query = useInfiniteQuery([queryKey, {title:title&&title, tag:tag&&title}], ({pageParam})=>fetch(pageParam,title), {
+  const query = useInfiniteQuery(keys.questions(title), ({pageParam})=>fetch(pageParam,title), {
     getNextPageParam: (lastPage, allPages) => {
       if (!lastPage.isLast) return lastPage.pageNum+1;
       return undefined;

@@ -28,8 +28,8 @@ const MainContent = ({ children }: Props) => {
 
       <div className="categories-menubar">
         <div className="category-wrapper">
-          <Radio id={'wjscp'} name="질문" />
-          <Radio id={'dhlwn'} name="외주" defaultChecked={true} />
+          <Radio id={'wjscp'} name="질문" defaultChecked={true}/>
+          <Radio id={'dhlwn'} name="외주"  />
           <Radio id={'wjscp'} name="내글" />
         </div>
         <Link href="/write-board" passHref>

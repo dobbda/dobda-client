@@ -20,3 +20,20 @@ export const CreatedAt = styled.span`
   font-weight: 600;
   margin-left: 10px;
 `;
+interface FlexProp {
+	style?:string[]
+}
+export const Flex = styled.div<FlexProp>`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin:10px 0;
+	${({style})=>{return{...style}}}
+`
+
+export const TagWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+	gap: 15px;
+  margin: 10px auto 0;
+`;

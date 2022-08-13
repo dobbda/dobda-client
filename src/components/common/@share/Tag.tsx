@@ -16,10 +16,10 @@ interface StyleProps {
 const Div = styled.div<StyleProps>`
 
   padding: ${({bg})=>bg && "0 8px 3px"} ;
-  margin: auto 3px;
   font-size: 12px;
   background-color: ${({bg})=>bg && "rgba(0, 87, 255, 0.08);" };
   color: ${({theme})=> theme.color.secondary};
+	padding: 2px 10px;
   cursor:pointer;
   :hover {
     color:#000888;

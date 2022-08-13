@@ -15,12 +15,18 @@ type Props = {
 };
 
 export const Menu = ({ children, icon, childMenu, href, childOpen = false }: React.PropsWithChildren<Props>) => {
-	const [checked, setchecked] = useState(childOpen)
+  const [checked, setchecked] = useState(childOpen);
   return (
-    <Div checked ={ checked}>
-      <Link href={href ? href : '#'}>
+    <Div checked={checked}>
+      {href ? (
+        <>
+          <Link href={href}>
+            <Icon>{icon}</Icon>
+          </Link>
+        </>
+      ) : (
         <Icon>{icon}</Icon>
-      </Link>
+      )}
 
       <CheckBox defaultChecked={childOpen} id={childMenu} onChange={(e) => setchecked(!checked)} />
       <Label htmlFor={childMenu}>

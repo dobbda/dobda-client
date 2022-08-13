@@ -26,23 +26,17 @@ export const Main = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+		flex-wrap: wrap-reverse;
   }
   .category-wrapper {
     /* height: 35px; */
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+		white-space: nowrap;
     :hover {
       color: #11a14a;
     }
-    /* span {
-      cursor: pointer;
-      background: #ffffff;
-      border: 1px solid #c8c8c8;
-      border-radius: 37px;
-      color: #000;
-      padding: 5px 25px;
-      margin: 10px;
-    } */
+
   }
 
   .writeBtn {
@@ -56,6 +50,7 @@ export const Main = styled.div`
     text-align: center;
     white-space: nowrap;
     padding: 5px 15px;
+		margin-left: 10px;
     svg {
       padding-top: 2px;
     }

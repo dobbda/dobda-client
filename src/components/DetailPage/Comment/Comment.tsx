@@ -11,6 +11,8 @@ type Props = {
 	data:Comment
 };
 
+
+
 const Reply = ({data}:Props) => {
   return (
     <ReplyItem className="comment reply-items">

@@ -4,12 +4,13 @@ import { useInView } from 'react-intersection-observer';
 import QCard from '../Card/QCard';
 import styled from 'styled-components';
 import { q } from 'src/api';
+import { keys } from 'src/hooks/queries/queryKeys';
 
 function RenderQuestion() {
 	const [shearchTitle, setShearchTitle] = useState<string>()
 	const [shearchTag, setShearchTag] = useState<string>()
   const { data, fetchNextPage, hasNextPage, isSuccess } = useGetInfinityQ(
-		{	queryKey:'questions',
+		{	
 			title:shearchTitle, 
 			tag:shearchTag, 
 			fetch: q.getInfinityQ
