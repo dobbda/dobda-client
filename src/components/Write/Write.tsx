@@ -10,7 +10,7 @@ import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag } from 'ant
 
 import { Hashtags } from './atom/Hashtags';
 import { atom, Link } from '../common';
-import useAddQuestionMutate from 'src/hooks/mutate/useAddQuestionMutate';
+import {useAddQuestionMutate} from 'src/hooks';
 import { CreateQuestion } from 'src/types';
 import {CoinView} from "./atom/CoinView"
 import { q } from 'src/api';

@@ -10,11 +10,8 @@ import 'antd/dist/antd.css';
 
 import * as I from 'src/assets/icons';
 import Link from 'next/link';
-import { useClientValue } from 'src/hooks/queries/queryHooks';
-import { useLoginModalhandler } from 'src/hooks/useloginModalHandler';
-import { useAuth } from 'src/hooks/useAuth';
-import { removeLocalStorage } from 'src/lib/localStorage';
-import { useLogout } from 'src/hooks/useLogout';
+import { useClientValue } from 'src/hooks';
+import { useAuth, useLogout, useLoginModalhandler } from 'src/hooks';
 import { user } from 'src/api';
 import axios from 'axios';
 import { useRouter } from 'next/router';

@@ -23,7 +23,7 @@ const Reply = ({data}:Props) => {
             <ReplyIcon />
           </i>
           <Avatar nickname={data.author.nickname} url={data.author.avatar} />
-          <atom.CreatedAt>{getDate('2001-09-28 03:00:00', true)}</atom.CreatedAt>
+          <atom.CreatedAt>{getDate(data?.createdAt, true)}</atom.CreatedAt>
         </div>
       </Header>
 

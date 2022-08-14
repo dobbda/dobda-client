@@ -4,7 +4,7 @@ import { user } from "src/api";
 import { variable } from "src/config/defaultValue";
 import { getLocalStorage, setLocalStorage } from "src/lib/localStorage";
 import { Auth } from "src/types";
-import { keys } from "./queries/queryKeys";
+import { keys } from "../queries/queryKeys";
 
 
 export function useAuth(data?: any): {auth:Auth, refetch:any} {

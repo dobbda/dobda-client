@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { QuestionDetail } from "src/types";
 import { q } from "src/api";
 import { useQuery } from "react-query";
-import { keys } from "src/hooks/queries/queryKeys";
+import { keys } from "src/hooks";
 
 
 const QuestionDetailPage: NextPage = () => {

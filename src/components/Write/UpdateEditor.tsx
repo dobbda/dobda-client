@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useQuery, useQueryClient } from 'react-query';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useClientValue } from 'src/hooks/queries/queryHooks';
+import { useClientValue,useAddQuestionMutate, keys } from 'src/hooks';
 
 import { Editor } from 'src/components/Editor';
 import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.element';
@@ -11,10 +11,8 @@ import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag } from 'ant
 
 import { Hashtags } from './atom/Hashtags';
 import { atom, Link } from '../common';
-import useAddQuestionMutate from 'src/hooks/mutate/useAddQuestionMutate';
 import { CreateQuestion, Question, QuestionDetail } from 'src/types';
 import { q } from 'src/api';
-import { keys } from 'src/hooks/queries/queryKeys';
 import { CoinView } from './atom/CoinView';
 
 type Props = {

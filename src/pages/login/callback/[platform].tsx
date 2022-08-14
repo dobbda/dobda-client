@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { useRouter } from 'next/router';
 import { setLocalStorage } from 'src/lib/localStorage';
-import { useAuth } from 'src/hooks/useAuth';
+import { useAuth } from 'src/hooks';
 import { variable } from 'src/config/defaultValue';
 
 type Props = {};

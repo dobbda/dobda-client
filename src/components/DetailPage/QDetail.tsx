@@ -14,19 +14,18 @@ import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { QuestionDetail } from 'src/types';
 import { useQuery } from 'react-query';
 import { q } from 'src/api';
-import { keys } from 'src/hooks/queries/queryKeys';
-import useAddAnswerMutate from 'src/hooks/mutate/useAddAnswerMutate';
-import { useAuth } from 'src/hooks/useAuth';
+import {keys, useAddAnswerMutate, useAuth} from 'src/hooks';
 import { UpdateEditor } from '../Write';
+import { Button } from 'antd';
 type Props = {
   children?: React.ReactElement; // commentComponent
   data: QuestionDetail;
 };
 
 const QDetail = ({ children, data }: Props) => {
-	const {auth, refetch} = useAuth()
+  const { auth, refetch } = useAuth();
   const [mdStr, setMdStr] = useState('');
-	const [isEdit, setIsEdit] = useState(false)
+  const [isEdit, setIsEdit] = useState(false);
   const { data: answers } = useQuery(keys.answers(data?.id), () => q.getAnswers(data.id), {
     enabled: data?.answersCount > 0,
   });
@@ -46,55 +45,65 @@ const QDetail = ({ children, data }: Props) => {
 
   return (
     <S.DetailContainer>
-			{isEdit 
-			? <UpdateEditor oldData={data} category="question" setIsEdit={setIsEdit}/> 
-      :<><S.ContentWrapper>
-        <S.ContentHeader>
-          <div className="detailInfo">
-            <Avatar nickname={data?.author.email} url={data?.author.avatar} />
-            <atom.CreatedAt>{getDate(data?.createdAt)}</atom.CreatedAt>
-          </div>
+      {isEdit ? (
+        <UpdateEditor oldData={data} category="question" setIsEdit={setIsEdit} />
+      ) : (
+        <>
+          <S.ContentWrapper>
+            <S.ContentHeader>
+              <div className="detailInfo">
+                <Avatar nickname={data?.author.email} url={data?.author.avatar} />
+                <atom.CreatedAt>{getDate(data?.createdAt)}</atom.CreatedAt>
+              </div>
 
-          <S.Title> {data?.title}</S.Title>
-          <atom.TagWrapper>
-            <S.CoinWrapper>
-              <CoinIcon />
-              <p>{data?.coin}</p>
-            </S.CoinWrapper>
-            {data?.tagNames &&
-              data?.tagNames.map((tag) => (
-                <Tag key={tag.name} bg={true}>
-                  {tag.name}
-                </Tag>
-              ))}
-          </atom.TagWrapper>
-					<S.OnyUser className='only-author'><button onClick={()=>setIsEdit(true)}>수정</button><button>삭제</button> </S.OnyUser>
-        </S.ContentHeader>
-        <S.ContentViewWrapper>
-          <MarkDownViewer content={data?.content} />
-        </S.ContentViewWrapper>
-      </S.ContentWrapper>
-      <S.EditorWrapper>
-        <h3>답변을 작성해주세요</h3>
-        <br />
-        <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
-        <br />
-        <br />
+              <S.Title> {data?.title}</S.Title>
+              <atom.TagWrapper>
+                <S.CoinWrapper>
+                  <CoinIcon />
+                  <p>{data?.coin}</p>
+                </S.CoinWrapper>
+                {data?.tagNames &&
+                  data?.tagNames.map((tag) => (
+                    <Tag key={tag.name} bg={true}>
+                      {tag.name}
+                    </Tag>
+                  ))}
+              </atom.TagWrapper>
+              <S.OnyUser className="only-author">
+                <Button onClick={() => setIsEdit(true)} type="primary" ghost>
+                  수정
+                </Button>
+                <Button type="primary" danger ghost>
+                  삭제
+                </Button>{' '}
+              </S.OnyUser>
+            </S.ContentHeader>
+            <S.ContentViewWrapper>
+              <MarkDownViewer content={data?.content} />
+            </S.ContentViewWrapper>
+          </S.ContentWrapper>
+          <S.EditorWrapper>
+            <h3>답변을 작성해주세요</h3>
+            <br />
+            <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
+            <br />
+            <br />
 
-        <S.SubmitBtn onClick={onSubmitAnswer} loading={isLoading}>
-          등록
-        </S.SubmitBtn>
-      </S.EditorWrapper>
+            <S.SubmitBtn onClick={onSubmitAnswer} loading={isLoading}>
+              등록
+            </S.SubmitBtn>
+          </S.EditorWrapper>
 
-      <S.AnswerContainer>
-        {answers && answers[0]?.id ? (
-          answers.map((answer) => <QAnswer key={answer.id} data={answer} />)
-        ) : (
-          <atom.NoData>등록된 답변이 없습니다. 답변을 등록하실수 있습니다.</atom.NoData>
-        )}
-      </S.AnswerContainer>
-      <ToastContainer position="top-center" hideProgressBar draggable />
-			</>}
+          <S.AnswerContainer>
+            {answers && answers[0]?.id ? (
+              answers.map((answer) => <QAnswer key={answer.id} data={answer} />)
+            ) : (
+              <atom.NoData>등록된 답변이 없습니다. 답변을 등록할 수 있습니다.</atom.NoData>
+            )}
+          </S.AnswerContainer>
+          <ToastContainer position="top-center" hideProgressBar draggable />
+        </>
+      )}
     </S.DetailContainer>
   );
 };

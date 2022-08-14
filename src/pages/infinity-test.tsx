@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useGetInfinityQ } from 'src/hooks/useQuery/useGetInfinityQ';
+import { useGetInfinityQ } from 'src/hooks';
 import { useInView } from 'react-intersection-observer';
 type Props = {};
 

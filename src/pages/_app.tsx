@@ -9,9 +9,8 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'src/styles/GlobalStyle';
 import { theme } from 'src/styles/Theme';
 import { http } from 'src/api';
-import { useAuth } from 'src/hooks/useAuth';
+import { useAuth, createQueryClient } from 'src/hooks/useQuery/useAuth';
 import { Auth } from 'src/types';
-import { createQueryClient } from 'src/hooks/queries';
 
 function MyApp({ Component, initialAuth, pageProps: { session, ...pageProps } }: AppProps & any) {
   const [queryClient] = React.useState(

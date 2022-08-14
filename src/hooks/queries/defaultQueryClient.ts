@@ -5,9 +5,12 @@ export const createQueryClient = () => {
     defaultOptions: {
       queries: {
 				refetchOnWindowFocus: false,
-        // staleTime: 1000*10, // 마운트된후 데이터 만료시간
+				useErrorBoundary: true,
         retry:2,//false, true,
       },
+			mutations: {
+				useErrorBoundary: true,
+			},
     },
   });
 };

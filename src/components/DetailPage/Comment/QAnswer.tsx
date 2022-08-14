@@ -6,16 +6,14 @@ import getDate from 'src/lib/dateForm';
 
 import * as S from './style/style';
 import More_btn_icon from 'src/assets/icon/more_btn.svg';
-import Select_icon from 'src/assets/icon/select.svg';
 import { ArrowIcon, ReCommentIcon } from 'src/assets/icons';
 import { SubmitBtn } from '../style/Detail.Element';
 import { Answer } from 'src/types';
 import { useQuery } from 'react-query';
 import { q } from 'src/api';
 import styled from 'styled-components';
-import { keys } from 'src/hooks/queries/queryKeys';
-import useAddCommentMutate from 'src/hooks/mutate/useAddCommentMutate';
-import { addAnswer } from 'src/api/apis/questions';
+import { keys,useAddCommentMutate } from 'src/hooks';
+import { Button, Popover } from 'antd';
 type Props = {
   data: Answer;
 };
@@ -50,7 +48,21 @@ const QComment = ({ data }: Props) => {
           ) : ( */}
           <>
             <span>채택</span>
-            <More_btn_icon />
+            <Popover
+              trigger="click"
+              content={
+                <>
+                  <Button type="primary" ghost>
+                    수정
+                  </Button>
+                  <Button type="primary" danger ghost>
+                    삭제
+                  </Button>
+                </>
+              }
+            >
+              <More_btn_icon />
+            </Popover>
           </>
           {/* )} */}
         </div>
@@ -67,7 +79,7 @@ const QComment = ({ data }: Props) => {
             <CommentRotate viewchild={viewChild.toString()} />
           </span>
         </div>
-        <atom.CreatedAt> {getDate('2001-09-28 03:00:00')}</atom.CreatedAt>
+        <atom.CreatedAt> {getDate(data?.createdAt)}</atom.CreatedAt>
       </S.ChildView>
 
       {viewChild && (
@@ -75,7 +87,7 @@ const QComment = ({ data }: Props) => {
           {comments ? (
             comments.map((comment) => <Reply key={comment.id} data={comment} />)
           ) : (
-            <atom.NoData>등록된 댓글이 없습니다. 댓글을 등록하실수 있습니다.</atom.NoData>
+            <atom.NoData>등록된 댓글이 없습니다. 댓글을 등록할 수 있습니다.</atom.NoData>
           )}
         </>
       )}
