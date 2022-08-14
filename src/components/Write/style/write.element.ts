@@ -15,6 +15,7 @@ export const EnrQorl = styled.div`
 export const Label = styled.label`
   font-size: 14px;
   color: rgba(105, 105, 105, 0.8); ;
+	display: block;
 `;
 export const Pilsu = styled.em`
   ::before {

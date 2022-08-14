@@ -48,15 +48,17 @@ const FormCheckText = styled.span`
 	color:#000;
 
 	cursor: pointer;
+	@media screen and (max-width: 410px) {
+	margin: 8px -3px;
 
+}
 
-`;
-
+`
 const FormCheckLeft = styled.input.attrs({ type: 'radio' })`
-
   &:checked + ${FormCheckText} {
     background: #242424;
     color: #fff;
+		z-index: 1;
   }
   display: none;
 `;

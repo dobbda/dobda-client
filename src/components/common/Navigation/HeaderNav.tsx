@@ -21,10 +21,11 @@ import { useRouter } from 'next/router';
 
 const HeaderNav = () => {
 	const queryClient = useQueryClient();
-  const auth = useAuth();
+  const {auth, refetch} = useAuth();
   const [loginModal, setLoginModal] = useLoginModalhandler();
 	const router = useRouter()
-	 const userlogout = useCallback(async() => {
+	const userlogout = useCallback(async() => {
+		if(!auth.id) return;
 		var result = confirm("로그아웃 확인");
 		if(result){
 			try {
@@ -34,7 +35,7 @@ const HeaderNav = () => {
 			router.replace(router.asPath)
 		};
 		
-	},[auth?.name, queryClient]);
+	},[auth?.id, queryClient, router]);
   return (
     <>
       <S.Header>
@@ -42,7 +43,6 @@ const HeaderNav = () => {
           <Logo />
 
           <S.MenuWrapper>
-						<S.Btn ><Link href='/test'>test</Link></S.Btn>
             {auth?.id ? <p onClick={userlogout}>로그아웃</p> : <S.Btn onClick={setLoginModal}> 로그인 </S.Btn>}
             <Link href="/user/profile" passHref>
               <S.Btn>마이페이지</S.Btn>

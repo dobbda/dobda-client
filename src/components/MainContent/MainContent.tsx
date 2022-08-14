@@ -18,30 +18,29 @@ interface Props {
 }
 
 const MainContent = ({ children }: Props) => {
-
-
   return (
     <Main>
-      <div className="search-wrapper">
-        <SearchBox />
-      </div>
-
-      <div className="categories-menubar">
-        <div className="category-wrapper">
-          <Radio id={'wjscp'} name="질문" defaultChecked={true}/>
-          <Radio id={'dhlwn'} name="외주"  />
-          <Radio id={'wjscp'} name="내글" />
+      <section>
+        <div className="search-wrapper">
+          <SearchBox />
         </div>
-        <Link href="/write-board" passHref>
-          <button className="writeBtn">
-            글 작성 <PenIcon />
-          </button>
-        </Link>
-      </div>
-      <main>
+        <div className="top-bar">
+          <div className="category-wrapper">
+            <Radio id={'wjscp'} name="질문" defaultChecked={true} />
+            <Radio id={'dhlwn'} name="외주" />
+            <Radio id={'wjscp'} name="내글" />
+          </div>
+          <Link href="/write-board" passHref>
+            <button className="writeBtn">
+              글 작성 <PenIcon />
+            </button>
+          </Link>
+        </div>
+      </section>
+      <section className="card-content">
         {/** RenderFeatureRequest  **/}
         {<RenderQuestion />}
-      </main>
+      </section>
     </Main>
   );
 };

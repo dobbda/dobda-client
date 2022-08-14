@@ -21,7 +21,7 @@ export const QBody = (props: Props) => {
         </Title>
       </Lib.Link>
       <atom.TagWrapper>
-        {props.tagNames.map((tag,i) => (
+        {props.tagNames?.map((tag,i) => (
           <Lib.Tag bg={true} key={tag.name+i}>
             {tag.name}
           </Lib.Tag>

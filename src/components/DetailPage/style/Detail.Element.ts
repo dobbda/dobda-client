@@ -33,7 +33,7 @@ export const ContentHeader = styled.header`
   /* background-color: #fbfbfb; */
   padding: ${wrapperPadding};
   border-bottom: 1px solid #ccc;
-
+	position: relative;
   h1,
   h2,
   h3 {
@@ -51,6 +51,26 @@ export const ContentHeader = styled.header`
     margin-bottom: 20px;
   }
 `;
+
+export const OnyUser = styled.div`
+	position: absolute;
+	right: 2px;
+	bottom: 5px;
+	font-size: 12px;
+	button {
+		border:none;
+		padding: 3px 10px;
+		margin: 0 5px;
+	}
+`
+export const PostInfo = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	background-color: #fff;
+	border: solid 1px #ccc;
+	
+`
+
 export const ContentViewWrapper = styled.div`
   padding: 10px 20px;
   height: 100%;

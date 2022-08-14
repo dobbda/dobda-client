@@ -61,7 +61,7 @@ export function Hashtags({tags, setTags, tagColor}: Props) {
       <form onSubmit={formHandler}>
         <Tag_wrapper focus={focus} className="tag-wrapper" onClick={focusHandler}>
           <Hash />
-          {tags.map((word,index) => {
+          {tags?.map((word,index) => {
             return (
 
                 <AntTag key={index} color={tagColor ? tagColor : '#55acee'} closable onClose={() => removeHandler(word)}>

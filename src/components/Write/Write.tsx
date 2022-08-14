@@ -3,18 +3,17 @@ import styled from 'styled-components';
 import { useQuery, useQueryClient } from 'react-query';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { useClientValue } from 'src/hooks/queries/queryHooks';
 
 import {Editor} from 'src/components/Editor'
 import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.element';
 import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag } from 'antd';
 
 import { Hashtags } from './atom/Hashtags';
-import { CoinPopover } from './atom/CoinPopover';
-import { atom } from '../common';
+import { atom, Link } from '../common';
 import useAddQuestionMutate from 'src/hooks/mutate/useAddQuestionMutate';
 import { CreateQuestion } from 'src/types';
-
+import {CoinView} from "./atom/CoinView"
+import { q } from 'src/api';
 type Props = {};
 const Write = () => {
   const queryClient = useQueryClient();
@@ -24,9 +23,9 @@ const Write = () => {
   const [contentTitle, setContentTitle] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
   const [mdStr, setMdStr] = React.useState<string>('');
-  const coin = useClientValue('coin', 0);
-	const addQuestion = useAddQuestionMutate()
-
+  const [coin, setCoin] = useState(0)
+	
+	const addQuestion = useAddQuestionMutate(q.addQuestion)
   const onChangeCagegory = useCallback((v: string) => {
     setCategorie(v);
   }, []);
@@ -34,9 +33,6 @@ const Write = () => {
   const onCangeData: DatePickerProps['onChange'] = useCallback((date, dateString) => {
     setDeadline(dateString);
   }, []);
-
-
-
 
 	const onSubmitQuestion = useCallback(() => {
 		const data:CreateQuestion = {
@@ -57,7 +53,7 @@ const Write = () => {
 			coin: coin,
 		}
 		addQuestion.mutate(data)
-	},[])
+	},[addQuestion, coin, contentTitle, mdStr, tags])
 
 
 	const onSubmitCheck = useCallback(() => {
@@ -78,7 +74,6 @@ const Write = () => {
         <div>
           <Group>
             <Label>카테고리<Pilsu /></Label>
-            <br />
             <Select style={{ width: 140 }} onChange={onChangeCagegory}>
               <Select.Option value="question">질문하기</Select.Option>
               <Select.Option value="request">기능요청</Select.Option>
@@ -86,7 +81,6 @@ const Write = () => {
           </Group>
           <Group>
             <Label>마감기한</Label>
-            <br />
             <DatePicker onChange={onCangeData} placeholder="마감기한" />
           </Group>{' '}
         </div>
@@ -101,8 +95,8 @@ const Write = () => {
         </div>
         <br />
         <div>
-          <Label>코인을 입력해주세요</Label>
-          <CoinPopover />
+          <Label>코인을 입력해주세요</Label><Link href='#'>충전</Link>
+          {<CoinView coin={coin} setCoin={setCoin}/>}
         </div>
       </EnrQorl>
       <Label>

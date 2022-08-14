@@ -5,28 +5,45 @@ import { CreateQuestion, Question } from 'src/types';
 import { keys } from '../queries/queryKeys';
 import produce from 'immer';
 
-const useAddQuestionMutate = () => {
+const useAddQuestionMutate = (mutationFn: any, qid?: number) => {
   const queryClient = useQueryClient();
-  return useMutation((data: CreateQuestion) => q.addQuestion(data), {
-		
+  return useMutation((data: CreateQuestion) => mutationFn(data, qid ? qid : null), {
     onSuccess: async (newQuestion: Question) => {
       queryClient.cancelQueries([keys.questions()]);
       const oldData = queryClient.getQueryData(keys.questions());
+      const oldDetail = queryClient.getQueryData(keys.qDetail(newQuestion.id));
+      let update = false;
       if (oldData) {
         queryClient.setQueryData(keys.questions(), (oldData: any) => {
-          const updatedData = produce(oldData, (draft: any) => {
-            draft.pages[0].result.unshift(newQuestion);
-          });
-          return updatedData;
+					if(newQuestion.createdAt === newQuestion.updatedAt){
+						const updatedData = produce(oldData, (draft: any) => {
+							draft.pages[0].result.unshift(newQuestion);
+						});
+						return updatedData;
+					}
+					if(oldData) {
+						const updatedData = produce(oldData, (draft: any) => {
+							draft.pages[0].result.unshift(newQuestion);
+							draft.pages.map((pages: any)=> pages.result.map((page: Question) =>{
+								if(page.id === newQuestion.id) return newQuestion;
+								return page;
+							}))
+						});
+						return updatedData;
+					}
+
+
         });
-      } else {
-        queryClient.invalidateQueries(keys.questions());
-      }
+      } 
+			if(oldDetail){
+				queryClient.cancelQueries(keys.qDetail(newQuestion.id));
+				queryClient.invalidateQueries(keys.qDetail(newQuestion.id))
+			}
     },
 
-    onError: (error) => {
-      console.log('onError: ', error);
-    },
+    onError: (a, b, c) => {
+			console.log(a,b,c)
+		}
   });
 };
 

@@ -11,12 +11,13 @@ export const Container = styled.div`
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  min-width: 330px;
+
 `;
 export const Position = styled.div<Props>`
 	/* height: 100%; */
   /* max-width: ${({setWidth})=> setWidth ? "1260px" : "1180px" }; */
   max-width: 1260px;
-  min-width: 360px;
   margin: 0 auto;
 	background-color: #f8f9fa;
 

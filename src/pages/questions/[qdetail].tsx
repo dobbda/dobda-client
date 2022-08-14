@@ -5,13 +5,14 @@ import { useRouter } from "next/router";
 import { QuestionDetail } from "src/types";
 import { q } from "src/api";
 import { useQuery } from "react-query";
+import { keys } from "src/hooks/queries/queryKeys";
 
 
 const QuestionDetailPage: NextPage = () => {
   const router = useRouter();
   const { createdAt, qid } = router.query;
 	console.log(qid)
-  const {data} = useQuery(['questions',"detail",qid], ()=>q.questionDetail<QuestionDetail>(Number(qid)), {
+  const {data} = useQuery(keys.qDetail(Number(qid)), ()=>q.questionDetail<QuestionDetail>(Number(qid)), {
 		// enabled: false,
 		staleTime:Infinity,
 	});

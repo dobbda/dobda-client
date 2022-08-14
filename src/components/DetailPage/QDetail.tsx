@@ -9,8 +9,6 @@ import { QAnswer } from './Comment/';
 import getDate from 'src/lib/dateForm';
 
 import { CoinIcon } from 'src/assets/icons';
-import Question_icon from 'src/assets/icon/question.svg';
-import styled from 'styled-components';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { QuestionDetail } from 'src/types';
@@ -18,13 +16,17 @@ import { useQuery } from 'react-query';
 import { q } from 'src/api';
 import { keys } from 'src/hooks/queries/queryKeys';
 import useAddAnswerMutate from 'src/hooks/mutate/useAddAnswerMutate';
+import { useAuth } from 'src/hooks/useAuth';
+import { UpdateEditor } from '../Write';
 type Props = {
   children?: React.ReactElement; // commentComponent
   data: QuestionDetail;
 };
 
 const QDetail = ({ children, data }: Props) => {
+	const {auth, refetch} = useAuth()
   const [mdStr, setMdStr] = useState('');
+	const [isEdit, setIsEdit] = useState(false)
   const { data: answers } = useQuery(keys.answers(data?.id), () => q.getAnswers(data.id), {
     enabled: data?.answersCount > 0,
   });
@@ -44,17 +46,16 @@ const QDetail = ({ children, data }: Props) => {
 
   return (
     <S.DetailContainer>
-      <S.ContentWrapper>
+			{isEdit 
+			? <UpdateEditor oldData={data} category="question" setIsEdit={setIsEdit}/> 
+      :<><S.ContentWrapper>
         <S.ContentHeader>
           <div className="detailInfo">
             <Avatar nickname={data?.author.email} url={data?.author.avatar} />
-
             <atom.CreatedAt>{getDate(data?.createdAt)}</atom.CreatedAt>
           </div>
 
-          <Question_icon />
           <S.Title> {data?.title}</S.Title>
-
           <atom.TagWrapper>
             <S.CoinWrapper>
               <CoinIcon />
@@ -67,8 +68,8 @@ const QDetail = ({ children, data }: Props) => {
                 </Tag>
               ))}
           </atom.TagWrapper>
+					<S.OnyUser className='only-author'><button onClick={()=>setIsEdit(true)}>수정</button><button>삭제</button> </S.OnyUser>
         </S.ContentHeader>
-
         <S.ContentViewWrapper>
           <MarkDownViewer content={data?.content} />
         </S.ContentViewWrapper>
@@ -93,6 +94,7 @@ const QDetail = ({ children, data }: Props) => {
         )}
       </S.AnswerContainer>
       <ToastContainer position="top-center" hideProgressBar draggable />
+			</>}
     </S.DetailContainer>
   );
 };

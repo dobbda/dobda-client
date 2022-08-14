@@ -7,4 +7,6 @@ export {Button } from "./@share/Buttons";
 export {Logo } from "./@share/Logo";
 export {A as Link} from "./@share/Link"
 
+export {default as HeaderNav} from './Navigation/HeaderNav';
+export {default as SideNav} from './Navigation/SideNav';
 
