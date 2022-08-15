@@ -15,7 +15,8 @@ export function Hashtags({tags, setTags, tagColor}: Props) {
   const [tag, setTag] = useState<string>("");
   const [focus, setFocus] = useState(false);
   const tagHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setTag(e.target.value);
+		var reg = /[`~!#$%^&*()_|+\=?;:'",<>\{\}\[\]\\\/ ]/gim;
+    setTag(e.target.value.replace(reg, ""));
   }, []);
 
   //input에 포커스시 border 색상변화
