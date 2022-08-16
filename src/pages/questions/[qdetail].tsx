@@ -6,19 +6,31 @@ import { QuestionDetail } from "src/types";
 import { q } from "src/api";
 import { useQuery } from "react-query";
 import { keys } from "src/hooks";
+import { useEffect, useLayoutEffect } from "react";
 
 
 const QuestionDetailPage: NextPage = () => {
   const router = useRouter();
   const { createdAt, qid } = router.query;
 	console.log(qid)
-  const {data} = useQuery(keys.qDetail(Number(qid)), ()=>q.questionDetail<QuestionDetail>(Number(qid)), {
-		// enabled: false,
+  const {data, error, isError, isSuccess } = useQuery(keys.qDetail(Number(qid)), ()=>q.questionDetail<QuestionDetail>(Number(qid)), {
+		retry:0,
 		staleTime:Infinity,
+
 	});
+  useLayoutEffect(() => {
+		if(isError) {
+			router.push("/404", router.asPath, { shallow: true });
+
+		}
+  }, [router,isError]);
   return (
     <Layout aside={<>카테고리?</>}>
-      <QDetail data={data}/>
+			{
+				data && 
+				<QDetail data={data}/>
+
+			}
     </Layout>
   );
 };
