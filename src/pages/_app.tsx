@@ -9,7 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'src/styles/GlobalStyle';
 import { theme } from 'src/styles/Theme';
 import { http } from 'src/api';
-import { useAuth, createQueryClient } from 'src/hooks/useQuery/useAuth';
+import { useAuth, createQueryClient } from 'src/hooks';
 import { Auth } from 'src/types';
 
 function MyApp({ Component, initialAuth, pageProps: { session, ...pageProps } }: AppProps & any) {

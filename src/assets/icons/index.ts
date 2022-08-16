@@ -19,6 +19,7 @@ export {FaUserAlt as UserIcon} from 'react-icons/fa';
 export {AiFillNotification as NoticeIcon} from 'react-icons/ai';
 export {IoIosNotifications as BellIcon} from 'react-icons/io';
 export {ImNotification as RuleIcon} from 'react-icons/im';
+export {GrMoreVertical as MoreIcon} from 'react-icons/gr';
 // export {AiFillBell as BellIcon} from 'react-icons/ai';
 
 import {MdPlayArrow} from 'react-icons/md';

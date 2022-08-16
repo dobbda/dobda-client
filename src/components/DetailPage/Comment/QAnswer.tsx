@@ -1,24 +1,26 @@
 import React, { useCallback, useState, useEffect } from 'react';
+import styled from 'styled-components';
+
 import Reply from './Comment';
 import { Editor, MarkDownViewer } from 'src/components/Editor';
 import { Avatar, atom } from 'src/components/common';
 import getDate from 'src/lib/dateForm';
-
+import { EditAnswer } from './EditAnswer';
 import * as S from './style/style';
 import More_btn_icon from 'src/assets/icon/more_btn.svg';
-import { ArrowIcon, ReCommentIcon } from 'src/assets/icons';
+import { ArrowIcon, MoreIcon, ReCommentIcon } from 'src/assets/icons';
 import { SubmitBtn } from '../style/Detail.Element';
 import { Answer } from 'src/types';
 import { useQuery } from 'react-query';
 import { q } from 'src/api';
-import styled from 'styled-components';
-import { keys,useAddCommentMutate } from 'src/hooks';
+import { keys, useAddCommentMutate, useDelete } from 'src/hooks';
 import { Button, Popover } from 'antd';
 type Props = {
   data: Answer;
 };
 
 const QComment = ({ data }: Props) => {
+  const [isEdit, setisEdit] = useState(false);
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
   const { data: comments } = useQuery(keys.comment(data.id), () => q.getComments(data.id), {
@@ -26,15 +28,14 @@ const QComment = ({ data }: Props) => {
   });
 
   const { mutate, isLoading, isSuccess } = useAddCommentMutate(data?.id);
+  const { mutate: delMute } = useDelete(data?.id, keys.answers(data?.questionId));
+
   const onSubmitComment = useCallback(() => {
-    const answerData = { content: mdStr, answerId: data.id };
-    mutate(answerData);
+    mutate({ content: mdStr, answerId: data.id });
   }, [mdStr, data.id, mutate]);
 
   useEffect(() => {
-    if (isSuccess) {
-      setMdStr('');
-    }
+    if (isSuccess) {setMdStr('')}
   }, [isSuccess]);
 
   return (
@@ -43,25 +44,25 @@ const QComment = ({ data }: Props) => {
         <Avatar nickname={data?.author.nickname} url={data?.author.avatar} />
 
         <div className="gc-right">
-          {/* {props.acceped_answer ? (
-            <Select_icon />
-          ) : ( */}
           <>
             <span>채택</span>
             <Popover
               trigger="click"
+							placement='bottom'
               content={
                 <>
-                  <Button type="primary" ghost>
+                  <Btn type="primary" key="edit" ghost>
                     수정
-                  </Button>
-                  <Button type="primary" danger ghost>
+                  </Btn>
+                  <Btn onClick={() => delMute(q.delAnswers)} type="primary" key="delete" danger ghost>
                     삭제
-                  </Button>
+                  </Btn>
                 </>
               }
             >
-              <More_btn_icon />
+              <span>
+                <MoreIcon />
+              </span>
             </Popover>
           </>
           {/* )} */}
@@ -111,4 +112,9 @@ const CommentRotate = styled(ArrowIcon)<{ viewchild: string }>`
   color: rgba(0, 0, 0, 0.6);
   transition: all 0.3s;
   transform: ${({ viewchild }) => (viewchild ? 'rotate(90deg)' : null)};
+`;
+
+const Btn = styled(Button)`
+  display: block;
+  width: 55px;
 `;

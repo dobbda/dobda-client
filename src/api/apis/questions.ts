@@ -43,7 +43,7 @@ export const getAnswers = async(qid:number) : Promise<Answer[]> => {
 	return (await axios.get(`/api/answers?qid=${qid}`)).data?.response.answers
 }
 export const delAnswers = async(aid:number) : Promise<Answer[]> => {
-	return (await axios.delete(`/api/answers?answerId=${aid}`)).data?.response.answers
+	return (await axios.delete(`/api/answers/${aid}`)).data
 }
 
 // 댓글

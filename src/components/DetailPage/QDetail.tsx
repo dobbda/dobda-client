@@ -14,15 +14,17 @@ import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { QuestionDetail } from 'src/types';
 import { useQuery } from 'react-query';
 import { q } from 'src/api';
-import {keys, useAddAnswerMutate, useAuth} from 'src/hooks';
+import {keys, useAddAnswerMutate, useAuth, useDelete} from 'src/hooks';
 import { UpdateEditor } from '../Write';
 import { Button } from 'antd';
+import { useRouter } from 'next/router';
 type Props = {
   children?: React.ReactElement; // commentComponent
   data: QuestionDetail;
 };
 
 const QDetail = ({ children, data }: Props) => {
+	const router = useRouter()
   const { auth, refetch } = useAuth();
   const [mdStr, setMdStr] = useState('');
   const [isEdit, setIsEdit] = useState(false);
@@ -30,7 +32,9 @@ const QDetail = ({ children, data }: Props) => {
     enabled: data?.answersCount > 0,
   });
 
+	const {mutate:delMutate, isSuccess:delSuccess} = useDelete(data?.id, keys.questions())
   const { isError, data: addAnswerRes, isLoading, mutate, isSuccess } = useAddAnswerMutate(data?.id);
+
   const onSubmitAnswer = useCallback(() => {
     const answerData = { content: mdStr, qid: data.id };
     mutate(answerData);
@@ -41,7 +45,10 @@ const QDetail = ({ children, data }: Props) => {
       toast.success('답변이 등록되었습니다.', { autoClose: 1000 });
       setMdStr('');
     }
-  }, [isError, isSuccess]);
+		if (delSuccess) {
+			router.push('/')
+    }
+  }, [isError, isSuccess,delSuccess, router]);
 
   return (
     <S.DetailContainer>
@@ -73,7 +80,8 @@ const QDetail = ({ children, data }: Props) => {
                 <Button onClick={() => setIsEdit(true)} type="primary" ghost>
                   수정
                 </Button>
-                <Button type="primary" danger ghost>
+                <Button onClick={()=>delMutate(q.delQuestion)}
+								type="primary" danger ghost>
                   삭제
                 </Button>{' '}
               </S.OnyUser>

@@ -7,6 +7,7 @@ const prod = process.env.NODE_ENV === 'production'
 module.exports = withPlugins([], {
 	productionBrowserSourceMaps: true,
 	reactStrictMode: true,
+	historyApiFallback: true,
 	images: {
 		domains: ["icon/svg", "joeschmoe.io", "avatars.dicebear.com"]
 	},
@@ -20,11 +21,6 @@ module.exports = withPlugins([], {
 		];
 	},
 	webpack(nextConfig, { dev }) {
-		if (dev) {
-			nextConfig.devtool = 'cheap-module-source-map';
-		}else {
-			nextConfig.devtool = 'hidden-source-map';
-		}
 
 		nextConfig.module.rules.push({
 			test: /\.svg$/,
@@ -34,7 +30,9 @@ module.exports = withPlugins([], {
 			}]
 		});
 		return {
-			...nextConfig
+			...nextConfig,
+			devtool: prod ? 'hidden-source-map' : 'eval',
+
 		};
 	},
 });

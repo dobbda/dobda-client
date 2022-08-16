@@ -5,11 +5,11 @@ export const createQueryClient = () => {
     defaultOptions: {
       queries: {
 				refetchOnWindowFocus: false,
-				useErrorBoundary: true,
+				// useErrorBoundary: true,
         retry:2,//false, true,
       },
 			mutations: {
-				useErrorBoundary: true,
+				// useErrorBoundary: true,
 			},
     },
   });

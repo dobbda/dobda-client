@@ -16,7 +16,7 @@ type Props ={
 
 export default function Page({ errorCode, stars }:Props) {
   if (errorCode) {
-    return <Error statusCode={errorCode} />
+    return <Error statusCode={404} />
   }
 
   return <div>Next stars: {stars}</div>

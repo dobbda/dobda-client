@@ -37,7 +37,9 @@ export const GlobalStyle = createGlobalStyle`
 		.toastui-editor-contents h1,h2,h3{
 			border:none;
 		}
-
+		.ant-popover-inner-content{
+			padding:5px ;
+		}
 
 
   }
