@@ -11,7 +11,10 @@ export const CommentWrapper = styled.div<Props>`
 	border: 1px solid #D9D9D9;
 	border-radius: 4px;
   filter: drop-shadow(0px 2px 10px rgba(168, 168, 168, 0.25));
-
+	.moreBtn{
+		margin-left:10px;
+		cursor: pointer;
+	}
 `;
 
 export const ChildView = styled.div`
@@ -43,6 +46,7 @@ export const Viewer = styled.div<Props>`
   
 `;
 
+
 export const Header = styled.div<Props>`
   padding: 20px 25px;
   display: flex;
@@ -53,22 +57,6 @@ export const Header = styled.div<Props>`
     align-items: center;
   }
 
-  .gc-right{
-    display: flex;
-    align-items : center;
-    span{
-      color: #656565;
-      margin-right: 20px;
-      font-weight: bold;
-      border: 1px solid #cacaca;
-      padding: 0 6px 0 10px;
-      border-radius: 5px;
-      :hover {
-        color: #28DA84;
-      }
-    }
-    > * {cursor: pointer;}
-  }
 `;
 
 export const CommentEditor = styled.div`

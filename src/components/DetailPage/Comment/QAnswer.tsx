@@ -7,7 +7,6 @@ import { Avatar, atom } from 'src/components/common';
 import getDate from 'src/lib/dateForm';
 import { EditAnswer } from './EditAnswer';
 import * as S from './style/style';
-import More_btn_icon from 'src/assets/icon/more_btn.svg';
 import { ArrowIcon, MoreIcon, ReCommentIcon } from 'src/assets/icons';
 import { SubmitBtn } from '../style/Detail.Element';
 import { Answer } from 'src/types';
@@ -42,10 +41,9 @@ const QComment = ({ data }: Props) => {
     <S.CommentWrapper>
       <S.Header className="header">
         <Avatar nickname={data?.author.nickname} url={data?.author.avatar} />
-
-        <div className="gc-right">
+        <atom.Flex >
+					<Button>채택하기</Button>
           <>
-            <span>채택</span>
             <Popover
               trigger="click"
 							placement='bottom'
@@ -60,13 +58,13 @@ const QComment = ({ data }: Props) => {
                 </>
               }
             >
-              <span>
+              <span className='moreBtn'>
                 <MoreIcon />
               </span>
             </Popover>
           </>
           {/* )} */}
-        </div>
+        </atom.Flex>
       </S.Header>
 
       <S.Viewer>
@@ -80,7 +78,9 @@ const QComment = ({ data }: Props) => {
             <CommentRotate viewchild={viewChild.toString()} />
           </span>
         </div>
+				<atom.Flex>
         <atom.CreatedAt> {getDate(data?.createdAt)}</atom.CreatedAt>
+				</atom.Flex>
       </S.ChildView>
 
       {viewChild && (
