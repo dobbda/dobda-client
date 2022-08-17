@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { atom, Tag } from '../common';
-import * as S from './style/Detail.Element';
+import * as S from './style/Detail.style';
 import { Avatar } from '../common';
 import { QAnswer } from './Comment/';
 import getDate from 'src/lib/dateForm';

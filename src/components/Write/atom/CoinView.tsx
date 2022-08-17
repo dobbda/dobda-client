@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Dispatch, useCallback } from 'react';
 import Link from 'next/link';
-import { Div } from './style/inputCoinPopover.element';
+import { Div } from './style/inputCoinPopover.style';
 import {Input as AntInput } from 'antd';
 import { variable } from 'src/config/defaultValue';
 import styled from 'styled-components';

@@ -5,7 +5,7 @@ import { UserUpdate } from './UserUpdate';
 import * as Lib from 'src/components/common';
 
 import { Hashtags } from 'src/components/Write';
-import * as S from './style/MyInfo.Element';
+import * as S from './style/MyInfo.style';
 type Props = {};
 
 export const MyInfo = (props: Props) => {

@@ -19,6 +19,7 @@ function Radio(props:Props) {
     <>
         <label>
           <FormCheckLeft
+					css={{color: "red"}}
             type="radio"
             id={props.id}
 						defaultChecked={props.defaultChecked}
@@ -34,25 +35,31 @@ function Radio(props:Props) {
 
 export default Radio;
 
+interface RadioGroupProps {
+	children: typeof Radio
+}
+export const RadioGroup = ({children}:RadioGroupProps) => {
+
+	return (
+		<>
+		{children}
+		</>
+	)
+}
+
+
 const FormCheckText = styled.span`
-  font-size: 18px;
+  font-size: 16px;
   padding: 3px 15px 5px;
   height: 30px;
   background: #fff;
 	border: 1px solid #c8c8c8;
-  border-radius: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-	margin: 8px;
 	color:#000;
-
+	margin-right:-1px;
 	cursor: pointer;
-	@media screen and (max-width: 410px) {
-	margin: 8px -3px;
-
-}
-
 `
 const FormCheckLeft = styled.input.attrs({ type: 'radio' })`
   &:checked + ${FormCheckText} {

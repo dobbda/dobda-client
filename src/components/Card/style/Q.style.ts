@@ -13,6 +13,9 @@ export const ContentWrapper = styled.div<CardProps>`
 	border-radius: 4px;
 	width: 100%;
 	filter: drop-shadow(0px 2px 8px rgba(140, 140, 140, 0.25));
+	  svg{
+    font-size: 15px;
+  }
   .diff-styles{
     padding-left: 45px;
   }
@@ -42,18 +45,39 @@ export const Group = styled.div`
     font-size: 12px;
 		white-space: nowrap;
   }
-  * {
-    margin:3px;
-    
-  }
-  svg{
-    font-size: 15px;
+`
+
+// header
+export const HeaderWrapper = styled.header`
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  align-items: center;
+`
+
+//body 
+export const BodyWrapper = styled.div`
+  width: 100%;
+`
+
+export const Title = styled.h3`
+  overflow: hidden;
+  margin:0;
+  padding: 0;
+	display: inline;
+  :hover{
+    color: #23629f;
+
   }
 `
 
-
-export const P = styled.div`
-  font-weight: bold;
-  color: ${({color}) => color ? color : "#686868"};
-  margin-left: 10px;
+//footer
+export const FooterWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+	flex-wrap: wrap-reverse;
+  width: 100%;
+  margin-top:15px;
+  text-align: center;
+  align-items: center;
 `

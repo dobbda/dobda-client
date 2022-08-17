@@ -41,7 +41,7 @@ const Span = styled.span`
 
 type Props = {
   children: React.ReactNode;
-  content: React.ReactNode | JSX.Element;
+  content: React.ReactNode | JSX.style;
   trigger?: string;
   outClick?: boolean;
   top?: number;

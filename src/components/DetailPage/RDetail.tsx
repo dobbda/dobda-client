@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Tag } from '../common';
-import * as S from './style/Detail.Element';
+import * as S from './style/Detail.style';
 import { Avatar } from '../common';
 import {RComment } from './Comment/';
 import getDate from 'src/lib/dateForm';

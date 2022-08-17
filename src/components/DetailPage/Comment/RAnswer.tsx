@@ -10,7 +10,7 @@ import * as S from './style/style';
 import More_btn_icon from 'src/assets/icon/more_btn.svg';
 import Select_icon from 'src/assets/icon/select.svg';
 import { ReCommentIcon } from 'src/assets/icons';
-import { SubmitBtn } from '../style/Detail.Element';
+import { SubmitBtn } from '../style/Detail.style';
 type Props = {
   acceped_answer?: boolean;
 };

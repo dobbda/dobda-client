@@ -8,7 +8,7 @@ import getDate from 'src/lib/dateForm';
 import { EditAnswer } from './EditAnswer';
 import * as S from './style/style';
 import { ArrowIcon, MoreIcon, ReCommentIcon } from 'src/assets/icons';
-import { SubmitBtn } from '../style/Detail.Element';
+import { SubmitBtn } from '../style/Detail.style';
 import { Answer } from 'src/types';
 import { useQuery } from 'react-query';
 import { q } from 'src/api';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Div, Label, CheckBox, ChildMenu, Icon } from './style/Menu.Elelemnt';
+import { Div, Label, CheckBox, ChildMenu, Icon } from './style/Menu.style';
 import { Link } from 'src/components/common';
 import UpIcon from 'src/assets/icon/upDown.svg';
 import { ArrowIcon } from 'src/assets/icons';
