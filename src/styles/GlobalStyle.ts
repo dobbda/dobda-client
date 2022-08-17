@@ -27,13 +27,19 @@ export const GlobalStyle = createGlobalStyle`
       background: #fff;
 			h1,h2,h3,h4,h5,h6{
 				margin:5px 0 2px;
+				border-bottom: none;
 			}
 			.toastui-editor-toolbar{
 				background-color: #fff;
 				border-bottom: 1px solid #dadada;
 			}
     }
-
+		.toastui-editor-contents h1,h2,h3{
+			border:none;
+		}
+		.ant-popover-inner-content{
+			padding:5px ;
+		}
 
 
   }
@@ -48,7 +54,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
- h1,h2,h3{
+ h1,h2,h3,p{
     margin: 0;
   }
 
@@ -56,4 +62,7 @@ export const GlobalStyle = createGlobalStyle`
     top: 40px !important;
   }
   
+	button {
+		cursor: pointer;
+	}
 `;

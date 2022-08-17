@@ -17,8 +17,6 @@ const Home: NextPage = () => {
   );
 };
 
-
-
 // export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
 // 			if (req.headers.cookie) {
 // 				// axios.defaults.headers.common['set-cookie']

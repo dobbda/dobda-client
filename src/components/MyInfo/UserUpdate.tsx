@@ -1,6 +1,6 @@
 import 'antd/dist/antd.css';
 import React from 'react';
-import { useInput } from 'src/hooks/useInput';
+import { useInput } from 'src/hooks';
 
 import { Input as AntInput, Button } from 'antd';
 

@@ -5,12 +5,8 @@ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   transition: all 0.2s;
-  main {
-    /* background-color: #fff; */
-    /* border: 1px solid #eee; */
+  card-content {
     padding-top: 10px;
-    /* padding-bottom: 100px; */
-    /* min-height: 1300px; */
   }
 
   .content-list {
@@ -22,27 +18,22 @@ export const Main = styled.div`
     place-items: center;
     gap: 10px;
   }
-  .categories-menubar {
+  .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+		flex-wrap: wrap-reverse;
+		margin-left: 5px;
   }
   .category-wrapper {
     /* height: 35px; */
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+		white-space: nowrap;
     :hover {
       color: #11a14a;
     }
-    /* span {
-      cursor: pointer;
-      background: #ffffff;
-      border: 1px solid #c8c8c8;
-      border-radius: 37px;
-      color: #000;
-      padding: 5px 25px;
-      margin: 10px;
-    } */
+
   }
 
   .writeBtn {

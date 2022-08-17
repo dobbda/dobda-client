@@ -1,28 +1,59 @@
-import { ReqQuestion, ResQuestion } from 'src/types/index';
+import { QuestionDetail, Answer, Comment, CreateAnswer } from 'src/types/index';
+import { InfinityProps, CreateQuestion, Question } from 'src/types/index';
 import axios, { AxiosResponse } from "axios";
 
-const addQuestion = async (question: ReqQuestion): Promise<ResQuestion> => {
-	return await axios.post('/api/questions',question)
-	.then(res=>{if(res.data.success) return res.data.response})
-	.catch(err=>console.log("axios error: " + err.request || err.response))
-}
 
-// 질문글 전체조회
-const getQuestions = async(): Promise<ResQuestion> => {
-	return await axios.get('/api/questions')
-	.then(res=>{if(res.data.success) return res.data.response.result})
-	.catch(err=>console.log("axios error: " + err))
+
+// 질문글 전체조회 infinity
+export const getInfinityQ = async (pageParam=1, title?: string): Promise<InfinityProps> => {
+	const res = await axios.get(`/api/questions?page=${pageParam && pageParam}&title=${title && title}`);
+	if (!res.data.success) return null;
+	return {
+		result: res.data.response.result,
+		pageNum: pageParam,
+		isLast: pageParam >= res.data.response.totalPages,
+	};
 };
 
 //질문글 상세조회
-const detailQuestion = async(id:number) : Promise<AxiosResponse> => {
-	return await axios.get(`/api/questions/${id}`).then(res =>res.data)
-	.catch(err=>console.log("axios error: " + err))
+export const questionDetail = async<T>(id:number) : Promise<T> => {
+	return (await axios.get(`/api/questions/${id}`)).data?.response.question
+	// .catch(err=>console.log("axios error: " + err))
 };
 
-const updateQuestion = async({id, data}:{id:number, data: ReqQuestion}):Promise<ResQuestion> => {
-	return await axios.patch(`/api/questions/${id}`, data).then(res =>res.data) 
+export const addQuestion = async (question: CreateQuestion, qid?:number): Promise<Question> => {
+	return (await axios.post('/api/questions',question)).data.response
+}
+export const updateQuestion = async(data:CreateQuestion, id:number, ):Promise<Question> => {
+	return (await axios.patch(`/api/questions/${id}`, data)).data.response
+};
+export const delQuestion = async<T>(id:number) : Promise<T> => {
+	return (await axios.delete(`/api/questions/${id}`)).data
 };
 
 
-export {getQuestions, detailQuestion, updateQuestion, addQuestion }
+// 답변
+export const addAnswer = async(data:CreateAnswer) : Promise<AxiosResponse> => {
+	return (await axios.post(`/api/answers`, data))
+}
+export const updateAnswer = async(data:CreateAnswer) : Promise<AxiosResponse> => {
+	return (await axios.patch(`/api/answers`, data))
+}
+export const getAnswers = async(qid:number) : Promise<Answer[]> => {
+	return (await axios.get(`/api/answers?qid=${qid}`)).data?.response.answers
+}
+export const delAnswers = async(aid:number) : Promise<Answer[]> => {
+	return (await axios.delete(`/api/answers/${aid}`)).data
+}
+
+// 댓글
+export const addComment = async(data:CreateAnswer) : Promise<AxiosResponse> => {
+	return (await axios.post(`/api/comments`, data))
+}
+export const getComments = async(aid:number):Promise<Comment[]> => {
+	return (await axios.get(`/api/comments?aid=${aid}`)).data.response.comments
+}
+
+
+
+

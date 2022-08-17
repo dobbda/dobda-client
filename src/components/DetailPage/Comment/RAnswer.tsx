@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-import Reply from './Reply';
+import Reply from './Comment';
 import { Editor, MarkDownViewer } from 'src/components/Editor';
 import { Avatar, CreatedAt } from 'src/components/common';
 import getDate from 'src/lib/dateForm';

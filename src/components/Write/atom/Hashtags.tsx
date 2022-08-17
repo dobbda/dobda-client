@@ -15,7 +15,8 @@ export function Hashtags({tags, setTags, tagColor}: Props) {
   const [tag, setTag] = useState<string>("");
   const [focus, setFocus] = useState(false);
   const tagHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setTag(e.target.value);
+		var reg = /[`~!#$%^&*()_|\=?;:'",<>\{\}\[\]\\\/ ]/gim;
+    setTag(e.target.value.replace(reg, ""));
   }, []);
 
   //input에 포커스시 border 색상변화
@@ -61,7 +62,7 @@ export function Hashtags({tags, setTags, tagColor}: Props) {
       <form onSubmit={formHandler}>
         <Tag_wrapper focus={focus} className="tag-wrapper" onClick={focusHandler}>
           <Hash />
-          {tags.map((word,index) => {
+          {tags?.map((word,index) => {
             return (
 
                 <AntTag key={index} color={tagColor ? tagColor : '#55acee'} closable onClose={() => removeHandler(word)}>

@@ -5,8 +5,7 @@ import {SocialBtn} from './LogoBtn'
 import { GithubIcon,GoogleIcon,NaverIcon, KakaoIcon } from 'src/assets/icons';
 import {Logo} from 'src/components/common';
 import { useQueryClient } from 'react-query';
-import { useAuth } from 'src/hooks/useAuth';
-import { useLoginModalhandler } from 'src/hooks/useloginModalHandler';
+import { useAuth,useLoginModalhandler } from 'src/hooks';
 import { GITHUB_URL, GOOGLE_URL, KAKAO_URL, NAVER_URL } from './CDN_URL';
 type Props = {};
 

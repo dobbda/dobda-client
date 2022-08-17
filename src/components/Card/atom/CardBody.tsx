@@ -1,26 +1,32 @@
-import { BodyWrapper, Title, TagWrapper } from './style/Element';
+import { BodyWrapper, Title } from './style/Element';
 import * as Lib from 'src/components/common';
 
 import React from 'react';
+import { Tags } from 'src/types';
+import { atom } from 'src/components/common';
 
-interface Props {}
+interface Props {
+	title: string,
+	tagNames: Tags[],
+	createdAt: Date,
+	id: number,
+}
 export const QBody = (props: Props) => {
   const tagList = ['python', 'Java', 'JavaScript'];
   return (
     <BodyWrapper>
-      <Lib.Link href={`/questions/${encodeURIComponent(10)}`} >
+      <Lib.Link href={`/questions/detail?createdAt=${props.createdAt}&qid=${encodeURIComponent(props.id)}`} >
         <Title>
-          Engineeringbattery battery ery cathodes. He earned a BS in Mechanicalcathodes. He earned a BS in Mechanical Engineering
-          ....cathodes. He earned a BS in Mechanical
+						{props.title}
         </Title>
       </Lib.Link>
-      <TagWrapper>
-        {tagList.map((tag, i) => (
-          <Lib.Tag bg={true} key={i}>
-            {tag}
+      <atom.TagWrapper>
+        {props.tagNames?.map((tag,i) => (
+          <Lib.Tag bg={true} key={tag.name+i}>
+            {tag.name}
           </Lib.Tag>
         ))}
-      </TagWrapper>
+      </atom.TagWrapper>
     </BodyWrapper>
   );
 };
@@ -38,11 +44,11 @@ export const RBody = (props: Props) => {
         </Title>
         </Lib.Link>
       </div>
-      <TagWrapper>
+      <atom.TagWrapper>
         {tagList.map((tag, i) => (
           <Lib.Tag key={i}>{tag}</Lib.Tag>
         ))}
-      </TagWrapper>
+      </atom.TagWrapper>
     </BodyWrapper>
   );
 };

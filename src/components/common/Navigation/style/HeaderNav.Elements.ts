@@ -34,6 +34,7 @@ export const Headercontainer = styled.div`
 export const MenuWrapper = styled.div`
   display: flex;
   align-items: center;
+	justify-content: center;
   gap: 10px;
 `;
 

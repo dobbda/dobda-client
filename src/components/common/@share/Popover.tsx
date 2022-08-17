@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState,useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 type StyleProps = {
   top?: number;
@@ -51,12 +51,12 @@ type Props = {
   visible?: boolean; //내용완료시 자동 닫기를 원할시 close로 boolean 전달; true일시 모달close
 };
 
-function Popover({
+export function Popover({
   children,
   content,
   trigger = 'click',
   outClick = true,
-  visible =false,
+  visible = false,
   top = null,
   left = null,
   bottom = null,
@@ -69,24 +69,24 @@ function Popover({
     if (trigger == 'hover') {
       setIsShow(true);
     }
-  },[trigger]);
+  }, [trigger]);
 
   const onMouseLeave = useCallback(() => {
     if (trigger == 'hover') {
       setIsShow(false);
     }
-  },[trigger]);
+  }, [trigger]);
 
   // mouse click event
   const onClickIsShow = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    setIsShow(true);
-  },[]);
+    setIsShow(!isShow);
+  }, []);
 
   const pageClickEvent = useCallback((e: any) => {
     if (!setUseRef.current.contains(e.target)) {
       setIsShow(false);
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     if (visible) {
@@ -98,7 +98,8 @@ function Popover({
     outClick && window.addEventListener('click', pageClickEvent, true);
 
     return () => {
-      window.removeEventListener('click', pageClickEvent, true);
+			window.removeEventListener('click', pageClickEvent, true);
+
     };
   }, [visible, outClick, pageClickEvent]);
   return (
@@ -116,4 +117,3 @@ function Popover({
   );
 }
 
-export default React.memo(Popover)

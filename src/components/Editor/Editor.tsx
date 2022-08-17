@@ -28,17 +28,18 @@ interface Props {
 
 const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
   const editorRef = useRef<ToastEditor>(null);
-  
+
   // 에디터 보여지는 핸들러
   const [showEditor, setShowEditor] = React.useState(onClickShow ? false : true);
   const onClickShowEditorHandler = useCallback(() => {
     setShowEditor(!showEditor);
   }, [showEditor]);
 
-	// useEffect(()=>{
-	// 	editorRef.current?.getInstance().setMarkdown("# mdStr")
-
-	// },[showEditor])
+  useEffect(() => {
+    if (mdStr == '') {
+      editorRef.current?.getInstance().setMarkdown('');
+    }
+  }, [mdStr]);
 
   // Editor Change 이벤트
   const onChangeEditor = () => {
@@ -46,22 +47,22 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
     editorRef.current?.getInstance().removeHook('addImageBlobHook');
     editorRef.current?.getInstance().addHook('addImageBlobHook', (blob, callback) => {
       (async () => {
-        const url = await uploadS3(blob)
-        callback(url&& url,"image-url")
+        const url = await uploadS3(blob);
+        callback(url && url, 'image-url');
       })();
       return false;
     });
   };
 
-	// height을 auto로 할시 focus가 풀림현상 해결
-	const setFocusHandler = (e: any) => {
-		if(e.target.className === "toastui-editor md-mode active" || e.target.className === "toastui-editor ww-mode"){
-			editorRef.current.getInstance().focus();
-		}
-	}
+  // height을 auto로 할시 focus가 풀림현상 해결
+  const setFocusHandler = (e: any) => {
+    if (e.target.className === 'toastui-editor md-mode active' || e.target.className === 'toastui-editor ww-mode') {
+      editorRef.current.getInstance().focus();
+    }
+  };
   const EditorElement = (
     <ToastEditor
-      initialValue={mdStr? mdStr : " "}
+      initialValue={mdStr ? mdStr : ' '}
       previewStyle="tab"
       initialEditType="wysiwyg"
       useCommandShortcut={false}
@@ -70,8 +71,8 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
       plugins={[colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]]}
       onChange={onChangeEditor}
       minHeight={height}
-      height={"auto"}
-      language="ko-kr"			
+      height={'auto'}
+      language="ko-kr"
       toolbarItems={[
         ['heading', 'bold', 'italic', 'strike'],
         ['hr', 'link'],
@@ -85,7 +86,7 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
   return (
     <S.EditorStyle onClick={setFocusHandler}>
       {onClickShow && !showEditor && (
-        <div onClick={onClickShowEditorHandler} id="clickEvent-handler" >
+        <div onClick={onClickShowEditorHandler} id="clickEvent-handler">
           <S.ShowEditorBtn prefix={<S.ReplyIconS />} placeholder="답글 작성..." readOnly />
         </div>
       )}

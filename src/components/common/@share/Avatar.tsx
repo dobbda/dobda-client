@@ -4,7 +4,7 @@ import 'antd/dist/antd.min.css';
 import styled from 'styled-components';
 
 
-import { Popover } from 'src/components/common';
+import { Popover } from 'antd';
 import {UserInfo} from '../../UserInfo'
 
 type Props = {
@@ -16,15 +16,17 @@ type Props = {
 const Div = styled.div<{ acceped_answer?: boolean }>`
   cursor: pointer;
   display:inline-flex;
-  height: 25px;
+  height: 30px;
   img {
     border-radius: 100%;
-    position: static
+    width: 30px;
+		height: 30px;
   }
   h3 {
+		margin:0;
 		font-weight: 600;
 		padding-top:5px;
-    margin-left: 10px;
+    margin-left: 20px;
 		text-align: center;
     font-size: 15px;
     color: ${({ acceped_answer, theme }) => (acceped_answer ? '#fff' : '#131313')};
@@ -46,17 +48,12 @@ export const Avatar = ({ nickname, acceped_answer = false, url }: Props) => {
   };
 
   return (
-    <Popover 
-      content={<UserInfo/>}
-      trigger="click"
-      visible={visible}
-      
-    >
+		<Popover  trigger = "click" placement="bottomLeft" content={<UserInfo/>}>
       <Div acceped_answer={acceped_answer}>
-        <Image src={url} alt="avatar" width={25} height={25} />
-        <h3>{nickname}</h3>
+        <img src={url} alt="avatar" />
+         <h3>{nickname}</h3> 
       </Div>
-    </Popover>
+			</Popover>
   );
 };
 

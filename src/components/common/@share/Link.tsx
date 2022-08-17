@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import Link  from 'next/link';
-const NextLink = Link
 type Props = {
   children: React.ReactNode;
   href: string;

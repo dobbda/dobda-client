@@ -10,7 +10,6 @@ import { getCookie } from 'src/lib/getCookie';
 const auth = async (): Promise<Auth>  => {
   //로그인확인용
   if (getCookie('access-expires')) {
-		console.log('Access expires')
     return await axios
       .get(REQUEST_URL.get_auth)
       .then((res) => res.data.response)

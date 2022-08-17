@@ -1,16 +1,19 @@
 import React from 'react';
-import Image from 'next/image';
-import moment from 'moment';
 import 'moment/locale/ko';
 import getDate from 'src/lib/dateForm';
 import { ReplyItem, Header, CommentContent } from './style/Reply.Element';
-import { Avatar } from 'src/components/common';
+import { atom, Avatar } from 'src/components/common';
 import { ReplyIcon } from 'src/assets/icons';
 import { MarkDownViewer } from 'src/components/Editor';
+import { Comment } from 'src/types';
 
-type Props = {};
+type Props = {
+	data:Comment
+};
 
-const Reply = () => {
+
+
+const Reply = ({data}:Props) => {
   return (
     <ReplyItem className="comment reply-items">
       <Header className="header">
@@ -19,13 +22,13 @@ const Reply = () => {
             {' '}
             <ReplyIcon />
           </i>
-          <Avatar nickname="꼴뚜기" url="https://joeschmoe.io/api/v1/cc" />
-          <span>{getDate('2001-09-28 03:00:00', true)}</span>
+          <Avatar nickname={data.author.nickname} url={data.author.avatar} />
+          <atom.CreatedAt>{getDate(data?.createdAt, true)}</atom.CreatedAt>
         </div>
       </Header>
 
       <CommentContent>
-        <MarkDownViewer content="### content viewer 입니다" />
+        <MarkDownViewer content={data.content} />
       </CommentContent>
     </ReplyItem>
   );
