@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 
-import * as S from './style/HeaderNav.Elements';
+import * as S from './style/HeaderNav.style';
 import { Logo, Popover, Modal } from 'src/components/common';
 import { MessageBox } from 'src/components/MessageBox/MessageBox';
 import { SocialLogin } from 'src/components/SocialLogin';

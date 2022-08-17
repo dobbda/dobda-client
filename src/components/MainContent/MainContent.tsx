@@ -3,21 +3,23 @@ import Link from 'next/link';
 import { useQuery } from 'react-query';
 
 import { CategoriesEvent } from '../../lib/categoryHover';
-import { Main } from './style/MainContent.Element';
+import { Main } from './style/MainContent.style';
 import SearchBox from './atom/SearchBox';
 import QCard from '../Card/QCard';
 import RCard from '../Card/RCard';
 import { PenIcon } from 'src/assets/icons';
-import Radio from './atom/RadioButton';
 import styled from 'styled-components';
-import { Radio as antRadio } from 'antd';
-import RenderQuestion from './RenderQuestion';
+import RenderQuestion from './renderItm/RenderQuestion';
+import {Categories, CategoryList,CategoriesType} from 'src/lib/utils/category'
+import RenderFeatureRequest from './renderItm/RenderRequest';
+
 
 interface Props {
   children?: React.ReactNode;
 }
 
 const MainContent = ({ children }: Props) => {
+	const [select, setSelect] = useState<CategoriesType>(CategoryList[0])
   return (
     <Main>
       <section>
@@ -26,9 +28,14 @@ const MainContent = ({ children }: Props) => {
         </div>
         <div className="top-bar">
           <div className="category-wrapper">
-            <Radio id={'wjscp'} name="질문" defaultChecked={true} />
-            <Radio id={'dhlwn'} name="외주" />
-            <Radio id={'wjscp'} name="내글" />
+						{
+							CategoryList.map((m, i)=>(
+								<span key={i} onClick={()=>setSelect(m)} className={select===m && "selected"}>
+									{Categories[m]}
+								</span>
+							))
+						}
+
           </div>
           <Link href="/write-board" passHref>
             <button className="writeBtn">
@@ -38,7 +45,7 @@ const MainContent = ({ children }: Props) => {
         </div>
       </section>
       <section className="card-content">
-        {/** RenderFeatureRequest  **/}
+        {/* {<RenderFeatureRequest />} */}
         {<RenderQuestion />}
       </section>
     </Main>

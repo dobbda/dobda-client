@@ -23,17 +23,31 @@ export const Main = styled.div`
     justify-content: space-between;
     align-items: center;
 		flex-wrap: wrap-reverse;
-		margin-left: 5px;
+		margin-bottom: 10px;
   }
   .category-wrapper {
-    /* height: 35px; */
     display: flex;
-    /* flex-wrap: wrap; */
 		white-space: nowrap;
-    :hover {
-      color: #11a14a;
-    }
-
+		
+		/* * {margin-right: 5px;} */
+		span{ //카테고리 버튼
+			cursor: pointer;
+			font-size: 16px;
+			padding: 3px 15px 5px;
+			height: 30px;
+			background: #fff;
+			border: 1px solid #c8c8c8;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color:#000;
+			margin-right:-1px;
+		}
+		.selected {
+			background: #242424;
+			color: #fff;
+			z-index: 1;
+		}
   }
 
   .writeBtn {

@@ -84,12 +84,16 @@ export interface QuestionDetail extends Question {
 //// 						featureRequest 							     						////
 ////////////////////////////////////////////////////////////////
 
-export interface FeatureRequest {
-	title:string,
-	content:string,
-	coin:string,
+export interface FeatureRequest extends Question {
+	title: string,
+	watch: number,
+	coin: number,
+	authorId: number,
+	accepteAnswerId: boolean,
+  author: Author,
+	answersCount: number,
+	tagNames:Tags[],
 	deadeline: Date,
-	tagNames: string[],
 }
 
 export interface ResFeatureRequest extends FeatureRequest, Default {
@@ -111,7 +115,7 @@ export interface UserProfile extends Default {
 
 
 export type InfinityProps = {
-  result: Question[];
+  result: Question[] | FeatureRequest[];
   pageNum: number;
   isLast: boolean;
 };

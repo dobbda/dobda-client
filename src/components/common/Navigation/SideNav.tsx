@@ -1,7 +1,7 @@
 import React, { useState, Dispatch, ElementType, useEffect, useCallback } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 
-import { SideNavWrapper } from './style/SideNav.Element';
+import { SideNavWrapper } from './style/SideNav.style';
 import { Menu } from './atom/Menu';
 
 import * as I from 'src/assets/icons'; //icon

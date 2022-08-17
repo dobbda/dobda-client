@@ -1,24 +1,72 @@
 import React from 'react';
-import { ContentWrapper } from './style/Card.Element';
+import { ContentWrapper, Group, HeaderWrapper, BodyWrapper, Title, FooterWrapper  } from './style/Q.style';
+import * as Lib from 'src/components/common';
+import * as I from 'src/assets/icons';
 
-import { QHeader } from './atom/CardHeader';
-import { QBody } from './atom/CardBody';
-import { QFooter } from './atom/CardFooter';
 import { Question } from 'src/types';
-type Props = {
-	question: Question
+import getDate from 'src/lib/dateForm';
+import { atom } from '../common';
+
+type data = {
+  data: Question;
 };
 
-const QCard = ({question}: Props) => {
-
+const QCard = ({ data }: data) => {
+  const q = data && data;
   return (
-    <ContentWrapper className="card-items" >
-      <QHeader {...question}/>
-      <div className="diff-styles" >
-        <QBody {...question}/>
-        <QFooter {...question}/>
-      </div>
-    </ContentWrapper>
+    <>
+      {q ? (
+        <ContentWrapper className="card-items">
+          <HeaderWrapper>
+            <Lib.Avatar nickname={q.author?.nickname} url={q.author?.avatar} />
+            {/* <Group ><Qicon /><P >{q.author?.nickname}</P></Group> */}
+            <Group>
+              <atom.CreatedAt>{getDate(q.createdAt,true)}</atom.CreatedAt>
+            </Group>
+          </HeaderWrapper>
+          <div className="diff-styles">
+            {/* cotent */}
+            <BodyWrapper>
+              <Lib.Link href={`/questions/detail?createdAt=${q.createdAt}&qid=${encodeURIComponent(q.id)}`}>
+                <Title>{q.title}</Title>
+              </Lib.Link>
+              <atom.TagWrapper>
+                {q.tagNames?.map((tag, i) => (
+                  <Lib.Tag bg={true} key={tag.name + i}>
+                    {tag.name}
+                  </Lib.Tag>
+                ))}
+              </atom.TagWrapper>
+            </BodyWrapper>
+            {/* footer */}
+            <FooterWrapper>
+              <Group>
+                <Group>
+                  <p>Answer</p>
+                  <p>( {q.answersCount} )</p>
+                </Group>
+                {' | '}
+                <Group>
+                  <p> Clicked </p>
+                  <p> ( {q.watch} )</p>
+                </Group>
+                {' | '}
+                <Group>
+                  <p> Comment </p>
+                  <p> ( {q.watch} )</p>
+                </Group>
+              </Group>
+              <Group>
+                <p color="#8400EC">{q.coin}</p>
+                <I.CoinIcon />
+              </Group>
+            </FooterWrapper>
+          </div>
+        </ContentWrapper>
+      ) : (
+        <>loading . . .</>
+      )}
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Div, BaseInfo, UserActive, Item, P, UserTech } from './style/userInfo.Element';
+import { Div, BaseInfo, UserActive, Item, P, UserTech } from './style/userInfo.style';
 import Image from 'next/image';
 
 import { Tag } from 'src/components/common';

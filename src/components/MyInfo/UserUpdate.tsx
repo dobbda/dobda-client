@@ -5,7 +5,7 @@ import { useInput } from 'src/hooks';
 import { Input as AntInput, Button } from 'antd';
 
 import { Hashtags } from 'src/components/Write';
-import * as S from './style/MyInfo.Element';
+import * as S from './style/MyInfo.style';
 type Props = {};
 
 export const UserUpdate = (props: Props) => {

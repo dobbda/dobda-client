@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useGetInfinityQ, keys } from 'src/hooks';
 import { useInView } from 'react-intersection-observer';
-import QCard from '../Card/QCard';
+import QCard from '../../Card/QCard';
 import styled from 'styled-components';
 import { q } from 'src/api';
 
@@ -31,11 +31,11 @@ function RenderQuestion() {
               if (index == question.length - 1) {
                 return (
                   <RefCard ref={ref} key={q.id}>
-                    <QCard question={q} />
+                    <QCard data={q} />
                   </RefCard>
                 );
               }
-              return <QCard key={q.id} question={q} />;
+              return <QCard key={q.id} data={q} />;
             });
           })
         : null}

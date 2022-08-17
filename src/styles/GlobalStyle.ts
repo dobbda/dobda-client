@@ -40,10 +40,16 @@ export const GlobalStyle = createGlobalStyle`
 		.ant-popover-inner-content{
 			padding:5px ;
 		}
-
-
   }
-  /* .ant-popover-inner-content{padding:0}; */
+
+
+  .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+    color: #fff;
+    background: #000;
+    border-color: #000;
+	}
+
+
   a {
     color: inherit;
   }

@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useClientValue,useAddQuestionMutate, keys } from 'src/hooks';
 
 import { Editor } from 'src/components/Editor';
-import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.element';
+import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.style';
 import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag } from 'antd';
 
 import { Hashtags } from './atom/Hashtags';
