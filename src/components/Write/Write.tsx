@@ -59,8 +59,8 @@ const Write = () => {
 	const onSubmitCheck = useCallback(() => {
 		if(!categorie) return  toast.info("카테고리를 선택해주세요",{autoClose: 1000,})
 		if(!(tags&&mdStr&&contentTitle&&tags)) {return toast.error("입력 정보가 더 필요합니다",{autoClose: 1000,})}
-		if(categorie=="request"&& !coin){return  toast.error("외주 요청은 코인이 필수 입니다",{autoClose: 1000,})}
-		if(categorie=="request"&& !deadline){return  toast.info("마감기한을 입력해주세요",{autoClose: 1000,})}
+		if(categorie=="outSource"&& !coin){return  toast.error("외주 요청은 코인이 필수 입니다",{autoClose: 1000,})}
+		if(categorie=="outSource"&& !deadline){return  toast.info("마감기한을 입력해주세요",{autoClose: 1000,})}
 
 		if(categorie=="question") onSubmitQuestion()
 		else if(categorie=="request") onSubmitFeatureRequest()

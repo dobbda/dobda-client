@@ -17,10 +17,11 @@ const media = {
 const color = {
   bg: "#fff",//"#EAEEF2", //background color
   card: "#fff",
-  primary:"#33404D",
-  secondary:"#465666",
+  primary:"#3F4A5E",
+  secondary:"#333C4D",
   border: "#c9c9c9",
   border2:  "#e3e3e3",
+	button: "#199DE8",
   coin: "#8400EC",
   date: "#b9b9b9",
   comment_border: "#cacaca",
