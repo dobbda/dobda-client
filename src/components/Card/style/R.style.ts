@@ -22,6 +22,11 @@ export const ContentWrapper = styled.div<CardProps>`
 	}
 `
 
+export const Progress = styled.h1`
+	color: #0057FF;
+	font-size: 17px;
+	font-weight: bold;
+`
 
 export const Group = styled.div`
   display: flex;
@@ -37,7 +42,6 @@ export const Group = styled.div`
   p{
     padding:0;
     margin:0;
-		margin-right: 5px;
     color: #686868;
     font-size: 12px;
 		white-space: nowrap;
@@ -61,21 +65,24 @@ export const Title = styled.h3`
   overflow: hidden;
   margin:0;
   padding: 0;
-	display: inline;
+	font-style: normal;
   :hover{
-    color: #23629f;
-
+		color: #0057FF;
   }
 `
 
 //footer
 export const FooterWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
 	flex-wrap: wrap-reverse;
+	justify-content: space-between;
   width: 100%;
-  padding-right: 10px;
   padding-top:5px;
   text-align: center;
   align-items: center;
+	margin-top:10px;
+`
+export const Gap = styled.div`
+	display: inline;
+	margin: 0 7px;
 `

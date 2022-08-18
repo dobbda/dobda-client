@@ -30,7 +30,7 @@ const MainContent = ({ children }: Props) => {
           <div className="category-wrapper">
 						{
 							CategoryList.map((m, i)=>(
-								<span key={i} onClick={()=>setSelect(m)} className={select===m && "selected"}>
+								<span key={i} onClick={()=>setSelect(m)} className={select===m ? "selected" : "tap_menu_"+i}>
 									{Categories[m]}
 								</span>
 							))
@@ -45,8 +45,8 @@ const MainContent = ({ children }: Props) => {
         </div>
       </section>
       <section className="card-content">
-        {/* {<RenderFeatureRequest />} */}
-        {<RenderQuestion />}
+        {<RenderFeatureRequest />}
+        {/* {<RenderQuestion />} */}
       </section>
     </Main>
   );

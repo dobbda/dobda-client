@@ -37,14 +37,15 @@ export const Group = styled.div`
   -ms-user-select:none;
   user-select:none;
 	height: fit-content;
+	text-align: center;
+	align-items: center;
   p{
     padding:0;
     margin:0;
-		margin-right: 5px;
     color: #686868;
     font-size: 12px;
 		white-space: nowrap;
-  }
+  };
 `
 
 // header
@@ -77,7 +78,11 @@ export const FooterWrapper = styled.div`
   justify-content: space-between;
 	flex-wrap: wrap-reverse;
   width: 100%;
-  margin-top:15px;
   text-align: center;
   align-items: center;
+	margin-top: 10px;
+`
+export const Gap = styled.div`
+	display: inline;
+	margin: 0 7px;
 `

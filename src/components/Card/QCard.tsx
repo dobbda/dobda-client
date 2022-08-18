@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentWrapper, Group, HeaderWrapper, BodyWrapper, Title, FooterWrapper  } from './style/Q.style';
+import * as S from './style/Q.style';
 import * as Lib from 'src/components/common';
 import * as I from 'src/assets/icons';
 
@@ -16,19 +16,19 @@ const QCard = ({ data }: data) => {
   return (
     <>
       {q ? (
-        <ContentWrapper className="card-items">
-          <HeaderWrapper>
+        <S.ContentWrapper className="card-items">
+          <S.HeaderWrapper>
             <Lib.Avatar nickname={q.author?.nickname} url={q.author?.avatar} />
             {/* <Group ><Qicon /><P >{q.author?.nickname}</P></Group> */}
-            <Group>
-              <atom.CreatedAt>{getDate(q.createdAt,true)}</atom.CreatedAt>
-            </Group>
-          </HeaderWrapper>
+            <S.Group>
+              <atom.CreatedAt>{getDate(q.createdAt, true)}</atom.CreatedAt>
+            </S.Group>
+          </S.HeaderWrapper>
           <div className="diff-styles">
             {/* cotent */}
-            <BodyWrapper>
+            <S.BodyWrapper>
               <Lib.Link href={`/questions/detail?createdAt=${q.createdAt}&qid=${encodeURIComponent(q.id)}`}>
-                <Title>{q.title}</Title>
+                <S.Title>{q.title}</S.Title>
               </Lib.Link>
               <atom.TagWrapper>
                 {q.tagNames?.map((tag, i) => (
@@ -37,32 +37,34 @@ const QCard = ({ data }: data) => {
                   </Lib.Tag>
                 ))}
               </atom.TagWrapper>
-            </BodyWrapper>
+            </S.BodyWrapper>
             {/* footer */}
-            <FooterWrapper>
-              <Group>
-                <Group>
+            <S.FooterWrapper>
+              <S.Group>
+                <S.Group>
                   <p>Answer</p>
                   <p>( {q.answersCount} )</p>
-                </Group>
-                {' | '}
-                <Group>
-                  <p> Clicked </p>
-                  <p> ( {q.watch} )</p>
-                </Group>
-                {' | '}
-                <Group>
-                  <p> Comment </p>
-                  <p> ( {q.watch} )</p>
-                </Group>
-              </Group>
-              <Group>
-                <p color="#8400EC">{q.coin}</p>
-                <I.CoinIcon />
-              </Group>
-            </FooterWrapper>
+                </S.Group>
+
+                <S.Gap>|</S.Gap>
+
+                <S.Group>
+                  <p>Comment</p>
+                  <p>( {q.watch} )</p>
+                </S.Group>
+
+                <S.Gap>|</S.Gap>
+
+                <S.Group>
+                  <I.CoinIcon css={{ marginRight: '5px' }} /> <p color="#8400EC">{q.coin}</p>
+                </S.Group>
+              </S.Group>
+              <S.Group>
+                <I.WatchIcon style={{ color: '#707070', fontSize: '20px', marginRight: '5px' }} />( {q.watch} )
+              </S.Group>
+            </S.FooterWrapper>
           </div>
-        </ContentWrapper>
+        </S.ContentWrapper>
       ) : (
         <>loading . . .</>
       )}

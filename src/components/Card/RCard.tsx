@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentWrapper, Group, BodyWrapper, Title, FooterWrapper, HeaderWrapper } from './style/R.style';
+import * as S from './style/R.style';
 import * as Lib from 'src/components/common';
 import getDate from 'src/lib/dateForm';
 import { atom } from '../common';
@@ -13,45 +13,39 @@ const RCard = ({ question }: Props) => {
   const tagList = ['python', 'Java', 'JavaScript'];
 
   return (
-    <ContentWrapper type="R">
-      <HeaderWrapper>
-        <Group>
-          {' '}
-          <p color="#8400EC">2200</p> <I.CoinIcon />
-          <p>D-3일</p>
-        </Group>
-        <Group>
-          <p className="createdAt">{getDate('2021-10-09T00:44:52+09:00', true)}</p>
-        </Group>
-      </HeaderWrapper>
-      <div className="diff-styles">
-        <BodyWrapper>
-          <div className="body-column">
-            <Lib.Link href={`/requests/${encodeURIComponent(10)}`} scroll={false}>
-              <Title>
-                battery cathodes. He earned a BS in Mechanical Engineeringbattery battery cathodes. He earned a BS in Mechanical
-                Engineering ....cathodes. He earned a BS in Mechanical Engineering .... ....
-              </Title>
+    <S.ContentWrapper type="R">
+      <S.HeaderWrapper>
+        <S.Group>
+					<S.Progress>[ 플리랜서 매치중 ]</S.Progress>
+        </S.Group>
+        <S.Group>
+          <p>작성 :  </p> <atom.CreatedAt className="createdAt">{getDate('2021-10-09T00:44:52+09:00', true)}</atom.CreatedAt>
+					<I.BookmarkIcon />
+        </S.Group>
+      </S.HeaderWrapper>
+        <S.BodyWrapper>
+            <Lib.Link href={`/outsourcing/${encodeURIComponent(10)}`} scroll={false}>
+              <S.Title>
+                battery cathodes. He earned a BS in Mechanical Engineeringbattery battery cathodes. He earned a ....
+              </S.Title>
             </Lib.Link>
-          </div>
           <atom.TagWrapper>
             {tagList.map((tag, i) => (
-              <Lib.Tag key={i}>{tag}</Lib.Tag>
+              <Lib.Tag key={i} bg={true}>{tag}</Lib.Tag>
             ))}
           </atom.TagWrapper>
-        </BodyWrapper>
-        <FooterWrapper>
-          <Group>
-            <I.WatchIcon />
-            <p>(10)</p>
-          </Group>
-          <Group>
-            <I.ChatIcon />
-            <p>(10)</p>
-          </Group>
-        </FooterWrapper>
-      </div>
-    </ContentWrapper>
+        </S.BodyWrapper>
+        <S.FooterWrapper>
+					<S.Group>
+					<p>마감일자 : D-10</p> <S.Gap>|</S.Gap>
+            <p>작업금액 : 100000</p>
+					</S.Group>
+						<S.Group>
+						<I.WatchIcon style={{color: '#707070', fontSize:"20px", marginRight:"5px"}}/>
+                 ( 100 )
+						</S.Group>
+        </S.FooterWrapper>
+    </S.ContentWrapper>
   );
 };
 

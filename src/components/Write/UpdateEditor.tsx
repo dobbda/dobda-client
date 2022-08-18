@@ -61,16 +61,16 @@ const UpdateEditor = ({ oldData, category,setIsEdit }: Props) => {
     if (!(tags && mdStr && contentTitle && tags)) {
       return toast.error('입력 정보가 더 필요합니다', { autoClose: 1000 });
     }
-    if (category == 'request' && !coin) {
+    if (category == 'outsourcing' && !coin) {
       return toast.error('외주 요청은 코인이 필수 입니다', { autoClose: 1000 });
     }
 		if (coin <1000) return toast.error('최소 1,000 코인 부터입니다', { autoClose: 1000 });
-    if (category == 'request' && !deadline) {
+    if (category == 'outsourcing' && !deadline) {
       return toast.info('마감기한을 입력해주세요', { autoClose: 1000 });
     }
 
     if (category == 'question') onSubmitQuestion();
-    else if (category == 'request') onSubmitFeatureRequest();
+    else if (category == 'outsourcing') onSubmitFeatureRequest();
   }, [tags, mdStr, contentTitle, category, coin, deadline, onSubmitQuestion, onSubmitFeatureRequest]);
 
   return (
@@ -84,7 +84,7 @@ const UpdateEditor = ({ oldData, category,setIsEdit }: Props) => {
             </Label>
             <Select style={{ width: 140 }} defaultValue="question" disabled>
               <Select.Option value="question">질문하기</Select.Option>
-              <Select.Option value="request">기능요청</Select.Option>
+              <Select.Option value="outsourcing">기능요청</Select.Option>
             </Select>
           </Group>
           <Group>

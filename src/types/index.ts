@@ -81,10 +81,10 @@ export interface QuestionDetail extends Question {
 }
 
 ////////////////////////////////////////////////////////////////
-//// 						featureRequest 							     						////
+//// 						OutSourcing 							     							////
 ////////////////////////////////////////////////////////////////
 
-export interface FeatureRequest extends Question {
+export interface OutSource {
 	title: string,
 	watch: number,
 	coin: number,
@@ -96,7 +96,7 @@ export interface FeatureRequest extends Question {
 	deadeline: Date,
 }
 
-export interface ResFeatureRequest extends FeatureRequest, Default {
+export interface ResOutSource extends OutSource, Default {
   deadline: string,
   watch: number,
   author: Author, 
@@ -115,7 +115,7 @@ export interface UserProfile extends Default {
 
 
 export type InfinityProps = {
-  result: Question[] | FeatureRequest[];
+  result: Question[] | OutSource[];
   pageNum: number;
   isLast: boolean;
 };

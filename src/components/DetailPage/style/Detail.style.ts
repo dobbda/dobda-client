@@ -63,14 +63,6 @@ export const OnyUser = styled.div`
 		margin: 0 5px;
 	}
 `
-export const PostInfo = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	background-color: #fff;
-	border: solid 1px #ccc;
-	
-`
-
 export const ContentViewWrapper = styled.div`
   padding: 10px 20px;
   height: 100%;
@@ -120,14 +112,25 @@ export const SubmitBtn = styled(Button)`
   font-size: 16px;
   text-align: center;
   letter-spacing: -0.06em;
-
 `;
 
-export const CreatedAt = styled.span`
-  color: rgba(0, 0, 0, 0.4);
-  padding-top: 3px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-left: 10px;
-`;
 export const Title = styled.h1``;
+
+
+export const OutSourcingInfo = styled.div`
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	background-color: #0001;
+	border: 1px solid #C7C7C7;
+border-radius: 4px;
+	align-items: center;
+	padding:5px;
+	margin: 5px 30px;
+
+
+
+	@media screen and (max-width: 768px) {
+		margin: 5px 10px;
+	}
+`
