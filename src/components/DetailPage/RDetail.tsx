@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
 
-import { Tag } from '../common';
+import { atom, Tag, Button } from '../common';
 import * as S from './style/Detail.style';
 import { Avatar } from '../common';
-import {RComment } from './Comment/';
+import { RAnswer } from './Comment/';
 import getDate from 'src/lib/dateForm';
 
-import { CoinIcon } from 'src/assets/icons';
 import Question_icon from 'src/assets/icon/question.svg';
-import { Button } from 'antd';
-import styled from 'styled-components';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { QuestionDetail } from 'src/types';
 
 type Props = {
   children?: React.ReactElement; // commentComponent
-	data?: QuestionDetail
+  data?: QuestionDetail;
 };
 
 const QDetail = ({ children, data }: Props) => {
@@ -25,31 +22,18 @@ const QDetail = ({ children, data }: Props) => {
     <>
       <S.ContentWrapper>
         <S.ContentHeader>
-          {/* <S.CoinWrapper>
-                <CoinIcon />
-                <p>9999</p>
-              </S.CoinWrapper> */}
           <div className="detailInfo">
-            <div>
-              <Avatar nickname="Robot" url="https://joeschmoe.io/api/v1/asdf" />
-              <S.CoinWrapper>
-                <CoinIcon />
-                <p>9999</p>
-              </S.CoinWrapper>
-            </div>
-            <S.CreatedAt>{getDate('2001-09-28 03:00:00')}</S.CreatedAt>
+            <Avatar nickname={'Robot'} url="https://joeschmoe.io/api/v1/asdf" />
+            <atom.CreatedAt>{getDate('2001-09-28 03:00:00')}</atom.CreatedAt>
           </div>
           <Question_icon />
           <S.Title> apple system, BlinkMacSystemFont,Segoe UI,Roboto, Oxygen,Ubuntu, Canta</S.Title>
-          <S.TagWrapper>
-            {' '}
-            {/* map tags*/}
+          <atom.TagWrapper>
             <Tag bg={true}>python</Tag> <Tag bg={true}>java</Tag>
             <Tag bg={true}>java</Tag>
             <Tag bg={true}>java</Tag> <Tag bg={true}>matlab</Tag>
-          </S.TagWrapper>
+          </atom.TagWrapper>
         </S.ContentHeader>
-
         <S.ContentViewWrapper>
           <MarkDownViewer content={mdStr} />
         </S.ContentViewWrapper>
@@ -60,15 +44,25 @@ const QDetail = ({ children, data }: Props) => {
         <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
         <br />
         <br />
-
         <S.SubmitBtn>등록</S.SubmitBtn>
       </S.EditorWrapper>
 
+      <S.OutSourcingInfo>
+        <div  className="progress-message">
+					<div css={{color: "#a802d1", fontWeight: "bold", marginBottom: "5px"}}>[ 금액 : 100,000 ]</div>
+					<div css={{color: "#16bd00", fontWeight: "bold"}}>{"^*^ 프리랜서 선택전이니 자신을 어필해보세요 "}</div>
+				</div>
+        <div className="btn-group">
+          {/* <Button>취소하기</Button> */}
+          <Button types="cancel">취소하기</Button>
+        </div>
+      </S.OutSourcingInfo>
+
       <S.AnswerContainer>
-        <RComment acceped_answer={true} />
-        <RComment />
-        <RComment />
-        <RComment />
+        <RAnswer acceped_answer={true} />
+        <RAnswer />
+        <RAnswer />
+        <RAnswer />
       </S.AnswerContainer>
     </>
   );

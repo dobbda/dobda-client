@@ -11,7 +11,7 @@ const RequestDetailPage: NextPage = () => {
   const { title, qid } = router.query;
   return (
     <Layout>
-      {/* <RDetail data={questionDetail&&questionDetail}/> */}
+      <RDetail />
     </Layout>
   );
 };

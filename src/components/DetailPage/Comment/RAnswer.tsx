@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import Reply from './Comment';
 import { Editor, MarkDownViewer } from 'src/components/Editor';
-import { Avatar, CreatedAt } from 'src/components/common';
+import { atom, Avatar } from 'src/components/common';
 import getDate from 'src/lib/dateForm';
 
 import * as S from './style/style';
@@ -47,13 +47,14 @@ const RComment = (props: Props) => {
             2 <span onClick={() => setviewChild(!viewChild)}>{viewChild ? 'close' : 'show'}</span>
           </span>
         </div>
-        <CreatedAt> {getDate('2001-09-28 03:00:00')}</CreatedAt>
+        <atom.CreatedAt> {getDate('2001-09-28 03:00:00')}</atom.CreatedAt>
       </S.ChildView>
 
       {viewChild && (
         <>
-          <Reply></Reply>
-          <Reply></Reply>
+				<p>댓글</p>
+          {/* <Reply></Reply>
+          <Reply></Reply> */}
         </>
       )}
       <S.CommentEditor>
