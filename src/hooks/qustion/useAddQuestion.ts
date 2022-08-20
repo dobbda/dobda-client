@@ -4,7 +4,7 @@ import { keys } from '../queries/queryKeys';
 import produce from 'immer';
 
 // 요청량이 많으면 커스텀 업데이트, 페이지 단위일시 invalidate사용
-const useAddQuestionMutate = (mutationFn: any, qid?: number) => {
+const useAddQuestion = (mutationFn: any, qid?: number) => {
   const queryClient = useQueryClient();
   return useMutation((data: CreateQuestion) => mutationFn(data, qid ? qid : null), {
     onSuccess: async (newQuestion: Question) => {
@@ -45,4 +45,4 @@ const useAddQuestionMutate = (mutationFn: any, qid?: number) => {
   });
 };
 
-export default useAddQuestionMutate;
+export default useAddQuestion;

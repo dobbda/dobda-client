@@ -24,7 +24,7 @@ const RCard = ({ question }: Props) => {
         </S.Group>
       </S.HeaderWrapper>
         <S.BodyWrapper>
-            <Lib.Link href={`/outsourcing/${encodeURIComponent(10)}`} scroll={false}>
+            <Lib.Link href={`/outsource/${encodeURIComponent(10)}`} scroll={false}>
               <S.Title>
                 battery cathodes. He earned a BS in Mechanical Engineeringbattery battery cathodes. He earned a ....
               </S.Title>

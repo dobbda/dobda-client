@@ -5,11 +5,12 @@ export { useQueryCount} from './common/useQueryCount'
 
 export { useAuth} from './common/useAuth'
 export {useLogout} from './common/useLogout'
-export {useGetInfinityQ} from './common/useGetInfinityQ'
+export {useGetInfinity} from './common/useGetInfinity'
 
-export {default as useAddAnswerMutate} from './qustion/useAddAnswerMutate'
-export {default as useAddQuestionMutate} from './qustion/useAddQuestionMutate'
-export {default as useAddCommentMutate} from './qustion/useAddCommentMutate'
+export {default as useAddAnswerQ} from './qustion/useAddAnswerQ'
+export {default as useAddQuestion} from './qustion/useAddQuestion'
+export {default as useAddCommentQ} from './qustion/useAddCommentQ'
+
 export {useDelete} from './common/useDel'
 
 export {useInput} from './useInput'

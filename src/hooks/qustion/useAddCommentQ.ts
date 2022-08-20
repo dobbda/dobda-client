@@ -8,7 +8,7 @@ import produce from 'immer';
 import { useRouter } from 'next/router';
 import { useQueryCount } from '../common/useQueryCount';
 
-const useAddCommentMutate = (aid: number) => {
+const useAddCommentQ = (aid: number) => {
   const queryClient = useQueryClient();
   const router = useRouter();
   const { qid } = router.query;
@@ -29,4 +29,4 @@ const useAddCommentMutate = (aid: number) => {
   });
 };
 
-export default useAddCommentMutate;
+export default useAddCommentQ;

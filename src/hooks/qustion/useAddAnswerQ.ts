@@ -8,7 +8,7 @@ import { useQueryCount } from '../common/useQueryCount';
 
 
 //db query 요청량이 많으면 커스텀 업데이트, 페이지 단위는 invalidate사용
-const useAddAnswerMutate = (qid: number) => {
+const useAddAnswerQ = (qid: number) => {
   const queryClient = useQueryClient();
 	const {setCount, setInfCount} = useQueryCount()
   return useMutation((data: CreateAnswer) => q.addAnswer(data), {
@@ -32,4 +32,4 @@ const useAddAnswerMutate = (qid: number) => {
   });
 };
 
-export default useAddAnswerMutate;
+export default useAddAnswerQ;

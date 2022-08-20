@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useQuery, useQueryClient } from 'react-query';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useClientValue,useAddQuestionMutate, keys } from 'src/hooks';
+import { useClientValue,useAddQuestion, keys } from 'src/hooks';
 
 import { Editor } from 'src/components/Editor';
 import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.style';
@@ -28,7 +28,7 @@ const UpdateEditor = ({ oldData, category,setIsEdit }: Props) => {
   const [tags, setTags] = useState<string[]>(oldData?.tagNames.map((tags) => tags.name));
   const [mdStr, setMdStr] = React.useState<string>(oldData?.content);
   const [coin, setCoin] = useState(oldData?.coin);
-  const {mutate, isError, isSuccess, error} = useAddQuestionMutate(q.updateQuestion, oldData?.id);
+  const {mutate, isError, isSuccess, error} = useAddQuestion(q.updateQuestion, oldData?.id);
 
   const onCangeData: DatePickerProps['onChange'] = useCallback((date, dateString) => {
     setDeadline(dateString);
@@ -61,16 +61,16 @@ const UpdateEditor = ({ oldData, category,setIsEdit }: Props) => {
     if (!(tags && mdStr && contentTitle && tags)) {
       return toast.error('입력 정보가 더 필요합니다', { autoClose: 1000 });
     }
-    if (category == 'outsourcing' && !coin) {
+    if (category == 'outsource' && !coin) {
       return toast.error('외주 요청은 코인이 필수 입니다', { autoClose: 1000 });
     }
 		if (coin <1000) return toast.error('최소 1,000 코인 부터입니다', { autoClose: 1000 });
-    if (category == 'outsourcing' && !deadline) {
+    if (category == 'outsource' && !deadline) {
       return toast.info('마감기한을 입력해주세요', { autoClose: 1000 });
     }
 
     if (category == 'question') onSubmitQuestion();
-    else if (category == 'outsourcing') onSubmitFeatureRequest();
+    else if (category == 'outsource') onSubmitFeatureRequest();
   }, [tags, mdStr, contentTitle, category, coin, deadline, onSubmitQuestion, onSubmitFeatureRequest]);
 
   return (
@@ -84,7 +84,7 @@ const UpdateEditor = ({ oldData, category,setIsEdit }: Props) => {
             </Label>
             <Select style={{ width: 140 }} defaultValue="question" disabled>
               <Select.Option value="question">질문하기</Select.Option>
-              <Select.Option value="outsourcing">기능요청</Select.Option>
+              <Select.Option value="outsource">기능요청</Select.Option>
             </Select>
           </Group>
           <Group>

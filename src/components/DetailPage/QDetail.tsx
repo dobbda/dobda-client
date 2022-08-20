@@ -14,7 +14,7 @@ import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { QuestionDetail } from 'src/types';
 import { useQuery } from 'react-query';
 import { q } from 'src/api';
-import {keys, useAddAnswerMutate, useAuth, useDelete} from 'src/hooks';
+import {keys, useAddAnswerQ, useAuth, useDelete} from 'src/hooks';
 import { UpdateEditor } from '../Write';
 import { Button } from 'antd';
 import { useRouter } from 'next/router';
@@ -33,7 +33,7 @@ const QDetail = ({ children, data }: Props) => {
   });
 
 	const {mutate:delMutate, isSuccess:delSuccess} = useDelete(data?.id, keys.questions())
-  const { isError, data: addAnswerRes, isLoading, mutate, isSuccess } = useAddAnswerMutate(data?.id);
+  const { isError, data: addAnswerRes, isLoading, mutate, isSuccess } = useAddAnswerQ(data?.id);
 
   const onSubmitAnswer = useCallback(() => {
     const answerData = { content: mdStr, qid: data.id };

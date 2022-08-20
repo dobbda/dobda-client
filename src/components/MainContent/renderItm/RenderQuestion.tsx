@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useGetInfinityQ, keys } from 'src/hooks';
+import { useGetInfinity, keys } from 'src/hooks';
 import { useInView } from 'react-intersection-observer';
 import QCard from '../../Card/QCard';
 import styled from 'styled-components';
 import { q } from 'src/api';
+import { Question } from 'src/types';
 
 function RenderQuestion() {
   const [shearchTitle, setShearchTitle] = useState<string>();
   const [shearchTag, setShearchTag] = useState<string>();
-  const { data, fetchNextPage, hasNextPage, isSuccess } = useGetInfinityQ({
-    title: shearchTitle,
-    tag: shearchTag,
+  const { data, fetchNextPage, hasNextPage, isSuccess } = useGetInfinity({
     fetch: q.getInfinityQ,
+		queryKey: keys.questions()
   });
 
   const [ref, isView] = useInView();
@@ -21,12 +21,12 @@ function RenderQuestion() {
       fetchNextPage();
     }
   }, [isView, data, hasNextPage, fetchNextPage]);
-
+	console.log(data)
   return (
     <ContentCardList>
       {isSuccess && data?.pages
         ? data.pages.map((page) => {
-            const question = page.result;
+            const question = page.result as Question[];
             return question?.map((q, index) => {
               if (index == question.length - 1) {
                 return (

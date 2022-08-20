@@ -11,7 +11,7 @@ import { PenIcon } from 'src/assets/icons';
 import styled from 'styled-components';
 import RenderQuestion from './renderItm/RenderQuestion';
 import {Categories, CategoryList,CategoriesType} from 'src/lib/utils/category'
-import RenderFeatureRequest from './renderItm/RenderRequest';
+import RenderFeatureRequest from './renderItm/RenderOutSource';
 
 
 interface Props {
@@ -45,8 +45,8 @@ const MainContent = ({ children }: Props) => {
         </div>
       </section>
       <section className="card-content">
-        {<RenderFeatureRequest />}
-        {/* {<RenderQuestion />} */}
+        {/* {<RenderFeatureRequest />} */}
+        {<RenderQuestion />}
       </section>
     </Main>
   );

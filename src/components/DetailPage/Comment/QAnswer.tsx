@@ -12,7 +12,7 @@ import { SubmitBtn } from '../style/Detail.style';
 import { Answer } from 'src/types';
 import { useQuery } from 'react-query';
 import { q } from 'src/api';
-import { keys, useAddCommentMutate, useDelete } from 'src/hooks';
+import { keys, useAddCommentQ, useDelete } from 'src/hooks';
 import { Button, Popover } from 'antd';
 type Props = {
   data: Answer;
@@ -26,7 +26,7 @@ const QComment = ({ data }: Props) => {
     enabled: data.commentsCount > 0 && viewChild,
   });
 
-  const { mutate, isLoading, isSuccess } = useAddCommentMutate(data?.id);
+  const { mutate, isLoading, isSuccess } = useAddCommentQ(data?.id);
   const { mutate: delMute } = useDelete(data?.id, keys.answers(data?.questionId));
 
   const onSubmitComment = useCallback(() => {
