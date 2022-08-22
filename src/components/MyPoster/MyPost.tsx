@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { CategoriesEvent } from '../../lib/categoryHover';
 import { Wrapper } from './style/MyPost.style';
 import QCard from '../Card/QCard';
-import RCard from '../Card/RCard';
+import OCard from '../Card/OCard';
 
 interface Props {
   children?: React.ReactNode;
@@ -21,9 +21,9 @@ const MyPost = ({ children }: Props) => {
       <h1>내 작성글</h1>
 
       <ul className="my-content">
+          {/* <QCard />
           <QCard />
-          <QCard />
-          <RCard />
+          <RCard /> */}
       </ul>
     </Wrapper>
   );

@@ -11,6 +11,10 @@ export {default as useAddAnswerQ} from './qustion/useAddAnswerQ'
 export {default as useAddQuestion} from './qustion/useAddQuestion'
 export {default as useAddCommentQ} from './qustion/useAddCommentQ'
 
+export {default as useAddAnswerO} from './outsource/useAddAnswerO'
+export {default as useAddOutsource} from './outsource/useAddOutsource'
+export {default as useAddCommentO} from './outsource/useAddCommentO'
+
 export {useDelete} from './common/useDel'
 
 export {useInput} from './useInput'

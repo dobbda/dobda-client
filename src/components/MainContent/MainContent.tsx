@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useQuery } from 'react-query';
 
-import { CategoriesEvent } from '../../lib/categoryHover';
 import { Main } from './style/MainContent.style';
 import SearchBox from './atom/SearchBox';
 import QCard from '../Card/QCard';
-import RCard from '../Card/RCard';
+import RCard from '../Card/OCard';
 import { PenIcon } from 'src/assets/icons';
 import styled from 'styled-components';
-import RenderQuestion from './renderItm/RenderQuestion';
 import {Categories, CategoryList,CategoriesType} from 'src/lib/utils/category'
 import RenderFeatureRequest from './renderItm/RenderOutSource';
+import RenderQuestion from './renderItm/RenderQuestion';
 
 
 interface Props {
@@ -45,8 +44,8 @@ const MainContent = ({ children }: Props) => {
         </div>
       </section>
       <section className="card-content">
-        {/* {<RenderFeatureRequest />} */}
-        {<RenderQuestion />}
+        {<RenderFeatureRequest />}
+        {/* {<RenderQuestion />} */}
       </section>
     </Main>
   );

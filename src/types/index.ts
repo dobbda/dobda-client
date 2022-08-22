@@ -5,6 +5,9 @@ export interface Author {
   email?: string;
 }
 
+////////////////////////////////////////////////////////////////
+//// 								common 															////
+////////////////////////////////////////////////////////////////
 export interface Default {
   id: number;
   createdAt: Date;
@@ -89,7 +92,7 @@ export interface CreateOutsource {
   content: string;
   coin: number;
   tagNames: string[];
-	deadline: string;
+  deadline: string;
 }
 
 export interface Outsource extends Default {
@@ -101,7 +104,7 @@ export interface Outsource extends Default {
   author: Author;
   answersCount: number;
   tagNames: Tags[];
-  deadeline: Date;
+  deadline: string;
 }
 
 export interface OutsourceDetail extends Question {
@@ -123,11 +126,16 @@ export interface UserProfile extends Default {
   score: 0;
   skill: string[];
   description: string;
-	outsourceCount: 0;
-	questionCount: 0;
-	accepteRate: 0;
+  outsourceCount: 0;
+  questionCount: 0;
+  accepteRate: 0;
 }
 
+
+
+////////////////////////////////////////////////////////////////
+//// 						card InfinityProps 							     							////
+////////////////////////////////////////////////////////////////
 export type InfinityProps<T> = {
   result: T;
   pageNum: number;

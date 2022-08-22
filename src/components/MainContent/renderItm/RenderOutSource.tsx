@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useGetInfinity, keys } from 'src/hooks';
 import { useInView } from 'react-intersection-observer';
-import QCard from '../../Card/QCard';
+import OCard from '../../Card/OCard';
 import styled from 'styled-components';
-import { q } from 'src/api';
-import { InfinityProps, Question } from 'src/types';
+import { o } from 'src/api';
+import { InfinityProps, Outsource } from 'src/types';
 
-function RenderQuestion() {
+function RenderOutsource() {
   const [shearchTitle, setShearchTitle] = useState<string>();
   const [shearchTag, setShearchTag] = useState<string>();
-  const { data, fetchNextPage, hasNextPage, isSuccess } = useGetInfinity<InfinityProps<Question[]>>({
-    fetch: q.getInfinity,
-		queryKey: keys.questions()
+  const { data, fetchNextPage, hasNextPage, isSuccess } = useGetInfinity<InfinityProps<Outsource[]>>({
+    fetch: o.getInfinity,
+		queryKey: keys.outsources()
   });
 
   const [ref, isView] = useInView();
@@ -20,23 +20,21 @@ function RenderQuestion() {
     if (isView && hasNextPage) {
       fetchNextPage();
     }
-	console.log(data)
-
   }, [isView, data, hasNextPage, fetchNextPage]);
   return (
     <ContentCardList>
       {isSuccess && data?.pages
         ? data.pages.map((page) => {
-            const question = page.result;
-            return question?.map((q, index) => {
-              if (index == question.length - 1) {
+            const data = page.result;
+            return data?.map((o, index) => {
+              if (index == data.length - 1) {
                 return (
-                  <RefCard ref={ref} key={"question"+q.id}>
-                    <QCard data={q} />
+                  <RefCard ref={ref} key={"outsourcing"+o.id}>
+                    <OCard data={o} />
                   </RefCard>
                 );
               }
-              return <QCard key={q.id} data={q} />;
+              return <OCard key={o.id} data={o} />;
             });
           })
         : null}
@@ -44,7 +42,7 @@ function RenderQuestion() {
   );
 }
 
-export default RenderQuestion;
+export default RenderOutsource;
 
 const ContentCardList = styled.div`
   width: 100%;

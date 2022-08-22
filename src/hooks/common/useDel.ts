@@ -9,7 +9,9 @@ import { useQueryCount } from './useQueryCount';
 export const useDelete = (id:number,queryKey:QueryKey)=> {
 	const queryClient = useQueryClient();
 	return useMutation((fetch:MutationFunction<unknown, any> ) => fetch(id),{
+		
 		onSuccess: (res:any) => {
+			
 			if(res.success){
 				queryClient.cancelQueries(queryKey);
 				const oldData = queryClient.getQueryData(queryKey)
@@ -18,10 +20,10 @@ export const useDelete = (id:number,queryKey:QueryKey)=> {
 				}
 			}
 		},
-		onError:()=> {
-			const mutationCache = queryClient.getMutationCache();
-			// mutationCache.clear();
-		}
+		onError:(error: AxiosError) => {
+			queryClient.setQueryData("serverErrorMessage", error.response.data.error.message)
+			},
+
 	})
 }
 

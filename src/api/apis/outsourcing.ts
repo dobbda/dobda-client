@@ -1,13 +1,12 @@
-import { QuestionDetail, Answer, Comment, CreateAnswer } from 'src/types/index';
-import { InfinityProps, CreateQuestion, Question } from 'src/types/index';
+import { OutsourceDetail, Answer, Comment, CreateAnswer } from 'src/types/index';
+import { InfinityProps, CreateOutsource, Outsource } from 'src/types/index';
 import axios, { AxiosResponse } from "axios";
 
 
 
 // 질문글 전체조회 infinity
-export const getInfinity = async (pageParam:number=1, title?: string): Promise<InfinityProps<Question>> => {
-	console.log( pageParam)
-	const res = await axios.get(`/api/questions?page=${pageParam && pageParam}&title=${title && title}`);
+export const getInfinity = async (pageParam=1, title?: string): Promise<InfinityProps<Outsource>> => {
+	const res = await axios.get(`/api/feature-request?page=${pageParam && pageParam}&title=${title && title}`);
 	if (!res.data.success) return null;
 	return {
 		result: res.data.response.result,
@@ -17,19 +16,19 @@ export const getInfinity = async (pageParam:number=1, title?: string): Promise<I
 };
 
 //질문글 상세조회
-export const questionDetail = async<T>(id:number) : Promise<T> => {
-	return (await axios.get(`/api/questions/${id}`)).data?.response.question
+export const outsourceDetail = async<T>(id:number) : Promise<T> => {
+	return (await axios.get(`/api/feature-request/${id}`)).data?.response.outSourcing
 	// .catch(err=>console.log("axios error: " + err))
 };
 
-export const addQuestion = async (question: CreateQuestion, qid?:number): Promise<Question> => {
-	return (await axios.post('/api/questions',question)).data.response
+export const addOutsource = async (question: CreateOutsource, qid?:number): Promise<Outsource> => {
+	return (await axios.post('/api/feature-request',question)).data.response
 }
-export const updateQuestion = async(data:CreateQuestion, id:number, ):Promise<Question> => {
-	return (await axios.patch(`/api/questions/${id}`, data)).data.response
+export const updateOutsource = async(data:CreateOutsource, id:number, ):Promise<Outsource> => {
+	return (await axios.patch(`/api/feature-request/${id}`, data)).data.response
 };
-export const delQuestion = async<T>(id:number) : Promise<T> => {
-	return (await axios.delete(`/api/questions/${id}`)).data
+export const delOutsource = async<T>(id:number) : Promise<T> => {
+	return (await axios.delete(`/api/feature-request/${id}`)).data
 };
 
 

@@ -32,9 +32,8 @@ const QDetail = ({ children, data }: Props) => {
     enabled: data?.answersCount > 0,
   });
 
-	const {mutate:delMutate, isSuccess:delSuccess} = useDelete(data?.id, keys.questions())
-  const { isError, data: addAnswerRes, isLoading, mutate, isSuccess } = useAddAnswerQ(data?.id);
-
+	const {mutate:delMutate, isSuccess:delIsSuccess, isError:dellIsError, error:delError} = useDelete(data?.id, keys.questions())
+  const { error:addError, isError:addIsError, data: addAnswerRes, isLoading, mutate, isSuccess } = useAddAnswerQ(data?.id);
   const onSubmitAnswer = useCallback(() => {
     const answerData = { content: mdStr, qid: data.id };
     mutate(answerData);
@@ -45,10 +44,14 @@ const QDetail = ({ children, data }: Props) => {
       toast.success('답변이 등록되었습니다.', { autoClose: 1000 });
       setMdStr('');
     }
-		if (delSuccess) {
+		if (delIsSuccess) {
 			router.push('/')
     }
-  }, [isError, isSuccess,delSuccess, router]);
+		if(addError || delError){
+      dellIsError&&toast.error(delError?.response?.data?.error?.message, { autoClose: 1000 });
+		}
+		console.log(dellIsError, addIsError)
+  }, [addError, delError,isSuccess,delIsSuccess, router, dellIsError, addIsError]);
 
   return (
     <S.DetailContainer>
