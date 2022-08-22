@@ -26,7 +26,7 @@ const OCard = ({ data }: Props) => {
         </S.Group>
       </S.HeaderWrapper>
         <S.BodyWrapper>
-            <Lib.Link href={`/outsource/${encodeURIComponent(10)}`} scroll={false}>
+            <Lib.Link href={`/outsource/${data.id}`} scroll={false}>
               <S.Title>
                 {data.title}
               </S.Title>

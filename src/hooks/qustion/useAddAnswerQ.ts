@@ -26,8 +26,9 @@ const useAddAnswerQ = (qid: number) => {
       }
     },
 
-    onError: (error) => {
-      console.log('onError: ', error);
+    onError: (error:AxiosError) => {
+			queryClient.setQueryData("serverErrorMessage", error.response.data.error.message);
+
     },
   });
 };

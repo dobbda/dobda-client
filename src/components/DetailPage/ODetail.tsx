@@ -3,13 +3,15 @@ import React, { useState } from 'react';
 import { atom, Tag, Button } from '../common';
 import * as S from './style/Detail.style';
 import { Avatar } from '../common';
-import { RAnswer } from './Comment/';
+import { RAnswer } from './Comment';
 import getDate from 'src/lib/dateForm';
 
 import Question_icon from 'src/assets/icon/question.svg';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { QuestionDetail } from 'src/types';
+import { keys, useDelete } from 'src/hooks';
+import { q } from 'src/api';
 
 type Props = {
   children?: React.ReactElement; // commentComponent
@@ -18,6 +20,10 @@ type Props = {
 
 const QDetail = ({ children, data }: Props) => {
   const [mdStr, setMdStr] = useState('');
+  const [isEdit, setIsEdit] = useState(false);
+
+  const del = useDelete(data?.id, keys.questions());
+
   return (
     <>
       <S.ContentWrapper>
@@ -33,6 +39,15 @@ const QDetail = ({ children, data }: Props) => {
             <Tag bg={true}>java</Tag>
             <Tag bg={true}>java</Tag> <Tag bg={true}>matlab</Tag>
           </atom.TagWrapper>
+
+					<S.OnyUser className="only-author">
+                <Button onClick={() => setIsEdit(true)} type="primary" ghost>
+                  수정
+                </Button>
+                <Button onClick={() => del.mutate(q.delQuestion)} type="primary" danger ghost>
+                  삭제
+                </Button>{' '}
+              </S.OnyUser>
         </S.ContentHeader>
         <S.ContentViewWrapper>
           <MarkDownViewer content={mdStr} />

@@ -21,7 +21,9 @@ export const useDelete = (id:number,queryKey:QueryKey)=> {
 			}
 		},
 		onError:(error: AxiosError) => {
-			queryClient.setQueryData("serverErrorMessage", error.response.data.error.message)
+			console.log("serverErrorMessage", error.response?.data)
+			queryClient.invalidateQueries("serverErrorMessage")
+			queryClient.setQueryData("serverErrorMessage", error?.response?.data?.error?.message)
 			},
 
 	})

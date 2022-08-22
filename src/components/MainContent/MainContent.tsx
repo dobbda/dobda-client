@@ -21,7 +21,7 @@ const MainContent = ({ children }: Props) => {
 	const [select, setSelect] = useState<CategoriesType>(CategoryList[0])
   return (
     <Main>
-      <section>
+      <section >
         <div className="search-wrapper">
           <SearchBox />
         </div>

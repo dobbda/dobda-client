@@ -11,7 +11,7 @@ function RenderQuestion() {
   const [shearchTag, setShearchTag] = useState<string>();
   const { data, fetchNextPage, hasNextPage, isSuccess } = useGetInfinity<InfinityProps<Question[]>>({
     fetch: q.getInfinity,
-		queryKey: keys.questions()
+    queryKey: keys.questions(),
   });
 
   const [ref, isView] = useInView();
@@ -20,8 +20,6 @@ function RenderQuestion() {
     if (isView && hasNextPage) {
       fetchNextPage();
     }
-	console.log(data)
-
   }, [isView, data, hasNextPage, fetchNextPage]);
   return (
     <ContentCardList>
@@ -31,12 +29,16 @@ function RenderQuestion() {
             return question?.map((q, index) => {
               if (index == question.length - 1) {
                 return (
-                  <RefCard ref={ref} key={"question"+q.id}>
+                  <RefCard ref={ref} key={q.id}>
                     <QCard data={q} />
                   </RefCard>
                 );
               }
-              return <QCard key={q.id} data={q} />;
+              return (
+                <RefCard key={q.id}>
+                  <QCard data={q} />
+                </RefCard>
+              );
             });
           })
         : null}

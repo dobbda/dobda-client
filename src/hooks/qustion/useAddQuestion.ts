@@ -61,7 +61,9 @@ const useAddQuestion = (mutationFn: any, qid?: number) => {
       }
     },
 
-    onError: (error: AxiosError) => {},
+    onError: (error: AxiosError) => {
+			queryClient.setQueryData("serverErrorMessage", error.response.data.error.message);
+		},
   });
 };
 
