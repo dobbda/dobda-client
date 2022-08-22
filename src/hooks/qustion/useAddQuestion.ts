@@ -2,6 +2,7 @@ import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
 import { CreateQuestion, Question } from 'src/types';
 import { keys } from '../queries/queryKeys';
 import produce from 'immer';
+import { AxiosError } from 'axios';
 
 // 요청량이 많으면 커스텀 업데이트, 페이지 단위일시 invalidate사용
 const useAddQuestion = (mutationFn: any, qid?: number) => {
@@ -10,8 +11,10 @@ const useAddQuestion = (mutationFn: any, qid?: number) => {
     onSuccess: async (newQuestion: Question) => {
       queryClient.cancelQueries([keys.questions()]);
       const oldData = queryClient.getQueryData(keys.questions());
-      const oldDetail = queryClient.getQueryData(keys.qDetail(newQuestion.id));
+
+      // 메인페이지에 새로 추가
       if (oldData) {
+        // post
         queryClient.setQueryData(keys.questions(), (oldData: any) => {
           if (newQuestion.createdAt === newQuestion.updatedAt) {
             const updatedData = produce(oldData, (draft: any) => {
@@ -33,15 +36,32 @@ const useAddQuestion = (mutationFn: any, qid?: number) => {
           }
         });
       }
-      if (oldDetail) {//수정시 상세페이지 업데이트
+
+      // patch
+      if (qid) {
+        // infinityQuery data 커스텀 업데이트
+
         queryClient.cancelQueries(keys.qDetail(newQuestion.id));
         queryClient.invalidateQueries(keys.qDetail(newQuestion.id));
+
+        queryClient.setQueryData(keys.questions(), (oldData: any) => {
+          if (oldData) {
+            const updatedData = produce(oldData, (draft: any) => {
+              draft.pages.map((pages: any) =>
+                pages.result.map((page: any) => {
+                  if (page.id === qid) return (page = { ...newQuestion });
+                  return page;
+                }),
+              );
+            });
+
+            return updatedData;
+          }
+        });
       }
     },
 
-    onError: (a, b, c) => {
-      console.log(a, b, c);
-    },
+    onError: (error: AxiosError) => {},
   });
 };
 

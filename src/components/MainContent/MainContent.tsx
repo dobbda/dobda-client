@@ -44,8 +44,8 @@ const MainContent = ({ children }: Props) => {
         </div>
       </section>
       <section className="card-content">
-        {<RenderFeatureRequest />}
-        {/* {<RenderQuestion />} */}
+        {/* {<RenderFeatureRequest />} */}
+        {<RenderQuestion />}
       </section>
     </Main>
   );
