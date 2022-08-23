@@ -17,7 +17,7 @@ export const getInfinity = async (pageParam=1, title?: string): Promise<Infinity
 
 //질문글 상세조회
 export const outsourceDetail = async<T>(id:number) : Promise<T> => {
-	return (await axios.get(`/api/feature-request/${id}`)).data?.response.outSourcing
+	return (await axios.get(`/api/feature-request/${id}`)).data?.response
 	// .catch(err=>console.log("axios error: " + err))
 };
 
@@ -30,7 +30,6 @@ export const updateOutsource = async(data:CreateOutsource, id:number, ):Promise<
 export const delOutsource = async<T>(id:number) : Promise<T> => {
 	return (await axios.delete(`/api/feature-request/${id}`)).data
 };
-
 
 // 답변
 export const addAnswer = async(data:CreateAnswer) : Promise<AxiosResponse> => {

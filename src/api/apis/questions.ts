@@ -18,7 +18,7 @@ export const getInfinity = async (pageParam:number=1, title?: string): Promise<I
 
 //질문글 상세조회
 export const questionDetail = async<T>(id:number) : Promise<T> => {
-	return (await axios.get(`/api/questions/${id}`)).data?.response.question
+	return (await axios.get(`/api/questions/${id}`)).data?.response
 	// .catch(err=>console.log("axios error: " + err))
 };
 

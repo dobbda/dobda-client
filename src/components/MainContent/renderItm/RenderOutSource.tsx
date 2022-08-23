@@ -20,7 +20,7 @@ function RenderOutsource() {
     if (isView && hasNextPage) {
       fetchNextPage();
     }
-  }, [isView, data, hasNextPage, fetchNextPage]);
+  }, [isView, hasNextPage, fetchNextPage]);
   return (
     <ContentCardList>
       {isSuccess && data?.pages

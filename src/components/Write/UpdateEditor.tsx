@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useQuery, useQueryClient } from 'react-query';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useClientValue, useAddQuestion, keys } from 'src/hooks';
+import { useClientValue, useAddQuestion, keys, useAddOutsource } from 'src/hooks';
 
 import { Editor } from 'src/components/Editor';
 import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.style';
@@ -11,49 +11,43 @@ import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag } from 'ant
 
 import { Hashtags } from './atom/Hashtags';
 import { atom, Link } from '../common';
-import { CreateQuestion, Question, QuestionDetail } from 'src/types';
-import { q } from 'src/api';
+import { CreateOutsource, CreateQuestion, OutsourceDetail, Question, QuestionDetail } from 'src/types';
+import { o, q } from 'src/api';
 import { CoinView } from './atom/CoinView';
+import moment from 'moment';
 
-type Props = {
-  oldData: QuestionDetail;
+interface Props {
+  oldData: OutsourceDetail;
   setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
   category: string;
 };
 
 const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
   const queryClient = useQueryClient();
-  const [deadline, setDeadline] = useState<string | null>();
+  const [deadline, setDeadline] = useState<string|null>(oldData?.deadline ? oldData?.deadline : null);
   const [contentTitle, setContentTitle] = useState<string>(oldData?.title);
-  const [tags, setTags] = useState<string[]>(oldData?.tagNames.map((tags) => tags.name));
+  const [tags, setTags] = useState<string[]>(oldData?.tagNames.map((tags:any) => tags.name));
   const [mdStr, setMdStr] = React.useState<string>(oldData?.content);
   const [coin, setCoin] = useState(oldData?.coin);
 
-  const editQuestion = useAddQuestion(q.updateQuestion, oldData?.id);
+  const editQuestion = useAddQuestion( q.updateQuestion , oldData?.id) 
+	const editOutsource = useAddOutsource(o.updateOutsource, oldData?.id) 
 
   const onCangeData: DatePickerProps['onChange'] = useCallback((date, dateString) => {
     setDeadline(dateString);
   }, []);
+	console.log(category)
 
-  const onSubmitQuestion = useCallback(() => {
-    const data: CreateQuestion = {
+  const onSubmit = useCallback(() => {
+    const data: CreateQuestion|CreateOutsource = {
       title: contentTitle,
       content: mdStr,
       tagNames: tags,
       coin: coin,
+			deadline: deadline
     };
-    editQuestion.mutate(data);
-  }, [contentTitle, mdStr, tags, coin, editQuestion]);
-
-  const onSubmitFeatureRequest = useCallback(() => {
-    const data: CreateQuestion = {
-      title: contentTitle,
-      content: mdStr,
-      tagNames: tags,
-      coin: coin,
-    };
-    editQuestion.mutate(data);
-  }, [contentTitle, mdStr, tags, coin, editQuestion]);
+    category=="question" ?  editQuestion.mutate(data): editOutsource.mutate(data)
+  }, [contentTitle, mdStr, tags, coin, deadline, category, editQuestion, editOutsource]);
 
   useEffect(() => {
     if (editQuestion.isSuccess) setIsEdit(false);
@@ -77,9 +71,8 @@ const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
       return toast.info('마감기한을 입력해주세요', { autoClose: 1000 });
     }
 
-    if (category == 'question') onSubmitQuestion();
-    else if (category == 'outsource') onSubmitFeatureRequest();
-  }, [tags, mdStr, contentTitle, category, coin, deadline, onSubmitQuestion, onSubmitFeatureRequest]);
+		onSubmit();
+  }, [tags, mdStr, contentTitle, category, coin, deadline, onSubmit]);
 
   return (
     <Write_Wrapper>
@@ -97,7 +90,7 @@ const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
           </Group>
           <Group>
             <Label>마감기한</Label>
-            <DatePicker onChange={onCangeData} placeholder="마감기한" />
+            <DatePicker defaultValue={moment(oldData.deadline)} onChange={onCangeData} placeholder="마감기한"  disabledDate={(e)=>e.valueOf() < Date.now()}/>
           </Group>{' '}
         </div>
         <br />

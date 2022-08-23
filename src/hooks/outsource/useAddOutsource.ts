@@ -8,7 +8,7 @@ import { AxiosError } from 'axios';
 // 요청량이 많으면 커스텀 업데이트, 페이지 단위일시 invalidate사용
 const useAddOutsource = (mutationFn: any, qid?: number) => {
   const queryClient = useQueryClient();
-  return useMutation((data: CreateOutsource) => mutationFn(data, qid ? qid : null), {
+  return useMutation((data: CreateOutsource) => mutationFn(data, qid ? qid : null), { //qid가 있을시 수정, 없을시 생성
 		
     onSuccess: async (newOutsource: Outsource) => {
       queryClient.cancelQueries([keys.outsources()]);

@@ -53,6 +53,7 @@ export interface Comment extends Default {
 
 export type Tags = {
   name: string;
+	id: number;
 };
 
 ////////////////////////////////////////////////////////////////
@@ -104,10 +105,10 @@ export interface Outsource extends Default {
   author: Author;
   answersCount: number;
   tagNames: Tags[];
-  deadline: string;
+  deadline?: string;
 }
 
-export interface OutsourceDetail extends Question {
+export interface OutsourceDetail extends Outsource {
   content: string;
 }
 

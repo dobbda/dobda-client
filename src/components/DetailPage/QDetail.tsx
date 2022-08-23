@@ -63,9 +63,11 @@ const QDetail = ({ children, data }: Props) => {
 
   return (
     <S.DetailContainer>
-      {isEdit ? (
+      {isEdit&&data
+			? (
         <UpdateEditor oldData={data} category="question" setIsEdit={setIsEdit} />
-      ) : (
+      	) 
+			: (
         <>
           <S.ContentWrapper>
             <S.ContentHeader>

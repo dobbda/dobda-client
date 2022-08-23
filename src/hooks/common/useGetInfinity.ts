@@ -1,10 +1,4 @@
-import * as React from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
 import { InfiniteData, QueryKey, useInfiniteQuery, UseInfiniteQueryResult } from 'react-query';
-import { q } from 'src/api';
-import { InfinityProps, Question } from 'src/types';
-import { keys } from '../queries/queryKeys';
 
 
 type Props = {
