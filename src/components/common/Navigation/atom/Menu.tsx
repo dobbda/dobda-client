@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Div, Label, CheckBox, ChildMenu, Icon } from './style/Menu.style';
 import { Link } from 'src/components/common';
 import UpIcon from 'src/assets/icon/upDown.svg';
-import { ArrowIcon } from 'src/assets/icons';
+import { ArrowIcon,MainArrowIcon } from 'src/assets/icons';
 import styled from 'styled-components';
 
 type Props = {
@@ -32,7 +32,7 @@ export const Menu = ({ children, icon, childMenu, href, childOpen = false }: Rea
       <Label htmlFor={childMenu}>
         <h1>{children}</h1>
         {childMenu && ( // whether to display the up-down icon or not
-          <ArrowIcon className="rotate" />
+          <MainArrowIcon className="rotate" />
         )}
       </Label>
 

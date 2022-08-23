@@ -15,13 +15,19 @@ export {TbBellPlus as AddBellIcon} from 'react-icons/tb';
 export {RiKakaoTalkFill as KakaoIcon} from 'react-icons/ri';
 export {FaPen as PenIcon} from 'react-icons/fa';
 export {AiOutlineSearch as SearchIcon} from 'react-icons/ai';
-export {FaUserAlt as UserIcon} from 'react-icons/fa';
+export {AiOutlineUser as UserIcon} from 'react-icons/ai';
 export {AiFillNotification as NoticeIcon} from 'react-icons/ai';
 export {IoIosNotifications as BellIcon} from 'react-icons/io';
 export {ImNotification as RuleIcon} from 'react-icons/im';
 export {GrMoreVertical as MoreIcon} from 'react-icons/gr';
 export {BsBookmark as BookmarkIcon} from 'react-icons/bs';
+// export {RiArrowDownSLine as MainArrowIcon} from 'react-icons/ri';
 // export {AiFillBell as BellIcon} from 'react-icons/ai';
+
+import {RiArrowDownSLine} from 'react-icons/ri';
+export const MainArrowIcon = styled(RiArrowDownSLine)`
+	transform: rotate(-180deg);
+`
 
 import {MdPlayArrow} from 'react-icons/md';
 export const ArrowIcon = styled(MdPlayArrow)`

@@ -30,7 +30,7 @@ export const Wrapper = styled.div`
   position: relative;
 	height: 100%;
   padding: 0;
-  margin: 0;
+  margin: 0 15px;
 `;
 
 export const MainWrapper = styled.div`
