@@ -10,10 +10,11 @@ import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag } from 'ant
 
 import { Hashtags } from './atom/Hashtags';
 import { atom, Link } from '../common';
-import {useAddQuestionMutate} from 'src/hooks';
-import { CreateQuestion } from 'src/types';
+import {useAddOutsource, useAddQuestion} from 'src/hooks';
+import { CreateOutsource, CreateQuestion } from 'src/types';
 import {CoinView} from "./atom/CoinView"
 import { q } from 'src/api';
+import { o } from 'src/api';
 type Props = {};
 const Write = () => {
   const queryClient = useQueryClient();
@@ -25,7 +26,8 @@ const Write = () => {
   const [mdStr, setMdStr] = React.useState<string>('');
   const [coin, setCoin] = useState(0)
 	
-	const addQuestion = useAddQuestionMutate(q.addQuestion)
+	const addQuestion = useAddQuestion(q.addQuestion)
+	const addOutsource = useAddOutsource(o.addOutsource)
   const onChangeCagegory = useCallback((v: string) => {
     setCategorie(v);
   }, []);
@@ -34,37 +36,27 @@ const Write = () => {
     setDeadline(dateString);
   }, []);
 
-	const onSubmitQuestion = useCallback(() => {
-		const data:CreateQuestion = {
+	const onSubmit = useCallback(() => {
+		const data:CreateQuestion|CreateOutsource = {
 			title: contentTitle,
 			content: mdStr,
 			tagNames: tags,
 			coin: coin,
+			deadline
 		}
-		addQuestion.mutate(data)
-	},[addQuestion, coin, contentTitle, mdStr, tags]);
-
-
-	const onSubmitFeatureRequest = useCallback(() => {
-		const data:CreateQuestion = {
-			title: contentTitle,
-			content: mdStr,
-			tagNames: tags,
-			coin: coin,
-		}
-		addQuestion.mutate(data)
-	},[addQuestion, coin, contentTitle, mdStr, tags])
-
+		
+		if(categorie=="question") addQuestion.mutate(data)
+		if(categorie=="outsource") addOutsource.mutate(data)
+	},[contentTitle, mdStr, tags, coin, deadline, categorie, addQuestion, addOutsource]);
 
 	const onSubmitCheck = useCallback(() => {
 		if(!categorie) return  toast.info("카테고리를 선택해주세요",{autoClose: 1000,})
 		if(!(tags&&mdStr&&contentTitle&&tags)) {return toast.error("입력 정보가 더 필요합니다",{autoClose: 1000,})}
-		if(categorie=="outsourcing"&& !coin){return  toast.error("외주 요청은 코인이 필수 입니다",{autoClose: 1000,})}
-		if(categorie=="outsourcing"&& !deadline){return  toast.info("마감기한을 입력해주세요",{autoClose: 1000,})}
-
-		if(categorie=="question") onSubmitQuestion()
-		else if(categorie=="outsourcing") onSubmitFeatureRequest()
-	},[tags, mdStr, contentTitle, categorie, coin, deadline, onSubmitQuestion, onSubmitFeatureRequest])
+		if(categorie=="outsource"&& !coin){return  toast.error("외주 요청은 코인이 필수 입니다",{autoClose: 1000,})}
+		if(categorie=="outsource"&& !deadline){return  toast.info("마감기한을 입력해주세요",{autoClose: 1000,})}
+		
+		onSubmit()
+	},[categorie, tags, mdStr, contentTitle, coin, deadline, onSubmit])
 	
 
 
@@ -76,7 +68,7 @@ const Write = () => {
             <Label>카테고리<Pilsu /></Label>
             <Select style={{ width: 140 }} onChange={onChangeCagegory}>
               <Select.Option value="question">질문하기</Select.Option>
-              <Select.Option value="outsourcing">외주요청</Select.Option>
+              <Select.Option value="outsource">외주요청</Select.Option>
             </Select>
           </Group>
           <Group>

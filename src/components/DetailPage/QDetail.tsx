@@ -12,9 +12,9 @@ import { CoinIcon } from 'src/assets/icons';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { QuestionDetail } from 'src/types';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
-import {keys, useAddAnswerMutate, useAuth, useDelete} from 'src/hooks';
+import { keys, useAddAnswerQ, useAuth, useDelete } from 'src/hooks';
 import { UpdateEditor } from '../Write';
 import { Button } from 'antd';
 import { useRouter } from 'next/router';
@@ -24,7 +24,8 @@ type Props = {
 };
 
 const QDetail = ({ children, data }: Props) => {
-	const router = useRouter()
+	const queryClient = useQueryClient();
+  const router = useRouter();
   const { auth, refetch } = useAuth();
   const [mdStr, setMdStr] = useState('');
   const [isEdit, setIsEdit] = useState(false);
@@ -32,29 +33,41 @@ const QDetail = ({ children, data }: Props) => {
     enabled: data?.answersCount > 0,
   });
 
-	const {mutate:delMutate, isSuccess:delSuccess} = useDelete(data?.id, keys.questions())
-  const { isError, data: addAnswerRes, isLoading, mutate, isSuccess } = useAddAnswerMutate(data?.id);
+  const del = useDelete(data?.id, keys.questions());
+  const add = useAddAnswerQ(data?.id);
 
   const onSubmitAnswer = useCallback(() => {
     const answerData = { content: mdStr, qid: data.id };
-    mutate(answerData);
-  }, [mdStr, data?.id, mutate]);
+    add.mutate(answerData);
+  }, [mdStr, data.id, add]);
+
+	const errMsg = queryClient.getQueryData("serverErrorMessage") as string;
 
   useEffect(() => {
-    if (isSuccess) {
+    if (add.isSuccess) {
       toast.success('답변이 등록되었습니다.', { autoClose: 1000 });
       setMdStr('');
     }
-		if (delSuccess) {
-			router.push('/')
+    if (del.isSuccess) {
+      router.push('/');
     }
-  }, [isError, isSuccess,delSuccess, router]);
+
+		if( add.isError || del.isError) {
+      toast.error(errMsg, { autoClose: 1000 });
+
+		}
+  }, [router, del.isSuccess, add.isSuccess, add.isError, del.isError, errMsg]);
+
+
+
 
   return (
     <S.DetailContainer>
-      {isEdit ? (
+      {isEdit&&data
+			? (
         <UpdateEditor oldData={data} category="question" setIsEdit={setIsEdit} />
-      ) : (
+      	) 
+			: (
         <>
           <S.ContentWrapper>
             <S.ContentHeader>
@@ -80,8 +93,7 @@ const QDetail = ({ children, data }: Props) => {
                 <Button onClick={() => setIsEdit(true)} type="primary" ghost>
                   수정
                 </Button>
-                <Button onClick={()=>delMutate(q.delQuestion)}
-								type="primary" danger ghost>
+                <Button onClick={() => del.mutate(q.delQuestion)} type="primary" danger ghost>
                   삭제
                 </Button>{' '}
               </S.OnyUser>
@@ -97,7 +109,7 @@ const QDetail = ({ children, data }: Props) => {
             <br />
             <br />
 
-            <S.SubmitBtn onClick={onSubmitAnswer} loading={isLoading}>
+            <S.SubmitBtn onClick={onSubmitAnswer} loading={add.isLoading}>
               등록
             </S.SubmitBtn>
           </S.EditorWrapper>

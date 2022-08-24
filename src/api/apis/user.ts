@@ -1,4 +1,3 @@
-import { getLocalStorage, setLocalStorage } from 'src/lib/localStorage';
 import { Auth } from 'src/types';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { http } from '../http';

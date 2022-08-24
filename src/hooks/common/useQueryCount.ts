@@ -1,12 +1,12 @@
 import produce from 'immer';
-import { useInfiniteQuery, useQueryClient } from 'react-query';
+import { QueryKey, useInfiniteQuery, useQueryClient } from 'react-query';
 import { Question } from 'src/types';
 import { keys } from '../queries/queryKeys';
 
 export const useQueryCount = () => {
   const queryClient = useQueryClient();
 
-  const setCount = async (queryKey: any, changeKey: string, int: number, findId?: number) => {
+  const setCount = async (queryKey: QueryKey, changeKey: string, int: number, findId?: number) => {
     await queryClient.cancelQueries(queryKey);
 		const provider = queryClient.getQueryData<any>(queryKey)
 		if(!provider) return ;
@@ -25,7 +25,7 @@ export const useQueryCount = () => {
     });
   };
 
-  const setInfCount = async (queryKey: any, changeKey: string, id: number, int: number) =>
+  const setInfCount = async (queryKey: QueryKey, changeKey: string, id: number, int: number) =>
     queryClient.setQueryData(queryKey, (oldData: any) => {
       if (oldData) {
         const updatedData = produce(oldData, (draft: any) => {

@@ -10,7 +10,7 @@ export const CommentWrapper = styled.div<Props>`
 	background-color: #fff;
 	border: 1px solid #D9D9D9;
 	border-radius: 4px;
-  filter: drop-shadow(0px 2px 10px rgba(168, 168, 168, 0.25));
+  /* filter: drop-shadow(0px 2px 10px rgba(168, 168, 168, 0.25)); */
 	.moreBtn{
 		margin-left:10px;
 		cursor: pointer;

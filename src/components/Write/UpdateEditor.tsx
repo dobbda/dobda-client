@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useQuery, useQueryClient } from 'react-query';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useClientValue,useAddQuestionMutate, keys } from 'src/hooks';
+import { useClientValue, useAddQuestion, keys, useAddOutsource } from 'src/hooks';
 
 import { Editor } from 'src/components/Editor';
 import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.style';
@@ -11,67 +11,68 @@ import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag } from 'ant
 
 import { Hashtags } from './atom/Hashtags';
 import { atom, Link } from '../common';
-import { CreateQuestion, Question, QuestionDetail } from 'src/types';
-import { q } from 'src/api';
+import { CreateOutsource, CreateQuestion, OutsourceDetail, Question, QuestionDetail } from 'src/types';
+import { o, q } from 'src/api';
 import { CoinView } from './atom/CoinView';
+import moment from 'moment';
 
-type Props = {
-  oldData: QuestionDetail;
-	setIsEdit:  React.Dispatch<React.SetStateAction<boolean>>
+interface Props {
+  oldData: OutsourceDetail;
+  setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
   category: string;
 };
 
-const UpdateEditor = ({ oldData, category,setIsEdit }: Props) => {
+const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
   const queryClient = useQueryClient();
-  const [deadline, setDeadline] = useState<string | null>();
+  const [deadline, setDeadline] = useState<string|null>(oldData?.deadline ? oldData?.deadline : null);
   const [contentTitle, setContentTitle] = useState<string>(oldData?.title);
-  const [tags, setTags] = useState<string[]>(oldData?.tagNames.map((tags) => tags.name));
+  const [tags, setTags] = useState<string[]>(oldData?.tagNames.map((tags:any) => tags.name));
   const [mdStr, setMdStr] = React.useState<string>(oldData?.content);
   const [coin, setCoin] = useState(oldData?.coin);
-  const {mutate, isError, isSuccess, error} = useAddQuestionMutate(q.updateQuestion, oldData?.id);
+
+  const editQuestion = useAddQuestion( q.updateQuestion , oldData?.id) 
+	const editOutsource = useAddOutsource(o.updateOutsource, oldData?.id) 
 
   const onCangeData: DatePickerProps['onChange'] = useCallback((date, dateString) => {
     setDeadline(dateString);
   }, []);
-  const onSubmitQuestion = useCallback(() => {
-    const data: CreateQuestion = {
+	console.log(category)
+
+  const onSubmit = useCallback(() => {
+    const data: CreateQuestion|CreateOutsource = {
       title: contentTitle,
       content: mdStr,
       tagNames: tags,
       coin: coin,
+			deadline: deadline
     };
-    mutate(data);
-  }, [mutate, coin, contentTitle, mdStr, tags]);
+    category=="question" ?  editQuestion.mutate(data): editOutsource.mutate(data)
+  }, [contentTitle, mdStr, tags, coin, deadline, category, editQuestion, editOutsource]);
 
-  const onSubmitFeatureRequest = useCallback(() => {
-    const data: CreateQuestion = {
-      title: contentTitle,
-      content: mdStr,
-      tagNames: tags,
-      coin: coin,
-    };
-    mutate(data);
-  }, [mutate, coin, contentTitle, mdStr, tags]);
+  useEffect(() => {
+    if (editQuestion.isSuccess) setIsEdit(false);
+    if (editQuestion.isError) {
+      alert(editQuestion.error.response.data.error.message);
+    }
+  }, [setIsEdit, editQuestion.error, editQuestion.isSuccess, editQuestion.isError]);
 
-	useEffect(() => {
-		if(isSuccess) setIsEdit(false);
-		if(isError){alert(error)}
-	},[isError, isSuccess, setIsEdit, error])
   const onSubmitCheck = useCallback(() => {
     if (!(tags && mdStr && contentTitle && tags)) {
       return toast.error('입력 정보가 더 필요합니다', { autoClose: 1000 });
     }
-    if (category == 'outsourcing' && !coin) {
+
+    if (category == 'outsource' && !coin) {
       return toast.error('외주 요청은 코인이 필수 입니다', { autoClose: 1000 });
     }
-		if (coin <1000) return toast.error('최소 1,000 코인 부터입니다', { autoClose: 1000 });
-    if (category == 'outsourcing' && !deadline) {
+
+    if (coin && coin < 1000) return toast.error('최소 1,000 코인 부터입니다', { autoClose: 1000 });
+
+    if (category == 'outsource' && !deadline) {
       return toast.info('마감기한을 입력해주세요', { autoClose: 1000 });
     }
 
-    if (category == 'question') onSubmitQuestion();
-    else if (category == 'outsourcing') onSubmitFeatureRequest();
-  }, [tags, mdStr, contentTitle, category, coin, deadline, onSubmitQuestion, onSubmitFeatureRequest]);
+		onSubmit();
+  }, [tags, mdStr, contentTitle, category, coin, deadline, onSubmit]);
 
   return (
     <Write_Wrapper>
@@ -82,14 +83,14 @@ const UpdateEditor = ({ oldData, category,setIsEdit }: Props) => {
               카테고리
               <Pilsu />
             </Label>
-            <Select style={{ width: 140 }} defaultValue="question" disabled>
+            <Select style={{ width: 140 }} defaultValue={category} disabled>
               <Select.Option value="question">질문하기</Select.Option>
-              <Select.Option value="outsourcing">기능요청</Select.Option>
+              <Select.Option value="outsource">기능요청</Select.Option>
             </Select>
           </Group>
           <Group>
             <Label>마감기한</Label>
-            <DatePicker onChange={onCangeData} placeholder="마감기한" />
+            <DatePicker defaultValue={moment(oldData.deadline)} onChange={onCangeData} placeholder="마감기한"  disabledDate={(e)=>e.valueOf() < Date.now()}/>
           </Group>{' '}
         </div>
         <br />
@@ -117,10 +118,12 @@ const UpdateEditor = ({ oldData, category,setIsEdit }: Props) => {
         <Editor mdStr={mdStr} setMdStr={setMdStr} height="600px" />
       </EditorContainer>
       <atom.Flex>
-			<SubmitBtn cancel={true} onClick={()=>setIsEdit(false)}>취소</SubmitBtn>
+        <SubmitBtn cancel={true} onClick={() => setIsEdit(false)}>
+          취소
+        </SubmitBtn>
         <SubmitBtn onClick={onSubmitCheck}>저장</SubmitBtn>
       </atom.Flex>
-      <ToastContainer position="bottom-right" pauseOnFocusLoss draggable pauseOnHover />
+      <ToastContainer position="bottom-right" hideProgressBar draggable />
     </Write_Wrapper>
   );
 };
