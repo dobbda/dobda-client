@@ -1,4 +1,5 @@
-import { OutsourceDetail, Answer, Comment, CreateAnswer } from 'src/types/index';
+import { Reply } from './../../types/index';
+import { OutsourceDetail, Answer, Comment, CreateComment, Enquiry } from 'src/types/index';
 import { InfinityProps, CreateOutsource, Outsource } from 'src/types/index';
 import axios, { AxiosResponse } from "axios";
 
@@ -6,7 +7,7 @@ import axios, { AxiosResponse } from "axios";
 
 // 질문글 전체조회 infinity
 export const getInfinity = async (pageParam=1, title?: string): Promise<InfinityProps<Outsource>> => {
-	const res = await axios.get(`/api/feature-request?page=${pageParam && pageParam}&title=${title && title}`);
+	const res = await axios.get(`/api/outsource?page=${pageParam && pageParam}&title=${title && title}`);
 	if (!res.data.success) return null;
 	return {
 		result: res.data.response.result,
@@ -17,40 +18,43 @@ export const getInfinity = async (pageParam=1, title?: string): Promise<Infinity
 
 //질문글 상세조회
 export const outsourceDetail = async<T>(id:number) : Promise<T> => {
-	return (await axios.get(`/api/feature-request/${id}`)).data?.response
+	return (await axios.get(`/api/outsource/${id}`)).data?.response
 	// .catch(err=>console.log("axios error: " + err))
 };
 
 export const addOutsource = async (question: CreateOutsource, qid?:number): Promise<Outsource> => {
-	return (await axios.post('/api/feature-request',question)).data.response
+	return (await axios.post('/api/outsource',question)).data.response
 }
 export const updateOutsource = async(data:CreateOutsource, id:number, ):Promise<Outsource> => {
-	return (await axios.patch(`/api/feature-request/${id}`, data)).data.response
+	return (await axios.patch(`/api/outsource/${id}`, data)).data.response
 };
 export const delOutsource = async<T>(id:number) : Promise<T> => {
-	return (await axios.delete(`/api/feature-request/${id}`)).data
+	return (await axios.delete(`/api/outsource/${id}`)).data
 };
 
+
+
 // 답변
-export const addAnswer = async(data:CreateAnswer) : Promise<AxiosResponse> => {
-	return (await axios.post(`/api/answers`, data))
+export const addEnquiry = async(data:CreateComment) : Promise<AxiosResponse> => {
+	return (await axios.post(`/api/enquiries`, data))
 }
-export const updateAnswer = async(data:CreateAnswer) : Promise<AxiosResponse> => {
-	return (await axios.patch(`/api/answers`, data))
+
+export const updateEnquiry = async({id, data}:{id?:number, data:CreateComment}) : Promise<AxiosResponse> => {
+	return (await axios.patch(`/api/enquiries/${id}`, data))
 }
-export const getAnswers = async(qid:number) : Promise<Answer[]> => {
-	return (await axios.get(`/api/answers?qid=${qid}`)).data?.response.answers
+export const getEnquiries = async(id:number) : Promise<Enquiry[]> => {
+	return (await axios.get(`/api/enquiries?oid=${id}`)).data?.response.enquiries
 }
-export const delAnswers = async(aid:number) : Promise<Answer[]> => {
-	return (await axios.delete(`/api/answers/${aid}`)).data
+export const delEnquiry = async(id:number) : Promise<AxiosResponse> => {
+	return (await axios.delete(`/api/enquiries/${id}`)).data
 }
 
 // 댓글
-export const addComment = async(data:CreateAnswer) : Promise<AxiosResponse> => {
-	return (await axios.post(`/api/comments`, data))
+export const addReply = async(data:CreateComment) : Promise<AxiosResponse> => {
+	return (await axios.post(`/api/replies`, data))
 }
-export const getComments = async(aid:number):Promise<Comment[]> => {
-	return (await axios.get(`/api/comments?aid=${aid}`)).data.response.comments
+export const getReplies = async(aid:number):Promise<Reply[]> => {
+	return (await axios.get(`/api/replies?aid=${aid}`)).data.response.replies
 }
 
 

@@ -5,15 +5,15 @@ import { ReplyItem, Header, CommentContent } from './style/Reply.style';
 import { atom, Avatar } from 'src/components/common';
 import { ReplyIcon } from 'src/assets/icons';
 import { MarkDownViewer } from 'src/components/Editor';
-import { Comment } from 'src/types';
+import { Comment,Reply } from 'src/types';
 
 type Props = {
-	data:Comment
+	data:Reply
 };
 
 
 
-const Reply = ({data}:Props) => {
+const ReplyCp = ({data}:Props) => {
   return (
     <ReplyItem className="comment reply-items">
       <Header className="header">
@@ -34,4 +34,4 @@ const Reply = ({data}:Props) => {
   );
 };
 
-export default Reply;
+export default ReplyCp;

@@ -16,15 +16,16 @@ import { o, q } from 'src/api';
 import { CoinView } from './atom/CoinView';
 import moment from 'moment';
 
-interface Props {
-  oldData: OutsourceDetail;
+type Props = {
+  oldData: any ;
   setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
-  category: string;
+  category: "outsource"|"question";
 };
 
 const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
+	const tdata = category === "outsource" && oldData as OutsourceDetail
   const queryClient = useQueryClient();
-  const [deadline, setDeadline] = useState<string|null>(oldData?.deadline ? oldData?.deadline : null);
+  const [deadline, setDeadline] = useState<string|null>(category=="outsource" ? tdata.deadline : null);
   const [contentTitle, setContentTitle] = useState<string>(oldData?.title);
   const [tags, setTags] = useState<string[]>(oldData?.tagNames.map((tags:any) => tags.name));
   const [mdStr, setMdStr] = React.useState<string>(oldData?.content);

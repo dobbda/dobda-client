@@ -15,7 +15,7 @@ export function useAuth(data?: any): {auth:Auth, refetch:any} {
 			...(data?.user && { initialData: data.user || data}),
 			onError: (err)=>{if(err==='Missing queryFn')console.log('auth err', err)}
 		});
-		const auth = checkAuth ? checkAuth : null;
+		const auth = checkAuth ? checkAuth as Auth : null;
 		return {auth, refetch};
 
 }

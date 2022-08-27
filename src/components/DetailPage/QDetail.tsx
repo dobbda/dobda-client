@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { atom, Tag } from '../common';
 import * as S from './style/Detail.style';
 import { Avatar } from '../common';
-import { QAnswer } from './Comment/';
+import { AnswerCp } from './Comment/';
 import getDate from 'src/lib/dateForm';
 
 import { CoinIcon } from 'src/assets/icons';
@@ -14,7 +14,7 @@ import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { QuestionDetail } from 'src/types';
 import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
-import { keys, useAddAnswerQ, useAuth, useDelete } from 'src/hooks';
+import { keys, useAddAnswer, useAuth, useDelete } from 'src/hooks';
 import { UpdateEditor } from '../Write';
 import { Button } from 'antd';
 import { useRouter } from 'next/router';
@@ -34,7 +34,7 @@ const QDetail = ({ children, data }: Props) => {
   });
 
   const del = useDelete(data?.id, keys.questions());
-  const add = useAddAnswerQ(data?.id);
+  const add = useAddAnswer(data?.id);
 
   const onSubmitAnswer = useCallback(() => {
     const answerData = { content: mdStr, qid: data.id };
@@ -116,7 +116,7 @@ const QDetail = ({ children, data }: Props) => {
 
           <S.AnswerContainer>
             {answers && answers[0]?.id ? (
-              answers.map((answer) => <QAnswer key={answer.id} data={answer} />)
+              answers.map((answer) => <AnswerCp key={answer.id} data={answer} />)
             ) : (
               <atom.NoData>등록된 답변이 없습니다. 답변을 등록할 수 있습니다.</atom.NoData>
             )}

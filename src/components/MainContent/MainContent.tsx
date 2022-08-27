@@ -7,7 +7,7 @@ import SearchBox from './atom/SearchBox';
 
 import { PenIcon } from 'src/assets/icons';
 import {Categories, CategoryList,CategoriesType} from 'src/lib/utils/category'
-import RenderFeatureRequest from './renderItm/RenderOutSource';
+import RenderOutsource from './renderItm/RenderOutSource';
 import RenderQuestion from './renderItm/RenderQuestion';
 import { getLocalStorage, setLocalStorage } from 'src/lib/localStorage';
 
@@ -30,7 +30,7 @@ const MainContent = ({ children }: Props) => {
           <div className="category-wrapper">
 						{
 							CategoryList.map((m, i)=>(
-								<span key={i} onClick={()=>setSelect(m)} className={select===m ? "selected" : "tap_menu_"+i}>
+								<span key={i} onClick={()=>setSelect(m)} className={select===m ? "tap_menu selected" : "tap_menu"}>
 									{Categories[m]}
 								</span>
 							))
@@ -45,8 +45,8 @@ const MainContent = ({ children }: Props) => {
         </div>
       </section>
       <section className="card-content">
-        {select=="questions" && <RenderFeatureRequest />}
-        {select=="featureRequest" && <RenderQuestion />}
+        {select=="featureRequest" && <RenderOutsource />}
+        {select=="questions" && <RenderQuestion />}
       </section>
     </Main>
   );

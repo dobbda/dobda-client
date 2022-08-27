@@ -8,18 +8,19 @@ export interface Author {
 ////////////////////////////////////////////////////////////////
 //// 								common 															////
 ////////////////////////////////////////////////////////////////
+
+export interface IDTYPE {
+	oid?:number,//outsourcing id
+	eid?:number// enquiry id
+	qid?:number,//question id
+	aid?:number,//answer id
+}
 export interface Default {
   id: number;
   createdAt: Date;
   updatedAt: Date;
 }
-export interface CreateAnswer {
-  qid?: number;
-  answerId?: number;
-  content: string;
-}
-export interface CreateComment {
-  qid: number;
+export interface CreateComment extends IDTYPE {
   content: string;
 }
 
@@ -84,6 +85,21 @@ export interface QuestionDetail extends Question {
   content: string;
 }
 
+export interface Answer extends Default {
+  content: string;
+  accepted: boolean;
+  author: Author;
+  commentsCount: number;
+  authorId: number;
+  questionId: number;
+}
+
+export interface Comment extends Default {
+  content: string;
+  authorId: number;
+  answerId: number;
+  author: Author;
+}
 ////////////////////////////////////////////////////////////////
 //// 						OutSourcing 							     							////
 ////////////////////////////////////////////////////////////////
@@ -103,7 +119,7 @@ export interface Outsource extends Default {
   authorId: number;
   accepteAnswerId: boolean;
   author: Author;
-  answersCount: number;
+  enquiriesCount: number;
   tagNames: Tags[];
   deadline?: string;
 }
@@ -112,6 +128,23 @@ export interface OutsourceDetail extends Outsource {
   content: string;
 }
 
+export interface Enquiry extends Default {
+  content: string;
+  accepted: boolean;
+  author: Author;
+  repliesCount: number;
+  authorId: number;
+  outSourcingId: number;
+	selected: boolean;
+}
+
+export interface Reply extends Default {
+  content: string;
+  authorId: number;
+  answerId?: number;
+	enquiryId?: number;
+  author: Author;
+}
 ////////////////////////////////////////////////////////////////
 //// 						users 							     							////
 ////////////////////////////////////////////////////////////////

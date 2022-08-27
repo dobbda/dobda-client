@@ -1,4 +1,4 @@
-import { QuestionDetail, Answer, Comment, CreateAnswer } from 'src/types/index';
+import { QuestionDetail, Answer, Comment, CreateComment } from 'src/types/index';
 import { InfinityProps, CreateQuestion, Question } from 'src/types/index';
 import axios, { AxiosResponse } from "axios";
 
@@ -34,11 +34,11 @@ export const delQuestion = async<T>(id:number) : Promise<T> => {
 
 
 // 답변
-export const addAnswer = async(data:CreateAnswer) : Promise<AxiosResponse> => {
+export const addAnswer = async(data:CreateComment) : Promise<AxiosResponse> => {
 	return (await axios.post(`/api/answers`, data))
 }
-export const updateAnswer = async(data:CreateAnswer) : Promise<AxiosResponse> => {
-	return (await axios.patch(`/api/answers`, data))
+export const updateAnswer = async(id:number,data:CreateComment) : Promise<AxiosResponse> => {
+	return (await axios.patch(`/api/answers/${id}`, data))
 }
 export const getAnswers = async(qid:number) : Promise<Answer[]> => {
 	return (await axios.get(`/api/answers?qid=${qid}`)).data?.response.answers
@@ -48,7 +48,7 @@ export const delAnswers = async(aid:number) : Promise<Answer[]> => {
 }
 
 // 댓글
-export const addComment = async(data:CreateAnswer) : Promise<AxiosResponse> => {
+export const addComment = async(data:CreateComment) : Promise<AxiosResponse> => {
 	return (await axios.post(`/api/comments`, data))
 }
 export const getComments = async(aid:number):Promise<Comment[]> => {
