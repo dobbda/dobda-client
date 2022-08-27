@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import Reply from './Comment';
+import ReplyCp from './Reply';
 import { Editor, MarkDownViewer } from 'src/components/Editor';
 import { Avatar, atom } from 'src/components/common';
 import getDate from 'src/lib/dateForm';
@@ -12,13 +12,14 @@ import { SubmitBtn } from '../style/Detail.style';
 import { Answer } from 'src/types';
 import { useQuery } from 'react-query';
 import { q } from 'src/api';
-import { keys, useAddCommentQ, useDelete } from 'src/hooks';
+import { keys, useDelete,useAddComment } from 'src/hooks';
 import { Button, Popover } from 'antd';
+import { toast } from 'react-toastify';
 type Props = {
   data: Answer;
 };
 
-const QComment = ({ data }: Props) => {
+const AnswerCp = ({ data }: Props) => {
   const [isEdit, setisEdit] = useState(false);
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
@@ -26,16 +27,18 @@ const QComment = ({ data }: Props) => {
     enabled: data.commentsCount > 0 && viewChild,
   });
 
-  const { mutate, isLoading, isSuccess } = useAddCommentQ(data?.id);
+  const addReply = useAddComment(data?.id);
   const { mutate: delMute } = useDelete(data?.id, keys.answers(data?.questionId));
 
   const onSubmitComment = useCallback(() => {
-    mutate({ content: mdStr, answerId: data.id });
-  }, [mdStr, data.id, mutate]);
+   addReply.mutate({ content: mdStr, aid: data.id });
+
+  }, [addReply, mdStr, data.id]);
 
   useEffect(() => {
-    if (isSuccess) {setMdStr('')}
-  }, [isSuccess]);
+		if (addReply.isSuccess) {setMdStr('')}
+		if (addReply.isError) {toast.success(addReply.error.response.data.message, { autoClose: 1000 });}
+  }, [addReply.isSuccess, addReply.isError, addReply.error?.response.data.message]);
 
   return (
     <S.CommentWrapper>
@@ -75,7 +78,7 @@ const QComment = ({ data }: Props) => {
         <div className="show-replybtn">
           <ReCommentIcon style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{data.commentsCount} </span>
           <span onClick={() => setviewChild(!viewChild)}>
-            <CommentRotate viewchild={viewChild.toString()} />
+            <CommentRotate view={viewChild.toString()} />
           </span>
         </div>
 				<atom.Flex>
@@ -86,7 +89,7 @@ const QComment = ({ data }: Props) => {
       {viewChild && (
         <>
           {comments ? (
-            comments.map((comment) => <Reply key={comment.id} data={comment} />)
+            comments.map((comment) => <ReplyCp key={comment.id} data={comment} />)
           ) : (
             <atom.NoData>등록된 댓글이 없습니다. 댓글을 등록할 수 있습니다.</atom.NoData>
           )}
@@ -95,7 +98,7 @@ const QComment = ({ data }: Props) => {
       <S.CommentEditor>
         <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
         {mdStr && (
-          <SubmitBtn onClick={onSubmitComment} loading={isLoading}>
+          <SubmitBtn onClick={onSubmitComment} loading={addReply.isLoading}>
             등록
           </SubmitBtn>
         )}
@@ -104,14 +107,14 @@ const QComment = ({ data }: Props) => {
   );
 };
 
-export default QComment;
-
-const CommentRotate = styled(ArrowIcon)<{ viewchild: string }>`
+export default AnswerCp;
+type Rotate = {view:string}
+const CommentRotate = styled(ArrowIcon)<Rotate>`
   cursor: pointer;
   margin-top: 7px;
   color: rgba(0, 0, 0, 0.6);
   transition: all 0.3s;
-  transform: ${({ viewchild }) => (viewchild ? 'rotate(90deg)' : null)};
+  transform: ${({ view }) => (view=="true" ? 'rotate(90deg)' : null)};
 `;
 
 const Btn = styled(Button)`

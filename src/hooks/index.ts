@@ -7,13 +7,13 @@ export { useAuth} from './common/useAuth'
 export {useLogout} from './common/useLogout'
 export {useGetInfinity} from './common/useGetInfinity'
 
-export {default as useAddAnswerQ} from './qustion/useAddAnswerQ'
+export {default as useAddAnswer} from './qustion/useAddAnswer'
 export {default as useAddQuestion} from './qustion/useAddQuestion'
-export {default as useAddCommentQ} from './qustion/useAddCommentQ'
+export {default as useAddComment} from './qustion/useAddComment'
 
-export {default as useAddAnswerO} from './outsource/useAddAnswerO'
+export {default as useAddEnquiry} from './outsource/useAddEnquiry'
 export {default as useAddOutsource} from './outsource/useAddOutsource'
-export {default as useAddCommentO} from './outsource/useAddCommentO'
+export {default as useAddReply} from './outsource/useAddReply'
 
 export {useDelete} from './common/useDel'
 

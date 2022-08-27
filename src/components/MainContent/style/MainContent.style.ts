@@ -30,7 +30,7 @@ export const Main = styled.div`
 		white-space: nowrap;
 		
 		/* * {margin-right: 5px;} */
-		span{ //카테고리 버튼
+		.tap_menu { //카테고리 버튼
 			cursor: pointer;
 			font-size: 16px;
 			padding: 3px 15px 5px;

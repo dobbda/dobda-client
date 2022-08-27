@@ -34,7 +34,7 @@ function RenderOutsource() {
                   </RefCard>
                 );
               }
-              return <OCard key={o.id} data={o} />;
+              return <RefCard key={o.id}><OCard  data={o} /></RefCard>;
             });
           })
         : null}

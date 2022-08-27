@@ -1,29 +1,64 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState,useCallback } from 'react';
 
 import { atom, Tag, Button } from '../common';
 import * as S from './style/Detail.style';
 import { Avatar } from '../common';
-import { RAnswer } from './Comment';
+import { EnquiryCp } from './Comment';
 import getDate from 'src/lib/dateForm';
 
 import Question_icon from 'src/assets/icon/question.svg';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
-import { QuestionDetail, Tags } from 'src/types';
-import { keys, useDelete } from 'src/hooks';
+import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
+import { keys, useAddEnquiry, useDelete } from 'src/hooks';
 import { o, q } from 'src/api';
 import { UpdateEditor } from '../Write';
+import { useQuery, useQueryClient } from 'react-query';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 type Props = {
   children?: React.ReactElement; // commentComponent
-  data?: QuestionDetail;
+  data?: OutsourceDetail;
 };
 
 const ODetail = ({ children, data }: Props) => {
+  const router = useRouter();
+
+	const queryClient = useQueryClient();
+
   const [mdStr, setMdStr] = useState('');
   const [isEdit, setIsEdit] = useState(false);
-
+  const { data: enquiries } = useQuery(keys.enquiries(data?.id), () => o.getEnquiries(data.id), {
+    enabled: data?.enquiriesCount > 0,
+  });
   const del = useDelete(data?.id, keys.outsources());
+
+  const add = useAddEnquiry(data?.id);
+
+  const onSubmitEnquiry = useCallback(() => {
+    const enquiryData = { content: mdStr, oid: data.id };
+    add.mutate(enquiryData);
+  }, [mdStr, data.id, add]);
+
+	const errMsg = queryClient.getQueryData("serverErrorMessage") as string;
+
+  useEffect(() => {
+    if (add.isSuccess) {
+      toast.success('답변이 등록되었습니다.', { autoClose: 1000 });
+      setMdStr('');
+    }
+    if (del.isSuccess) {
+      router.push('/');
+    }
+
+		if( add.isError || del.isError) {
+      toast.error(errMsg, { autoClose: 1000 });
+
+		}
+  }, [router, del.isSuccess, add.isSuccess, add.isError, del.isError, errMsg]);
+
+
   return (
     <S.DetailContainer>
       {isEdit && data ? (
@@ -65,7 +100,7 @@ const ODetail = ({ children, data }: Props) => {
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
             <br />
             <br />
-            <S.SubmitBtn>등록</S.SubmitBtn>
+            <S.SubmitBtn onClick={onSubmitEnquiry}>등록</S.SubmitBtn>
           </S.EditorWrapper>
 
           <S.OutSourcingInfo>
@@ -80,10 +115,12 @@ const ODetail = ({ children, data }: Props) => {
           </S.OutSourcingInfo>
 
           <S.AnswerContainer>
-            <RAnswer acceped_answer={true} />
-            <RAnswer />
-            <RAnswer />
-            <RAnswer />
+					{enquiries && enquiries[0]?.id ? (
+              enquiries.map((answer) => <EnquiryCp key={answer.id} data={answer} />)
+            ) : (
+              <atom.NoData>등록된 답변이 없습니다. 답변을 등록할 수 있습니다.</atom.NoData>
+            )}
+
           </S.AnswerContainer>
         </>
       )}

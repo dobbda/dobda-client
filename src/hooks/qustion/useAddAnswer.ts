@@ -1,17 +1,17 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
 import { q } from 'src/api';
-import { CreateAnswer, CreateQuestion, Question, QuestionDetail } from 'src/types';
+import { CreateComment, CreateQuestion, Question, QuestionDetail } from 'src/types';
 import { keys } from '../queries/queryKeys';
 import produce from 'immer';
 import { useQueryCount } from '../common/useQueryCount';
 
 
 //db query 요청량이 많으면 커스텀 업데이트, 페이지 단위는 invalidate사용
-const useAddAnswerQ = (qid: number) => {
+const useAddAnswer = (qid: number) => {
   const queryClient = useQueryClient();
 	const {setCount, setInfCount} = useQueryCount()
-  return useMutation((data: CreateAnswer) => q.addAnswer(data), {
+  return useMutation((data: CreateComment) => q.addAnswer(data), {
     onSuccess: async (res: AxiosResponse) => {
       await queryClient.cancelQueries(keys.answers(qid));
 
@@ -33,4 +33,4 @@ const useAddAnswerQ = (qid: number) => {
   });
 };
 
-export default useAddAnswerQ;
+export default useAddAnswer;

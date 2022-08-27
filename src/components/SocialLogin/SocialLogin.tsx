@@ -19,17 +19,16 @@ export const SocialLogin = (props: Props) => {
 		)
 		},[])
 		
-		const [loginModal, setLoginModal] = useLoginModalhandler()
+		const {loginModal, setLoginModal} = useLoginModalhandler()
 		const queryClient = useQueryClient();
 	
-		const auth = useAuth();
+		const {auth,refetch} = useAuth();
 		const updateUser = useCallback(async(data?:any) => {
 			const oldUserData = queryClient.getQueryData(["auth"]);
 			queryClient.invalidateQueries();
 			queryClient.cancelQueries(["auth"]);
 			queryClient.setQueryData(["auth"], data)
-			console.log("auth",auth?.id, data)
-			loginModal&&auth?.id&&setLoginModal()
+			loginModal&&auth?.id && setLoginModal()
 		},[])
 		useEffect(() => {
 			const listener = (event: MessageEvent) => {
