@@ -10,7 +10,7 @@ import Question_icon from 'src/assets/icon/question.svg';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
-import { keys, useAddEnquiry, useDelete } from 'src/hooks';
+import { keys, useAddEnquiry, useDelete, useDidMountEffect } from 'src/hooks';
 import { o, q } from 'src/api';
 import { UpdateEditor } from '../Write';
 import { useQuery, useQueryClient } from 'react-query';
@@ -43,7 +43,7 @@ const ODetail = ({ children, data }: Props) => {
 
 	const errMsg = queryClient.getQueryData("serverErrorMessage") as string;
 
-  useEffect(() => {
+  useDidMountEffect(() => {
     if (add.isSuccess) {
       toast.success('답변이 등록되었습니다.', { autoClose: 1000 });
       setMdStr('');

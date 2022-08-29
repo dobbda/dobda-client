@@ -14,7 +14,7 @@ import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { QuestionDetail } from 'src/types';
 import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
-import { keys, useAddAnswer, useAuth, useDelete } from 'src/hooks';
+import { keys, useAddAnswer, useAuth, useDelete, useDidMountEffect, useErrMsg } from 'src/hooks';
 import { UpdateEditor } from '../Write';
 import { Button } from 'antd';
 import { useRouter } from 'next/router';
@@ -41,9 +41,9 @@ const QDetail = ({ children, data }: Props) => {
     add.mutate(answerData);
   }, [mdStr, data.id, add]);
 
-	const errMsg = queryClient.getQueryData("serverErrorMessage") as string;
+	const errMsg = useErrMsg();
 
-  useEffect(() => {
+  useDidMountEffect(() => {
     if (add.isSuccess) {
       toast.success('답변이 등록되었습니다.', { autoClose: 1000 });
       setMdStr('');
@@ -121,7 +121,7 @@ const QDetail = ({ children, data }: Props) => {
               <atom.NoData>등록된 답변이 없습니다. 답변을 등록할 수 있습니다.</atom.NoData>
             )}
           </S.AnswerContainer>
-          <ToastContainer position="top-center" hideProgressBar draggable />
+          <ToastContainer position="top-center" hideProgressBar draggable autoClose={8000}/>
         </>
       )}
     </S.DetailContainer>

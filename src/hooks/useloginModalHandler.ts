@@ -6,7 +6,7 @@ export const useLoginModalhandler = () => {
 	const queryClient = useQueryClient();
 	const loginModal = useClientValue(['loginModal'], false);
 	const setLoginModal = () => {
-		queryClient.setQueriesData(["loginModal"], !loginModal);
+		queryClient.setQueryData(["loginModal"], !loginModal);
 	}
-	return [loginModal, setLoginModal]
+	return {loginModal, setLoginModal}
  }

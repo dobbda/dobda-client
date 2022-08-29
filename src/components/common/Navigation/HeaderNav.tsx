@@ -19,7 +19,7 @@ import { useRouter } from 'next/router';
 const HeaderNav = () => {
 	const queryClient = useQueryClient();
   const {auth, refetch} = useAuth();
-  const [loginModal, setLoginModal] = useLoginModalhandler();
+  const {loginModal, setLoginModal} = useLoginModalhandler();
 	const router = useRouter()
 	const userlogout = useCallback(async() => {
 		if(!auth.id) return;

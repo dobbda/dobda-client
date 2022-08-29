@@ -20,3 +20,6 @@ export {useDelete} from './common/useDel'
 export {useInput} from './useInput'
 export {useLoginModalhandler} from './useloginModalHandler';
 export {useScroll} from './useScroll'
+
+export {useDidMountEffect} from './useDidMountEffect'
+export {useErrMsg} from './common/useErrMsg'

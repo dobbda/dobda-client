@@ -29,6 +29,9 @@ export const useDelete = (id: number, queryKey: QueryKey) => {
       }
     },
 
-    onError: (error: AxiosError) => {  },
+		onError: (error: AxiosError) => {
+			queryClient.setQueryData("serverErrorMessage", error.response.data.error.message || "잘못된 요청입니다.");
+		return error.response?.data?.error?.message || "잘못된 요청입니다."
+	},
   });
 };

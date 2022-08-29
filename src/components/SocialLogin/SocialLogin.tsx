@@ -7,6 +7,7 @@ import {Logo} from 'src/components/common';
 import { useQueryClient } from 'react-query';
 import { useAuth,useLoginModalhandler } from 'src/hooks';
 import { GITHUB_URL, GOOGLE_URL, KAKAO_URL, NAVER_URL } from './CDN_URL';
+import { Auth } from 'src/types';
 type Props = {};
 
 export const SocialLogin = (props: Props) => {
@@ -23,13 +24,13 @@ export const SocialLogin = (props: Props) => {
 		const queryClient = useQueryClient();
 	
 		const {auth,refetch} = useAuth();
-		const updateUser = useCallback(async(data?:any) => {
+		const updateUser = useCallback(async(data?:Auth) => {
 			const oldUserData = queryClient.getQueryData(["auth"]);
-			queryClient.invalidateQueries();
+			// queryClient.invalidateQueries();
 			queryClient.cancelQueries(["auth"]);
 			queryClient.setQueryData(["auth"], data)
-			loginModal&&auth?.id && setLoginModal()
-		},[])
+			loginModal&&data?.id && setLoginModal()
+		},[loginModal, queryClient, setLoginModal])
 		useEffect(() => {
 			const listener = (event: MessageEvent) => {
 				if (!event) return;
