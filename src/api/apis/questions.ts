@@ -6,7 +6,6 @@ import axios, { AxiosResponse } from "axios";
 
 // 질문글 전체조회 infinity
 export const getInfinity = async (pageParam:number=1, title?: string): Promise<InfinityProps<Question>> => {
-	console.log( pageParam)
 	const res = await axios.get(`/api/questions?page=${pageParam && pageParam}&title=${title && title}`);
 	if (!res.data.success) return null;
 	return {

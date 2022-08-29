@@ -1,2 +1,2 @@
 export {MyInfo} from './MyInfo';
-export {UserUpdate} from './UserUpdate';
+export {UserUpdateForm} from './UserUpdate';

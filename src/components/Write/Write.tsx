@@ -8,7 +8,7 @@ import {Editor} from 'src/components/Editor'
 import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.style';
 import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag } from 'antd';
 
-import { Hashtags } from './atom/Hashtags';
+import  Hashtags  from './atom/Hashtags';
 import { atom, Link } from '../common';
 import {useAddOutsource, useAddQuestion} from 'src/hooks';
 import { CreateOutsource, CreateQuestion } from 'src/types';

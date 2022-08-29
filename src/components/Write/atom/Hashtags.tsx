@@ -1,22 +1,22 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { Tag } from 'antd';
 import { HashIcon } from 'src/assets/icons';
-
+import { Tags } from 'src/types';
+import {Tag} from 'src/components/common'
 type Props = {
-  tags?: string[],
-  setTags?: React.Dispatch<React.SetStateAction<string[]>>
-  tagColor?:string
-
+  tags?: string[];
+	initial?:Tags[];
+  setTags?: React.Dispatch<React.SetStateAction<string[]>>;
+  tagColor?: string;
 };
 
-export function Hashtags({tags, setTags, tagColor}: Props) {
+function Hashtags({ tags, setTags, tagColor }: Props) {
   const ref = useRef<HTMLInputElement>();
-  const [tag, setTag] = useState<string>("");
+  const [tag, setTag] = useState<string>('');
   const [focus, setFocus] = useState(false);
   const tagHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-		var reg = /[`~!#$%^&*()_|\=?;:'",<>\{\}\[\]\\\/ ]/gim;
-    setTag(e.target.value.replace(reg, ""));
+    var reg = /[`~!#$%^&*()_|\=?;:'",<>\{\}\[\]\\\/ ]/gim;
+    setTag(e.target.value.replace(reg, ''));
   }, []);
 
   //input에 포커스시 border 색상변화
@@ -44,33 +44,29 @@ export function Hashtags({tags, setTags, tagColor}: Props) {
   const formHandler = useCallback(
     (e: any) => {
       e.preventDefault();
-      setTags((tags) => [...tags, tag]);
+      setTags((all) => [...all, tag]);
       setTag('');
     },
     [setTags, tag],
   );
-//태그삭제
-  const removeHandler = useCallback(
+  //태그삭제
+  const removeHandler = 
     (removedTag: string) => {
-      const newTags = tags.filter((tag) => tag !== removedTag);
-      setTags(newTags);
-    },
-    [setTags, tags],
-  );
+      setTags(tags.filter((v) => v !== removedTag));
+    }
+  
   return (
     <>
-      <form onSubmit={formHandler}>
+      <form onSubmit={formHandler} css={{ width: '100%' }}>
         <Tag_wrapper focus={focus} className="tag-wrapper" onClick={focusHandler}>
           <Hash />
-          {tags?.map((word,index) => {
-            return (
-
-                <AntTag key={index} color={tagColor ? tagColor : '#55acee'} closable onClose={() => removeHandler(word)}>
-                  {word}
-                </AntTag>
-
-            );
-          })}
+          {tags?.map((word, index) => 
+								<Tag key={index}  closable onClose={() => removeHandler(word)}>
+                {word&&word}
+              </Tag>
+							
+       
+          )}
           <Input id="tag-input" type="text" ref={ref} value={tag} onChange={tagHandler} />
         </Tag_wrapper>
       </form>
@@ -86,7 +82,6 @@ const Tag_wrapper = styled.div<StyleProps>`
   height: unset;
   min-height: 48px;
   padding: 10px 12px;
-  width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   letter-spacing: -0.3px;
@@ -102,7 +97,6 @@ const Tag_wrapper = styled.div<StyleProps>`
   }
 `;
 const Input = styled.input`
-  width: 130px;
   height: 25px;
   padding: 0;
   line-height: 1.43;
@@ -132,3 +126,5 @@ const AntTag = styled(Tag)`
     margin-left: 10px;
   }
 `;
+
+export default React.memo(Hashtags)

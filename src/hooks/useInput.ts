@@ -1,9 +1,7 @@
 import { kMaxLength } from 'buffer';
 import { useState, useCallback, ChangeEvent } from 'react';
 
-type UserInputProps = [string, (e: ChangeEvent) => void];
-
-export const useInput = (initialState: string, maxLength=Infinity): UserInputProps => {
+export const useInput = <T>(initialState: T, maxLength=Infinity): [T, (e: ChangeEvent) => void] => {
   const [value, setValue] = useState(initialState);
   const length = (value: string) => value.length <= maxLength;
 

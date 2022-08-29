@@ -9,7 +9,7 @@ import { Editor } from 'src/components/Editor';
 import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.style';
 import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag } from 'antd';
 
-import { Hashtags } from './atom/Hashtags';
+import { Hashtags } from 'src/components/Write';
 import { atom, Link } from '../common';
 import { CreateOutsource, CreateQuestion, OutsourceDetail, Question, QuestionDetail } from 'src/types';
 import { o, q } from 'src/api';

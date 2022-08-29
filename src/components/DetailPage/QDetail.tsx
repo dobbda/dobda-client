@@ -84,7 +84,7 @@ const QDetail = ({ children, data }: Props) => {
                 </S.CoinWrapper>
                 {data?.tagNames &&
                   data?.tagNames.map((tag) => (
-                    <Tag key={tag.name} bg={true}>
+                    <Tag key={tag.name}>
                       {tag.name}
                     </Tag>
                   ))}

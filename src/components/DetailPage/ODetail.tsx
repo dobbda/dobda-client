@@ -74,7 +74,7 @@ const ODetail = ({ children, data }: Props) => {
               <Question_icon />
               <S.Title> {data.title}</S.Title>
               <atom.TagWrapper>
-								{data.tagNames.map((tag:Tags)=> (<Tag key ={data.id+tag.id} bg={true}>{tag.name}</Tag>))}
+								{data.tagNames.map((tag:Tags)=> (<Tag key ={data.id+tag.id} >{tag.name}</Tag>))}
 
               </atom.TagWrapper>
 

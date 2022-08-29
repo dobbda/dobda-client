@@ -5,6 +5,13 @@ export interface Author {
   email?: string;
 }
 
+export interface UserUpdate {
+	name?:string, 
+	description?:string, 
+	nickname?:string,
+	avatar: string,
+	skill:string[],
+}
 ////////////////////////////////////////////////////////////////
 //// 								common 															////
 ////////////////////////////////////////////////////////////////
@@ -24,6 +31,10 @@ export interface CreateComment extends IDTYPE {
   content: string;
 }
 
+export type Tags = {
+  name: string;
+	id: number;
+};
 export interface Auth extends Default {
   // 유저확인용
   email: string;
@@ -52,10 +63,7 @@ export interface Comment extends Default {
   author: Author;
 }
 
-export type Tags = {
-  name: string;
-	id: number;
-};
+
 
 ////////////////////////////////////////////////////////////////
 //// 								questions 															////

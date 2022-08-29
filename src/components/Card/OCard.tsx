@@ -33,7 +33,7 @@ const OCard = ({ data }: Props) => {
             </Lib.Link>
           <atom.TagWrapper>
             {data.tagNames?.map((tag, i) => (
-              <Lib.Tag key={data.id+i} bg={true}>{tag.name}</Lib.Tag>
+              <Lib.Tag key={data.id+i}>{tag.name}</Lib.Tag>
             ))}
           </atom.TagWrapper>
         </S.BodyWrapper>

@@ -17,12 +17,7 @@ function MyApp({ Component, initialAuth, pageProps: { session, ...pageProps } }:
     () =>createQueryClient()
   );
 
-	// QueryClientProvider가 적용후 useQuery 사용
-	const AuthQuery = ({initialAuth}: {initialAuth:Auth|any}):null => {
-		useAuth(initialAuth&&initialAuth)
-		return null
-	}
-
+	initialAuth&&queryClient.setQueryData("auth", initialAuth)
   return (
 		
     <React.Fragment>
@@ -30,7 +25,6 @@ function MyApp({ Component, initialAuth, pageProps: { session, ...pageProps } }:
         <Hydrate state={pageProps.dehydratedState}>
           <ThemeProvider theme={theme}>
             <GlobalStyle />
-						<AuthQuery initialAuth={initialAuth}/>
             <Component {...pageProps} />
           </ThemeProvider>
         </Hydrate>
@@ -48,36 +42,7 @@ MyApp.getInitialProps = async (context: AppContext) => {
     const cookie = req?.headers.cookie;
 		const cookies = new Cookies(req, res);
 
-		// 리프레쉬 토큰이 있고 액세스 토큰이 없을때 토큰 재발급
-		// if(!cookies.get('jwt-access') && cookies.get('jwt-refresh')){ 
-		// 	const newTokens = (await http.get(`/auth/refresh`,{
-		// 		headers: {...(cookie&& {cookie})}
-		// 	})).data.response;
 
-		// 	cookies.set('jwt-access', newTokens.tokens.accessToken, {// access쿠키 재세팅
-    //     httpOnly: true,
-		// 		expires: new Date(Date.now() + process.env.NEXT_PUBLIC_ACCESS_EXPIRES) // true by default
-    // 	})
-		// 	cookies.set('jwt-refresh', newTokens.tokens.refreshToken, {// refresh쿠키 재세팅
-    //     httpOnly: true, // true by default
-		// 		expires: new Date(Date.now() + process.env.NEXT_PUBLIC_REFRESH_EXPIRES),
-    // 	})
-
-		// 	cookies.set('access-expires', '11111111111111111111111111', {// access쿠키 재세팅
-		// 		httpOnly: false,
-		// 		expires: new Date(Date.now() + process.env.NEXT_PUBLIC_ACCESS_EXPIRES) // true by default
-    // 	})
-		// 	cookies.set('refresh-expires', "11111111111111111111111111", {// refresh쿠키 재세팅
-		// 		httpOnly: false,
-		// 		expires: new Date(Date.now() + process.env.NEXT_PUBLIC_REFRESH_EXPIRES),
-    // 	})
-		// 	return {
-		// 		...initialProps,
-		// 		initialAuth: newTokens
-		// 	};
-		// }
-
-// 유저 확인 및 저장
 		if(cookies.get('jwt-access')){
 			const initialAuth = (await http.get(`/auth`,{
 				headers: {...(cookie&& {cookie})}

@@ -1,7 +1,7 @@
 import 'antd/dist/antd.css';
 import React from 'react';
 import { useInput } from 'src/hooks';
-import { UserUpdate } from './UserUpdate';
+import { UserUpdateForm } from './UserUpdate';
 import * as Lib from 'src/components/common';
 
 import { Hashtags } from 'src/components/Write';
@@ -15,8 +15,8 @@ export const MyInfo = (props: Props) => {
   return (
     <>
       <S.InfoWrapper>
-        <h1>내 정보</h1>
-        <UserUpdate />
+        <h1 css={{margin:"10px"}}>내 정보</h1>
+        <UserUpdateForm />
 <br/>
 <br/>
         <div>
@@ -24,7 +24,7 @@ export const MyInfo = (props: Props) => {
             <S.Label2>보유코인</S.Label2>
             <S.Coin>9999</S.Coin>
 
-            <Lib.Link href="/user/coinhistory"><S.Btn>보기</S.Btn></Lib.Link>
+            <Lib.Link href="/user/coinhistory"><Lib.Button types='cancel'>보기</Lib.Button></Lib.Link>
           </S.Flex>
           <S.Hr/>
 
@@ -41,7 +41,7 @@ export const MyInfo = (props: Props) => {
           <S.Flex>
             <S.Label2>내 글 목록</S.Label2>
             <S.Coin>99</S.Coin>
-            <Lib.Link href="/user/poster-list"><S.Btn>보기</S.Btn></Lib.Link>
+            <Lib.Link href="/user/poster-list"><Lib.Button types='cancel'>보기</Lib.Button></Lib.Link>
 
           </S.Flex>
 

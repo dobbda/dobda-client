@@ -32,7 +32,7 @@ const QCard = ({ data }: data) => {
               </Lib.Link>
               <atom.TagWrapper>
                 {q.tagNames?.map((tag, i) => (
-                  <Lib.Tag bg={true} key={tag.name + i}>
+                  <Lib.Tag key={tag.name + i}>
                     {tag.name}
                   </Lib.Tag>
                 ))}

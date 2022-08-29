@@ -21,6 +21,7 @@ export {IoIosNotifications as BellIcon} from 'react-icons/io';
 export {ImNotification as RuleIcon} from 'react-icons/im';
 export {GrMoreVertical as MoreIcon} from 'react-icons/gr';
 export {BsBookmark as BookmarkIcon} from 'react-icons/bs';
+export {IoIosClose as TagCloseIcon} from 'react-icons/io';
 // export {RiArrowDownSLine as MainArrowIcon} from 'react-icons/ri';
 // export {AiFillBell as BellIcon} from 'react-icons/ai';
 
