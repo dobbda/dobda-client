@@ -42,7 +42,7 @@ const HeaderNav = () => {
           <S.MenuWrapper>
             {auth?.id ? <p onClick={userlogout}>로그아웃</p> : <S.Btn onClick={setLoginModal}> 로그인 </S.Btn>}
             <Link href="/user/profile" passHref>
-              <S.Btn>마이페이지</S.Btn>
+              <S.Btn>{auth? auth.email: "로그인필요"}</S.Btn>
             </Link>
             <Popover trigger="click" content={<MessageBox />} top={10} right={-10}>
               <I.BellIcon color={'#545dd8'} size={'25px'} />

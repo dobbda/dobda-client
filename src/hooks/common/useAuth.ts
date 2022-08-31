@@ -16,5 +16,4 @@ export function useAuth(): {auth:Auth, refetch:any} {
 			onError: (err:AxiosError)=>(err.response.data.error.message)
 		});
 		return {auth, refetch};
-
 }
