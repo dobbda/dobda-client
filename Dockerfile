@@ -1,15 +1,17 @@
 FROM node:14
-LABEL AUTHOR SHIN_HYEOK KIM (seungkyua@gmail.com)
 WORKDIR /app
 
 COPY package.json package-lock.json ./
 RUN npm ci
 
-ENV CONTINUOUS_INTEGRATION=1
-ENV NODE_ENV=production
+# ENV CONTINUOUS_INTEGRATION=1
+# ENV NODE_ENV=production
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
 
 COPY . .
-RUN npm build
+RUN npm run build
 
 EXPOSE 3000
 CMD [ "npm", "start" ]
