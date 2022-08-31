@@ -9,7 +9,7 @@ ENV CONTINUOUS_INTEGRATION=1
 ENV NODE_ENV=production
 
 COPY . .
-RUN npm run build
+RUN npm build
 
 EXPOSE 3000
 CMD [ "npm", "start" ]
