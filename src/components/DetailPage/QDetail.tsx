@@ -11,7 +11,7 @@ import getDate from 'src/lib/dateForm';
 import { CoinIcon } from 'src/assets/icons';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
-import { QuestionDetail } from 'src/types';
+import { Question, QuestionDetail } from 'src/types';
 import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { keys, useAddAnswer, useAuth, useDelete, useDidMountEffect, useErrMsg } from 'src/hooks';
@@ -33,7 +33,7 @@ const QDetail = ({ children, data }: Props) => {
     enabled: data?.answersCount > 0,
   });
 
-  const del = useDelete(data?.id, keys.questions());
+  const del = useDelete<Question>(data?.id, keys.qDetail(data.id));
   const add = useAddAnswer(data?.id);
 
   const onSubmitAnswer = useCallback(() => {
@@ -49,7 +49,7 @@ const QDetail = ({ children, data }: Props) => {
       setMdStr('');
     }
     if (del.isSuccess) {
-      router.push('/');
+      router.replace('/');
     }
 
 		if( add.isError || del.isError) {

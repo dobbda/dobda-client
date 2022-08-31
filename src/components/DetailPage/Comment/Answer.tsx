@@ -12,7 +12,7 @@ import { SubmitBtn } from '../style/Detail.style';
 import { Answer } from 'src/types';
 import { useQuery } from 'react-query';
 import { q } from 'src/api';
-import { keys, useDelete,useAddComment } from 'src/hooks';
+import { keys, useDelete,useAddComment, useErrMsg, useDidMountEffect } from 'src/hooks';
 import { Button, Popover } from 'antd';
 import { toast } from 'react-toastify';
 type Props = {
@@ -20,6 +20,7 @@ type Props = {
 };
 
 const AnswerCp = ({ data }: Props) => {
+	const errMsg = useErrMsg()
   const [isEdit, setisEdit] = useState(false);
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
@@ -28,17 +29,19 @@ const AnswerCp = ({ data }: Props) => {
   });
 
   const addReply = useAddComment(data?.id);
-  const { mutate: delMute } = useDelete(data?.id, keys.answers(data?.questionId));
+  const del = useDelete(data?.id, keys.answers(data?.questionId));
 
   const onSubmitComment = useCallback(() => {
    addReply.mutate({ content: mdStr, aid: data.id });
 
   }, [addReply, mdStr, data.id]);
 
-  useEffect(() => {
+  useDidMountEffect(() => {
 		if (addReply.isSuccess) {setMdStr('')}
-		if (addReply.isError) {toast.success(addReply.error.response.data.message, { autoClose: 1000 });}
-  }, [addReply.isSuccess, addReply.isError, addReply.error?.response.data.message]);
+		if (addReply.isError) {toast.error(errMsg, { autoClose: 1000 });}
+		if(del.isError){
+			toast.error(errMsg, { autoClose: 1000 }) }
+  }, [addReply.isError, addReply.isSuccess, del.error?.response, del.isError, errMsg]);
 
   return (
     <S.CommentWrapper>
@@ -55,7 +58,7 @@ const AnswerCp = ({ data }: Props) => {
                   <Btn type="primary" key="edit" ghost>
                     수정
                   </Btn>
-                  <Btn onClick={() => delMute(q.delAnswers)} type="primary" key="delete" danger ghost>
+                  <Btn onClick={() => del.mutate(q.delAnswers)} type="primary" key="delete" danger ghost>
                     삭제
                   </Btn>
                 </>

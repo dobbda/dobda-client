@@ -57,6 +57,10 @@ export const getReplies = async(aid:number):Promise<Reply[]> => {
 	return (await axios.get(`/api/replies?aid=${aid}`)).data.response.replies
 }
 
+// 조회수
+export const updateWatch = async(oid:number):Promise<Comment[]> => {
+	return (await axios.patch(`/api/outsource/${oid}/watch`)).data.response
+}
 
 
 

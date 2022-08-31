@@ -18,7 +18,6 @@ type Props = {};
 export const UserUpdateForm = (props: Props) => {
 	const queryClient = useQueryClient();
 	const {auth, refetch} = useAuth();
-	console.log(auth&&auth)
   const [nickname, onChangeNickname] = useInput<string>(auth?.id&&auth?.nickname, 15);
   const [name, onChangeName] = useInput<string>(auth?.name, 10);
   const [avatar, onChangeAvatar] = useInput<string>(auth?.avatar);
