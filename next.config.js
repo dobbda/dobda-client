@@ -8,7 +8,9 @@ module.exports = withPlugins([], {
 	productionBrowserSourceMaps: true,
 	reactStrictMode: true,
 	historyApiFallback: true,
-	output: 'standalone',
+	experimental: {		  
+    		outputStandalone: true,
+  	},
 	images: {
 		domains: ["icon/svg", "joeschmoe.io", "avatars.dicebear.com"]
 	},
