@@ -10,8 +10,8 @@ RUN npm ci
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
-COPY . .
-RUN npm run build
+COPY --chown=node:node .next .next
+COPY --chown=node:node public public
 
 EXPOSE 3000
 CMD [ "npm", "start" ]
