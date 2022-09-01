@@ -10,20 +10,18 @@ on:
 
 jobs:
   next-build:
-#     if: ${{ github.event_name == 'workflow_dispatch' }}       # Run only if triggered manually
+    if: ${{ github.event_name == 'workflow_dispatch' }}       # Run only if triggered manually
     runs-on: ubuntu-latest
-    container: node:lts          # Use node LTS container version, same as Dockerfile base image
+    container: node:lts  # Use node LTS container version, same as Dockerfile base image
     steps:
       - name: Checkout
         uses: actions/checkout@v2       # Checkout the code
       - run: npm ci   
-      - name: create env file #깃헙 설정에 복사한 ENV_VARS의 값을 모두 .env file로 만든다.
+      - name: create env file
         run: |
           echo "${{ secrets.ENV_VARS }}" >> .env
       - run: npm run build
-          # with:
-          # run: |
-          #   echo "${{ secrets.ENV_VARS }}" >> .env
+
 
       - name: Upload Next build          # Upload the artifact
         uses: actions/upload-artifact@v2
