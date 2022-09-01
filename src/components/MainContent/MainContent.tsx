@@ -1,43 +1,55 @@
-import React from 'react';
-import { CategoriesEvent } from '../lib/categoryHover';
-import { Main } from './style/MainContent.Element';
-import SearchBox from './SearchBox'
-import QCard from '../Card/QCard'
-import RCard from '../Card/RCard'
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { useQuery } from 'react-query';
+
+import { Main } from './style/MainContent.style';
+import SearchBox from './atom/SearchBox';
+
+import { PenIcon } from 'src/assets/icons';
+import {Categories, CategoryList,CategoriesType} from 'src/lib/utils/category'
+import RenderOutsource from './renderItm/RenderOutSource';
+import RenderQuestion from './renderItm/RenderQuestion';
+import { getLocalStorage, setLocalStorage } from 'src/lib/localStorage';
+
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const MainContent = ({ children }: Props) => {
-  CategoriesEvent(); // Category Click Hover Events
-
+	const storeCategory = typeof window !== 'undefined'&&getLocalStorage("mainCateogry") as CategoriesType
+	const [select, setSelect] = useState<CategoriesType>(storeCategory ? storeCategory : CategoryList[0])
+	setLocalStorage("mainCateogry", select)
   return (
     <Main>
-      <div> 
-      <SearchBox/>
+      <section >
+        <div className="search-wrapper">
+          <SearchBox />
+        </div>
+        <div className="top-bar">
+          <div className="category-wrapper">
+						{
+							CategoryList.map((m, i)=>(
+								<span key={i} onClick={()=>setSelect(m)} className={select===m ? "tap_menu selected" : "tap_menu"}>
+									{Categories[m]}
+								</span>
+							))
+						}
 
-      </div>
-
-      <div className="category-wrapper">
-        <span className="selected">전체</span>
-        <span>질문</span>
-        <span>요청</span>
-      </div>
-      {/** main content card  **/}
-      <div className="main-content">
-        <ul className="card-grid">
-          <QCard />
-          <RCard />
-          <QCard />
-          <RCard />          
-          <QCard />
-          <RCard />
-        </ul>
-      </div>
-
+          </div>
+          <Link href="/write-board" passHref>
+            <button className="writeBtn">
+              글 작성 <PenIcon />
+            </button>
+          </Link>
+        </div>
+      </section>
+      <section className="card-content">
+        {select=="featureRequest" && <RenderOutsource />}
+        {select=="questions" && <RenderQuestion />}
+      </section>
     </Main>
   );
 };
 
-export default MainContent;
+export default React.memo(MainContent);
