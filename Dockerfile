@@ -1,21 +1,41 @@
-FROM node:14-alpine AS build
 
-ENV PORT 3000
+# Base Layer
+FROM node:14.17.0-alpine AS base
+WORKDIR /app
 
-# Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+COPY package.json yarn.lock ./
+RUN yarn --frozen-lockfile
+COPY . .
 
-# Installing dependencies
-COPY package*.json /usr/src/app/
-RUN npm install --force
+#==================================================
+# Build Layer
+FROM base AS build
+ENV NODE_ENV=production
+WORKDIR /build
 
-# Copying source files
-COPY . /usr/src/app
+COPY --from=base /app ./
+RUN yarn build
 
-# Building app
-RUN npm run build
+# ==================================================
+# Package install Layer
+FROM node:14.17.0-alpine AS node_modules
+
+WORKDIR /modules
+
+COPY package.json yarn.lock ./
+RUN yarn install --non-interactive --frozen-lockfile --production
+
+# ==================================================
+# Production Run Layer
+FROM node:14.17.0-alpine
+ENV NODE_ENV=production
+WORKDIR /app
+
+COPY package.json yarn.lock next.config.js ./
+COPY --from=build /build/public ./public
+COPY --from=build /build/.next ./.next
+COPY --from=node_modules /modules/node_modules ./node_modules
+
 EXPOSE 3000
 
-# Running the app
-CMD "npm" "run" "dev"
+CMD ["yarn", "start"]
