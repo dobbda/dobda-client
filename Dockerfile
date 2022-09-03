@@ -1,6 +1,6 @@
 
 # Base Layer
-FROM node:14.17.0-alpine AS base
+FROM node:14-alpine AS base
 WORKDIR /app
 
 COPY package.json yarn.lock ./
@@ -18,7 +18,7 @@ RUN yarn build
 
 # ==================================================
 # Package install Layer
-FROM node:14.17.0-alpine AS node_modules
+FROM node:14-alpine AS node_modules
 
 WORKDIR /modules
 
@@ -27,7 +27,7 @@ RUN yarn install --non-interactive --frozen-lockfile --production
 
 # ==================================================
 # Production Run Layer
-FROM node:14.17.0-alpine
+FROM node:14-alpine
 ENV NODE_ENV=production
 WORKDIR /app
 
