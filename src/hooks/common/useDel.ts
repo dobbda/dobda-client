@@ -15,10 +15,12 @@ export const useDelete = <T extends Props>(id: number, queryKey: QueryKey) => {
   return useMutation((fetch: MutationFunction<unknown, any>) => fetch(id), {
     onSuccess: (res: any) => {
       if (res.success) {
-        const oldData = queryClient.getQueryData(queryKey) as any;
         queryClient.cancelQueries(queryKey);
         if (queryKey.includes('answers') || queryKey.includes('enquiries')) {
           queryClient.invalidateQueries(queryKey);
+					queryKey.includes('answers') && setInfCount({queryKey: keys.questions(), changeKey:"answersCount", findId:id, upDown:-1})
+					queryKey.includes('enquiries') && setInfCount({queryKey: keys.outsources(), changeKey:"enquiriesCount", findId:id, upDown:-1})
+					
         } else if (queryKey.includes('detail')) {
           queryClient.setQueryData(queryKey.includes('question') ? keys.questions() : keys.outsources(), (oldData: any) =>
             produce(oldData, (draft: any) => {

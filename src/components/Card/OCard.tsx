@@ -11,6 +11,7 @@ type Props = {
 };
 
 const OCard = ({ data }: Props) => {
+	console.log( data.watch)
   return (
 		<>
 		{

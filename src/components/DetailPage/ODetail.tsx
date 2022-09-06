@@ -9,7 +9,7 @@ import getDate from 'src/lib/dateForm';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
-import { keys, useAddEnquiry, useDelete, useDidMountEffect } from 'src/hooks';
+import { keys, useAddEnquiry, useDelete, useDidMountEffect, useQueryCount } from 'src/hooks';
 import { o, q } from 'src/api';
 import { UpdateEditor } from '../Write';
 import { useQuery, useQueryClient } from 'react-query';
@@ -23,7 +23,7 @@ type Props = {
 
 const ODetail = ({ children, data }: Props) => {
   const router = useRouter();
-
+	
 	const queryClient = useQueryClient();
 
   const [mdStr, setMdStr] = useState('');
@@ -39,8 +39,12 @@ const ODetail = ({ children, data }: Props) => {
     add.mutate(enquiryData);
   }, [mdStr, data.id, add]);
 
-	const errMsg = queryClient.getQueryData("serverErrorMessage") as string;
+	const { setCount, setInfCount } = useQueryCount();
+	useEffect(()=>{
+		setInfCount({queryKey: keys.outsources(), changeKey:"watch", findId:data.id, countVal:data.watch})
+	})
 
+	const errMsg = queryClient.getQueryData("serverErrorMessage") as string;
   useDidMountEffect(() => {
     if (add.isSuccess) {
       toast.success('답변이 등록되었습니다.', { autoClose: 1000 });

@@ -9,7 +9,7 @@ export const Header = styled.header`
   left: 0px;
   right: 0px;
   opacity: 0.95;
-  background-color: #f4faff ;//${({ theme }) => theme.color.primary};
+  background-color: #3F2B56 ;//${({ theme }) => theme.color.primary};
 	border-bottom: solid 1px #cacaca;
   .headerWrapper{
 

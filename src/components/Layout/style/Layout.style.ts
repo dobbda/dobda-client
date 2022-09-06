@@ -19,7 +19,6 @@ export const Position = styled.div<Props>`
   /* max-width: ${({setWidth})=> setWidth ? "1260px" : "1180px" }; */
   max-width: 1260px;
   margin: 0 auto;
-	background-color: #f8f9fa;
 
 `;
 
@@ -36,9 +35,10 @@ export const Wrapper = styled.div`
 export const MainWrapper = styled.div`
 	min-height: 100vh;
 	width: 100%;
-	margin: 0 20px;
+	padding: 0 20px;
 	position: relative;
 	padding-top: 10px;
+	background-color: #fff;
 	@media screen and (max-width: 768px) {
     margin: 0 5px;
   } ;

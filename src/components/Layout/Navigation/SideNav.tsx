@@ -6,7 +6,7 @@ import { Menu } from './atom/Menu';
 
 import * as I from 'src/assets/icons'; //icon
 
-const SideNav = () => {
+export const SideNav = () => {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -31,4 +31,4 @@ const SideNav = () => {
   );
 };
 
-export default SideNav;
+ 

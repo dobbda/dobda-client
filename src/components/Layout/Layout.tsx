@@ -1,9 +1,10 @@
 import React, { FC, useState, PropsWithChildren } from 'react';
 import * as S from './style/Layout.style';
 import Banner from '../Banner/Banner';
-import { HeaderNav, SideNav } from 'src/components/common';
+import { HeaderNav } from 'src/components/common';
 import * as API from 'src/api';
 import { GlobalStyle } from 'src/styles/GlobalStyle';
+import {SideNav} from './Navigation/SideNav';
 
 type Props = {
   aside?: React.ReactElement;

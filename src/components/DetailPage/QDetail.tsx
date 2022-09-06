@@ -14,7 +14,7 @@ import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { Question, QuestionDetail } from 'src/types';
 import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
-import { keys, useAddAnswer, useAuth, useDelete, useDidMountEffect, useErrMsg } from 'src/hooks';
+import { keys, useAddAnswer, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
 import { UpdateEditor } from '../Write';
 import { Button } from 'antd';
 import { useRouter } from 'next/router';
@@ -32,7 +32,7 @@ const QDetail = ({ children, data }: Props) => {
   const { data: answers } = useQuery(keys.answers(data?.id), () => q.getAnswers(data.id), {
     enabled: data?.answersCount > 0,
   });
-
+	
   const del = useDelete<Question>(data?.id, keys.qDetail(data.id));
   const add = useAddAnswer(data?.id);
 
@@ -41,8 +41,11 @@ const QDetail = ({ children, data }: Props) => {
     add.mutate(answerData);
   }, [mdStr, data.id, add]);
 
+	const { setCount, setInfCount } = useQueryCount();
+	useEffect(()=>{
+		setInfCount({queryKey: keys.questions(), changeKey:"watch", findId:data.id, countVal:data.watch})
+	})
 	const errMsg = useErrMsg();
-
   useDidMountEffect(() => {
     if (add.isSuccess) {
       toast.success('답변이 등록되었습니다.', { autoClose: 1000 });
