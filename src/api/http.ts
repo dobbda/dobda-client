@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios from 'axios';
+const prod = process.env.NODE_ENV === 'production';
 
 const createHttp = (baseURL: string) => {
   const http = axios.create({
@@ -8,8 +9,4 @@ const createHttp = (baseURL: string) => {
   return http;
 };
 
-export const http = createHttp(
-  process.env.API_URL && process.env.API_URL
-);
-
-
+export const http = createHttp(prod ? process.env.API_DOCKER_URL : process.env.API_URL);
