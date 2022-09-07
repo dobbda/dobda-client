@@ -10,10 +10,9 @@ export const Div = styled.div<{ checked: boolean }>`
   position: relative;
   overflow: hidden;
   overflow: hidden;
-	background-color:#3F2B56 ;
+  background-color: #3f2b56;
   /* color: rgba(0, 0, 0, 0.6); */
   color: rgba(255, 255, 255, 0.8);
-
 `;
 
 export const Label = styled.label`

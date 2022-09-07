@@ -24,7 +24,7 @@ type Props = {
 };
 
 const QDetail = ({ children, data }: Props) => {
-	const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
   const router = useRouter();
   const { auth, refetch } = useAuth();
   const [mdStr, setMdStr] = useState('');
@@ -32,7 +32,7 @@ const QDetail = ({ children, data }: Props) => {
   const { data: answers } = useQuery(keys.answers(data?.id), () => q.getAnswers(data.id), {
     enabled: data?.answersCount > 0,
   });
-	
+
   const del = useDelete<Question>(data?.id, keys.qDetail(data.id));
   const add = useAddAnswer(data?.id);
 
@@ -41,11 +41,11 @@ const QDetail = ({ children, data }: Props) => {
     add.mutate(answerData);
   }, [mdStr, data.id, add]);
 
-	const { setCount, setInfCount } = useQueryCount();
-	useEffect(()=>{
-		setInfCount({queryKey: keys.questions(), changeKey:"watch", findId:data.id, countVal:data.watch})
-	})
-	const errMsg = useErrMsg();
+  const { setCount, setInfCount } = useQueryCount();
+  useEffect(() => {
+    setInfCount({ queryKey: keys.questions(), changeKey: 'watch', findId: data.id, countVal: data.watch });
+  });
+  const errMsg = useErrMsg();
   useDidMountEffect(() => {
     if (add.isSuccess) {
       toast.success('답변이 등록되었습니다.', { autoClose: 1000 });
@@ -55,22 +55,16 @@ const QDetail = ({ children, data }: Props) => {
       router.replace('/');
     }
 
-		if( add.isError || del.isError) {
+    if (add.isError || del.isError) {
       toast.error(errMsg, { autoClose: 1000 });
-
-		}
+    }
   }, [router, del.isSuccess, add.isSuccess, add.isError, del.isError, errMsg]);
-
-
-
 
   return (
     <S.DetailContainer>
-      {isEdit&&data
-			? (
+      {isEdit && data ? (
         <UpdateEditor oldData={data} category="question" setIsEdit={setIsEdit} />
-      	) 
-			: (
+      ) : (
         <>
           <S.ContentWrapper>
             <S.ContentHeader>
@@ -85,12 +79,7 @@ const QDetail = ({ children, data }: Props) => {
                   <CoinIcon />
                   <p>{data?.coin}</p>
                 </S.CoinWrapper>
-                {data?.tagNames &&
-                  data?.tagNames.map((tag) => (
-                    <Tag key={tag.name}>
-                      {tag.name}
-                    </Tag>
-                  ))}
+                {data?.tagNames && data?.tagNames.map((tag) => <Tag key={tag.name}>{tag.name}</Tag>)}
               </atom.TagWrapper>
               <S.OnyUser className="only-author">
                 <Button onClick={() => setIsEdit(true)} type="primary" ghost>
@@ -124,7 +113,7 @@ const QDetail = ({ children, data }: Props) => {
               <atom.NoData>등록된 답변이 없습니다. 답변을 등록할 수 있습니다.</atom.NoData>
             )}
           </S.AnswerContainer>
-          <ToastContainer position="top-center" hideProgressBar draggable autoClose={8000}/>
+          <ToastContainer position="top-center" hideProgressBar draggable autoClose={8000} />
         </>
       )}
     </S.DetailContainer>

@@ -1,1 +1,1 @@
-export {SocialLogin} from './SocialLogin';
+export { SocialLogin } from './SocialLogin';

@@ -5,7 +5,7 @@ import { Editor, MarkDownViewer } from 'src/components/Editor';
 type Props = {
   parentId: number;
   content: string;
-	setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const EditAnswer = ({ parentId, content, setIsEdit }: Props) => {

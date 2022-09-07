@@ -9,20 +9,22 @@ export const Div = styled.div`
   text-align: center;
   border-radius: 4px;
   .err-message {
-    margin:0;
+    margin: 0;
     height: 20px;
-    color:red;
+    color: red;
     font-size: 13px;
-		text-align: left;
+    text-align: left;
   }
-	.coin-data{
-		padding:0 5px;
-		display: flex;		
-		span{color: #8400EC; font-weight: bold;}
-		a{color: blue; margin-right:20px;}
-
-	}
+  .coin-data {
+    padding: 0 5px;
+    display: flex;
+    span {
+      color: #8400ec;
+      font-weight: bold;
+    }
+    a {
+      color: blue;
+      margin-right: 20px;
+    }
+  }
 `;
-
-
-

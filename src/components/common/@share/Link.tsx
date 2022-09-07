@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
-import Link  from 'next/link';
+import Link from 'next/link';
 type Props = {
   children: React.ReactNode;
   href: string;
-  scroll?: boolean
+  scroll?: boolean;
 };
 
-export const A = ({ children, href,scroll=true }: Props) => {
+export const A = ({ children, href, scroll = true }: Props) => {
   if (typeof children == 'object') {
     return (
       <Link href={href} passHref scroll={scroll}>
@@ -14,6 +14,10 @@ export const A = ({ children, href,scroll=true }: Props) => {
       </Link>
     );
   } else {
-    return <Link href={href} scroll={scroll}>{children}</Link>;
+    return (
+      <Link href={href} scroll={scroll}>
+        {children}
+      </Link>
+    );
   }
 };

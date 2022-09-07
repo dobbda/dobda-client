@@ -11,11 +11,11 @@ export const Text = styled.span`
   font-size: 20px;
   font-weight: 600;
   text-align: center;
-  height : 30px; 
+  height: 30px;
   font-weight: bold;
-  overflow : hidden;
-  text-overflow : ellipsis;
-  -webkit-line-clamp : 1; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 `;
 
@@ -28,7 +28,6 @@ export const Item = styled.div`
   margin: 12px 28px 12px 28px;
   word-break: keep-all;
   overflow: hidden;
-
 `;
 
 export const Wrap = styled.div<Props>`
@@ -45,6 +44,6 @@ export const Wrap = styled.div<Props>`
   :hover {
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.5);
   }
-  background-color: ${({bg})=> bg};
-  color: ${({color})=> color};
+  background-color: ${({ bg }) => bg};
+  color: ${({ color }) => color};
 `;

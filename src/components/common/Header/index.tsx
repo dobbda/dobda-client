@@ -17,22 +17,21 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 const HeaderNav = () => {
-	const queryClient = useQueryClient();
-  const {auth, refetch} = useAuth();
-  const {loginModal, setLoginModal} = useLoginModalhandler();
-	const router = useRouter()
-	const userlogout = useCallback(async() => {
-		if(!auth.id) return;
-		var result = confirm("로그아웃 확인");
-		if(result){
-			try {
-				await axios.delete("/api/auth/logout");
-			} catch (e) {}
-			queryClient.removeQueries(["auth"])
-			router.replace(router.asPath)
-		};
-		
-	},[auth?.id, queryClient, router]);
+  const queryClient = useQueryClient();
+  const { auth, refetch } = useAuth();
+  const { loginModal, setLoginModal } = useLoginModalhandler();
+  const router = useRouter();
+  const userlogout = useCallback(async () => {
+    if (!auth.id) return;
+    var result = confirm('로그아웃 확인');
+    if (result) {
+      try {
+        await axios.delete('/api/auth/logout');
+      } catch (e) {}
+      queryClient.removeQueries(['auth']);
+      router.replace(router.asPath);
+    }
+  }, [auth?.id, queryClient, router]);
   return (
     <>
       <S.Header>
@@ -42,7 +41,7 @@ const HeaderNav = () => {
           <S.MenuWrapper>
             {auth?.id ? <p onClick={userlogout}>로그아웃</p> : <S.Btn onClick={setLoginModal}> 로그인 </S.Btn>}
             <Link href="/user/profile" passHref>
-              <S.Btn>{auth? auth.email: "로그인필요"}</S.Btn>
+              <S.Btn>{auth ? auth.email : '로그인필요'}</S.Btn>
             </Link>
             <Popover trigger="click" content={<MessageBox />} top={10} right={-10}>
               <I.BellIcon color={'#545dd8'} size={'25px'} />

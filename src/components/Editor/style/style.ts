@@ -3,7 +3,6 @@ import { ReplyIcon, ReplyFillIcon } from 'src/assets/icons';
 import styled from 'styled-components';
 import { GlobalStyle } from 'src/styles/GlobalStyle';
 
-
 export const EditorStyle = styled.div`
   margin-top: 10px 0;
   position: relative;

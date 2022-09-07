@@ -17,37 +17,37 @@ import { CoinView } from './atom/CoinView';
 import moment from 'moment';
 
 type Props = {
-  oldData: any ;
+  oldData: any;
   setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
-  category: "outsource"|"question";
+  category: 'outsource' | 'question';
 };
 
 const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
-	const tdata = category === "outsource" && oldData as OutsourceDetail
+  const tdata = category === 'outsource' && (oldData as OutsourceDetail);
   const queryClient = useQueryClient();
-  const [deadline, setDeadline] = useState<string|null>(category=="outsource" ? tdata.deadline : null);
+  const [deadline, setDeadline] = useState<string | null>(category == 'outsource' ? tdata.deadline : null);
   const [contentTitle, setContentTitle] = useState<string>(oldData?.title);
-  const [tags, setTags] = useState<string[]>(oldData?.tagNames.map((tags:any) => tags.name));
+  const [tags, setTags] = useState<string[]>(oldData?.tagNames.map((tags: any) => tags.name));
   const [mdStr, setMdStr] = React.useState<string>(oldData?.content);
   const [coin, setCoin] = useState(oldData?.coin);
 
-  const editQuestion = useAddQuestion( q.updateQuestion , oldData?.id) 
-	const editOutsource = useAddOutsource(o.updateOutsource, oldData?.id) 
+  const editQuestion = useAddQuestion(q.updateQuestion, oldData?.id);
+  const editOutsource = useAddOutsource(o.updateOutsource, oldData?.id);
 
   const onCangeData: DatePickerProps['onChange'] = useCallback((date, dateString) => {
     setDeadline(dateString);
   }, []);
-	console.log(category)
+  console.log(category);
 
   const onSubmit = useCallback(() => {
-    const data: CreateQuestion|CreateOutsource = {
+    const data: CreateQuestion | CreateOutsource = {
       title: contentTitle,
       content: mdStr,
       tagNames: tags,
       coin: coin,
-			deadline: deadline
+      deadline: deadline,
     };
-    category=="question" ?  editQuestion.mutate(data): editOutsource.mutate(data)
+    category == 'question' ? editQuestion.mutate(data) : editOutsource.mutate(data);
   }, [contentTitle, mdStr, tags, coin, deadline, category, editQuestion, editOutsource]);
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
       return toast.info('마감기한을 입력해주세요', { autoClose: 1000 });
     }
 
-		onSubmit();
+    onSubmit();
   }, [tags, mdStr, contentTitle, category, coin, deadline, onSubmit]);
 
   return (
@@ -91,7 +91,12 @@ const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
           </Group>
           <Group>
             <Label>마감기한</Label>
-            <DatePicker defaultValue={moment(oldData.deadline)} onChange={onCangeData} placeholder="마감기한"  disabledDate={(e)=>e.valueOf() < Date.now()}/>
+            <DatePicker
+              defaultValue={moment(oldData.deadline)}
+              onChange={onCangeData}
+              placeholder="마감기한"
+              disabledDate={(e) => e.valueOf() < Date.now()}
+            />
           </Group>{' '}
         </div>
         <br />

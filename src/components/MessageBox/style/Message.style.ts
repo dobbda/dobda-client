@@ -6,7 +6,7 @@ type Props = {
 };
 export const Li = styled.li<Props>`
   padding: 10px 5px;
-  border-bottom: 1px solid hsl(210,8%,95%);
+  border-bottom: 1px solid hsl(210, 8%, 95%);
   .msg-title {
     display: flex;
     align-items: center;

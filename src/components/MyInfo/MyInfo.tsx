@@ -15,18 +15,20 @@ export const MyInfo = (props: Props) => {
   return (
     <>
       <S.InfoWrapper>
-        <h1 css={{margin:"10px"}}>내 정보</h1>
+        <h1 css={{ margin: '10px' }}>내 정보</h1>
         <UserUpdateForm />
-<br/>
-<br/>
+        <br />
+        <br />
         <div>
           <S.Flex>
             <S.Label2>보유코인</S.Label2>
             <S.Coin>9999</S.Coin>
 
-            <Lib.Link href="/user/coinhistory"><Lib.Button types='cancel'>보기</Lib.Button></Lib.Link>
+            <Lib.Link href="/user/coinhistory">
+              <Lib.Button types="cancel">보기</Lib.Button>
+            </Lib.Link>
           </S.Flex>
-          <S.Hr/>
+          <S.Hr />
 
           <S.Flex>
             <S.Label2>활동점수</S.Label2>
@@ -41,11 +43,12 @@ export const MyInfo = (props: Props) => {
           <S.Flex>
             <S.Label2>내 글 목록</S.Label2>
             <S.Coin>99</S.Coin>
-            <Lib.Link href="/user/poster-list"><Lib.Button types='cancel'>보기</Lib.Button></Lib.Link>
-
+            <Lib.Link href="/user/poster-list">
+              <Lib.Button types="cancel">보기</Lib.Button>
+            </Lib.Link>
           </S.Flex>
 
-          <S.Hr/>
+          <S.Hr />
         </div>
       </S.InfoWrapper>
     </>

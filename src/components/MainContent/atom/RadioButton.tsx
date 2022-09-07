@@ -1,15 +1,15 @@
-import { useState } from "react";
-import styled from "styled-components";
+import { useState } from 'react';
+import styled from 'styled-components';
 
 interface Props {
-	id?: string;
-	name:string;
-	defaultChecked?: boolean;
+  id?: string;
+  name: string;
+  defaultChecked?: boolean;
 }
-function Radio(props:Props) {
+function Radio(props: Props) {
   const [checkedInputs, setCheckedInputs] = useState([]);
 
-  const changeRadio =( e:any) => {
+  const changeRadio = (e: any) => {
     if (e.target.checked) {
       setCheckedInputs(e.target.id);
     }
@@ -17,18 +17,18 @@ function Radio(props:Props) {
 
   return (
     <>
-        <label>
-          <FormCheckLeft
-					css={{color: "red"}}
-            type="radio"
-            id={props.id}
-						defaultChecked={props.defaultChecked}
-						name="radio-button"
-            onChange={changeRadio}
-            value={checkedInputs}
-          />
-          <FormCheckText>{props.name}</FormCheckText>
-        </label>
+      <label>
+        <FormCheckLeft
+          css={{ color: 'red' }}
+          type="radio"
+          id={props.id}
+          defaultChecked={props.defaultChecked}
+          name="radio-button"
+          onChange={changeRadio}
+          value={checkedInputs}
+        />
+        <FormCheckText>{props.name}</FormCheckText>
+      </label>
     </>
   );
 }
@@ -36,36 +36,30 @@ function Radio(props:Props) {
 export default Radio;
 
 interface RadioGroupProps {
-	children: typeof Radio
+  children: typeof Radio;
 }
-export const RadioGroup = ({children}:RadioGroupProps) => {
-
-	return (
-		<>
-		{children}
-		</>
-	)
-}
-
+export const RadioGroup = ({ children }: RadioGroupProps) => {
+  return <>{children}</>;
+};
 
 const FormCheckText = styled.span`
   font-size: 16px;
   padding: 3px 15px 5px;
   height: 30px;
   background: #fff;
-	border: 1px solid #c8c8c8;
+  border: 1px solid #c8c8c8;
   display: flex;
   justify-content: center;
   align-items: center;
-	color:#000;
-	margin-right:-1px;
-	cursor: pointer;
-`
+  color: #000;
+  margin-right: -1px;
+  cursor: pointer;
+`;
 const FormCheckLeft = styled.input.attrs({ type: 'radio' })`
   &:checked + ${FormCheckText} {
     background: #242424;
     color: #fff;
-		z-index: 1;
+    z-index: 1;
   }
   display: none;
 `;

@@ -27,14 +27,12 @@ const QCard = ({ data }: data) => {
           <div className="diff-styles">
             {/* cotent */}
             <S.BodyWrapper>
-              <Lib.Link href={`/questions/detail?createdAt=${q.createdAt}&qid=${q.id}`}>
+              <Lib.Link href={`/questions/detail?qid=${q.id}`}>
                 <S.Title>{q.title}</S.Title>
               </Lib.Link>
               <atom.TagWrapper>
                 {q.tagNames?.map((tag, i) => (
-                  <Lib.Tag key={tag.name + i}>
-                    {tag.name}
-                  </Lib.Tag>
+                  <Lib.Tag key={tag.name + i}>{tag.name}</Lib.Tag>
                 ))}
               </atom.TagWrapper>
             </S.BodyWrapper>

@@ -15,14 +15,11 @@ const Lodding = (props: Props) => {
   const { platform, code } = router.query;
 
   useEffect(() => {
-
     if (code && platform) {
       axios.get(`/api/auth/${platform}?code=${code}`).then((res) => {
         if (window.opener) {
           res.data.success
-            ? (
-						  window.opener.postMessage(res.data.response, location.origin), window.close()
-							)
+            ? (window.opener.postMessage(res.data.response, location.origin), window.close())
             : window.opener.postMessage(false, location.origin);
           // window.close();
         }

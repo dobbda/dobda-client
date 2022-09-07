@@ -12,7 +12,7 @@ import { SubmitBtn } from '../style/Detail.style';
 import { Answer } from 'src/types';
 import { useQuery } from 'react-query';
 import { q } from 'src/api';
-import { keys, useDelete,useAddComment, useErrMsg, useDidMountEffect } from 'src/hooks';
+import { keys, useDelete, useAddComment, useErrMsg, useDidMountEffect } from 'src/hooks';
 import { Button, Popover } from 'antd';
 import { toast } from 'react-toastify';
 type Props = {
@@ -20,7 +20,7 @@ type Props = {
 };
 
 const AnswerCp = ({ data }: Props) => {
-	const errMsg = useErrMsg()
+  const errMsg = useErrMsg();
   const [isEdit, setisEdit] = useState(false);
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
@@ -32,27 +32,31 @@ const AnswerCp = ({ data }: Props) => {
   const del = useDelete(data?.id, keys.answers(data?.questionId));
 
   const onSubmitComment = useCallback(() => {
-   addReply.mutate({ content: mdStr, aid: data.id });
-
+    addReply.mutate({ content: mdStr, aid: data.id });
   }, [addReply, mdStr, data.id]);
 
   useDidMountEffect(() => {
-		if (addReply.isSuccess) {setMdStr('')}
-		if (addReply.isError) {toast.error(errMsg, { autoClose: 1000 });}
-		if(del.isError){
-			toast.error(errMsg, { autoClose: 1000 }) }
+    if (addReply.isSuccess) {
+      setMdStr('');
+    }
+    if (addReply.isError) {
+      toast.error(errMsg, { autoClose: 1000 });
+    }
+    if (del.isError) {
+      toast.error(errMsg, { autoClose: 1000 });
+    }
   }, [addReply.isError, addReply.isSuccess, del.error?.response, del.isError, errMsg]);
 
   return (
     <S.CommentWrapper>
       <S.Header className="header">
         <Avatar nickname={data?.author.nickname} url={data?.author.avatar} />
-        <atom.Flex >
-					<Button>채택하기</Button>
+        <atom.Flex>
+          <Button>채택하기</Button>
           <>
             <Popover
               trigger="click"
-							placement='bottom'
+              placement="bottom"
               content={
                 <>
                   <Btn type="primary" key="edit" ghost>
@@ -64,7 +68,7 @@ const AnswerCp = ({ data }: Props) => {
                 </>
               }
             >
-              <span className='moreBtn'>
+              <span className="moreBtn">
                 <MoreIcon />
               </span>
             </Popover>
@@ -84,9 +88,9 @@ const AnswerCp = ({ data }: Props) => {
             <CommentRotate view={viewChild.toString()} />
           </span>
         </div>
-				<atom.Flex>
-        <atom.CreatedAt> {getDate(data?.createdAt)}</atom.CreatedAt>
-				</atom.Flex>
+        <atom.Flex>
+          <atom.CreatedAt> {getDate(data?.createdAt)}</atom.CreatedAt>
+        </atom.Flex>
       </S.ChildView>
 
       {viewChild && (
@@ -111,13 +115,13 @@ const AnswerCp = ({ data }: Props) => {
 };
 
 export default AnswerCp;
-type Rotate = {view:string}
+type Rotate = { view: string };
 const CommentRotate = styled(ArrowIcon)<Rotate>`
   cursor: pointer;
   margin-top: 7px;
   color: rgba(0, 0, 0, 0.6);
   transition: all 0.3s;
-  transform: ${({ view }) => (view=="true" ? 'rotate(90deg)' : null)};
+  transform: ${({ view }) => (view == 'true' ? 'rotate(90deg)' : null)};
 `;
 
 const Btn = styled(Button)`

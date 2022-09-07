@@ -43,7 +43,7 @@ export const Group = styled.div`
     margin: 0;
     color: #686868;
     font-size: 12px;
-    white-space: nowrap;
+    /* white-space: nowrap; */
   }
 `;
 
@@ -66,7 +66,9 @@ export const Title = styled.h3`
   padding: 0;
   font-style: normal;
   padding-bottom: 10px;
-	font-size: 18px;
+  font-size: 18px;
+  word-break: break-word;
+
   :hover {
     color: #0057ff;
   }
