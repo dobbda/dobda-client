@@ -11,7 +11,7 @@ const Div = styled.span`
     font-size: 30px;
     color: #4c42e1;
     text-align: center;
-    
+
     cursor: pointer;
     display: inline-block;
   }

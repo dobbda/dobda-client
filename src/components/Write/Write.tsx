@@ -2,17 +2,17 @@ import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { useQuery, useQueryClient } from 'react-query';
 import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import 'react-toastify/dist/ReactToastify.css';
 
-import {Editor} from 'src/components/Editor'
+import { Editor } from 'src/components/Editor';
 import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.style';
 import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag } from 'antd';
 
-import  Hashtags  from './atom/Hashtags';
+import Hashtags from './atom/Hashtags';
 import { atom, Link } from '../common';
-import {useAddOutsource, useAddQuestion} from 'src/hooks';
+import { useAddOutsource, useAddQuestion } from 'src/hooks';
 import { CreateOutsource, CreateQuestion } from 'src/types';
-import {CoinView} from "./atom/CoinView"
+import { CoinView } from './atom/CoinView';
 import { q } from 'src/api';
 import { o } from 'src/api';
 type Props = {};
@@ -24,10 +24,10 @@ const Write = () => {
   const [contentTitle, setContentTitle] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
   const [mdStr, setMdStr] = React.useState<string>('');
-  const [coin, setCoin] = useState(0)
-	
-	const addQuestion = useAddQuestion(q.addQuestion)
-	const addOutsource = useAddOutsource(o.addOutsource)
+  const [coin, setCoin] = useState(0);
+
+  const addQuestion = useAddQuestion(q.addQuestion);
+  const addOutsource = useAddOutsource(o.addOutsource);
   const onChangeCagegory = useCallback((v: string) => {
     setCategorie(v);
   }, []);
@@ -36,36 +36,43 @@ const Write = () => {
     setDeadline(dateString);
   }, []);
 
-	const onSubmit = useCallback(() => {
-		const data:CreateQuestion|CreateOutsource = {
-			title: contentTitle,
-			content: mdStr,
-			tagNames: tags,
-			coin: coin,
-			deadline
-		}
-		
-		if(categorie=="question") addQuestion.mutate(data)
-		if(categorie=="outsource") addOutsource.mutate(data)
-	},[contentTitle, mdStr, tags, coin, deadline, categorie, addQuestion, addOutsource]);
+  const onSubmit = useCallback(() => {
+    const data: CreateQuestion | CreateOutsource = {
+      title: contentTitle,
+      content: mdStr,
+      tagNames: tags,
+      coin: coin,
+      deadline,
+    };
 
-	const onSubmitCheck = useCallback(() => {
-		if(!categorie) return  toast.info("카테고리를 선택해주세요",{autoClose: 1000,})
-		if(!(tags&&mdStr&&contentTitle&&tags)) {return toast.error("입력 정보가 더 필요합니다",{autoClose: 1000,})}
-		if(categorie=="outsource"&& !coin){return  toast.error("외주 요청은 코인이 필수 입니다",{autoClose: 1000,})}
-		if(categorie=="outsource"&& !deadline){return  toast.info("마감기한을 입력해주세요",{autoClose: 1000,})}
-		
-		onSubmit()
-	},[categorie, tags, mdStr, contentTitle, coin, deadline, onSubmit])
-	
+    if (categorie == 'question') addQuestion.mutate(data);
+    if (categorie == 'outsource') addOutsource.mutate(data);
+  }, [contentTitle, mdStr, tags, coin, deadline, categorie, addQuestion, addOutsource]);
 
+  const onSubmitCheck = useCallback(() => {
+    if (!categorie) return toast.info('카테고리를 선택해주세요', { autoClose: 1000 });
+    if (!(tags && mdStr && contentTitle && tags)) {
+      return toast.error('입력 정보가 더 필요합니다', { autoClose: 1000 });
+    }
+    if (categorie == 'outsource' && !coin) {
+      return toast.error('외주 요청은 코인이 필수 입니다', { autoClose: 1000 });
+    }
+    if (categorie == 'outsource' && !deadline) {
+      return toast.info('마감기한을 입력해주세요', { autoClose: 1000 });
+    }
+
+    onSubmit();
+  }, [categorie, tags, mdStr, contentTitle, coin, deadline, onSubmit]);
 
   return (
     <Write_Wrapper>
       <EnrQorl>
         <div>
           <Group>
-            <Label>카테고리<Pilsu /></Label>
+            <Label>
+              카테고리
+              <Pilsu />
+            </Label>
             <Select style={{ width: 140 }} onChange={onChangeCagegory}>
               <Select.Option value="question">질문하기</Select.Option>
               <Select.Option value="outsource">외주요청</Select.Option>
@@ -87,8 +94,9 @@ const Write = () => {
         </div>
         <br />
         <div>
-          <Label>코인을 입력해주세요</Label><Link href='#'>충전</Link>
-          {<CoinView coin={coin} setCoin={setCoin}/>}
+          <Label>코인을 입력해주세요</Label>
+          <Link href="#">충전</Link>
+          {<CoinView coin={coin} setCoin={setCoin} />}
         </div>
       </EnrQorl>
       <Label>
@@ -96,17 +104,16 @@ const Write = () => {
       </Label>
       <InputTitle value={contentTitle} onChange={(e) => setContentTitle(e.target.value)} />
       <EditorContainer>
-        <Editor mdStr={mdStr} setMdStr={setMdStr}  height="600px"/>
+        <Editor mdStr={mdStr} setMdStr={setMdStr} height="600px" />
       </EditorContainer>
-			<atom.Flex ><SubmitBtn cancel={true} onClick={()=>toast.success("준비중...")} >임시저장</SubmitBtn> <SubmitBtn onClick={onSubmitCheck}>등록</SubmitBtn></atom.Flex>
-			<ToastContainer
-				position="bottom-right"
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover
-			/>
-
-		</Write_Wrapper>
+      <atom.Flex>
+        <SubmitBtn cancel={true} onClick={() => toast.success('준비중...')}>
+          임시저장
+        </SubmitBtn>{' '}
+        <SubmitBtn onClick={onSubmitCheck}>등록</SubmitBtn>
+      </atom.Flex>
+      <ToastContainer position="bottom-right" pauseOnFocusLoss draggable pauseOnHover />
+    </Write_Wrapper>
   );
 };
 
@@ -119,17 +126,16 @@ const InputTitle = styled(AntInput)`
 `;
 
 const EditorContainer = styled.div`
-
   margin-top: 20px;
 `;
 
-const SubmitBtn = styled.button<{cancel?:boolean}>`
-cursor: pointer;
-	background-color: #0057FF;
-	border: solid 1px #0057FF;
-	padding: 5px 20px;
-	color: #fff;
-	border-radius: 4px;
-	margin: 0 10px;
-	${({cancel})=>cancel&& "background-color: #fff; color:#000"}
-`
+const SubmitBtn = styled.button<{ cancel?: boolean }>`
+  cursor: pointer;
+  background-color: #0057ff;
+  border: solid 1px #0057ff;
+  padding: 5px 20px;
+  color: #fff;
+  border-radius: 4px;
+  margin: 0 10px;
+  ${({ cancel }) => cancel && 'background-color: #fff; color:#000'}
+`;

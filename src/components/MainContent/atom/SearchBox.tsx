@@ -1,36 +1,37 @@
-import React from 'react'
-import {SearchIcon} from 'src/assets/icons'
-import styled from 'styled-components'
-type Props = {}
+import React from 'react';
+import { SearchIcon } from 'src/assets/icons';
+import styled from 'styled-components';
+type Props = {};
 
 const SearchBox = (props: Props) => {
   return (
     <Div className="search-box">
       <input type="text" placeholder="태그검색" />
-      <button><Shearch/></button>
-  </Div>
-  )
-}
+      <button>
+        <Shearch />
+      </button>
+    </Div>
+  );
+};
 
-export default SearchBox
+export default SearchBox;
 
 const Shearch = styled(SearchIcon)`
-	height: 18px;
-	width: 18px;
-`
-
+  height: 18px;
+  width: 18px;
+`;
 
 const Div = styled.div`
-	margin-top:20px;
+  margin-top: 20px;
   height: 42px;
   background-color: #fff;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   width: 100%;
   border-radius: 2px;
   margin-bottom: 20px;
-	display: flex;
-	justify-content: space-around;
-  
+  display: flex;
+  justify-content: space-around;
+
   input {
     border: none;
     background: none;
@@ -42,9 +43,9 @@ const Div = styled.div`
     width: 100%;
     padding: 0 15px;
     padding-top: 2px;
-    ::placeholder{
+    ::placeholder {
       color: rgba(0, 0, 0, 0.4);
-			font-weight: 600;
+      font-weight: 600;
     }
   }
   button {

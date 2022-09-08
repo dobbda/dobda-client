@@ -4,24 +4,23 @@ interface Props {
 }
 
 export const ReplyItem = styled.div<Props>`
-	background-color: #f8f9fa;
-	border: 1px solid rgba(217, 217, 217, 1);
-	margin: -1px;
-	padding-left: 25px;
+  background-color: #f8f9fa;
+  border: 1px solid rgba(217, 217, 217, 1);
+  margin: -1px;
+  padding-left: 25px;
   .content-viewer {
     padding: 10px 25px;
-
   }
   i.reply {
     // icons
     transform: rotate(180deg);
-    color:rgba(0, 0, 0, 0.35);
-		font-size: 25px;
+    color: rgba(0, 0, 0, 0.35);
+    font-size: 25px;
   }
 `;
 
 export const Header = styled.div<Props>`
-  	    padding: 10px 20px;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   /* padding: 10px; */
@@ -46,5 +45,5 @@ export const Header = styled.div<Props>`
 `;
 
 export const CommentContent = styled.div`
-	    padding: 0 25px 25px;
+  padding: 0 25px 25px;
 `;

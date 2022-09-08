@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-
-  h1{
+  h1 {
     font-weight: bold;
-    padding-left:60px;
-    margin:0;
+    padding-left: 60px;
+    margin: 0;
   }
   .my-content {
     margin: 0;

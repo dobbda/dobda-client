@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Div, Label, CheckBox, ChildMenu, Icon } from './style/Menu.style';
 import { Link } from 'src/components/common';
-import { ArrowIcon,MainArrowIcon } from 'src/assets/icons';
+import { ArrowIcon, MainArrowIcon } from 'src/assets/icons';
 
 type Props = {
   children: string;

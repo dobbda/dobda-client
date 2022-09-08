@@ -1,14 +1,14 @@
-import React from 'react'
-import { NextPage } from 'next'
+import React from 'react';
+import { NextPage } from 'next';
 
-import { Layout } from 'src/components/Layout'
-import {MyPost} from 'src/components/MyPoster'
-const PosterList: NextPage=()=> {
+import { Layout } from 'src/components/Layout';
+import { MyPost } from 'src/components/MyPoster';
+const PosterList: NextPage = () => {
   return (
-    <Layout >
-      <MyPost/>
+    <Layout>
+      <MyPost />
     </Layout>
-  )
-}
+  );
+};
 
-export default PosterList
+export default PosterList;

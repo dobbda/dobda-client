@@ -5,7 +5,7 @@ export const Write_Wrapper = styled.div`
   padding: 10px 20px 30px;
   background-color: #fff;
   min-height: 600px;
-    border-radius: 4px;
+  border-radius: 4px;
 `;
 
 export const EnrQorl = styled.div`
@@ -14,8 +14,8 @@ export const EnrQorl = styled.div`
 
 export const Label = styled.label`
   font-size: 14px;
-  color: rgba(105, 105, 105, 0.8); ;
-	display: block;
+  color: rgba(105, 105, 105, 0.8);
+  display: block;
 `;
 export const Pilsu = styled.em`
   ::before {

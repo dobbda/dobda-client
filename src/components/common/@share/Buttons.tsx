@@ -17,8 +17,7 @@ export const Button = styled(antButtn)<Props>`
   border-radius: 4px;
   ${({ css }) => css && { ...css }};
   :hover {
-    color: ${({ types }) => (types === 'cancel' ? '#9e08da' : '#d5fdc2')} ;
-		background-color: ${({ types }) => types ? '#fff' : '#0057FF'};
-
+    color: ${({ types }) => (types === 'cancel' ? '#9e08da' : '#d5fdc2')};
+    background-color: ${({ types }) => (types ? '#fff' : '#0057FF')};
   }
 `;

@@ -98,8 +98,7 @@ export function Popover({
     outClick && window.addEventListener('click', pageClickEvent, true);
 
     return () => {
-			window.removeEventListener('click', pageClickEvent, true);
-
+      window.removeEventListener('click', pageClickEvent, true);
     };
   }, [visible, outClick, pageClickEvent]);
   return (
@@ -116,4 +115,3 @@ export function Popover({
     </Span>
   );
 }
-

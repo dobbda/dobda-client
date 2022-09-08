@@ -11,7 +11,7 @@ function RenderOutsource() {
   const [shearchTag, setShearchTag] = useState<string>();
   const { data, fetchNextPage, hasNextPage, isSuccess } = useGetInfinity<InfinityProps<Outsource[]>>({
     fetch: o.getInfinity,
-		queryKey: keys.outsources()
+    queryKey: keys.outsources(),
   });
 
   const [ref, isView] = useInView();
@@ -29,12 +29,16 @@ function RenderOutsource() {
             return data?.map((o, index) => {
               if (index == data.length - 1) {
                 return (
-                  <RefCard ref={ref} key={"outsourcing"+o.id}>
+                  <RefCard ref={ref} key={'outsourcing' + o.id}>
                     <OCard data={o} />
                   </RefCard>
                 );
               }
-              return <RefCard key={o.id}><OCard  data={o} /></RefCard>;
+              return (
+                <RefCard key={o.id}>
+                  <OCard data={o} />
+                </RefCard>
+              );
             });
           })
         : null}
