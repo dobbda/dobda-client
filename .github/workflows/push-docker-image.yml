@@ -38,5 +38,5 @@ jobs:
           #           run: echo "${{ secrets.ENV_VARS }}" >> .env #success code
           dockerfile: .Dockerfile
           context: .
-          push: true
+          push: false
           tags: shinhyeok/dobda-client:latest
