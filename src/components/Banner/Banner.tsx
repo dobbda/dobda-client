@@ -1,11 +1,8 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 export default function Banner() {
-  return (
-    <Container>Side</Container>
-  )
+  return <Container>Side</Container>;
 }
-
 
 const Container = styled.aside`
   position: fixed;

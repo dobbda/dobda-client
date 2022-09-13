@@ -2,15 +2,23 @@ import qs from 'qs';
 
 const AUTHORIZE_URI = 'https://accounts.google.com/o/oauth2/v2/auth';
 
-const queryStr = qs.stringify({
-  client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-  redirect_uri: `${process.env.NEXT_PUBLIC_BASE_CLIENT_URL}/login/callback/google`,
-  response_type: 'code',
-  access_type: 'offline',
-  include_granted_scopes: true,
-  scope: 'https://www.googleapis.com/auth/userinfo.email',
-});
-export const GOOGLE_URL = AUTHORIZE_URI + '?' + queryStr;
+// const queryStr = qs.stringify({
+//   client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+//   redirect_uri: `${process.env.NEXT_PUBLIC_BASE_CLIENT_URL}/login/callback/google`,
+//   response_type: 'code',
+//   access_type: 'offline',
+//   include_granted_scopes: true,
+//   scope: 'https://www.googleapis.com/auth/userinfo.email',
+// });
+export const GOOGLE_URL = `
+	${AUTHORIZE_URI}
+	?client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+	&redirect_uri=${process.env.NEXT_PUBLIC_BASE_CLIENT_URL}
+	&response_type=code
+	&access_type=offline
+	&include_granted_scopes=true
+	&scope=https://www.googleapis.com/auth/userinfo.email
+`;
 
 export const GITHUB_URL = `https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}`;
 

@@ -21,7 +21,7 @@ const MyPost = ({ children }: Props) => {
       <h1>내 작성글</h1>
 
       <ul className="my-content">
-          {/* <QCard />
+        {/* <QCard />
           <QCard />
           <RCard /> */}
       </ul>

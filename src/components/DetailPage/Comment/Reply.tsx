@@ -5,15 +5,13 @@ import { ReplyItem, Header, CommentContent } from './style/Reply.style';
 import { atom, Avatar } from 'src/components/common';
 import { ReplyIcon } from 'src/assets/icons';
 import { MarkDownViewer } from 'src/components/Editor';
-import { Comment,Reply } from 'src/types';
+import { Comment, Reply } from 'src/types';
 
 type Props = {
-	data:Reply
+  data: Reply;
 };
 
-
-
-const ReplyCp = ({data}:Props) => {
+const ReplyCp = ({ data }: Props) => {
   return (
     <ReplyItem className="comment reply-items">
       <Header className="header">

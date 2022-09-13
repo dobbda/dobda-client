@@ -9,9 +9,10 @@ export const Icon = styled.div`
 export const Div = styled.div<{ checked: boolean }>`
   position: relative;
   overflow: hidden;
-  color: rgba(255, 255, 255, 0.8);
   overflow: hidden;
-  color: rgba(0, 0, 0, 0.6);
+  background-color: #3f2b56;
+  /* color: rgba(0, 0, 0, 0.6); */
+  color: rgba(255, 255, 255, 0.8);
 `;
 
 export const Label = styled.label`
@@ -36,7 +37,7 @@ export const Label = styled.label`
 export const ChildMenu = styled.div`
   margin: 2px;
   height: 0;
-  color: rgba(0, 0, 0, 0.8);
+  /* color: rgba(0, 0, 0, 0.8); */
   overflow: hidden;
   transition: height 0.3s;
   background-color: #f6f6f6;

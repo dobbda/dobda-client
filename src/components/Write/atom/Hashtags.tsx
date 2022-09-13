@@ -2,10 +2,10 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { HashIcon } from 'src/assets/icons';
 import { Tags } from 'src/types';
-import {Tag} from 'src/components/common'
+import { Tag } from 'src/components/common';
 type Props = {
   tags?: string[];
-	initial?:Tags[];
+  initial?: Tags[];
   setTags?: React.Dispatch<React.SetStateAction<string[]>>;
   tagColor?: string;
 };
@@ -50,23 +50,20 @@ function Hashtags({ tags, setTags, tagColor }: Props) {
     [setTags, tag],
   );
   //태그삭제
-  const removeHandler = 
-    (removedTag: string) => {
-      setTags(tags.filter((v) => v !== removedTag));
-    }
-  
+  const removeHandler = (removedTag: string) => {
+    setTags(tags.filter((v) => v !== removedTag));
+  };
+
   return (
     <>
       <form onSubmit={formHandler} css={{ width: '100%' }}>
         <Tag_wrapper focus={focus} className="tag-wrapper" onClick={focusHandler}>
           <Hash />
-          {tags?.map((word, index) => 
-								<Tag key={index}  closable onClose={() => removeHandler(word)}>
-                {word&&word}
-              </Tag>
-							
-       
-          )}
+          {tags?.map((word, index) => (
+            <Tag key={index} closable onClose={() => removeHandler(word)}>
+              {word && word}
+            </Tag>
+          ))}
           <Input id="tag-input" type="text" ref={ref} value={tag} onChange={tagHandler} />
         </Tag_wrapper>
       </form>
@@ -127,4 +124,4 @@ const AntTag = styled(Tag)`
   }
 `;
 
-export default React.memo(Hashtags)
+export default React.memo(Hashtags);

@@ -1,2 +1,2 @@
-export {MyInfo} from './MyInfo';
-export {UserUpdateForm} from './UserUpdate';
+export { MyInfo } from './MyInfo';
+export { UserUpdateForm } from './UserUpdate';

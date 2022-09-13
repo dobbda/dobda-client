@@ -8,17 +8,10 @@ import * as S from './style/style';
 import 'antd/dist/antd.css';
 import { CoinIcon } from 'src/assets/icons';
 
-
-
 export const CoinDeposit = () => {
-  
-
   const IMP_UID = process.env.NEXT_PUBLIC_IMP_UID;
   const [result, setResult] = useState<RequestPayResponse>();
   const [depositValue, setDepositValue] = useState(1000);
-
-
-
 
   const onClickPayment = useCallback(() => {
     const initialState: RequestPayParams = {
@@ -35,7 +28,7 @@ export const CoinDeposit = () => {
       IMP.init(IMP_UID);
       IMP.request_pay(initialState, onPaymentAccepted);
     }
-  },[IMP_UID, depositValue]);
+  }, [IMP_UID, depositValue]);
 
   const onPaymentAccepted = (response: RequestPayResponse) => {
     console.log(response);
@@ -52,7 +45,7 @@ export const CoinDeposit = () => {
       </div>
 
       <S.Wrapper>
-        <Radio.Group onChange={getDepositValue} style={{width:"100%", maxWidth: '300px' }} defaultValue={1000}>
+        <Radio.Group onChange={getDepositValue} style={{ width: '100%', maxWidth: '300px' }} defaultValue={1000}>
           <RadioStyles value={1000}>
             <S.Flex>
               <S.Coin>1000 코인 </S.Coin>
@@ -122,9 +115,9 @@ export const CoinDeposit = () => {
         </Button>
       </S.Wrapper>
       <div>
-        <br/>
+        <br />
         <h3>check response </h3>
-      {result && <pre>{JSON.stringify(result, null, " ")}</pre>}
+        {result && <pre>{JSON.stringify(result, null, ' ')}</pre>}
       </div>
     </S.CoinContainer>
   );
@@ -137,7 +130,7 @@ const RadioStyles = styled(Radio.Button)`
   height: 50px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   width: 100%;
-  background:#ededed;
+  background: #ededed;
 `;
 
 const CoinFill = styled(CoinIcon)`

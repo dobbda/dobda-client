@@ -18,14 +18,14 @@ const useAddReply = (aid: number) => {
       await queryClient.cancelQueries(keys.comment(aid));
       if (res.data.success) {
         await queryClient.invalidateQueries(keys.replies(aid));
-        setCount(keys.enquiries(Number(qid)), 'repliesCount', +1, aid);
+        setCount({ queryKey: keys.enquiries(Number(qid)), changeKey: 'repliesCount', findId: aid, upDown: +1 });
       }
     },
 
     onError: (error: AxiosError) => {
-			queryClient.setQueryData("serverErrorMessage", error.response?.data?.error?.message || "잘못된 요청입니다.");
-		return error.response?.data?.error?.message || "잘못된 요청입니다."
-	},
+      queryClient.setQueryData('serverErrorMessage', error.response?.data?.error?.message || '잘못된 요청입니다.');
+      return error.response?.data?.error?.message || '잘못된 요청입니다.';
+    },
   });
 };
 

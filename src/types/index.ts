@@ -6,21 +6,21 @@ export interface Author {
 }
 
 export interface UserUpdate {
-	name?:string, 
-	description?:string, 
-	nickname?:string,
-	avatar: string,
-	skill:string[],
+  name?: string;
+  description?: string;
+  nickname?: string;
+  avatar: string;
+  skill: string[];
 }
 ////////////////////////////////////////////////////////////////
 //// 								common 															////
 ////////////////////////////////////////////////////////////////
 
 export interface IDTYPE {
-	oid?:number,//outsourcing id
-	eid?:number// enquiry id
-	qid?:number,//question id
-	aid?:number,//answer id
+  oid?: number; //outsourcing id
+  eid?: number; // enquiry id
+  qid?: number; //question id
+  aid?: number; //answer id
 }
 export interface Default {
   id: number;
@@ -33,7 +33,7 @@ export interface CreateComment extends IDTYPE {
 
 export type Tags = {
   name: string;
-	id: number;
+  id: number;
 };
 export interface Auth extends Default {
   // 유저확인용
@@ -62,8 +62,6 @@ export interface Comment extends Default {
   answerId: number;
   author: Author;
 }
-
-
 
 ////////////////////////////////////////////////////////////////
 //// 								questions 															////
@@ -143,14 +141,14 @@ export interface Enquiry extends Default {
   repliesCount: number;
   authorId: number;
   outSourcingId: number;
-	selected: boolean;
+  selected: boolean;
 }
 
 export interface Reply extends Default {
   content: string;
   authorId: number;
   answerId?: number;
-	enquiryId?: number;
+  enquiryId?: number;
   author: Author;
 }
 ////////////////////////////////////////////////////////////////
@@ -172,8 +170,6 @@ export interface UserProfile extends Default {
   questionCount: 0;
   accepteRate: 0;
 }
-
-
 
 ////////////////////////////////////////////////////////////////
 //// 						card InfinityProps 							     							////

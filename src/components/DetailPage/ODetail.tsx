@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import { atom, Tag, Button } from '../common';
 import * as S from './style/Detail.style';
@@ -9,7 +9,7 @@ import getDate from 'src/lib/dateForm';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
-import { keys, useAddEnquiry, useDelete, useDidMountEffect } from 'src/hooks';
+import { keys, useAddEnquiry, useDelete, useDidMountEffect, useQueryCount } from 'src/hooks';
 import { o, q } from 'src/api';
 import { UpdateEditor } from '../Write';
 import { useQuery, useQueryClient } from 'react-query';
@@ -24,7 +24,7 @@ type Props = {
 const ODetail = ({ children, data }: Props) => {
   const router = useRouter();
 
-	const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   const [mdStr, setMdStr] = useState('');
   const [isEdit, setIsEdit] = useState(false);
@@ -39,8 +39,12 @@ const ODetail = ({ children, data }: Props) => {
     add.mutate(enquiryData);
   }, [mdStr, data.id, add]);
 
-	const errMsg = queryClient.getQueryData("serverErrorMessage") as string;
+  const { setCount, setInfCount } = useQueryCount();
+  useEffect(() => {
+    setInfCount({ queryKey: keys.outsources(), changeKey: 'watch', findId: data.id, countVal: data.watch });
+  });
 
+  const errMsg = queryClient.getQueryData('serverErrorMessage') as string;
   useDidMountEffect(() => {
     if (add.isSuccess) {
       toast.success('답변이 등록되었습니다.', { autoClose: 1000 });
@@ -50,9 +54,9 @@ const ODetail = ({ children, data }: Props) => {
       router.push('/');
     }
 
-		if( add.isError || del.isError) {
+    if (add.isError || del.isError) {
       toast.error(errMsg, { autoClose: 1000 });
-		}
+    }
   }, [add.isError, add.isSuccess, del.isError, del.isSuccess, errMsg, router]);
 
   return (
@@ -70,8 +74,9 @@ const ODetail = ({ children, data }: Props) => {
               <span>질문</span>
               <S.Title> {data.title}</S.Title>
               <atom.TagWrapper>
-								{data.tagNames.map((tag:Tags)=> (<Tag key ={data.id+tag.id} >{tag.name}</Tag>))}
-
+                {data.tagNames.map((tag: Tags) => (
+                  <Tag key={data.id + tag.id}>{tag.name}</Tag>
+                ))}
               </atom.TagWrapper>
 
               <S.OnyUser className="only-author">
@@ -83,11 +88,10 @@ const ODetail = ({ children, data }: Props) => {
                 </Button>
               </S.OnyUser>
             </S.ContentHeader>
-						
+
             <S.ContentViewWrapper>
               <MarkDownViewer content={data.content} />
             </S.ContentViewWrapper>
-
           </S.ContentWrapper>
 
           <S.EditorWrapper>
@@ -111,12 +115,11 @@ const ODetail = ({ children, data }: Props) => {
           </S.OutSourcingInfo>
 
           <S.AnswerContainer>
-					{enquiries && enquiries[0]?.id ? (
+            {enquiries && enquiries[0]?.id ? (
               enquiries.map((answer) => <EnquiryCp key={answer.id} data={answer} />)
             ) : (
               <atom.NoData>등록된 답변이 없습니다. 답변을 등록할 수 있습니다.</atom.NoData>
             )}
-
           </S.AnswerContainer>
         </>
       )}

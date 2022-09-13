@@ -1,12 +1,14 @@
-import { NextPage } from 'next'
-import React from 'react'
+import { NextPage } from 'next';
+import React from 'react';
 
-type Props = {}
+type Props = {};
 
-const CoinWithdrawal:NextPage = (props: Props) => {
+const CoinWithdrawal: NextPage = (props: Props) => {
   return (
-    <div><h1>출금 페이지</h1></div>
-  )
-}
+    <div>
+      <h1>출금 페이지</h1>
+    </div>
+  );
+};
 
-export default CoinWithdrawal
+export default CoinWithdrawal;
