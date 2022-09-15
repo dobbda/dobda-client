@@ -5,6 +5,8 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
     "strictNullChecks": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
