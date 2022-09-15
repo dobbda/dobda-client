@@ -2,7 +2,7 @@ import qs from 'qs';
 
 const AUTHORIZE_URI = 'https://accounts.google.com/o/oauth2/v2/auth';
 
-// const queryStr = qs.stringify({
+// export const GOOGLE_URL = qs.stringify({
 //   client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
 //   redirect_uri: `${process.env.NEXT_PUBLIC_BASE_CLIENT_URL}/login/callback/google`,
 //   response_type: 'code',
@@ -13,7 +13,7 @@ const AUTHORIZE_URI = 'https://accounts.google.com/o/oauth2/v2/auth';
 export const GOOGLE_URL = `
 	${AUTHORIZE_URI}
 	?client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
-	&redirect_uri=${process.env.NEXT_PUBLIC_BASE_CLIENT_URL}
+	&redirect_uri=${process.env.NEXT_PUBLIC_BASE_CLIENT_URL}/login/callback/google
 	&response_type=code
 	&access_type=offline
 	&include_granted_scopes=true

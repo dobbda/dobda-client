@@ -20,10 +20,6 @@ jobs:
 
       - name: create env file
         run: echo "${{ secrets.ENV_VARS }}" >> .env
-      #         run: |
-      #           jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' <<< "$SECRETS_CONTEXT" > .env
-      #         env:
-      #           SECRETS_CONTEXT: ${{ toJson(secrets) }}
 
       - name: Login
         uses: docker/login-action@v1
@@ -31,12 +27,13 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
       - name: Build and Push Docker Images
-
         uses: docker/build-push-action@v3
         with:
-          #           run: echo "${{ secrets.ENV_VARS }}" >> .env #success code
-          dockerfile: .Dockerfile
           context: .
-          push: false
+          dockerfile: .Dockerfile
+          platform: linux/arm64/v8,linux/amd6
+          push: true
           tags: shinhyeok/dobda-client:latest

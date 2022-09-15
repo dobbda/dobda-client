@@ -58,7 +58,7 @@ const QCard = ({ data }: data) => {
                 </S.Group>
               </S.Group>
               <S.Group>
-                <I.WatchIcon style={{ color: '#707070', fontSize: '20px', marginRight: '5px' }} />( {q.watch} )
+                <I.WatchIcon style={{ color: '#888888', fontSize: '17px', marginRight: '5px' }} /> {q.watch}
               </S.Group>
             </S.FooterWrapper>
           </div>

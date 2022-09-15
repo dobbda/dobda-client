@@ -16,7 +16,7 @@ const useAddAnswer = (qid: number) => {
 
       if (res.data.success) {
         //상세페이지 댓글수 없데이트
-        setCount({ queryKey: keys.qDetail(qid), changeKey: 'answersCount', findId: qid, upDown: +1 });
+        setCount({ queryKey: keys.qDetail(qid), changeKey: 'answersCount', upDown: +1 });
 
         await queryClient.invalidateQueries(keys.answers(qid));
 

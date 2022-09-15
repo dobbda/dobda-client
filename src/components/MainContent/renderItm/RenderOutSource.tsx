@@ -9,7 +9,7 @@ import { InfinityProps, Outsource } from 'src/types';
 function RenderOutsource() {
   const [shearchTitle, setShearchTitle] = useState<string>();
   const [shearchTag, setShearchTag] = useState<string>();
-  const { data, fetchNextPage, hasNextPage, isSuccess } = useGetInfinity<InfinityProps<Outsource[]>>({
+  const { data, fetchNextPage, hasNextPage, isSuccess, refetch } = useGetInfinity<InfinityProps<Outsource[]>>({
     fetch: o.getInfinity,
     queryKey: keys.outsources(),
   });
@@ -17,10 +17,9 @@ function RenderOutsource() {
   const [ref, isView] = useInView();
   useEffect(() => {
     // 무한 스크롤
-    if (isView && hasNextPage) {
-      fetchNextPage();
-    }
-  }, [isView, hasNextPage, fetchNextPage]);
+    if (isView && hasNextPage) fetchNextPage();
+    if (!data) refetch();
+  }, [isView, hasNextPage, fetchNextPage, refetch, data]);
   return (
     <ContentCardList>
       {isSuccess && data?.pages

@@ -40,7 +40,7 @@ const OCard = ({ data }: Props) => {
               <p>작업금액 : {data.coin}</p>
             </S.Group>
             <S.Group>
-              <I.WatchIcon style={{ color: '#707070', fontSize: '20px', marginRight: '5px' }} />( {data?.watch} )
+              <I.WatchIcon style={{ color: '#707070', fontSize: '17px', marginRight: '5px' }} /> {data?.watch}
             </S.Group>
           </S.FooterWrapper>
         </S.ContentWrapper>

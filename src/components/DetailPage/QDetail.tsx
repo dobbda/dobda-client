@@ -8,7 +8,7 @@ import { Avatar } from '../common';
 import { AnswerCp } from './Comment/';
 import getDate from 'src/lib/dateForm';
 
-import { CoinIcon } from 'src/assets/icons';
+import { CoinIcon, QIcon } from 'src/assets/icons';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
 import { Question, QuestionDetail } from 'src/types';
@@ -59,7 +59,6 @@ const QDetail = ({ children, data }: Props) => {
       toast.error(errMsg, { autoClose: 1000 });
     }
   }, [router, del.isSuccess, add.isSuccess, add.isError, del.isError, errMsg]);
-
   return (
     <S.DetailContainer>
       {isEdit && data ? (
@@ -73,7 +72,9 @@ const QDetail = ({ children, data }: Props) => {
                 <atom.CreatedAt>{getDate(data?.createdAt)}</atom.CreatedAt>
               </div>
 
-              <S.Title> {data?.title}</S.Title>
+              <S.Title>
+                <QIcon /> {data?.title}
+              </S.Title>
               <atom.TagWrapper>
                 <S.CoinWrapper>
                   <CoinIcon />
@@ -108,7 +109,7 @@ const QDetail = ({ children, data }: Props) => {
 
           <S.AnswerContainer>
             {answers && answers[0]?.id ? (
-              answers.map((answer) => <AnswerCp key={answer.id} data={answer} />)
+              answers.map((answer) => <AnswerCp key={answer.id} answer={answer} question={data} />)
             ) : (
               <atom.NoData>등록된 답변이 없습니다. 답변을 등록할 수 있습니다.</atom.NoData>
             )}

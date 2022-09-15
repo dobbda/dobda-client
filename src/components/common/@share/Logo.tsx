@@ -1,4 +1,5 @@
 import React from 'react';
+import { useQueryClient } from 'react-query';
 import { Link } from 'src/components/common';
 import styled from 'styled-components';
 
@@ -18,9 +19,10 @@ const Div = styled.span`
 `;
 
 export const Logo = (props: Props) => {
+  const queryClient = useQueryClient();
   return (
     <>
-      <Div>
+      <Div onClick={() => queryClient.invalidateQueries()}>
         <Link href="/">
           <h1>{'Dev<Q>'}</h1>
         </Link>

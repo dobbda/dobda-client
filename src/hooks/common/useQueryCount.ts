@@ -6,7 +6,7 @@ import { keys } from '../queries/queryKeys';
 interface Props {
   queryKey: QueryKey;
   changeKey: string;
-  findId: number;
+  findId?: number;
   upDown?: number;
   countVal?: number;
 }

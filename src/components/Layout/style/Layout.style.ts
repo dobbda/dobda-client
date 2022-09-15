@@ -28,6 +28,9 @@ export const Wrapper = styled.div`
   height: 100%;
   padding: 0;
   margin: 0 15px;
+  @media screen and (max-width: 768px) {
+    margin: 0;
+  } ;
 `;
 
 export const MainWrapper = styled.div`
@@ -38,7 +41,7 @@ export const MainWrapper = styled.div`
   padding-top: 10px;
   background-color: #fff;
   @media screen and (max-width: 768px) {
-    margin: 0 5px;
+    margin: 0;
   } ;
 `;
 
@@ -47,6 +50,7 @@ export const SideNavWrapper = styled.div`
   position: sticky;
   top: 50px;
   width: 220px;
+  margin-right: 15px;
   height: calc(100vh - 50px);
   box-sizing: border-box;
   @media screen and (max-width: 768px) {

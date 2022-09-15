@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useGetInfinity, keys } from 'src/hooks';
+import { useGetInfinity, keys, useDidMountEffect } from 'src/hooks';
 import { useInView } from 'react-intersection-observer';
 import QCard from '../../Card/QCard';
 import styled from 'styled-components';
@@ -9,7 +9,7 @@ import { InfinityProps, Question } from 'src/types';
 function RenderQuestion() {
   const [shearchTitle, setShearchTitle] = useState<string>();
   const [shearchTag, setShearchTag] = useState<string>();
-  const { data, fetchNextPage, hasNextPage, isSuccess } = useGetInfinity<InfinityProps<Question[]>>({
+  const { data, fetchNextPage, hasNextPage, isSuccess, refetch } = useGetInfinity<InfinityProps<Question[]>>({
     fetch: q.getInfinity,
     queryKey: keys.questions(),
   });
@@ -17,10 +17,10 @@ function RenderQuestion() {
   const [ref, isView] = useInView();
   useEffect(() => {
     // 무한 스크롤
-    if (isView && hasNextPage) {
-      fetchNextPage();
-    }
-  }, [isView, data, hasNextPage, fetchNextPage]);
+    if (isView && hasNextPage) fetchNextPage();
+    if (!data) refetch();
+  }, [isView, data, hasNextPage, fetchNextPage, refetch]);
+
   return (
     <ContentCardList>
       {isSuccess && data?.pages
