@@ -20,16 +20,12 @@ export const CreatedAt = styled.span`
   font-size: 12px;
   white-space: nowrap;
 `;
-interface FlexProp {
-  style?: CSSProperties;
-}
 
-export const Flex = styled.div<FlexProp>`
+export const Flex = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   /* margin:10px 0; */
-  ${({ style }) => style && { ...style }}
 `;
 
 export const TagWrapper = styled.div`

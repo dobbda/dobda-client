@@ -71,7 +71,7 @@ export const AnswerContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 25px;
-  padding: ${wrapperPadding};
+  padding: ${wrapperPadding} 0;
   background-color: #fff;
   border-radius: 4px;
   @media screen and (max-width: 768px) {

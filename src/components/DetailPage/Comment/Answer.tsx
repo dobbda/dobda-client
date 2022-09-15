@@ -7,33 +7,35 @@ import { Avatar, atom } from 'src/components/common';
 import getDate from 'src/lib/dateForm';
 import { EditAnswer } from './EditAnswer';
 import * as S from './style/style';
-import { ArrowIcon, MoreIcon, ReCommentIcon } from 'src/assets/icons';
+import { ArrowIcon, MoreIcon, ReCommentIcon, AcceptedIcon } from 'src/assets/icons';
 import { SubmitBtn } from '../style/Detail.style';
-import { Answer } from 'src/types';
-import { useQuery } from 'react-query';
+import { Answer, QuestionDetail } from 'src/types';
+import { QueryClient, useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
-import { keys, useDelete, useAddComment, useErrMsg, useDidMountEffect } from 'src/hooks';
+import { keys, useDelete, useAddComment, useErrMsg, useDidMountEffect, useAuth } from 'src/hooks';
 import { Button, Popover } from 'antd';
 import { toast } from 'react-toastify';
 type Props = {
-  data: Answer;
+  answer: Answer;
+  question: QuestionDetail;
 };
 
-const AnswerCp = ({ data }: Props) => {
+const AnswerCp = ({ answer, question }: Props) => {
+  const queryClient = useQueryClient();
   const errMsg = useErrMsg();
   const [isEdit, setisEdit] = useState(false);
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
-  const { data: comments } = useQuery(keys.comment(data.id), () => q.getComments(data.id), {
-    enabled: data.commentsCount > 0 && viewChild,
+  const { data: comments } = useQuery(keys.comment(answer.id), () => q.getComments(answer.id), {
+    enabled: answer.commentsCount > 0 && viewChild,
   });
 
-  const addReply = useAddComment(data?.id);
-  const del = useDelete(data?.id, keys.answers(data?.questionId));
-
+  const addReply = useAddComment(answer?.id);
+  const del = useDelete(answer?.id, keys.answers(answer?.questionId));
+  const { auth } = useAuth();
   const onSubmitComment = useCallback(() => {
-    addReply.mutate({ content: mdStr, aid: data.id });
-  }, [addReply, mdStr, data.id]);
+    addReply.mutate({ content: mdStr, aid: answer.id });
+  }, [addReply, mdStr, answer.id]);
 
   useDidMountEffect(() => {
     if (addReply.isSuccess) {
@@ -47,12 +49,25 @@ const AnswerCp = ({ data }: Props) => {
     }
   }, [addReply.isError, addReply.isSuccess, del.error?.response, del.isError, errMsg]);
 
+  const accept = async () => {
+    if (confirm('채택 합니다.')) {
+      if (await q.accept(answer.id)) {
+        queryClient.setQueryData(keys.qDetail(answer.questionId), (data: QuestionDetail) => {
+          data.acceptedAnswerId = answer.id;
+          return data;
+        });
+        queryClient.invalidateQueries(keys.answers(answer.questionId));
+      }
+    }
+  };
+  const showAcceptButton = auth && !question.acceptedAnswerId && question.authorId === auth.id && answer.authorId !== auth.id;
   return (
     <S.CommentWrapper>
       <S.Header className="header">
-        <Avatar nickname={data?.author.nickname} url={data?.author.avatar} />
+        <Avatar nickname={answer?.author.nickname} url={answer?.author.avatar} />
         <atom.Flex>
-          <Button>채택하기</Button>
+          {answer.accepted && <AcceptedIcon css={{ marginBottom: '5px' }} />}
+
           <>
             <Popover
               trigger="click"
@@ -78,25 +93,31 @@ const AnswerCp = ({ data }: Props) => {
       </S.Header>
 
       <S.Viewer>
-        <MarkDownViewer content={data?.content} />
+        <MarkDownViewer content={answer?.content} />
       </S.Viewer>
       {/*Reply ---------------------------*/}
       <S.ChildView>
         <div className="show-replybtn">
-          <ReCommentIcon style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{data.commentsCount} </span>
+          <ReCommentIcon style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{answer.commentsCount} </span>
           <span onClick={() => setviewChild(!viewChild)}>
             <CommentRotate view={viewChild.toString()} />
           </span>
         </div>
         <atom.Flex>
-          <atom.CreatedAt> {getDate(data?.createdAt)}</atom.CreatedAt>
+          {showAcceptButton && (
+            <Button css={{ borderRadius: '1em', marginRight: '1em', color: '#08DA11' }} onClick={accept}>
+              채택하기
+            </Button>
+          )}
+
+          <atom.CreatedAt> {getDate(answer?.createdAt)}</atom.CreatedAt>
         </atom.Flex>
       </S.ChildView>
 
       {viewChild && (
         <>
           {comments ? (
-            comments.map((comment) => <ReplyCp key={comment.id} data={comment} />)
+            comments.map((comment) => <ReplyCp key={comment.id} comment={comment} />)
           ) : (
             <atom.NoData>등록된 댓글이 없습니다. 댓글을 등록할 수 있습니다.</atom.NoData>
           )}

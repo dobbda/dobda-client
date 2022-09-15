@@ -80,7 +80,7 @@ export interface Question extends Default {
   watch: number;
   coin: number;
   authorId: number;
-  accepteAnswerId: boolean;
+  acceptedAnswerId: number;
   author: Author;
   answersCount: number;
   tagNames: Tags[];
