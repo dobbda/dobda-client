@@ -34,6 +34,6 @@ jobs:
         with:
           context: .
           dockerfile: .Dockerfile
-          platforms: linux/arm64/v8,linux/amd6
+          platform: linux/arm64/v8,linux/amd6
           push: true
           tags: shinhyeok/dobda-client:latest
