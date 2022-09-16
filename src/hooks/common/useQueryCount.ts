@@ -19,14 +19,14 @@ export const useQueryCount = () => {
     if (!provider) return;
     queryClient.setQueryData(queryKey, (oldData: any) => {
       const updateData = produce(oldData, (draft: any) => {
-        if (findId && oldData) {
+        if (findId) {
           draft?.map((data: any) => {
             if (data.id === findId) {
               return (data[changeKey] = countVal ? countVal : data[changeKey] + upDown);
             }
             return data;
           });
-        } // else draft[changeKey] = countVal?countVal : draft[changeKey] + upDown;
+        } else draft[changeKey] = countVal ? countVal : draft[changeKey] + upDown;
       });
       return updateData;
     });

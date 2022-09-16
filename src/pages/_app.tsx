@@ -26,39 +26,39 @@ function MyApp({ Component, initialAuth, pageProps: { session, ...pageProps } }:
             <Component {...pageProps} />
           </ThemeProvider>
         </Hydrate>
-        {process.env.NODE_ENV === 'development' ? <ReactQueryDevtools /> : null}
+        {/* {process.env.NODE_ENV === 'development' ? <ReactQueryDevtools /> : null} */}
       </QueryClientProvider>
     </React.Fragment>
   );
 }
 
-MyApp.getInitialProps = async (context: AppContext) => {
-  const {
-    ctx: { req, res },
-  } = context;
-  const initialProps = await NextApp.getInitialProps(context);
-  try {
-    if (!req || req?.url?.startsWith('/_next/')) return initialProps;
-    const cookie = req?.headers.cookie;
-    const cookies = new Cookies(req, res);
+// MyApp.getInitialProps = async (context: AppContext) => {
+//   const {
+//     ctx: { req, res },
+//   } = context;
+//   const initialProps = await NextApp.getInitialProps(context);
+//   try {
+//     if (!req || req?.url?.startsWith('/_next/')) return initialProps;
+//     const cookie = req?.headers.cookie;
+//     const cookies = new Cookies(req, res);
 
-    if (cookies.get('jwt-access')) {
-      const initialAuth = (
-        await http.get(`/auth`, {
-          headers: { ...(cookie && { cookie }) },
-        })
-      ).data.response;
-      return {
-        ...initialProps,
-        initialAuth,
-      };
-    }
-    return {
-      ...initialProps,
-    };
-  } catch (e) {
-    return initialProps;
-  }
-};
+//     if (cookies.get('jwt-access')) {
+//       const initialAuth = (
+//         await http.get(`/auth`, {
+//           headers: { ...(cookie && { cookie }) },
+//         })
+//       ).data.response;
+//       return {
+//         ...initialProps,
+//         initialAuth,
+//       };
+//     }
+//     return {
+//       ...initialProps,
+//     };
+//   } catch (e) {
+//     return initialProps;
+//   }
+// };
 
 export default MyApp;

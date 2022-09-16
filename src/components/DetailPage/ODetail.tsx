@@ -7,7 +7,7 @@ import { EnquiryCp } from './Comment';
 import getDate from 'src/lib/dateForm';
 
 import { Editor } from 'src/components/Editor';
-import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
+import { MarkDownViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
 import { keys, useAddEnquiry, useDelete, useDidMountEffect, useQueryCount } from 'src/hooks';
 import { o, q } from 'src/api';

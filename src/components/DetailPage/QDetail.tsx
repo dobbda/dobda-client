@@ -10,7 +10,7 @@ import getDate from 'src/lib/dateForm';
 
 import { CoinIcon, QIcon } from 'src/assets/icons';
 import { Editor } from 'src/components/Editor';
-import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
+import { MarkDownViewer } from 'src/components/Editor';
 import { Question, QuestionDetail } from 'src/types';
 import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
