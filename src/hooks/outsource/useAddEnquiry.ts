@@ -18,7 +18,7 @@ const useAddEnquiry = (oid: number) => {
 
       if (res.data.success) {
         //상세페이지 댓글수 없데이트
-        setCount({ queryKey: keys.oDetail(oid), changeKey: 'enquiriesCount', findId: oid, upDown: +1 });
+        setCount({ queryKey: keys.oDetail(oid), changeKey: 'enquiriesCount', upDown: +1 });
         await queryClient.invalidateQueries(keys.enquiries(oid));
 
         //전체 글에 업데이트 해주기

@@ -22,6 +22,11 @@ type Props = {
 };
 
 const ODetail = ({ children, data }: Props) => {
+  const { setCount, setInfCount } = useQueryCount();
+  useEffect(() => {
+    /** 조회수 */
+    setInfCount({ queryKey: keys.outsources(), changeKey: 'watch', findId: data.id, countVal: data.watch });
+  });
   const router = useRouter();
 
   const queryClient = useQueryClient();
@@ -35,14 +40,10 @@ const ODetail = ({ children, data }: Props) => {
   const add = useAddEnquiry(data?.id);
 
   const onSubmitEnquiry = useCallback(() => {
+    if (mdStr.length < 5) return;
     const enquiryData = { content: mdStr, oid: data.id };
     add.mutate(enquiryData);
   }, [mdStr, data.id, add]);
-
-  const { setCount, setInfCount } = useQueryCount();
-  useEffect(() => {
-    setInfCount({ queryKey: keys.outsources(), changeKey: 'watch', findId: data.id, countVal: data.watch });
-  });
 
   const errMsg = queryClient.getQueryData('serverErrorMessage') as string;
   useDidMountEffect(() => {

@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
 		margin: 0 ;
 		padding:0;
     background-color: #f3f4f8;
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", 나눔고딕, "Nanum Gothic", "Noto Sans KR", "Noto Sans CJK KR", arial, 돋움, Dotum, Tahoma, Geneva, sans-serif;
+		font-family: "Noto Sans KR", "Titillium Web", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
     font-size: 14px;
 
     .toastui-editor-defaultUI-toolbar,
