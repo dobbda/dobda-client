@@ -21,7 +21,7 @@ const useAddAnswer = (qid: number) => {
         await queryClient.invalidateQueries(keys.answers(qid));
 
         //전체 글에 업데이트 해주기
-        setCount({ queryKey: keys.questions(), changeKey: 'answersCount', findId: qid, upDown: +1 });
+        setInfCount({ queryKey: keys.questions(), changeKey: 'answersCount', findId: qid, upDown: +1 });
       }
     },
 

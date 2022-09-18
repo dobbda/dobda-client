@@ -23,7 +23,7 @@ const Layout = ({ children, aside }: PropsWithChildren<Props>) => {
           </S.SideNavWrapper>
 
           <S.MainWrapper>{children}</S.MainWrapper>
-          {aside && <S.AsideContent>{aside}</S.AsideContent>}
+          {/* {aside && <S.AsideContent>{aside}</S.AsideContent>} */}
         </S.Wrapper>
       </S.Position>
     </S.Container>

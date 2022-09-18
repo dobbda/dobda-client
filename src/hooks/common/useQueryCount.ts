@@ -19,6 +19,7 @@ export const useQueryCount = () => {
     if (!provider) return;
     queryClient.setQueryData(queryKey, (oldData: any) => {
       const updateData = produce(oldData, (draft: any) => {
+        console.log(draft, oldData);
         if (findId) {
           draft?.map((data: any) => {
             if (data.id === findId) {

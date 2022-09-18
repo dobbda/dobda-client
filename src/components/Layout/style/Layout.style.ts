@@ -41,7 +41,7 @@ export const MainWrapper = styled.div`
   padding-top: 10px;
   background-color: #fff;
   @media screen and (max-width: 768px) {
-    margin: 0;
+    padding: 5px;
   } ;
 `;
 

@@ -8,6 +8,7 @@ type Props = {
   icon: any;
   bg: string;
   color: string;
+  onClick: () => void;
 };
 
 const Logo = styled.span`
@@ -15,19 +16,19 @@ const Logo = styled.span`
     margin-top: 5px;
     width: 30px;
     height: 30px;
-    fill: #fff;
+    /* fill: #fff; */
   }
 `;
 
-export const SocialBtn = ({ name, icon, bg, color }: Props) => {
-  const Icon = icon;
+export const SocialBtn = (props: Props) => {
+  const Icon = props.icon;
   return (
-    <Wrap bg={bg} color={color}>
+    <Wrap {...props}>
       <Item>
-        <Logo>
+        <Logo css={{ color: props.color }}>
           <Icon />
         </Logo>
-        <Text>{name}</Text>
+        <Text>{props.name}</Text>
       </Item>
     </Wrap>
   );
