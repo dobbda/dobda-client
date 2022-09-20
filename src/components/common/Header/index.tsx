@@ -36,16 +36,26 @@ const HeaderNav = () => {
     <>
       <S.Header>
         <S.Headercontainer className="top-navigation">
-          <Logo />
+          <Logo height="30px" />
 
           <S.MenuWrapper>
-            {auth?.id ? <p onClick={userlogout}>로그아웃</p> : <S.Btn onClick={setLoginModal}> 로그인 </S.Btn>}
-            <Link href="/user/profile" passHref>
-              <S.Btn>{auth ? auth.email : '로그인필요'}</S.Btn>
-            </Link>
-            <Popover trigger="click" content={<MessageBox />} top={10} right={-10}>
-              <I.BellIcon color={'#545dd8'} size={'25px'} />
-            </Popover>
+            {!auth?.id && <S.Btn onClick={setLoginModal}> 로그인 </S.Btn>}
+            {auth?.id && (
+              <>
+                <p onClick={userlogout} css={{ color: '#fff' }}>
+                  로그아웃
+                </p>
+                <Link href="/user/profile" passHref>
+                  <span>
+                    <I.UserIcon color={'#f8f8f8'} size={'25px'} />
+                  </span>
+                </Link>
+                <Popover trigger="click" content={<MessageBox />} top={10} right={-10}>
+                  <I.BellIcon color={'#f8f8f8'} size={'25px'} css={{ marginTop: '2px' }} />
+                </Popover>
+              </>
+            )}
+
             {/* <User /> */}
           </S.MenuWrapper>
         </S.Headercontainer>

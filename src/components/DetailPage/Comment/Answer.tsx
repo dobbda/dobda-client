@@ -13,7 +13,7 @@ import { Answer, QuestionDetail } from 'src/types';
 import { QueryClient, useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { keys, useDelete, useAddComment, useErrMsg, useDidMountEffect, useAuth } from 'src/hooks';
-import { Button, Popover } from 'antd';
+import { Button, Popover, message as m } from 'antd';
 import { toast } from 'react-toastify';
 type Props = {
   answer: Answer;
@@ -42,10 +42,10 @@ const AnswerCp = ({ answer, question }: Props) => {
       setMdStr('');
     }
     if (addReply.isError) {
-      toast.error(errMsg, { autoClose: 1000 });
+      m.error(errMsg);
     }
     if (del.isError) {
-      toast.error(errMsg, { autoClose: 1000 });
+      m.error(errMsg);
     }
   }, [addReply.isError, addReply.isSuccess, del.error?.response, del.isError, errMsg]);
 
@@ -64,7 +64,7 @@ const AnswerCp = ({ answer, question }: Props) => {
   return (
     <S.CommentWrapper>
       <S.Header className="header">
-        <Avatar nickname={answer?.author.nickname} url={answer?.author.avatar} />
+        <Avatar nickname={answer?.author.nickname} url={answer?.author.avatar} id={answer?.author.id} />
         <atom.Flex>
           {answer.accepted && <AcceptedIcon css={{ marginBottom: '5px' }} />}
 
@@ -117,7 +117,7 @@ const AnswerCp = ({ answer, question }: Props) => {
       {viewChild && (
         <>
           {comments ? (
-            comments.map((comment) => <ReplyCp key={comment.id} comment={comment} />)
+            comments.map((comment) => <ReplyCp key={comment.id} reply={comment} />)
           ) : (
             <atom.NoData>등록된 댓글이 없습니다. 댓글을 등록할 수 있습니다.</atom.NoData>
           )}

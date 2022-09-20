@@ -71,7 +71,7 @@ const QDetail = ({ children, data }: Props) => {
           <S.ContentWrapper>
             <S.ContentHeader>
               <div className="detailInfo">
-                <Avatar nickname={data?.author.email} url={data?.author.avatar} />
+                <Avatar nickname={data?.author.email} url={data?.author.avatar} id={data?.author.id} />
                 <atom.CreatedAt>{getDate(data?.createdAt)}</atom.CreatedAt>
               </div>
 

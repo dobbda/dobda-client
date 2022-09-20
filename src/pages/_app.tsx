@@ -26,7 +26,7 @@ function MyApp({ Component, initialAuth, pageProps: { session, ...pageProps } }:
             <Component {...pageProps} />
           </ThemeProvider>
         </Hydrate>
-        {/* {process.env.NODE_ENV === 'development' ? <ReactQueryDevtools /> : null} */}
+        {process.env.NODE_ENV === 'development' ? <ReactQueryDevtools /> : null}
       </QueryClientProvider>
     </React.Fragment>
   );

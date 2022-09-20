@@ -9,24 +9,20 @@ export const Header = styled.header`
   left: 0px;
   right: 0px;
   opacity: 0.95;
-  background-color: #3f2b56; //${({ theme }) => theme.color.primary};
+  background-color: #111; //${({ theme }) => theme.color.primary};
   border-bottom: solid 1px #cacaca;
   .headerWrapper {
   }
 `;
 
 export const Headercontainer = styled.div`
-  /* overflow: hidden; */
   margin: auto;
   display: flex;
   justify-content: space-between;
-  max-width: 1100px;
+  align-items: center;
+  max-width: ${({ theme }) => theme.media.maxWidth};
   height: ${({ theme }) => theme.media.headerHeight};
   padding: 0 10px;
-  > * svg {
-    transform: scale(0.8);
-    cursor: pointer;
-  }
 `;
 
 export const MenuWrapper = styled.div`

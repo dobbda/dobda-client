@@ -1,6 +1,5 @@
 import React, { useCallback, useState, useEffect } from 'react';
 
-import Reply from './Reply';
 import { Editor, MarkDownViewer } from 'src/components/Editor';
 import { atom, Avatar } from 'src/components/common';
 import getDate from 'src/lib/dateForm';
@@ -10,41 +9,51 @@ import * as i from 'src/assets/icons';
 import { SubmitBtn } from '../style/Detail.style';
 import { Enquiry } from 'src/types';
 import styled from 'styled-components';
-import { Button, Popover } from 'antd';
-import { keys, useAddReply, useDelete } from 'src/hooks';
+import { Button, Popover, message as m } from 'antd';
+import { keys, useAddReply, useDelete, useDidMountEffect, useErrMsg } from 'src/hooks';
 import { o } from 'src/api';
-import { toast } from 'react-toastify';
+import { useQuery } from 'react-query';
+import ReplyCp from './Reply';
 type Props = {
   acceped_answer?: boolean;
-  data: Enquiry;
+  enquiry: Enquiry;
   isLoading?: boolean;
 };
 
-const EnquiryCp = ({ data }: Props) => {
+const EnquiryCp = ({ enquiry }: Props) => {
+  const errMsg = useErrMsg();
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
-  const del = useDelete(data?.id, keys.enquiries(data?.outSourcingId));
 
-  const addReply = useAddReply(data?.id);
+  const del = useDelete(enquiry?.id, keys.enquiries(enquiry?.outSourcingId));
+  const addReply = useAddReply(enquiry?.id);
+
+  const { data: reply } = useQuery(keys.replies(enquiry?.id), () => o.getReplies(enquiry?.id), {
+    enabled: enquiry?.repliesCount > 0 && viewChild,
+  });
+
   const onSubmitComment = useCallback(() => {
-    addReply.mutate({ content: mdStr, aid: data.id });
-  }, [addReply, mdStr, data.id]);
+    addReply.mutate({ content: mdStr, eid: enquiry.id });
+  }, [addReply, mdStr, enquiry?.id]);
 
-  useEffect(() => {
+  useDidMountEffect(() => {
     if (addReply.isSuccess) {
       setMdStr('');
     }
     if (addReply.isError) {
-      console.log('에러');
+      m.error(errMsg);
     }
-  }, [addReply.error?.response.data.message, addReply.isError, addReply.isSuccess]);
+    if (del.isError) {
+      m.error(errMsg);
+    }
+  }, [addReply.isError, addReply.isSuccess, del.error?.response, del.isError, errMsg]);
 
   return (
     <S.CommentWrapper>
-      {data ? (
+      {enquiry ? (
         <>
           <S.Header className="header">
-            <Avatar nickname={data?.author.nickname} url={data?.author.avatar} />
+            <Avatar nickname={enquiry?.author.nickname} url={enquiry?.author.avatar} id={enquiry?.author.id} />
             <atom.Flex>
               <Button>채택하기</Button>
               <>
@@ -72,28 +81,28 @@ const EnquiryCp = ({ data }: Props) => {
           </S.Header>
 
           <S.Viewer>
-            <MarkDownViewer content={data?.content} />
+            <MarkDownViewer content={enquiry?.content} />
           </S.Viewer>
           {/*Reply ---------------------------*/}
           <S.ChildView>
             <div className="show-replybtn">
-              <i.ReCommentIcon style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{data.repliesCount} </span>
+              <i.ReCommentIcon style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{enquiry.repliesCount} </span>
               <span onClick={() => setviewChild(!viewChild)}>
                 <CommentRotate view={viewChild.toString()} />
               </span>
             </div>
             <atom.Flex>
-              <atom.CreatedAt> {getDate(data?.createdAt)}</atom.CreatedAt>
+              <atom.CreatedAt> {getDate(enquiry?.createdAt)}</atom.CreatedAt>
             </atom.Flex>
           </S.ChildView>
 
           {viewChild && (
             <>
-              {/* {comments ? (
-            comments.map((comment) => <ReplyCp key={comment.id} data={comment} />)
-          ) : (
-            <atom.NoData>등록된 댓글이 없습니다. 댓글을 등록할 수 있습니다.</atom.NoData>
-          )} */}
+              {reply ? (
+                reply.map((r) => <ReplyCp key={r.id} reply={r} />)
+              ) : (
+                <atom.NoData>등록된 댓글이 없습니다. 댓글을 등록할 수 있습니다.</atom.NoData>
+              )}
             </>
           )}
           <S.CommentEditor>

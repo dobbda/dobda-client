@@ -8,10 +8,10 @@ import { MarkDownViewer } from 'src/components/Editor';
 import { Comment, Reply } from 'src/types';
 
 type Props = {
-  comment: Reply;
+  reply: Reply;
 };
 
-const ReplyCp = ({ comment }: Props) => {
+const ReplyCp = ({ reply }: Props) => {
   return (
     <ReplyItem className="comment reply-items">
       <Header className="header">
@@ -20,13 +20,13 @@ const ReplyCp = ({ comment }: Props) => {
             {' '}
             <ReplyIcon />
           </i>
-          <Avatar nickname={comment.author.nickname} url={comment.author.avatar} />
-          <atom.CreatedAt>{getDate(comment?.createdAt, true)}</atom.CreatedAt>
+          <Avatar nickname={reply.author.nickname} url={reply.author.avatar} id={reply.author.id} />
+          <atom.CreatedAt>{getDate(reply?.createdAt, true)}</atom.CreatedAt>
         </div>
       </Header>
 
       <CommentContent>
-        <MarkDownViewer content={comment.content} />
+        <MarkDownViewer content={reply.content} />
       </CommentContent>
     </ReplyItem>
   );

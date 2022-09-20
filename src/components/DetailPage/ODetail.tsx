@@ -69,7 +69,7 @@ const ODetail = ({ children, data }: Props) => {
           <S.ContentWrapper>
             <S.ContentHeader>
               <div className="detailInfo">
-                <Avatar nickname={data.author.nickname} url={data.author.avatar} />
+                <Avatar nickname={data.author.nickname} url={data.author.avatar} id={data.author.id} />
                 <atom.CreatedAt>{getDate(data.createdAt)}</atom.CreatedAt>
               </div>
               <span>질문</span>
@@ -117,7 +117,7 @@ const ODetail = ({ children, data }: Props) => {
 
           <S.AnswerContainer>
             {enquiries && enquiries[0]?.id ? (
-              enquiries.map((answer) => <EnquiryCp key={answer.id} data={answer} />)
+              enquiries.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} />)
             ) : (
               <atom.NoData>등록된 답변이 없습니다. 답변을 등록할 수 있습니다.</atom.NoData>
             )}

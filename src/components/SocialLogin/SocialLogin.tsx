@@ -51,7 +51,7 @@ export const SocialLogin = (props: Props) => {
   });
   return (
     <Style.LoginWrapper>
-      <Logo />
+      <Logo b={true} height="28px" />
       <br /> <br />
       <P>간편 로그인만 가능합니다.</P>
       <Style.LoginList>

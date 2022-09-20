@@ -17,16 +17,22 @@ export const EditInfoWrapper = styled.div`
 export const Culumn = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+
+  /* @media screen and (max-width: 768px) {
+    flex-wrap: wrap;
+  } */
 `;
 
-export const Label = styled.em`
-  min-width: 150px !important;
+export const Label = styled.div`
+  /* min-width: 150px !important; */
+  width: 100%;
   background-color: #f3f3f3;
   display: flex;
-  justify-content: flex-end;
+  /* justify-content: start; */
   align-items: center;
   color: #9a9696;
-  padding: 15px 0;
+  padding: 10px 20px;
   padding-right: 15px;
   font-style: normal;
 `;
