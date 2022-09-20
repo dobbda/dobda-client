@@ -40,7 +40,7 @@ const MainContent = ({ children }: Props) => {
           <div className="category-wrapper">
             {CategoryList.map((m, i) => (
               <span key={i} onClick={() => setSelect(m)} className={`${select === m ? 'tap_menu selected' : 'tap_menu'}`}>
-                <div>{Categories[select]}</div>
+                <div>{Categories[m]}</div>
               </span>
             ))}
           </div>

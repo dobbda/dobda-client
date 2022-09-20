@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const withPlugins = require('next-compose-plugins');
-const API_URL = process.env.API_URL;
 const prod = process.env.NODE_ENV === 'production';
-
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -16,17 +14,17 @@ module.exports = withPlugins([withBundleAnalyzer], {
   },
   experimental: { fallbackNodePolyfills: false },
   rewrites: () =>
-    (process.env.API_DOCKER_URL || process.env.API_URL) && prod
+    (process.env.API_KEY_DEV || process.env.API_KEY) && prod
       ? [
           {
             source: '/api/:path*',
-            destination: `${process.env.API_DOCKER_URL}/:path*`,
+            destination: `${process.env.API_KEY}/:path*`,
           },
         ]
       : [
           {
             source: '/api/:path*',
-            destination: `${process.env.API_URL}/:path*`,
+            destination: `${process.env.API_KEY_DEV}/:path*`,
           },
         ],
 

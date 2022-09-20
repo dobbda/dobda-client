@@ -38,14 +38,20 @@ const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
   console.log(category);
 
   const onSubmit = useCallback(() => {
-    const data: CreateQuestion | CreateOutsource = {
+    const dataQ = {
+      title: contentTitle,
+      content: mdStr,
+      tagNames: tags,
+      coin: coin,
+    };
+    const dataO = {
       title: contentTitle,
       content: mdStr,
       tagNames: tags,
       coin: coin,
       deadline: deadline,
     };
-    category == 'question' ? editQuestion.mutate(data) : editOutsource.mutate(data);
+    category == 'question' ? editQuestion.mutate(dataQ) : editOutsource.mutate(dataO);
   }, [contentTitle, mdStr, tags, coin, deadline, category, editQuestion, editOutsource]);
 
   useEffect(() => {
