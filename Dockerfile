@@ -18,9 +18,7 @@ RUN npm run build
 # ==================================================
 # Package install Layer
 FROM node:16-alpine AS node_modules
-
 WORKDIR /modules
-
 COPY package*.json ./
 RUN npm install --force --only=production && npm cache clean --force
 

@@ -18,7 +18,6 @@ export function UserInfo({ id }: Props) {
             <Image src="https://joeschmoe.io/api/v1/random" width="35" height="35" alt="" />
             <h3>{data.name}</h3>
             <p className="e-mail">{data.email}</p>
-
             <P>A list of sources to use for different screen resolutions</P>
           </BaseInfo>
 
