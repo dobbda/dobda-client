@@ -1,12 +1,10 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { useQuery, useQueryClient } from 'react-query';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { Editor } from 'src/components/Editor';
 import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.style';
-import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag } from 'antd';
+import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag, message } from 'antd';
 
 import Hashtags from './atom/Hashtags';
 import { atom, Link } from '../common';
@@ -50,15 +48,15 @@ const Write = () => {
   }, [contentTitle, mdStr, tags, coin, deadline, categorie, addQuestion, addOutsource]);
 
   const onSubmitCheck = useCallback(() => {
-    if (!categorie) return toast.info('카테고리를 선택해주세요', { autoClose: 1000 });
+    if (!categorie) return message.info('카테고리를 선택해주세요');
     if (!(tags && mdStr && contentTitle && tags)) {
-      return toast.error('입력 정보가 더 필요합니다', { autoClose: 1000 });
+      return message.error('입력 정보가 더 필요합니다');
     }
     if (categorie == 'outsource' && !coin) {
-      return toast.error('외주 요청은 코인이 필수 입니다', { autoClose: 1000 });
+      return message.error('외주 요청은 코인이 필수 입니다');
     }
     if (categorie == 'outsource' && !deadline) {
-      return toast.info('마감기한을 입력해주세요', { autoClose: 1000 });
+      return message.info('마감기한을 입력해주세요');
     }
 
     onSubmit();
@@ -107,12 +105,11 @@ const Write = () => {
         <Editor mdStr={mdStr} setMdStr={setMdStr} height="600px" />
       </EditorContainer>
       <atom.Flex>
-        <SubmitBtn cancel={true} onClick={() => toast.success('준비중...')}>
+        <SubmitBtn cancel={true} onClick={() => message.success('준비중...')}>
           임시저장
         </SubmitBtn>{' '}
         <SubmitBtn onClick={onSubmitCheck}>등록</SubmitBtn>
       </atom.Flex>
-      <ToastContainer position="bottom-right" pauseOnFocusLoss draggable pauseOnHover />
     </Write_Wrapper>
   );
 };

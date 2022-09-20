@@ -20,7 +20,7 @@ const QuestionDetailPage: NextPage = () => {
       staleTime: Infinity,
     },
   );
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (isError) {
       router.push('/404', router.asPath, { shallow: true });
     }

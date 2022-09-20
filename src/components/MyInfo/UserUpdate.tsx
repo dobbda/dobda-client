@@ -1,16 +1,13 @@
 import 'antd/dist/antd.css';
 import React, { useCallback } from 'react';
 import { useAuth, useInput } from 'src/hooks';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import { Hashtags } from 'src/components/Write';
 import * as S from './style/MyInfo.style';
 import { Button } from '../common';
 import { useQuery, useQueryClient } from 'react-query';
 import { UserUpdate } from 'src/types';
 import axios from 'axios';
-import { Avatar } from 'antd';
+import { Avatar, message } from 'antd';
 import { RefreshIcon } from 'src/assets/icons';
 
 type Props = {};
@@ -42,14 +39,14 @@ export const UserUpdateForm = (props: Props) => {
     console.log(isValidate, data);
 
     if (isValidate) {
-      return toast.warning('변경사항이 없습니다.', { autoClose: 1000 });
+      return message.warning('변경사항이 없습니다.');
     }
     const updateUser = await axios
       .patch('/api/users/myinfo', data)
       .then((res) => res.data?.response)
-      .catch((err) => toast(err?.data?.response));
+      .catch((err) => message.error(err?.data?.response));
     updateUser && queryClient.setQueryData('auth', updateUser);
-    updateUser?.id && toast.success('저장되었습니다', { autoClose: 2000 });
+    updateUser?.id && message.success('저장되었습니다');
   }, [auth, avatar, description, name, nickname, queryClient, skills]);
 
   return (
@@ -96,7 +93,6 @@ export const UserUpdateForm = (props: Props) => {
           </S.EditInfoWrapper>
         </>
       ) : null}
-      <ToastContainer position="top-center" hideProgressBar draggable />
     </>
   );
 };

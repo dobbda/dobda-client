@@ -1,6 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { message } from 'antd';
 import { atom, Tag } from '../common';
 import * as S from './style/Detail.style';
@@ -28,7 +26,7 @@ const QDetail = ({ children, data }: Props) => {
   useEffect(() => {
     /**조회수 */
     setInfCount({ queryKey: keys.questions(), changeKey: 'watch', findId: data.id, countVal: data.watch });
-  });
+  }, []);
 
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -49,7 +47,7 @@ const QDetail = ({ children, data }: Props) => {
   }, [mdStr, data.id, add]);
 
   const errMsg = useErrMsg();
-  useDidMountEffect(() => {
+  useEffect(() => {
     if (add.isSuccess) {
       message.success('답변이 등록되었습니다.');
       setMdStr('');
@@ -59,9 +57,10 @@ const QDetail = ({ children, data }: Props) => {
     }
 
     if (add.isError || del.isError) {
-      toast.error(errMsg, { autoClose: 1000 });
+      message.error(errMsg);
     }
-  }, [router, del, add, errMsg]);
+  }, [add.isError, add.isSuccess, del.isError, del.isSuccess, errMsg, router]);
+
   return (
     <S.DetailContainer>
       {isEdit && data ? (
@@ -85,14 +84,16 @@ const QDetail = ({ children, data }: Props) => {
                 </S.CoinWrapper>
                 {data?.tagNames && data?.tagNames.map((tag) => <Tag key={tag.name}>{tag.name}</Tag>)}
               </atom.TagWrapper>
-              <S.OnyUser className="only-author">
-                <Button onClick={() => setIsEdit(true)} type="primary" ghost>
-                  수정
-                </Button>
-                <Button onClick={() => del.mutate(q.delQuestion)} type="primary" danger ghost>
-                  삭제
-                </Button>{' '}
-              </S.OnyUser>
+              {auth?.id == data.author?.id && (
+                <S.OnyUser className="only-author">
+                  <Button onClick={() => setIsEdit(true)} type="primary" ghost>
+                    수정
+                  </Button>
+                  <Button onClick={() => del.mutate(q.delQuestion)} type="primary" danger ghost>
+                    삭제
+                  </Button>{' '}
+                </S.OnyUser>
+              )}
             </S.ContentHeader>
             <S.ContentViewWrapper>
               <MarkDownViewer content={data?.content} />
@@ -117,7 +118,6 @@ const QDetail = ({ children, data }: Props) => {
               <atom.NoData>등록된 답변이 없습니다. 답변을 등록할 수 있습니다.</atom.NoData>
             )}
           </S.AnswerContainer>
-          <ToastContainer position="top-center" hideProgressBar draggable autoClose={8000} />
         </>
       )}
     </S.DetailContainer>

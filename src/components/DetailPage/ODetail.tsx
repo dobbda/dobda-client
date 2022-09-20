@@ -9,24 +9,24 @@ import getDate from 'src/lib/dateForm';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
-import { keys, useAddEnquiry, useDelete, useDidMountEffect, useQueryCount } from 'src/hooks';
+import { keys, useAddEnquiry, useAuth, useDelete, useDidMountEffect, useQueryCount } from 'src/hooks';
 import { o, q } from 'src/api';
 import { UpdateEditor } from '../Write';
 import { useQuery, useQueryClient } from 'react-query';
 import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
-
+import { message } from 'antd';
 type Props = {
   children?: React.ReactElement; // commentComponent
   data?: OutsourceDetail;
 };
 
 const ODetail = ({ children, data }: Props) => {
+  const { auth, refetch } = useAuth();
   const { setCount, setInfCount } = useQueryCount();
   useEffect(() => {
     /** 조회수 */
     setInfCount({ queryKey: keys.outsources(), changeKey: 'watch', findId: data.id, countVal: data.watch });
-  });
+  }, []);
   const router = useRouter();
 
   const queryClient = useQueryClient();
@@ -48,17 +48,17 @@ const ODetail = ({ children, data }: Props) => {
   const errMsg = queryClient.getQueryData('serverErrorMessage') as string;
   useDidMountEffect(() => {
     if (add.isSuccess) {
-      toast.success('답변이 등록되었습니다.', { autoClose: 1000 });
+      message.success('답변이 등록되었습니다.');
       setMdStr('');
+      return;
     }
     if (del.isSuccess) {
       router.push('/');
     }
-
     if (add.isError || del.isError) {
-      toast.error(errMsg, { autoClose: 1000 });
+      message.error(errMsg);
     }
-  }, [add, del, errMsg, router]);
+  }, [add?.isError, add?.isSuccess, del?.isError, del.isSuccess, errMsg, router]);
 
   return (
     <S.DetailContainer>
@@ -79,15 +79,16 @@ const ODetail = ({ children, data }: Props) => {
                   <Tag key={data.id + tag.id}>{tag.name}</Tag>
                 ))}
               </atom.TagWrapper>
-
-              <S.OnyUser className="only-author">
-                <Button onClick={() => setIsEdit(true)} type="primary" ghost>
-                  수정
-                </Button>
-                <Button onClick={() => del.mutate(o.delOutsource)} type="primary" danger ghost>
-                  삭제
-                </Button>
-              </S.OnyUser>
+              {auth?.id == data.author?.id && (
+                <S.OnyUser className="only-author">
+                  <Button onClick={() => setIsEdit(true)} type="primary" ghost>
+                    수정
+                  </Button>
+                  <Button onClick={() => del.mutate(o.delOutsource)} type="primary" danger ghost>
+                    삭제
+                  </Button>
+                </S.OnyUser>
+              )}
             </S.ContentHeader>
 
             <S.ContentViewWrapper>

@@ -4,7 +4,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { o, q } from 'src/api';
 import { OutsourceDetail, QuestionDetail } from 'src/types';
-import { useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useQuery } from 'react-query';
 import { keys } from 'src/hooks';
 
@@ -20,7 +20,7 @@ const RequestDetailPage: NextPage = () => {
     },
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (isError) {
       router.push('/404', router.asPath, { shallow: true });
     }

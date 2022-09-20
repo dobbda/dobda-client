@@ -14,7 +14,6 @@ import { QueryClient, useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { keys, useDelete, useAddComment, useErrMsg, useDidMountEffect, useAuth } from 'src/hooks';
 import { Button, Popover, message as m } from 'antd';
-import { toast } from 'react-toastify';
 type Props = {
   answer: Answer;
   question: QuestionDetail;

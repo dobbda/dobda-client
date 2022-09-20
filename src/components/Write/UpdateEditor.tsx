@@ -1,13 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { useQuery, useQueryClient } from 'react-query';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useClientValue, useAddQuestion, keys, useAddOutsource } from 'src/hooks';
 
 import { Editor } from 'src/components/Editor';
 import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.style';
-import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag } from 'antd';
+import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag, message } from 'antd';
 
 import { Hashtags } from 'src/components/Write';
 import { atom, Link } from '../common';
@@ -59,17 +57,17 @@ const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
 
   const onSubmitCheck = useCallback(() => {
     if (!(tags && mdStr && contentTitle && tags)) {
-      return toast.error('입력 정보가 더 필요합니다', { autoClose: 1000 });
+      return message.error('입력 정보가 더 필요합니다');
     }
 
     if (category == 'outsource' && !coin) {
-      return toast.error('외주 요청은 코인이 필수 입니다', { autoClose: 1000 });
+      return message.error('외주 요청은 코인이 필수 입니다');
     }
 
-    if (coin && coin < 1000) return toast.error('최소 1,000 코인 부터입니다', { autoClose: 1000 });
+    if (coin && coin < 1000) return message.error('최소 1,000 코인 부터입니다');
 
     if (category == 'outsource' && !deadline) {
-      return toast.info('마감기한을 입력해주세요', { autoClose: 1000 });
+      return message.info('마감기한을 입력해주세요');
     }
 
     onSubmit();
@@ -129,7 +127,6 @@ const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
         </SubmitBtn>
         <SubmitBtn onClick={onSubmitCheck}>저장</SubmitBtn>
       </atom.Flex>
-      <ToastContainer position="bottom-right" hideProgressBar draggable />
     </Write_Wrapper>
   );
 };

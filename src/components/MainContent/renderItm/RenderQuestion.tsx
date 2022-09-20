@@ -22,27 +22,31 @@ function RenderQuestion() {
   }, [isView, data, hasNextPage, fetchNextPage, refetch]);
 
   return (
-    <ContentCardList>
-      {isSuccess && data?.pages
-        ? data.pages.map((page) => {
-            const question = page.result;
-            return question?.map((q, index) => {
-              if (index == question.length - 1) {
-                return (
-                  <RefCard ref={ref} key={q.id}>
-                    <QCard data={q} />
-                  </RefCard>
-                );
-              }
-              return (
-                <RefCard key={q.id}>
-                  <QCard data={q} />
-                </RefCard>
-              );
-            });
-          })
-        : null}
-    </ContentCardList>
+    <>
+      {data ? (
+        <ContentCardList>
+          {isSuccess && data?.pages
+            ? data.pages.map((page) => {
+                const question = page.result;
+                return question?.map((q, index) => {
+                  if (index == question.length - 1) {
+                    return (
+                      <RefCard ref={ref} key={q.id}>
+                        <QCard data={q} />
+                      </RefCard>
+                    );
+                  }
+                  return (
+                    <RefCard key={q.id}>
+                      <QCard data={q} />
+                    </RefCard>
+                  );
+                });
+              })
+            : null}
+        </ContentCardList>
+      ) : null}
+    </>
   );
 }
 
