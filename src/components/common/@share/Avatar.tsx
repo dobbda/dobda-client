@@ -8,6 +8,7 @@ import { UserInfo } from '../../UserInfo';
 
 type Props = {
   nickname: string;
+  id: number;
   acceped_answer?: boolean;
   url: string;
 };
@@ -35,7 +36,7 @@ const Div = styled.div<{ acceped_answer?: boolean }>`
   }
 `;
 
-export const Avatar = ({ nickname, acceped_answer = false, url }: Props) => {
+export const Avatar = ({ nickname, acceped_answer = false, url, id }: Props) => {
   const [visible, setVisible] = useState(false);
 
   const hide = () => {
@@ -47,7 +48,7 @@ export const Avatar = ({ nickname, acceped_answer = false, url }: Props) => {
   };
 
   return (
-    <Popover trigger="click" placement="bottomLeft" content={<UserInfo />}>
+    <Popover trigger="click" placement="bottomLeft" content={<UserInfo id={id} />}>
       <Div acceped_answer={acceped_answer}>
         <img src={url} alt="avatar" />
         <h3>{nickname}</h3>

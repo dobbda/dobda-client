@@ -18,6 +18,7 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 
 import * as S from './style/style';
+import { useAuth, useLoginModalhandler } from 'src/hooks';
 
 interface Props {
   mdStr: string;
@@ -28,12 +29,17 @@ interface Props {
 
 const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
   const editorRef = useRef<ToastEditor>(null);
-
+  const { auth, refetch } = useAuth();
+  const { setLoginModal } = useLoginModalhandler();
   // 에디터 보여지는 핸들러
   const [showEditor, setShowEditor] = React.useState(onClickShow ? false : true);
   const onClickShowEditorHandler = useCallback(() => {
+    if (!auth?.id) {
+      setLoginModal();
+      return;
+    }
     setShowEditor(!showEditor);
-  }, [showEditor]);
+  }, [auth?.id, setLoginModal, showEditor]);
 
   useEffect(() => {
     if (mdStr == '') {

@@ -51,25 +51,22 @@ export const SocialLogin = (props: Props) => {
   });
   return (
     <Style.LoginWrapper>
-      <Logo />
+      <Logo b={true} height="28px" />
       <br /> <br />
-      <P>유저의 계정보호를 위해 간편 로그인만 지원합니다</P>
+      <P>간편 로그인만 가능합니다.</P>
       <Style.LoginList>
-        <Btn onClick={() => onWindow(GOOGLE_URL)}>
-          <SocialBtn name="Login with Google" icon={GoogleIcon} bg="#fff" color="#3c4043" />
-        </Btn>
+        <SocialBtn onClick={() => onWindow(GOOGLE_URL)} name="Login with Google" icon={GoogleIcon} bg="#fff" color="#3c4043" />
         <br />
-        <Btn onClick={() => onWindow(GITHUB_URL)}>
-          <SocialBtn name="Login with Github" icon={GithubIcon} bg="#3c4043" color="#ebe9e9" />
-        </Btn>
+
+        <SocialBtn onClick={() => onWindow(GITHUB_URL)} name="Login with Github" icon={GithubIcon} bg="#3c4043" color="#ebe9e9" />
+
         <br />
-        <Btn onClick={() => onWindow(NAVER_URL)}>
-          <SocialBtn name="Login with Naver" icon={NaverIcon} bg="#19c260" color="#fff" />
-        </Btn>
+
+        <SocialBtn onClick={() => onWindow(NAVER_URL)} name="Login with Naver" icon={NaverIcon} bg="#19c260" color="#fff" />
+
         <br />
-        <Btn onClick={() => onWindow(KAKAO_URL)}>
-          <SocialBtn name="Login with Kakao" icon={KakaoIcon} bg="#fee500" color="#000" />
-        </Btn>
+
+        {/* <SocialBtn onClick={() => onWindow(KAKAO_URL)} name="Login with Kakao" icon={KakaoIcon} bg="#fee500" color="#000" /> */}
       </Style.LoginList>
     </Style.LoginWrapper>
   );
@@ -79,8 +76,8 @@ const Style = {
   LoginWrapper: styled.div`
     opacity: 1 !important;
     outline: none;
-    /* max-width: 400px; */
-    min-height: 350px;
+    min-width: 300px;
+    /* min-height: 400px; */
     padding: 25px 20px;
     background-color: #fff;
     text-align: center;
@@ -95,12 +92,6 @@ const Style = {
   `,
 };
 
-const P = styled.p``;
-const Btn = styled.button`
-  background-color: none;
-  border-radius: none;
-  padding: 0;
-  margin: 0;
-  border: none;
-  width: 281px;
+const P = styled.p`
+  margin-bottom: 30px;
 `;

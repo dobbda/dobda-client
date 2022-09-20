@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
-const { config } = require('dotenv');
 const withPlugins = require('next-compose-plugins');
 const API_URL = process.env.API_URL;
 const prod = process.env.NODE_ENV === 'production';
-console.log(prod);
-module.exports = withPlugins([], {
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+module.exports = withPlugins([withBundleAnalyzer], {
   productionBrowserSourceMaps: true,
   reactStrictMode: true,
   historyApiFallback: true,
@@ -12,7 +14,7 @@ module.exports = withPlugins([], {
   images: {
     domains: ['icon/svg', 'joeschmoe.io', 'avatars.dicebear.com'],
   },
-
+  experimental: { fallbackNodePolyfills: false },
   rewrites: () =>
     (process.env.API_DOCKER_URL || process.env.API_URL) && prod
       ? [

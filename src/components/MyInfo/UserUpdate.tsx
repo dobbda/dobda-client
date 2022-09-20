@@ -8,9 +8,10 @@ import { Hashtags } from 'src/components/Write';
 import * as S from './style/MyInfo.style';
 import { Button } from '../common';
 import { useQuery, useQueryClient } from 'react-query';
-import { user } from 'src/api';
 import { UserUpdate } from 'src/types';
 import axios from 'axios';
+import { Avatar } from 'antd';
+import { RefreshIcon } from 'src/assets/icons';
 
 type Props = {};
 
@@ -49,7 +50,19 @@ export const UserUpdateForm = (props: Props) => {
       .catch((err) => toast(err?.data?.response));
     updateUser && queryClient.setQueryData('auth', updateUser);
     updateUser?.id && toast.success('저장되었습니다', { autoClose: 2000 });
-  }, [auth, avatar, description, name, nickname, skills]);
+  }, [
+    auth.avatar,
+    auth.description,
+    auth.name,
+    auth.nickname,
+    auth.skill,
+    avatar,
+    description,
+    name,
+    nickname,
+    queryClient,
+    skills,
+  ]);
 
   return (
     <>
@@ -57,17 +70,7 @@ export const UserUpdateForm = (props: Props) => {
         <>
           <S.EditInfoWrapper>
             <S.Culumn>
-              <S.Label>이름</S.Label>
-              <S.Value>
-                <S.P>{name}</S.P>
-              </S.Value>
-            </S.Culumn>
-
-            <S.Culumn>
-              <S.Label>이메일</S.Label>
-              <S.Value>
-                <S.P>{auth.email}</S.P>
-              </S.Value>
+              <S.Value>이메일 : {auth?.email}</S.Value>
             </S.Culumn>
 
             <S.Hr />
@@ -75,12 +78,13 @@ export const UserUpdateForm = (props: Props) => {
             <S.Culumn>
               <S.Label>닉네임</S.Label>
               <S.Value>
+                <Avatar src={auth?.avatar} /> <RefreshIcon css={{ marginRight: '10px', cursor: 'pointer' }} />
                 <S.Input defaultValue={auth.nickname} onChange={onChangeNickname} />
               </S.Value>
             </S.Culumn>
 
             <S.Culumn>
-              <S.Label>discript</S.Label>
+              <S.Label>나의 소개</S.Label>
               <S.Value>
                 <S.Input.TextArea defaultValue={auth.description || '안녕하세요'} onChange={onChangeDescription} rows={4} />
               </S.Value>

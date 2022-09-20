@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { message } from 'antd';
 import { atom, Tag } from '../common';
 import * as S from './style/Detail.style';
 import { Avatar } from '../common';
@@ -10,7 +10,7 @@ import getDate from 'src/lib/dateForm';
 
 import { CoinIcon, QIcon } from 'src/assets/icons';
 import { Editor } from 'src/components/Editor';
-import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
+import { MarkDownViewer } from 'src/components/Editor';
 import { Question, QuestionDetail } from 'src/types';
 import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
@@ -24,6 +24,12 @@ type Props = {
 };
 
 const QDetail = ({ children, data }: Props) => {
+  const { setCount, setInfCount } = useQueryCount();
+  useEffect(() => {
+    /**조회수 */
+    setInfCount({ queryKey: keys.questions(), changeKey: 'watch', findId: data.id, countVal: data.watch });
+  });
+
   const queryClient = useQueryClient();
   const router = useRouter();
   const { auth, refetch } = useAuth();
@@ -36,19 +42,16 @@ const QDetail = ({ children, data }: Props) => {
   const del = useDelete<Question>(data?.id, keys.qDetail(data.id));
   const add = useAddAnswer(data?.id);
 
-  const onSubmitAnswer = useCallback(() => {
+  const onSubmitAnswer = useCallback(async () => {
+    if (mdStr.length < 5) return;
     const answerData = { content: mdStr, qid: data.id };
     add.mutate(answerData);
   }, [mdStr, data.id, add]);
 
-  const { setCount, setInfCount } = useQueryCount();
-  useEffect(() => {
-    setInfCount({ queryKey: keys.questions(), changeKey: 'watch', findId: data.id, countVal: data.watch });
-  });
   const errMsg = useErrMsg();
   useDidMountEffect(() => {
     if (add.isSuccess) {
-      toast.success('답변이 등록되었습니다.', { autoClose: 1000 });
+      message.success('답변이 등록되었습니다.');
       setMdStr('');
     }
     if (del.isSuccess) {
@@ -68,7 +71,7 @@ const QDetail = ({ children, data }: Props) => {
           <S.ContentWrapper>
             <S.ContentHeader>
               <div className="detailInfo">
-                <Avatar nickname={data?.author.email} url={data?.author.avatar} />
+                <Avatar nickname={data?.author.email} url={data?.author.avatar} id={data?.author.id} />
                 <atom.CreatedAt>{getDate(data?.createdAt)}</atom.CreatedAt>
               </div>
 

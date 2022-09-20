@@ -8,10 +8,8 @@ type Props = {
 
 export const Text = styled.span`
   margin-left: 20px;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 15px;
   text-align: center;
-  height: 30px;
   font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -30,16 +28,15 @@ export const Item = styled.div`
   overflow: hidden;
 `;
 
-export const Wrap = styled.div<Props>`
+export const Wrap = styled.button<Props>`
   cursor: pointer;
   width: 100%;
   height: 50px;
-
   display: flex;
   align-items: center;
   box-shadow: 0px 0.5px 1px 0px rgba(0, 0, 0, 0.1);
 
-  border-radius: 4px;
+  border-radius: 2rem;
   border: 1.5px solid #dee2e6;
   :hover {
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.5);

@@ -15,10 +15,10 @@ const QCard = ({ data }: data) => {
   const q = data && data;
   return (
     <>
-      {q ? (
+      {q && q ? (
         <S.ContentWrapper className="card-items">
           <S.HeaderWrapper>
-            <Lib.Avatar nickname={q.author?.nickname} url={q.author?.avatar} />
+            <Lib.Avatar nickname={q.author.nickname} url={q.author.avatar} id={q.author.id} />
             {/* <Group ><Qicon /><P >{q.author?.nickname}</P></Group> */}
             <S.Group>
               <atom.CreatedAt>{getDate(q.createdAt, true)}</atom.CreatedAt>

@@ -16,7 +16,7 @@ export const Container = styled.div`
 export const Position = styled.div<Props>`
   /* height: 100%; */
   /* max-width: ${({ setWidth }) => (setWidth ? '1260px' : '1180px')}; */
-  max-width: 1260px;
+  max-width: ${({ theme }) => theme.media.maxWidth};
   margin: 0 auto;
 `;
 
@@ -34,6 +34,7 @@ export const Wrapper = styled.div`
 `;
 
 export const MainWrapper = styled.div`
+  margin-top: 10px;
   min-height: 100vh;
   width: 100%;
   padding: 0 20px;
@@ -41,7 +42,7 @@ export const MainWrapper = styled.div`
   padding-top: 10px;
   background-color: #fff;
   @media screen and (max-width: 768px) {
-    margin: 0;
+    padding: 5px;
   } ;
 `;
 

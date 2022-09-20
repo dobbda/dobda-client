@@ -7,7 +7,7 @@ import { EnquiryCp } from './Comment';
 import getDate from 'src/lib/dateForm';
 
 import { Editor } from 'src/components/Editor';
-import { MarkDownViewer, ReactMarkdownViewer } from 'src/components/Editor';
+import { MarkDownViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
 import { keys, useAddEnquiry, useDelete, useDidMountEffect, useQueryCount } from 'src/hooks';
 import { o, q } from 'src/api';
@@ -22,6 +22,11 @@ type Props = {
 };
 
 const ODetail = ({ children, data }: Props) => {
+  const { setCount, setInfCount } = useQueryCount();
+  useEffect(() => {
+    /** 조회수 */
+    setInfCount({ queryKey: keys.outsources(), changeKey: 'watch', findId: data.id, countVal: data.watch });
+  });
   const router = useRouter();
 
   const queryClient = useQueryClient();
@@ -35,14 +40,10 @@ const ODetail = ({ children, data }: Props) => {
   const add = useAddEnquiry(data?.id);
 
   const onSubmitEnquiry = useCallback(() => {
+    if (mdStr.length < 5) return;
     const enquiryData = { content: mdStr, oid: data.id };
     add.mutate(enquiryData);
   }, [mdStr, data.id, add]);
-
-  const { setCount, setInfCount } = useQueryCount();
-  useEffect(() => {
-    setInfCount({ queryKey: keys.outsources(), changeKey: 'watch', findId: data.id, countVal: data.watch });
-  });
 
   const errMsg = queryClient.getQueryData('serverErrorMessage') as string;
   useDidMountEffect(() => {
@@ -68,7 +69,7 @@ const ODetail = ({ children, data }: Props) => {
           <S.ContentWrapper>
             <S.ContentHeader>
               <div className="detailInfo">
-                <Avatar nickname={data.author.nickname} url={data.author.avatar} />
+                <Avatar nickname={data.author.nickname} url={data.author.avatar} id={data.author.id} />
                 <atom.CreatedAt>{getDate(data.createdAt)}</atom.CreatedAt>
               </div>
               <span>질문</span>
@@ -116,7 +117,7 @@ const ODetail = ({ children, data }: Props) => {
 
           <S.AnswerContainer>
             {enquiries && enquiries[0]?.id ? (
-              enquiries.map((answer) => <EnquiryCp key={answer.id} data={answer} />)
+              enquiries.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} />)
             ) : (
               <atom.NoData>등록된 답변이 없습니다. 답변을 등록할 수 있습니다.</atom.NoData>
             )}

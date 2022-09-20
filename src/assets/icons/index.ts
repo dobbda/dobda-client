@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import LogoW from 'src/assets/svg/NAME_W.svg';
+import LogoB from 'src/assets/svg/NAME_B.svg';
+export { LogoW as LogoIconW, LogoB as LogoIconB };
 
 export { BiHash as HashIcon } from 'react-icons/bi';
 // export { RiBitCoinFill as CoinIcon} from 'react-icons/ri';
@@ -22,6 +25,7 @@ export { ImNotification as RuleIcon } from 'react-icons/im';
 export { GrMoreVertical as MoreIcon } from 'react-icons/gr';
 export { BsBookmark as BookmarkIcon } from 'react-icons/bs';
 export { IoIosClose as TagCloseIcon } from 'react-icons/io';
+export { RiRefreshLine as RefreshIcon } from 'react-icons/ri';
 import QIcon from '../svg/Q.svg';
 import AcceptedIcon from '../svg/accepted.svg';
 export { QIcon, AcceptedIcon };

@@ -22,7 +22,8 @@ const MainContent = ({ children }: Props) => {
   //첫 로딩시
   useEffect(() => {
     const storeCategory = getLocalStorage('mainCateogry') as CategoriesType;
-    storeCategory && setSelect(storeCategory);
+    console.log(storeCategory);
+    storeCategory ? setSelect(storeCategory) : (setSelect(CategoryList[0]), setLocalStorage('mainCateogry', CategoryList[0]));
   }, []);
 
   useDidMountEffect(() => {
@@ -39,7 +40,7 @@ const MainContent = ({ children }: Props) => {
           <div className="category-wrapper">
             {CategoryList.map((m, i) => (
               <span key={i} onClick={() => setSelect(m)} className={`${select === m ? 'tap_menu selected' : 'tap_menu'}`}>
-                <div>{Categories[m]}</div>
+                <div>{Categories[select]}</div>
               </span>
             ))}
           </div>

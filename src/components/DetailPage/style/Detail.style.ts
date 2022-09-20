@@ -85,13 +85,13 @@ export const EditorWrapper = styled.div`
   background-color: #fff;
   border-radius: 4px;
   margin: 25px 0;
-  padding: 30px;
+  padding: 30px 0;
   h3 {
     color: #000;
     font-weight: bold;
   }
   @media screen and (max-width: 768px) {
-    padding: 10px;
+    padding: 10px 0;
   }
 `;
 

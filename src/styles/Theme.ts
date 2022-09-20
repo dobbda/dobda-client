@@ -1,11 +1,10 @@
 const media = {
-  maxWidth: `1200px`,
+  minWidth: `360px`,
+  maxWidth: '1260px',
   large: `1080px`,
   medium: `788px`,
   tablet: `788px`,
-
   small: `574px`, //card culumn
-  minWidth: `360px`,
   cardMinWidth: '320px',
   cardMaxWidth: '450px',
   navbarWidth: '240px',

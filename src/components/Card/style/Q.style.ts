@@ -63,7 +63,6 @@ export const Title = styled.h3`
   overflow: hidden;
   margin: 0;
   padding: 0;
-  display: inline;
   :hover {
     color: #23629f;
   }

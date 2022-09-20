@@ -3,53 +3,54 @@ import { Div, BaseInfo, UserActive, Item, P, UserTech } from './style/userInfo.s
 import Image from 'next/image';
 
 import { Tag } from 'src/components/common';
-type Props = {};
+import { useQuery } from 'react-query';
+import { user } from 'src/api';
+import { TagWrapper } from '../common/@share/atom';
+type Props = { id: number };
+export function UserInfo({ id }: Props) {
+  const { data } = useQuery(['users', id], () => user.getUserInfo(id));
 
-export function UserInfo({}: Props) {
   return (
-    <Div>
-      <BaseInfo>
-        <Image src="https://joeschmoe.io/api/v1/random" width="35" height="35" alt="" />
-        <h3>쭈꾸미</h3>
-        <p className="e-mail">bixby-beta@gmail.com</p>
+    <>
+      {data && (
+        <Div>
+          <BaseInfo>
+            <Image src="https://joeschmoe.io/api/v1/random" width="35" height="35" alt="" />
+            <h3>{data?.name}</h3>
+            <p className="e-mail">{data?.email}</p>
 
-        <P>A list of sources to use for different screen resolutions</P>
-      </BaseInfo>
+            <P>A list of sources to use for different screen resolutions</P>
+          </BaseInfo>
 
-      <UserActive>
-        <Item>
-          <P>활동점수</P>
-          <em>10</em>
-        </Item>
-        <Item>
-          <P>답변</P>
-          <em>10</em>
-        </Item>
-        <Item>
-          <P>채택</P>
-          <em>10</em>
-        </Item>
+          <UserActive>
+            <Item>
+              <P>활동점수</P>
+              <em>10</em>
+            </Item>
+            <Item>
+              <P>답변</P>
+              <em>10</em>
+            </Item>
+            <Item>
+              <P>채택</P>
+              <em>10</em>
+            </Item>
 
-        <Item>
-          <P>질문</P>
-          <em>10</em>
-        </Item>
-      </UserActive>
-      <UserTech>
-        <h3>Tech Stacks</h3>
-        <br />
-        <div>
-          <Tag>python</Tag>
-          <Tag>frontend</Tag>
-          <Tag>python</Tag>
-        </div>
-        <br />
-        <div>
-          <Tag bg={false}>python</Tag>
-          <Tag>frontend</Tag>
-          <Tag>python</Tag>
-        </div>
-      </UserTech>
-    </Div>
+            <Item>
+              <P>질문</P>
+              <em>10</em>
+            </Item>
+          </UserActive>
+          <UserTech>
+            <h3>Tech Stacks</h3>
+            <TagWrapper>
+              <Tag bg={false}>python</Tag>
+              <Tag bg={false}>frontend</Tag>
+              <Tag bg={false}>python</Tag>
+            </TagWrapper>
+          </UserTech>
+        </Div>
+      )}
+    </>
   );
 }
