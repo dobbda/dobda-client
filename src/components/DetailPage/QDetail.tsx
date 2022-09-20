@@ -61,7 +61,7 @@ const QDetail = ({ children, data }: Props) => {
     if (add.isError || del.isError) {
       toast.error(errMsg, { autoClose: 1000 });
     }
-  }, [router, del.isSuccess, add.isSuccess, add.isError, del.isError, errMsg]);
+  }, [router, del, add, errMsg]);
   return (
     <S.DetailContainer>
       {isEdit && data ? (

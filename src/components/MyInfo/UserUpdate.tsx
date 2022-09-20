@@ -50,19 +50,7 @@ export const UserUpdateForm = (props: Props) => {
       .catch((err) => toast(err?.data?.response));
     updateUser && queryClient.setQueryData('auth', updateUser);
     updateUser?.id && toast.success('저장되었습니다', { autoClose: 2000 });
-  }, [
-    auth.avatar,
-    auth.description,
-    auth.name,
-    auth.nickname,
-    auth.skill,
-    avatar,
-    description,
-    name,
-    nickname,
-    queryClient,
-    skills,
-  ]);
+  }, [auth, avatar, description, name, nickname, queryClient, skills]);
 
   return (
     <>

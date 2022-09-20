@@ -58,7 +58,7 @@ const ODetail = ({ children, data }: Props) => {
     if (add.isError || del.isError) {
       toast.error(errMsg, { autoClose: 1000 });
     }
-  }, [add.isError, add.isSuccess, del.isError, del.isSuccess, errMsg, router]);
+  }, [add, del, errMsg, router]);
 
   return (
     <S.DetailContainer>
