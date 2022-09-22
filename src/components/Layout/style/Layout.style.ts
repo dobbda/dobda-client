@@ -75,7 +75,8 @@ export const AsideContent = styled.div`
   } ;
 `;
 
-export const HeaderAreas = styled.div`
-  height: ${({ theme }) => theme.media.headerHeight};
+export const HeaderContent = styled.div`
+  margin-top: ${({ theme }) => theme.media.headerHeight};
+
   width: 100%;
 `;

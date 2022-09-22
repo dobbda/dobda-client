@@ -22,7 +22,6 @@ const MainContent = ({ children }: Props) => {
   //첫 로딩시
   useEffect(() => {
     const storeCategory = getLocalStorage('mainCateogry') as CategoriesType;
-    console.log(storeCategory);
     storeCategory ? setSelect(storeCategory) : (setSelect(CategoryList[0]), setLocalStorage('mainCateogry', CategoryList[0]));
   }, []);
 
@@ -46,7 +45,7 @@ const MainContent = ({ children }: Props) => {
           </div>
           <Link href="/write-board" passHref>
             <button className="writeBtn">
-              글 작성 <PenIcon />
+              글 쓰기 <PenIcon />
             </button>
           </Link>
         </div>

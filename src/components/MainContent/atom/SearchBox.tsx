@@ -19,13 +19,14 @@ export default SearchBox;
 const Shearch = styled(SearchIcon)`
   height: 18px;
   width: 18px;
+  color: #e86200;
 `;
 
 const Div = styled.div`
   margin-top: 20px;
   height: 42px;
   background-color: #fff;
-  border: 1px solid #d9d9d9;
+  border: 1px solid #e86200;
   width: 100%;
   border-radius: 2px;
   margin-bottom: 20px;
@@ -44,7 +45,7 @@ const Div = styled.div`
     padding: 0 15px;
     padding-top: 2px;
     ::placeholder {
-      color: rgba(0, 0, 0, 0.4);
+      color: #e86200;
       font-weight: 600;
     }
   }

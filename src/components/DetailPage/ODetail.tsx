@@ -36,7 +36,7 @@ const ODetail = ({ children, data }: Props) => {
   const { data: enquiries } = useQuery(keys.enquiries(data?.id), () => o.getEnquiries(data.id), {
     enabled: data?.enquiriesCount > 0,
   });
-  const del = useDelete(data?.id, keys.oDetail(data?.id));
+  const del = useDelete(data?.id, keys.oDetail(data?.id), data.id);
   const add = useAddEnquiry(data?.id);
 
   const onSubmitEnquiry = useCallback(() => {

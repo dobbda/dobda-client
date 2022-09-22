@@ -21,7 +21,7 @@ export const BaseInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+  align-items: center;
   width: 100%;
   border-radius: 4px 4px 0 0;
   background-color: #fff;

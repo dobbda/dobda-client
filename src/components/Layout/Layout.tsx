@@ -15,7 +15,7 @@ const Layout = ({ children, aside }: PropsWithChildren<Props>) => {
     <S.Container>
       <GlobalStyle />
       <HeaderNav />
-      <S.HeaderAreas />
+      <S.HeaderContent></S.HeaderContent>
       <S.Position setWidth={setMainWidth}>
         <S.Wrapper>
           <S.SideNavWrapper>

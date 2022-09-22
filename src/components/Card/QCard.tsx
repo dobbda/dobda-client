@@ -27,7 +27,7 @@ const QCard = ({ data }: data) => {
           <div className="diff-styles">
             {/* cotent */}
             <S.BodyWrapper>
-              <Lib.Link href={`/questions/detail?qid=${q.id}`}>
+              <Lib.Link href={`/questions/${q.id}`}>
                 <S.Title>{q.title}</S.Title>
               </Lib.Link>
               <atom.TagWrapper>

@@ -37,7 +37,7 @@ const QDetail = ({ children, data }: Props) => {
     enabled: data?.answersCount > 0,
   });
 
-  const del = useDelete<Question>(data?.id, keys.qDetail(data.id));
+  const del = useDelete<Question>(data?.id, keys.qDetail(data.id), data?.id);
   const add = useAddAnswer(data?.id);
 
   const onSubmitAnswer = useCallback(async () => {

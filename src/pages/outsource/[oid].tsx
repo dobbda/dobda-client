@@ -1,12 +1,13 @@
 import { Layout } from 'src/components/Layout';
 import { ODetail } from 'src/components/DetailPage';
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { o, q } from 'src/api';
+import { o, q, reqAuth } from 'src/api';
 import { OutsourceDetail, QuestionDetail } from 'src/types';
 import { useEffect, useLayoutEffect } from 'react';
-import { useQuery } from 'react-query';
+import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { keys } from 'src/hooks';
+import { AxiosRequestConfig } from 'axios';
 
 const RequestDetailPage: NextPage = () => {
   const router = useRouter();
@@ -17,6 +18,7 @@ const RequestDetailPage: NextPage = () => {
     {
       retry: 0,
       staleTime: Infinity,
+      enabled: oid !== undefined,
     },
   );
 
@@ -27,5 +29,16 @@ const RequestDetailPage: NextPage = () => {
   }, [router, isError]);
   return <Layout aside={<>카테고리?</>}>{data && <ODetail data={data} />}</Layout>;
 };
-
 export default RequestDetailPage;
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const queryClient = new QueryClient();
+  if (req?.headers?.cookie.includes('jwt-access')) {
+    await queryClient.prefetchQuery(['auth'], () => reqAuth.httpAuth(req as AxiosRequestConfig));
+  }
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};

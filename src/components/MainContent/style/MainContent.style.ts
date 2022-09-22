@@ -5,8 +5,7 @@ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   transition: all 0.2s;
-  card-content {
-    padding-top: 10px;
+  .card-content {
   }
 
   .content-list {
@@ -23,7 +22,7 @@ export const Main = styled.div`
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap-reverse;
-    margin-bottom: 10px;
+    margin: 50px 0 30px;
   }
   .category-wrapper {
     display: flex;

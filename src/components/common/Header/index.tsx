@@ -10,7 +10,6 @@ import 'antd/dist/antd.css';
 
 import * as I from 'src/assets/icons';
 import Link from 'next/link';
-import { useClientValue } from 'src/hooks';
 import { useAuth, useLogout, useLoginModalhandler } from 'src/hooks';
 import { user } from 'src/api';
 import axios from 'axios';
@@ -36,7 +35,7 @@ const HeaderNav = () => {
     <>
       <S.Header>
         <S.Headercontainer className="top-navigation">
-          <Logo height="30px" />
+          <Logo height="23px" />
 
           <S.MenuWrapper>
             {!auth?.id && <S.Btn onClick={setLoginModal}> 로그인 </S.Btn>}

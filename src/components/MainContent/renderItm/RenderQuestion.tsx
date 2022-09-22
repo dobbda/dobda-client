@@ -27,7 +27,7 @@ function RenderQuestion() {
         <ContentCardList>
           {isSuccess && data?.pages
             ? data.pages.map((page) => {
-                const question = page.result;
+                const question = page.result as Question[];
                 return question?.map((q, index) => {
                   if (index == question.length - 1) {
                     return (

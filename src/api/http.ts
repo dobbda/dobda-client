@@ -9,4 +9,4 @@ const createHttp = (baseURL: string) => {
   return http;
 };
 
-export const http = createHttp(prod ? process.env.API_DOCKER_URL : process.env.API_URL);
+export const http = createHttp(prod ? process.env.API_KEY : process.env.API_KEY_DEV);
