@@ -45,9 +45,9 @@ export function UserInfo({ id }: Props) {
           <UserTech>
             <h3>Tech Stacks</h3>
             <TagWrapper>
-              <Tag bg={false}>python</Tag>
-              <Tag bg={false}>frontend</Tag>
-              <Tag bg={false}>python</Tag>
+              <Tag>python</Tag>
+              <Tag>frontend</Tag>
+              <Tag>python</Tag>
             </TagWrapper>
           </UserTech>
         </Div>

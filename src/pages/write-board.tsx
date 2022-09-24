@@ -9,7 +9,7 @@ type Props = {};
 
 const WriteBoard: NextPage = (props: Props) => {
   return (
-    <Layout>
+    <Layout sideLeft>
       <Write />
     </Layout>
   );

@@ -6,17 +6,17 @@ type Props = {
   children: string;
   closable?: boolean;
   onClose?: (e: React.MouseEvent<HTMLElement>) => void;
-  bg?: boolean;
+  bg?: string;
 };
 
 interface StyleProps {
   color?: string;
-  bg?: boolean;
+  bg?: string;
 }
 
 const Div = styled.div<StyleProps>`
-  font-size: 14px;
-  ${({ bg }) => bg && 'background-color: rgba(0, 87, 255, 0.5)'};
+  font-size: 12px;
+  background-color: ${({ bg }) => (bg ? bg : `rgba(214, 219, 228, 0.5)`)};
   color: ${({ theme }) => theme.color.secondary};
   padding: 2px 10px;
   border-radius: 4px;
@@ -32,7 +32,7 @@ const Div = styled.div<StyleProps>`
   }
 `;
 
-export const Tag = ({ children, closable, onClose, bg = true }: Props) => {
+export const Tag = ({ children, closable, onClose, bg }: Props) => {
   return (
     <Div bg={bg}>
       {!bg && '# '}

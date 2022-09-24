@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
 import { CreateQuestion, Question } from 'src/types';
 import { keys } from '../queries/queryKeys';
@@ -7,6 +8,7 @@ import { AxiosError } from 'axios';
 // 요청량이 많으면 커스텀 업데이트, 페이지 단위일시 invalidate사용
 const useAddQuestion = (mutationFn: any, qid?: number) => {
   const queryClient = useQueryClient();
+  const router = useRouter();
   return useMutation((data: CreateQuestion) => mutationFn(data, qid ? qid : null), {
     onSuccess: async (newQuestion: Question) => {
       queryClient.cancelQueries([keys.questions()]);
@@ -59,6 +61,7 @@ const useAddQuestion = (mutationFn: any, qid?: number) => {
           }
         });
       }
+      router.push(`/questions/` + newQuestion.id);
     },
 
     onError: (error: AxiosError) => {

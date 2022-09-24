@@ -7,7 +7,7 @@ type Props = {};
 
 const MyProfile: NextPage = (props: Props) => {
   return (
-    <Layout>
+    <Layout sideLeft>
       <MyInfo />
     </Layout>
   );

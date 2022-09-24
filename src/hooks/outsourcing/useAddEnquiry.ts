@@ -1,4 +1,4 @@
-import { Enquiry } from './../../types/index';
+import { Enquiry } from '../../types/index';
 import { AxiosError, AxiosResponse } from 'axios';
 import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
 import { o, q } from 'src/api';

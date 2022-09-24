@@ -1,3 +1,4 @@
+import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 
 export const Main = styled.div`
@@ -5,8 +6,6 @@ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   transition: all 0.2s;
-  .card-content {
-  }
 
   .content-list {
     width: 100%;
@@ -19,54 +18,64 @@ export const Main = styled.div`
   }
   .top-bar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap-reverse;
-    margin: 50px 0 30px;
-  }
-  .category-wrapper {
-    display: flex;
-    white-space: nowrap;
-
-    /* * {margin-right: 5px;} */
+    margin: 20px 0 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     .tap_menu {
       //카테고리 버튼
       cursor: pointer;
-      font-size: 16px;
-      padding: 3px 15px 5px;
+      font-size: 15px;
+      padding: 0 15px;
       height: 30px;
-      background: #fff;
-      border: 1px solid #c8c8c8;
       display: flex;
-      justify-content: center;
       align-items: center;
-      color: #000;
-      margin-right: -1px;
+      color: #808080;
+      font-weight: bold;
+      margin-bottom: -5px;
+      border-bottom: 2px solid rgba(0, 0, 0, 0);
+      transition: all 0.2s ease-in-out 0.05s;
     }
     .selected {
-      background: #242424;
-      color: #fff;
+      color: ${({ theme }) => theme.color.secondary};
       z-index: 1;
+      border-bottom: 2px solid ${({ theme }) => theme.color.secondary};
+      transition: all 0.2s ease-in-out 0s;
     }
   }
+`;
 
-  .writeBtn {
-    background: #0057ff;
-    border-radius: 4px;
-    border: none;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 19px;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    padding: 5px 15px;
-    svg {
-      padding-top: 2px;
-    }
-    cursor: pointer;
-    :hover {
-      color: #fff555;
-    }
+export const WriteHandler = styled.div`
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 7px 20px;
+  margin: 10px 5px;
+  border-radius: 2rem;
+  color: ${theme.color.placeholder};
+  font-weight: 600;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out 0s;
+  user-select: none;
+  cursor: text;
+
+  span {
+    //svg pen
+    font-size: 17px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border: 1px solid rgb(234, 234, 236);
+    padding: 5px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 32px;
+  }
+  :hover {
+    box-shadow: ${theme.color.prRgb(0.3)} 0px 0px 0px 3px;
   }
 `;

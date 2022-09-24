@@ -3,8 +3,6 @@ import React from 'react';
 import { useInput } from 'src/hooks';
 import { UserUpdateForm } from './UserUpdate';
 import * as Lib from 'src/components/common';
-
-import { Hashtags } from 'src/components/Write';
 import * as S from './style/MyInfo.style';
 type Props = {};
 
@@ -25,7 +23,7 @@ export const MyInfo = (props: Props) => {
             <S.Coin>9999</S.Coin>
 
             <Lib.Link href="/user/coinhistory">
-              <Lib.Button types="cancel">보기</Lib.Button>
+              <Lib.Button cancel>보기</Lib.Button>
             </Lib.Link>
           </S.Flex>
           <S.Hr />
@@ -44,7 +42,7 @@ export const MyInfo = (props: Props) => {
             <S.Label2>내 글 목록</S.Label2>
             <S.Coin>99</S.Coin>
             <Lib.Link href="/user/poster-list">
-              <Lib.Button types="cancel">보기</Lib.Button>
+              <Lib.Button cancel>보기</Lib.Button>
             </Lib.Link>
           </S.Flex>
 

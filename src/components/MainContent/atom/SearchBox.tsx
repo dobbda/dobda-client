@@ -1,6 +1,7 @@
 import React from 'react';
 import { SearchIcon } from 'src/assets/icons';
 import styled from 'styled-components';
+import { theme } from 'src/styles/Theme';
 type Props = {};
 
 const SearchBox = (props: Props) => {
@@ -19,25 +20,27 @@ export default SearchBox;
 const Shearch = styled(SearchIcon)`
   height: 18px;
   width: 18px;
-  color: #e86200;
+  color: ${theme.color.primary};
 `;
 
 const Div = styled.div`
   margin-top: 20px;
   height: 42px;
   background-color: #fff;
-  border: 1px solid #e86200;
+  border: 1px solid ${theme.color.primary};
   width: 100%;
   border-radius: 2px;
   margin-bottom: 20px;
   display: flex;
   justify-content: space-around;
-
+  border-radius: 2rem;
+  :hover {
+    border: 1px solid ${theme.color.secondary};
+  }
   input {
     border: none;
     background: none;
     outline: none;
-    font-size: 1rem;
     line-height: 33px;
     transition: 0.4s;
 
@@ -45,7 +48,7 @@ const Div = styled.div`
     padding: 0 15px;
     padding-top: 2px;
     ::placeholder {
-      color: #e86200;
+      color: ${theme.color.primary};
       font-weight: 600;
     }
   }

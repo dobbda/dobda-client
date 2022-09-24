@@ -5,7 +5,7 @@ export const Div = styled.div`
   border: solid 1.5px ${({ theme }) => theme.color.border};
   border-radius: 4px;
   min-height: 200px;
-  width: 280px;
+  width: 100%;
 
   align-items: center;
   justify-content: center;

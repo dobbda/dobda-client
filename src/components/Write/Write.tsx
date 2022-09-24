@@ -7,8 +7,8 @@ import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.style
 import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag, message } from 'antd';
 
 import Hashtags from './atom/Hashtags';
-import { atom, Link } from '../common';
-import { useAddOutsource, useAddQuestion } from 'src/hooks';
+import { atom, Button, Link, Loading } from '../common';
+import { useAddOutsource, useAddQuestion, useDidMountEffect } from 'src/hooks';
 import { CreateOutsource, CreateQuestion } from 'src/types';
 import { CoinView } from './atom/CoinView';
 import { q } from 'src/api';
@@ -16,7 +16,7 @@ import { o } from 'src/api';
 type Props = {};
 const Write = () => {
   const queryClient = useQueryClient();
-
+  const [saveLoading, setSaveLoading] = useState(false);
   const [categorie, setCategorie] = useState<string | null>();
   const [deadline, setDeadline] = useState<string | null>();
   const [contentTitle, setContentTitle] = useState<string>('');
@@ -35,6 +35,7 @@ const Write = () => {
   }, []);
 
   const onSubmit = useCallback(() => {
+    if (!confirm(`등록하시겠습니까? `)) return;
     const data: CreateQuestion | CreateOutsource = {
       title: contentTitle,
       content: mdStr,
@@ -43,8 +44,14 @@ const Write = () => {
       deadline,
     };
 
-    if (categorie == 'question') addQuestion.mutate(data);
-    if (categorie == 'outsource') addOutsource.mutate(data);
+    if (categorie == 'question') {
+      addQuestion.mutate(data);
+      setSaveLoading(true);
+    }
+    if (categorie == 'outsourcing') {
+      addOutsource.mutate(data);
+      setSaveLoading(true);
+    }
   }, [contentTitle, mdStr, tags, coin, deadline, categorie, addQuestion, addOutsource]);
 
   const onSubmitCheck = useCallback(() => {
@@ -52,16 +59,21 @@ const Write = () => {
     if (!(tags && mdStr && contentTitle && tags)) {
       return message.error('입력 정보가 더 필요합니다');
     }
-    if (categorie == 'outsource' && !coin) {
+    if (categorie == 'outsourcing' && !coin) {
       return message.error('외주 요청은 코인이 필수 입니다');
     }
-    if (categorie == 'outsource' && !deadline) {
+    if (categorie == 'outsourcing' && !deadline) {
       return message.info('마감기한을 입력해주세요');
     }
 
     onSubmit();
   }, [categorie, tags, mdStr, contentTitle, coin, deadline, onSubmit]);
-
+  useDidMountEffect(() => {
+    if (addQuestion.isSuccess || addOutsource.isSuccess) {
+      setMdStr('');
+      setSaveLoading(false);
+    }
+  }, [addOutsource.isSuccess, addQuestion.isSuccess]);
   return (
     <Write_Wrapper>
       <EnrQorl>
@@ -73,7 +85,7 @@ const Write = () => {
             </Label>
             <Select style={{ width: 140 }} onChange={onChangeCagegory}>
               <Select.Option value="question">질문하기</Select.Option>
-              <Select.Option value="outsource">외주요청</Select.Option>
+              <Select.Option value="outsourcing">외주요청</Select.Option>
             </Select>
           </Group>
           <Group>
@@ -105,10 +117,10 @@ const Write = () => {
         <Editor mdStr={mdStr} setMdStr={setMdStr} height="600px" />
       </EditorContainer>
       <atom.Flex>
-        <SubmitBtn cancel={true} onClick={() => message.success('준비중...')}>
-          임시저장
-        </SubmitBtn>{' '}
-        <SubmitBtn onClick={onSubmitCheck}>등록</SubmitBtn>
+        <Button onClick={onSubmitCheck} css={{ width: '150px', marginTop: '10px' }}>
+          <Loading loading={saveLoading} />
+          등록
+        </Button>
       </atom.Flex>
     </Write_Wrapper>
   );

@@ -3,17 +3,16 @@ import React, { useState } from 'react';
 import 'antd/dist/antd.min.css';
 import styled from 'styled-components';
 
-import { Popover } from 'antd';
+import { Popover, Avatar as AntAvatar } from 'antd';
 import { UserInfo } from '../../UserInfo';
 
 type Props = {
   nickname: string;
   id: number;
-  acceped_answer?: boolean;
   url: string;
 };
 
-const Div = styled.div<{ acceped_answer?: boolean }>`
+const Div = styled.div`
   cursor: pointer;
   display: inline-flex;
   height: 30px;
@@ -29,14 +28,13 @@ const Div = styled.div<{ acceped_answer?: boolean }>`
     margin-left: 20px;
     text-align: center;
     font-size: 15px;
-    color: ${({ acceped_answer, theme }) => (acceped_answer ? '#fff' : '#131313')};
     :hover {
       color: #013d4e;
     }
   }
 `;
 
-export const Avatar = ({ nickname, acceped_answer = false, url, id }: Props) => {
+export const Avatar = ({ nickname, url, id }: Props) => {
   const [visible, setVisible] = useState(false);
 
   const hide = () => {
@@ -49,8 +47,8 @@ export const Avatar = ({ nickname, acceped_answer = false, url, id }: Props) => 
 
   return (
     <Popover trigger="click" placement="bottomLeft" content={<UserInfo id={id} />}>
-      <Div acceped_answer={acceped_answer}>
-        <img src={url} alt="avatar" />
+      <Div>
+        <AntAvatar src={url}></AntAvatar>
         <h3>{nickname}</h3>
       </Div>
     </Popover>

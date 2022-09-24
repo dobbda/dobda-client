@@ -53,13 +53,12 @@ function RenderQuestion() {
 export default RenderQuestion;
 
 const ContentCardList = styled.div`
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
   display: grid;
   place-items: center;
-  gap: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #e3e3e3;
+  overflow: hidden;
 `;
 const RefCard = styled.div`
   width: 100%;

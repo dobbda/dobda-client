@@ -5,18 +5,18 @@ import { Link } from 'src/components/common';
 import { ArrowIcon, MainArrowIcon } from 'src/assets/icons';
 
 type Props = {
-  children: string;
+  children: any;
   icon?: React.ReactNode;
-  childMenu?: any;
+  childMenu?: React.ReactNode;
   childOpen?: boolean;
   href?: string;
 };
 
-export const Menu = ({ children, icon, childMenu, href, childOpen = false }: React.PropsWithChildren<Props>) => {
+export const FolderMenu = ({ children, icon, childMenu, href, childOpen = false }: React.PropsWithChildren<Props>) => {
   const [checked, setchecked] = useState(childOpen);
   return (
     <Div checked={checked}>
-      {href ? (
+      {/* {Icon && href ? (
         <>
           <Link href={href}>
             <Icon>{icon}</Icon>
@@ -24,10 +24,11 @@ export const Menu = ({ children, icon, childMenu, href, childOpen = false }: Rea
         </>
       ) : (
         <Icon>{icon}</Icon>
-      )}
+      )} */}
 
-      <CheckBox defaultChecked={childOpen} id={childMenu} onChange={(e) => setchecked(!checked)} />
-      <Label htmlFor={childMenu}>
+      <CheckBox defaultChecked={childOpen} id={children} onChange={(e) => setchecked(!checked)} />
+      <Label htmlFor={children}>
+        {icon && <Icon>{icon}</Icon>}
         <h1>{children}</h1>
         {childMenu && ( // whether to display the up-down icon or not
           <MainArrowIcon className="rotate" />

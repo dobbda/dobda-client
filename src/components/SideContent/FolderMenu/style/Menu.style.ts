@@ -4,9 +4,8 @@ export const Div = styled.div<{ checked: boolean }>`
   position: relative;
   overflow: hidden;
   overflow: hidden;
-  /* background-color: #3f2b56; */
-  /* color: rgba(0, 0, 0, 0.6); */
-  /* color: rgba(255, 255, 255, 0.8); */
+  background-color: #f9f9f9;
+  border-bottom: solid 1px #eee;
 `;
 
 export const Label = styled.label`
@@ -15,8 +14,10 @@ export const Label = styled.label`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 10px;
-  margin: 0 10px 0 60px;
+  padding: 13px 10px;
+  height: 45px;
+  margin: 0 10px;
+
   cursor: pointer;
 
   h1 {
@@ -30,19 +31,23 @@ export const Label = styled.label`
   }
 `;
 export const Icon = styled.div`
-  position: absolute;
-  top: 10px;
+  /* position: absolute; */
+  /* top: 12px;
   left: 10px;
-  font-size: 22px;
+  font-size: 22px; */
   color: rgba(0, 0, 0, 0.6);
 `;
 export const ChildMenu = styled.div`
-  margin: 2px;
   height: 0;
   color: rgba(0, 0, 0, 0.8);
   overflow: hidden;
   transition: height 0.3s;
   box-shadow: inset 0px 2px 5px -3px rgb(0 0 0 / 25%);
+  background-color: #f9f9f9;
+  > * {
+    text-align: center;
+    padding-top: 5px;
+  }
 `;
 
 export const CheckBox = styled.input.attrs({

@@ -16,7 +16,7 @@ export { BsChatLeft as ChatIcon } from 'react-icons/bs';
 export { IoIosEye as WatchIcon } from 'react-icons/io';
 export { TbBellPlus as AddBellIcon } from 'react-icons/tb';
 export { RiKakaoTalkFill as KakaoIcon } from 'react-icons/ri';
-export { FaPen as PenIcon } from 'react-icons/fa';
+export { BiPencil as PenIcon } from 'react-icons/bi';
 export { AiOutlineSearch as SearchIcon } from 'react-icons/ai';
 export { AiOutlineUser as UserIcon } from 'react-icons/ai';
 export { AiFillNotification as NoticeIcon } from 'react-icons/ai';

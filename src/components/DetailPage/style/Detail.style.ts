@@ -14,6 +14,7 @@ export const ContentWrapper = styled.div`
   min-height: 600px;
   background-color: #fff;
   border: 1px solid #eeee;
+  margin-bottom: 40px;
 `;
 export const CoinWrapper = styled.span`
   font-weight: 600;
@@ -72,7 +73,6 @@ export const AnswerContainer = styled.div`
   flex-direction: column;
   gap: 25px;
   padding: ${wrapperPadding} 0;
-  background-color: #fff;
   border-radius: 4px;
   @media screen and (max-width: 768px) {
     padding: 0;
@@ -81,11 +81,9 @@ export const AnswerContainer = styled.div`
 
 export const EditorWrapper = styled.div`
   position: relative;
-
-  background-color: #fff;
   border-radius: 4px;
-  margin: 25px 0;
-  padding: 30px 0;
+  padding-bottom: 5px;
+  margin: 5px 0 15px;
   h3 {
     color: #000;
     font-weight: bold;

@@ -68,7 +68,7 @@ export const Title = styled.h3`
   padding-bottom: 10px;
   font-size: 18px;
   word-break: break-word;
-
+  max-height: 50px;
   :hover {
     color: #0057ff;
   }

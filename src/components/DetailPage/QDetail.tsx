@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { message } from 'antd';
-import { atom, Tag } from '../common';
+import { atom, Loading, Tag } from '../common';
 import * as S from './style/Detail.style';
 import { Avatar } from '../common';
 import { AnswerCp } from './Comment/';
@@ -41,7 +41,7 @@ const QDetail = ({ children, data }: Props) => {
   const add = useAddAnswer(data?.id);
 
   const onSubmitAnswer = useCallback(async () => {
-    if (mdStr.length < 5) return;
+    if (mdStr.length < 5) return message.error('5글자 이상 작성 하여야 합니다.');
     const answerData = { content: mdStr, qid: data.id };
     add.mutate(answerData);
   }, [mdStr, data.id, add]);
@@ -99,15 +99,13 @@ const QDetail = ({ children, data }: Props) => {
               <MarkDownViewer content={data?.content} />
             </S.ContentViewWrapper>
           </S.ContentWrapper>
+
+          <h3>답변을 작성해주세요</h3>
           <S.EditorWrapper>
-            <h3>답변을 작성해주세요</h3>
-            <br />
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
             <br />
-            <br />
-
             <S.SubmitBtn onClick={onSubmitAnswer} loading={add.isLoading}>
-              등록
+              <Loading loading={add.isLoading} /> 등록
             </S.SubmitBtn>
           </S.EditorWrapper>
 

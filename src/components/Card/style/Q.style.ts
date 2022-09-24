@@ -6,12 +6,9 @@ interface CardProps {
 }
 
 export const ContentWrapper = styled.div<CardProps>`
-  border-bottom: solid 1px #e3e3e3;
+  border-bottom: solid 1px #eee;
   padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 8px;
-  width: 100%;
-  filter: drop-shadow(0px 2px 8px rgba(140, 140, 140, 0.25));
+  /* background-color: #fff; */
   svg {
     font-size: 15px;
   }
@@ -63,6 +60,8 @@ export const Title = styled.h3`
   overflow: hidden;
   margin: 0;
   padding: 0;
+  word-break: break-all;
+  max-height: 40px;
   :hover {
     color: #23629f;
   }

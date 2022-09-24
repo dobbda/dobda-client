@@ -34,7 +34,7 @@ const boxFade = keyframes`
   }
 `;
 const Container = styled.div`
-  background-color: #1e15227f;
+  background-color: rgba(0, 0, 0, 0.7);
   animation: ${boxFade} 0.25s ease-in-out;
   z-index: 999999;
   position: fixed;

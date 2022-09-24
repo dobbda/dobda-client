@@ -6,7 +6,7 @@ type Props = {};
 
 const notice: NextPage = () => {
   return (
-    <Layout>
+    <Layout sideLeft sideRight>
       <h1>notice</h1>
     </Layout>
   );

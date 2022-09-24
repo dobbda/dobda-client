@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import ReplyCp from './Reply';
 import { Editor, MarkDownViewer } from 'src/components/Editor';
-import { Avatar, atom } from 'src/components/common';
+import { Avatar, atom, Loading } from 'src/components/common';
 import getDate from 'src/lib/dateForm';
 import { EditAnswer } from './EditAnswer';
 import * as S from './style/style';
@@ -125,7 +125,8 @@ const AnswerCp = ({ answer, question }: Props) => {
       <S.CommentEditor>
         <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
         {mdStr && (
-          <SubmitBtn onClick={onSubmitComment} loading={addReply.isLoading}>
+          <SubmitBtn onClick={onSubmitComment}>
+            <Loading loading={addReply.isLoading} />
             등록
           </SubmitBtn>
         )}

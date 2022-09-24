@@ -40,7 +40,7 @@ const ODetail = ({ children, data }: Props) => {
   const add = useAddEnquiry(data?.id);
 
   const onSubmitEnquiry = useCallback(() => {
-    if (mdStr.length < 5) return;
+    if (mdStr.length < 5) return message.error('5글자 이상 작성 하여야 합니다.');
     const enquiryData = { content: mdStr, oid: data.id };
     add.mutate(enquiryData);
   }, [mdStr, data.id, add]);
@@ -63,7 +63,7 @@ const ODetail = ({ children, data }: Props) => {
   return (
     <S.DetailContainer>
       {isEdit && data ? (
-        <UpdateEditor oldData={data} category="outsource" setIsEdit={setIsEdit} />
+        <UpdateEditor oldData={data} category="outsourcing" setIsEdit={setIsEdit} />
       ) : (
         <>
           <S.ContentWrapper>
@@ -98,9 +98,7 @@ const ODetail = ({ children, data }: Props) => {
 
           <S.EditorWrapper>
             <h3>대화를 나눠보세요</h3>
-            <br />
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
-            <br />
             <br />
             <S.SubmitBtn onClick={onSubmitEnquiry}>등록</S.SubmitBtn>
           </S.EditorWrapper>
@@ -112,7 +110,7 @@ const ODetail = ({ children, data }: Props) => {
             </div>
             <div className="btn-group">
               {/* <Button>취소하기</Button> */}
-              <Button types="cancel">취소하기</Button>
+              <Button cancel>취소하기</Button>
             </div>
           </S.OutSourcingInfo>
 

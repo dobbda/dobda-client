@@ -27,7 +27,7 @@ const RequestDetailPage: NextPage = () => {
       router.push('/404', router.asPath, { shallow: true });
     }
   }, [router, isError]);
-  return <Layout aside={<>카테고리?</>}>{data && <ODetail data={data} />}</Layout>;
+  return <Layout sideRight>{data && <ODetail data={data} />}</Layout>;
 };
 export default RequestDetailPage;
 

@@ -26,6 +26,6 @@ const QuestionDetailPage: NextPage = () => {
       router.push('/404', router.asPath, { shallow: true });
     }
   }, [router, isError]);
-  return <Layout aside={<>카테고리?</>}>{data && <QDetail data={data} />}</Layout>;
+  return <Layout sideRight>{data && <QDetail data={data} />}</Layout>;
 };
 export default QuestionDetailPage;

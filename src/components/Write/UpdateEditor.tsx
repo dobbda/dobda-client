@@ -17,13 +17,13 @@ import moment from 'moment';
 type Props = {
   oldData: any;
   setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
-  category: 'outsource' | 'question';
+  category: 'outsourcing' | 'question';
 };
 
 const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
-  const tdata = category === 'outsource' && (oldData as OutsourceDetail);
+  const tdata = category === 'outsourcing' && (oldData as OutsourceDetail);
   const queryClient = useQueryClient();
-  const [deadline, setDeadline] = useState<string | null>(category == 'outsource' ? tdata.deadline : null);
+  const [deadline, setDeadline] = useState<string | null>(category == 'outsourcing' ? tdata.deadline : null);
   const [contentTitle, setContentTitle] = useState<string>(oldData?.title);
   const [tags, setTags] = useState<string[]>(oldData?.tagNames.map((tags: any) => tags.name));
   const [mdStr, setMdStr] = React.useState<string>(oldData?.content);
@@ -66,13 +66,13 @@ const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
       return message.error('입력 정보가 더 필요합니다');
     }
 
-    if (category == 'outsource' && !coin) {
+    if (category == 'outsourcing' && !coin) {
       return message.error('외주 요청은 코인이 필수 입니다');
     }
 
     if (coin && coin < 1000) return message.error('최소 1,000 코인 부터입니다');
 
-    if (category == 'outsource' && !deadline) {
+    if (category == 'outsourcing' && !deadline) {
       return message.info('마감기한을 입력해주세요');
     }
 
@@ -90,7 +90,7 @@ const UpdateEditor = ({ oldData, category, setIsEdit }: Props) => {
             </Label>
             <Select style={{ width: 140 }} defaultValue={category} disabled>
               <Select.Option value="question">질문하기</Select.Option>
-              <Select.Option value="outsource">기능요청</Select.Option>
+              <Select.Option value="outsourcing">기능요청</Select.Option>
             </Select>
           </Group>
           <Group>

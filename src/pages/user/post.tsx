@@ -5,7 +5,7 @@ import { Layout } from 'src/components/Layout';
 import { MyPost } from 'src/components/MyPoster';
 const PosterList: NextPage = () => {
   return (
-    <Layout>
+    <Layout sideLeft>
       <MyPost />
     </Layout>
   );

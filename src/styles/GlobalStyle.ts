@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
 		margin: 0 ;
 		padding:0;
     background-color: #f3f4f8;
-		font-family: "Noto Sans KR", "Titillium Web", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+		font-family: "Helvetica Neue", "Noto Sans KR", Inter, Helvetica, sans-serif;
     font-size: 14px;
 
     .toastui-editor-defaultUI-toolbar,

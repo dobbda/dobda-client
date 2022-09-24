@@ -7,7 +7,7 @@ export const keys = {
   qDetail: (qid: number | string): QueryKey => ['question', 'detail', qid],
 
   outsources: (title?: string, tag?: string): QueryKey => ['outsources', { title: title && title, tag: tag && title }],
-  enquiries: (oid: number | string): QueryKey => ['outsource', oid, 'enquiries'],
-  replies: (eid: number | string): QueryKey => ['outsource', 'enquiries', eid, 'replies'],
-  oDetail: (oid: number | string): QueryKey => ['outsource', 'detail', oid],
+  enquiries: (oid: number | string): QueryKey => ['outsourcing', oid, 'enquiries'],
+  replies: (eid: number | string): QueryKey => ['outsourcing', 'enquiries', eid, 'replies'],
+  oDetail: (oid: number | string): QueryKey => ['outsourcing', 'detail', oid],
 };
