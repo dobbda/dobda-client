@@ -115,16 +115,10 @@ export const Title = styled.h1`
   word-wrap: break-word;
 `;
 
-export const OutSourcingInfo = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  background-color: #0001;
-  border: 1px solid #c7c7c7;
-  border-radius: 4px;
-  align-items: center;
-  padding: 5px;
-  margin: 5px 30px;
+export const ProjectProgress = styled.div`
+  border: 1px solid #eeeeee;
+  border-bottom: none;
+  margin: 10px 0;
 
   @media screen and (max-width: 768px) {
     margin: 5px 10px;

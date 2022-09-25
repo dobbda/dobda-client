@@ -28,7 +28,7 @@ const EnquiryCp = ({ enquiry }: Props) => {
   const del = useDelete(enquiry?.id, keys.enquiries(enquiry?.outSourcingId));
   const addReply = useAddReply(enquiry?.id);
 
-  const { data: reply } = useQuery(keys.replies(enquiry?.id), () => o.getReplies(enquiry?.id), {
+  const { data: reply } = useQuery([keys.replies(enquiry?.id), enquiry?.id], () => o.getReplies(enquiry?.id), {
     enabled: enquiry?.repliesCount > 0 && viewChild,
   });
 

@@ -38,7 +38,7 @@ const HeaderNav = () => {
       <S.Header>
         <S.Headercontainer className="top-navigation">
           <div css={{ display: 'flex', alignItems: 'center' }}>
-            <Logo b={true} height="23px" />
+            <Logo b={true} height="20px" />
             <SearchBox />
           </div>
           <S.MenuWrapper>

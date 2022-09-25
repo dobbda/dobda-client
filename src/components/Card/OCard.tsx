@@ -25,7 +25,7 @@ const OCard = ({ data }: Props) => {
             </S.Group>
           </S.HeaderWrapper>
           <S.BodyWrapper>
-            <Lib.Link href={`/outsourcing/${data.id}`} scroll={false}>
+            <Lib.Link href={`/custom-project/requests/${data.id}`} scroll={false}>
               <S.Title>{data.title}</S.Title>
             </Lib.Link>
             <atom.TagWrapper>

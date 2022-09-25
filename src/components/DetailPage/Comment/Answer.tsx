@@ -25,7 +25,7 @@ const AnswerCp = ({ answer, question }: Props) => {
   const [isEdit, setisEdit] = useState(false);
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
-  const { data: comments } = useQuery(keys.comment(answer.id), () => q.getComments(answer.id), {
+  const { data: comments } = useQuery([keys.comment(answer.id), answer?.id], () => q.getComments(answer.id), {
     enabled: answer.commentsCount > 0 && viewChild,
   });
 

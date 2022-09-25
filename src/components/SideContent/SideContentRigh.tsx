@@ -20,20 +20,20 @@ export const SideContentRight = ({ folderOpenFalse }: Props) => {
   return (
     <SideContainer>
       <P>최신 글</P>
-      <FolderMenu childOpen={!folderOpenFalse} childMenu={<div>No Data</div>}>
-        🔥 Hot 🔥 Questions
+      <FolderMenu childOpen={!folderOpenFalse} title="🔥 Hot 🔥 Questions">
+        <div>No Data</div>
       </FolderMenu>
       <br />
       <br />
       <P>최신 글</P>
-      <FolderMenu childOpen={!folderOpenFalse} childMenu={<div>No Data</div>}>
-        🔥 Hot 🔥 Outsourcing
+      <FolderMenu childOpen={!folderOpenFalse} title="🔥 Hot 🔥 Outsourcing">
+        <div>No Data</div>
       </FolderMenu>{' '}
       <br />
       <br />
       <P>인기 태그</P>
-      <FolderMenu childOpen={!folderOpenFalse} childMenu={<div>No Data</div>}>
-        🔥 Tag Cloud 🔥
+      <FolderMenu childOpen={!folderOpenFalse} title="🔥 Tag Cloud 🔥">
+        <div>No Data</div>
       </FolderMenu>{' '}
     </SideContainer>
   );

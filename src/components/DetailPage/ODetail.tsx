@@ -15,6 +15,7 @@ import { UpdateEditor } from '../Write';
 import { useQuery, useQueryClient } from 'react-query';
 import { useRouter } from 'next/router';
 import { message } from 'antd';
+import { FolderMenu } from '../SideContent';
 type Props = {
   children?: React.ReactElement; // commentComponent
   data?: OutsourceDetail;
@@ -33,7 +34,7 @@ const ODetail = ({ children, data }: Props) => {
 
   const [mdStr, setMdStr] = useState('');
   const [isEdit, setIsEdit] = useState(false);
-  const { data: enquiries } = useQuery(keys.enquiries(data?.id), () => o.getEnquiries(data.id), {
+  const { data: enquiries } = useQuery([keys.enquiries(data?.id), data?.id], () => o.getEnquiries(data.id), {
     enabled: data?.enquiriesCount > 0,
   });
   const del = useDelete(data?.id, keys.oDetail(data?.id), data.id);
@@ -81,10 +82,10 @@ const ODetail = ({ children, data }: Props) => {
               </atom.TagWrapper>
               {auth?.id == data.author?.id && (
                 <S.OnyUser className="only-author">
-                  <Button onClick={() => setIsEdit(true)} type="primary" ghost>
+                  <Button onClick={() => setIsEdit(true)} cancel>
                     수정
                   </Button>
-                  <Button onClick={() => del.mutate(o.delOutsource)} type="primary" danger ghost>
+                  <Button onClick={() => del.mutate(o.delOutsource)} cancel>
                     삭제
                   </Button>
                 </S.OnyUser>
@@ -97,22 +98,18 @@ const ODetail = ({ children, data }: Props) => {
           </S.ContentWrapper>
 
           <S.EditorWrapper>
-            <h3>대화를 나눠보세요</h3>
+            <h3>메이커이시면 자신을 어필해보세요.</h3>
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
             <br />
             <S.SubmitBtn onClick={onSubmitEnquiry}>등록</S.SubmitBtn>
           </S.EditorWrapper>
 
-          <S.OutSourcingInfo>
-            <div className="progress-message">
-              <div css={{ color: '#a802d1', fontWeight: 'bold', marginBottom: '5px' }}>[ 금액 : 100,000 ]</div>
-              <div css={{ color: '#16bd00', fontWeight: 'bold' }}>{'^*^ 프리랜서 선택전이니 자신을 어필해보세요 '}</div>
-            </div>
-            <div className="btn-group">
-              {/* <Button>취소하기</Button> */}
-              <Button cancel>취소하기</Button>
-            </div>
-          </S.OutSourcingInfo>
+          <h3>진행상황</h3>
+          <S.ProjectProgress>
+            <FolderMenu title={'Project Progress'}>
+              <p> 메이커 매칭 전 입니다</p>
+            </FolderMenu>
+          </S.ProjectProgress>
 
           <S.AnswerContainer>
             {enquiries && enquiries[0]?.id ? (

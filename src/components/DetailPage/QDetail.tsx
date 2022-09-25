@@ -33,7 +33,7 @@ const QDetail = ({ children, data }: Props) => {
   const { auth, refetch } = useAuth();
   const [mdStr, setMdStr] = useState('');
   const [isEdit, setIsEdit] = useState(false);
-  const { data: answers } = useQuery(keys.answers(data?.id), () => q.getAnswers(data.id), {
+  const { data: answers } = useQuery([keys.answers(data?.id), data?.id], () => q.getAnswers(data.id), {
     enabled: data?.answersCount > 0,
   });
 

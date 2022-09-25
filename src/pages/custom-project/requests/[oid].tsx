@@ -13,7 +13,7 @@ const RequestDetailPage: NextPage = () => {
   const router = useRouter();
   const { oid } = router.query;
   const { data, error, isError, isSuccess } = useQuery(
-    keys.oDetail(Number(oid)),
+    [keys.oDetail(Number(oid)), Number(oid)],
     () => o.outsourceDetail<OutsourceDetail>(Number(oid)),
     {
       retry: 0,
@@ -33,7 +33,7 @@ export default RequestDetailPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const queryClient = new QueryClient();
-  if (req?.headers?.cookie.includes('jwt-access')) {
+  if (req?.headers?.cookie?.includes('jwt-access')) {
     await queryClient.prefetchQuery(['auth'], () => reqAuth.httpAuth(req as AxiosRequestConfig));
   }
   return {
