@@ -13,12 +13,13 @@ export const NoData = styled.p`
 `;
 
 export const CreatedAt = styled.span`
-  padding: 0;
+  display: flex;
+  align-items: center;
   margin: 0;
-  margin-right: 5px;
   color: #686868;
   font-size: 12px;
   white-space: nowrap;
+  text-align: center;
 `;
 
 export const Flex = styled.div`

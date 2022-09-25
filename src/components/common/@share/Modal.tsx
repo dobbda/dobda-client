@@ -16,8 +16,8 @@ export function Modal({ children, visible, onClickHandler }: PropsWithChildren<P
   return (
     <>
       {visible && (
-        <Container onClick={onClickSide} {...boxFade}>
-          <Wrap>{children}</Wrap>
+        <Container {...boxFade}>
+          <Wrap onClick={onClickSide}>{children}</Wrap>
         </Container>
       )}
     </>
@@ -32,9 +32,11 @@ const boxFade = keyframes`
   100% {
     opacity: 1;
   }
+
 `;
 const Container = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: saturate(180%) blur(5px);
   animation: ${boxFade} 0.25s ease-in-out;
   z-index: 999999;
   position: fixed;
@@ -44,12 +46,15 @@ const Container = styled.div`
   right: 0;
 `;
 const Wrap = styled.div`
-  width: fit-content;
-  height: fit-content;
+  width: 100%;
+  height: 100%;
   position: absolute;
   left: 50%;
   top: 40%;
   transform: translate(-50%, -50%);
   z-index: 999;
   color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

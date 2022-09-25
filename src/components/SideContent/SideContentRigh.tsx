@@ -19,15 +19,21 @@ export const SideContentRight = ({ folderOpenFalse }: Props) => {
 
   return (
     <SideContainer>
-      <P>Questions</P>
+      <P>최신 글</P>
       <FolderMenu childOpen={!folderOpenFalse} childMenu={<div>No Data</div>}>
-        🔥 Hot 🔥
+        🔥 Hot 🔥 Questions
       </FolderMenu>
       <br />
       <br />
-      <P>Outsourcing</P>
+      <P>최신 글</P>
       <FolderMenu childOpen={!folderOpenFalse} childMenu={<div>No Data</div>}>
-        🔥 Hot 🔥
+        🔥 Hot 🔥 Outsourcing
+      </FolderMenu>{' '}
+      <br />
+      <br />
+      <P>인기 태그</P>
+      <FolderMenu childOpen={!folderOpenFalse} childMenu={<div>No Data</div>}>
+        🔥 Tag Cloud 🔥
       </FolderMenu>{' '}
     </SideContainer>
   );

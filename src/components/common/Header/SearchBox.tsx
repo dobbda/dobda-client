@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { theme } from 'src/styles/Theme';
 type Props = {};
 
-const SearchBox = (props: Props) => {
+export const SearchBox = (props: Props) => {
   return (
     <Div className="search-box">
       <input type="text" placeholder="태그검색" />
@@ -15,8 +15,6 @@ const SearchBox = (props: Props) => {
   );
 };
 
-export default SearchBox;
-
 const Shearch = styled(SearchIcon)`
   height: 18px;
   width: 18px;
@@ -24,39 +22,41 @@ const Shearch = styled(SearchIcon)`
 `;
 
 const Div = styled.div`
-  margin-top: 20px;
-  height: 42px;
+  height: 30px;
   background-color: #fff;
   border: 1px solid ${theme.color.primary};
-  width: 100%;
+  max-width: 600px;
+  margin: 0 10px;
   border-radius: 2px;
-  margin-bottom: 20px;
   display: flex;
   justify-content: space-around;
   border-radius: 2rem;
+  transition: all 0.2s ease-in-out 0s;
+
   :hover {
     border: 1px solid ${theme.color.secondary};
+    /* width: 100%; */
   }
+
   input {
+    width: 100%;
+    font-size: 14px;
     border: none;
     background: none;
     outline: none;
-    line-height: 33px;
-    transition: 0.4s;
-
-    width: 100%;
+    line-height: 20px;
     padding: 0 15px;
-    padding-top: 2px;
     ::placeholder {
       color: ${theme.color.primary};
-      font-weight: 600;
+      font-weight: 500;
     }
   }
+
   button {
     text-decoration: none;
     float: right;
-    width: 39px;
-    height: 39px;
+    width: 28px;
+    height: 28px;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useQuery } from 'react-query';
 
 import { Main, WriteHandler } from './style/MainContent.style';
-import SearchBox from './atom/SearchBox';
+import { WirteHandlerModal } from './atom/WirteHandlerModal';
 
 import { PenIcon } from 'src/assets/icons';
 import { Categories, CategoryList, CategoriesType } from 'src/lib/utils/category';
@@ -12,12 +12,14 @@ import RenderQuestion from './renderItm/RenderQuestion';
 import { getLocalStorage, setLocalStorage } from 'src/lib/localStorage';
 import { useAuth, useDidMountEffect, useLoginModalhandler } from 'src/hooks';
 import { useRouter } from 'next/router';
+import { Avatar } from 'antd';
 
 interface Props {
   children?: React.ReactNode;
 }
 
 const MainContent = ({ children }: Props) => {
+  const [visible, setVisible] = useState(false);
   const { auth } = useAuth();
   const router = useRouter();
   const [select, setSelect] = useState<CategoriesType>();
@@ -32,33 +34,34 @@ const MainContent = ({ children }: Props) => {
     setLocalStorage('mainCateogry', select);
   }, [select]);
   const checkLogin = useCallback(() => {
-    if (!auth?.id) setLoginModal();
-    if (auth?.id) router.push('/write-board');
-  }, []);
-  return (
-    <Main>
-      <div>
-        <WriteHandler onClick={checkLogin}>
-          질문이나 작업요청을 해보세요{' '}
-          <span>
-            <PenIcon />
-          </span>
-        </WriteHandler>
+    if (!auth?.id) return setLoginModal();
+    setVisible(!visible);
+  }, [auth?.id, setLoginModal, visible]);
 
-        <div className="top-bar">
-          {CategoryList.map((m, i) => (
-            <span key={i} onClick={() => setSelect(m)} className={`${select === m ? 'tap_menu selected' : 'tap_menu'}`}>
-              <div>{Categories[m]}</div>
+  return (
+    <>
+      <Main>
+        <div>
+          <WriteHandler onClick={checkLogin}>
+            <Avatar />
+            질문이나 작업요청을 해보세요{' '}
+            <span>
+              <PenIcon />
             </span>
-          ))}
+          </WriteHandler>
+          <div className="top-bar">
+            {CategoryList.map((m, i) => (
+              <span key={i} onClick={() => setSelect(m)} className={`${select === m ? 'tap_menu selected' : 'tap_menu'}`}>
+                <div>{Categories[m]}</div>
+              </span>
+            ))}
+          </div>
         </div>
-        <div className="search-wrapper">
-          <SearchBox />
-        </div>
-      </div>
-      <section className="card-content outsourcing">{select == 'outsourcing' && <RenderOutsource />}</section>
-      <section className="card-content questions">{select == 'questions' && <RenderQuestion />}</section>
-    </Main>
+        <section className="card-content outsourcing">{select == 'outsourcing' && <RenderOutsource />}</section>
+        <section className="card-content questions">{select == 'questions' && <RenderQuestion />}</section>
+      </Main>
+      <WirteHandlerModal visible={visible} setVisible={() => setVisible(!visible)} />
+    </>
   );
 };
 

@@ -4,7 +4,7 @@ export const Div = styled.div<{ checked: boolean }>`
   position: relative;
   overflow: hidden;
   overflow: hidden;
-  background-color: #f9f9f9;
+  background-color: #fff;
   border-bottom: solid 1px #eee;
 `;
 
@@ -42,8 +42,9 @@ export const ChildMenu = styled.div`
   color: rgba(0, 0, 0, 0.8);
   overflow: hidden;
   transition: height 0.3s;
-  box-shadow: inset 0px 2px 5px -3px rgb(0 0 0 / 25%);
-  background-color: #f9f9f9;
+  /* box-shadow: inset 0px 2px 5px -3px rgb(0 0 0 / 25%); */
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #fff;
   > * {
     text-align: center;
     padding-top: 5px;

@@ -36,7 +36,6 @@ export type Tags = {
   id: number;
 };
 export interface Auth extends Default {
-  // 유저확인용
   email: string;
   name: string;
   avatar: string;
@@ -45,6 +44,8 @@ export interface Auth extends Default {
   score: number;
   skill: string[];
   description: string;
+  getAccepted: number;
+  setAccepted: number;
 }
 
 export interface Answer extends Default {

@@ -15,6 +15,7 @@ import { user } from 'src/api';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { Avatar } from 'antd';
+import { SearchBox } from './SearchBox';
 
 const HeaderNav = () => {
   const queryClient = useQueryClient();
@@ -36,8 +37,10 @@ const HeaderNav = () => {
     <>
       <S.Header>
         <S.Headercontainer className="top-navigation">
-          <Logo b={true} height="23px" />
-
+          <div css={{ display: 'flex', alignItems: 'center' }}>
+            <Logo b={true} height="23px" />
+            <SearchBox />
+          </div>
           <S.MenuWrapper>
             {!auth?.id && (
               <Button cancel onClick={setLoginModal}>
@@ -47,7 +50,9 @@ const HeaderNav = () => {
             )}
             {auth?.id && (
               <>
-                <p onClick={userlogout}>로그아웃</p>
+                <p onClick={userlogout} css={{ whiteSpace: 'nowrap' }}>
+                  로그아웃
+                </p>
 
                 <Popover trigger="click" content={<MessageBox />} top={10} right={-10}>
                   <I.BellIcon color={theme.color.secondary} size={'25px'} css={{ marginTop: '2px', cursor: 'pointer' }} />

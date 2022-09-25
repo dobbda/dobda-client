@@ -17,8 +17,8 @@ interface StyleProps {
 const Div = styled.div<StyleProps>`
   font-size: 12px;
   background-color: ${({ bg }) => (bg ? bg : `rgba(214, 219, 228, 0.5)`)};
-  color: ${({ theme }) => theme.color.secondary};
-  padding: 2px 10px;
+  color: ${({ theme }) => theme.color.text1(0.6)};
+  padding: 4px 10px;
   border-radius: 4px;
   span {
     cursor: pointer;
@@ -35,7 +35,6 @@ const Div = styled.div<StyleProps>`
 export const Tag = ({ children, closable, onClose, bg }: Props) => {
   return (
     <Div bg={bg}>
-      {!bg && '# '}
       {children}{' '}
       {closable && (
         <span onClick={onClose}>
