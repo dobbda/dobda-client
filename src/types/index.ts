@@ -117,6 +117,7 @@ export interface CreateOutsource {
   coin: number;
   tagNames: string[];
   deadline: string;
+  cardImage: string;
 }
 
 export interface Outsource extends Default {
@@ -128,7 +129,8 @@ export interface Outsource extends Default {
   author: Author;
   enquiriesCount: number;
   tagNames: Tags[];
-  deadline?: string;
+  deadline: string;
+  cardImage?: string;
 }
 
 export interface OutsourceDetail extends Outsource {

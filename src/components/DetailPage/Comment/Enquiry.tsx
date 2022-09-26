@@ -28,7 +28,7 @@ const EnquiryCp = ({ enquiry }: Props) => {
   const del = useDelete(enquiry?.id, keys.enquiries(enquiry?.outSourcingId));
   const addReply = useAddReply(enquiry?.id);
 
-  const { data: reply } = useQuery([keys.replies(enquiry?.id), enquiry?.id], () => o.getReplies(enquiry?.id), {
+  const { data: reply } = useQuery(keys.replies(enquiry?.id), () => o.getReplies(enquiry?.id), {
     enabled: enquiry?.repliesCount > 0 && viewChild,
   });
 
@@ -55,7 +55,9 @@ const EnquiryCp = ({ enquiry }: Props) => {
           <S.Header className="header">
             <Avatar nickname={enquiry?.author.nickname} url={enquiry?.author.avatar} id={enquiry?.author.id} />
             <atom.Flex>
-              <Button>채택하기</Button>
+              <Button>
+                <S.Name>선택하기</S.Name>
+              </Button>
               <>
                 <Popover
                   trigger="click"

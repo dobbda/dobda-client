@@ -33,5 +33,5 @@ export const TagWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  margin: 10px auto 0;
+  align-items: center;
 `;

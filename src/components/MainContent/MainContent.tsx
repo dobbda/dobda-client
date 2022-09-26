@@ -13,6 +13,7 @@ import { getLocalStorage, setLocalStorage } from 'src/lib/localStorage';
 import { useAuth, useDidMountEffect, useLoginModalhandler } from 'src/hooks';
 import { useRouter } from 'next/router';
 import { Avatar } from 'antd';
+import { theme } from 'src/styles/Theme';
 
 interface Props {
   children?: React.ReactNode;
@@ -43,10 +44,9 @@ const MainContent = ({ children }: Props) => {
       <Main>
         <div>
           <WriteHandler onClick={checkLogin}>
-            <Avatar />
-            질문이나 작업요청을 해보세요{' '}
+            📑 질문이나 프로젝트 요청을 해보는건 어떤가요?{' '}
             <span>
-              <PenIcon />
+              <PenIcon color={theme.color.primary} />
             </span>
           </WriteHandler>
           <div className="top-bar">

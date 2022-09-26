@@ -13,7 +13,7 @@ const QuestionDetailPage: NextPage = () => {
   const router = useRouter();
   const { qid } = router.query;
   const { data, error, isError, isSuccess } = useQuery(
-    [keys.qDetail(Number(qid)), Number(qid)],
+    keys.qDetail(Number(qid)),
     () => q.questionDetail<QuestionDetail>(Number(qid && qid)),
     {
       retry: 0,

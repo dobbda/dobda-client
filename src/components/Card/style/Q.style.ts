@@ -1,3 +1,4 @@
+import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 // ({theme})=> theme.color
 interface CardProps {
@@ -6,14 +7,16 @@ interface CardProps {
 }
 
 export const ContentWrapper = styled.div<CardProps>`
-  border-bottom: solid 1px #eee;
+  border: solid 1px #eee;
   padding: 20px 30px;
-  /* background-color: #fff; */
+  background-color: #fff;
+  border-radius: 4px;
   svg {
     font-size: 15px;
   }
-  .diff-styles {
-    padding-left: 45px;
+
+  :hover {
+    border: 1px solid ${theme.color.primary};
   }
 
   @media screen and (max-width: 450px) {
@@ -54,12 +57,14 @@ export const HeaderWrapper = styled.header`
 //body
 export const BodyWrapper = styled.div`
   width: 100%;
+  padding-left: 45px;
 `;
 
 export const Title = styled.h3`
   overflow: hidden;
   margin: 0;
   padding: 0;
+  margin-bottom: 10px;
   word-break: break-all;
   max-height: 40px;
   :hover {
@@ -76,6 +81,7 @@ export const FooterWrapper = styled.div`
   text-align: center;
   align-items: center;
   margin-top: 10px;
+  padding-left: 45px;
 `;
 export const Gap = styled.div`
   display: inline;

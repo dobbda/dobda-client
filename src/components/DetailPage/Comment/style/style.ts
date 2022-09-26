@@ -1,3 +1,4 @@
+import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 interface Props {
   type?: string;
@@ -57,4 +58,8 @@ export const Header = styled.div<Props>`
 
 export const CommentEditor = styled.div`
   padding: 8px;
+`;
+export const Name = styled.p`
+  display: inline;
+  color: ${theme.color.secondary};
 `;

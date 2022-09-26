@@ -1,30 +1,20 @@
+import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 // ({theme})=> theme.color
-interface CardProps {
-  type?: string;
-  color?: string;
-}
 
-export const ContentWrapper = styled.div<CardProps>`
-  border-bottom: solid 1px #e3e3e3;
-  padding: 20px 30px;
+export const ContentWrapper = styled.div`
+  position: relative;
+  border: solid 1px #dfdfdf;
   background-color: #fff;
   border-radius: 4px;
-  width: 100%;
-  filter: drop-shadow(0px 2px 8px rgba(140, 140, 140, 0.25));
-  .diff-styles {
-    padding-left: 45px;
-  }
-
-  @media screen and (max-width: 450px) {
-    padding: 20px 10px;
+  :hover {
+    border: 1px solid ${theme.color.primary};
   }
 `;
 
 export const Progress = styled.h1`
   color: #b95792;
   font-size: 13px;
-  /* font-weight: bold; */
 `;
 
 export const Group = styled.div`
@@ -47,6 +37,12 @@ export const Group = styled.div`
   }
 `;
 
+export const P = styled.p`
+  display: inline;
+  color: #686868;
+  font-size: 12px;
+`;
+
 // header
 export const HeaderWrapper = styled.header`
   display: flex;
@@ -56,36 +52,50 @@ export const HeaderWrapper = styled.header`
 `;
 
 //body
-export const BodyWrapper = styled.div`
-  width: 100%;
-`;
 
 export const Title = styled.h3`
   overflow: hidden;
-  margin: 0;
-  padding: 0;
-  font-style: normal;
   padding-bottom: 10px;
-  font-size: 18px;
   word-break: break-word;
-  max-height: 50px;
-  :hover {
-    color: #0057ff;
-  }
+  max-height: 100px;
 `;
 
-//footer
-export const FooterWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap-reverse;
-  justify-content: space-between;
-  width: 100%;
-  padding-top: 5px;
-  text-align: center;
-  align-items: center;
-  margin-top: 10px;
-`;
 export const Gap = styled.div`
   display: inline;
   margin: 0 7px;
+`;
+
+export const Info = styled.div`
+  background-color: rgba(235, 238, 243, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 5px;
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  max-height: 170px;
+  object-fit: cover;
+  padding: 5px;
+  border-radius: 8px;
+`;
+
+export const Content = styled.div`
+  padding: 10px 20px;
+  width: 100%;
+  @media screen and (max-width: 450px) {
+    padding: 20px 10px;
+  }
+`;
+
+export const Watch = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  padding: 5px 10px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 `;

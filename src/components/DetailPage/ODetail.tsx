@@ -16,6 +16,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import { useRouter } from 'next/router';
 import { message } from 'antd';
 import { FolderMenu } from '../SideContent';
+import { theme } from 'src/styles/Theme';
 type Props = {
   children?: React.ReactElement; // commentComponent
   data?: OutsourceDetail;
@@ -34,7 +35,7 @@ const ODetail = ({ children, data }: Props) => {
 
   const [mdStr, setMdStr] = useState('');
   const [isEdit, setIsEdit] = useState(false);
-  const { data: enquiries } = useQuery([keys.enquiries(data?.id), data?.id], () => o.getEnquiries(data.id), {
+  const { data: enquiries } = useQuery(keys.enquiries(data?.id), () => o.getEnquiries(data.id), {
     enabled: data?.enquiriesCount > 0,
   });
   const del = useDelete(data?.id, keys.oDetail(data?.id), data.id);
@@ -97,19 +98,20 @@ const ODetail = ({ children, data }: Props) => {
             </S.ContentViewWrapper>
           </S.ContentWrapper>
 
-          <S.EditorWrapper>
-            <h3>메이커이시면 자신을 어필해보세요.</h3>
-            <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
-            <br />
-            <S.SubmitBtn onClick={onSubmitEnquiry}>등록</S.SubmitBtn>
-          </S.EditorWrapper>
-
-          <h3>진행상황</h3>
           <S.ProjectProgress>
-            <FolderMenu title={'Project Progress'}>
+            <FolderMenu title={'⏳ 프로젝트 진행상황 ⏳'}>
               <p> 메이커 매칭 전 입니다</p>
             </FolderMenu>
           </S.ProjectProgress>
+
+          <S.EditorWrapper>
+            <h3>🧘‍♂️메이커이면 자신을 어필해보세요.</h3>
+            <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
+            <br />
+            <Button onClick={onSubmitEnquiry} css={{ display: 'block', margin: '0 auto' }} secondary>
+              등록
+            </Button>
+          </S.EditorWrapper>
 
           <S.AnswerContainer>
             {enquiries && enquiries[0]?.id ? (

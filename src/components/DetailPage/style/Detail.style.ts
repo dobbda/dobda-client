@@ -1,4 +1,5 @@
 import { Button } from 'antd';
+import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 
 const headerFont = '20px';
@@ -14,7 +15,7 @@ export const ContentWrapper = styled.div`
   min-height: 600px;
   background-color: #fff;
   border: 1px solid #eeee;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
 `;
 export const CoinWrapper = styled.span`
   font-weight: 600;
@@ -82,8 +83,8 @@ export const AnswerContainer = styled.div`
 export const EditorWrapper = styled.div`
   position: relative;
   border-radius: 4px;
-  padding-bottom: 5px;
-  margin: 5px 0 15px;
+  /* padding-bottom: 5px; */
+  margin-top: 30px;
   h3 {
     color: #000;
     font-weight: bold;
@@ -116,8 +117,8 @@ export const Title = styled.h1`
 `;
 
 export const ProjectProgress = styled.div`
-  border: 1px solid #eeeeee;
-  border-bottom: none;
+  border: 1px solid ${theme.color.secondary};
+  /* border-bottom: none; */
   margin: 10px 0;
 
   @media screen and (max-width: 768px) {

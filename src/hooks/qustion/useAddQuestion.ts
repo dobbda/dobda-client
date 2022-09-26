@@ -11,7 +11,7 @@ const useAddQuestion = (mutationFn: any, qid?: number) => {
   const router = useRouter();
   return useMutation((data: CreateQuestion) => mutationFn(data, qid ? qid : null), {
     onSuccess: async (newQuestion: Question) => {
-      queryClient.cancelQueries([keys.questions()]);
+      queryClient.cancelQueries(keys.questions());
       const oldData = queryClient.getQueryData(keys.questions());
 
       // 메인페이지에 새로 추가

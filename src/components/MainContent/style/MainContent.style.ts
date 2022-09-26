@@ -52,7 +52,7 @@ export const WriteHandler = styled.div`
   text-align: center;
   align-items: center;
   background-color: #fff;
-  padding: 7px 20px;
+  padding: 7px 10px;
   margin: 10px 5px;
   border-radius: 2rem;
   color: ${theme.color.placeholder};

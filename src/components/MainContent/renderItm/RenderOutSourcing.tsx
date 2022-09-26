@@ -50,10 +50,11 @@ export default RenderOutsource;
 const ContentCardList = styled.div`
   display: grid;
   place-items: center;
-  background-color: #fff;
-  border-radius: 8px;
-  border: 1px solid #e3e3e3;
+  /* background-color: #fff; */
+  /* border-radius: 8px; */
+  /* border: 1px solid #e3e3e3; */
   overflow: hidden;
+  gap: 15px;
 `;
 const RefCard = styled.div`
   width: 100%;
