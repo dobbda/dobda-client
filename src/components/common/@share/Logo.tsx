@@ -2,7 +2,7 @@ import React from 'react';
 import { useQueryClient } from 'react-query';
 import { Link } from 'src/components/common';
 import styled from 'styled-components';
-import { LogoIconW, LogoIconB } from 'src/assets/icons';
+import { LogoIconW, LogoIconB, LogoBB, LogoBBB } from 'src/assets/icons';
 import Image from 'next/image';
 type Props = {
   b?: boolean;
@@ -28,7 +28,7 @@ export const Logo = ({ b, height }: Props) => {
     <>
       <Div onClick={() => queryClient.invalidateQueries()}>
         <Link href="/">
-          {b ? <LogoIconB height={height ? height : '35px'} /> : <LogoIconW height={height ? height : '35px'} />}
+          {b ? <LogoBBB height={height ? height : '35px'} /> : <LogoIconW height={height ? height : '35px'} />}
         </Link>
       </Div>
     </>

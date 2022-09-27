@@ -22,23 +22,14 @@ const HeaderNav = () => {
   const { auth, refetch } = useAuth();
   const { loginModal, setLoginModal } = useLoginModalhandler();
   const router = useRouter();
-  const userlogout = useCallback(async () => {
-    if (!auth.id) return;
-    var result = confirm('로그아웃 확인');
-    if (result) {
-      try {
-        await axios.delete('/api/auth/logout');
-      } catch (e) {}
-      queryClient.removeQueries(['auth']);
-      router.replace(router.asPath);
-    }
-  }, [auth?.id, queryClient, router]);
+  const { logout } = useLogout();
+
   return (
     <>
       <S.Header>
         <S.Headercontainer className="top-navigation">
           <div css={{ display: 'flex', alignItems: 'center' }}>
-            <Logo b={true} height="20px" />
+            <Logo b={true} height="25px" />
             <SearchBox />
           </div>
           <S.MenuWrapper>
@@ -50,18 +41,9 @@ const HeaderNav = () => {
             )}
             {auth?.id && (
               <>
-                <p onClick={userlogout} css={{ whiteSpace: 'nowrap' }}>
-                  로그아웃
-                </p>
-
                 <Popover trigger="click" content={<MessageBox />} top={10} right={-10}>
-                  <I.BellIcon color={theme.color.secondary} size={'25px'} css={{ marginTop: '2px', cursor: 'pointer' }} />
+                  <I.BellIcon size={'20px'} css={{ marginTop: '2px', cursor: 'pointer' }} />
                 </Popover>
-                <Link href="/user/profile" passHref>
-                  <span>
-                    <Avatar src={auth.avatar} size={22} style={{ border: `1px solid ${theme.color.primary}` }} />
-                  </span>
-                </Link>
               </>
             )}
 

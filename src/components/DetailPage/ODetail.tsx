@@ -11,7 +11,7 @@ import { MarkDownViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
 import { keys, useAddEnquiry, useAuth, useDelete, useDidMountEffect, useQueryCount } from 'src/hooks';
 import { o, q } from 'src/api';
-import { UpdateEditor } from '../Write';
+import { WriteOutsourcing } from '../Write';
 import { useQuery, useQueryClient } from 'react-query';
 import { useRouter } from 'next/router';
 import { message } from 'antd';
@@ -65,7 +65,7 @@ const ODetail = ({ children, data }: Props) => {
   return (
     <S.DetailContainer>
       {isEdit && data ? (
-        <UpdateEditor oldData={data} category="outsourcing" setIsEdit={setIsEdit} />
+        <WriteOutsourcing data={data} setIsEdit={setIsEdit} />
       ) : (
         <>
           <S.ContentWrapper>
@@ -105,7 +105,7 @@ const ODetail = ({ children, data }: Props) => {
           </S.ProjectProgress>
 
           <S.EditorWrapper>
-            <h3>🧘‍♂️메이커이면 자신을 어필해보세요.</h3>
+            <h3>🧘‍♂️글을 남겨 본인을 어필해보세요.</h3>
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
             <br />
             <Button onClick={onSubmitEnquiry} css={{ display: 'block', margin: '0 auto' }} secondary>

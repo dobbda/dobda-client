@@ -1,5 +1,6 @@
 import { CSSProp, CSSProperties } from 'styled-components';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 export const Hr = styled.div`
   margin: 0;
@@ -16,7 +17,7 @@ export const CreatedAt = styled.span`
   display: flex;
   align-items: center;
   margin: 0;
-  color: #686868;
+  color: #888;
   font-size: 12px;
   white-space: nowrap;
   text-align: center;

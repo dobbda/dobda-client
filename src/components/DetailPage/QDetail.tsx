@@ -13,7 +13,7 @@ import { Question, QuestionDetail } from 'src/types';
 import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { keys, useAddAnswer, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
-import { UpdateEditor } from '../Write';
+import { WriteQuestion } from '../Write';
 import { Button } from 'antd';
 import { useRouter } from 'next/router';
 type Props = {
@@ -26,6 +26,7 @@ const QDetail = ({ children, data }: Props) => {
   useEffect(() => {
     /**조회수 */
     setInfCount({ queryKey: keys.questions(), changeKey: 'watch', findId: data.id, countVal: data.watch });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const queryClient = useQueryClient();
@@ -64,7 +65,7 @@ const QDetail = ({ children, data }: Props) => {
   return (
     <S.DetailContainer>
       {isEdit && data ? (
-        <UpdateEditor oldData={data} category="question" setIsEdit={setIsEdit} />
+        <WriteQuestion data={data} setIsEdit={setIsEdit} />
       ) : (
         <>
           <S.ContentWrapper>

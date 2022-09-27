@@ -19,7 +19,7 @@
     "incremental": true,
     "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "additional.d.ts", "styled.d.ts", "index.d.ts", "**/*.ts", "**/*.tsx", "custom.d.ts"],
+  "include": ["custom.d.ts", "index.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],
   "types": ["gapi", "gapi.auth2"]
 }

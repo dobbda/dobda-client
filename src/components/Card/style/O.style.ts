@@ -72,6 +72,9 @@ export const Info = styled.div`
   align-items: flex-start;
   padding: 10px;
   gap: 5px;
+  border-radius: 12px;
+  margin: 10px;
+  margin-bottom: 0;
 `;
 
 export const Image = styled.img`

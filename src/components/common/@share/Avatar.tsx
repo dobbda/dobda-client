@@ -17,7 +17,8 @@ const Div = styled.div`
   display: inline-flex;
   height: 30px;
   img {
-    border-radius: 100%;
+    border-radius: 75%;
+    box-shadow: #9c9c9c 3px 0px 0px 2px;
     width: 30px;
     height: 30px;
   }
@@ -28,6 +29,7 @@ const Div = styled.div`
     margin-left: 20px;
     text-align: center;
     font-size: 15px;
+    color: #888;
     :hover {
       color: #013d4e;
     }

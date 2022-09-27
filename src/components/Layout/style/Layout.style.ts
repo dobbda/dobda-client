@@ -25,7 +25,8 @@ export const Wrapper = styled.div`
   padding: 0;
   margin: 0 10px;
   @media screen and (max-width: 1060px) {
-    margin: 0 5px;
+    margin: 0;
+    margin-right: 0 5px;
   }
   @media screen and (max-width: 768px) {
     margin: 0;
@@ -38,8 +39,10 @@ export const MainWrapper = styled.div`
   padding: 0 20px;
   position: relative;
   padding-top: 10px;
+  transition: all 0.1s;
   @media screen and (max-width: 1060px) {
-    padding: 0 5px 0 0;
+    padding: 0;
+    padding-right: 10px;
   }
   @media screen and (max-width: 768px) {
     padding: 0;

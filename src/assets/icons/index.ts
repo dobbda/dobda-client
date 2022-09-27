@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import LogoW from 'src/assets/svg/NAME_W.svg';
 import LogoB from 'src/assets/svg/NAME_B.svg';
-export { LogoW as LogoIconW, LogoB as LogoIconB };
+import LogoBB from 'src/assets/svg/NAME_BB.svg';
+import LogoBBB from 'src/assets/svg/NAME_BBB.svg';
+import Logo from 'src/assets/svg/logo.svg';
+export { LogoW as LogoIconW, LogoB as LogoIconB, LogoBB as LogoBB, LogoBBB as LogoBBB, Logo as LogoIcon };
 
 export { BiHash as HashIcon } from 'react-icons/bi';
 // export { RiBitCoinFill as CoinIcon} from 'react-icons/ri';
@@ -14,13 +17,12 @@ export { BiReply as ReplyIcon } from 'react-icons/bi';
 export { BiLogInCircle as LoginIcon } from 'react-icons/bi';
 export { BsChatLeft as ChatIcon } from 'react-icons/bs';
 export { IoIosEye as WatchIcon } from 'react-icons/io';
-export { TbBellPlus as AddBellIcon } from 'react-icons/tb';
 export { RiKakaoTalkFill as KakaoIcon } from 'react-icons/ri';
 export { BiPencil as PenIcon } from 'react-icons/bi';
 export { AiOutlineSearch as SearchIcon } from 'react-icons/ai';
 export { AiOutlineUser as UserIcon } from 'react-icons/ai';
 export { AiFillNotification as NoticeIcon } from 'react-icons/ai';
-export { IoIosNotifications as BellIcon } from 'react-icons/io';
+export { BsBell as BellIcon } from 'react-icons/bs';
 export { ImNotification as RuleIcon } from 'react-icons/im';
 export { GrMoreVertical as MoreIcon } from 'react-icons/gr';
 export { BsBookmark as BookmarkIcon } from 'react-icons/bs';

@@ -1,18 +1,23 @@
 /** @type {import('next').NextConfig} */
 const withPlugins = require('next-compose-plugins');
+var path = require('path');
 const prod = process.env.NODE_ENV === 'production';
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
+
 module.exports = withPlugins([withBundleAnalyzer], {
   productionBrowserSourceMaps: true,
   reactStrictMode: true,
   historyApiFallback: true,
   output: 'standalone',
   images: {
-    domains: ['icon/svg', 'joeschmoe.io', 'avatars.dicebear.com'],
+    domains: ['source.unsplash.com', 'joeschmoe.io', 'avatars.dicebear.com'],
   },
   experimental: { fallbackNodePolyfills: false },
+  inlineImageLimit: false,
+  exclude: path.resolve(__dirname, 'src/assets/svg'),
+
   rewrites: () =>
     (process.env.API_KEY_DEV || process.env.API_KEY) && prod
       ? [

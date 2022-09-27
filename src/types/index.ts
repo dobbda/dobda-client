@@ -117,7 +117,7 @@ export interface CreateOutsource {
   coin: number;
   tagNames: string[];
   deadline: string;
-  cardImage: string;
+  cardImage?: string;
 }
 
 export interface Outsource extends Default {

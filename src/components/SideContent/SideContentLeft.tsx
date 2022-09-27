@@ -1,14 +1,15 @@
 import React, { useState, Dispatch, ElementType, useEffect, useCallback } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 
-import { SideContainer, P } from './style/SideContent.style';
+import { SideContainer, P, Avatar } from './style/SideContent.style';
 import { FolderMenu } from './FolderMenu/FolderMenu';
 
 import * as I from 'src/assets/icons'; //icon
-import { useAuth, useLoginModalhandler } from 'src/hooks';
+import { useAuth, useLoginModalhandler, useLogout } from 'src/hooks';
 import { Button } from '../common';
-import { Avatar } from 'antd';
 import { NoData } from '../common/@share/atom';
+import { theme } from 'src/styles/Theme';
+import Link from 'next/link';
 
 interface Props {
   folderOpenFalse?: boolean;
@@ -17,12 +18,29 @@ export const SideContentLeft = ({ folderOpenFalse }: Props) => {
   const [visible, setVisible] = useState(false);
   const { auth } = useAuth();
   const { setLoginModal } = useLoginModalhandler();
-
+  const { logout } = useLogout();
   return (
     <SideContainer>
       {auth?.id ? (
-        <FolderMenu icon={<Avatar src={auth?.avatar} />} title={auth?.nickname} childOpen={!folderOpenFalse} href="/user/profile">
-          <div>유저 정보 몇가지 보여주기</div>
+        <FolderMenu
+          icon={
+            <Link href="/user/profile" passHref>
+              <span>
+                <Avatar src={auth.avatar} size={22} />
+              </span>
+            </Link>
+          }
+          title={auth?.nickname}
+          childOpen={!folderOpenFalse}
+          href="/user/profile"
+        >
+          <>
+            <div>유저 정보 몇가지 보여주기</div>
+
+            <p onClick={logout} css={{ whiteSpace: 'nowrap', cursor: 'pointer' }}>
+              로그아웃
+            </p>
+          </>
         </FolderMenu>
       ) : (
         <FolderMenu

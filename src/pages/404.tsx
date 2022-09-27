@@ -1,6 +1,5 @@
 import { Layout } from 'antd';
 import { NextPage } from 'next';
-
 // pages/404.js
 const Error404: NextPage = () => {
   return (

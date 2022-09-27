@@ -15,15 +15,15 @@ export function WirteHandlerModal({ visible, setVisible }: Props) {
     <>
       <Modal visible={visible} onClickHandler={setVisible}>
         <WriteModalContent>
-          <h2>어떤 도움을 원하시나요?</h2>
-          <Link href="/write-board">
+          <h2>도움이 필요하신가요?</h2>
+          <Link href="/question/write">
             <Btn>
               <QuestionIcon color={theme.color.primary} size="20px" />
               질문하기
               <GoArrowIcon color="rgb(199, 199, 199)" />
             </Btn>
           </Link>
-          <Link href="/write-board">
+          <Link href="/custom-project/write">
             <Btn outSource>
               <OutSourceIcon color={theme.color.secondary} size="20px" />
               작업 요청하기(외주)

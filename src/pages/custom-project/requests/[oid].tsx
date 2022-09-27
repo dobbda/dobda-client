@@ -13,7 +13,7 @@ const RequestDetailPage: NextPage = () => {
   const router = useRouter();
   const { oid } = router.query;
   const { data, error, isError, isSuccess } = useQuery(
-    [keys.oDetail(Number(oid)), Number(oid)],
+    keys.oDetail(Number(oid)),
     () => o.outsourceDetail<OutsourceDetail>(Number(oid)),
     {
       retry: 0,
