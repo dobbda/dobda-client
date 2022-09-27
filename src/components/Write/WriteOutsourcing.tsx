@@ -17,7 +17,7 @@ import { q } from 'src/api';
 import { o } from 'src/api';
 type Props = {
   data?: OutsourceDetail;
-  setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const WriteOutsourcing = ({ data, setIsEdit }: Props) => {

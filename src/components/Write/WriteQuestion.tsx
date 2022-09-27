@@ -16,7 +16,7 @@ import { q } from 'src/api';
 import { o } from 'src/api';
 type Props = {
   data?: QuestionDetail;
-  setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const WriteQuestion = ({ data, setIsEdit }: Props) => {
   const queryClient = useQueryClient();
@@ -100,11 +100,11 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
         </EditorContainer>
         <atom.Flex>
           {data?.id && (
-            <Button cancel onClick={cancelHandler}>
+            <Button cancel onClick={cancelHandler} css={{ width: '150px', marginRight: '5px' }}>
               취소
             </Button>
           )}
-          <Button onClick={onSubmitCheck} css={{ width: '150px', marginTop: '10px' }}>
+          <Button onClick={onSubmitCheck} css={{ width: '150px' }}>
             <Loading loading={saveLoading} />
             등록
           </Button>
