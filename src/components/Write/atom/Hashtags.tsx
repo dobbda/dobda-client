@@ -44,8 +44,10 @@ function Hashtags({ tags, setTags, tagColor }: Props) {
   const formHandler = useCallback(
     (e: any) => {
       e.preventDefault();
-      setTags((all) => [...all, tag]);
-      setTag('');
+      if (tag) {
+        setTags((all) => (all ? [...all, tag] : [tag]));
+        setTag('');
+      }
     },
     [setTags, tag],
   );
