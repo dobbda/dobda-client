@@ -1,7 +1,7 @@
 import React, { useState, Dispatch, ElementType, useEffect, useCallback } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 
-import { P, SideContainer } from './style/SideContent.style';
+import { P, Red, SideContainer } from './style/SideContent.style';
 import { FolderMenu } from './FolderMenu/FolderMenu';
 
 import * as I from 'src/assets/icons'; //icon
@@ -20,19 +20,40 @@ export const SideContentRight = ({ folderOpenFalse }: Props) => {
   return (
     <SideContainer>
       <P>최신 글</P>
-      <FolderMenu childOpen={!folderOpenFalse} title="🔥 Hot 🔥 Questions">
+      <FolderMenu
+        childOpen={!folderOpenFalse}
+        title={
+          <>
+            🔥 <Red>New </Red> Questions
+          </>
+        }
+      >
         <div>No Data</div>
       </FolderMenu>
       <br />
       <br />
       <P>최신 글</P>
-      <FolderMenu childOpen={!folderOpenFalse} title="🔥 Hot 🔥 Outsourcing">
+      <FolderMenu
+        childOpen={!folderOpenFalse}
+        title={
+          <>
+            <Red>🔥 New 🔥</Red> 신규 프로젝트{' '}
+          </>
+        }
+      >
         <div>No Data</div>
       </FolderMenu>{' '}
       <br />
       <br />
       <P>인기 태그</P>
-      <FolderMenu childOpen={!folderOpenFalse} title="🔥 Tag Cloud 🔥">
+      <FolderMenu
+        childOpen={!folderOpenFalse}
+        title={
+          <>
+            <Red>🔢 </Red> Tag Cloud
+          </>
+        }
+      >
         <div>No Data</div>
       </FolderMenu>{' '}
     </SideContainer>

@@ -10,7 +10,7 @@ export const Hr = styled.div`
 export const NoData = styled.p`
   margin: 0;
   padding: 15px 0 5px 12px;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(110, 110, 110, 1);
 `;
 
 export const CreatedAt = styled.span`

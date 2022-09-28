@@ -7,7 +7,7 @@ type Props = {};
 export const SearchBox = (props: Props) => {
   return (
     <Div className="search-box">
-      <input type="text" placeholder="태그검색" />
+      <input type="text" placeholder="키워드 찾기" />
       <button>
         <Shearch />
       </button>
@@ -24,7 +24,7 @@ const Shearch = styled(SearchIcon)`
 const Div = styled.div`
   height: 30px;
   background-color: #fff;
-  border: 1px solid ${theme.color.primary};
+  border: 1px solid ${theme.color.border2};
   max-width: 600px;
   margin: 0 10px;
   border-radius: 2px;
@@ -34,8 +34,8 @@ const Div = styled.div`
   transition: all 0.2s ease-in-out 0s;
 
   :hover {
-    border: 1px solid ${theme.color.secondary};
-    /* width: 100%; */
+    border: 1px solid ${theme.color.primary};
+    box-shadow: ${theme.color.prRgb(0.5)} 0px 0px 0px 3px;
   }
 
   input {
@@ -47,8 +47,13 @@ const Div = styled.div`
     line-height: 20px;
     padding: 0 15px;
     ::placeholder {
-      color: ${theme.color.primary};
+      color: ${theme.color.text1(0.5)};
       font-weight: 500;
+    }
+    :hover {
+      ::placeholder {
+        color: ${theme.color.primary};
+      }
     }
   }
 

@@ -14,9 +14,8 @@ module.exports = withPlugins([withBundleAnalyzer], {
   images: {
     domains: ['source.unsplash.com', 'joeschmoe.io', 'avatars.dicebear.com'],
   },
-  experimental: { fallbackNodePolyfills: false },
+  experimental: { fallbackNodePolyfills: false, scrollRestoration: 'manual' },
   inlineImageLimit: false,
-  exclude: path.resolve(__dirname, 'src/assets/svg'),
 
   rewrites: () =>
     (process.env.API_KEY_DEV || process.env.API_KEY) && prod

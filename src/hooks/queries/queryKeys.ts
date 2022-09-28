@@ -1,6 +1,6 @@
 import { QueryKey } from 'react-query';
 export const keys = {
-  auth: 'auth',
+  auth: ['auth'],
   questions: (title?: string, tag?: string): QueryKey => ['questions', { title: title && title, tag: tag && title }],
   answers: (qid: number | string): QueryKey => ['question', qid, 'answers'],
   comment: (aid: number | string): QueryKey => ['question', 'answers', aid, 'comments'],

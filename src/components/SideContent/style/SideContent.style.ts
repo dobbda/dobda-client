@@ -15,6 +15,9 @@ export const SideContainer = styled.div`
 export const P = styled.p`
   color: 808080;
 `;
+export const Red = styled.span`
+  color: red;
+`;
 
 export const Avatar = styled(AntAvatr)`
   border: 1px solid ${theme.color.border2};

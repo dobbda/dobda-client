@@ -7,10 +7,9 @@ import { Auth } from 'src/types';
 import { keys } from '../queries/queryKeys';
 
 export function useAuth(): { auth: Auth; refetch: any } {
-  const { data: auth, refetch } = useQuery([keys.auth], () => reqAuth.auth(), {
+  const { data: auth, refetch } = useQuery(keys.auth, () => reqAuth.auth(), {
     // refetchOnMount: true,
-    staleTime: 1000 * 60 * 5, //5분후 api 요청
-    cacheTime: 1000 * 60 * 5, //
+    staleTime: Infinity,
   });
   return { auth, refetch };
 }

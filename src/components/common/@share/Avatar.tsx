@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import { Popover, Avatar as AntAvatar } from 'antd';
 import { UserInfo } from '../../UserInfo';
+import { theme } from 'src/styles/Theme';
 
 type Props = {
   nickname: string;
@@ -12,24 +13,26 @@ type Props = {
   url: string;
 };
 
+const Savatar = styled(AntAvatar)`
+  border: 1px solid ${theme.color.border2};
+  :hover {
+    border: 1px solid ${theme.color.primary};
+    box-shadow: ${theme.color.prRgb(0.5)} 0px 0.5px 2px 3px;
+  }
+`;
 const Div = styled.div`
   cursor: pointer;
   display: inline-flex;
   height: 30px;
-  img {
-    border-radius: 75%;
-    box-shadow: #9c9c9c 3px 0px 0px 2px;
-    width: 30px;
-    height: 30px;
-  }
+
   h3 {
     margin: 0;
-    font-weight: 600;
+    /* font-weight: 600; */
     padding-top: 5px;
     margin-left: 20px;
     text-align: center;
     font-size: 15px;
-    color: #888;
+    color: #707070;
     :hover {
       color: #013d4e;
     }
@@ -50,7 +53,7 @@ export const Avatar = ({ nickname, url, id }: Props) => {
   return (
     <Popover trigger="click" placement="bottomLeft" content={<UserInfo id={id} />}>
       <Div>
-        <AntAvatar src={url}></AntAvatar>
+        <Savatar src={url}></Savatar>
         <h3>{nickname}</h3>
       </Div>
     </Popover>

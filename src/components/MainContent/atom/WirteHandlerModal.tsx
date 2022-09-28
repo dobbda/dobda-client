@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import React from 'react';
 import { GoArrowIcon, OutSourceIcon, QuestionIcon } from 'src/assets/icons';
-import { Link, Modal } from 'src/components/common';
+import { Modal } from 'src/components/common';
 import { SocialLogin } from 'src/components/SocialLogin';
 import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
@@ -16,19 +17,23 @@ export function WirteHandlerModal({ visible, setVisible }: Props) {
       <Modal visible={visible} onClickHandler={setVisible}>
         <WriteModalContent>
           <h2>도움이 필요하신가요?</h2>
-          <Link href="/question/write">
-            <Btn>
-              <QuestionIcon color={theme.color.primary} size="20px" />
-              질문하기
-              <GoArrowIcon color="rgb(199, 199, 199)" />
-            </Btn>
+          <Link href="/questions/write">
+            <a>
+              <Btn>
+                <QuestionIcon color={theme.color.primary} size="20px" />
+                질문하기
+                <GoArrowIcon color="rgb(199, 199, 199)" />
+              </Btn>
+            </a>
           </Link>
           <Link href="/custom-project/write">
-            <Btn outSource>
-              <OutSourceIcon color={theme.color.secondary} size="20px" />
-              작업 요청하기(외주)
-              <GoArrowIcon color="rgb(199, 199, 199)" />
-            </Btn>
+            <a>
+              <Btn outSource>
+                <OutSourceIcon color={theme.color.secondary} size="20px" />
+                작업 요청하기(외주)
+                <GoArrowIcon color="rgb(199, 199, 199)" />
+              </Btn>
+            </a>
           </Link>
         </WriteModalContent>
       </Modal>
