@@ -6,7 +6,7 @@ import { Avatar } from '../common';
 import { AnswerCp } from './Comment/';
 import getDate from 'src/lib/dateForm';
 
-import { CoinIcon, QIcon } from 'src/assets/icons';
+import { CoinIcon, QIcon } from 'src/icons';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer } from 'src/components/Editor';
 import { Question, QuestionDetail } from 'src/types';
@@ -61,7 +61,11 @@ const QDetail = ({ children, data }: Props) => {
       message.error(errMsg);
     }
   }, [add.isError, add.isSuccess, del.isError, del.isSuccess, errMsg, router]);
-
+  const removeHandler = useCallback(() => {
+    if (confirm('삭제시 복구가 불가능 합니다')) {
+      del.mutate(q.delQuestion);
+    }
+  }, [del]);
   return (
     <S.DetailContainer>
       {isEdit && data ? (
@@ -90,7 +94,7 @@ const QDetail = ({ children, data }: Props) => {
                   <Button onClick={() => setIsEdit(true)} type="primary" ghost>
                     수정
                   </Button>
-                  <Button onClick={() => del.mutate(q.delQuestion)} type="primary" danger ghost>
+                  <Button onClick={removeHandler} type="primary" danger ghost>
                     삭제
                   </Button>{' '}
                 </S.OnyUser>

@@ -4,7 +4,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import { SideContainer, P, Avatar } from './style/SideContent.style';
 import { FolderMenu } from './FolderMenu/FolderMenu';
 
-import * as I from 'src/assets/icons'; //icon
+import * as I from 'src/icons'; //icon
 import { useAuth, useLoginModalhandler, useLogout } from 'src/hooks';
 import { Button } from '../common';
 import { NoData } from '../common/@share/atom';

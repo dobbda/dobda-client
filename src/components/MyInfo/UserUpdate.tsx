@@ -8,7 +8,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import { UserUpdate } from 'src/types';
 import axios from 'axios';
 import { Avatar, message } from 'antd';
-import { RefreshIcon } from 'src/assets/icons';
+import { RefreshIcon } from 'src/icons';
 
 type Props = {};
 

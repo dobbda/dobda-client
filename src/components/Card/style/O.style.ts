@@ -17,32 +17,6 @@ export const Progress = styled.h1`
   font-size: 13px;
 `;
 
-export const Group = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  //스크롤 방지
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  height: fit-content;
-  p {
-    padding: 0;
-    margin: 0;
-    color: #686868;
-    font-size: 12px;
-    /* white-space: nowrap; */
-  }
-`;
-
-export const P = styled.p`
-  display: inline;
-  color: #686868;
-  font-size: 12px;
-`;
-
 // header
 export const HeaderWrapper = styled.header`
   display: flex;
@@ -58,11 +32,6 @@ export const Title = styled.h3`
   padding-bottom: 10px;
   word-break: break-word;
   max-height: 100px;
-`;
-
-export const Gap = styled.div`
-  display: inline;
-  margin: 0 7px;
 `;
 
 export const Info = styled.div`

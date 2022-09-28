@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { GoArrowIcon, OutSourceIcon, QuestionIcon } from 'src/assets/icons';
+import { GoArrowIcon, OutSourceIcon, QuestionIcon } from 'src/icons';
 import { Modal } from 'src/components/common';
 import { SocialLogin } from 'src/components/SocialLogin';
 import { theme } from 'src/styles/Theme';
@@ -83,7 +83,7 @@ const Btn = styled.div<{ outSource?: boolean }>`
   cursor: pointer;
 
   :hover {
-    box-shadow: ${theme.color.prRgb(0.2)} 0px 0px 0px 3px;
-    box-shadow: ${({ outSource }) => outSource && `${theme.color.seRgb(0.2)} 0px 0px 0px 3px;`};
+    box-shadow: ${theme.color.prRgb(0.4)} 0px 0px 0px 3px;
+    box-shadow: ${({ outSource }) => outSource && `${theme.color.seRgb(0.4)} 0px 0px 0px 3px;`};
   }
 `;

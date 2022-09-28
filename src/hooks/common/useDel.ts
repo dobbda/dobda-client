@@ -14,6 +14,7 @@ export const useDelete = <T extends Props>(id: number, queryKey: QueryKey, paren
   // const befoUrl = router.locale(-1)
   return useMutation((fetch: MutationFunction<unknown, any>) => fetch(id), {
     onSuccess: (res: any) => {
+      console.log('삭제: ', res);
       if (res.success) {
         queryClient.cancelQueries(queryKey);
         console.log(parentId);
@@ -42,7 +43,6 @@ export const useDelete = <T extends Props>(id: number, queryKey: QueryKey, paren
 
     onError: (error: AxiosError) => {
       queryClient.setQueryData('serverErrorMessage', error.response?.data?.error?.message || '잘못된 요청입니다.');
-      return error.response?.data?.error?.message || '잘못된 요청입니다.';
     },
   });
 };

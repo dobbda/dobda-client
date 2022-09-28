@@ -1,5 +1,5 @@
 import { Input as AntInput, Button } from 'antd';
-import { ReplyIcon, ReplyFillIcon } from 'src/assets/icons';
+import { ReplyIcon, ReplyFillIcon } from 'src/icons';
 import styled from 'styled-components';
 import { GlobalStyle } from 'src/styles/GlobalStyle';
 

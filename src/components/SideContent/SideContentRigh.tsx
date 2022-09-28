@@ -4,7 +4,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import { P, Red, SideContainer } from './style/SideContent.style';
 import { FolderMenu } from './FolderMenu/FolderMenu';
 
-import * as I from 'src/assets/icons'; //icon
+import * as I from 'src/icons'; //icon
 import { useAuth, useLoginModalhandler } from 'src/hooks';
 import { Avatar } from 'antd';
 import { Button } from '../common';
@@ -33,27 +33,13 @@ export const SideContentRight = ({ folderOpenFalse }: Props) => {
       <br />
       <br />
       <P>최신 글</P>
-      <FolderMenu
-        childOpen={!folderOpenFalse}
-        title={
-          <>
-            <Red>🔥 New 🔥</Red> 신규 프로젝트{' '}
-          </>
-        }
-      >
+      <FolderMenu childOpen={!folderOpenFalse} icon={<Red>🌱</Red>} title="신규 프로젝트 ">
         <div>No Data</div>
       </FolderMenu>{' '}
       <br />
       <br />
       <P>인기 태그</P>
-      <FolderMenu
-        childOpen={!folderOpenFalse}
-        title={
-          <>
-            <Red>🔢 </Red> Tag Cloud
-          </>
-        }
-      >
+      <FolderMenu childOpen={!folderOpenFalse} icon={<Red>🔢 </Red>} title={<>Tag Cloud</>}>
         <div>No Data</div>
       </FolderMenu>{' '}
     </SideContainer>

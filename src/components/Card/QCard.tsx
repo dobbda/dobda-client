@@ -1,11 +1,13 @@
 import React from 'react';
 import * as S from './style/Q.style';
+import * as c from './style/common';
 import * as Lib from 'src/components/common';
-import * as I from 'src/assets/icons';
+import * as I from 'src/icons';
 
 import { Question } from 'src/types';
 import getDate from 'src/lib/dateForm';
 import { atom } from '../common';
+import { theme } from 'src/styles/Theme';
 
 type data = {
   data: Question;
@@ -20,9 +22,9 @@ const QCard = ({ data }: data) => {
         <S.ContentWrapper className="card-items">
           <S.HeaderWrapper>
             <Lib.Avatar nickname={q.author?.nickname} url={q.author?.avatar} id={q.author?.id} />
-            <S.Group>
+            <c.Group>
               <atom.CreatedAt>{getDate(q.createdAt, true)}</atom.CreatedAt>
-            </S.Group>
+            </c.Group>
           </S.HeaderWrapper>
           {/* cotent */}
           <S.BodyWrapper>
@@ -39,28 +41,28 @@ const QCard = ({ data }: data) => {
           </S.BodyWrapper>
           {/* footer */}
           <S.FooterWrapper>
-            <S.Group>
-              <S.Group>
-                <p>Answer</p>
-                <p>( {q.answersCount} )</p>
-              </S.Group>
+            <c.Group>
+              <c.Group>
+                <c.P>Answer</c.P>
+                <c.P>( {q.answersCount} )</c.P>
+              </c.Group>
 
-              <S.Gap>|</S.Gap>
+              <c.Gap>|</c.Gap>
 
-              <S.Group>
-                <p>Comment</p>
-                <p>( {q.watch} )</p>
-              </S.Group>
+              <c.Group>
+                <c.P>Comment</c.P>
+                <c.P>( {q.watch} )</c.P>
+              </c.Group>
 
-              <S.Gap>|</S.Gap>
+              <c.Gap>|</c.Gap>
 
-              <S.Group>
-                <I.CoinIcon css={{ marginRight: '5px' }} /> <p color="#8400EC">{q.coin}</p>
-              </S.Group>
-            </S.Group>
-            <S.Group>
+              <c.Group>
+                <I.CoinIcon css={{ marginRight: '5px' }} /> <c.P>{q.coin.toLocaleString()}</c.P>
+              </c.Group>
+            </c.Group>
+            <c.Group>
               <I.WatchIcon style={{ color: '#888888', fontSize: '17px', marginRight: '5px' }} /> {q.watch}
-            </S.Group>
+            </c.Group>
           </S.FooterWrapper>
         </S.ContentWrapper>
       ) : (

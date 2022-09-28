@@ -1,5 +1,5 @@
 import React from 'react';
-import { TagCloseIcon } from 'src/assets/icons';
+import { TagCloseIcon } from 'src/icons';
 import styled from 'styled-components';
 
 type Props = {

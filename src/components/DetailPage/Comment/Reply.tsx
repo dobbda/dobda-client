@@ -3,7 +3,7 @@ import 'moment/locale/ko';
 import getDate from 'src/lib/dateForm';
 import { ReplyItem, Header, CommentContent } from './style/Reply.style';
 import { atom, Avatar } from 'src/components/common';
-import { ReplyIcon } from 'src/assets/icons';
+import { ReplyIcon } from 'src/icons';
 import { MarkDownViewer } from 'src/components/Editor';
 import { Comment, Reply } from 'src/types';
 

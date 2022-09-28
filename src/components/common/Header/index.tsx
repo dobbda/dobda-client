@@ -8,7 +8,7 @@ import { SocialLogin } from 'src/components/SocialLogin';
 import { theme } from 'src/styles/Theme';
 import 'antd/dist/antd.css';
 
-import * as I from 'src/assets/icons';
+import * as I from 'src/icons';
 import Link from 'next/link';
 import { useAuth, useLogout, useLoginModalhandler } from 'src/hooks';
 import { user } from 'src/api';

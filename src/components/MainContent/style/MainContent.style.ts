@@ -76,6 +76,7 @@ export const WriteHandler = styled.div`
     border-radius: 32px;
   }
   :hover {
-    box-shadow: ${theme.color.prRgb(0.3)} 0px 0px 0px 3px;
+    box-shadow: ${theme.color.prRgb(0.5)} 0px 0px 0px 3px;
+    transition: all 0.3s ease-in-out 0s;
   }
 `;

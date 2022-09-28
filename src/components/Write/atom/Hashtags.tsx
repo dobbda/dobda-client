@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { HashIcon } from 'src/assets/icons';
+import { HashIcon } from 'src/icons';
 import { Tags } from 'src/types';
 import { Tag } from 'src/components/common';
 type Props = {

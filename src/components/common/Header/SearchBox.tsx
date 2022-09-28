@@ -1,5 +1,5 @@
 import React from 'react';
-import { SearchIcon } from 'src/assets/icons';
+import { SearchIcon } from 'src/icons';
 import styled from 'styled-components';
 import { theme } from 'src/styles/Theme';
 type Props = {};
@@ -27,7 +27,6 @@ const Div = styled.div`
   border: 1px solid ${theme.color.border2};
   max-width: 600px;
   margin: 0 10px;
-  border-radius: 2px;
   display: flex;
   justify-content: space-around;
   border-radius: 2rem;

@@ -24,28 +24,6 @@ export const ContentWrapper = styled.div<CardProps>`
   }
 `;
 
-export const Group = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  //스크롤 방지
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  height: fit-content;
-  text-align: center;
-  align-items: center;
-  p {
-    padding: 0;
-    margin: 0;
-    color: #686868;
-    font-size: 12px;
-    white-space: nowrap;
-  }
-`;
-
 // header
 export const HeaderWrapper = styled.header`
   display: flex;
@@ -82,8 +60,4 @@ export const FooterWrapper = styled.div`
   align-items: center;
   margin-top: 10px;
   padding-left: 45px;
-`;
-export const Gap = styled.div`
-  display: inline;
-  margin: 0 7px;
 `;

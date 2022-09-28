@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import { Main, WriteHandler } from './style/MainContent.style';
 import { WirteHandlerModal } from './atom/WirteHandlerModal';
 
-import { PenIcon } from 'src/assets/icons';
+import { PenIcon } from 'src/icons';
 import { Categories, CategoryList, CategoriesType } from 'src/lib/utils/category';
 import RenderOutsource from './renderItm/RenderOutSourcing';
 import RenderQuestion from './renderItm/RenderQuestion';

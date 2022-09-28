@@ -7,7 +7,7 @@ import { Avatar, atom, Loading } from 'src/components/common';
 import getDate from 'src/lib/dateForm';
 import { EditAnswer } from './EditAnswer';
 import * as S from './style/style';
-import { ArrowIcon, MoreIcon, ReCommentIcon, AcceptedIcon } from 'src/assets/icons';
+import { ArrowIcon, MoreIcon, ReCommentIcon, AcceptedIcon } from 'src/icons';
 import { SubmitBtn } from '../style/Detail.style';
 import { Answer, QuestionDetail } from 'src/types';
 import { QueryClient, useQuery, useQueryClient } from 'react-query';
@@ -48,8 +48,14 @@ const AnswerCp = ({ answer, question }: Props) => {
     }
   }, [addReply.isError, addReply.isSuccess, del.error?.response, del.isError, errMsg]);
 
+  const removeHandler = useCallback(() => {
+    if (confirm('삭제시 복구가 불가능 합니다')) {
+      del.mutate(q.delAnswers);
+    }
+  }, [del]);
+
   const accept = async () => {
-    if (confirm('채택 합니다.')) {
+    if (confirm('채택 하시겠습니까?.')) {
       if (await q.accept(answer.id)) {
         queryClient.setQueryData(keys.qDetail(answer.questionId), (data: QuestionDetail) => {
           data.acceptedAnswerId = answer.id;
@@ -76,7 +82,7 @@ const AnswerCp = ({ answer, question }: Props) => {
                   <Btn type="primary" key="edit" ghost>
                     수정
                   </Btn>
-                  <Btn onClick={() => del.mutate(q.delAnswers)} type="primary" key="delete" danger ghost>
+                  <Btn onClick={removeHandler} type="primary" key="delete" danger ghost>
                     삭제
                   </Btn>
                 </>

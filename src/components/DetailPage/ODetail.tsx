@@ -17,6 +17,7 @@ import { useRouter } from 'next/router';
 import { message } from 'antd';
 import { FolderMenu } from '../SideContent';
 import { theme } from 'src/styles/Theme';
+import { Msg } from '../MyInfo/style/MyInfo.style';
 type Props = {
   children?: React.ReactElement; // commentComponent
   data?: OutsourceDetail;
@@ -48,6 +49,8 @@ const ODetail = ({ children, data }: Props) => {
   }, [mdStr, data.id, add]);
 
   const errMsg = queryClient.getQueryData('serverErrorMessage') as string;
+  console.log(errMsg);
+
   useDidMountEffect(() => {
     if (add.isSuccess) {
       message.success('답변이 등록되었습니다.');
@@ -62,6 +65,11 @@ const ODetail = ({ children, data }: Props) => {
     }
   }, [add?.isError, add?.isSuccess, del?.isError, del.isSuccess, errMsg, router]);
 
+  const removeHandler = useCallback(() => {
+    if (confirm('삭제시 복구가 불가능 합니다')) {
+      del.mutate(o.delOutsource);
+    }
+  }, [del]);
   return (
     <S.DetailContainer>
       {isEdit && data ? (
@@ -83,10 +91,8 @@ const ODetail = ({ children, data }: Props) => {
               </atom.TagWrapper>
               {auth?.id == data.author?.id && (
                 <S.OnyUser className="only-author">
-                  <Button onClick={() => setIsEdit(true)} cancel>
-                    수정
-                  </Button>
-                  <Button onClick={() => del.mutate(o.delOutsource)} cancel>
+                  <Button onClick={() => setIsEdit(true)}>수정</Button>
+                  <Button onClick={removeHandler} cancel>
                     삭제
                   </Button>
                 </S.OnyUser>
