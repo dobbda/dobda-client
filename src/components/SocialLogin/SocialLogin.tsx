@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { SocialBtn } from './LogoBtn';
 
-import { GithubIcon, GoogleIcon, NaverIcon, KakaoIcon } from 'src/assets/icons';
+import { GithubIcon, GoogleIcon, NaverIcon, KakaoIcon } from 'src/icons';
 import { Logo } from 'src/components/common';
 import { useQueryClient } from 'react-query';
 import { useAuth, useLoginModalhandler } from 'src/hooks';

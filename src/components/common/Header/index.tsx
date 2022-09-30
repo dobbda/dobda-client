@@ -2,56 +2,47 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 
 import * as S from './style';
-import { Logo, Popover, Modal } from 'src/components/common';
+import { Logo, Popover, Modal, Button } from 'src/components/common';
 import { MessageBox } from 'src/components/MessageBox/MessageBox';
 import { SocialLogin } from 'src/components/SocialLogin';
-
+import { theme } from 'src/styles/Theme';
 import 'antd/dist/antd.css';
 
-import * as I from 'src/assets/icons';
+import * as I from 'src/icons';
 import Link from 'next/link';
-import { useClientValue } from 'src/hooks';
 import { useAuth, useLogout, useLoginModalhandler } from 'src/hooks';
 import { user } from 'src/api';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { Avatar } from 'antd';
+import { SearchBox } from './SearchBox';
 
 const HeaderNav = () => {
   const queryClient = useQueryClient();
   const { auth, refetch } = useAuth();
   const { loginModal, setLoginModal } = useLoginModalhandler();
   const router = useRouter();
-  const userlogout = useCallback(async () => {
-    if (!auth.id) return;
-    var result = confirm('로그아웃 확인');
-    if (result) {
-      try {
-        await axios.delete('/api/auth/logout');
-      } catch (e) {}
-      queryClient.removeQueries(['auth']);
-      router.replace(router.asPath);
-    }
-  }, [auth?.id, queryClient, router]);
+  const { logout } = useLogout();
+
   return (
     <>
       <S.Header>
         <S.Headercontainer className="top-navigation">
-          <Logo height="30px" />
-
+          <div css={{ display: 'flex', alignItems: 'center' }}>
+            <Logo b={true} height="25px" />
+            <SearchBox />
+          </div>
           <S.MenuWrapper>
-            {!auth?.id && <S.Btn onClick={setLoginModal}> 로그인 </S.Btn>}
+            {!auth?.id && (
+              <Button cancel onClick={setLoginModal}>
+                {' '}
+                로그인{' '}
+              </Button>
+            )}
             {auth?.id && (
               <>
-                <p onClick={userlogout} css={{ color: '#fff' }}>
-                  로그아웃
-                </p>
-                <Link href="/user/profile" passHref>
-                  <span>
-                    <I.UserIcon color={'#f8f8f8'} size={'25px'} />
-                  </span>
-                </Link>
                 <Popover trigger="click" content={<MessageBox />} top={10} right={-10}>
-                  <I.BellIcon color={'#f8f8f8'} size={'25px'} css={{ marginTop: '2px' }} />
+                  <I.BellIcon size={'20px'} css={{ marginTop: '2px', cursor: 'pointer' }} />
                 </Popover>
               </>
             )}

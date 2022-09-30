@@ -1,6 +1,6 @@
 const media = {
   minWidth: `360px`,
-  maxWidth: '1260px',
+  maxWidth: '1200px',
   large: `1080px`,
   medium: `788px`,
   tablet: `788px`,
@@ -15,8 +15,12 @@ const media = {
 const color = {
   bg: '#fff', //"#EAEEF2", //background color
   card: '#fff',
-  primary: '#3F4A5E',
-  secondary: '#333C4D',
+  primary: '#0cc098',
+  prRgb: (per: number) => `rgba(12, 192, 152, ${per})`,
+  seRgb: (per: number) => `rgba(158, 8, 218, ${per})`,
+  secondary: 'rgb(158, 8, 218)',
+  text1: (per: number) => `rgba(0, 0, 0, ${per})`,
+  placeholder: `rgba(142, 142, 142, 1)`,
   border: '#c9c9c9',
   border2: '#e3e3e3',
   button: '#199DE8',

@@ -3,18 +3,17 @@ import styled from 'styled-components';
 
 import ReplyCp from './Reply';
 import { Editor, MarkDownViewer } from 'src/components/Editor';
-import { Avatar, atom } from 'src/components/common';
-import getDate from 'src/lib/dateForm';
+import { Avatar, atom, Loading } from 'src/components/common';
+import getDate from 'src/lib/utils/dateForm';
 import { EditAnswer } from './EditAnswer';
 import * as S from './style/style';
-import { ArrowIcon, MoreIcon, ReCommentIcon, AcceptedIcon } from 'src/assets/icons';
+import { ArrowIcon, MoreIcon, ReCommentIcon, AcceptedIcon } from 'src/icons';
 import { SubmitBtn } from '../style/Detail.style';
 import { Answer, QuestionDetail } from 'src/types';
 import { QueryClient, useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { keys, useDelete, useAddComment, useErrMsg, useDidMountEffect, useAuth } from 'src/hooks';
 import { Button, Popover, message as m } from 'antd';
-import { toast } from 'react-toastify';
 type Props = {
   answer: Answer;
   question: QuestionDetail;
@@ -49,8 +48,14 @@ const AnswerCp = ({ answer, question }: Props) => {
     }
   }, [addReply.isError, addReply.isSuccess, del.error?.response, del.isError, errMsg]);
 
+  const removeHandler = useCallback(() => {
+    if (confirm('삭제시 복구가 불가능 합니다')) {
+      del.mutate(q.delAnswers);
+    }
+  }, [del]);
+
   const accept = async () => {
-    if (confirm('채택 합니다.')) {
+    if (confirm('채택 하시겠습니까?.')) {
       if (await q.accept(answer.id)) {
         queryClient.setQueryData(keys.qDetail(answer.questionId), (data: QuestionDetail) => {
           data.acceptedAnswerId = answer.id;
@@ -77,7 +82,7 @@ const AnswerCp = ({ answer, question }: Props) => {
                   <Btn type="primary" key="edit" ghost>
                     수정
                   </Btn>
-                  <Btn onClick={() => del.mutate(q.delAnswers)} type="primary" key="delete" danger ghost>
+                  <Btn onClick={removeHandler} type="primary" key="delete" danger ghost>
                     삭제
                   </Btn>
                 </>
@@ -126,7 +131,8 @@ const AnswerCp = ({ answer, question }: Props) => {
       <S.CommentEditor>
         <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
         {mdStr && (
-          <SubmitBtn onClick={onSubmitComment} loading={addReply.isLoading}>
+          <SubmitBtn onClick={onSubmitComment}>
+            <Loading loading={addReply.isLoading} />
             등록
           </SubmitBtn>
         )}

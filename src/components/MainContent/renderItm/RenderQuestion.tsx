@@ -22,40 +22,44 @@ function RenderQuestion() {
   }, [isView, data, hasNextPage, fetchNextPage, refetch]);
 
   return (
-    <ContentCardList>
-      {isSuccess && data?.pages
-        ? data.pages.map((page) => {
-            const question = page.result;
-            return question?.map((q, index) => {
-              if (index == question.length - 1) {
-                return (
-                  <RefCard ref={ref} key={q.id}>
-                    <QCard data={q} />
-                  </RefCard>
-                );
-              }
-              return (
-                <RefCard key={q.id}>
-                  <QCard data={q} />
-                </RefCard>
-              );
-            });
-          })
-        : null}
-    </ContentCardList>
+    <>
+      {data ? (
+        <ContentCardList>
+          {isSuccess && data?.pages
+            ? data.pages.map((page) => {
+                const question = page.result as Question[];
+                return question?.map((q, index) => {
+                  if (index == question.length - 1) {
+                    return (
+                      <RefCard ref={ref} key={q.id}>
+                        <QCard data={q} />
+                      </RefCard>
+                    );
+                  }
+                  return (
+                    <RefCard key={q.id}>
+                      <QCard data={q} />
+                    </RefCard>
+                  );
+                });
+              })
+            : null}
+        </ContentCardList>
+      ) : null}
+    </>
   );
 }
 
 export default RenderQuestion;
 
 const ContentCardList = styled.div`
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
   display: grid;
   place-items: center;
-  gap: 10px;
+  /* background-color: #fff; */
+  /* border-radius: 8px; */
+  /* border: 1px solid #e3e3e3; */
+  overflow: hidden;
+  gap: 15px;
 `;
 const RefCard = styled.div`
   width: 100%;

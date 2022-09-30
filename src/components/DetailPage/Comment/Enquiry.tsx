@@ -2,10 +2,10 @@ import React, { useCallback, useState, useEffect } from 'react';
 
 import { Editor, MarkDownViewer } from 'src/components/Editor';
 import { atom, Avatar } from 'src/components/common';
-import getDate from 'src/lib/dateForm';
+import getDate from 'src/lib/utils/dateForm';
 
 import * as S from './style/style';
-import * as i from 'src/assets/icons';
+import * as i from 'src/icons';
 import { SubmitBtn } from '../style/Detail.style';
 import { Enquiry } from 'src/types';
 import styled from 'styled-components';
@@ -48,6 +48,11 @@ const EnquiryCp = ({ enquiry }: Props) => {
     }
   }, [addReply.isError, addReply.isSuccess, del.error?.response, del.isError, errMsg]);
 
+  const removeHandler = useCallback(() => {
+    if (confirm('삭제시 복구가 불가능 합니다')) {
+      del.mutate(o.delEnquiry);
+    }
+  }, [del]);
   return (
     <S.CommentWrapper>
       {enquiry ? (
@@ -55,7 +60,9 @@ const EnquiryCp = ({ enquiry }: Props) => {
           <S.Header className="header">
             <Avatar nickname={enquiry?.author.nickname} url={enquiry?.author.avatar} id={enquiry?.author.id} />
             <atom.Flex>
-              <Button>채택하기</Button>
+              <Button>
+                <S.Name>선택하기</S.Name>
+              </Button>
               <>
                 <Popover
                   trigger="click"
@@ -65,7 +72,7 @@ const EnquiryCp = ({ enquiry }: Props) => {
                       <Btn type="primary" key="enquiry-edit" ghost>
                         수정
                       </Btn>
-                      <Btn onClick={() => del.mutate(o.delEnquiry)} key="enquiry-delete" danger ghost>
+                      <Btn onClick={removeHandler} key="enquiry-delete" danger ghost>
                         삭제
                       </Btn>
                     </>

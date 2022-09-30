@@ -15,7 +15,6 @@ export const uploadS3 = async (file: File) => {
 
   return await upload.promise().then(
     (res) => {
-      console.log('결과', res);
       return res?.Location;
     },
     (err) => console.log('err', err),

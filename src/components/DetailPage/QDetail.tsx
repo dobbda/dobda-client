@@ -1,21 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { message } from 'antd';
-import { atom, Tag } from '../common';
+import { atom, Loading, Tag } from '../common';
 import * as S from './style/Detail.style';
 import { Avatar } from '../common';
 import { AnswerCp } from './Comment/';
-import getDate from 'src/lib/dateForm';
+import getDate from 'src/lib/utils/dateForm';
 
-import { CoinIcon, QIcon } from 'src/assets/icons';
+import { CoinIcon, QIcon } from 'src/icons';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer } from 'src/components/Editor';
 import { Question, QuestionDetail } from 'src/types';
 import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { keys, useAddAnswer, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
-import { UpdateEditor } from '../Write';
+import { WriteQuestion } from '../Write';
 import { Button } from 'antd';
 import { useRouter } from 'next/router';
 type Props = {
@@ -28,7 +26,8 @@ const QDetail = ({ children, data }: Props) => {
   useEffect(() => {
     /**조회수 */
     setInfCount({ queryKey: keys.questions(), changeKey: 'watch', findId: data.id, countVal: data.watch });
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -39,17 +38,17 @@ const QDetail = ({ children, data }: Props) => {
     enabled: data?.answersCount > 0,
   });
 
-  const del = useDelete<Question>(data?.id, keys.qDetail(data.id));
+  const del = useDelete<Question>(data?.id, keys.qDetail(data.id), data?.id);
   const add = useAddAnswer(data?.id);
 
   const onSubmitAnswer = useCallback(async () => {
-    if (mdStr.length < 5) return;
+    if (mdStr.length < 5) return message.error('5글자 이상 작성 하여야 합니다.');
     const answerData = { content: mdStr, qid: data.id };
     add.mutate(answerData);
   }, [mdStr, data.id, add]);
 
   const errMsg = useErrMsg();
-  useDidMountEffect(() => {
+  useEffect(() => {
     if (add.isSuccess) {
       message.success('답변이 등록되었습니다.');
       setMdStr('');
@@ -59,13 +58,18 @@ const QDetail = ({ children, data }: Props) => {
     }
 
     if (add.isError || del.isError) {
-      toast.error(errMsg, { autoClose: 1000 });
+      message.error(errMsg);
     }
-  }, [router, del.isSuccess, add.isSuccess, add.isError, del.isError, errMsg]);
+  }, [add.isError, add.isSuccess, del.isError, del.isSuccess, errMsg, router]);
+  const removeHandler = useCallback(() => {
+    if (confirm('삭제시 복구가 불가능 합니다')) {
+      del.mutate(q.delQuestion);
+    }
+  }, [del]);
   return (
     <S.DetailContainer>
       {isEdit && data ? (
-        <UpdateEditor oldData={data} category="question" setIsEdit={setIsEdit} />
+        <WriteQuestion data={data} setIsEdit={setIsEdit} />
       ) : (
         <>
           <S.ContentWrapper>
@@ -85,28 +89,28 @@ const QDetail = ({ children, data }: Props) => {
                 </S.CoinWrapper>
                 {data?.tagNames && data?.tagNames.map((tag) => <Tag key={tag.name}>{tag.name}</Tag>)}
               </atom.TagWrapper>
-              <S.OnyUser className="only-author">
-                <Button onClick={() => setIsEdit(true)} type="primary" ghost>
-                  수정
-                </Button>
-                <Button onClick={() => del.mutate(q.delQuestion)} type="primary" danger ghost>
-                  삭제
-                </Button>{' '}
-              </S.OnyUser>
+              {auth?.id == data.author?.id && (
+                <S.OnyUser className="only-author">
+                  <Button onClick={() => setIsEdit(true)} type="primary" ghost>
+                    수정
+                  </Button>
+                  <Button onClick={removeHandler} type="primary" danger ghost>
+                    삭제
+                  </Button>{' '}
+                </S.OnyUser>
+              )}
             </S.ContentHeader>
             <S.ContentViewWrapper>
               <MarkDownViewer content={data?.content} />
             </S.ContentViewWrapper>
           </S.ContentWrapper>
+
           <S.EditorWrapper>
             <h3>답변을 작성해주세요</h3>
-            <br />
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
             <br />
-            <br />
-
             <S.SubmitBtn onClick={onSubmitAnswer} loading={add.isLoading}>
-              등록
+              <Loading loading={add.isLoading} /> 등록
             </S.SubmitBtn>
           </S.EditorWrapper>
 
@@ -114,10 +118,9 @@ const QDetail = ({ children, data }: Props) => {
             {answers && answers[0]?.id ? (
               answers.map((answer) => <AnswerCp key={answer.id} answer={answer} question={data} />)
             ) : (
-              <atom.NoData>등록된 답변이 없습니다. 답변을 등록할 수 있습니다.</atom.NoData>
+              <S.NodataWrapper>등록된 답변이 없습니다. 답변을 등록해보세요.</S.NodataWrapper>
             )}
           </S.AnswerContainer>
-          <ToastContainer position="top-center" hideProgressBar draggable autoClose={8000} />
         </>
       )}
     </S.DetailContainer>

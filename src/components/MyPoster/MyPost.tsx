@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 
-import { CategoriesEvent } from '../../lib/categoryHover';
 import { Wrapper } from './style/MyPost.style';
 import QCard from '../Card/QCard';
 import OCard from '../Card/OCard';

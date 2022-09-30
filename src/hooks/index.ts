@@ -11,15 +11,16 @@ export { default as useAddAnswer } from './qustion/useAddAnswer';
 export { default as useAddQuestion } from './qustion/useAddQuestion';
 export { default as useAddComment } from './qustion/useAddComment';
 
-export { default as useAddEnquiry } from './outsource/useAddEnquiry';
-export { default as useAddOutsource } from './outsource/useAddOutsource';
-export { default as useAddReply } from './outsource/useAddReply';
+export { default as useAddEnquiry } from './outsourcing/useAddEnquiry';
+export { default as useAddOutsource } from './outsourcing/useAddOutsource';
+export { default as useAddReply } from './outsourcing/useAddReply';
 
 export { useDelete } from './common/useDel';
 
 export { useInput } from './useInput';
 export { useLoginModalhandler } from './useloginModalHandler';
 export { useScroll } from './useScroll';
+export { useWindowSize } from './useWindowSize';
 
 export { useDidMountEffect } from './useDidMountEffect';
 export { useErrMsg } from './common/useErrMsg';

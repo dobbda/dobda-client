@@ -1,32 +1,34 @@
 /** @type {import('next').NextConfig} */
 const withPlugins = require('next-compose-plugins');
-const API_URL = process.env.API_URL;
+var path = require('path');
 const prod = process.env.NODE_ENV === 'production';
-
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
+
 module.exports = withPlugins([withBundleAnalyzer], {
   productionBrowserSourceMaps: true,
   reactStrictMode: true,
   historyApiFallback: true,
   output: 'standalone',
   images: {
-    domains: ['icon/svg', 'joeschmoe.io', 'avatars.dicebear.com'],
+    domains: ['source.unsplash.com', 'joeschmoe.io', 'avatars.dicebear.com'],
   },
-  experimental: { fallbackNodePolyfills: false },
+  experimental: { fallbackNodePolyfills: false, scrollRestoration: 'manual' },
+  inlineImageLimit: false,
+
   rewrites: () =>
-    (process.env.API_DOCKER_URL || process.env.API_URL) && prod
+    (process.env.API_KEY_DEV || process.env.API_KEY) && prod
       ? [
           {
             source: '/api/:path*',
-            destination: `${process.env.API_DOCKER_URL}/:path*`,
+            destination: `${process.env.API_KEY}/:path*`,
           },
         ]
       : [
           {
             source: '/api/:path*',
-            destination: `${process.env.API_URL}/:path*`,
+            destination: `${process.env.API_KEY_DEV}/:path*`,
           },
         ],
 

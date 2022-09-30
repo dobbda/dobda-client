@@ -6,7 +6,7 @@ type Props = {};
 
 const Dingdong: NextPage = (props: Props) => {
   return (
-    <Layout>
+    <Layout sideLeft>
       <h1>dingdong</h1>
     </Layout>
   );

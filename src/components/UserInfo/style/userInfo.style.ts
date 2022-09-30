@@ -5,7 +5,7 @@ export const Div = styled.div`
   border: solid 1.5px ${({ theme }) => theme.color.border};
   border-radius: 4px;
   min-height: 200px;
-  width: 280px;
+  width: 100%;
 
   align-items: center;
   justify-content: center;
@@ -21,7 +21,7 @@ export const BaseInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+  align-items: center;
   width: 100%;
   border-radius: 4px 4px 0 0;
   background-color: #fff;

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import * as S from './style/style';
 
 import 'antd/dist/antd.css';
-import { CoinIcon } from 'src/assets/icons';
+import { CoinIcon } from 'src/icons';
 
 export const CoinDeposit = () => {
   const IMP_UID = process.env.NEXT_PUBLIC_IMP_UID;

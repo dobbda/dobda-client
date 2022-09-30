@@ -9,7 +9,6 @@ const Container = styled.aside`
   left: ${({ theme }) => theme.media.large};
   top: 50px;
   max-width: 180px;
-  min-width: 180px;
   height: 500px;
   border: 1px solid #0005;
 `;

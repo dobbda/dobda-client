@@ -3,7 +3,7 @@ FROM node:16-alpine AS base
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm i --force && npm cache clean --force
+RUN npm ci --force
 COPY . .
 
 #==================================================
@@ -18,11 +18,9 @@ RUN npm run build
 # ==================================================
 # Package install Layer
 FROM node:16-alpine AS node_modules
-
 WORKDIR /modules
-
 COPY package*.json ./
-RUN npm i --force --only=production && npm cache clean --force
+RUN npm install --force --only=production && npm cache clean --force
 
 # ==================================================
 # Production Run Layer

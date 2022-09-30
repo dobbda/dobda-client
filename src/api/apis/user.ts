@@ -4,18 +4,6 @@ import { http } from '../http';
 import { REQUEST_URL } from '../REQUEST_URL';
 import { variable } from 'src/config/defaultValue';
 import { useQueryClient } from 'react-query';
-import { getCookie } from 'src/lib/getCookie';
-
-export const auth = async (): Promise<Auth> => {
-  //로그인확인용
-  if (getCookie('access-expires')) {
-    return (await axios.get(REQUEST_URL.get_auth)).data.response;
-  } else if (getCookie('refresh-expires')) {
-    return await axios.get('api/auth/refresh').then((res) => res.data.response.user);
-  } else {
-    return;
-  }
-};
 
 export const myInfo = async () => {
   //내정보 상세

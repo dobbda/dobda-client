@@ -1,36 +1,31 @@
 import React from 'react';
 import { useQueryClient } from 'react-query';
-import { Link } from 'src/components/common';
 import styled from 'styled-components';
-import { LogoIconW, LogoIconB } from 'src/assets/icons';
+import { LogoIconW, LogoBBB } from 'src/icons';
 import Image from 'next/image';
+import Link from 'next/link';
+
 type Props = {
   b?: boolean;
   height?: string;
 };
 
-const Div = styled.span`
-  text-align: center;
-  h1 {
-    font-weight: bold;
-    font-size: 35px;
-    color: #ffffff;
-    text-align: center;
-    user-select: none;
-    cursor: pointer;
-    display: inline-block;
+const Div = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  a {
+    margin-top: 3px;
   }
 `;
 
 export const Logo = ({ b, height }: Props) => {
-  const queryClient = useQueryClient();
   return (
-    <>
-      <Div onClick={() => queryClient.invalidateQueries()}>
-        <Link href="/">
-          {b ? <LogoIconB height={height ? height : '35px'} /> : <LogoIconW height={height ? height : '35px'} />}
-        </Link>
-      </Div>
-    </>
+    <Div>
+      <Link href="/" passHref>
+        <a>{b ? <LogoBBB height={height ? height : '35px'} /> : <LogoIconW height={height ? height : '35px'} />}</a>
+      </Link>
+    </Div>
   );
 };

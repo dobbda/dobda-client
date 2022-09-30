@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 // height: ${({theme})=>theme.media.size};
 const padding = '';
-type Props = {
-  setWidth: boolean;
-};
+type Props = {};
 export const Container = styled.div`
   min-width: 100%;
   height: 100%;
@@ -14,8 +12,6 @@ export const Container = styled.div`
   min-width: 330px;
 `;
 export const Position = styled.div<Props>`
-  /* height: 100%; */
-  /* max-width: ${({ setWidth }) => (setWidth ? '1260px' : '1180px')}; */
   max-width: ${({ theme }) => theme.media.maxWidth};
   margin: 0 auto;
 `;
@@ -27,22 +23,29 @@ export const Wrapper = styled.div`
   position: relative;
   height: 100%;
   padding: 0;
-  margin: 0 15px;
+  margin: 0 10px;
+  @media screen and (max-width: 1060px) {
+    margin: 0;
+    margin-right: 0 5px;
+  }
   @media screen and (max-width: 768px) {
     margin: 0;
   } ;
 `;
 
 export const MainWrapper = styled.div`
-  margin-top: 10px;
   min-height: 100vh;
   width: 100%;
   padding: 0 20px;
   position: relative;
   padding-top: 10px;
-  background-color: #fff;
+  transition: all 0.1s;
+  @media screen and (max-width: 1060px) {
+    padding: 0;
+    padding-right: 10px;
+  }
   @media screen and (max-width: 768px) {
-    padding: 5px;
+    padding: 0;
   } ;
 `;
 
@@ -50,10 +53,14 @@ export const SideNavWrapper = styled.div`
   flex: 0 0 auto;
   position: sticky;
   top: 50px;
-  width: 220px;
-  margin-right: 15px;
+  width: 250px;
   height: calc(100vh - 50px);
   box-sizing: border-box;
+  overflow-y: scroll;
+  padding-top: 100px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   @media screen and (max-width: 768px) {
     display: none;
   } ;
@@ -75,7 +82,8 @@ export const AsideContent = styled.div`
   } ;
 `;
 
-export const HeaderAreas = styled.div`
-  height: ${({ theme }) => theme.media.headerHeight};
+export const HeaderContent = styled.div`
+  margin-top: ${({ theme }) => theme.media.headerHeight};
+
   width: 100%;
 `;

@@ -1,4 +1,5 @@
 import { Button } from 'antd';
+import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 
 const headerFont = '20px';
@@ -14,6 +15,7 @@ export const ContentWrapper = styled.div`
   min-height: 600px;
   background-color: #fff;
   border: 1px solid #eeee;
+  /* margin-bottom: 40px; */
 `;
 export const CoinWrapper = styled.span`
   font-weight: 600;
@@ -72,7 +74,6 @@ export const AnswerContainer = styled.div`
   flex-direction: column;
   gap: 25px;
   padding: ${wrapperPadding} 0;
-  background-color: #fff;
   border-radius: 4px;
   @media screen and (max-width: 768px) {
     padding: 0;
@@ -81,13 +82,11 @@ export const AnswerContainer = styled.div`
 
 export const EditorWrapper = styled.div`
   position: relative;
-
-  background-color: #fff;
   border-radius: 4px;
-  margin: 25px 0;
-  padding: 30px 0;
+  margin-top: 30px;
   h3 {
-    color: #000;
+    padding-left: 10px;
+    color: #383838;
     font-weight: bold;
   }
   @media screen and (max-width: 768px) {
@@ -117,18 +116,17 @@ export const Title = styled.h1`
   word-wrap: break-word;
 `;
 
-export const OutSourcingInfo = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  background-color: #0001;
-  border: 1px solid #c7c7c7;
-  border-radius: 4px;
-  align-items: center;
-  padding: 5px;
-  margin: 5px 30px;
+export const ProjectProgress = styled.div`
+  border: 1px solid ${theme.color.secondary};
+  /* border-bottom: none; */
+  margin: 10px 0;
 
   @media screen and (max-width: 768px) {
     margin: 5px 10px;
   }
+`;
+export const NodataWrapper = styled.div`
+  padding: 20px 10px;
+  margin: 5px;
+  border: solid 1px ${theme.color.border2};
 `;

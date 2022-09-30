@@ -1,10 +1,10 @@
 import { Input as AntInput, Button } from 'antd';
-import { ReplyIcon, ReplyFillIcon } from 'src/assets/icons';
+import { ReplyIcon, ReplyFillIcon } from 'src/icons';
 import styled from 'styled-components';
 import { GlobalStyle } from 'src/styles/GlobalStyle';
 
 export const EditorStyle = styled.div`
-  margin-top: 10px 0;
+  margin: 10px 0;
   position: relative;
   background-color: #fff;
   border-radius: 4px;

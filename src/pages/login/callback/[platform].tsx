@@ -3,9 +3,10 @@ import { useQueryClient, useQuery } from 'react-query';
 import axios from 'axios';
 
 import { useRouter } from 'next/router';
-import { setLocalStorage } from 'src/lib/localStorage';
+import { setLocalStorage } from 'src/lib/utils/localStorage';
 import { useAuth } from 'src/hooks';
 import { variable } from 'src/config/defaultValue';
+import { Loading } from 'src/components/common';
 
 type Props = {};
 
@@ -27,7 +28,7 @@ const Lodding = (props: Props) => {
     }
   }, [code, platform]);
 
-  return <>loading...</>;
+  return <Loading loading many />;
 };
 
 export default Lodding;
