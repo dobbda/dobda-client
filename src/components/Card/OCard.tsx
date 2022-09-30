@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import * as S from './style/O.style';
 import * as c from './style/common';
 import * as Lib from 'src/components/common';
-import getDate from 'src/lib/dateForm';
+import getDate from 'src/lib/utils/dateForm';
 import { atom } from '../common';
 import * as I from 'src/icons';
 import { Outsource } from 'src/types';

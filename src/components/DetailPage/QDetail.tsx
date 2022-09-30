@@ -4,7 +4,7 @@ import { atom, Loading, Tag } from '../common';
 import * as S from './style/Detail.style';
 import { Avatar } from '../common';
 import { AnswerCp } from './Comment/';
-import getDate from 'src/lib/dateForm';
+import getDate from 'src/lib/utils/dateForm';
 
 import { CoinIcon, QIcon } from 'src/icons';
 import { Editor } from 'src/components/Editor';
@@ -105,8 +105,8 @@ const QDetail = ({ children, data }: Props) => {
             </S.ContentViewWrapper>
           </S.ContentWrapper>
 
-          <h3>답변을 작성해주세요</h3>
           <S.EditorWrapper>
+            <h3>답변을 작성해주세요</h3>
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
             <br />
             <S.SubmitBtn onClick={onSubmitAnswer} loading={add.isLoading}>
@@ -118,7 +118,7 @@ const QDetail = ({ children, data }: Props) => {
             {answers && answers[0]?.id ? (
               answers.map((answer) => <AnswerCp key={answer.id} answer={answer} question={data} />)
             ) : (
-              <atom.NoData>등록된 답변이 없습니다. 답변을 등록할 수 있습니다.</atom.NoData>
+              <S.NodataWrapper>등록된 답변이 없습니다. 답변을 등록해보세요.</S.NodataWrapper>
             )}
           </S.AnswerContainer>
         </>

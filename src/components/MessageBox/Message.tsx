@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'src/components/common';
 import { Li } from './style/Message.style';
-import getDate from 'src/lib/dateForm';
+import getDate from 'src/lib/utils/dateForm';
 type Props = {};
 
 const Message = (props: Props) => {

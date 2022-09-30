@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Div, Label, CheckBox, ChildMenu, Icon } from './style/Menu.style';
 import { Link } from 'src/components/common';
@@ -14,11 +14,15 @@ type Props = {
 
 export const FolderMenu = ({ title, icon, children, childOpen = false }: React.PropsWithChildren<Props>) => {
   const [checked, setchecked] = useState(childOpen);
-  const randomId = Math.random().toString(10);
+  const [checkId, setcheckId] = useState('');
+  useEffect(() => {
+    setcheckId(Math.random().toString(36).substring(3, 10));
+  }, []);
+
   return (
     <Div checked={checked}>
-      <CheckBox defaultChecked={childOpen} id={randomId} onChange={(e) => setchecked(!checked)} />
-      <Label htmlFor={randomId}>
+      <CheckBox defaultChecked={childOpen} id={checkId} onChange={(e) => setchecked(!checked)} />
+      <Label htmlFor={checkId}>
         {icon && <Icon>{icon}</Icon>}
         <h1>{title}</h1>
         <MainArrowIcon className="rotate" />

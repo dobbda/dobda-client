@@ -83,10 +83,10 @@ export const AnswerContainer = styled.div`
 export const EditorWrapper = styled.div`
   position: relative;
   border-radius: 4px;
-  /* padding-bottom: 5px; */
   margin-top: 30px;
   h3 {
-    color: #000;
+    padding-left: 10px;
+    color: #383838;
     font-weight: bold;
   }
   @media screen and (max-width: 768px) {
@@ -124,4 +124,9 @@ export const ProjectProgress = styled.div`
   @media screen and (max-width: 768px) {
     margin: 5px 10px;
   }
+`;
+export const NodataWrapper = styled.div`
+  padding: 20px 10px;
+  margin: 5px;
+  border: solid 1px ${theme.color.border2};
 `;

@@ -5,7 +5,7 @@ import * as Lib from 'src/components/common';
 import * as I from 'src/icons';
 
 import { Question } from 'src/types';
-import getDate from 'src/lib/dateForm';
+import getDate from 'src/lib/utils/dateForm';
 import { atom } from '../common';
 import { theme } from 'src/styles/Theme';
 

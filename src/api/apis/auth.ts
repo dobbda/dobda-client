@@ -1,15 +1,15 @@
+import { getLocalStorage } from 'src/lib/utils/localStorage';
+import { QueryClient, useQueryClient } from 'react-query';
 import { http } from 'src/api';
 import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
-import { getCookie } from 'src/lib/getCookie';
 import { Auth } from 'src/types';
 import { REQUEST_URL } from '../REQUEST_URL';
 
 export const auth = async (): Promise<Auth> => {
-  //로그인확인용
-  if (getCookie('access-expires')) {
+  if (getLocalStorage('exp', true)?.access_exp > Date.now()) {
     return (await axios.get(REQUEST_URL.get_auth)).data.response;
-  } else if (getCookie('refresh-expires')) {
-    return await axios.get('api/auth/refresh').then((res) => res.data.response.user);
+  } else if (getLocalStorage('exp', true)?.refresh_exp > Date.now()) {
+    return await axios.get('api/auth/refresh').then((res) => res.data.response);
   }
 };
 

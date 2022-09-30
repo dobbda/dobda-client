@@ -4,7 +4,6 @@ import { http } from '../http';
 import { REQUEST_URL } from '../REQUEST_URL';
 import { variable } from 'src/config/defaultValue';
 import { useQueryClient } from 'react-query';
-import { getCookie } from 'src/lib/getCookie';
 
 export const myInfo = async () => {
   //내정보 상세

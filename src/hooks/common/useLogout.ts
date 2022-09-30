@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useQueryClient } from 'react-query';
 import { user } from 'src/api';
-import { removeLocalStorage } from 'src/lib/localStorage';
+import { removeLocalStorage } from 'src/lib/utils/localStorage';
 import { useAuth } from './useAuth';
 
 export const useLogout = () => {

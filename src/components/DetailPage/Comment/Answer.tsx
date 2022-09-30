@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import ReplyCp from './Reply';
 import { Editor, MarkDownViewer } from 'src/components/Editor';
 import { Avatar, atom, Loading } from 'src/components/common';
-import getDate from 'src/lib/dateForm';
+import getDate from 'src/lib/utils/dateForm';
 import { EditAnswer } from './EditAnswer';
 import * as S from './style/style';
 import { ArrowIcon, MoreIcon, ReCommentIcon, AcceptedIcon } from 'src/icons';

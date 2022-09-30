@@ -4,7 +4,7 @@ import { atom, Tag, Button } from '../common';
 import * as S from './style/Detail.style';
 import { Avatar } from '../common';
 import { EnquiryCp } from './Comment';
-import getDate from 'src/lib/dateForm';
+import getDate from 'src/lib/utils/dateForm';
 
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer } from 'src/components/Editor';
@@ -123,7 +123,7 @@ const ODetail = ({ children, data }: Props) => {
             {enquiries && enquiries[0]?.id ? (
               enquiries.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} />)
             ) : (
-              <atom.NoData>등록된 답변이 없습니다. 답변을 등록할 수 있습니다.</atom.NoData>
+              <S.NodataWrapper>등록된 답변이 없습니다. 답변을 등록해보세요.</S.NodataWrapper>
             )}
           </S.AnswerContainer>
         </>

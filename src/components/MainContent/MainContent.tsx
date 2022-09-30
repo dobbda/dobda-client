@@ -1,15 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import Link from 'next/link';
-import { useQuery } from 'react-query';
-
 import { Main, WriteHandler } from './style/MainContent.style';
 import { WirteHandlerModal } from './atom/WirteHandlerModal';
-
 import { PenIcon } from 'src/icons';
-import { Categories, CategoryList, CategoriesType } from 'src/lib/utils/category';
+import { Categories, CategoryList, CategoriesType } from 'src/config/category';
 import RenderOutsource from './renderItm/RenderOutSourcing';
 import RenderQuestion from './renderItm/RenderQuestion';
-import { getLocalStorage, setLocalStorage } from 'src/lib/localStorage';
+import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';
 import { useAuth, useDidMountEffect, useLoginModalhandler } from 'src/hooks';
 import { useRouter } from 'next/router';
 import { Avatar } from 'antd';
@@ -25,6 +21,7 @@ const MainContent = ({ children }: Props) => {
   const router = useRouter();
   const [select, setSelect] = useState<CategoriesType>();
   const { setLoginModal } = useLoginModalhandler();
+
   //첫 로딩시
   useEffect(() => {
     const storeCategory = getLocalStorage('mainCateogry') as CategoriesType;
@@ -34,6 +31,7 @@ const MainContent = ({ children }: Props) => {
   useDidMountEffect(() => {
     setLocalStorage('mainCateogry', select);
   }, [select]);
+
   const checkLogin = useCallback(() => {
     if (!auth?.id) return setLoginModal();
     setVisible(!visible);

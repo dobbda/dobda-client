@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from 'react';
 
 import { Editor, MarkDownViewer } from 'src/components/Editor';
 import { atom, Avatar } from 'src/components/common';
-import getDate from 'src/lib/dateForm';
+import getDate from 'src/lib/utils/dateForm';
 
 import * as S from './style/style';
 import * as i from 'src/icons';
