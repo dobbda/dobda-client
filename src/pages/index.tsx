@@ -26,9 +26,9 @@ export default Home;
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const queryClient = new QueryClient();
 
-  // if (req?.headers?.cookie?.includes('jwt-access')) {
-  //   await queryClient.prefetchQuery(keys.auth, () => reqAuth.httpAuth(req as AxiosRequestConfig), {});
-  // }
+  if (req?.headers?.cookie?.includes('jwt-access')) {
+    await queryClient.prefetchQuery(keys.auth, () => reqAuth.httpAuth(req as AxiosRequestConfig), {});
+  }
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
