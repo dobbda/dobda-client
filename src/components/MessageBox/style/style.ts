@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Div = styled.div`
   background-color: #fff !important;
-  border: 1px solid ${({ theme }) => theme.color.border};
+  border: 1px solid ${({ theme }) => theme.color.border(0.2)};
   width: 300px;
   height: 400px;
   font-size: 12px;
