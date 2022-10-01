@@ -39,7 +39,7 @@ export const updateEnquiry = async ({ id, data }: { id?: number; data: CreateCom
   return await axios.patch(`/api/enquiries/${id}`, data);
 };
 export const getEnquiries = async (id: number): Promise<Enquiry[]> => {
-  return (await axios.get(`/api/enquiries?oid=${id}`)).data?.response.enquiries;
+  return (await axios.get(`/api/enquiries/${id}`)).data?.response.enquiries;
 };
 export const delEnquiry = async (id: number): Promise<AxiosResponse> => {
   return (await axios.delete(`/api/enquiries/${id}`)).data;
@@ -51,5 +51,5 @@ export const addReply = async (data: CreateComment): Promise<AxiosResponse> => {
 };
 export const getReplies = async (eid: number): Promise<Reply[]> => {
   console.log(eid);
-  return (await axios.get(`/api/replies?eid=${eid}`)).data.response.replies;
+  return (await axios.get(`/api/replies/${eid}`)).data.response.replies;
 };

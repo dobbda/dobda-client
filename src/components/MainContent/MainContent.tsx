@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { Main, WriteHandler } from './style/MainContent.style';
 import { WirteHandlerModal } from './atom/WirteHandlerModal';
 import { PenIcon } from 'src/icons';
-import { Categories, CategoryList, CategoriesType } from 'src/config/category';
+import { Categories, CategoryList, CategoriesType } from 'src/types/content-type';
 import RenderOutsource from './renderItm/RenderOutSourcing';
 import RenderQuestion from './renderItm/RenderQuestion';
 import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';
