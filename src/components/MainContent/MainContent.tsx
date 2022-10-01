@@ -8,7 +8,6 @@ import RenderQuestion from './renderItm/RenderQuestion';
 import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';
 import { useAuth, useDidMountEffect, useLoginModalhandler } from 'src/hooks';
 import { useRouter } from 'next/router';
-import { Avatar } from 'antd';
 import { theme } from 'src/styles/Theme';
 
 interface Props {
@@ -49,9 +48,9 @@ const MainContent = ({ children }: Props) => {
           </WriteHandler>
           <div className="top-bar">
             {CategoryList.map((m, i) => (
-              <span key={i} onClick={() => setSelect(m)} className={`${select === m ? 'tap_menu selected' : 'tap_menu'}`}>
-                <div>{Categories[m]}</div>
-              </span>
+              <div key={i} onClick={() => setSelect(m)} className={`${select === m ? 'tap_menu selected' : 'tap_menu'}`}>
+                <span>{Categories[m]}</span>
+              </div>
             ))}
           </div>
         </div>
@@ -64,6 +63,3 @@ const MainContent = ({ children }: Props) => {
 };
 
 export default React.memo(MainContent);
-function useCalback(arg0: () => void, arg1: undefined[]) {
-  throw new Error('Function not implemented.');
-}

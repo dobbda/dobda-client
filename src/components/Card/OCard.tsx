@@ -13,6 +13,8 @@ type Props = {
 };
 
 const OCard = ({ data }: Props) => {
+  const ms = +new Date(data.deadline) - +new Date();
+  const CountDown = ms / (1000 * 60 * 60 * 24);
   return (
     <>
       {data && data ? (
@@ -23,6 +25,11 @@ const OCard = ({ data }: Props) => {
                 <I.WatchIcon style={{ color: '#707070', fontSize: '17px', marginRight: '5px' }} /> <c.P>{data?.watch}</c.P>
               </c.Group>
             </S.Watch>
+            <S.Countdown>
+              <span css={{ color: 'red', fontSize: '13px', fontWeight: 'bold' }}>
+                {CountDown <= 0 ? '마감' : 'D-' + CountDown}
+              </span>
+            </S.Countdown>
             <S.Image src={data.cardImage} alt="" />
             <S.Info>
               <TagWrapper>

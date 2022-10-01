@@ -36,12 +36,18 @@ export const Main = styled.div`
       margin-bottom: -5px;
       border-bottom: 2px solid rgba(0, 0, 0, 0);
       transition: all 0.2s ease-in-out 0.05s;
+      :hover {
+        border-bottom: 2px solid ${({ theme }) => theme.color.prRgb(0.5)};
+      }
     }
     .selected {
       color: ${({ theme }) => theme.color.secondary};
       z-index: 1;
       border-bottom: 2px solid ${({ theme }) => theme.color.secondary};
       transition: all 0.2s ease-in-out 0s;
+      :hover {
+        border-bottom: 2px solid ${({ theme }) => theme.color.secondary};
+      }
     }
   }
 `;

@@ -82,13 +82,14 @@ const ODetail = ({ children, data }: Props) => {
                 <Avatar nickname={data.author.nickname} url={data.author.avatar} id={data.author.id} />
                 <atom.CreatedAt>{getDate(data.createdAt)}</atom.CreatedAt>
               </div>
-              <span>질문</span>
               <S.Title> {data.title}</S.Title>
+              <br />
               <atom.TagWrapper>
                 {data.tagNames.map((tag: Tags) => (
                   <Tag key={data.id + tag.id}>{tag.name}</Tag>
                 ))}
               </atom.TagWrapper>
+
               {auth?.id == data.author?.id && (
                 <S.OnyUser className="only-author">
                   <Button onClick={() => setIsEdit(true)}>수정</Button>
@@ -106,7 +107,10 @@ const ODetail = ({ children, data }: Props) => {
 
           <S.ProjectProgress>
             <FolderMenu title={'⏳ 프로젝트 진행상황 ⏳'}>
-              <p> 메이커 매칭 전 입니다</p>
+              <>
+                <p>작업금액 : {data.coin}</p>
+                <p> 메이커 매칭 전 입니다</p>
+              </>
             </FolderMenu>
           </S.ProjectProgress>
 

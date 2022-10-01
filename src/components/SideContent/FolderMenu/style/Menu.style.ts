@@ -31,10 +31,6 @@ export const Label = styled.label`
   }
 `;
 export const Icon = styled.div`
-  /* position: absolute; */
-  /* top: 12px;
-  left: 10px;
-  font-size: 22px; */
   color: rgba(0, 0, 0, 0.6);
 `;
 export const ChildMenu = styled.div`
@@ -42,8 +38,6 @@ export const ChildMenu = styled.div`
   color: rgba(0, 0, 0, 0.8);
   overflow: hidden;
   transition: height 0.3s;
-  /* box-shadow: inset 0px 2px 5px -3px rgb(0 0 0 / 25%); */
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
   background-color: #fff;
   > * {
     text-align: center;
@@ -57,6 +51,7 @@ export const CheckBox = styled.input.attrs({
   display: none;
 
   &:checked + ${Label} + ${ChildMenu} {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
     height: 100px;
     max-height: 200px;
   }

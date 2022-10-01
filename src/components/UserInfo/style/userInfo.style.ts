@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Div = styled.div`
   background-color: #fbf8f8;
-  border: solid 1.5px ${({ theme }) => theme.color.border};
+  border: solid 1.5px ${({ theme }) => theme.color.border1};
   border-radius: 4px;
   min-height: 200px;
   width: 100%;

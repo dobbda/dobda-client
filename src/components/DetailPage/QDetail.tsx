@@ -78,10 +78,10 @@ const QDetail = ({ children, data }: Props) => {
                 <Avatar nickname={data?.author.email} url={data?.author.avatar} id={data?.author.id} />
                 <atom.CreatedAt>{getDate(data?.createdAt)}</atom.CreatedAt>
               </div>
-
               <S.Title>
                 <QIcon /> {data?.title}
               </S.Title>
+
               <atom.TagWrapper>
                 <S.CoinWrapper>
                   <CoinIcon />
