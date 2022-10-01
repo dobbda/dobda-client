@@ -65,6 +65,15 @@ export const Content = styled.div`
 export const Watch = styled.div`
   position: absolute;
   top: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 5px 10px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+`;
+export const Countdown = styled.div`
+  position: absolute;
+  top: 0;
   left: 0;
   background-color: #fff;
   padding: 5px 10px;

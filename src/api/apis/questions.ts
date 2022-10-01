@@ -46,7 +46,7 @@ export const updateAnswer = async (id: number, data: CreateComment): Promise<Axi
 
 // 답변 불러오기
 export const getAnswers = async (qid: number): Promise<Answer[]> => {
-  return (await axios.get(`/api/answers?qid=${qid}`)).data?.response.answers;
+  return (await axios.get(`/api/answers/${qid}`)).data?.response.answers;
 };
 
 // 답변삭제
@@ -60,7 +60,7 @@ export const addComment = async (data: CreateComment): Promise<AxiosResponse> =>
 };
 // 댓글 블로오기
 export const getComments = async (aid: number): Promise<Comment[]> => {
-  return (await axios.get(`/api/comments?aid=${aid}`)).data.response.comments;
+  return (await axios.get(`/api/comments/${aid}`)).data.response.comments;
 };
 
 // 조회수

@@ -14,6 +14,7 @@ export const SideContainer = styled.div`
 
 export const P = styled.p`
   color: 808080;
+  margin: 0 0 5px 10px;
 `;
 export const Red = styled.span`
   color: red;

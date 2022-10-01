@@ -46,6 +46,7 @@ export interface Auth extends Default {
   description: string;
   getAccepted: number;
   setAccepted: number;
+  questionsCount: number;
 }
 
 export interface Answer extends Default {
@@ -88,7 +89,6 @@ export interface Question extends Default {
 }
 
 export interface QuestionDetail extends Question {
-  // answer: Answer[],
   content: string;
 }
 

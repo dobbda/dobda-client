@@ -1,8 +1,6 @@
 import React, { FC, useState, PropsWithChildren } from 'react';
 import * as S from './style/Layout.style';
-import Banner from '../Banner/Banner';
 import { HeaderNav } from 'src/components/common';
-import * as API from 'src/api';
 import { GlobalStyle } from 'src/styles/GlobalStyle';
 import { SideContentLeft, SideContentRight } from 'src/components/SideContent';
 import { useScroll, useWindowSize } from 'src/hooks';

@@ -35,21 +35,11 @@ export const ContentHeader = styled.header`
   padding: ${wrapperPadding};
   border-bottom: 1px solid #ccc;
   position: relative;
-  h1,
-  h2,
-  h3 {
-    //제목
-    display: inline;
-    font-weight: 650;
-    line-height: 1.4;
-    margin-bottom: 30px;
-  }
 
   .detailInfo {
     padding-right: 10px;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
   }
 `;
 
@@ -114,6 +104,7 @@ export const SubmitBtn = styled(Button)`
 
 export const Title = styled.h1`
   word-wrap: break-word;
+  margin: 20px 0;
 `;
 
 export const ProjectProgress = styled.div`

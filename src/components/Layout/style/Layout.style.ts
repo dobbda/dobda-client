@@ -1,3 +1,4 @@
+import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 // height: ${({theme})=>theme.media.size};
 const padding = '';
@@ -42,14 +43,14 @@ export const MainWrapper = styled.div`
   transition: all 0.1s;
   @media screen and (max-width: 1060px) {
     padding: 0;
-    padding-right: 10px;
+    padding: 0 10px;
   }
   @media screen and (max-width: 768px) {
     padding: 0;
   } ;
 `;
 
-export const SideNavWrapper = styled.div`
+export const SideNavWrapper = styled.div<{ bg?: string }>`
   flex: 0 0 auto;
   position: sticky;
   top: 50px;
@@ -58,9 +59,15 @@ export const SideNavWrapper = styled.div`
   box-sizing: border-box;
   overflow-y: scroll;
   padding-top: 100px;
+  @media screen and (max-width: 1060px) {
+    background-color: #fff;
+    border: 1px solid ${theme.color.border(0.1)};
+  }
+  /* ${({ bg }) => bg && `background-color: ${theme.color.bg}`}; */
   ::-webkit-scrollbar {
     display: none;
   }
+
   @media screen and (max-width: 768px) {
     display: none;
   } ;

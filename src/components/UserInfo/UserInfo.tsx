@@ -8,6 +8,7 @@ import { user } from 'src/api';
 import { TagWrapper } from '../common/@share/atom';
 import { Auth } from 'src/types';
 import { Avatar } from 'antd';
+import { theme } from 'src/styles/Theme';
 type Props = { id: number };
 export function UserInfo({ id }: Props) {
   const anyUser = useQuery(['users', id], () => user.getUserInfo(id));
@@ -29,25 +30,27 @@ export function UserInfo({ id }: Props) {
               <em>10</em>
             </Item>
             <Item>
-              <P>답변</P>
-              <em>10</em>
+              <P>채택된답변</P>
+              <em>{data.getAccepted}</em>
             </Item>
             <Item>
-              <P>채택</P>
-              <em>10</em>
+              <P>질문</P>
+              <em>{data.questionsCount}</em>
             </Item>
 
             <Item>
-              <P>질문</P>
-              <em>10</em>
+              <P>채택률</P>
+              <em>{(data.setAccepted / data.questionsCount) * 100}</em>
             </Item>
           </UserActive>
           <UserTech>
             <h3>Tech Stacks</h3>
             <TagWrapper>
-              <Tag>python</Tag>
-              <Tag>frontend</Tag>
-              <Tag>python</Tag>
+              {data.skill.map((tag) => (
+                <Tag key={tag} bg={theme.color.prRgb(0.3)}>
+                  {tag}
+                </Tag>
+              ))}
             </TagWrapper>
           </UserTech>
         </Div>

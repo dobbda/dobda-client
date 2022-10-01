@@ -5,3 +5,5 @@ export const Categories = {
 };
 export const CategoryList = Object.keys(Categories) as CategoriesType[];
 export type CategoriesType = keyof typeof Categories;
+
+export type editContentType = 'answers' | 'comments' | 'replies' | 'enquiries';

@@ -3,7 +3,7 @@ import { TagCloseIcon } from 'src/icons';
 import styled from 'styled-components';
 
 type Props = {
-  children: string;
+  children: string | React.ReactNode;
   closable?: boolean;
   onClose?: (e: React.MouseEvent<HTMLElement>) => void;
   bg?: string;
