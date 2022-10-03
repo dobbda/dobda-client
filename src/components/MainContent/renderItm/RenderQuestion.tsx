@@ -5,6 +5,7 @@ import QCard from '../../Card/QCard';
 import styled from 'styled-components';
 import { q } from 'src/api';
 import { InfinityProps, Question } from 'src/types';
+import { motion } from 'framer-motion';
 
 function RenderQuestion() {
   const [shearchTitle, setShearchTitle] = useState<string>();
@@ -24,7 +25,10 @@ function RenderQuestion() {
   return (
     <>
       {data ? (
-        <ContentCardList>
+        <ContentCardList
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: [0.5, 1], height: 'auto', transition: { duration: 0.15 } }}
+        >
           {isSuccess && data?.pages
             ? data.pages.map((page) => {
                 const question = page.result as Question[];
@@ -52,14 +56,13 @@ function RenderQuestion() {
 
 export default RenderQuestion;
 
-const ContentCardList = styled.div`
+const ContentCardList = styled(motion.div)`
   display: grid;
   place-items: center;
-  /* background-color: #fff; */
-  /* border-radius: 8px; */
-  /* border: 1px solid #e3e3e3; */
   overflow: hidden;
   gap: 15px;
+  transition: all 0.2s;
+  margin-bottom: 10px;
 `;
 const RefCard = styled.div`
   width: 100%;

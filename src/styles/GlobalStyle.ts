@@ -1,3 +1,4 @@
+import { theme } from 'src/styles/Theme';
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
@@ -30,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
 			}
 			.toastui-editor-toolbar{
 				background-color: #fff;
-				border-bottom: 1px solid #dadada;
+				border-bottom: 1px solid ${theme.color.bg};
 			}
     }
 		.toastui-editor-contents h1,h2,h3{
@@ -53,9 +54,10 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
 
-  a {
-    color: inherit;
-  }
+	a, a:hover, a:focus, a:active {
+     text-decoration: none;
+     color: inherit;
+ }
 
   * {
     text-decoration: none;

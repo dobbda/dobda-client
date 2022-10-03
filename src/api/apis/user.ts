@@ -1,7 +1,6 @@
 import { Auth, UserUpdate } from 'src/types';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { http } from '../http';
-import { REQUEST_URL } from '../REQUEST_URL';
 import { variable } from 'src/config/defaultValue';
 import { useQueryClient } from 'react-query';
 

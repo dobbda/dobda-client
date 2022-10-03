@@ -8,27 +8,28 @@ import * as I from 'src/icons';
 import { Outsource } from 'src/types';
 import { TagWrapper } from '../common/@share/atom';
 import { theme } from 'src/styles/Theme';
+import Link from 'next/link';
 type Props = {
   data?: Outsource;
 };
 
 const OCard = ({ data }: Props) => {
   const ms = +new Date(data.deadline) - +new Date();
-  const CountDown = ms / (1000 * 60 * 60 * 24);
+  const CountDown = Math.ceil(ms / (1000 * 60 * 60 * 24));
   return (
     <>
       {data && data ? (
-        <Lib.Link href={`/custom-project/requests/${data.id}`} scroll={false}>
-          <S.ContentWrapper>
+        <S.ContentWrapper>
+          <Lib.Link href={`/custom-project/requests/${data.id}`} scroll={false}>
             <S.Watch>
               <c.Group>
                 <I.WatchIcon style={{ color: '#707070', fontSize: '17px', marginRight: '5px' }} /> <c.P>{data?.watch}</c.P>
               </c.Group>
             </S.Watch>
             <S.Countdown>
-              <span css={{ color: 'red', fontSize: '13px', fontWeight: 'bold' }}>
-                {CountDown <= 0 ? '마감' : 'D-' + CountDown}
-              </span>
+              <p css={{ color: 'red', fontSize: '13px', fontWeight: 'bold', fontFamily: 'Nanum ' }}>
+                {CountDown <= 0 ? '마감' : 'D' + ' - ' + CountDown}
+              </p>
             </S.Countdown>
             <S.Image src={data.cardImage} alt="" />
             <S.Info>
@@ -58,10 +59,10 @@ const OCard = ({ data }: Props) => {
                   <I.BookmarkIcon />
                 </c.Group>
               </S.HeaderWrapper>
-              <S.Title>{data.title}</S.Title>
+              <S.Title className="outsourcing-title">{data.title}</S.Title>
             </S.Content>
-          </S.ContentWrapper>
-        </Lib.Link>
+          </Lib.Link>
+        </S.ContentWrapper>
       ) : null}
     </>
   );
