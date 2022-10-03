@@ -9,7 +9,18 @@ export const ContentWrapper = styled.div`
   border-radius: 4px;
   :hover {
     border: 1px solid ${theme.color.primary};
+    .outsourcing-title {
+      text-decoration: underline;
+    }
   }
+`;
+
+export const Title = styled.h3`
+  overflow: hidden;
+  padding-bottom: 10px;
+  word-break: break-word;
+  max-height: 100px;
+  display: inline-block;
 `;
 
 export const Progress = styled.h1`
@@ -26,13 +37,6 @@ export const HeaderWrapper = styled.header`
 `;
 
 //body
-
-export const Title = styled.h3`
-  overflow: hidden;
-  padding-bottom: 10px;
-  word-break: break-word;
-  max-height: 100px;
-`;
 
 export const Info = styled.div`
   background-color: rgba(235, 238, 243, 0.5);
@@ -68,8 +72,8 @@ export const Watch = styled.div`
   right: 0;
   background-color: #fff;
   padding: 5px 10px;
-  border-top-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 `;
 export const Countdown = styled.div`
   position: absolute;

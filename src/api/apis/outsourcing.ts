@@ -15,18 +15,18 @@ export const getInfinity = async (pageParam = 1, title?: string): Promise<Infini
 };
 
 //질문글 상세조회
-export const outsourceDetail = async <T>(id: number): Promise<T> => {
+export const outsourceDetail = async <T>(id: number | string): Promise<T> => {
   return (await axios.get(`/api/outsource/${id}`)).data?.response;
-  // .catch(err=>console.log("axios error: " + err))
 };
 
-export const addOutsource = async (question: CreateOutsource, qid?: number): Promise<Outsource> => {
+export const addOutsource = async (question: CreateOutsource): Promise<Outsource> => {
   return (await axios.post('/api/outsource', question)).data.response;
 };
-export const updateOutsource = async (data: CreateOutsource, id: number): Promise<Outsource> => {
+
+export const updateOutsource = async (data: CreateOutsource, id: number | string): Promise<Outsource> => {
   return (await axios.patch(`/api/outsource/${id}`, data)).data.response;
 };
-export const delOutsource = async <T>(id: number): Promise<T> => {
+export const delOutsource = async <T>(id: number | string): Promise<T> => {
   return (await axios.delete(`/api/outsource/${id}`)).data;
 };
 
@@ -35,13 +35,13 @@ export const addEnquiry = async (data: CreateComment): Promise<AxiosResponse> =>
   return await axios.post(`/api/enquiries`, data);
 };
 
-export const updateEnquiry = async ({ id, data }: { id?: number; data: CreateComment }): Promise<AxiosResponse> => {
+export const updateEnquiry = async ({ id, data }: { id?: number | string; data: CreateComment }): Promise<AxiosResponse> => {
   return await axios.patch(`/api/enquiries/${id}`, data);
 };
-export const getEnquiries = async (id: number): Promise<Enquiry[]> => {
+export const getEnquiries = async (id: number | string): Promise<Enquiry[]> => {
   return (await axios.get(`/api/enquiries/${id}`)).data?.response.enquiries;
 };
-export const delEnquiry = async (id: number): Promise<AxiosResponse> => {
+export const delEnquiry = async (id: number | string): Promise<AxiosResponse> => {
   return (await axios.delete(`/api/enquiries/${id}`)).data;
 };
 
@@ -49,7 +49,7 @@ export const delEnquiry = async (id: number): Promise<AxiosResponse> => {
 export const addReply = async (data: CreateComment): Promise<AxiosResponse> => {
   return await axios.post(`/api/replies`, data);
 };
-export const getReplies = async (eid: number): Promise<Reply[]> => {
+export const getReplies = async (eid: number | string): Promise<Reply[]> => {
   console.log(eid);
   return (await axios.get(`/api/replies/${eid}`)).data.response.replies;
 };

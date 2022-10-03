@@ -7,3 +7,8 @@ export const CategoryList = Object.keys(Categories) as CategoriesType[];
 export type CategoriesType = keyof typeof Categories;
 
 export type editContentType = 'answers' | 'comments' | 'replies' | 'enquiries';
+
+export interface Exp {
+  access_exp?: number | null;
+  refresh_exp?: number | null;
+}

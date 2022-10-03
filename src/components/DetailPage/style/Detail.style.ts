@@ -108,7 +108,7 @@ export const Title = styled.h1`
 `;
 
 export const ProjectProgress = styled.div`
-  border: 1px solid ${theme.color.secondary};
+  border: 1px solid ${theme.color.border(0.1)};
   /* border-bottom: none; */
   margin: 10px 0;
 

@@ -6,14 +6,14 @@ import { MainContent } from 'src/components/MainContent';
 import { NextPageContext } from 'next';
 import { GetServerSideProps } from 'next';
 import axios, { AxiosRequestConfig } from 'axios';
-import { http, reqAuth, user } from 'src/api';
+import { http, reqAuth, ssr, user } from 'src/api';
 import { keys } from 'src/hooks';
 import { cookieDecod } from 'src/lib/utils/cookieDecod';
 import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';
-interface Props {
-  exp: JSON;
-}
-const Home: NextPage<Props> = (props) => {
+import { Exp } from 'src/types/content-type';
+import { errorHandler } from 'src/api/errorHandler';
+
+const Home: NextPage<{ exp: Exp }> = (props) => {
   setLocalStorage('exp', JSON.stringify(props.exp));
   return (
     <Layout sideLeft sideRight>
@@ -23,16 +23,15 @@ const Home: NextPage<Props> = (props) => {
 };
 export default Home;
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
   const queryClient = new QueryClient();
-
-  if (req?.headers?.cookie?.includes('jwt-access')) {
-    await queryClient.prefetchQuery(keys.auth, () => reqAuth.httpAuth(req as AxiosRequestConfig), {});
+  if (exp.access_exp) {
+    await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
   }
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
-      exp: cookieDecod(req, res),
+      exp: exp,
     },
   };
-};
+});
