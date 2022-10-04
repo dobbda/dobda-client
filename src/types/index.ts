@@ -3,6 +3,7 @@ export interface Author {
   id: number; //
   avatar: string;
   email?: string;
+  hashId: string;
 }
 
 export interface UserUpdate {

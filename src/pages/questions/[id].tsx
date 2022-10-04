@@ -34,9 +34,8 @@ export default QuestionDetailPage;
 export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
   const queryClient = new QueryClient();
   const { id } = query as { id: string };
-  if (exp.access_exp) {
-    await queryClient.prefetchQuery(keys.qDetail(id), () => ssr.question(req as AxiosRequestConfig, id));
-  }
+
+  await queryClient.prefetchQuery(keys.qDetail(id), () => ssr.question(req as AxiosRequestConfig, id));
 
   return {
     props: {

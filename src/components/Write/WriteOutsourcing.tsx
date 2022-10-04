@@ -5,14 +5,14 @@ import styled from 'styled-components';
 import { useQuery, useQueryClient } from 'react-query';
 
 import { Editor } from 'src/components/Editor';
-import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.style';
-import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag, message } from 'antd';
+import { Write_Wrapper, EnrQorl, Label, Group, Pilsu, CoinView } from './style/write.style';
+import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag, message, Input } from 'antd';
 
 import Hashtags from './atom/Hashtags';
 import { atom, Button, Link, Loading } from '../common';
-import { useAddOutsource, useAddQuestion, useDidMountEffect, useErrMsg } from 'src/hooks';
-import { CreateOutsource, CreateQuestion, OutsourceDetail } from 'src/types';
-import { CoinView } from './atom/CoinView';
+import { useAddOutsource, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
+import { CreateOutsource, OutsourceDetail } from 'src/types';
+
 import { q } from 'src/api';
 import { o } from 'src/api';
 type Props = {
@@ -35,13 +35,18 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
   const editOutsource = useAddOutsource(o.updateOutsource, data?.id);
 
   const errMsg = useErrMsg();
-
+  const { auth } = useAuth();
   useEffect(() => {
-    fetch('https://source.unsplash.com/800x200/?computer').then((response) => {
-      setImage(response.url);
-    });
+    if (!image) {
+      fetch('https://source.unsplash.com/800x200/?computer').then((response) => {
+        setImage(response.url);
+      });
+    }
   }, []);
 
+  const onChangeCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCoin(Number(`${e.target.value}`));
+  };
   const onCangeData: DatePickerProps['onChange'] = useCallback((date, dateString) => {
     setDeadline(dateString);
   }, []);
@@ -107,7 +112,12 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
 
           <div>
             <Label>작업 금액을 입력해주세요</Label>
-            {<CoinView coin={coin} setCoin={setCoin} />}
+            <CoinView className="coin-setting-group">
+              <Input type="number" placeholder="지불할 코인" value={coin} onChange={onChangeCoin} />
+              <div className="coin-data">
+                <Link href="#">충전하기</Link> <span>보유코인: {auth?.coin}</span>{' '}
+              </div>
+            </CoinView>
           </div>
           <br />
           <div>
@@ -120,13 +130,16 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
           </div>
           <br />
         </EnrQorl>
+
         <Label>
           제목을 입력해주세요 <Pilsu />
         </Label>
         <InputTitle value={contentTitle} onChange={(e) => setContentTitle(e.target.value)} />
+
         <EditorContainer>
           <Editor mdStr={mdStr} setMdStr={setMdStr} height="600px" />
         </EditorContainer>
+
         <atom.Flex>
           {data?.id && (
             <Button cancel onClick={cancelHandler} css={{ width: '150px', marginRight: '5px' }}>
@@ -153,15 +166,4 @@ const InputTitle = styled(AntInput)`
 
 const EditorContainer = styled.div`
   margin-top: 20px;
-`;
-
-const SubmitBtn = styled.button<{ cancel?: boolean }>`
-  cursor: pointer;
-  background-color: #0057ff;
-  border: solid 1px #0057ff;
-  padding: 5px 20px;
-  color: #fff;
-  border-radius: 4px;
-  margin: 0 10px;
-  ${({ cancel }) => cancel && 'background-color: #fff; color:#000'}
 `;

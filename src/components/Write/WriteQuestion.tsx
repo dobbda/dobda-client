@@ -3,17 +3,17 @@ import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { useQuery, useQueryClient } from 'react-query';
 import { Editor } from 'src/components/Editor';
-import { Write_Wrapper, EnrQorl, Label, Group, Pilsu } from './style/write.style';
-import { Input as AntInput, message } from 'antd';
+import { Write_Wrapper, EnrQorl, Label, Group, Pilsu, CoinView } from './style/write.style';
+import { Input as AntInput, Input, message } from 'antd';
 import 'antd/dist/antd.css';
 
 import Hashtags from './atom/Hashtags';
 import { atom, Button, Link, Loading } from '../common';
-import { useAddOutsource, useAddQuestion, useDidMountEffect, useErrMsg } from 'src/hooks';
-import { CreateOutsource, CreateQuestion, QuestionDetail } from 'src/types';
-import { CoinView } from './atom/CoinView';
+import { useAddOutsource, useAddQuestion, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
+import { CreateQuestion, QuestionDetail } from 'src/types';
 import { q } from 'src/api';
 import { o } from 'src/api';
+import { variable } from 'src/config/defaultValue';
 type Props = {
   data?: QuestionDetail;
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,7 +21,6 @@ type Props = {
 const WriteQuestion = ({ data, setIsEdit }: Props) => {
   const queryClient = useQueryClient();
   const [saveLoading, setSaveLoading] = useState(false);
-
   const [contentTitle, setContentTitle] = useState<string>(data?.title);
   const [tags, setTags] = useState<string[] | null>(data?.tagNames.map((tags: any) => tags.name));
   const [mdStr, setMdStr] = React.useState<string>(data?.content);
@@ -31,6 +30,11 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
   const editQuestion = useAddQuestion(q.updateQuestion, data?.id);
 
   const errMsg = useErrMsg();
+  const { auth } = useAuth();
+
+  const onChangeCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCoin(Number(`${e.target.value}`));
+  };
 
   const onSubmit = useCallback(() => {
     if (!confirm(`등록하시겠습니까? `)) return;
@@ -53,8 +57,13 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
       message.error('비어있는 항목이 있습니다.');
       return;
     }
+    if (coin >= variable.minCoin) {
+      if (coin > auth?.coin) message.error('보유코인이 부족합니다');
+    } else {
+      message.error(`최소 ${variable.minCoin}코인 이상부터 가능합니다 `);
+    }
     onSubmit();
-  }, [contentTitle, mdStr, onSubmit, tags]);
+  }, [auth?.coin, coin, contentTitle, mdStr, onSubmit, tags]);
 
   const cancelHandler = useCallback(() => {
     if (confirm('수정된 정보는 저장되지 않습니다.')) setIsEdit(false);
@@ -81,23 +90,29 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
               태그를 추가해 주세요(최대10개)
               <Pilsu />
             </Label>
-
             <Hashtags tags={tags} setTags={setTags} />
           </div>
           <br />
           <div>
             <Label>코인을 입력해주세요</Label>
-            <Link href="#">충전</Link>
-            {<CoinView coin={coin} setCoin={setCoin} />}
+            <CoinView className="coin-setting-group">
+              <Input type="number" placeholder="지불할 코인" value={coin} onChange={onChangeCoin} />
+              <div className="coin-data">
+                <Link href="#">충전하기</Link> <span>보유코인: {auth?.coin}</span>{' '}
+              </div>
+            </CoinView>
           </div>
         </EnrQorl>
+
         <Label>
           제목을 입력해주세요 <Pilsu />
         </Label>
         <InputTitle value={contentTitle} onChange={(e) => setContentTitle(e.target.value)} />
+
         <EditorContainer>
           <Editor mdStr={mdStr} setMdStr={setMdStr} height="600px" />
         </EditorContainer>
+
         <atom.Flex>
           {data?.id && (
             <Button cancel onClick={cancelHandler} css={{ width: '150px', marginRight: '5px' }}>
@@ -124,15 +139,4 @@ const InputTitle = styled(AntInput)`
 
 const EditorContainer = styled.div`
   margin-top: 20px;
-`;
-
-const SubmitBtn = styled.button<{ cancel?: boolean }>`
-  cursor: pointer;
-  background-color: #0057ff;
-  border: solid 1px #0057ff;
-  padding: 5px 20px;
-  color: #fff;
-  border-radius: 4px;
-  margin: 0 10px;
-  ${({ cancel }) => cancel && 'background-color: #fff; color:#000'}
 `;

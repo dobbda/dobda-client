@@ -10,9 +10,7 @@ export const cookieDecod = (req: IncomingMessage, res: ServerResponse) => {
   let access_ = cookies.get('jwt-access')?.split('.')[1];
   let refesh_ = cookies.get('jwt-refresh')?.split('.')[1];
 
-  let access_exp = null;
-  let refresh_exp = null;
-  var result: Exp = {};
+  var result: Exp | null = {};
 
   if (access_) {
     var _ = JSON.parse(Buffer.from(access_, 'base64')?.toString('utf8'))?.exp * 1000;

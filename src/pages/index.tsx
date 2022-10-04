@@ -25,7 +25,7 @@ export default Home;
 
 export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
   const queryClient = new QueryClient();
-  if (exp.access_exp) {
+  if (exp?.access_exp) {
     await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
   }
   return {
