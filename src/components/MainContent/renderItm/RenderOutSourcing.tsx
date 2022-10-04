@@ -5,6 +5,7 @@ import OCard from '../../Card/OCard';
 import styled from 'styled-components';
 import { o } from 'src/api';
 import { InfinityProps, Outsource } from 'src/types';
+import { motion } from 'framer-motion';
 
 function RenderOutsource() {
   const [shearchTitle, setShearchTitle] = useState<string>();
@@ -21,7 +22,10 @@ function RenderOutsource() {
     if (!data) refetch();
   }, [isView, hasNextPage, fetchNextPage, refetch, data]);
   return (
-    <ContentCardList>
+    <ContentCardList
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ opacity: [0.5, 1], height: 'auto', transition: { duration: 0.15 } }}
+    >
       {isSuccess && data?.pages
         ? data.pages.map((page) => {
             const data = page.result;
@@ -47,14 +51,12 @@ function RenderOutsource() {
 
 export default RenderOutsource;
 
-const ContentCardList = styled.div`
+const ContentCardList = styled(motion.div)`
   display: grid;
   place-items: center;
-  /* background-color: #fff; */
-  /* border-radius: 8px; */
-  /* border: 1px solid #e3e3e3; */
   overflow: hidden;
   gap: 15px;
+  margin-bottom: 10px;
 `;
 const RefCard = styled.div`
   width: 100%;

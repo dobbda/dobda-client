@@ -45,8 +45,10 @@ export const Title = styled.h3`
   margin-bottom: 10px;
   word-break: break-all;
   max-height: 40px;
+  display: inline-block;
+
   :hover {
-    color: #23629f;
+    text-decoration: underline;
   }
 `;
 

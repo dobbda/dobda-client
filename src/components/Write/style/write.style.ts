@@ -36,3 +36,21 @@ export const Group = styled.div`
 export const Tags = styled(Input)`
   margin-left: 15px;
 `;
+
+export const CoinView = styled.div`
+  width: 320px;
+  text-align: center;
+  border-radius: 4px;
+  .coin-data {
+    padding: 0 5px;
+    display: flex;
+    span {
+      color: #8400ec;
+      font-weight: bold;
+    }
+    a {
+      color: blue;
+      margin-right: 20px;
+    }
+  }
+`;

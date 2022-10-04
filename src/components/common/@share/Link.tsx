@@ -1,23 +1,14 @@
 import React, { ReactNode } from 'react';
-import Link from 'next/link';
-type Props = {
-  children: React.ReactNode;
-  href: string;
-  scroll?: boolean;
-};
+import Link, { LinkProps } from 'next/link';
+interface Props extends LinkProps {
+  children?: React.ReactNode;
+}
 
-export const A = ({ children, href, scroll = true }: Props) => {
-  if (typeof children == 'object') {
-    return (
-      <Link href={href} passHref scroll={scroll}>
-        <a>{children}</a>
-      </Link>
-    );
-  } else {
-    return (
-      <Link href={href} scroll={scroll}>
-        {children}
-      </Link>
-    );
-  }
+export const A = (props: Props) => {
+  const { children, ...linkProps } = props;
+  return (
+    <Link {...linkProps}>
+      <a css={{}}>{children}</a>
+    </Link>
+  );
 };

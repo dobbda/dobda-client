@@ -5,7 +5,7 @@ export const createQueryClient = () => {
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
-        cacheTime: Infinity,
+        cacheTime: 1000 * 60 * 10,
         retry: 2, //false, true,
       },
       mutations: {

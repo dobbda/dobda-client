@@ -27,7 +27,7 @@ const useAddEnquiry = (oid: number) => {
     },
 
     onError: (error: AxiosError) => {
-      queryClient.setQueryData('serverErrorMessage', error.response?.data?.error?.message || '잘못된 요청입니다.');
+      queryClient.setQueryData('serverErrorMessage', error?.message || '잘못된 요청입니다.');
     },
   });
 };
