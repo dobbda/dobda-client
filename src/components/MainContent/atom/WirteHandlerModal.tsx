@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { GoArrowIcon, OutSourceIcon, QuestionIcon } from 'src/icons';
+import { i } from 'src/icons';
 import { Modal } from 'src/components/common';
 import { SocialLogin } from 'src/components/SocialLogin';
 import { theme } from 'src/styles/Theme';
@@ -20,18 +20,18 @@ export function WirteHandlerModal({ visible, setVisible }: Props) {
           <Link href="/questions/write">
             <a>
               <Btn>
-                <QuestionIcon color={theme.color.primary} size="20px" />
+                <i.Question color={theme.color.primary} size="20px" />
                 질문하기
-                <GoArrowIcon color="rgb(199, 199, 199)" />
+                <i.GoArrow color="rgb(199, 199, 199)" />
               </Btn>
             </a>
           </Link>
           <Link href="/custom-project/write">
             <a>
               <Btn outSource>
-                <OutSourceIcon color={theme.color.secondary} size="20px" />
+                <i.OutSource color={theme.color.secondary} size="20px" />
                 작업 요청하기(외주)
-                <GoArrowIcon color="rgb(199, 199, 199)" />
+                <i.GoArrow color="rgb(199, 199, 199)" />
               </Btn>
             </a>
           </Link>

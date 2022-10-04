@@ -1,5 +1,5 @@
 import React from 'react';
-import { TagCloseIcon } from 'src/icons';
+import { i } from 'src/icons';
 import styled from 'styled-components';
 
 type Props = {
@@ -38,7 +38,7 @@ export const Tag = ({ children, closable, onClose, bg }: Props) => {
       {children}{' '}
       {closable && (
         <span onClick={onClose}>
-          <TagCloseIcon />
+          <i.TagClose />
         </span>
       )}
     </Div>

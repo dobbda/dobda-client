@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './style/Q.style';
 import * as c from './style/common';
 import * as Lib from 'src/components/common';
-import * as I from 'src/icons';
+import { i } from 'src/icons';
 
 import { Question } from 'src/types';
 import getDate from 'src/lib/utils/dateForm';
@@ -57,11 +57,11 @@ const QCard = ({ data }: data) => {
               <c.Gap>|</c.Gap>
 
               <c.Group>
-                <I.CoinIcon css={{ marginRight: '5px' }} /> <c.P>{q.coin.toLocaleString()}</c.P>
+                <i.Coin css={{ marginRight: '5px' }} /> <c.P>{q.coin.toLocaleString()}</c.P>
               </c.Group>
             </c.Group>
             <c.Group>
-              <I.WatchIcon style={{ color: '#888888', fontSize: '17px', marginRight: '5px' }} /> {q.watch}
+              <i.Watch style={{ color: '#888888', fontSize: '17px', marginRight: '5px' }} /> {q.watch}
             </c.Group>
           </S.FooterWrapper>
         </S.ContentWrapper>

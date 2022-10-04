@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useQueryClient } from 'react-query';
 import styled from 'styled-components';
-import { LogoIconW, LogoBBB } from 'src/icons';
+import { i } from 'src/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 import { keys } from 'src/hooks';
@@ -29,7 +29,7 @@ export const Logo = ({ b, height }: Props) => {
 
   return (
     <Div onClick={goHome}>
-      {b ? <LogoBBB height={height ? height : '35px'} /> : <LogoIconW height={height ? height : '35px'} />}
+      {b ? <i.LogoBBB height={height ? height : '35px'} /> : <i.LogoW height={height ? height : '35px'} />}
     </Div>
   );
 };

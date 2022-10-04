@@ -1,5 +1,5 @@
 import React from 'react';
-import { SearchIcon } from 'src/icons';
+import { i } from 'src/icons';
 import styled from 'styled-components';
 import { theme } from 'src/styles/Theme';
 type Props = {};
@@ -15,7 +15,7 @@ export const SearchBox = (props: Props) => {
   );
 };
 
-const Shearch = styled(SearchIcon)`
+const Shearch = styled(i.Search)`
   height: 18px;
   width: 18px;
   color: ${theme.color.primary};

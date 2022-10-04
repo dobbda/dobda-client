@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Div, Label, CheckBox, ChildMenu, Icon } from './style/Menu.style';
 import { Link } from 'src/components/common';
-import { ArrowIcon, MainArrowIcon } from 'src/icons';
+import { i } from 'src/icons';
 
 type Props = {
   title: any;
@@ -25,7 +25,7 @@ export const FolderMenu = ({ title, icon, children, childOpen = false }: React.P
       <Label htmlFor={checkId}>
         {icon && <Icon>{icon}</Icon>}
         <h1>{title}</h1>
-        <MainArrowIcon className="rotate" />
+        <i.MainArrow className="rotate" />
       </Label>
       <ChildMenu>{children}</ChildMenu>
     </Div>

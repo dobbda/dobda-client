@@ -1,5 +1,5 @@
 import { Input as AntInput, Button } from 'antd';
-import { ReplyIcon, ReplyFillIcon } from 'src/icons';
+import { i } from 'src/icons';
 import styled from 'styled-components';
 import { GlobalStyle } from 'src/styles/GlobalStyle';
 
@@ -10,7 +10,7 @@ export const EditorStyle = styled.div`
   border-radius: 4px;
 `;
 
-export const ReplyIconS = styled(ReplyIcon)`
+export const ReplyIconS = styled(i.Reply)`
   fill: gray;
   transform: rotate(180deg);
   height: 20px;

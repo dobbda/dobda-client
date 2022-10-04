@@ -5,7 +5,7 @@ import { atom, Avatar } from 'src/components/common';
 import getDate from 'src/lib/utils/dateForm';
 
 import * as S from './style/style';
-import * as i from 'src/icons';
+import { i } from 'src/icons';
 import { SubmitBtn } from '../style/Detail.style';
 import { Enquiry } from 'src/types';
 import styled from 'styled-components';
@@ -79,7 +79,7 @@ const EnquiryCp = ({ enquiry }: Props) => {
                   }
                 >
                   <span className="moreBtn">
-                    <i.MoreIcon />
+                    <i.More />
                   </span>
                 </Popover>
               </>
@@ -93,7 +93,7 @@ const EnquiryCp = ({ enquiry }: Props) => {
           {/*Reply ---------------------------*/}
           <S.ChildView>
             <div className="show-replybtn">
-              <i.ReCommentIcon style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{enquiry.repliesCount} </span>
+              <i.ReComment style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{enquiry.repliesCount} </span>
               <span onClick={() => setviewChild(!viewChild)}>
                 <CommentRotate view={viewChild.toString()} />
               </span>
@@ -124,7 +124,7 @@ const EnquiryCp = ({ enquiry }: Props) => {
 
 export default EnquiryCp;
 
-const CommentRotate = styled(i.ArrowIcon)<{ view: string }>`
+const CommentRotate = styled(i.Arrow)<{ view: string }>`
   cursor: pointer;
   margin-top: 7px;
   color: rgba(0, 0, 0, 0.6);

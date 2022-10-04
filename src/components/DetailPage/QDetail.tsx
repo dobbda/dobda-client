@@ -6,7 +6,7 @@ import { Avatar } from '../common';
 import { AnswerCp } from './Comment/';
 import getDate from 'src/lib/utils/dateForm';
 
-import { CoinIcon, QIcon } from 'src/icons';
+import { i } from 'src/icons';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer } from 'src/components/Editor';
 import { Question, QuestionDetail } from 'src/types';
@@ -79,12 +79,12 @@ const QDetail = ({ children, data }: Props) => {
                 <atom.CreatedAt>{getDate(data?.createdAt)}</atom.CreatedAt>
               </div>
               <S.Title>
-                <QIcon /> {data?.title}
+                <i.Q /> {data?.title}
               </S.Title>
 
               <atom.TagWrapper>
                 <S.CoinWrapper>
-                  <CoinIcon />
+                  <i.Coin />
                   <p>{data?.coin}</p>
                 </S.CoinWrapper>
                 {data?.tagNames && data?.tagNames.map((tag) => <Tag key={tag.name}>{tag.name}</Tag>)}

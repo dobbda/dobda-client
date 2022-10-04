@@ -4,7 +4,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import { SideContainer, P, Avatar } from './style/SideContent.style';
 import { FolderMenu } from './FolderMenu/FolderMenu';
 
-import * as I from 'src/icons'; //icon
+import { i } from 'src/icons'; //icon
 import { useAuth, useLoginModalhandler, useLogout } from 'src/hooks';
 import { Button } from '../common';
 import { NoData } from '../common/@share/atom';
@@ -44,7 +44,7 @@ export const SideContentLeft = ({ folderOpenFalse }: Props) => {
         </FolderMenu>
       ) : (
         <FolderMenu
-          icon={<I.UserIcon />}
+          icon={<i.User />}
           title={
             <Button onClick={() => setLoginModal()} css={{ width: '130px' }}>
               로그인
@@ -56,7 +56,7 @@ export const SideContentLeft = ({ folderOpenFalse }: Props) => {
           <div>로그인이 필요합니다.</div>
         </FolderMenu>
       )}
-      <FolderMenu icon={<I.NoticeIcon size="20px" />} childOpen={!folderOpenFalse} title="공지사항" href="/notice">
+      <FolderMenu icon={<i.Notice size="20px" />} childOpen={!folderOpenFalse} title="공지사항" href="/notice">
         <NoData>No Data</NoData>
       </FolderMenu>
     </SideContainer>
