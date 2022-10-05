@@ -84,7 +84,7 @@ const Style = {
     border-radius: 1em;
   `,
   LoginList: styled.div`
-    display: flex;
+    display: flex -webkit-flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
