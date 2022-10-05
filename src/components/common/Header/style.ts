@@ -10,7 +10,10 @@ export const Header = styled.header`
   right: 0px;
   opacity: 0.95;
   background-color: ${({ theme }) => theme.color.header};
-  border-bottom: solid 1px #cacaca;
+
+  -moz-box-shadow: 0 5px 4px rgb(137 138 154 / 40%);
+  -webkit-box-shadow: 0 5px 4px rgb(137 138 154 / 40%);
+  box-shadow: 0 5px 4px rgb(137 138 154 / 40%);
   .headerWrapper {
   }
 `;

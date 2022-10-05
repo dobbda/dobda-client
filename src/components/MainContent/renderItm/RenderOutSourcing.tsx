@@ -52,6 +52,7 @@ function RenderOutsource() {
 export default RenderOutsource;
 
 const ContentCardList = styled(motion.div)`
+  padding: 5px 0;
   display: grid;
   place-items: center;
   overflow: hidden;

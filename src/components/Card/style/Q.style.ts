@@ -7,16 +7,17 @@ interface CardProps {
 }
 
 export const ContentWrapper = styled.div<CardProps>`
-  border: solid 1px #eee;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 6px 0 rgb(137 138 154 / 40%);
+  box-sizing: border-box;
   padding: 20px 30px;
   background-color: #fff;
-  border-radius: 4px;
   svg {
     font-size: 15px;
   }
 
   :hover {
-    border: 1px solid ${theme.color.primary};
+    border: 1px solid ${theme.color.prRgb(0.5)};
   }
 
   @media screen and (max-width: 450px) {
@@ -49,6 +50,7 @@ export const Title = styled.h3`
 
   :hover {
     text-decoration: underline;
+    text-underline-offset: 3px;
   }
 `;
 

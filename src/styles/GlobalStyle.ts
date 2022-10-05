@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
 		margin: 0 ;
 		padding:0;
-    background-color: #f3f4f8;
+    background-color: ${theme.color.bg};
 		font-family: "Helvetica Neue", "Noto Sans KR", Inter, Helvetica, sans-serif;
     font-size: 14px;
 
@@ -22,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
 			border:none;
     }
     .toastui-editor-defaultUI{
-      border:1px solid #dadada;
+      border:1px solid ${theme.color.border(0.1)};
       border-radius: 0;
       background: #fff;
 			h1,h2,h3,h4,h5,h6{
@@ -31,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
 			}
 			.toastui-editor-toolbar{
 				background-color: #fff;
-				border-bottom: 1px solid ${theme.color.bg};
+				border-bottom: 1px solid ${theme.color.border(0.1)};
 			}
     }
 		.toastui-editor-contents h1,h2,h3{

@@ -46,7 +46,7 @@ export function UserInfo({ id }: Props) {
           <UserTech>
             <h3>Tech Stacks</h3>
             <TagWrapper>
-              {data.skill.map((tag) => (
+              {data.skill?.map((tag) => (
                 <Tag key={tag} bg={theme.color.prRgb(0.3)}>
                   {tag}
                 </Tag>

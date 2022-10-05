@@ -9,12 +9,15 @@ import { Write_Wrapper, EnrQorl, Label, Group, Pilsu, CoinView } from './style/w
 import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag, message, Input } from 'antd';
 
 import Hashtags from './atom/Hashtags';
-import { atom, Button, Link, Loading } from '../common';
+import { atom, Button, Link, Loading, Popover } from '../common';
 import { useAddOutsource, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
 import { CreateOutsource, OutsourceDetail } from 'src/types';
 
 import { q } from 'src/api';
 import { o } from 'src/api';
+import { i } from 'src/icons';
+import { theme } from 'src/styles/Theme';
+import { Tips } from './atom/Tips';
 type Props = {
   data?: OutsourceDetail;
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -97,6 +100,7 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
       message.error(errMsg);
     }
   }, [addOutsource.isSuccess, editOutsource.isSuccess, errMsg, addOutsource.isError, editOutsource?.isError]);
+
   return (
     <>
       <h1>{data?.id ? '프로젝트 수정 페이지' : '프로젝트 생성 페이지'}</h1>
@@ -111,7 +115,10 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
           <br />
 
           <div>
-            <Label>작업 금액을 입력해주세요</Label>
+            <Label>
+              작업 금액을 입력해주세요
+              <Tips />
+            </Label>
             <CoinView className="coin-setting-group">
               <Input type="number" placeholder="지불할 코인" value={coin} onChange={onChangeCoin} />
               <div className="coin-data">

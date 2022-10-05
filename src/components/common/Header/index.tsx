@@ -41,7 +41,7 @@ const HeaderNav = () => {
             )}
             {auth?.id && (
               <>
-                <Popover trigger="click" content={<MessageBox />} top={10} right={-10}>
+                <Popover trigger="click" content={<MessageBox />} top={16} right={0}>
                   <i.Bell size={'20px'} css={{ marginTop: '2px', cursor: 'pointer' }} />
                 </Popover>
               </>

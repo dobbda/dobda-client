@@ -4,13 +4,15 @@ import styled from 'styled-components';
 
 export const ContentWrapper = styled.div`
   position: relative;
-  border: solid 1px #dfdfdf;
   background-color: #fff;
-  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 6px 0 rgb(137 138 154 / 40%);
+  box-sizing: border-box;
   :hover {
-    border: 1px solid ${theme.color.primary};
+    border: 1px solid ${theme.color.prRgb(0.5)};
     .outsourcing-title {
       text-decoration: underline;
+      text-underline-offset: 3px;
     }
   }
 `;
@@ -72,7 +74,7 @@ export const Watch = styled.div`
   right: 0;
   background-color: #fff;
   padding: 5px 10px;
-  border-top-right-radius: 4px;
+  /* border-top-right-radius: 4px; */
   border-bottom-left-radius: 4px;
 `;
 export const Countdown = styled.div`
@@ -81,6 +83,6 @@ export const Countdown = styled.div`
   left: 0;
   background-color: #fff;
   padding: 5px 10px;
-  border-top-left-radius: 4px;
+  /* border-top-left-radius: 4px; */
   border-bottom-right-radius: 4px;
 `;

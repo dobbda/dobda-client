@@ -1,48 +1,11 @@
+import { animate, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import styled, { css } from 'styled-components';
-type StyleProps = {
-  top?: number;
-  left?: number;
-  right?: number;
-  bottom?: number;
-};
-// popover container style
-const PopoverContainer = styled.div<StyleProps>`
-  ${(props) => {
-    return css`
-      z-index: 9999;
-      position: absolute;
-      top: ${props.top != null ? '100%' : 'auto'};
-      bottom: ${props.bottom != null ? '100%' : 'auto'};
-      left: ${props.left != null ? props.left + 'px' : 'auto'};
-      right: ${props.right != null ? props.right + 'px' : 'auto'};
-
-      min-width: 100px;
-      min-height: 100px;
-
-      .top-area {
-        //
-        height: ${props.top != null ? props.top + 'px' : 0};
-        width: 100%;
-      }
-      .bottom-area {
-        height: ${props.bottom != null ? props.bottom + 'px' : 0};
-        width: 100%;
-      }
-    `;
-  }}
-`;
-// popover container parents element
-const Span = styled.span`
-  overflow: visible !important;
-
-  position: relative;
-`;
+import styled, { css, CSSProp } from 'styled-components';
 
 type Props = {
   children: React.ReactNode;
   content: React.ReactNode;
-  trigger?: string;
+  trigger?: 'click' | 'hover';
   outClick?: boolean;
   top?: number;
   left?: number;
@@ -50,7 +13,6 @@ type Props = {
   right?: number;
   visible?: boolean; //내용완료시 자동 닫기를 원할시 close로 boolean 전달; true일시 모달close
 };
-
 export function Popover({
   children,
   content,
@@ -78,12 +40,18 @@ export function Popover({
   }, [trigger]);
 
   // mouse click event
-  const onClickIsShow = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    setIsShow(!isShow);
-  }, []);
+  const onClickIsShow = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      setIsShow(!isShow);
+    },
+    [isShow],
+  );
 
   const pageClickEvent = useCallback((e: any) => {
     if (!setUseRef.current.contains(e.target)) {
+      setIsShow(false);
+    }
+    if (isShow && e.target == children) {
       setIsShow(false);
     }
   }, []);
@@ -102,10 +70,19 @@ export function Popover({
     };
   }, [visible, outClick, pageClickEvent]);
   return (
-    <Span onClick={onClickIsShow} ref={setUseRef} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-      <>{children}</>
+    <Span ref={setUseRef} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+      <span onClick={onClickIsShow} className="event_click_target">
+        {children}
+      </span>
       {isShow && (
-        <PopoverContainer top={top} left={left} bottom={bottom} right={right}>
+        <PopoverContainer
+          top={top}
+          left={left}
+          bottom={bottom}
+          right={right}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 0.2 } }}
+        >
           <div className="top-area"> </div>
           {content}
 
@@ -115,3 +92,43 @@ export function Popover({
     </Span>
   );
 }
+
+type StyleProps = {
+  top?: number;
+  left?: number;
+  right?: number;
+  bottom?: number;
+};
+// popover container style
+const PopoverContainer = styled(motion.div)<StyleProps>`
+  ${(props) => {
+    return css`
+      z-index: 9999;
+      position: absolute;
+      top: ${props.top != null ? '100%' : 'auto'};
+      bottom: ${props.bottom != null ? '100%' : 'auto'};
+      left: ${props.left != null ? props.left + 'px' : 'auto'};
+      right: ${props.right != null ? props.right + 'px' : 'auto'};
+
+      .top-area {
+        //
+        height: ${props.top != null ? props.top + 'px' : 0};
+        width: 100%;
+      }
+      .bottom-area {
+        height: ${props.bottom != null ? props.bottom + 'px' : 0};
+        width: 100%;
+      }
+      .event_click_target {
+        height: 100%;
+        width: fit-content;
+      }
+    `;
+  }}
+`;
+// popover container parents element
+const Span = styled.span`
+  overflow: visible !important;
+
+  position: relative;
+`;

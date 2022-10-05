@@ -19,8 +19,8 @@ const OCard = ({ data }: Props) => {
   return (
     <>
       {data && data ? (
-        <S.ContentWrapper>
-          <Lib.Link href={`/custom-project/requests/${data.id}`} scroll={false}>
+        <Lib.Link href={`/custom-project/requests/${data.id}`} scroll={false}>
+          <S.ContentWrapper>
             <S.Watch>
               <c.Group>
                 <i.Watch style={{ color: '#707070', fontSize: '17px', marginRight: '5px' }} /> <c.P>{data?.watch}</c.P>
@@ -61,8 +61,8 @@ const OCard = ({ data }: Props) => {
               </S.HeaderWrapper>
               <S.Title className="outsourcing-title">{data.title}</S.Title>
             </S.Content>
-          </Lib.Link>
-        </S.ContentWrapper>
+          </S.ContentWrapper>
+        </Lib.Link>
       ) : null}
     </>
   );

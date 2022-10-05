@@ -88,7 +88,7 @@ const Style = {
     flex-direction: column;
     text-align: center;
     align-items: center;
-    padding: 10px 0;
+    gap: 10px;
   `,
 };
 

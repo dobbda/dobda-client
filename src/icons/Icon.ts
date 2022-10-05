@@ -32,7 +32,7 @@ export { RiRefreshLine as Refresh } from 'react-icons/ri';
 export { RiQuestionnaireFill as Question } from 'react-icons/ri';
 export { FaHandsHelping as OutSource } from 'react-icons/fa';
 export { BiRightArrow as GoArrow } from 'react-icons/bi';
-export { IoIosHelpCircleOutline as Tip } from 'react-icons/io';
+export { MdOutlineHelp as Tip } from 'react-icons/md';
 
 import { RiArrowDownSLine } from 'react-icons/ri';
 export const MainArrow = styled(RiArrowDownSLine)`
