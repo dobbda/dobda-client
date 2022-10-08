@@ -3,7 +3,6 @@ import S3 from 'aws-sdk/clients/s3';
 export const uploadS3 = async (file: File) => {
   let type = file.name.split('.').pop().toLowerCase();
   const can = ['jpg', 'png', 'gif', 'svg', 'jpeg', 'webp'];
-  console.log('확장자: ', type, file);
 
   if (can.indexOf(type)) {
     const fileName = `content-images/dobda-${Date.now().toString()}.` + type; // 이미지 이름

@@ -46,7 +46,7 @@ export const SideContentLeft = ({ folderOpenFalse }: Props) => {
         <FolderMenu
           icon={<i.User />}
           title={
-            <Button onClick={() => setLoginModal()} css={{ width: '130px' }}>
+            <Button onClick={() => setLoginModal()} css={{ width: '130px' }} types="primary" fill>
               로그인
             </Button>
           }

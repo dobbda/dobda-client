@@ -149,11 +149,11 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
 
         <atom.Flex>
           {data?.id && (
-            <Button cancel onClick={cancelHandler} css={{ width: '150px', marginRight: '5px' }}>
+            <Button types="primary" onClick={cancelHandler} css={{ width: '150px', marginRight: '5px' }}>
               취소
             </Button>
           )}
-          <Button onClick={onSubmitCheck} css={{ width: '150px' }}>
+          <Button onClick={onSubmitCheck} css={{ width: '150px' }} types="primary">
             <Loading loading={saveLoading} />
             등록
           </Button>

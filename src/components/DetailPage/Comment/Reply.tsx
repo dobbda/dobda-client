@@ -4,7 +4,7 @@ import getDate from 'src/lib/utils/dateForm';
 import { ReplyItem, Header, CommentContent } from './style/Reply.style';
 import { atom, Avatar } from 'src/components/common';
 import { i } from 'src/icons';
-import { MarkDownViewer } from 'src/components/Editor';
+import { HtmlViewer } from 'src/components/Editor';
 import { Comment, Reply } from 'src/types';
 
 type Props = {
@@ -26,7 +26,7 @@ const ReplyCp = ({ reply }: Props) => {
       </Header>
 
       <CommentContent>
-        <MarkDownViewer content={reply.content} />
+        <HtmlViewer content={reply.content} />
       </CommentContent>
     </ReplyItem>
   );

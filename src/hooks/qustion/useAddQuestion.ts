@@ -64,8 +64,9 @@ const useAddQuestion = (mutationFn: any, qid?: number) => {
       router.push(`/questions/` + newQuestion.id);
     },
 
-    onError: (error: AxiosError) => {
-      queryClient.setQueryData('serverErrorMessage', error?.message || '잘못된 요청입니다.');
+    onError: (error: any) => {
+      let message = typeof error.response !== 'undefined' ? error.response.data?.error?.message : error.message;
+      queryClient.setQueryData('serverErrorMessage', message || '잘못된 요청입니다.');
     },
   });
 };

@@ -19,7 +19,7 @@
     "incremental": true,
     "baseUrl": "."
   },
-  "include": ["custom.d.ts", "index.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["types/**.d.ts", "**/*.ts", "**/*.tsx", "src/components/Editor/utils/upload-s3.ts"],
   "exclude": ["node_modules"],
   "types": ["gapi", "gapi.auth2"]
 }

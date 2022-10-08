@@ -19,21 +19,29 @@ module.exports = withPlugins([withBundleAnalyzer], {
   images: {
     domains: ['source.unsplash.com', 'joeschmoe.io', 'avatars.dicebear.com'],
   },
-  rewrites: () =>
-    prod
-      ? [
-          {
-            source: '/api/:path*',
-            destination: `${process.env.API_KEY}/:path*`,
-          },
-        ]
-      : [
-          {
-            source: '/api/:path*',
-            destination: `${process.env.API_KEY_DEV}/:path*`,
-          },
-        ],
-
+  rewrites: () => [
+    {
+      source: '/api/:path*',
+      destination: `${prod ? process.env.API_KEY : process.env.API_KEY_DEV}/:path*`,
+    },
+  ],
+  redirects: () => [
+    {
+      source: '/questions/write',
+      destination: '/',
+      permanent: true,
+    },
+    {
+      source: '/custom-project/write',
+      destination: '/',
+      permanent: true,
+    },
+    {
+      source: '/user/:path*',
+      destination: '/',
+      permanent: true,
+    },
+  ],
   webpack(nextConfig, { dev }) {
     nextConfig.module.rules.push({
       test: /\.svg$/,

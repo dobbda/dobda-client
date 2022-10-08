@@ -2,8 +2,8 @@ import React, { useCallback, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import ReplyCp from './Reply';
-import { Editor, MarkDownViewer } from 'src/components/Editor';
-import { Avatar, atom, Loading } from 'src/components/common';
+import { Editor, HtmlViewer } from 'src/components/Editor';
+import { Avatar, atom, Loading, Button } from 'src/components/common';
 import getDate from 'src/lib/utils/dateForm';
 import { EditAnswer } from './EditAnswer';
 import * as S from './style/style';
@@ -13,19 +13,22 @@ import { Answer, QuestionDetail } from 'src/types';
 import { QueryClient, useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { keys, useDelete, useAddComment, useErrMsg, useDidMountEffect, useAuth } from 'src/hooks';
-import { Button, Popover, message as m } from 'antd';
+import { Popover, message as m } from 'antd';
+import { useRouter } from 'next/router';
 type Props = {
   answer: Answer;
   question: QuestionDetail;
 };
 
 const AnswerCp = ({ answer, question }: Props) => {
+  const router = useRouter();
+  const { id: qid } = router.query;
   const queryClient = useQueryClient();
   const errMsg = useErrMsg();
   const [isEdit, setisEdit] = useState(false);
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
-  const { data: comments } = useQuery(keys.comment(answer.id), () => q.getComments(answer.id), {
+  const { data: comments } = useQuery(keys.comment(Number(qid), answer.id), () => q.getComments(answer.id), {
     enabled: answer.commentsCount > 0 && viewChild,
   });
 
@@ -79,10 +82,10 @@ const AnswerCp = ({ answer, question }: Props) => {
               placement="bottom"
               content={
                 <>
-                  <Btn type="primary" key="edit" ghost>
+                  <Button key="edit" types="primary">
                     수정
-                  </Btn>
-                  <Btn onClick={removeHandler} type="primary" key="delete" danger ghost>
+                  </Button>
+                  <Btn onClick={removeHandler} key="delete" types="primary">
                     삭제
                   </Btn>
                 </>
@@ -98,7 +101,7 @@ const AnswerCp = ({ answer, question }: Props) => {
       </S.Header>
 
       <S.Viewer>
-        <MarkDownViewer content={answer?.content} />
+        <HtmlViewer content={answer?.content} />
       </S.Viewer>
       {/*Reply ---------------------------*/}
       <S.ChildView>
@@ -110,7 +113,7 @@ const AnswerCp = ({ answer, question }: Props) => {
         </div>
         <atom.Flex>
           {showAcceptButton && (
-            <Button css={{ borderRadius: '1em', marginRight: '1em', color: '#08DA11' }} onClick={accept}>
+            <Button onClick={accept} types="primary">
               채택하기
             </Button>
           )}
@@ -120,13 +123,13 @@ const AnswerCp = ({ answer, question }: Props) => {
       </S.ChildView>
 
       {viewChild && (
-        <>
+        <Transition>
           {comments ? (
             comments.map((comment) => <ReplyCp key={comment.id} reply={comment} />)
           ) : (
             <atom.NoData>등록된 댓글이 없습니다. 댓글을 등록할 수 있습니다.</atom.NoData>
           )}
-        </>
+        </Transition>
       )}
       <S.CommentEditor>
         <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
@@ -154,4 +157,9 @@ const CommentRotate = styled(i.Arrow)<Rotate>`
 const Btn = styled(Button)`
   display: block;
   width: 55px;
+`;
+
+const Transition = styled.div`
+  height: 100%;
+  transition: all 0.3s;
 `;

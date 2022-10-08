@@ -19,7 +19,11 @@ export default function Edit({ data, category }: Props) {
   return (
     <CommentEditor>
       <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
-      {mdStr && <Button onClick={onSubmit}>등록</Button>}
+      {mdStr && (
+        <Button onClick={onSubmit} types="primary" fill>
+          등록
+        </Button>
+      )}
     </CommentEditor>
   );
 }

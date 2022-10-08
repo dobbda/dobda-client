@@ -8,6 +8,8 @@ export const EditorStyle = styled.div`
   position: relative;
   background-color: #fff;
   border-radius: 4px;
+  height: fit-content;
+  transition: all 0.3s;
 `;
 
 export const ReplyIconS = styled(i.Reply)`

@@ -11,19 +11,22 @@ import { useQueryCount } from '../common/useQueryCount';
 const useAddCommentQ = (aid: number) => {
   const queryClient = useQueryClient();
   const router = useRouter();
-  const { qid } = router.query;
+  const { id } = router.query;
+
   const { setCount, setInfCount } = useQueryCount();
   return useMutation((data: CreateComment) => q.addComment(data), {
     onSuccess: async (res: AxiosResponse) => {
-      await queryClient.cancelQueries(keys.comment(aid));
+      console.log('프린트');
+      await queryClient.cancelQueries(keys.comment(Number(id), aid));
       if (res.data.success) {
-        await queryClient.invalidateQueries(keys.comment(aid));
-        setCount({ queryKey: keys.answers(Number(qid)), changeKey: 'commentsCount', findId: aid, upDown: +1 });
+        await queryClient.invalidateQueries(keys.comment(Number(id), aid));
+        setCount({ queryKey: keys.answers(Number(id)), changeKey: 'commentsCount', findId: aid, upDown: +1 });
       }
     },
 
-    onError: (error: AxiosError) => {
-      queryClient.setQueryData('serverErrorMessage', error?.message || '잘못된 요청입니다.');
+    onError: (error: any) => {
+      let message = typeof error.response !== 'undefined' ? error.response.data?.error?.message : error.message;
+      queryClient.setQueryData('serverErrorMessage', message || '잘못된 요청입니다.');
     },
   });
 };
