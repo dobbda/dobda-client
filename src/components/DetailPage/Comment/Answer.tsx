@@ -135,7 +135,7 @@ const AnswerCp = ({ answer, question }: Props) => {
       <S.CommentEditor>
         <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
         {mdStr && (
-          <Button onClick={onSubmitComment} types="black" block fill css={{ marginBottom: '5px' }}>
+          <Button onClick={onSubmitComment} types="black" $block $fill css={{ marginBottom: '5px' }}>
             <Loading loading={addReply.isLoading} />
             등록
           </Button>
