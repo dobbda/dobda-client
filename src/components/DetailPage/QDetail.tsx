@@ -108,8 +108,7 @@ const QDetail = ({ children, data }: Props) => {
           <S.EditorWrapper>
             <h3>답변을 작성해주세요</h3>
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
-            {/* <br /> */}
-            <Button onClick={onSubmitAnswer} css={{ backgroundColor: '#000' }} types="secondary" block>
+            <Button onClick={onSubmitAnswer} types="secondary" $block $fill>
               <Loading loading={add.isLoading} /> 등록
             </Button>
           </S.EditorWrapper>

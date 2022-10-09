@@ -49,7 +49,6 @@ const ODetail = ({ children, data }: Props) => {
   }, [mdStr, data.id, add]);
 
   const errMsg = queryClient.getQueryData('serverErrorMessage') as string;
-  console.log(errMsg);
 
   useDidMountEffect(() => {
     if (add.isSuccess) {
@@ -92,7 +91,7 @@ const ODetail = ({ children, data }: Props) => {
 
               {auth?.id == data.author?.id && (
                 <S.OnyUser className="only-author">
-                  <Button onClick={() => setIsEdit(true)} types="primary" fill>
+                  <Button onClick={() => setIsEdit(true)} types="primary" $fill>
                     수정
                   </Button>
                   <Button onClick={removeHandler} types="primary">
@@ -120,7 +119,7 @@ const ODetail = ({ children, data }: Props) => {
             <h3>🧘‍♂️글을 남겨 본인을 어필해보세요.</h3>
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
             <br />
-            <Button onClick={onSubmitEnquiry} types="secondary" block>
+            <Button onClick={onSubmitEnquiry} types="secondary" $fill $block>
               등록
             </Button>
           </S.EditorWrapper>

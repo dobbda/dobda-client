@@ -85,7 +85,7 @@ export const UserUpdateForm = (props: Props) => {
             <S.Hr />
 
             <S.BtnWrp>
-              <Button onClick={onSubmitUserUpdate} types="primary" fill>
+              <Button onClick={onSubmitUserUpdate} types="primary" $fill>
                 저 장
               </Button>
               <S.Msg>저장하지 않으면 적용되지 않습니다.</S.Msg>

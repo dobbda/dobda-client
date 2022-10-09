@@ -45,8 +45,8 @@ export interface Auth extends Default {
   score: number;
   skill: string[];
   description: string;
-  getAccepted: number;
-  setAccepted: number;
+  getAcceptCount: number;
+  setAcceptCount: number;
   questionsCount: number;
 }
 

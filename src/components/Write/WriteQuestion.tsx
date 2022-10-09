@@ -117,7 +117,7 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
               취소
             </Button>
           )}
-          <Button onClick={onSubmitCheck} css={{ width: '150px' }} types="secondary" fill>
+          <Button onClick={onSubmitCheck} css={{ width: '150px' }} types="secondary" $fill>
             <Loading loading={saveLoading} />
             등록
           </Button>

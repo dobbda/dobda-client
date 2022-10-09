@@ -1,12 +1,13 @@
 import React, { FC, useCallback, useState } from 'react';
 import type { RadioChangeEvent } from 'antd';
-import { Radio, Button } from 'antd';
+import { Radio } from 'antd';
 import { RequestPayParams, RequestPayResponse } from 'iamport-typings';
 import styled from 'styled-components';
 import * as S from './style/style';
 
 import 'antd/dist/antd.css';
 import { i } from 'src/icons';
+import { Button } from 'src/components/common';
 
 export const CoinDeposit = () => {
   const IMP_UID = process.env.NEXT_PUBLIC_IMP_UID;
@@ -109,7 +110,7 @@ export const CoinDeposit = () => {
         <S.Hr />
         <br />
         <br />
-        <Button type="primary" onClick={onClickPayment} block>
+        <Button types="primary" onClick={onClickPayment} $block>
           {' '}
           결제하기
         </Button>

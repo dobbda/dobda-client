@@ -117,7 +117,11 @@ const EnquiryCp = ({ enquiry }: Props) => {
           )}
           <S.CommentEditor>
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
-            {mdStr && <SubmitBtn onClick={onSubmitComment}>등록</SubmitBtn>}
+            {mdStr && (
+              <SubmitBtn onClick={onSubmitComment} css={{ marginBottom: '5px' }}>
+                등록
+              </SubmitBtn>
+            )}
           </S.CommentEditor>
         </>
       ) : null}

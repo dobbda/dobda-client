@@ -57,7 +57,8 @@ export const Header = styled.div<Props>`
 `;
 
 export const CommentEditor = styled.div`
-  padding: 8px;
+  /* padding: 8px;
+  margin: -1px; */
 `;
 export const Name = styled.p`
   display: inline;

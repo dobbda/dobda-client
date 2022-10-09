@@ -15,6 +15,7 @@ import { q } from 'src/api';
 import { keys, useDelete, useAddComment, useErrMsg, useDidMountEffect, useAuth } from 'src/hooks';
 import { Popover, message as m } from 'antd';
 import { useRouter } from 'next/router';
+
 type Props = {
   answer: Answer;
   question: QuestionDetail;
@@ -85,7 +86,7 @@ const AnswerCp = ({ answer, question }: Props) => {
                   <Button key="edit" types="primary">
                     수정
                   </Button>
-                  <Btn onClick={removeHandler} key="delete" types="primary">
+                  <Btn onClick={removeHandler} key="delete" types="danger" css={{ width: '100%' }}>
                     삭제
                   </Btn>
                 </>
@@ -134,10 +135,10 @@ const AnswerCp = ({ answer, question }: Props) => {
       <S.CommentEditor>
         <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
         {mdStr && (
-          <SubmitBtn onClick={onSubmitComment}>
+          <Button onClick={onSubmitComment} types="black" block fill css={{ marginBottom: '5px' }}>
             <Loading loading={addReply.isLoading} />
             등록
-          </SubmitBtn>
+          </Button>
         )}
       </S.CommentEditor>
     </S.CommentWrapper>
