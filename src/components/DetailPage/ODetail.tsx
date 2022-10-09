@@ -7,7 +7,7 @@ import { EnquiryCp } from './Comment';
 import getDate from 'src/lib/utils/dateForm';
 
 import { Editor } from 'src/components/Editor';
-import { MarkDownViewer } from 'src/components/Editor';
+import { HtmlViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
 import { keys, useAddEnquiry, useAuth, useDelete, useDidMountEffect, useQueryCount } from 'src/hooks';
 import { o, q } from 'src/api';
@@ -49,7 +49,6 @@ const ODetail = ({ children, data }: Props) => {
   }, [mdStr, data.id, add]);
 
   const errMsg = queryClient.getQueryData('serverErrorMessage') as string;
-  console.log(errMsg);
 
   useDidMountEffect(() => {
     if (add.isSuccess) {
@@ -92,8 +91,10 @@ const ODetail = ({ children, data }: Props) => {
 
               {auth?.id == data.author?.id && (
                 <S.OnyUser className="only-author">
-                  <Button onClick={() => setIsEdit(true)}>수정</Button>
-                  <Button onClick={removeHandler} cancel>
+                  <Button onClick={() => setIsEdit(true)} types="primary" $fill>
+                    수정
+                  </Button>
+                  <Button onClick={removeHandler} types="primary">
                     삭제
                   </Button>
                 </S.OnyUser>
@@ -101,7 +102,7 @@ const ODetail = ({ children, data }: Props) => {
             </S.ContentHeader>
 
             <S.ContentViewWrapper>
-              <MarkDownViewer content={data.content} />
+              <HtmlViewer content={data.content} />
             </S.ContentViewWrapper>
           </S.ContentWrapper>
 
@@ -118,7 +119,8 @@ const ODetail = ({ children, data }: Props) => {
             <h3>🧘‍♂️글을 남겨 본인을 어필해보세요.</h3>
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
             <br />
-            <Button onClick={onSubmitEnquiry} secondary block>
+            <Button onClick={onSubmitEnquiry} types="secondary" $fill $block>
+
               등록
             </Button>
           </S.EditorWrapper>

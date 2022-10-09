@@ -34,7 +34,7 @@ const HeaderNav = () => {
           </div>
           <S.MenuWrapper>
             {!auth?.id && (
-              <Button cancel onClick={setLoginModal}>
+              <Button types="primary" onClick={setLoginModal}>
                 {' '}
                 로그인{' '}
               </Button>

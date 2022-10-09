@@ -8,7 +8,7 @@ import getDate from 'src/lib/utils/dateForm';
 
 import { i } from 'src/icons';
 import { Editor } from 'src/components/Editor';
-import { MarkDownViewer } from 'src/components/Editor';
+import { HtmlViewer } from 'src/components/Editor';
 import { Question, QuestionDetail } from 'src/types';
 import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
@@ -91,25 +91,25 @@ const QDetail = ({ children, data }: Props) => {
               </atom.TagWrapper>
               {auth?.id == data.author?.id && (
                 <S.OnyUser className="only-author">
-                  <Button onClick={() => setIsEdit(true)} primary cancel>
+
+                  <Button onClick={() => setIsEdit(true)} types="primary">
                     수정
                   </Button>
-                  <Button onClick={removeHandler} cancel>
+                  <Button onClick={removeHandler} types="primary">
                     삭제
                   </Button>{' '}
                 </S.OnyUser>
               )}
             </S.ContentHeader>
             <S.ContentViewWrapper>
-              <MarkDownViewer content={data?.content} />
+              <HtmlViewer content={data?.content} />
             </S.ContentViewWrapper>
           </S.ContentWrapper>
 
           <S.EditorWrapper>
             <h3>답변을 작성해주세요</h3>
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
-            {/* <br /> */}
-            <Button onClick={onSubmitAnswer} css={{ backgroundColor: '#000' }} secondary block>
+            <Button onClick={onSubmitAnswer} types="secondary" $block $fill>
               <Loading loading={add.isLoading} /> 등록
             </Button>
           </S.EditorWrapper>

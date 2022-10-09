@@ -5,7 +5,7 @@ export const Div = styled.div<{ checked: boolean }>`
   overflow: hidden;
   overflow: hidden;
   background-color: #fff;
-  border-bottom: solid 1px #eee;
+  /* border-bottom: solid 1px #eee; */
 `;
 
 export const Label = styled.label`
@@ -39,6 +39,8 @@ export const ChildMenu = styled.div`
   overflow: hidden;
   transition: height 0.3s;
   background-color: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: -1px;
   > * {
     text-align: center;
     padding-top: 5px;
@@ -51,7 +53,6 @@ export const CheckBox = styled.input.attrs({
   display: none;
 
   &:checked + ${Label} + ${ChildMenu} {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
     height: 100px;
     max-height: 200px;
   }

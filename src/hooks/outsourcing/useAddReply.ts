@@ -9,22 +9,22 @@ import produce from 'immer';
 import { useRouter } from 'next/router';
 import { useQueryCount } from '../common/useQueryCount';
 
-const useAddReply = (aid: number) => {
+const useAddReply = (eid: number) => {
   const queryClient = useQueryClient();
   const router = useRouter();
-  const { oid } = router.query;
+  const { id } = router.query;
   const { setCount, setInfCount } = useQueryCount();
   return useMutation((data: CreateComment) => o.addReply(data), {
     onSuccess: async (res: AxiosResponse) => {
-      await queryClient.cancelQueries(keys.comment(aid));
       if (res.data.success) {
-        await queryClient.invalidateQueries(keys.replies(aid));
-        setCount({ queryKey: keys.enquiries(Number(oid)), changeKey: 'repliesCount', findId: aid, upDown: +1 });
+        await queryClient.invalidateQueries(keys.replies(Number(id), eid));
+        setCount({ queryKey: keys.enquiries(Number(id)), changeKey: 'repliesCount', findId: eid, upDown: +1 });
       }
     },
 
-    onError: (error: AxiosError) => {
-      queryClient.setQueryData('serverErrorMessage', error?.message || '잘못된 요청입니다.');
+    onError: (error: any) => {
+      let message = typeof error.response !== 'undefined' ? error.response.data?.error?.message : error.message;
+      queryClient.setQueryData('serverErrorMessage', message || '잘못된 요청입니다.');
     },
   });
 };

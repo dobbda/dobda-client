@@ -44,6 +44,7 @@ export const GlobalStyle = createGlobalStyle`
 			display: flex;
     	flex-wrap: wrap;
 		}
+
   }
 
 
@@ -64,7 +65,13 @@ export const GlobalStyle = createGlobalStyle`
     list-style-type: none;
     box-sizing: border-box;
   }
-
+  /* pre {
+    background-color: #414141 !important;
+		white-space: pre-wrap;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 5px 10px;
+  } */
  h1,h2,h3,p{
     margin: 0;
   }

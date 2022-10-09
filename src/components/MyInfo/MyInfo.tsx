@@ -23,7 +23,7 @@ export const MyInfo = (props: Props) => {
             <S.Coin>9999</S.Coin>
 
             <Lib.Link href="/user/coinhistory">
-              <Lib.Button cancel>보기</Lib.Button>
+              <Lib.Button types="primary">보기</Lib.Button>
             </Lib.Link>
           </S.Flex>
           <S.Hr />
@@ -42,7 +42,7 @@ export const MyInfo = (props: Props) => {
             <S.Label2>내 글 목록</S.Label2>
             <S.Coin>99</S.Coin>
             <Lib.Link href="/user/poster-list">
-              <Lib.Button cancel>보기</Lib.Button>
+              <Lib.Button types="secondary">보기</Lib.Button>
             </Lib.Link>
           </S.Flex>
 

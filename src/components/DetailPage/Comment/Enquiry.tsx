@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react';
 
-import { Editor, MarkDownViewer } from 'src/components/Editor';
+import { Editor, HtmlViewer } from 'src/components/Editor';
 import { atom, Avatar } from 'src/components/common';
 import getDate from 'src/lib/utils/dateForm';
 
@@ -14,6 +14,7 @@ import { keys, useAddReply, useDelete, useDidMountEffect, useErrMsg } from 'src/
 import { o } from 'src/api';
 import { useQuery } from 'react-query';
 import ReplyCp from './Reply';
+import { useRouter } from 'next/router';
 type Props = {
   acceped_answer?: boolean;
   enquiry: Enquiry;
@@ -21,6 +22,8 @@ type Props = {
 };
 
 const EnquiryCp = ({ enquiry }: Props) => {
+  const router = useRouter();
+  const { id: oid } = router.query;
   const errMsg = useErrMsg();
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
@@ -28,7 +31,7 @@ const EnquiryCp = ({ enquiry }: Props) => {
   const del = useDelete(enquiry?.id, keys.enquiries(enquiry?.outSourcingId));
   const addReply = useAddReply(enquiry?.id);
 
-  const { data: reply } = useQuery(keys.replies(enquiry?.id), () => o.getReplies(enquiry?.id), {
+  const { data: reply } = useQuery(keys.replies(Number(oid), enquiry?.id), () => o.getReplies(enquiry?.id), {
     enabled: enquiry?.repliesCount > 0 && viewChild,
   });
 
@@ -88,7 +91,7 @@ const EnquiryCp = ({ enquiry }: Props) => {
           </S.Header>
 
           <S.Viewer>
-            <MarkDownViewer content={enquiry?.content} />
+            <HtmlViewer content={enquiry?.content} />
           </S.Viewer>
           {/*Reply ---------------------------*/}
           <S.ChildView>
@@ -114,7 +117,11 @@ const EnquiryCp = ({ enquiry }: Props) => {
           )}
           <S.CommentEditor>
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
-            {mdStr && <SubmitBtn onClick={onSubmitComment}>등록</SubmitBtn>}
+            {mdStr && (
+              <SubmitBtn onClick={onSubmitComment} css={{ marginBottom: '5px' }}>
+                등록
+              </SubmitBtn>
+            )}
           </S.CommentEditor>
         </>
       ) : null}

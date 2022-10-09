@@ -57,10 +57,8 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
       message.error('비어있는 항목이 있습니다.');
       return;
     }
-    if (coin >= variable.minCoin) {
+    if (coin > 0) {
       if (coin > auth?.coin) message.error('보유코인이 부족합니다');
-    } else {
-      message.error(`최소 ${variable.minCoin}코인 이상부터 가능합니다 `);
     }
     onSubmit();
   }, [auth?.coin, coin, contentTitle, mdStr, onSubmit, tags]);
@@ -115,11 +113,11 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
 
         <atom.Flex>
           {data?.id && (
-            <Button cancel onClick={cancelHandler} css={{ width: '150px', marginRight: '5px' }}>
+            <Button onClick={cancelHandler} css={{ width: '150px', marginRight: '5px' }} types="danger">
               취소
             </Button>
           )}
-          <Button onClick={onSubmitCheck} css={{ width: '150px' }}>
+          <Button onClick={onSubmitCheck} css={{ width: '150px' }} types="secondary" $fill>
             <Loading loading={saveLoading} />
             등록
           </Button>

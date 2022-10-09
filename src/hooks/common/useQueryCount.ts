@@ -16,6 +16,7 @@ export const useQueryCount = () => {
   const setCount = async ({ queryKey, changeKey, findId, upDown, countVal }: Props) => {
     await queryClient.cancelQueries(queryKey);
     const provider = queryClient.getQueryData<any>(queryKey);
+    console.log('쿼리 데이터', queryKey, changeKey, findId, upDown, countVal, provider);
     if (!provider) return;
     queryClient.setQueryData(queryKey, (oldData: any) => {
       const updateData = produce(oldData, (draft: any) => {

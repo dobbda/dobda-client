@@ -2,31 +2,34 @@ import styled, { CSSProperties } from 'styled-components';
 import { theme } from 'src/styles/Theme';
 
 interface Props {
-  border?: boolean;
-  cancel?: boolean;
-  loading?: boolean;
-  primary?: boolean;
-  secondary?: boolean;
-  block?: boolean;
+  types: 'primary' | 'secondary' | 'secondary' | 'danger' | 'black';
+  color?: string;
+  $block?: boolean;
+  $fill?: boolean;
+
 }
 
+const color = {
+  danger: '#ad0000',
+  primary: theme.color.primary,
+  secondary: theme.color.secondary,
+  black: '#000000cf',
+};
+
 export const Button = styled.button<Props>`
-  background-color: ${({ cancel, secondary }) =>
-    cancel ? `rgba(0,0,0,0)` : secondary ? theme.color.secondary : theme.color.primary};
-  color: ${({ cancel, secondary }) => (cancel ? (secondary ? theme.color.secondary : theme.color.primary) : '#fff')};
-  border: 1px solid
-    ${({ cancel, secondary }) => (cancel ? `${secondary ? theme.color.secondary : theme.color.primary}` : 'rgba(0,0,0,0)')};
-  padding: 4px 20px;
+  background-color: ${({ types, $fill }) => ($fill ? color[types] : 'rgba(0,0,0,0)')};
+  color: ${({ types, $fill }) => ($fill ? '#fff' : color[types])};
+  border: 1px solid ${({ types }) => color[types]};
   font-size: 14px;
   font-weight: bold;
   border-radius: 4px;
   white-space: nowrap;
   user-select: none;
   transition: all 0.2s ease-in-out 0s;
-  display: ${({ block }) => (block ? 'block' : 'inline-block')};
-  ${({ block }) => block && 'margin: 0 auto'};
+  padding: 3px 20px;
+  display: ${({ $block }) => ($block ? 'block' : 'inline-block')};
+  margin: ${({ $block }) => $block && '0 auto'};
   :hover {
-    box-shadow: ${({ secondary }) =>
-      secondary ? theme.color.seRgb(0.4) + '0px 0px 0px 3px' : theme.color.prRgb(0.4) + '0px 0px 0px 3px'};
+    box-shadow: ${theme.color.prRgb(0.4) + '0px 0px 0px 3px'};
   }
 `;

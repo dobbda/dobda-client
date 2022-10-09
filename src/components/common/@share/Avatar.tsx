@@ -27,14 +27,14 @@ const Div = styled.div`
 
   h3 {
     margin: 0;
-    /* font-weight: 600; */
     padding-top: 5px;
     margin-left: 20px;
     text-align: center;
     font-size: 15px;
     color: #707070;
     :hover {
-      color: #013d4e;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
   }
 `;

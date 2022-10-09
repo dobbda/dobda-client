@@ -4,10 +4,12 @@ import styled from 'styled-components';
 import { GlobalStyle } from 'src/styles/GlobalStyle';
 
 export const EditorStyle = styled.div`
-  margin: 10px 0;
   position: relative;
   background-color: #fff;
   border-radius: 4px;
+  height: fit-content;
+  transition: all 0.3s;
+  margin: 8px;
 `;
 
 export const ReplyIconS = styled(i.Reply)`

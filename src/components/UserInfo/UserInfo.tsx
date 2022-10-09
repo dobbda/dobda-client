@@ -13,6 +13,7 @@ type Props = { id: number };
 export function UserInfo({ id }: Props) {
   const anyUser = useQuery(['users', id], () => user.getUserInfo(id));
   const data = anyUser?.data as Auth;
+  const acceptedRate = Math.ceil((data?.setAcceptCount / data?.questionsCount) * 100) + '%';
   return (
     <>
       {data && (
@@ -31,7 +32,7 @@ export function UserInfo({ id }: Props) {
             </Item>
             <Item>
               <P>채택된답변</P>
-              <em>{data.getAccepted}</em>
+              <em>{data.getAcceptCount}</em>
             </Item>
             <Item>
               <P>질문</P>
@@ -40,7 +41,7 @@ export function UserInfo({ id }: Props) {
 
             <Item>
               <P>채택률</P>
-              <em>{(data.setAccepted / data.questionsCount) * 100}</em>
+              <em>{acceptedRate}</em>
             </Item>
           </UserActive>
           <UserTech>
