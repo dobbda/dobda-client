@@ -6,7 +6,7 @@ import { Avatar } from '../common';
 import { AnswerCp } from './Comment/';
 import getDate from 'src/lib/utils/dateForm';
 
-import { CoinIcon, QIcon } from 'src/icons';
+import { i } from 'src/icons';
 import { Editor } from 'src/components/Editor';
 import { MarkDownViewer } from 'src/components/Editor';
 import { Question, QuestionDetail } from 'src/types';
@@ -14,7 +14,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { keys, useAddAnswer, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
 import { WriteQuestion } from '../Write';
-import { Button } from 'antd';
+import { Button } from 'src/components/common';
 import { useRouter } from 'next/router';
 type Props = {
   children?: React.ReactElement; // commentComponent
@@ -79,22 +79,22 @@ const QDetail = ({ children, data }: Props) => {
                 <atom.CreatedAt>{getDate(data?.createdAt)}</atom.CreatedAt>
               </div>
               <S.Title>
-                <QIcon /> {data?.title}
+                <i.Q /> {data?.title}
               </S.Title>
 
               <atom.TagWrapper>
                 <S.CoinWrapper>
-                  <CoinIcon />
+                  <i.Coin />
                   <p>{data?.coin}</p>
                 </S.CoinWrapper>
                 {data?.tagNames && data?.tagNames.map((tag) => <Tag key={tag.name}>{tag.name}</Tag>)}
               </atom.TagWrapper>
               {auth?.id == data.author?.id && (
                 <S.OnyUser className="only-author">
-                  <Button onClick={() => setIsEdit(true)} type="primary" ghost>
+                  <Button onClick={() => setIsEdit(true)} primary cancel>
                     수정
                   </Button>
-                  <Button onClick={removeHandler} type="primary" danger ghost>
+                  <Button onClick={removeHandler} cancel>
                     삭제
                   </Button>{' '}
                 </S.OnyUser>
@@ -108,10 +108,10 @@ const QDetail = ({ children, data }: Props) => {
           <S.EditorWrapper>
             <h3>답변을 작성해주세요</h3>
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
-            <br />
-            <S.SubmitBtn onClick={onSubmitAnswer} loading={add.isLoading}>
+            {/* <br /> */}
+            <Button onClick={onSubmitAnswer} css={{ backgroundColor: '#000' }} secondary block>
               <Loading loading={add.isLoading} /> 등록
-            </S.SubmitBtn>
+            </Button>
           </S.EditorWrapper>
 
           <S.AnswerContainer>

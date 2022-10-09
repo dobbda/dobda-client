@@ -1,6 +1,4 @@
-import React from 'react';
 import styled, { CSSProperties } from 'styled-components';
-import { Spin, Button as antButtn } from 'antd';
 import { theme } from 'src/styles/Theme';
 
 interface Props {
@@ -9,6 +7,7 @@ interface Props {
   loading?: boolean;
   primary?: boolean;
   secondary?: boolean;
+  block?: boolean;
 }
 
 export const Button = styled.button<Props>`
@@ -24,7 +23,8 @@ export const Button = styled.button<Props>`
   white-space: nowrap;
   user-select: none;
   transition: all 0.2s ease-in-out 0s;
-
+  display: ${({ block }) => (block ? 'block' : 'inline-block')};
+  ${({ block }) => block && 'margin: 0 auto'};
   :hover {
     box-shadow: ${({ secondary }) =>
       secondary ? theme.color.seRgb(0.4) + '0px 0px 0px 3px' : theme.color.prRgb(0.4) + '0px 0px 0px 3px'};

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Main, WriteHandler } from './style/MainContent.style';
 import { WirteHandlerModal } from './atom/WirteHandlerModal';
-import { PenIcon } from 'src/icons';
+import { i } from 'src/icons';
 import { Categories, CategoryList, CategoriesType } from 'src/types/content-type';
 import RenderOutsource from './renderItm/RenderOutSourcing';
 import RenderQuestion from './renderItm/RenderQuestion';
@@ -43,7 +43,7 @@ const MainContent = ({ children }: Props) => {
           <WriteHandler onClick={checkLogin}>
             📑 질문이나 프로젝트 요청을 해보는건 어떤가요?{' '}
             <span>
-              <PenIcon color={theme.color.primary} />
+              <i.Pen color={theme.color.primary} />
             </span>
           </WriteHandler>
           <div className="top-bar">

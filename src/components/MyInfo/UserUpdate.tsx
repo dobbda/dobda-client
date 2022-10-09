@@ -8,7 +8,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import { UserUpdate } from 'src/types';
 import axios from 'axios';
 import { Avatar, message } from 'antd';
-import { RefreshIcon } from 'src/icons';
+import { i } from 'src/icons';
 
 type Props = {};
 
@@ -63,7 +63,7 @@ export const UserUpdateForm = (props: Props) => {
             <S.Culumn>
               <S.Label>닉네임</S.Label>
               <S.Value>
-                <Avatar src={auth?.avatar} /> <RefreshIcon css={{ marginRight: '10px', cursor: 'pointer' }} />
+                <Avatar src={auth?.avatar} /> <i.Refresh css={{ marginRight: '10px', cursor: 'pointer' }} />
                 <S.Input defaultValue={auth.nickname} onChange={onChangeNickname} />
               </S.Value>
             </S.Culumn>

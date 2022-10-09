@@ -8,7 +8,7 @@ import { SocialLogin } from 'src/components/SocialLogin';
 import { theme } from 'src/styles/Theme';
 import 'antd/dist/antd.css';
 
-import * as I from 'src/icons';
+import { i } from 'src/icons';
 import Link from 'next/link';
 import { useAuth, useLogout, useLoginModalhandler } from 'src/hooks';
 import { user } from 'src/api';
@@ -41,8 +41,8 @@ const HeaderNav = () => {
             )}
             {auth?.id && (
               <>
-                <Popover trigger="click" content={<MessageBox />} top={10} right={-10}>
-                  <I.BellIcon size={'20px'} css={{ marginTop: '2px', cursor: 'pointer' }} />
+                <Popover trigger="click" content={<MessageBox />} top={16} right={0}>
+                  <i.Bell size={'20px'} css={{ marginTop: '2px', cursor: 'pointer' }} />
                 </Popover>
               </>
             )}

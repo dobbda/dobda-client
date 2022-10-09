@@ -7,7 +7,7 @@ import { Avatar, atom, Loading } from 'src/components/common';
 import getDate from 'src/lib/utils/dateForm';
 import { EditAnswer } from './EditAnswer';
 import * as S from './style/style';
-import { ArrowIcon, MoreIcon, ReCommentIcon, AcceptedIcon } from 'src/icons';
+import { i } from 'src/icons';
 import { SubmitBtn } from '../style/Detail.style';
 import { Answer, QuestionDetail } from 'src/types';
 import { QueryClient, useQuery, useQueryClient } from 'react-query';
@@ -71,7 +71,7 @@ const AnswerCp = ({ answer, question }: Props) => {
       <S.Header className="header">
         <Avatar nickname={answer?.author.nickname} url={answer?.author.avatar} id={answer?.author.id} />
         <atom.Flex>
-          {answer.accepted && <AcceptedIcon css={{ marginBottom: '5px' }} />}
+          {answer.accepted && <i.Accepted css={{ marginBottom: '5px' }} />}
 
           <>
             <Popover
@@ -89,7 +89,7 @@ const AnswerCp = ({ answer, question }: Props) => {
               }
             >
               <span className="moreBtn">
-                <MoreIcon />
+                <i.More />
               </span>
             </Popover>
           </>
@@ -103,7 +103,7 @@ const AnswerCp = ({ answer, question }: Props) => {
       {/*Reply ---------------------------*/}
       <S.ChildView>
         <div className="show-replybtn">
-          <ReCommentIcon style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{answer.commentsCount} </span>
+          <i.ReComment style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{answer.commentsCount} </span>
           <span onClick={() => setviewChild(!viewChild)}>
             <CommentRotate view={viewChild.toString()} />
           </span>
@@ -143,7 +143,7 @@ const AnswerCp = ({ answer, question }: Props) => {
 
 export default AnswerCp;
 type Rotate = { view: string };
-const CommentRotate = styled(ArrowIcon)<Rotate>`
+const CommentRotate = styled(i.Arrow)<Rotate>`
   cursor: pointer;
   margin-top: 7px;
   color: rgba(0, 0, 0, 0.6);

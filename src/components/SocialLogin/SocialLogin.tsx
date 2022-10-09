@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { SocialBtn } from './LogoBtn';
 
-import { GithubIcon, GoogleIcon, NaverIcon, KakaoIcon } from 'src/icons';
+import { i } from 'src/icons';
 import { Logo } from 'src/components/common';
 import { useQueryClient } from 'react-query';
 import { useAuth, useLoginModalhandler } from 'src/hooks';
@@ -55,18 +55,18 @@ export const SocialLogin = (props: Props) => {
       <br /> <br />
       <P>간편 로그인만 가능합니다.</P>
       <Style.LoginList>
-        <SocialBtn onClick={() => onWindow(GOOGLE_URL)} name="Login with Google" icon={GoogleIcon} bg="#fff" color="#3c4043" />
+        <SocialBtn onClick={() => onWindow(GOOGLE_URL)} name="Login with Google" icon={i.Google} bg="#fff" color="#3c4043" />
         <br />
 
-        <SocialBtn onClick={() => onWindow(GITHUB_URL)} name="Login with Github" icon={GithubIcon} bg="#3c4043" color="#ebe9e9" />
-
-        <br />
-
-        <SocialBtn onClick={() => onWindow(NAVER_URL)} name="Login with Naver" icon={NaverIcon} bg="#19c260" color="#fff" />
+        <SocialBtn onClick={() => onWindow(GITHUB_URL)} name="Login with Github" icon={i.Github} bg="#3c4043" color="#ebe9e9" />
 
         <br />
 
-        {/* <SocialBtn onClick={() => onWindow(KAKAO_URL)} name="Login with Kakao" icon={KakaoIcon} bg="#fee500" color="#000" /> */}
+        <SocialBtn onClick={() => onWindow(NAVER_URL)} name="Login with Naver" icon={i.Naver} bg="#19c260" color="#fff" />
+
+        <br />
+
+        {/* <SocialBtn onClick={() => onWindow(KAKAO_URL)} name="Login with Kakao" icon={Kakao} bg="#fee500" color="#000" /> */}
       </Style.LoginList>
     </Style.LoginWrapper>
   );
@@ -84,11 +84,11 @@ const Style = {
     border-radius: 1em;
   `,
   LoginList: styled.div`
-    display: flex;
+    display: flex -webkit-flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
-    padding: 10px 0;
+    gap: 10px;
   `,
 };
 

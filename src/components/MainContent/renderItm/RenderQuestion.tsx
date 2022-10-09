@@ -63,6 +63,7 @@ const ContentCardList = styled(motion.div)`
   gap: 15px;
   transition: all 0.2s;
   margin-bottom: 10px;
+  padding: 5px 0;
 `;
 const RefCard = styled.div`
   width: 100%;

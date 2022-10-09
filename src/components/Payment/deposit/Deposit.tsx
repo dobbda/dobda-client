@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import * as S from './style/style';
 
 import 'antd/dist/antd.css';
-import { CoinIcon } from 'src/icons';
+import { i } from 'src/icons';
 
 export const CoinDeposit = () => {
   const IMP_UID = process.env.NEXT_PUBLIC_IMP_UID;
@@ -133,7 +133,7 @@ const RadioStyles = styled(Radio.Button)`
   background: #ededed;
 `;
 
-const CoinFill = styled(CoinIcon)`
+const CoinFill = styled(i.Coin)`
   width: 20px;
   height: 20px;
   color: #f2bc1a;

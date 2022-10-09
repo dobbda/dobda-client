@@ -118,7 +118,7 @@ const ODetail = ({ children, data }: Props) => {
             <h3>🧘‍♂️글을 남겨 본인을 어필해보세요.</h3>
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
             <br />
-            <Button onClick={onSubmitEnquiry} css={{ display: 'block', margin: '0 auto' }} secondary>
+            <Button onClick={onSubmitEnquiry} secondary block>
               등록
             </Button>
           </S.EditorWrapper>

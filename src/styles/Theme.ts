@@ -13,9 +13,9 @@ const media = {
 };
 
 const color = {
-  bg: '#dadada', //"#EAEEF2", //background color
+  bg: '#f6f7fb', //"#EAEEF2", //background color
   primary: '#0cc098',
-  header: '#eaeaff',
+  header: '#fff',
   prRgb: (per: number) => `rgba(12, 192, 152, ${per})`,
   seRgb: (per: number) => `rgba(158, 8, 218, ${per})`,
   secondary: 'rgb(158, 8, 218)',
@@ -30,7 +30,6 @@ const color = {
   color3: 'rgba(63, 63, 63, 1)',
   button: '#199DE8',
   coin: '#8400EC',
-  date: '#b9b9b9',
 };
 
 export const theme = {

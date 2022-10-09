@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { HashIcon } from 'src/icons';
+import { i } from 'src/icons';
 import { Tags } from 'src/types';
 import { Tag } from 'src/components/common';
 type Props = {
@@ -109,7 +109,7 @@ const Input = styled.input`
   }
 `;
 
-const Hash = styled(HashIcon)`
+const Hash = styled(i.Hash)`
   width: 18px;
   height: 20px;
   margin-right: 5px;
