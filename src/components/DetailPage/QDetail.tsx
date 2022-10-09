@@ -91,6 +91,7 @@ const QDetail = ({ children, data }: Props) => {
               </atom.TagWrapper>
               {auth?.id == data.author?.id && (
                 <S.OnyUser className="only-author">
+
                   <Button onClick={() => setIsEdit(true)} types="primary">
                     수정
                   </Button>

@@ -120,6 +120,7 @@ const ODetail = ({ children, data }: Props) => {
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
             <br />
             <Button onClick={onSubmitEnquiry} types="secondary" $fill $block>
+
               등록
             </Button>
           </S.EditorWrapper>

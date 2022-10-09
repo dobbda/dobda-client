@@ -6,6 +6,7 @@ interface Props {
   color?: string;
   $block?: boolean;
   $fill?: boolean;
+
 }
 
 const color = {
