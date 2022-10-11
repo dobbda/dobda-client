@@ -3,7 +3,7 @@ import { message } from 'antd';
 import { atom, Loading, Tag } from '../common';
 import * as S from './style/Detail.style';
 import { Avatar } from '../common';
-import { AnswerCp } from './Comment/';
+import { AnswerCp } from 'src/components/Comment/';
 import getDate from 'src/lib/utils/dateForm';
 
 import { i } from 'src/icons';
@@ -42,7 +42,8 @@ const QDetail = ({ children, data }: Props) => {
   const add = useAddAnswer(data?.id);
 
   const onSubmitAnswer = useCallback(async () => {
-    if (mdStr.length < 5) return message.error('5글자 이상 작성 하여야 합니다.');
+    let len = mdStr.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length;
+    if (len < 5) return message.error('5글자 이상 작성 하여야 합니다.');
     const answerData = { content: mdStr, qid: data.id };
     add.mutate(answerData);
   }, [mdStr, data.id, add]);
@@ -91,7 +92,6 @@ const QDetail = ({ children, data }: Props) => {
               </atom.TagWrapper>
               {auth?.id == data.author?.id && (
                 <S.OnyUser className="only-author">
-
                   <Button onClick={() => setIsEdit(true)} types="primary">
                     수정
                   </Button>

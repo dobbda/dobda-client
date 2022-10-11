@@ -33,6 +33,15 @@ export const ShowEditorBtn = styled(AntInput)`
 export const CloseEditor = styled(Button)`
   position: absolute;
   bottom: 0;
-  height: 29px;
+  height: 30px;
   background-color: #f7f9fc;
+`;
+export const SubmitWrap = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 150px;
+  right: 150px;
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
 `;

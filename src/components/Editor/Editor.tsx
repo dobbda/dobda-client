@@ -9,12 +9,13 @@ interface Props {
   setMdStr: React.Dispatch<React.SetStateAction<string>>;
   onClickShow?: boolean;
   height: string;
+  submitBtn?: React.ReactNode;
 }
 
-const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
+const Editor = ({ mdStr, setMdStr, onClickShow = false, height, submitBtn }: Props) => {
   const { auth, refetch } = useAuth();
   const { setLoginModal } = useLoginModalhandler();
-
+  const [showSubmit, setshowSubmit] = useState(false);
   // 에디터 보여지는 핸들러
   const [showEditor, setShowEditor] = React.useState(onClickShow ? false : true);
   const onClickShowEditorHandler = useCallback(() => {
@@ -25,6 +26,9 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
     setShowEditor(!showEditor);
   }, [auth?.id, setLoginModal, showEditor]);
 
+  useEffect(() => {
+    setshowSubmit(mdStr.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length >= 2);
+  }, [mdStr]);
   return (
     <S.EditorStyle>
       {onClickShow && !showEditor && (
@@ -34,7 +38,12 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height }: Props) => {
       )}
 
       {showEditor && <QuillEditor html={mdStr} setHtml={setMdStr} height={height} />}
-      {onClickShow && showEditor && <S.CloseEditor onClick={() => setShowEditor(false)}>Editor 접기</S.CloseEditor>}
+      {onClickShow && showEditor && (
+        <>
+          <S.CloseEditor onClick={() => setShowEditor(false)}>Editor 접기</S.CloseEditor>
+          {showSubmit && <S.SubmitWrap>{submitBtn}</S.SubmitWrap>}
+        </>
+      )}
     </S.EditorStyle>
   );
 };

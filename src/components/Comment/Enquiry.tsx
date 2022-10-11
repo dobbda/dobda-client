@@ -3,31 +3,32 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { Editor, HtmlViewer } from 'src/components/Editor';
 import { atom, Avatar } from 'src/components/common';
 import getDate from 'src/lib/utils/dateForm';
-
 import * as S from './style/style';
 import { i } from 'src/icons';
-import { SubmitBtn } from '../style/Detail.style';
-import { Enquiry } from 'src/types';
+import { Enquiry, OutsourceDetail, Progress } from 'src/types';
 import styled from 'styled-components';
-import { Button, Popover, message as m } from 'antd';
-import { keys, useAddReply, useDelete, useDidMountEffect, useErrMsg } from 'src/hooks';
+import { Popover, message as m } from 'antd';
+import { keys, useAddReply, useAuth, useDelete, useDidMountEffect, useErrMsg } from 'src/hooks';
 import { o } from 'src/api';
 import { useQuery } from 'react-query';
 import ReplyCp from './Reply';
 import { useRouter } from 'next/router';
+import { Button } from 'src/components/common';
+import Edit from './Edit';
 type Props = {
-  acceped_answer?: boolean;
+  out: OutsourceDetail;
   enquiry: Enquiry;
   isLoading?: boolean;
 };
 
-const EnquiryCp = ({ enquiry }: Props) => {
+const EnquiryCp = ({ enquiry, out }: Props) => {
+  const [showEdit, setShowEdit] = useState(false);
   const router = useRouter();
   const { id: oid } = router.query;
-  const errMsg = useErrMsg();
+  const { errMsg } = useErrMsg();
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
-
+  const { auth } = useAuth();
   const del = useDelete(enquiry?.id, keys.enquiries(enquiry?.outSourcingId));
   const addReply = useAddReply(enquiry?.id);
 
@@ -50,12 +51,13 @@ const EnquiryCp = ({ enquiry }: Props) => {
       m.error(errMsg);
     }
   }, [addReply.isError, addReply.isSuccess, del.error?.response, del.isError, errMsg]);
-
+  const showAcceptButton = auth.id === out.authorId && out.progress === 'Pending' && enquiry.authorId !== auth.id;
   const removeHandler = useCallback(() => {
     if (confirm('삭제시 복구가 불가능 합니다')) {
       del.mutate(o.delEnquiry);
     }
   }, [del]);
+
   return (
     <S.CommentWrapper>
       {enquiry ? (
@@ -63,22 +65,26 @@ const EnquiryCp = ({ enquiry }: Props) => {
           <S.Header className="header">
             <Avatar nickname={enquiry?.author.nickname} url={enquiry?.author.avatar} id={enquiry?.author.id} />
             <atom.Flex>
-              <Button>
-                <S.Name>선택하기</S.Name>
-              </Button>
+              {showAcceptButton && <Button types="primary">pick</Button>}
               <>
                 <Popover
                   trigger="click"
                   placement="bottom"
                   content={
-                    <>
-                      <Btn type="primary" key="enquiry-edit" ghost>
-                        수정
-                      </Btn>
-                      <Btn onClick={removeHandler} key="enquiry-delete" danger ghost>
-                        삭제
-                      </Btn>
-                    </>
+                    auth.id === enquiry?.author.id ? (
+                      <>
+                        <Button types="primary" key="_edit" onClick={() => setShowEdit(true)} $block>
+                          수정
+                        </Button>
+                        <Button types="danger" onClick={removeHandler} key="_delete" $block>
+                          삭제
+                        </Button>
+                      </>
+                    ) : (
+                      <Button types="danger" onClick={removeHandler} key="_delete" $block>
+                        신고
+                      </Button>
+                    )
                   }
                 >
                   <span className="moreBtn">
@@ -91,7 +97,11 @@ const EnquiryCp = ({ enquiry }: Props) => {
           </S.Header>
 
           <S.Viewer>
-            <HtmlViewer content={enquiry?.content} />
+            {showEdit ? (
+              <Edit id={enquiry?.id} setCancel={setShowEdit} content={enquiry.content} type="enquiries" />
+            ) : (
+              <HtmlViewer content={enquiry?.content} />
+            )}
           </S.Viewer>
           {/*Reply ---------------------------*/}
           <S.ChildView>
@@ -116,12 +126,19 @@ const EnquiryCp = ({ enquiry }: Props) => {
             </>
           )}
           <S.CommentEditor>
-            <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
-            {mdStr && (
-              <SubmitBtn onClick={onSubmitComment} css={{ marginBottom: '5px' }}>
-                등록
-              </SubmitBtn>
-            )}
+            <Editor
+              mdStr={mdStr}
+              setMdStr={setMdStr}
+              onClickShow={true}
+              height="200px"
+              submitBtn={
+                <>
+                  <Button types="primary" $block onClick={onSubmitComment} css={{ width: '100px' }}>
+                    등록
+                  </Button>
+                </>
+              }
+            />
           </S.CommentEditor>
         </>
       ) : null}

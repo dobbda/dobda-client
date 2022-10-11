@@ -5,10 +5,8 @@ import ReplyCp from './Reply';
 import { Editor, HtmlViewer } from 'src/components/Editor';
 import { Avatar, atom, Loading, Button } from 'src/components/common';
 import getDate from 'src/lib/utils/dateForm';
-import { EditAnswer } from './EditAnswer';
 import * as S from './style/style';
 import { i } from 'src/icons';
-import { SubmitBtn } from '../style/Detail.style';
 import { Answer, QuestionDetail } from 'src/types';
 import { QueryClient, useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
@@ -16,6 +14,8 @@ import { keys, useDelete, useAddComment, useErrMsg, useDidMountEffect, useAuth }
 import { Popover, message as m } from 'antd';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
+import { EditType } from 'src/types/content-type';
+import Edit from './Edit';
 
 type Props = {
   answer: Answer;
@@ -23,10 +23,11 @@ type Props = {
 };
 
 const AnswerCp = ({ answer, question }: Props) => {
+  const [showEdit, setShowEdit] = useState(false);
   const router = useRouter();
   const { id: qid } = router.query;
   const queryClient = useQueryClient();
-  const errMsg = useErrMsg();
+  const { errMsg } = useErrMsg();
   const [isEdit, setisEdit] = useState(false);
   const [mdStr, setMdStr] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
@@ -83,14 +84,20 @@ const AnswerCp = ({ answer, question }: Props) => {
               trigger="click"
               placement="bottom"
               content={
-                <>
-                  <Button key="edit" types="primary">
-                    수정
-                  </Button>
+                auth.id == answer.author.id ? (
+                  <>
+                    <Button key="edit" types="primary" onClick={() => setShowEdit(!showEdit)}>
+                      수정
+                    </Button>
+                    <Btn onClick={removeHandler} key="delete" types="danger" css={{ width: '100%' }}>
+                      삭제
+                    </Btn>
+                  </>
+                ) : (
                   <Btn onClick={removeHandler} key="delete" types="danger" css={{ width: '100%' }}>
-                    삭제
+                    신고
                   </Btn>
-                </>
+                )
               }
             >
               <span className="moreBtn">
@@ -103,7 +110,11 @@ const AnswerCp = ({ answer, question }: Props) => {
       </S.Header>
 
       <S.Viewer>
-        <HtmlViewer content={answer?.content} />
+        {showEdit ? (
+          <Edit id={answer.id} setCancel={setShowEdit} content={answer.content} type="answers" />
+        ) : (
+          <HtmlViewer content={answer?.content} />
+        )}
       </S.Viewer>
       {/*Reply ---------------------------*/}
       <S.ChildView>
