@@ -13,7 +13,7 @@ type Props = {
   url: string;
 };
 
-const Savatar = styled(AntAvatar)`
+const SImg = styled(AntAvatar)`
   border: 1px solid ${theme.color.border2};
   :hover {
     border: 1px solid ${theme.color.primary};
@@ -53,9 +53,11 @@ export const Avatar = ({ nickname, url, id }: Props) => {
   return (
     <Popover trigger="click" placement="bottomLeft" content={<UserInfo id={id} />}>
       <Div>
-        <Savatar src={url}></Savatar>
+        <SImg src={url}></SImg>
         <h3>{nickname}</h3>
       </Div>
     </Popover>
   );
 };
+
+export { SImg as AvatarImg };

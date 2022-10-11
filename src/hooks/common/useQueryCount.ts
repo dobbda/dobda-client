@@ -9,6 +9,7 @@ interface Props {
   findId?: number;
   upDown?: number;
   countVal?: number;
+  value?: string;
 }
 export const useQueryCount = () => {
   const queryClient = useQueryClient();
@@ -16,11 +17,9 @@ export const useQueryCount = () => {
   const setCount = async ({ queryKey, changeKey, findId, upDown, countVal }: Props) => {
     await queryClient.cancelQueries(queryKey);
     const provider = queryClient.getQueryData<any>(queryKey);
-    console.log('쿼리 데이터', queryKey, changeKey, findId, upDown, countVal, provider);
     if (!provider) return;
     queryClient.setQueryData(queryKey, (oldData: any) => {
       const updateData = produce(oldData, (draft: any) => {
-        console.log(draft, oldData);
         if (findId) {
           draft?.map((data: any) => {
             if (data.id === findId) {
@@ -51,5 +50,23 @@ export const useQueryCount = () => {
       }
     });
 
-  return { setCount, setInfCount };
+  const setUpdate = async ({ queryKey, changeKey, findId, value }: Props) => {
+    await queryClient.cancelQueries(queryKey);
+    const provider = queryClient.getQueryData<any>(queryKey);
+    if (!provider) return;
+    queryClient.setQueryData(queryKey, (oldData: any) => {
+      const updateData = produce(oldData, (draft: any) => {
+        draft?.map((data: any) => {
+          if (data.id === findId) {
+            console.log('찾았다: ', changeKey, value, data);
+            return (data[changeKey] = value);
+          }
+          return data;
+        });
+      });
+      return updateData;
+    });
+  };
+
+  return { setCount, setInfCount, setUpdate };
 };

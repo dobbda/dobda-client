@@ -37,7 +37,7 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
   const addOutsource = useAddOutsource(o.addOutsource);
   const editOutsource = useAddOutsource(o.updateOutsource, data?.id);
 
-  const errMsg = useErrMsg();
+  const { errMsg } = useErrMsg();
   const { auth } = useAuth();
   useEffect(() => {
     if (!image) {

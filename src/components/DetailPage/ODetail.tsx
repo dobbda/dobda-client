@@ -3,13 +3,13 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { atom, Tag, Button } from '../common';
 import * as S from './style/Detail.style';
 import { Avatar } from '../common';
-import { EnquiryCp } from './Comment';
+import { EnquiryCp } from 'src/components/Comment';
 import getDate from 'src/lib/utils/dateForm';
 
 import { Editor } from 'src/components/Editor';
 import { HtmlViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
-import { keys, useAddEnquiry, useAuth, useDelete, useDidMountEffect, useQueryCount } from 'src/hooks';
+import { keys, useAddEnquiry, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
 import { o, q } from 'src/api';
 import { WriteOutsourcing } from '../Write';
 import { useQuery, useQueryClient } from 'react-query';
@@ -43,12 +43,14 @@ const ODetail = ({ children, data }: Props) => {
   const add = useAddEnquiry(data?.id);
 
   const onSubmitEnquiry = useCallback(() => {
-    if (mdStr.length < 5) return message.error('5글자 이상 작성 하여야 합니다.');
+    let len = mdStr.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length;
+
+    if (len < 5) return message.error('5글자 이상 작성 하여야 합니다.');
     const enquiryData = { content: mdStr, oid: data.id };
     add.mutate(enquiryData);
   }, [mdStr, data.id, add]);
 
-  const errMsg = queryClient.getQueryData('serverErrorMessage') as string;
+  const { errMsg } = useErrMsg();
 
   useDidMountEffect(() => {
     if (add.isSuccess) {
@@ -118,16 +120,13 @@ const ODetail = ({ children, data }: Props) => {
           <S.EditorWrapper>
             <h3>🧘‍♂️글을 남겨 본인을 어필해보세요.</h3>
             <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
-            <br />
-            <Button onClick={onSubmitEnquiry} types="secondary" $fill $block>
-
-              등록
-            </Button>
           </S.EditorWrapper>
-
+          <Button onClick={onSubmitEnquiry} types="primary" $fill $block css={{ width: '200px' }}>
+            등록
+          </Button>
           <S.AnswerContainer>
             {enquiries && enquiries[0]?.id ? (
-              enquiries.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} />)
+              enquiries.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} out={data} />)
             ) : (
               <S.NodataWrapper>등록된 답변이 없습니다. 답변을 등록해보세요.</S.NodataWrapper>
             )}

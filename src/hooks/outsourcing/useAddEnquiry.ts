@@ -13,7 +13,6 @@ const useAddEnquiry = (oid: number) => {
   const { setCount, setInfCount } = useQueryCount();
   return useMutation((data: CreateComment) => o.addEnquiry(data), {
     onSuccess: async (res: AxiosResponse) => {
-      console.log(res);
       await queryClient.cancelQueries(keys.enquiries(oid));
 
       if (res.data.success) {

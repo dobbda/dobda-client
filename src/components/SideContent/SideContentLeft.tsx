@@ -1,7 +1,7 @@
 import React, { useState, Dispatch, ElementType, useEffect, useCallback } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 
-import { SideContainer, P, Avatar } from './style/SideContent.style';
+import { SideContainer } from './style/SideContent.style';
 import { FolderMenu } from './FolderMenu/FolderMenu';
 
 import { i } from 'src/icons'; //icon
@@ -10,6 +10,7 @@ import { Button } from '../common';
 import { NoData } from '../common/@share/atom';
 import { theme } from 'src/styles/Theme';
 import Link from 'next/link';
+import { AvatarImg } from '../common/@share/Avatar';
 
 interface Props {
   folderOpenFalse?: boolean;
@@ -26,7 +27,7 @@ export const SideContentLeft = ({ folderOpenFalse }: Props) => {
           icon={
             <Link href="/user/profile" passHref>
               <span>
-                <Avatar src={auth.avatar} size={22} />
+                <AvatarImg src={auth.avatar} size={22} />
               </span>
             </Link>
           }
@@ -37,9 +38,9 @@ export const SideContentLeft = ({ folderOpenFalse }: Props) => {
           <>
             <div>유저 정보 몇가지 보여주기</div>
 
-            <p onClick={logout} css={{ whiteSpace: 'nowrap', cursor: 'pointer' }}>
+            <div onClick={logout} css={{ whiteSpace: 'nowrap', cursor: 'pointer' }}>
               로그아웃
-            </p>
+            </div>
           </>
         </FolderMenu>
       ) : (

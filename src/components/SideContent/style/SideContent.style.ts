@@ -19,12 +19,3 @@ export const P = styled.p`
 export const Red = styled.span`
   color: red;
 `;
-
-export const Avatar = styled(AntAvatr)`
-  border: 1px solid ${theme.color.border2};
-
-  :hover {
-    border: 1px solid ${theme.color.primary};
-    box-shadow: ${theme.color.prRgb(0.5)} 0px 0.5px 4px 5px;
-  }
-`;
