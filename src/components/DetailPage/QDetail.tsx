@@ -48,7 +48,7 @@ const QDetail = ({ children, data }: Props) => {
     add.mutate(answerData);
   }, [mdStr, data.id, add]);
 
-  const errMsg = useErrMsg();
+  const { errMsg } = useErrMsg();
   useEffect(() => {
     if (add.isSuccess) {
       message.success('답변이 등록되었습니다.');

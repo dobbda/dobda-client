@@ -29,7 +29,7 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
   const addQuestion = useAddQuestion(q.addQuestion);
   const editQuestion = useAddQuestion(q.updateQuestion, data?.id);
 
-  const errMsg = useErrMsg();
+  const { errMsg } = useErrMsg();
   const { auth } = useAuth();
 
   const onChangeCoin = (e: React.ChangeEvent<HTMLInputElement>) => {

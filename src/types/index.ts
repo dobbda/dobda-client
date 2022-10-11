@@ -128,7 +128,6 @@ export interface CreateOutsource {
   tagNames: string[];
   deadline: string;
   cardImage?: string;
-  progress: Progress;
 }
 
 export interface Outsource extends Default {

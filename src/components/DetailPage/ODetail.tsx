@@ -9,7 +9,7 @@ import getDate from 'src/lib/utils/dateForm';
 import { Editor } from 'src/components/Editor';
 import { HtmlViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
-import { keys, useAddEnquiry, useAuth, useDelete, useDidMountEffect, useQueryCount } from 'src/hooks';
+import { keys, useAddEnquiry, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
 import { o, q } from 'src/api';
 import { WriteOutsourcing } from '../Write';
 import { useQuery, useQueryClient } from 'react-query';
@@ -50,7 +50,7 @@ const ODetail = ({ children, data }: Props) => {
     add.mutate(enquiryData);
   }, [mdStr, data.id, add]);
 
-  const errMsg = queryClient.getQueryData('serverErrorMessage') as string;
+  const { errMsg } = useErrMsg();
 
   useDidMountEffect(() => {
     if (add.isSuccess) {
