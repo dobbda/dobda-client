@@ -24,6 +24,10 @@ module.exports = withPlugins([withBundleAnalyzer], {
       source: '/api/:path*',
       destination: `${prod ? process.env.API_KEY : process.env.API_KEY_DEV}/:path*`,
     },
+    {
+      source: '/admin',
+      destination: `${prod ? process.env.API_KEY : process.env.API_KEY_DEV}/redirect/admin`,
+    },
   ],
   redirects: () => [
     {

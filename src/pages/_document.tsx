@@ -34,6 +34,7 @@ export default class MyDocument extends Document {
       <Html key={'root'}>
         <Head>
           <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
+          <script src="/node_modules/quill-image-resize-module-react/image-resize.min.js"></script>
         </Head>
         <body>
           <Main />

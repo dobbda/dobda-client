@@ -2,12 +2,11 @@ import styled from 'styled-components';
 
 export const Div = styled.div`
   background-color: #fff !important;
-  border: 1px solid ${({ theme }) => theme.color.border(0.1)};
-  border-top: 3px solid ${({ theme }) => theme.color.border(0.2)};
+  border: 1px solid ${({ theme }) => theme.color.prRgb(0.3)};
   width: 300px;
   height: 400px;
   font-size: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   position: relative;
   ul {
     margin: 0;

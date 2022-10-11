@@ -10,9 +10,7 @@ export const useLogout = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const logout = () => {
-    console.log('여기');
-
-    if (confirm('logout')) {
+    if (confirm('로그아웃 확인')) {
       try {
         axios.delete('/api/auth/logout');
       } catch (e) {}

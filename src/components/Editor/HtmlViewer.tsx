@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import ReactHtmlParser from 'react-html-parser';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import styled from 'styled-components';
 import 'highlight.js/styles/monokai-sublime.css';
 import javascript from 'highlight.js/lib/languages/javascript';
@@ -15,14 +15,13 @@ interface MarkdownViewProps {
   content: string;
 }
 const HtmlViewer = ({ content }: MarkdownViewProps) => {
-  const transform = (node: any, index: any) => {
+  const transform = (node: any, index: number | string) => {
     if (node.name === 'pre') {
       const code = node.children[0]?.data;
       if (code) {
-        const v = code.replace('\n', ' \n ');
-        const color = hljs.highlightAuto(v).value;
-        const val = `<pre key={index}><code class="javascript">${color}</code></pre>`;
-        return ReactHtmlParser(val);
+        const color = hljs.highlightAuto(code).value;
+        const val = `<pre key=${index}><code>${color}</code></pre>`;
+        return ReactHtmlParser(val, transform);
       }
     }
   };
@@ -41,9 +40,9 @@ const HtmlViewer = ({ content }: MarkdownViewProps) => {
 export default HtmlViewer;
 
 const Htmlview = styled.div`
+  overflow: auto;
   pre {
-    background-color: #282c34 !important;
-
+    background-color: #263238 !important;
     white-space: pre-wrap !important;
     margin: 5px !important;
     padding: 10px !important;
@@ -51,6 +50,9 @@ const Htmlview = styled.div`
   }
   pre,
   code {
-    color: #abbebf;
+    color: #8f76db;
+  }
+  img {
+    cursor: default !important;
   }
 `;

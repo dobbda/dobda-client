@@ -15,6 +15,7 @@ import { q } from 'src/api';
 import { keys, useDelete, useAddComment, useErrMsg, useDidMountEffect, useAuth } from 'src/hooks';
 import { Popover, message as m } from 'antd';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 type Props = {
   answer: Answer;
@@ -124,13 +125,16 @@ const AnswerCp = ({ answer, question }: Props) => {
       </S.ChildView>
 
       {viewChild && (
-        <Transition>
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: [0.5, 1], height: 'auto', transition: { duration: 0.15 } }}
+        >
           {comments ? (
             comments.map((comment) => <ReplyCp key={comment.id} reply={comment} />)
           ) : (
             <atom.NoData>등록된 댓글이 없습니다. 댓글을 등록할 수 있습니다.</atom.NoData>
           )}
-        </Transition>
+        </motion.div>
       )}
       <S.CommentEditor>
         <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
@@ -160,7 +164,4 @@ const Btn = styled(Button)`
   width: 55px;
 `;
 
-const Transition = styled.div`
-  height: 100%;
-  transition: all 0.3s;
-`;
+const Transition = styled(motion.div)``;

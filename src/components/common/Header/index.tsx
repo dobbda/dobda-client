@@ -16,6 +16,8 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { Avatar } from 'antd';
 import { SearchBox } from './SearchBox';
+import { AvatarImg } from '../@share/Avatar';
+import UserModalContent from './UserModalContent';
 
 const HeaderNav = () => {
   const queryClient = useQueryClient();
@@ -41,8 +43,11 @@ const HeaderNav = () => {
             )}
             {auth?.id && (
               <>
+                <Popover trigger="click" content={<UserModalContent />} top={16} right={0}>
+                  <AvatarImg src={auth.avatar} size={23} css={{ marginRight: '5px', border: 'solid 1px #000' }} />
+                </Popover>
                 <Popover trigger="click" content={<MessageBox />} top={16} right={0}>
-                  <i.Bell size={'20px'} css={{ marginTop: '2px', cursor: 'pointer' }} />
+                  <i.Bell size={'18px'} css={{ marginTop: '4px', cursor: 'pointer' }} />
                 </Popover>
               </>
             )}
