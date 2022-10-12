@@ -19,7 +19,7 @@ export const SideContentRight = ({ folderOpenFalse }: Props) => {
 
   return (
     <SideContainer>
-      <P>최신 글</P>
+      {/* <P>최신 글</P> */}
       <FolderMenu
         childOpen={!folderOpenFalse}
         title={
@@ -32,7 +32,7 @@ export const SideContentRight = ({ folderOpenFalse }: Props) => {
       </FolderMenu>
       <br />
       <br />
-      <P>최신 글</P>
+      {/* <P>최신 글</P> */}
       <FolderMenu childOpen={!folderOpenFalse} icon={<Red>🌱</Red>} title="신규 프로젝트 ">
         <div>No Data</div>
       </FolderMenu>{' '}

@@ -10,7 +10,8 @@ import { Auth } from 'src/types';
 import { Avatar } from 'antd';
 import { theme } from 'src/styles/Theme';
 type Props = { id: number };
-export function UserInfo({ id }: Props) {
+
+export function UserProfile({ id }: Props) {
   const anyUser = useQuery(['users', id], () => user.getUserInfo(id));
   const data = anyUser?.data as Auth;
   const acceptedRate = Math.ceil((data?.setAcceptCount / data?.questionsCount) * 100) + '%';

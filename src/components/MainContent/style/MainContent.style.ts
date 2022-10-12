@@ -63,9 +63,10 @@ export const WriteHandler = styled.div`
   border-radius: 2rem;
   color: ${theme.color.placeholder};
   font-weight: 600;
-  box-sizing: border-box;
+  border: solid 1px ${theme.color.border(0.2)};
   transition: all 0.2s ease-in-out 0s;
   user-select: none;
+
   cursor: text;
 
   span {
@@ -84,5 +85,9 @@ export const WriteHandler = styled.div`
   :hover {
     box-shadow: ${theme.color.prRgb(0.5)} 0px 0px 0px 3px;
     transition: all 0.3s ease-in-out 0s;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 0.9em;
   }
 `;

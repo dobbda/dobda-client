@@ -15,11 +15,10 @@ export const Div = styled.div`
 
   h1 {
     padding: 10px;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 900;
     text-align: center;
-    color: ${({ theme }) => theme.color.secondary};
-    background-color: #ffffff;
+    color: ${({ theme }) => theme.color.text1(0.8)};
   }
 
   .show-all-messages {

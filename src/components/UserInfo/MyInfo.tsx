@@ -3,7 +3,7 @@ import React from 'react';
 import { useInput } from 'src/hooks';
 import { UserUpdateForm } from './UserUpdate';
 import * as Lib from 'src/components/common';
-import * as S from './style/MyInfo.style';
+import * as S from './style/myInfo.style';
 type Props = {};
 
 export const MyInfo = (props: Props) => {

@@ -58,14 +58,14 @@ export const SideNavWrapper = styled.div<{ bg?: string }>`
   height: calc(100vh - 50px);
   box-sizing: border-box;
   overflow-y: scroll;
-  padding-top: 100px;
+  padding-top: 20px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none; /* Firefox 64 */
   @media screen and (max-width: 1060px) {
     background-color: #fff;
     border: 1px solid ${theme.color.border(0.1)};
-  }
-  /* ${({ bg }) => bg && `background-color: ${theme.color.bg}`}; */
-  ::-webkit-scrollbar {
-    display: none;
   }
 
   @media screen and (max-width: 768px) {

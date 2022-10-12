@@ -20,8 +20,11 @@ const HtmlViewer = ({ content }: MarkdownViewProps) => {
       const code = node.children[0]?.data;
       if (code) {
         const color = hljs.highlightAuto(code).value;
-        const val = `<pre key=${index}><code>${color}</code></pre>`;
-        return ReactHtmlParser(val, transform);
+        return (
+          <pre>
+            <code>{ReactHtmlParser(color, transform)}</code>{' '}
+          </pre>
+        );
       }
     }
   };

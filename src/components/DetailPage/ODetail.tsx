@@ -17,7 +17,7 @@ import { useRouter } from 'next/router';
 import { message } from 'antd';
 import { FolderMenu } from '../SideContent';
 import { theme } from 'src/styles/Theme';
-import { Msg } from '../MyInfo/style/MyInfo.style';
+import { Msg } from '../UserInfo/style/myInfo.style';
 type Props = {
   children?: React.ReactElement; // commentComponent
   data?: OutsourceDetail;

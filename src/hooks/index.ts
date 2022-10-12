@@ -18,7 +18,7 @@ export { default as useAddReply } from './outsourcing/useAddReply';
 export { useDelete } from './common/useDel';
 
 export { useInput } from './useInput';
-export { useLoginModalhandler } from './useloginModalHandler';
+export { useLoginModalhandler, useWriteModalhandler } from './useServiceModalHandler';
 export { useScroll } from './useScroll';
 export { useWindowSize } from './useWindowSize';
 

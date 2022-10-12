@@ -84,7 +84,7 @@ const AnswerCp = ({ answer, question }: Props) => {
               trigger="click"
               placement="bottom"
               content={
-                auth.id == answer.author.id ? (
+                auth?.id == answer.author.id ? (
                   <>
                     <Button key="edit" types="primary" onClick={() => setShowEdit(!showEdit)}>
                       수정

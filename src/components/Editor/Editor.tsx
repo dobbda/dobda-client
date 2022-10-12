@@ -27,7 +27,7 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height, submitBtn }: Pro
   }, [auth?.id, setLoginModal, showEditor]);
 
   useEffect(() => {
-    setshowSubmit(mdStr.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length >= 2);
+    setshowSubmit(mdStr?.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length >= 2);
   }, [mdStr]);
   return (
     <S.EditorStyle>

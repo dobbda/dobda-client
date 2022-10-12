@@ -12,9 +12,9 @@ export const Header = styled.header`
   right: 0px;
   background-color: ${({ theme }) => theme.color.header};
 
-  -moz-box-shadow: 0 5px 4px rgb(137 138 154 / 40%);
-  -webkit-box-shadow: 0 5px 4px rgb(137 138 154 / 40%);
-  box-shadow: 0 5px 4px rgb(137 138 154 / 40%);
+  -moz-box-shadow: 0px 0px 4px rgb(137 138 154 / 40%);
+  -webkit-box-shadow: 0px 0px 4px rgb(137 138 154 / 40%);
+  box-shadow: 0px 0px 4px rgb(137 138 154 / 40%);
   .headerWrapper {
   }
 `;

@@ -13,8 +13,6 @@ export const Loading = ({ loading, many }: Props) => {
       {!many && loading && <Spin indicator={antIcon} />}
       {many && loading && (
         <Space size="middle">
-          <Spin size="small" />
-          <Spin />
           <Spin size="large" />
         </Space>
       )}

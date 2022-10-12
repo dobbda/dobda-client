@@ -10,7 +10,6 @@ export { Q, Accepted, Won, LogoW as LogoW, LogoBBB as LogoBBB, Logo as Logo };
 export { BiHash as Hash } from 'react-icons/bi';
 // export { RiBitCoinFill as Coin} from 'react-icons/ri';
 export { FaReply as ReplyFill } from 'react-icons/fa';
-export { IoMdArrowRoundBack as BackArrow } from 'react-icons/io';
 export { FcGoogle as Google } from 'react-icons/fc';
 export { SiNaver as Naver } from 'react-icons/si';
 export { GoMarkGithub as Github } from 'react-icons/go';
@@ -32,6 +31,7 @@ export { RiRefreshLine as Refresh } from 'react-icons/ri';
 export { RiQuestionnaireFill as Question } from 'react-icons/ri';
 export { FaHandsHelping as OutSource } from 'react-icons/fa';
 export { BiRightArrow as GoArrow } from 'react-icons/bi';
+export { BiLeftArrow as BackArrow } from 'react-icons/bi';
 export { MdOutlineHelp as Tip } from 'react-icons/md';
 
 import { RiArrowDownSLine } from 'react-icons/ri';

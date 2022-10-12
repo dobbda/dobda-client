@@ -5,16 +5,13 @@ import { Modal } from 'src/components/common';
 import { SocialLogin } from 'src/components/SocialLogin';
 import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
+import { useWriteModalhandler } from 'src/hooks';
 
-type Props = {
-  visible: boolean;
-  setVisible: () => void;
-};
-
-export function WirteHandlerModal({ visible, setVisible }: Props) {
+export function WirteHandlerModal() {
+  const { writeModal, setWriteModal } = useWriteModalhandler();
   return (
     <>
-      <Modal visible={visible} onClickHandler={setVisible}>
+      <Modal visible={writeModal} onClickHandler={setWriteModal}>
         <WriteModalContent>
           <h2>도움이 필요하신가요?</h2>
           <Link href="/questions/write">

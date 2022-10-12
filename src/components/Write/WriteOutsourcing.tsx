@@ -9,7 +9,7 @@ import { Write_Wrapper, EnrQorl, Label, Group, Pilsu, CoinView } from './style/w
 import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag, message, Input } from 'antd';
 
 import Hashtags from './atom/Hashtags';
-import { atom, Button, Link, Loading, Popover } from '../common';
+import { atom, Button, Link, Loading, Popover } from 'src/components/common';
 import { useAddOutsource, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
 import { CreateOutsource, OutsourceDetail } from 'src/types';
 

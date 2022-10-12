@@ -5,48 +5,19 @@ export const GlobalStyle = createGlobalStyle`
   html,
   body,
   #__next {
-    /* min-height: 100% !important; */
-		height: fit-content;
     box-sizing: border-box;
 		margin: 0 ;
 		padding:0;
+	}
+	body{
     background-color: ${theme.color.bg};
 		font-family: "Helvetica Neue", "Noto Sans KR", Inter, Helvetica, sans-serif;
     font-size: 14px;
-
-    .toastui-editor-defaultUI-toolbar,
-		.toastui-editor-md-tab-container,
-		.toastui-editor-toolbar-icons
-		{
-      background-color: rgba(0,0,0,0);
-			border:none;
-    }
-    .toastui-editor-defaultUI{
-      border:1px solid ${theme.color.border(0.1)};
-      border-radius: 0;
-      background: #fff;
-			h1,h2,h3,h4,h5,h6{
-				margin:5px 0 2px;
-				border-bottom: none;
-			}
-			.toastui-editor-toolbar{
-				background-color: #fff;
-				border-bottom: 1px solid ${theme.color.border(0.1)};
-			}
-    }
-		.toastui-editor-contents h1,h2,h3{
-			border:none;
-		}
-		.ant-popover-inner-content{
-			padding:5px ;
-		}
-		.toastui-editor-toolbar-group{
-			display: flex;
-    	flex-wrap: wrap;
-		}
-
   }
 
+	.ant-popover-inner-content{
+			padding:5px ;
+		}
 
   .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
     color: #fff;
@@ -65,13 +36,8 @@ export const GlobalStyle = createGlobalStyle`
     list-style-type: none;
     box-sizing: border-box;
   }
-  /* pre {
-    background-color: #414141 !important;
-		white-space: pre-wrap;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    padding: 5px 10px;
-  } */
+
+
  h1,h2,h3,p{
     margin: 0;
   }

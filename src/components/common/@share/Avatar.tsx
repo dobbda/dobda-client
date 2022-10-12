@@ -4,7 +4,7 @@ import 'antd/dist/antd.min.css';
 import styled from 'styled-components';
 
 import { Popover, Avatar as AntAvatar } from 'antd';
-import { UserInfo } from '../../UserInfo';
+import { UserProfile } from 'src/components/UserInfo/UserProfile';
 import { theme } from 'src/styles/Theme';
 
 type Props = {
@@ -39,19 +39,9 @@ const Div = styled.div`
   }
 `;
 
-export const Avatar = ({ nickname, url, id }: Props) => {
-  const [visible, setVisible] = useState(false);
-
-  const hide = () => {
-    setVisible(false);
-  };
-
-  const handleVisibleChange = (newVisible: boolean) => {
-    setVisible(newVisible);
-  };
-
+const Avatar = ({ nickname, url, id }: Props) => {
   return (
-    <Popover trigger="click" placement="bottomLeft" content={<UserInfo id={id} />}>
+    <Popover trigger="click" placement="bottomLeft" content={<UserProfile id={id} />}>
       <Div>
         <SImg src={url}></SImg>
         <h3>{nickname}</h3>
@@ -60,4 +50,4 @@ export const Avatar = ({ nickname, url, id }: Props) => {
   );
 };
 
-export { SImg as AvatarImg };
+export { SImg as AvatarImg, Avatar };

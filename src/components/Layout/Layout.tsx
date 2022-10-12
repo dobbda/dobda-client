@@ -5,6 +5,8 @@ import { GlobalStyle } from 'src/styles/GlobalStyle';
 import { SideContentLeft, SideContentRight } from 'src/components/SideContent';
 import { useScroll, useWindowSize } from 'src/hooks';
 
+import BnCarousel from '../Admin/banner/BnCarouse';
+
 interface Props {
   sideRight?: boolean;
   sideLeft?: boolean;
@@ -15,7 +17,9 @@ const Layout = ({ children, sideRight, sideLeft }: PropsWithChildren<Props>) => 
     <S.Container>
       <GlobalStyle />
       <HeaderNav />
-      <S.HeaderContent></S.HeaderContent>
+      <S.HeaderContent>
+        <BnCarousel />
+      </S.HeaderContent>
       <S.Position>
         <S.Wrapper>
           {sideLeft && width > 1060 && (
@@ -23,12 +27,11 @@ const Layout = ({ children, sideRight, sideLeft }: PropsWithChildren<Props>) => 
               <SideContentLeft />
             </S.SideNavWrapper>
           )}
-          <S.MainWrapper>
-            {sideLeft && width < 1060 && <SideContentLeft folderOpenFalse />}
-            {children}
-          </S.MainWrapper>
+          <S.MainWrapper>{children}</S.MainWrapper>
           {sideRight && (
             <S.SideNavWrapper>
+              {sideLeft && width < 1060 && <SideContentLeft folderOpenFalse />}
+
               <SideContentRight />
             </S.SideNavWrapper>
           )}

@@ -2,7 +2,7 @@ import 'antd/dist/antd.css';
 import React, { useCallback } from 'react';
 import { useAuth, useInput } from 'src/hooks';
 import { Hashtags } from 'src/components/Write';
-import * as S from './style/MyInfo.style';
+import * as S from './style/myInfo.style';
 import { Button } from '../common';
 import { useQuery, useQueryClient } from 'react-query';
 import { UserUpdate } from 'src/types';

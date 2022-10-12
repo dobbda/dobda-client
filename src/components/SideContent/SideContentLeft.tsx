@@ -57,6 +57,8 @@ export const SideContentLeft = ({ folderOpenFalse }: Props) => {
           <div>로그인이 필요합니다.</div>
         </FolderMenu>
       )}
+      <br />
+      <br />
       <FolderMenu icon={<i.Notice size="20px" />} childOpen={!folderOpenFalse} title="공지사항" href="/notice">
         <NoData>No Data</NoData>
       </FolderMenu>
