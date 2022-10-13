@@ -5,21 +5,20 @@ import { GlobalStyle } from 'src/styles/GlobalStyle';
 import { SideContentLeft, SideContentRight } from 'src/components/SideContent';
 import { useScroll, useWindowSize } from 'src/hooks';
 
-import BnCarousel from '../Admin/banner/BnCarouse';
+import BnCarousel from '../components/Admin/banner/BnCarouse';
 
 interface Props {
   sideRight?: boolean;
   sideLeft?: boolean;
+  banner?: boolean;
 }
-const Layout = ({ children, sideRight, sideLeft }: PropsWithChildren<Props>) => {
+export const Layout = ({ children, sideRight, sideLeft, banner }: PropsWithChildren<Props>) => {
   const { width, height } = useWindowSize();
   return (
     <S.Container>
       <GlobalStyle />
       <HeaderNav />
-      <S.HeaderContent>
-        <BnCarousel />
-      </S.HeaderContent>
+      <S.HeaderContent>{banner && <BnCarousel />}</S.HeaderContent>
       <S.Position>
         <S.Wrapper>
           {sideLeft && width > 1060 && (
@@ -31,7 +30,6 @@ const Layout = ({ children, sideRight, sideLeft }: PropsWithChildren<Props>) => 
           {sideRight && (
             <S.SideNavWrapper>
               {sideLeft && width < 1060 && <SideContentLeft folderOpenFalse />}
-
               <SideContentRight />
             </S.SideNavWrapper>
           )}
@@ -40,5 +38,3 @@ const Layout = ({ children, sideRight, sideLeft }: PropsWithChildren<Props>) => 
     </S.Container>
   );
 };
-
-export default Layout;

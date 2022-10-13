@@ -1,11 +1,7 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { useQueryClient, useQuery } from 'react-query';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 
 import { useRouter } from 'next/router';
-import { setLocalStorage } from 'src/lib/utils/localStorage';
-import { useAuth } from 'src/hooks';
-import { variable } from 'src/config/defaultValue';
 import { Loading } from 'src/components/common';
 
 type Props = {};
@@ -22,7 +18,6 @@ const Lodding = (props: Props) => {
           res.data.success
             ? (window.opener.postMessage(res.data.response, location.origin), window.close())
             : window.opener.postMessage(false, location.origin);
-          // window.close();
         }
       });
     }

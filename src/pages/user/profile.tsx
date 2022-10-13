@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
-import { MyInfo } from 'src/components/MyInfo';
-import { Layout } from 'src/components/Layout';
+import { MyInfo } from 'src/components/UserInfo';
+import { Layout } from 'src/Layout';
 import React from 'react';
 
 type Props = {};

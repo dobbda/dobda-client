@@ -1,4 +1,4 @@
-import { Layout } from 'src/components/Layout';
+import { Layout } from 'src/Layout';
 import { QDetail } from 'src/components/DetailPage';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';

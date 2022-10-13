@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
 import { CoinDeposit as Payment } from 'src/components/Payment';
-import { Layout } from 'src/components/Layout';
+import { Layout } from 'src/Layout';
 import { NextPage } from 'next';
 type Props = {};
 

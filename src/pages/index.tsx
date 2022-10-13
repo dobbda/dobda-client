@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import React, { useEffect } from 'react';
 import { dehydrate, QueryClient, useQuery, useQueryClient } from 'react-query';
-import { Layout } from '../components/Layout';
+import { Layout } from 'src/Layout';
 import { MainContent } from 'src/components/MainContent';
 import { NextPageContext } from 'next';
 import { GetServerSideProps } from 'next';
