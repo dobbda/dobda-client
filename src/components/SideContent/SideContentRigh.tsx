@@ -6,8 +6,7 @@ import { FolderMenu } from './FolderMenu/FolderMenu';
 
 import { i } from 'src/icons'; //icon
 import { useAuth, useLoginModalhandler } from 'src/hooks';
-import { Avatar } from 'antd';
-import { Button } from '../common';
+import { Button, Empty } from '../common';
 
 interface Props {
   folderOpenFalse?: boolean;
@@ -28,19 +27,17 @@ export const SideContentRight = ({ folderOpenFalse }: Props) => {
           </>
         }
       >
-        <div>No Data</div>
+        <Empty />
       </FolderMenu>
-      <br />
       <br />
       {/* <P>최신 글</P> */}
       <FolderMenu childOpen={!folderOpenFalse} icon={<Red>🌱</Red>} title="신규 프로젝트 ">
-        <div>No Data</div>
+        <Empty />
       </FolderMenu>{' '}
       <br />
       <br />
-      <P>인기 태그</P>
       <FolderMenu childOpen={!folderOpenFalse} icon={<Red>🔢 </Red>} title={<>Tag Cloud</>}>
-        <div>No Data</div>
+        <Empty />
       </FolderMenu>{' '}
     </SideContainer>
   );

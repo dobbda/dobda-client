@@ -29,7 +29,7 @@ const AnswerCp = ({ answer, question }: Props) => {
   const queryClient = useQueryClient();
   const { errMsg } = useErrMsg();
   const [isEdit, setisEdit] = useState(false);
-  const [mdStr, setMdStr] = useState('');
+  const [html, setHtml] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
   const { data: comments } = useQuery(keys.comment(Number(qid), answer.id), () => q.getComments(answer.id), {
     enabled: answer.commentsCount > 0 && viewChild,
@@ -39,12 +39,12 @@ const AnswerCp = ({ answer, question }: Props) => {
   const del = useDelete(answer?.id, keys.answers(answer?.questionId));
   const { auth } = useAuth();
   const onSubmitComment = useCallback(() => {
-    addReply.mutate({ content: mdStr, aid: answer.id });
-  }, [addReply, mdStr, answer.id]);
+    addReply.mutate({ content: html, aid: answer.id });
+  }, [addReply, html, answer.id]);
 
   useDidMountEffect(() => {
     if (addReply.isSuccess) {
-      setMdStr('');
+      setHtml('');
     }
     if (addReply.isError) {
       m.error(errMsg);
@@ -148,8 +148,8 @@ const AnswerCp = ({ answer, question }: Props) => {
         </motion.div>
       )}
       <S.CommentEditor>
-        <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
-        {mdStr && (
+        <Editor html={html} setHtml={setHtml} onClickShow={true} height="200px" />
+        {html && (
           <Button onClick={onSubmitComment} types="black" $block $fill css={{ marginBottom: '5px' }}>
             <Loading loading={addReply.isLoading} />
             등록

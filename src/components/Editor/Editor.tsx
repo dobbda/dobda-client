@@ -5,14 +5,14 @@ import { useAuth, useLoginModalhandler } from 'src/hooks';
 import QuillEditor from './QuillEditor';
 
 interface Props {
-  mdStr: string;
-  setMdStr: React.Dispatch<React.SetStateAction<string>>;
+  html: string;
+  setHtml: React.Dispatch<React.SetStateAction<string>>;
   onClickShow?: boolean;
-  height: string;
+  height?: string;
   submitBtn?: React.ReactNode;
 }
 
-const Editor = ({ mdStr, setMdStr, onClickShow = false, height, submitBtn }: Props) => {
+const Editor = ({ html, setHtml, onClickShow = false, height, submitBtn }: Props) => {
   const { auth, refetch } = useAuth();
   const { setLoginModal } = useLoginModalhandler();
   const [showSubmit, setshowSubmit] = useState(false);
@@ -27,8 +27,8 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height, submitBtn }: Pro
   }, [auth?.id, setLoginModal, showEditor]);
 
   useEffect(() => {
-    setshowSubmit(mdStr?.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length >= 2);
-  }, [mdStr]);
+    setshowSubmit(html?.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length >= 2);
+  }, [html]);
   return (
     <S.EditorStyle>
       {onClickShow && !showEditor && (
@@ -37,7 +37,7 @@ const Editor = ({ mdStr, setMdStr, onClickShow = false, height, submitBtn }: Pro
         </div>
       )}
 
-      {showEditor && <QuillEditor html={mdStr} setHtml={setMdStr} height={height} />}
+      {showEditor && <QuillEditor html={html} setHtml={setHtml} height={height} />}
       {onClickShow && showEditor && (
         <>
           <S.CloseEditor onClick={() => setShowEditor(false)}>Editor 접기</S.CloseEditor>

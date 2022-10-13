@@ -26,7 +26,7 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
   const router = useRouter();
   const { id: oid } = router.query;
   const { errMsg } = useErrMsg();
-  const [mdStr, setMdStr] = useState('');
+  const [html, setHtml] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
   const { auth } = useAuth();
   const del = useDelete(enquiry?.id, keys.enquiries(enquiry?.outSourcingId));
@@ -37,12 +37,12 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
   });
 
   const onSubmitComment = useCallback(() => {
-    addReply.mutate({ content: mdStr, eid: enquiry.id });
-  }, [addReply, mdStr, enquiry?.id]);
+    addReply.mutate({ content: html, eid: enquiry.id });
+  }, [addReply, html, enquiry?.id]);
 
   useDidMountEffect(() => {
     if (addReply.isSuccess) {
-      setMdStr('');
+      setHtml('');
     }
     if (addReply.isError) {
       m.error(errMsg);
@@ -127,8 +127,8 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
           )}
           <S.CommentEditor>
             <Editor
-              mdStr={mdStr}
-              setMdStr={setMdStr}
+              html={html}
+              setHtml={setHtml}
               onClickShow={true}
               height="200px"
               submitBtn={

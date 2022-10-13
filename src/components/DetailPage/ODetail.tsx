@@ -34,7 +34,7 @@ const ODetail = ({ children, data }: Props) => {
 
   const queryClient = useQueryClient();
 
-  const [mdStr, setMdStr] = useState('');
+  const [html, setHtml] = useState('');
   const [isEdit, setIsEdit] = useState(false);
   const { data: enquiries } = useQuery(keys.enquiries(data?.id), () => o.getEnquiries(data.id), {
     enabled: data?.enquiriesCount > 0,
@@ -43,19 +43,19 @@ const ODetail = ({ children, data }: Props) => {
   const add = useAddEnquiry(data?.id);
 
   const onSubmitEnquiry = useCallback(() => {
-    let len = mdStr.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length;
+    let len = html.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length;
 
     if (len < 5) return message.error('5글자 이상 작성 하여야 합니다.');
-    const enquiryData = { content: mdStr, oid: data.id };
+    const enquiryData = { content: html, oid: data.id };
     add.mutate(enquiryData);
-  }, [mdStr, data.id, add]);
+  }, [html, data.id, add]);
 
   const { errMsg } = useErrMsg();
 
   useDidMountEffect(() => {
     if (add.isSuccess) {
       message.success('답변이 등록되었습니다.');
-      setMdStr('');
+      setHtml('');
       return;
     }
     if (del.isSuccess) {
@@ -119,7 +119,7 @@ const ODetail = ({ children, data }: Props) => {
 
           <S.EditorWrapper>
             <h3>🧘‍♂️글을 남겨 본인을 어필해보세요.</h3>
-            <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
+            <Editor html={html} setHtml={setHtml} onClickShow={true} height="400px" />
           </S.EditorWrapper>
           <Button onClick={onSubmitEnquiry} types="primary" $fill $block css={{ width: '200px' }}>
             등록

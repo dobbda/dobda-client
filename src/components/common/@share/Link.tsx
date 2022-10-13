@@ -7,8 +7,8 @@ interface Props extends LinkProps {
 export const A = (props: Props) => {
   const { children, ...linkProps } = props;
   return (
-    <Link {...linkProps}>
-      <a css={{}}>{children}</a>
+    <Link {...linkProps} css={{ width: '100%' }}>
+      <a css={{ width: '100%' }}>{children}</a>
     </Link>
   );
 };

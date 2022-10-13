@@ -11,6 +11,7 @@ import { NoData } from '../common/@share/atom';
 import { theme } from 'src/styles/Theme';
 import Link from 'next/link';
 import { AvatarImg } from '../common/@share/Avatar';
+import { NotiList } from './content/NotiList';
 
 interface Props {
   folderOpenFalse?: boolean;
@@ -60,7 +61,7 @@ export const SideContentLeft = ({ folderOpenFalse }: Props) => {
       <br />
       <br />
       <FolderMenu icon={<i.Notice size="20px" />} childOpen={!folderOpenFalse} title="공지사항" href="/notice">
-        <NoData>No Data</NoData>
+        <NotiList />
       </FolderMenu>
     </SideContainer>
   );

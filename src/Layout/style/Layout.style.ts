@@ -15,6 +15,7 @@ export const Container = styled.div`
 export const Position = styled.div<Props>`
   max-width: ${({ theme }) => theme.media.maxWidth};
   margin: 0 auto;
+  height: 100%;
 `;
 
 export const Wrapper = styled.div`
@@ -35,7 +36,7 @@ export const Wrapper = styled.div`
 `;
 
 export const MainWrapper = styled.div`
-  min-height: 100vh;
+  min-height: 100%;
   width: 100%;
   padding: 0 20px;
   position: relative;

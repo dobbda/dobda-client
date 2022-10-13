@@ -32,7 +32,7 @@ const QDetail = ({ children, data }: Props) => {
   const queryClient = useQueryClient();
   const router = useRouter();
   const { auth, refetch } = useAuth();
-  const [mdStr, setMdStr] = useState('');
+  const [html, setHtml] = useState('');
   const [isEdit, setIsEdit] = useState(false);
   const { data: answers } = useQuery(keys.answers(data?.id), () => q.getAnswers(data.id), {
     enabled: data?.answersCount > 0,
@@ -42,17 +42,17 @@ const QDetail = ({ children, data }: Props) => {
   const add = useAddAnswer(data?.id);
 
   const onSubmitAnswer = useCallback(async () => {
-    let len = mdStr.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length;
+    let len = html.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length;
     if (len < 5) return message.error('5글자 이상 작성 하여야 합니다.');
-    const answerData = { content: mdStr, qid: data.id };
+    const answerData = { content: html, qid: data.id };
     add.mutate(answerData);
-  }, [mdStr, data.id, add]);
+  }, [html, data.id, add]);
 
   const { errMsg } = useErrMsg();
   useEffect(() => {
     if (add.isSuccess) {
       message.success('답변이 등록되었습니다.');
-      setMdStr('');
+      setHtml('');
     }
     if (del.isSuccess) {
       router.replace('/');
@@ -108,7 +108,7 @@ const QDetail = ({ children, data }: Props) => {
 
           <S.EditorWrapper>
             <h3>답변을 작성해주세요</h3>
-            <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="400px" />
+            <Editor html={html} setHtml={setHtml} onClickShow={true} height="400px" />
             <Button onClick={onSubmitAnswer} types="secondary" $block $fill>
               <Loading loading={add.isLoading} /> 등록
             </Button>

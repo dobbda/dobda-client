@@ -5,3 +5,4 @@ export * as q from './apis/questions';
 export * as o from './apis/outsourcing';
 export * as reqAuth from './apis/auth';
 export * as ssr from './apis/ssr';
+export * as noti from './apis/noti';

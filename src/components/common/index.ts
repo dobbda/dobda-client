@@ -9,3 +9,4 @@ export { Loading } from './@share/Loading';
 export { A as Link } from './@share/Link';
 
 export { default as HeaderNav } from './Header';
+export { Empty } from './@share/Empty';

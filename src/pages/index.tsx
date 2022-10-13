@@ -16,7 +16,7 @@ import { errorHandler } from 'src/api/errorHandler';
 const Home: NextPage<{ exp: Exp }> = (props) => {
   setLocalStorage('exp', JSON.stringify(props.exp));
   return (
-    <Layout sideLeft sideRight>
+    <Layout sideLeft sideRight banner>
       <MainContent />
     </Layout>
   );

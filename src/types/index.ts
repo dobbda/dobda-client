@@ -6,6 +6,14 @@ export interface Author {
   hashId: string;
 }
 
+export interface Noti {
+  title: string;
+  createdAt: string;
+  content: string;
+  image: string;
+  id: number;
+}
+
 export interface UserUpdate {
   name?: string;
   description?: string;
@@ -44,6 +52,7 @@ export interface Auth extends Default {
   coin: number;
   score: number;
   skill: string[];
+  role: number;
   description: string;
   getAcceptCount: number;
   setAcceptCount: number;
