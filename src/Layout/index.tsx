@@ -5,7 +5,7 @@ import { GlobalStyle } from 'src/styles/GlobalStyle';
 import { SideContentLeft, SideContentRight } from 'src/components/SideContent';
 import { useScroll, useWindowSize } from 'src/hooks';
 
-import BnCarousel from '../components/Admin/banner/BnCarouse';
+import BnCarousel from '../components/banner/BnCarouse';
 
 interface Props {
   sideRight?: boolean;

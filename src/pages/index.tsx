@@ -6,7 +6,7 @@ import { MainContent } from 'src/components/MainContent';
 import { NextPageContext } from 'next';
 import { GetServerSideProps } from 'next';
 import axios, { AxiosRequestConfig } from 'axios';
-import { http, reqAuth, ssr, user } from 'src/api';
+import { ssr } from 'src/api';
 import { keys } from 'src/hooks';
 import { cookieDecod } from 'src/lib/utils/cookieDecod';
 import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';
