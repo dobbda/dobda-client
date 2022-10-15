@@ -29,10 +29,10 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
   const [html, setHtml] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
   const { auth } = useAuth();
-  const del = useDelete(enquiry?.id, keys.enquiries(enquiry?.outSourcingId));
+  const del = useDelete(enquiry?.id, keys.enquiry(enquiry?.outSourcingId));
   const addReply = useAddReply(enquiry?.id);
 
-  const { data: reply } = useQuery(keys.replies(Number(oid), enquiry?.id), () => o.getReplies(enquiry?.id), {
+  const { data: reply } = useQuery(keys.reply(Number(oid), enquiry?.id), () => o.getReply(enquiry?.id), {
     enabled: enquiry?.repliesCount > 0 && viewChild,
   });
 
@@ -98,7 +98,7 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
 
           <S.Viewer>
             {showEdit ? (
-              <Edit id={enquiry?.id} setCancel={setShowEdit} content={enquiry.content} type="enquiries" />
+              <Edit id={enquiry?.id} setCancel={setShowEdit} content={enquiry.content} type="enquiry" />
             ) : (
               <HtmlViewer content={enquiry?.content} />
             )}

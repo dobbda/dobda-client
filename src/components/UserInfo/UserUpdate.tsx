@@ -36,7 +36,6 @@ export const UserUpdateForm = (props: Props) => {
       skill: skills,
       description: description,
     };
-    console.log(isValidate, data);
 
     if (isValidate) {
       return message.warning('변경사항이 없습니다.');

@@ -32,9 +32,10 @@ interface Props {
   html: string;
   setHtml: Dispatch<SetStateAction<string>>;
   height?: string;
+  setFocus?: boolean;
 }
 
-const QuillEditor = ({ html, setHtml, height }: Props) => {
+const QuillEditor = ({ html, setHtml, height, setFocus }: Props) => {
   const quillRef = useRef<any>();
 
   const imageHandler = useCallback(() => {
@@ -89,6 +90,10 @@ const QuillEditor = ({ html, setHtml, height }: Props) => {
     }),
     [],
   );
+
+  useEffect(() => {
+    setFocus && quillRef.current?.getEditor().focus();
+  }, [setFocus]);
 
   return (
     <>

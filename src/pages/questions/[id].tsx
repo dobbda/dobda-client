@@ -12,15 +12,14 @@ import { errorHandler } from 'src/api/errorHandler';
 import { setLocalStorage } from 'src/lib/utils/localStorage';
 import { Exp } from 'src/types/content-type';
 
-const QuestionDetailPage: NextPage<{ exp: Exp }> = (props) => {
+const QuestionDetailPage: NextPage<{ exp: Exp; id: string }> = (props) => {
   setLocalStorage('exp', JSON.stringify(props.exp));
 
   const router = useRouter();
-  const { id } = router.query as { id: string | number };
+  const { id } = props;
   const { data, error, isError, isSuccess } = useQuery(keys.qDetail(id), () => q.questionDetail<QuestionDetail>(id), {
     retry: 0,
     staleTime: Infinity,
-    enabled: id !== undefined,
   });
   useEffect(() => {
     if (isError) {
@@ -40,6 +39,7 @@ export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx:
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
+      id: id,
       exp,
     },
   };

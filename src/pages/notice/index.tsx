@@ -10,7 +10,6 @@ import { Noti } from 'src/types';
 
 const NotiList: NextPage = () => {
   const { data } = useQuery('notis', noti.getNotis);
-  console.log('notice data: ', data);
   return (
     <Layout sideLeft sideRight>
       <Divider orientation="left">

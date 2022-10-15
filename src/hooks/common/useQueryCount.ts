@@ -58,7 +58,6 @@ export const useQueryCount = () => {
       const updateData = produce(oldData, (draft: any) => {
         draft?.map((data: any) => {
           if (data.id === findId) {
-            console.log('찾았다: ', changeKey, value, data);
             return (data[changeKey] = value);
           }
           return data;

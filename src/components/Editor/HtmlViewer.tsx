@@ -17,11 +17,10 @@ interface MarkdownViewProps {
 const HtmlViewer = ({ content }: MarkdownViewProps) => {
   const transform = (node: any, index: number | string) => {
     if (node.name === 'pre') {
-      const code = node.children[0]?.data;
-      if (code) {
-        const color = hljs.highlightAuto(code).value;
+      if (node.children?.length == 1) {
+        const color = hljs.highlightAuto(node.children[0]?.data).value;
         return (
-          <pre>
+          <pre key={index}>
             <code>{ReactHtmlParser(color, transform)}</code>{' '}
           </pre>
         );

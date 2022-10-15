@@ -13,11 +13,11 @@ export const keys = {
   qDetail: (qid: number | string): QueryKey => ['question:' + Number(qid), 'detail'],
 
   outsources: (title?: string, tag?: string): QueryKey => ['outsourcings', { title: title && title, tag: tag && title }],
-  enquiries: (oid: number | string): QueryKey => ['outsourcing: ', Number(oid), 'enquiries'],
-  replies: (oid: number | string, eid: number | string): QueryKey => [
+  enquiry: (oid: number | string): QueryKey => ['outsourcing: ', Number(oid), 'enquiry'],
+  reply: (oid: number | string, eid: number | string): QueryKey => [
     'outsourcing: ' + Number(oid),
     'enquirie: ' + Number(eid),
-    'replies',
+    'reply',
   ],
   oDetail: (oid: number | string): QueryKey => ['outsourcing: ' + Number(oid), 'detail'],
 };

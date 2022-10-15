@@ -13,7 +13,10 @@ export const NotiList = () => {
       {data ? (
         data?.map((noti) => (
           <Link href={`/notice/` + noti.id} key={noti.id}>
-            <Item>·{noti.title}</Item>
+            <Item>
+              {'> '}
+              {noti.title}
+            </Item>
           </Link>
         ))
       ) : (
@@ -28,7 +31,7 @@ const Item = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   display: block;
-  color: #202020;
+  color: #4a4a4a;
   text-align: left;
   padding: 7px 10px;
   :hover {

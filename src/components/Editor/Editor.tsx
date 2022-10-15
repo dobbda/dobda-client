@@ -16,6 +16,7 @@ const Editor = ({ html, setHtml, onClickShow = false, height, submitBtn }: Props
   const { auth, refetch } = useAuth();
   const { setLoginModal } = useLoginModalhandler();
   const [showSubmit, setshowSubmit] = useState(false);
+  const [focus, setFocus] = useState(false);
   // 에디터 보여지는 핸들러
   const [showEditor, setShowEditor] = React.useState(onClickShow ? false : true);
   const onClickShowEditorHandler = useCallback(() => {
@@ -24,6 +25,7 @@ const Editor = ({ html, setHtml, onClickShow = false, height, submitBtn }: Props
       return;
     }
     setShowEditor(!showEditor);
+    setFocus(!showEditor);
   }, [auth?.id, setLoginModal, showEditor]);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ const Editor = ({ html, setHtml, onClickShow = false, height, submitBtn }: Props
         </div>
       )}
 
-      {showEditor && <QuillEditor html={html} setHtml={setHtml} height={height} />}
+      {showEditor && <QuillEditor html={html} setHtml={setHtml} height={height} setFocus={focus} />}
       {onClickShow && showEditor && (
         <>
           <S.CloseEditor onClick={() => setShowEditor(false)}>Editor 접기</S.CloseEditor>

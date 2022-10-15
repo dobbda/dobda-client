@@ -5,24 +5,27 @@ import styled from 'styled-components';
 export const ContentWrapper = styled.div`
   position: relative;
   background-color: #fff;
-  border: 1px solid transparent;
+  border: 1px solid ${theme.color.border2};
   box-shadow: 0 1px 6px 0 rgb(137 138 154 / 40%);
   box-sizing: border-box;
   :hover {
-    border: 1px solid ${theme.color.prRgb(0.5)};
+    border: 1px solid ${theme.color.border1};
     .outsourcing-title {
       text-decoration: underline;
-      text-underline-offset: 3px;
+      text-underline-offset: 5px;
+      text-decoration-color: #a1a1a1;
     }
   }
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h2`
   overflow: hidden;
-  padding-bottom: 10px;
+  text-overflow: ellipsis;
   word-break: break-word;
-  max-height: 100px;
-  display: inline-block;
+  line-clamp: 2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; // 원하는 라인수
+  -webkit-box-orient: vertical;
 `;
 
 export const Progress = styled.h1`
@@ -45,10 +48,9 @@ export const Info = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 10px;
+  padding: 20px 15px;
   gap: 5px;
-  border-radius: 12px;
-  margin: 10px;
+  margin: 10px -1px;
   margin-bottom: 0;
 `;
 

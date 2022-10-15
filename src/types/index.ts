@@ -146,7 +146,7 @@ export interface Outsource extends Default {
   authorId: number;
   accepteAnswerId: boolean;
   author: Author;
-  enquiriesCount: number;
+  enquiryCount: number;
   tagNames: Tags[];
   deadline: string;
   cardImage?: string;

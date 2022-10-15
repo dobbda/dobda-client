@@ -43,10 +43,10 @@ export const Main = styled.div`
     .selected {
       color: ${({ theme }) => theme.color.secondary};
       z-index: 1;
-      border-bottom: 2px solid ${({ theme }) => theme.color.secondary};
+      border-bottom: 2px solid ${({ theme }) => theme.color.seRgb(0.8)};
       transition: all 0.2s ease-in-out 0s;
       :hover {
-        border-bottom: 2px solid ${({ theme }) => theme.color.secondary};
+        border-bottom: 2px solid ${({ theme }) => theme.color.seRgb(0.8)};
       }
     }
   }

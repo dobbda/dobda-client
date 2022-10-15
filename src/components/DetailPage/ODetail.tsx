@@ -36,8 +36,8 @@ const ODetail = ({ children, data }: Props) => {
 
   const [html, setHtml] = useState('');
   const [isEdit, setIsEdit] = useState(false);
-  const { data: enquiries } = useQuery(keys.enquiries(data?.id), () => o.getEnquiries(data.id), {
-    enabled: data?.enquiriesCount > 0,
+  const { data: enquiry } = useQuery(keys.enquiry(data?.id), () => o.getEnquiry(data.id), {
+    enabled: data?.enquiryCount > 0,
   });
   const del = useDelete(data?.id, keys.oDetail(data?.id), data.id);
   const add = useAddEnquiry(data?.id);
@@ -125,8 +125,8 @@ const ODetail = ({ children, data }: Props) => {
             등록
           </Button>
           <S.AnswerContainer>
-            {enquiries && enquiries[0]?.id ? (
-              enquiries.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} out={data} />)
+            {enquiry && enquiry[0]?.id ? (
+              enquiry.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} out={data} />)
             ) : (
               <S.NodataWrapper>등록된 답변이 없습니다. 답변을 등록해보세요.</S.NodataWrapper>
             )}

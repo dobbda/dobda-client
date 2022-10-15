@@ -23,7 +23,7 @@ export default function Edit({ content, type, id, setCancel }: Props) {
   const [html, setHtml] = useState(content);
   const router = useRouter();
   const { id: pid } = router.query as { id: string };
-  const queryKey = (type === 'answers' && keys.answers(pid)) || (type === 'enquiries' && keys.enquiries(pid));
+  const queryKey = (type === 'answers' && keys.answers(pid)) || (type === 'enquiry' && keys.enquiry(pid));
   const onSubmit = useCallback(() => {
     axios
       .patch(`/api/${type}/${id}`, { content: html })

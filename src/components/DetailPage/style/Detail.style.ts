@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const headerFont = '20px';
 const wrapperPadding = '30px';
 export const DetailContainer = styled.div`
-  /* min-height: 100vh; */
+  max-width: 780px;
 `;
 
 export const ContentWrapper = styled.div`
@@ -17,6 +17,7 @@ export const ContentWrapper = styled.div`
   border: 1px solid #eeee;
   /* margin-bottom: 40px; */
 `;
+
 export const CoinWrapper = styled.span`
   font-weight: 600;
   align-items: center;
