@@ -1,9 +1,11 @@
+import { auth } from './../../api/apis/ssr';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useQueryClient } from 'react-query';
 import { user } from 'src/api';
 import { removeLocalStorage } from 'src/lib/utils/localStorage';
 import { useAuth } from './useAuth';
+import { keys } from '..';
 
 export const useLogout = () => {
   const { auth } = useAuth();
@@ -14,7 +16,8 @@ export const useLogout = () => {
       try {
         axios.delete('/api/auth/logout');
       } catch (e) {}
-      queryClient.removeQueries(['auth']);
+      queryClient.invalidateQueries(keys.auth);
+      queryClient.removeQueries(keys.auth);
       router.replace(router.asPath);
     }
   };

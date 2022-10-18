@@ -8,12 +8,13 @@ import { Input as AntInput, Input, message } from 'antd';
 import 'antd/dist/antd.css';
 
 import Hashtags from './atom/Hashtags';
-import { atom, Button, Link, Loading } from '../common';
-import { useAddOutsource, useAddQuestion, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
+import { atom, Loading } from 'src/components/common';
+import { Button } from 'src/components/common/@share/Buttons';
+import { useAddQuestion, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
 import { CreateQuestion, QuestionDetail } from 'src/types';
 import { q } from 'src/api';
-import { o } from 'src/api';
-import { variable } from 'src/config/defaultValue';
+import Link from 'next/link';
+
 type Props = {
   data?: QuestionDetail;
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,7 +24,7 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
   const [saveLoading, setSaveLoading] = useState(false);
   const [contentTitle, setContentTitle] = useState<string>(data?.title);
   const [tags, setTags] = useState<string[] | null>(data?.tagNames.map((tags: any) => tags.name));
-  const [mdStr, setMdStr] = React.useState<string>(data?.content);
+  const [html, setHtml] = React.useState<string>(data?.content);
   const [coin, setCoin] = useState<number>(data?.coin);
 
   const addQuestion = useAddQuestion(q.addQuestion);
@@ -40,7 +41,7 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
     if (!confirm(`등록하시겠습니까? `)) return;
     const newData: CreateQuestion = {
       title: contentTitle,
-      content: mdStr,
+      content: html,
       tagNames: tags,
       coin: coin,
     };
@@ -50,10 +51,10 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
       addQuestion.mutate(newData);
     }
     setSaveLoading(true);
-  }, [contentTitle, mdStr, tags, coin, data?.id, editQuestion, addQuestion]);
+  }, [contentTitle, html, tags, coin, data?.id, editQuestion, addQuestion]);
 
   const onSubmitCheck = useCallback(() => {
-    if (!(mdStr && contentTitle && tags[0])) {
+    if (!(html && contentTitle && tags[0])) {
       message.error('비어있는 항목이 있습니다.');
       return;
     }
@@ -61,7 +62,7 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
       if (coin > auth?.coin) message.error('보유코인이 부족합니다');
     }
     onSubmit();
-  }, [auth?.coin, coin, contentTitle, mdStr, onSubmit, tags]);
+  }, [auth?.coin, coin, contentTitle, html, onSubmit, tags]);
 
   const cancelHandler = useCallback(() => {
     if (confirm('수정된 정보는 저장되지 않습니다.')) setIsEdit(false);
@@ -69,7 +70,7 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
 
   useDidMountEffect(() => {
     if (addQuestion.isSuccess || editQuestion?.isSuccess) {
-      setMdStr('');
+      setHtml('');
       setSaveLoading(false);
       data?.id && setIsEdit(false);
     }
@@ -108,9 +109,9 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
         <InputTitle value={contentTitle} onChange={(e) => setContentTitle(e.target.value)} />
 
         <EditorContainer>
-          <Editor mdStr={mdStr} setMdStr={setMdStr} height="600px" />
+          <Editor html={html} setHtml={setHtml} height="600px" />
         </EditorContainer>
-
+        <br />
         <atom.Flex>
           {data?.id && (
             <Button onClick={cancelHandler} css={{ width: '150px', marginRight: '5px' }} types="danger">
@@ -119,7 +120,7 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
           )}
           <Button onClick={onSubmitCheck} css={{ width: '150px' }} types="secondary" $fill>
             <Loading loading={saveLoading} />
-            등록
+            저장
           </Button>
         </atom.Flex>
       </Write_Wrapper>

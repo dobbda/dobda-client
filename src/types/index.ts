@@ -6,6 +6,33 @@ export interface Author {
   hashId: string;
 }
 
+export interface Default {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface Alarm extends Default {
+  type: string;
+  checked: boolean;
+  content: {
+    questionId?: number;
+    answerId?: number;
+    outSourcingId?: number;
+    enquiryId?: number;
+    replyId?: number;
+    content: string;
+  };
+}
+
+export interface Noti {
+  title: string;
+  createdAt: string;
+  content: string;
+  image: string;
+  id: number;
+  link?: string;
+}
+
 export interface UserUpdate {
   name?: string;
   description?: string;
@@ -23,11 +50,7 @@ export interface IDTYPE {
   qid?: number; //question id
   aid?: number; //answer id
 }
-export interface Default {
-  id: number;
-  createdAt: Date;
-  updatedAt: Date;
-}
+
 export interface CreateComment extends IDTYPE {
   content: string;
 }
@@ -44,6 +67,7 @@ export interface Auth extends Default {
   coin: number;
   score: number;
   skill: string[];
+  role: number;
   description: string;
   getAcceptCount: number;
   setAcceptCount: number;
@@ -112,10 +136,17 @@ export interface Comment extends Default {
 //// 						OutSourcing 							     							////
 ////////////////////////////////////////////////////////////////
 
+export enum ProgressStatus {
+  Pending = 1, // 답변 기다리는 중
+  Pick, //유저선택 => 결제 대기중
+  Proceeding, //결제 완료 => 작업 시작
+  Submit, //작업물 제출 => 등록유저 완료 대기중
+  Clear, // 캐쉬 전달 => clear
+}
 export enum Progress {
   Pending = 'Pending', // 답변 기다리는 중
   Pick = 'Pick', //유저선택 => 결제 대기중
-  Proceeding = 'Payment', //결제 완료 => 작업 시작
+  Proceeding = 'Proceeding', //결제 완료 => 작업 시작
   Submit = 'Submit', //작업물 제출 => 등록유저 완료 대기중
   Clear = 'Clear', // 캐쉬 전달 => clear
 }
@@ -137,7 +168,7 @@ export interface Outsource extends Default {
   authorId: number;
   accepteAnswerId: boolean;
   author: Author;
-  enquiriesCount: number;
+  enquiryCount: number;
   tagNames: Tags[];
   deadline: string;
   cardImage?: string;

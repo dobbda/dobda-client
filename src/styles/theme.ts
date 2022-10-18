@@ -13,7 +13,7 @@ const media = {
 };
 
 const color = {
-  bg: '#f5f7ff', //"#EAEEF2", //background color
+  bg: '#fff', //"#EAEEF2",'#fafbfc',  //background color
   header: '#fff',
   primary: '#0cc098',
   prRgb: (per: number) => `rgba(12, 192, 152, ${per})`,

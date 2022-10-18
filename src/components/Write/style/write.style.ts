@@ -45,15 +45,15 @@ export const CoinView = styled.div`
   text-align: center;
   border-radius: 4px;
   .coin-data {
-    padding: 0 5px;
+    padding: 5px;
     display: flex;
+    justify-content: space-between;
     span {
       color: #8400ec;
       font-weight: bold;
     }
     a {
       color: blue;
-      margin-right: 20px;
     }
   }
 `;

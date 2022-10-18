@@ -14,19 +14,17 @@ export const useDelete = <T extends Props>(id: number, queryKey: QueryKey, paren
   // const befoUrl = router.locale(-1)
   return useMutation((fetch: MutationFunction<unknown, any>) => fetch(id), {
     onSuccess: (res: any) => {
-      console.log('삭제: ', res);
       if (res.success) {
         queryClient.cancelQueries(queryKey);
-        console.log(parentId);
-        if (queryKey.includes('answers') || queryKey.includes('enquiries')) {
+        if (queryKey.includes('answers') || queryKey.includes('enquiry')) {
           queryClient.invalidateQueries(queryKey);
           queryKey.includes('answers') &&
             (setInfCount({ queryKey: keys.questions(), changeKey: 'answersCount', findId: parentId, upDown: -1 }),
             setCount({ queryKey: keys.qDetail(parentId), changeKey: 'answersCount', findId: parentId, upDown: -1 }));
 
-          queryKey.includes('enquiries') &&
-            (setInfCount({ queryKey: keys.outsources(), changeKey: 'enquiriesCount', findId: parentId, upDown: -1 }),
-            setCount({ queryKey: keys.oDetail(parentId), changeKey: 'enquiriesCount', findId: parentId, upDown: -1 }));
+          queryKey.includes('enquiry') &&
+            (setInfCount({ queryKey: keys.outsources(), changeKey: 'enquiryCount', findId: parentId, upDown: -1 }),
+            setCount({ queryKey: keys.oDetail(parentId), changeKey: 'enquiryCount', findId: parentId, upDown: -1 }));
         } else if (queryKey.includes('detail')) {
           queryClient.setQueryData(queryKey.includes('question') ? keys.questions() : keys.outsources(), (oldData: any) =>
             produce(oldData, (draft: any) => {

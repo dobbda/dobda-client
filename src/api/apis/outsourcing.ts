@@ -32,24 +32,29 @@ export const delOutsource = async <T>(id: number | string): Promise<T> => {
 
 // 답변
 export const addEnquiry = async (data: CreateComment): Promise<AxiosResponse> => {
-  return await axios.post(`/api/enquiries`, data);
+  return await axios.post(`/api/enquiry`, data);
 };
 
 export const updateEnquiry = async ({ id, data }: { id?: number | string; data: CreateComment }): Promise<AxiosResponse> => {
-  return await axios.patch(`/api/enquiries/${id}`, data);
+  return await axios.patch(`/api/enquiry/${id}`, data);
 };
-export const getEnquiries = async (id: number | string): Promise<Enquiry[]> => {
-  return (await axios.get(`/api/enquiries/${id}`)).data?.response.enquiries;
+export const getEnquiry = async (id: number | string): Promise<Enquiry[]> => {
+  return (await axios.get(`/api/enquiry/${id}`)).data?.response.enquiry;
 };
 export const delEnquiry = async (id: number | string): Promise<AxiosResponse> => {
-  return (await axios.delete(`/api/enquiries/${id}`)).data;
+  return (await axios.delete(`/api/enquiry/${id}`)).data;
 };
 
 // 댓글
 export const addReply = async (data: CreateComment): Promise<AxiosResponse> => {
   return await axios.post(`/api/replies`, data);
 };
-export const getReplies = async (eid: number | string): Promise<Reply[]> => {
-  console.log(eid);
+export const getReply = async (eid: number | string): Promise<Reply[]> => {
   return (await axios.get(`/api/replies/${eid}`)).data.response.replies;
+};
+
+// pick enquiry
+
+export const pick = async (oid: number | string, eid: number | string): Promise<Reply[]> => {
+  return (await axios.patch(`/api/enquiry/pick?eid=${eid}&oid=${oid}`)).data.response.success;
 };

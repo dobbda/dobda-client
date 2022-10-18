@@ -1,4 +1,4 @@
-import { Auth, UserUpdate } from 'src/types';
+import { Alarm, Auth, UserUpdate } from 'src/types';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { http } from '../http';
 import { variable } from 'src/config/defaultValue';
@@ -22,4 +22,8 @@ export const getUserInfo = async (id: number) => {
 
 export const logout = async () => {
   return await axios.delete('/api/auth/logout');
+};
+
+export const alarms = async (): Promise<Alarm[]> => {
+  return await axios.get('/api/alarms').then((res) => res.data?.response.result);
 };

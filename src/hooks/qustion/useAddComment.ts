@@ -16,7 +16,6 @@ const useAddCommentQ = (aid: number) => {
   const { setCount, setInfCount } = useQueryCount();
   return useMutation((data: CreateComment) => q.addComment(data), {
     onSuccess: async (res: AxiosResponse) => {
-      console.log('프린트');
       await queryClient.cancelQueries(keys.comment(Number(id), aid));
       if (res.data.success) {
         await queryClient.invalidateQueries(keys.comment(Number(id), aid));

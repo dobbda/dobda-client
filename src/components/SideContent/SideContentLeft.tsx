@@ -11,6 +11,7 @@ import { NoData } from '../common/@share/atom';
 import { theme } from 'src/styles/Theme';
 import Link from 'next/link';
 import { AvatarImg } from '../common/@share/Avatar';
+import { NotiList } from './content/NotiList';
 
 interface Props {
   folderOpenFalse?: boolean;
@@ -22,7 +23,7 @@ export const SideContentLeft = ({ folderOpenFalse }: Props) => {
   const { logout } = useLogout();
   return (
     <SideContainer>
-      {auth?.id ? (
+      {/* {auth?.id ? (
         <FolderMenu
           icon={
             <Link href="/user/profile" passHref>
@@ -57,8 +58,10 @@ export const SideContentLeft = ({ folderOpenFalse }: Props) => {
           <div>로그인이 필요합니다.</div>
         </FolderMenu>
       )}
+      <br /> */}
+      <br />
       <FolderMenu icon={<i.Notice size="20px" />} childOpen={!folderOpenFalse} title="공지사항" href="/notice">
-        <NoData>No Data</NoData>
+        <NotiList />
       </FolderMenu>
     </SideContainer>
   );

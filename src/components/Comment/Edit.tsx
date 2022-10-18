@@ -20,13 +20,13 @@ type Props = {
 export default function Edit({ content, type, id, setCancel }: Props) {
   const { setUpdate } = useQueryCount();
   const { errMsg, setErrMsg } = useErrMsg();
-  const [mdStr, setMdStr] = useState(content);
+  const [html, setHtml] = useState(content);
   const router = useRouter();
   const { id: pid } = router.query as { id: string };
-  const queryKey = (type === 'answers' && keys.answers(pid)) || (type === 'enquiries' && keys.enquiries(pid));
+  const queryKey = (type === 'answers' && keys.answers(pid)) || (type === 'enquiry' && keys.enquiry(pid));
   const onSubmit = useCallback(() => {
     axios
-      .patch(`/api/${type}/${id}`, { content: mdStr })
+      .patch(`/api/${type}/${id}`, { content: html })
       .then((res) => {
         if (res.data.success) {
           setUpdate({
@@ -35,17 +35,17 @@ export default function Edit({ content, type, id, setCancel }: Props) {
             findId: id,
             value: res.data.response.content,
           });
-          setMdStr('');
+          setHtml('');
           setCancel(false);
         }
       })
       .catch((error) => message.error(errMsg));
-  }, [mdStr, type, id, type, errMsg]);
+  }, [html, type, id, type, errMsg]);
 
   return (
     <CommentEditor>
-      <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={false} height="200px" />
-
+      <Editor html={html} setHtml={setHtml} onClickShow={false} height="200px" />
+      <br />
       <div css={{ display: 'flex', gap: '10px', alignItem: 'center', justifyContent: 'center' }}>
         <Button onClick={() => setCancel(false)} types="primary" css={{ width: '150px' }}>
           취소

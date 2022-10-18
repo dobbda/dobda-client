@@ -6,10 +6,15 @@ import { GlobalStyle } from 'src/styles/GlobalStyle';
 export const EditorStyle = styled.div`
   position: relative;
   background-color: #fff;
-  border-radius: 4px;
   height: fit-content;
-  transition: all 0.3s;
-  margin: 8px;
+  margin: -1px;
+  .grIOnC {
+    padding-top: 4px;
+    border-radius: 0;
+    input {
+      padding-top: 5px;
+    }
+  }
 `;
 
 export const ReplyIconS = styled(i.Reply)`
@@ -21,8 +26,10 @@ export const ReplyIconS = styled(i.Reply)`
 export const ShowEditorBtn = styled(AntInput)`
   height: 50px;
   background-color: #fff;
-  border-radius: 5px;
-
+  .fXtidj .grIOnC input {
+    padding: 0;
+    border-radius: 5px;
+  }
   input::placeholder {
     font-size: 15px;
     color: gray;

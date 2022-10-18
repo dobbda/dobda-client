@@ -27,12 +27,11 @@ export const Main = styled.div`
       //카테고리 버튼
       cursor: pointer;
       font-size: 15px;
-      padding: 0 15px;
-      height: 30px;
+      font-weight: 900;
+      padding: 0 12px;
+      line-height: 30px;
       display: flex;
-      align-items: center;
       color: #808080;
-      font-weight: bold;
       margin-bottom: -5px;
       border-bottom: 2px solid rgba(0, 0, 0, 0);
       transition: all 0.2s ease-in-out 0.05s;
@@ -41,12 +40,12 @@ export const Main = styled.div`
       }
     }
     .selected {
-      color: ${({ theme }) => theme.color.secondary};
+      color: ${({ theme }) => theme.color.seRgb(0.8)};
       z-index: 1;
-      border-bottom: 2px solid ${({ theme }) => theme.color.secondary};
+      border-bottom: 2px solid ${({ theme }) => theme.color.seRgb(0.8)};
       transition: all 0.2s ease-in-out 0s;
       :hover {
-        border-bottom: 2px solid ${({ theme }) => theme.color.secondary};
+        border-bottom: 2px solid ${({ theme }) => theme.color.seRgb(0.8)};
       }
     }
   }
@@ -63,9 +62,10 @@ export const WriteHandler = styled.div`
   border-radius: 2rem;
   color: ${theme.color.placeholder};
   font-weight: 600;
-  box-sizing: border-box;
+  border: solid 1px ${theme.color.border(0.2)};
   transition: all 0.2s ease-in-out 0s;
   user-select: none;
+
   cursor: text;
 
   span {
@@ -84,5 +84,9 @@ export const WriteHandler = styled.div`
   :hover {
     box-shadow: ${theme.color.prRgb(0.5)} 0px 0px 0px 3px;
     transition: all 0.3s ease-in-out 0s;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 0.9em;
   }
 `;

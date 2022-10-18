@@ -1,5 +1,5 @@
-import { Layout } from 'src/components/Layout';
-import { ODetail } from 'src/components/DetailPage';
+import { Layout } from 'src/Layout';
+import { SourcingPage } from 'src/components/DetailPage';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { o, q, reqAuth, ssr } from 'src/api';
@@ -12,14 +12,13 @@ import { errorHandler } from 'src/api/errorHandler';
 import { Exp } from 'src/types/content-type';
 import { setLocalStorage } from 'src/lib/utils/localStorage';
 
-const RequestDetailPage: NextPage<{ exp: Exp }> = (props) => {
+const RequestDetailPage: NextPage<{ exp: Exp; id: string }> = (props) => {
   const router = useRouter();
   setLocalStorage('exp', JSON.stringify(props.exp));
-  const { id } = router.query as { id: string };
+  const { id } = props;
   const { data, error, isError, isSuccess } = useQuery(keys.oDetail(id), () => o.outsourceDetail<OutsourceDetail>(Number(id)), {
     retry: 0,
     staleTime: Infinity,
-    enabled: id !== undefined,
   });
 
   useEffect(() => {
@@ -27,7 +26,7 @@ const RequestDetailPage: NextPage<{ exp: Exp }> = (props) => {
       router.push('/404', router.asPath, { shallow: true });
     }
   }, [router, isError]);
-  return <Layout sideRight>{data && <ODetail data={data} />}</Layout>;
+  return <Layout sideRight>{data && <SourcingPage data={data} />}</Layout>;
 };
 export default RequestDetailPage;
 
@@ -41,6 +40,7 @@ export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx:
     props: {
       dehydratedState: dehydrate(queryClient),
       exp,
+      id: id,
     },
   };
 });

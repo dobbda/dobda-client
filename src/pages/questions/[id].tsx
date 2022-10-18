@@ -1,5 +1,5 @@
-import { Layout } from 'src/components/Layout';
-import { QDetail } from 'src/components/DetailPage';
+import { Layout } from 'src/Layout';
+import { QuestionPage } from 'src/components/DetailPage';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { QuestionDetail } from 'src/types';
@@ -12,24 +12,23 @@ import { errorHandler } from 'src/api/errorHandler';
 import { setLocalStorage } from 'src/lib/utils/localStorage';
 import { Exp } from 'src/types/content-type';
 
-const QuestionDetailPage: NextPage<{ exp: Exp }> = (props) => {
+const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
   setLocalStorage('exp', JSON.stringify(props.exp));
 
   const router = useRouter();
-  const { id } = router.query as { id: string | number };
+  const { id } = props;
   const { data, error, isError, isSuccess } = useQuery(keys.qDetail(id), () => q.questionDetail<QuestionDetail>(id), {
     retry: 0,
     staleTime: Infinity,
-    enabled: id !== undefined,
   });
   useEffect(() => {
     if (isError) {
       router.push('/404', router.asPath, { shallow: true });
     }
   }, [router, isError]);
-  return <Layout sideRight>{data && <QDetail data={data} />}</Layout>;
+  return <Layout sideRight>{data && <QuestionPage data={data} />}</Layout>;
 };
-export default QuestionDetailPage;
+export default Page;
 
 export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
   const queryClient = new QueryClient();
@@ -40,6 +39,7 @@ export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx:
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
+      id: id,
       exp,
     },
   };

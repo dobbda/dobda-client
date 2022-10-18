@@ -6,18 +6,18 @@ import { useQuery, useQueryClient } from 'react-query';
 
 import { Editor } from 'src/components/Editor';
 import { Write_Wrapper, EnrQorl, Label, Group, Pilsu, CoinView } from './style/write.style';
-import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag, message, Input } from 'antd';
+import { DatePicker, DatePickerProps, Input as AntInput, message, Input } from 'antd';
 
 import Hashtags from './atom/Hashtags';
-import { atom, Button, Link, Loading, Popover } from '../common';
+import { atom, Loading, Popover } from 'src/components/common';
 import { useAddOutsource, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
 import { CreateOutsource, OutsourceDetail } from 'src/types';
 
-import { q } from 'src/api';
+import { Button } from 'src/components/common/@share/Buttons';
+
 import { o } from 'src/api';
-import { i } from 'src/icons';
-import { theme } from 'src/styles/Theme';
 import { Tips } from './atom/Tips';
+import Link from 'next/link';
 type Props = {
   data?: OutsourceDetail;
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,7 +30,7 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
   const [deadline, setDeadline] = useState<string | null>(data?.deadline);
   const [contentTitle, setContentTitle] = useState<string>(data?.title);
   const [tags, setTags] = useState<string[]>(data?.tagNames.map((tags: any) => tags.name));
-  const [mdStr, setMdStr] = React.useState<string>(data?.content);
+  const [html, setHtml] = React.useState<string>(data?.content);
   const [coin, setCoin] = useState<number>(data?.coin);
   const [image, setImage] = useState(data?.cardImage);
 
@@ -59,7 +59,7 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
 
     const newData: CreateOutsource = {
       title: contentTitle,
-      content: mdStr,
+      content: html,
       tagNames: tags,
       coin: coin,
       deadline,
@@ -70,10 +70,10 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
       editOutsource.mutate(newData);
     } else addOutsource.mutate(newData);
     setSaveLoading(true);
-  }, [contentTitle, mdStr, tags, coin, deadline, image, data?.id, addOutsource, editOutsource]);
+  }, [contentTitle, html, tags, coin, deadline, image, data?.id, addOutsource, editOutsource]);
 
   const onSubmitCheck = useCallback(() => {
-    if (!(mdStr && contentTitle && tags[0])) {
+    if (!(html && contentTitle && tags[0])) {
       return message.error('입력 정보가 더 필요합니다');
     }
     if (!coin) {
@@ -84,7 +84,7 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
     }
 
     onSubmit();
-  }, [tags, mdStr, contentTitle, coin, deadline, onSubmit]);
+  }, [tags, html, contentTitle, coin, deadline, onSubmit]);
 
   const cancelHandler = useCallback(() => {
     if (confirm('수정된 정보는 저장되지 않습니다.')) setIsEdit(false);
@@ -92,7 +92,7 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
 
   useDidMountEffect(() => {
     if (editOutsource.isSuccess || addOutsource.isSuccess) {
-      setMdStr('');
+      setHtml('');
       setSaveLoading(false);
       data?.id && setIsEdit(false);
     }
@@ -144,9 +144,9 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
         <InputTitle value={contentTitle} onChange={(e) => setContentTitle(e.target.value)} />
 
         <EditorContainer>
-          <Editor mdStr={mdStr} setMdStr={setMdStr} height="600px" />
+          <Editor html={html} setHtml={setHtml} height="600px" />
         </EditorContainer>
-
+        <br />
         <atom.Flex>
           {data?.id && (
             <Button types="primary" onClick={cancelHandler} css={{ width: '150px', marginRight: '5px' }}>

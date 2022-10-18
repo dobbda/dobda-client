@@ -17,8 +17,8 @@ const useAddReply = (eid: number) => {
   return useMutation((data: CreateComment) => o.addReply(data), {
     onSuccess: async (res: AxiosResponse) => {
       if (res.data.success) {
-        await queryClient.invalidateQueries(keys.replies(Number(id), eid));
-        setCount({ queryKey: keys.enquiries(Number(id)), changeKey: 'repliesCount', findId: eid, upDown: +1 });
+        await queryClient.invalidateQueries(keys.reply(Number(id), eid));
+        setCount({ queryKey: keys.enquiry(Number(id)), changeKey: 'repliesCount', findId: eid, upDown: +1 });
       }
     },
 

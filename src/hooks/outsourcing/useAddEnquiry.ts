@@ -13,15 +13,15 @@ const useAddEnquiry = (oid: number) => {
   const { setCount, setInfCount } = useQueryCount();
   return useMutation((data: CreateComment) => o.addEnquiry(data), {
     onSuccess: async (res: AxiosResponse) => {
-      await queryClient.cancelQueries(keys.enquiries(oid));
+      await queryClient.cancelQueries(keys.enquiry(oid));
 
       if (res.data.success) {
         //상세페이지 댓글수 없데이트
-        setCount({ queryKey: keys.oDetail(oid), changeKey: 'enquiriesCount', upDown: +1 });
-        await queryClient.invalidateQueries(keys.enquiries(oid));
+        setCount({ queryKey: keys.oDetail(oid), changeKey: 'enquiryCount', upDown: +1 });
+        await queryClient.invalidateQueries(keys.enquiry(oid));
 
         //전체 글에 업데이트 해주기
-        setInfCount({ queryKey: keys.questions(), changeKey: 'enquiriesCount', findId: oid, upDown: +1 });
+        setInfCount({ queryKey: keys.questions(), changeKey: 'enquiryCount', findId: oid, upDown: +1 });
       }
     },
 

@@ -7,21 +7,8 @@ interface CardProps {
 }
 
 export const ContentWrapper = styled.div<CardProps>`
-  border: 1px solid transparent;
-  box-shadow: 0 1px 6px 0 rgb(137 138 154 / 40%);
-  box-sizing: border-box;
-  padding: 20px 30px;
-  background-color: #fff;
   svg {
     font-size: 15px;
-  }
-
-  :hover {
-    border: 1px solid ${theme.color.prRgb(0.5)};
-  }
-
-  @media screen and (max-width: 450px) {
-    padding: 20px 10px;
   }
 `;
 

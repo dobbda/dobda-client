@@ -115,15 +115,4 @@ const Hash = styled(i.Hash)`
   margin-right: 5px;
 `;
 
-const AntTag = styled(Tag)`
-  font-size: 15px;
-  padding: 1px 4px 3px;
-
-  border-radius: 4px;
-  text-align: center;
-  span {
-    margin-left: 10px;
-  }
-`;
-
 export default React.memo(Hashtags);

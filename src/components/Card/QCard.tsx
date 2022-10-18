@@ -29,7 +29,8 @@ const QCard = ({ data }: data) => {
           {/* cotent */}
           <S.BodyWrapper>
             <Lib.Link href={`/questions/${q.id}`}>
-              <S.Title>{q.title}</S.Title>
+              <c.Title css={{ fontSize: '17px' }}>{q.title}</c.Title>
+              <br />
             </Lib.Link>
             <atom.TagWrapper>
               {q.tagNames?.map((tag, i) => (
@@ -57,7 +58,7 @@ const QCard = ({ data }: data) => {
               <c.Gap>|</c.Gap>
 
               <c.Group>
-                <i.Coin css={{ marginRight: '5px' }} /> <c.P>{q.coin.toLocaleString()}</c.P>
+                <i.Coin css={{ marginRight: '5px' }} /> <c.P>{q?.coin?.toLocaleString()}</c.P>
               </c.Group>
             </c.Group>
             <c.Group>

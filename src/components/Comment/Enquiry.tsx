@@ -10,11 +10,12 @@ import styled from 'styled-components';
 import { Popover, message as m } from 'antd';
 import { keys, useAddReply, useAuth, useDelete, useDidMountEffect, useErrMsg } from 'src/hooks';
 import { o } from 'src/api';
-import { useQuery } from 'react-query';
+import { QueryClient, useQuery, useQueryClient } from 'react-query';
 import ReplyCp from './Reply';
 import { useRouter } from 'next/router';
 import { Button } from 'src/components/common';
 import Edit from './Edit';
+import { on } from 'events';
 type Props = {
   out: OutsourceDetail;
   enquiry: Enquiry;
@@ -24,25 +25,25 @@ type Props = {
 const EnquiryCp = ({ enquiry, out }: Props) => {
   const [showEdit, setShowEdit] = useState(false);
   const router = useRouter();
-  const { id: oid } = router.query;
+  const { id: oid } = router.query as { id: string };
   const { errMsg } = useErrMsg();
-  const [mdStr, setMdStr] = useState('');
+  const [html, setHtml] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
   const { auth } = useAuth();
-  const del = useDelete(enquiry?.id, keys.enquiries(enquiry?.outSourcingId));
+  const del = useDelete(enquiry?.id, keys.enquiry(enquiry?.outSourcingId));
   const addReply = useAddReply(enquiry?.id);
-
-  const { data: reply } = useQuery(keys.replies(Number(oid), enquiry?.id), () => o.getReplies(enquiry?.id), {
+  const queryClient = useQueryClient();
+  const { data: reply } = useQuery(keys.reply(Number(oid), enquiry?.id), () => o.getReply(enquiry?.id), {
     enabled: enquiry?.repliesCount > 0 && viewChild,
   });
 
   const onSubmitComment = useCallback(() => {
-    addReply.mutate({ content: mdStr, eid: enquiry.id });
-  }, [addReply, mdStr, enquiry?.id]);
+    addReply.mutate({ content: html, eid: enquiry.id });
+  }, [addReply, html, enquiry?.id]);
 
   useDidMountEffect(() => {
     if (addReply.isSuccess) {
-      setMdStr('');
+      setHtml('');
     }
     if (addReply.isError) {
       m.error(errMsg);
@@ -51,13 +52,18 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
       m.error(errMsg);
     }
   }, [addReply.isError, addReply.isSuccess, del.error?.response, del.isError, errMsg]);
-  const showAcceptButton = auth.id === out.authorId && out.progress === 'Pending' && enquiry.authorId !== auth.id;
+  const showAcceptButton = auth?.id === out?.authorId && out.progress == 'Pending' && enquiry?.authorId !== auth.id;
   const removeHandler = useCallback(() => {
     if (confirm('삭제시 복구가 불가능 합니다')) {
       del.mutate(o.delEnquiry);
     }
   }, [del]);
 
+  const picked = useCallback(async () => {
+    if (await o.pick(oid, enquiry.id)) {
+      queryClient.invalidateQueries(keys.oDetail(enquiry.outSourcingId));
+    }
+  }, []);
   return (
     <S.CommentWrapper>
       {enquiry ? (
@@ -65,13 +71,17 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
           <S.Header className="header">
             <Avatar nickname={enquiry?.author.nickname} url={enquiry?.author.avatar} id={enquiry?.author.id} />
             <atom.Flex>
-              {showAcceptButton && <Button types="primary">pick</Button>}
+              {showAcceptButton && (
+                <Button types="primary" onClick={picked} css={{ height: '25px' }}>
+                  선택
+                </Button>
+              )}
               <>
                 <Popover
                   trigger="click"
                   placement="bottom"
                   content={
-                    auth.id === enquiry?.author.id ? (
+                    auth?.id === enquiry?.author.id ? (
                       <>
                         <Button types="primary" key="_edit" onClick={() => setShowEdit(true)} $block>
                           수정
@@ -81,7 +91,7 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
                         </Button>
                       </>
                     ) : (
-                      <Button types="danger" onClick={removeHandler} key="_delete" $block>
+                      <Button types="danger" onClick={() => {}} key="_delete" $block>
                         신고
                       </Button>
                     )
@@ -98,7 +108,7 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
 
           <S.Viewer>
             {showEdit ? (
-              <Edit id={enquiry?.id} setCancel={setShowEdit} content={enquiry.content} type="enquiries" />
+              <Edit id={enquiry?.id} setCancel={setShowEdit} content={enquiry.content} type="enquiry" />
             ) : (
               <HtmlViewer content={enquiry?.content} />
             )}
@@ -127,8 +137,8 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
           )}
           <S.CommentEditor>
             <Editor
-              mdStr={mdStr}
-              setMdStr={setMdStr}
+              html={html}
+              setHtml={setHtml}
               onClickShow={true}
               height="200px"
               submitBtn={

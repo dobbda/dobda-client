@@ -29,7 +29,7 @@ const AnswerCp = ({ answer, question }: Props) => {
   const queryClient = useQueryClient();
   const { errMsg } = useErrMsg();
   const [isEdit, setisEdit] = useState(false);
-  const [mdStr, setMdStr] = useState('');
+  const [html, setHtml] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
   const { data: comments } = useQuery(keys.comment(Number(qid), answer.id), () => q.getComments(answer.id), {
     enabled: answer.commentsCount > 0 && viewChild,
@@ -39,12 +39,12 @@ const AnswerCp = ({ answer, question }: Props) => {
   const del = useDelete(answer?.id, keys.answers(answer?.questionId));
   const { auth } = useAuth();
   const onSubmitComment = useCallback(() => {
-    addReply.mutate({ content: mdStr, aid: answer.id });
-  }, [addReply, mdStr, answer.id]);
+    addReply.mutate({ content: html, aid: answer.id });
+  }, [addReply, html, answer.id]);
 
   useDidMountEffect(() => {
     if (addReply.isSuccess) {
-      setMdStr('');
+      setHtml('');
     }
     if (addReply.isError) {
       m.error(errMsg);
@@ -84,7 +84,7 @@ const AnswerCp = ({ answer, question }: Props) => {
               trigger="click"
               placement="bottom"
               content={
-                auth.id == answer.author.id ? (
+                auth?.id == answer.author.id ? (
                   <>
                     <Button key="edit" types="primary" onClick={() => setShowEdit(!showEdit)}>
                       수정
@@ -94,7 +94,7 @@ const AnswerCp = ({ answer, question }: Props) => {
                     </Btn>
                   </>
                 ) : (
-                  <Btn onClick={removeHandler} key="delete" types="danger" css={{ width: '100%' }}>
+                  <Btn onClick={() => {}} key="delete" types="danger" css={{ width: '100%' }}>
                     신고
                   </Btn>
                 )
@@ -126,7 +126,7 @@ const AnswerCp = ({ answer, question }: Props) => {
         </div>
         <atom.Flex>
           {showAcceptButton && (
-            <Button onClick={accept} types="primary">
+            <Button onClick={accept} types="primary" css={{ marginRight: '10px' }}>
               채택하기
             </Button>
           )}
@@ -148,13 +148,18 @@ const AnswerCp = ({ answer, question }: Props) => {
         </motion.div>
       )}
       <S.CommentEditor>
-        <Editor mdStr={mdStr} setMdStr={setMdStr} onClickShow={true} height="200px" />
-        {mdStr && (
-          <Button onClick={onSubmitComment} types="black" $block $fill css={{ marginBottom: '5px' }}>
-            <Loading loading={addReply.isLoading} />
-            등록
-          </Button>
-        )}
+        <Editor
+          html={html}
+          setHtml={setHtml}
+          onClickShow={true}
+          height="200px"
+          submitBtn={
+            <Button onClick={onSubmitComment} types="black" $block $fill>
+              <Loading loading={addReply.isLoading} />
+              등록
+            </Button>
+          }
+        />
       </S.CommentEditor>
     </S.CommentWrapper>
   );

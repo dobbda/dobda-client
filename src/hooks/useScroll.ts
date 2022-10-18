@@ -1,26 +1,30 @@
 import { useState, useEffect } from 'react';
-import debounce from 'lodash/debounce';
+import { throttle, debounce } from 'throttle-debounce';
 
 export function useScroll() {
-  const [bodyOffset, setBodyOffset] = useState(document.body.getBoundingClientRect());
-  const [scrollY, setScrollY] = useState(bodyOffset.top);
-  const [scrollX, setScrollX] = useState(bodyOffset.left);
+  const [scrollY, setScrollY] = useState(window.scrollY + document.documentElement.clientHeight);
+  const [scrollHeight, setScrollHeight] = useState(document.documentElement.scrollHeight);
+  const [height, setHeight] = useState(document.documentElement.clientHeight);
+  const [width, setWidth] = useState(document.documentElement.clientWidth);
 
   const listener = () => {
-    setBodyOffset(document.body.getBoundingClientRect());
-    setScrollY(-bodyOffset.top);
-    setScrollX(bodyOffset.left);
+    setScrollY(window.scrollY + document.documentElement.clientHeight);
+    setScrollHeight(document.documentElement.scrollHeight);
+    setHeight(document.documentElement.clientHeight);
+    setWidth(document.documentElement.clientWidth);
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', debounce(listener, 13));
+    window.addEventListener('scroll', listener);
     return () => {
       window.removeEventListener('scroll', listener);
     };
   });
 
   return {
+    scrollHeight,
     scrollY,
-    scrollX,
+    width,
+    height,
   };
 }

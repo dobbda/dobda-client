@@ -5,18 +5,19 @@ import styled from 'styled-components';
 const headerFont = '20px';
 const wrapperPadding = '30px';
 export const DetailContainer = styled.div`
-  /* min-height: 100vh; */
+  max-width: 860px;
+  padding: 3px;
+  padding-bottom: 30px;
 `;
 
 export const ContentWrapper = styled.div`
   border-radius: 4px;
-  /* word-wrap:break-word; */
   width: 100%;
   min-height: 600px;
   background-color: #fff;
   border: 1px solid #eeee;
-  /* margin-bottom: 40px; */
 `;
+
 export const CoinWrapper = styled.span`
   font-weight: 600;
   align-items: center;
@@ -76,6 +77,7 @@ export const EditorWrapper = styled.div`
   margin-top: 30px;
   h3 {
     padding-left: 10px;
+    margin-bottom: 5px;
     color: #383838;
     font-weight: bold;
   }
@@ -108,13 +110,9 @@ export const Title = styled.h1`
 `;
 
 export const ProjectProgress = styled.div`
-  border: 1px solid ${theme.color.border(0.1)};
-  /* border-bottom: none; */
+  outline: 1px solid ${theme.color.border(0.1)};
   margin: 10px 0;
-
-  @media screen and (max-width: 768px) {
-    margin: 5px 10px;
-  }
+  background-color: #fefeff;
 `;
 export const NodataWrapper = styled.div`
   padding: 20px 10px;

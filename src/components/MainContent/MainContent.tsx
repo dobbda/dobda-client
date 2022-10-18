@@ -6,7 +6,7 @@ import { Categories, CategoryList, CategoriesType } from 'src/types/content-type
 import RenderOutsource from './renderItm/RenderOutSourcing';
 import RenderQuestion from './renderItm/RenderQuestion';
 import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';
-import { useAuth, useDidMountEffect, useLoginModalhandler } from 'src/hooks';
+import { useAuth, useDidMountEffect, useLoginModalhandler, useWriteModalhandler } from 'src/hooks';
 import { useRouter } from 'next/router';
 import { theme } from 'src/styles/Theme';
 
@@ -20,6 +20,7 @@ const MainContent = ({ children }: Props) => {
   const router = useRouter();
   const [select, setSelect] = useState<CategoriesType>();
   const { setLoginModal } = useLoginModalhandler();
+  const { setWriteModal } = useWriteModalhandler();
 
   //첫 로딩시
   useEffect(() => {
@@ -33,8 +34,8 @@ const MainContent = ({ children }: Props) => {
 
   const checkLogin = useCallback(() => {
     if (!auth?.id) return setLoginModal();
-    setVisible(!visible);
-  }, [auth?.id, setLoginModal, visible]);
+    setWriteModal();
+  }, [auth?.id, setLoginModal, setWriteModal]);
 
   return (
     <>
@@ -57,7 +58,7 @@ const MainContent = ({ children }: Props) => {
         <section className="card-content outsourcing">{select == 'outsourcing' && <RenderOutsource />}</section>
         <section className="card-content questions">{select == 'questions' && <RenderQuestion />}</section>
       </Main>
-      <WirteHandlerModal visible={visible} setVisible={() => setVisible(!visible)} />
+      <WirteHandlerModal />
     </>
   );
 };

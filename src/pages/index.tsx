@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
 import React, { useEffect } from 'react';
 import { dehydrate, QueryClient, useQuery, useQueryClient } from 'react-query';
-import { Layout } from '../components/Layout';
+import { Layout } from 'src/Layout';
 import { MainContent } from 'src/components/MainContent';
 import { NextPageContext } from 'next';
 import { GetServerSideProps } from 'next';
 import axios, { AxiosRequestConfig } from 'axios';
-import { http, reqAuth, ssr, user } from 'src/api';
+import { ssr } from 'src/api';
 import { keys } from 'src/hooks';
 import { cookieDecod } from 'src/lib/utils/cookieDecod';
 import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';
@@ -16,7 +16,7 @@ import { errorHandler } from 'src/api/errorHandler';
 const Home: NextPage<{ exp: Exp }> = (props) => {
   setLocalStorage('exp', JSON.stringify(props.exp));
   return (
-    <Layout sideLeft sideRight>
+    <Layout sideLeft sideRight banner>
       <MainContent />
     </Layout>
   );

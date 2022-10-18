@@ -27,14 +27,30 @@ const OCard = ({ data }: Props) => {
               </c.Group>
             </S.Watch>
             <S.Countdown>
-              <p css={{ color: 'red', fontSize: '13px', fontWeight: 'bold', fontFamily: 'Nanum ' }}>
+              <p css={{ color: '#494949', fontSize: '13px', fontWeight: 'bold', fontFamily: 'Nanum ' }}>
                 {CountDown <= 0 ? '마감' : 'D' + ' - ' + CountDown}
               </p>
             </S.Countdown>
             <S.Image src={data.cardImage} alt="" />
+            <S.Content>
+              <S.HeaderWrapper>
+                <c.Group>
+                  <S.Progress>[ 매치중... ]</S.Progress>
+                </c.Group>
+                <c.Group>
+                  <p>작성 : </p>{' '}
+                  <atom.CreatedAt className="createdAt">
+                    {getDate(data.createdAt, true)}
+                    <c.Gap></c.Gap>{' '}
+                  </atom.CreatedAt>
+                  <i.Bookmark />
+                </c.Group>
+              </S.HeaderWrapper>
+              <c.Title className="outsourcing-title">{data.title}</c.Title>
+            </S.Content>
             <S.Info>
               <TagWrapper>
-                <c.P>필요 메이커스킬:</c.P>
+                <c.P>need skills:</c.P>
                 {data.tagNames?.map((tag, i) => (
                   <Lib.Tag key={data.id + i}>{tag.name}</Lib.Tag>
                 ))}
@@ -48,19 +64,6 @@ const OCard = ({ data }: Props) => {
                 </c.P>
               </c.Group>
             </S.Info>
-
-            <S.Content>
-              <S.HeaderWrapper>
-                <c.Group>
-                  <S.Progress>[ 매치중... ]</S.Progress>
-                </c.Group>
-                <c.Group>
-                  <p>작성 : </p> <atom.CreatedAt className="createdAt">{getDate(data.createdAt, true)}</atom.CreatedAt>
-                  <i.Bookmark />
-                </c.Group>
-              </S.HeaderWrapper>
-              <S.Title className="outsourcing-title">{data.title}</S.Title>
-            </S.Content>
           </S.ContentWrapper>
         </Lib.Link>
       ) : null}

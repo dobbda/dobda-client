@@ -1,4 +1,3 @@
-import { type } from 'os';
 import S3 from 'aws-sdk/clients/s3';
 export const uploadS3 = async (file: File) => {
   let type = file.name.split('.').pop().toLowerCase();
@@ -20,16 +19,13 @@ export const uploadS3 = async (file: File) => {
       // ACL: 'public-read',
     });
 
-    console.log('확장자: ', fileName);
     return await upload.promise().then(
       (res) => {
-        console.log('s3결과: ', res);
         return res?.Location;
       },
       (err) => console.log('err', err),
     );
   } else {
-    console.log('실패');
     alert('<' + type + '>' + '확장자 파일은 업로드 블가능 합니다.');
     return false;
   }
