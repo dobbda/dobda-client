@@ -14,6 +14,7 @@ import { SearchBox } from './SearchBox';
 import { AvatarImg } from '../@share/Avatar';
 import UserModalContent from './UserModalContent';
 import 'antd/dist/antd.css';
+import { Alarm } from 'src/types';
 
 const HeaderNav = () => {
   const queryClient = useQueryClient();
@@ -21,7 +22,9 @@ const HeaderNav = () => {
   const { loginModal, setLoginModal } = useLoginModalhandler();
   const router = useRouter();
   const { logout } = useLogout();
-  const { data } = useQuery(keys.alarms(auth?.id), user.alarms);
+  const { data } = useQuery(keys.alarms(auth?.id), user.alarms, {
+    enabled: !!auth?.id,
+  });
   return (
     <>
       <S.Header>
