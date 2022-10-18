@@ -9,12 +9,12 @@ export const NotiList = () => {
   const { data } = useQuery('notis', noti.getNotis, {
     staleTime: Infinity,
   });
-  console.log(data);
   return (
     <div>
-      <ul css={{ padding: '0 10px 0' }}>
-        {data[0].id ? (
-          data?.map((noti) => (
+      {data ? (
+        <ul css={{ padding: '0 10px 0' }}>
+          {' '}
+          {data?.map((noti) => (
             <Link href={noti.link ? noti.link : `/notice/` + noti.id} key={noti.id}>
               <a>
                 <Item>
@@ -23,13 +23,14 @@ export const NotiList = () => {
                 </Item>
               </a>
             </Link>
-          ))
-        ) : (
+          ))}
           <More>
             <Link href="/notice">전체보기 </Link>
           </More>
-        )}
-      </ul>
+        </ul>
+      ) : (
+        <Empty />
+      )}
     </div>
   );
 };
