@@ -11,7 +11,7 @@ export const ContentWrapper = styled.div`
   :hover {
     border: 1px solid ${theme.color.border1};
     .outsourcing-title {
-      text-decoration: underline;
+      text-decoration: 1px underline;
       text-underline-offset: 5px;
       text-decoration-color: #a1a1a1;
     }

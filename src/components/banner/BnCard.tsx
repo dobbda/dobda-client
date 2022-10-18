@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { Link } from 'src/components/common';
 import { useWriteModalhandler } from 'src/hooks';
 import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
@@ -12,20 +11,22 @@ interface ButtonProps {
 interface Props extends ButtonProps {
   title: string;
   sub: string;
-  button?: string;
+  buttonName?: string;
   image?: string;
   secondImg?: string;
 }
 
 export default function BnCard(props: Props) {
-  const buttnHanlder = useCallback(() => {}, []);
   const { setWriteModal } = useWriteModalhandler();
+  const showWrite = useCallback(() => {
+    setWriteModal();
+  }, [setWriteModal]);
   return (
     <s.PrWrapper url={props.image}>
       <s.Content secondImg={props.secondImg}>
-        {props.button && (
-          <Button onClick={() => setWriteModal} color={props.color} bg={props.bg}>
-            {props.button}
+        {props.buttonName && (
+          <Button onClick={() => setWriteModal()} color={props.color} bg={props.bg}>
+            {props.buttonName}
           </Button>
         )}
         <h1>{props.title}</h1>

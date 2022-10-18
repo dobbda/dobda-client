@@ -11,10 +11,9 @@ export const NotiList = () => {
   });
   return (
     <div>
-      {data ? (
-        <ul css={{ padding: '0 10px 0' }}>
-          {' '}
-          {data?.map((noti) => (
+      <ul css={{ padding: '0 10px 0' }}>
+        {data[0] ? (
+          data?.map((noti) => (
             <Link href={noti.link ? noti.link : `/notice/` + noti.id} key={noti.id}>
               <a>
                 <Item>
@@ -23,14 +22,13 @@ export const NotiList = () => {
                 </Item>
               </a>
             </Link>
-          ))}
+          ))
+        ) : (
           <More>
             <Link href="/notice">전체보기 </Link>
           </More>
-        </ul>
-      ) : (
-        <Empty />
-      )}
+        )}
+      </ul>
     </div>
   );
 };

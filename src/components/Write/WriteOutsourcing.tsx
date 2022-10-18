@@ -9,7 +9,7 @@ import { Write_Wrapper, EnrQorl, Label, Group, Pilsu, CoinView } from './style/w
 import { DatePicker, DatePickerProps, Input as AntInput, message, Input } from 'antd';
 
 import Hashtags from './atom/Hashtags';
-import { atom, Link, Loading, Popover } from 'src/components/common';
+import { atom, Loading, Popover } from 'src/components/common';
 import { useAddOutsource, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
 import { CreateOutsource, OutsourceDetail } from 'src/types';
 
@@ -17,6 +17,7 @@ import { Button } from 'src/components/common/@share/Buttons';
 
 import { o } from 'src/api';
 import { Tips } from './atom/Tips';
+import Link from 'next/link';
 type Props = {
   data?: OutsourceDetail;
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -145,7 +146,7 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
         <EditorContainer>
           <Editor html={html} setHtml={setHtml} height="600px" />
         </EditorContainer>
-
+        <br />
         <atom.Flex>
           {data?.id && (
             <Button types="primary" onClick={cancelHandler} css={{ width: '150px', marginRight: '5px' }}>

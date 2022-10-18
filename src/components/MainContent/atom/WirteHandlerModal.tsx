@@ -14,7 +14,7 @@ export function WirteHandlerModal() {
       <Modal visible={writeModal} onClickHandler={setWriteModal}>
         <WriteModalContent>
           <h2>도움이 필요하신가요?</h2>
-          <Link href="/questions/write" onClick={() => setWriteModal}>
+          <Link href="/questions/write">
             <a>
               <Btn onClick={() => setWriteModal(false)}>
                 <i.Question color={theme.color.primary} size="20px" />
@@ -27,7 +27,7 @@ export function WirteHandlerModal() {
             <a>
               <Btn outSource onClick={() => setWriteModal(false)}>
                 <i.OutSource color={theme.color.secondary} size="20px" />
-                작업 요청하기(외주)
+                프로젝트 요청하기
                 <i.GoArrow color="rgb(199, 199, 199)" />
               </Btn>
             </a>
