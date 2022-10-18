@@ -1,11 +1,9 @@
 import React from 'react';
 import { Div, BaseInfo, UserActive, Item, P, UserTech } from './style/userInfo.style';
-import Image from 'next/image';
-
 import { Tag } from 'src/components/common';
 import { useQuery } from 'react-query';
 import { user } from 'src/api';
-import { TagWrapper } from '../common/@share/atom';
+import { TagWrapper } from 'src/components/common/@share/atom';
 import { Auth } from 'src/types';
 import { Avatar } from 'antd';
 import { theme } from 'src/styles/Theme';

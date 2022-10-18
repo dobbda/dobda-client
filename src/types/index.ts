@@ -6,6 +6,15 @@ export interface Author {
   hashId: string;
 }
 
+export interface Default {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+export interface Alarm extends Default {
+  type: string;
+}
+
 export interface Noti {
   title: string;
   createdAt: string;
@@ -32,11 +41,7 @@ export interface IDTYPE {
   qid?: number; //question id
   aid?: number; //answer id
 }
-export interface Default {
-  id: number;
-  createdAt: Date;
-  updatedAt: Date;
-}
+
 export interface CreateComment extends IDTYPE {
   content: string;
 }

@@ -8,11 +8,11 @@ import { Input as AntInput, Input, message } from 'antd';
 import 'antd/dist/antd.css';
 
 import Hashtags from './atom/Hashtags';
-import { atom, Button, Loading } from 'src/components/common';
-import { useAddOutsource, useAddQuestion, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
+import { atom, Loading } from 'src/components/common';
+import { Button } from 'src/components/common/@share/Buttons';
+import { useAddQuestion, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
 import { CreateQuestion, QuestionDetail } from 'src/types';
 import { q } from 'src/api';
-import { o } from 'src/api';
 import Link from 'next/link';
 
 type Props = {

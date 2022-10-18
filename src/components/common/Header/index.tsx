@@ -3,21 +3,17 @@ import { useQuery, useQueryClient } from 'react-query';
 
 import * as S from './style';
 import { Logo, Popover, Modal, Button } from 'src/components/common';
-import { MessageBox } from 'src/components/MessageBox/MessageBox';
+import { Alarms } from 'src/components/Users';
 import { SocialLogin } from 'src/components/SocialLogin';
 import { theme } from 'src/styles/Theme';
-import 'antd/dist/antd.css';
-
 import { i } from 'src/icons';
-import Link from 'next/link';
-import { useAuth, useLogout, useLoginModalhandler } from 'src/hooks';
+import { useAuth, useLogout, useLoginModalhandler, keys } from 'src/hooks';
 import { user } from 'src/api';
-import axios from 'axios';
 import { useRouter } from 'next/router';
-import { Avatar } from 'antd';
 import { SearchBox } from './SearchBox';
 import { AvatarImg } from '../@share/Avatar';
 import UserModalContent from './UserModalContent';
+import 'antd/dist/antd.css';
 
 const HeaderNav = () => {
   const queryClient = useQueryClient();
@@ -25,7 +21,7 @@ const HeaderNav = () => {
   const { loginModal, setLoginModal } = useLoginModalhandler();
   const router = useRouter();
   const { logout } = useLogout();
-
+  const { data } = useQuery(keys.alarms(auth?.id), user.alarms);
   return (
     <>
       <S.Header>
@@ -46,7 +42,7 @@ const HeaderNav = () => {
                 <Popover trigger="click" content={<UserModalContent />} top={16} right={0}>
                   <AvatarImg src={auth.avatar} size={23} css={{ marginRight: '5px', border: 'solid 1px #000' }} />
                 </Popover>
-                <Popover trigger="click" content={<MessageBox />} top={16} right={0}>
+                <Popover trigger="click" content={<Alarms />} top={16} right={0}>
                   <i.Bell size={'18px'} css={{ marginTop: '4px', cursor: 'pointer' }} />
                 </Popover>
               </>

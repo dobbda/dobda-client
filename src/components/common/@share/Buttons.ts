@@ -1,12 +1,14 @@
+import React from 'react';
 import styled, { CSSProperties } from 'styled-components';
 import { theme } from 'src/styles/Theme';
+import { ButtonProps, ButtonType } from 'antd/lib/button';
 
 interface Props {
   types: 'primary' | 'secondary' | 'secondary' | 'danger' | 'black';
   color?: string;
   $block?: boolean;
   $fill?: boolean;
-
+  onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
 const color = {

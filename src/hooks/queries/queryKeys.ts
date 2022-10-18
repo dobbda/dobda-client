@@ -20,4 +20,6 @@ export const keys = {
     'reply',
   ],
   oDetail: (oid: number | string): QueryKey => ['outsourcing: ' + Number(oid), 'detail'],
+
+  alarms: (userId: number | string) => ['alarms', 'users:', userId],
 };

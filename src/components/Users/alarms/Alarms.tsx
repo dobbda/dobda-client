@@ -1,8 +1,24 @@
 import React from 'react';
 import { Link } from 'src/components/common';
+import { Div } from './style/style';
 import { Li } from './style/Message.style';
-import getDate from 'src/lib/utils/dateForm';
 type Props = {};
+
+export const Alarms = (props: Props) => {
+  return (
+    <Div>
+      <h1>최근 알림</h1>
+      <ul>
+        <Message />
+        <Message />
+        <Message />
+      </ul>
+      <div className="show-all-messages">
+        <Link href="#">전체알림 보기</Link>
+      </div>
+    </Div>
+  );
+};
 
 const Message = (props: Props) => {
   return (
@@ -17,5 +33,3 @@ const Message = (props: Props) => {
     </Li>
   );
 };
-
-export default Message;

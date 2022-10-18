@@ -6,17 +6,16 @@ import { useQuery, useQueryClient } from 'react-query';
 
 import { Editor } from 'src/components/Editor';
 import { Write_Wrapper, EnrQorl, Label, Group, Pilsu, CoinView } from './style/write.style';
-import { Select, DatePicker, DatePickerProps, Input as AntInput, Tag, message, Input } from 'antd';
+import { DatePicker, DatePickerProps, Input as AntInput, message, Input } from 'antd';
 
 import Hashtags from './atom/Hashtags';
-import { atom, Button, Link, Loading, Popover } from 'src/components/common';
+import { atom, Link, Loading, Popover } from 'src/components/common';
 import { useAddOutsource, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
 import { CreateOutsource, OutsourceDetail } from 'src/types';
 
-import { q } from 'src/api';
+import { Button } from 'src/components/common/@share/Buttons';
+
 import { o } from 'src/api';
-import { i } from 'src/icons';
-import { theme } from 'src/styles/Theme';
 import { Tips } from './atom/Tips';
 type Props = {
   data?: OutsourceDetail;

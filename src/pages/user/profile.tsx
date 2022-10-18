@@ -1,5 +1,5 @@
 import { GetServerSideProps, NextPage } from 'next';
-import { MyInfo } from 'src/components/UserInfo';
+import { MyInfo } from 'src/components/Users';
 import { Layout } from 'src/Layout';
 import React from 'react';
 import { AxiosRequestConfig } from 'axios';

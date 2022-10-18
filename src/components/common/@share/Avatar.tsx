@@ -4,7 +4,7 @@ import 'antd/dist/antd.min.css';
 import styled from 'styled-components';
 
 import { Popover, Avatar as AntAvatar } from 'antd';
-import { UserProfile } from 'src/components/UserInfo/UserProfile';
+import { UserProfile } from 'src/components/Users';
 import { theme } from 'src/styles/Theme';
 
 type Props = {
