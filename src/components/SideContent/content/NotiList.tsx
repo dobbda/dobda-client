@@ -9,10 +9,11 @@ export const NotiList = () => {
   const { data } = useQuery('notis', noti.getNotis, {
     staleTime: Infinity,
   });
+  console.log(data);
   return (
     <div>
       <ul css={{ padding: '0 10px 0' }}>
-        {data[0] ? (
+        {data[0].id ? (
           data?.map((noti) => (
             <Link href={noti.link ? noti.link : `/notice/` + noti.id} key={noti.id}>
               <a>
