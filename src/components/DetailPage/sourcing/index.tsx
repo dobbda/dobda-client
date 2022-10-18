@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import { atom, Tag, Button } from '../common';
-import * as S from './style/Detail.style';
-import { Avatar } from '../common';
+import { atom, Tag, Button } from '../../common';
+import * as S from '../style/Detail.style';
+import { Avatar } from '../../common';
 import { EnquiryCp } from 'src/components/Comment';
 import getDate from 'src/lib/utils/dateForm';
 
@@ -11,19 +11,19 @@ import { HtmlViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
 import { keys, useAddEnquiry, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
 import { o, q } from 'src/api';
-import { WriteOutsourcing } from '../Write';
+import { WriteOutsourcing } from '../../Write';
 import { useQuery, useQueryClient } from 'react-query';
 import { useRouter } from 'next/router';
 import { message } from 'antd';
-import { FolderMenu } from '../SideContent';
+import { FolderMenu } from '../../SideContent';
 import { theme } from 'src/styles/Theme';
-import { Msg } from '../UserInfo/style/myInfo.style';
+import { ProgressState } from './sourcingEvent';
 type Props = {
   children?: React.ReactElement; // commentComponent
   data?: OutsourceDetail;
 };
 
-const ODetail = ({ children, data }: Props) => {
+const SourcingPage = ({ children, data }: Props) => {
   const { auth, refetch } = useAuth();
   const { setCount, setInfCount } = useQueryCount();
   useEffect(() => {
@@ -108,27 +108,20 @@ const ODetail = ({ children, data }: Props) => {
             </S.ContentViewWrapper>
           </S.ContentWrapper>
 
-          <S.ProjectProgress>
-            <FolderMenu title={'⏳ 프로젝트 진행상황 ⏳'}>
-              <>
-                <p>작업금액 : {data.coin}</p>
-                <p> 메이커 매칭 전 입니다</p>
-              </>
-            </FolderMenu>
-          </S.ProjectProgress>
+          <ProgressState data={data} />
 
           <S.EditorWrapper>
             <h3>🧘‍♂️글을 남겨 본인을 어필해보세요.</h3>
             <Editor html={html} setHtml={setHtml} onClickShow={true} height="400px" />
           </S.EditorWrapper>
-          <Button onClick={onSubmitEnquiry} types="primary" $fill $block css={{ width: '200px' }}>
+          <Button onClick={onSubmitEnquiry} types="primary" $fill $block css={{ width: '200px', marginTop: '10px' }}>
             등록
           </Button>
           <S.AnswerContainer>
             {enquiry && enquiry[0]?.id ? (
               enquiry.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} out={data} />)
             ) : (
-              <S.NodataWrapper>등록된 답변이 없습니다. 답변을 등록해보세요.</S.NodataWrapper>
+              <S.NodataWrapper>등록된 글이 없습니다. </S.NodataWrapper>
             )}
           </S.AnswerContainer>
         </>
@@ -137,4 +130,4 @@ const ODetail = ({ children, data }: Props) => {
   );
 };
 
-export default ODetail;
+export default SourcingPage;

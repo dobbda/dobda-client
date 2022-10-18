@@ -45,7 +45,7 @@ export default function Edit({ content, type, id, setCancel }: Props) {
   return (
     <CommentEditor>
       <Editor html={html} setHtml={setHtml} onClickShow={false} height="200px" />
-
+      <br />
       <div css={{ display: 'flex', gap: '10px', alignItem: 'center', justifyContent: 'center' }}>
         <Button onClick={() => setCancel(false)} types="primary" css={{ width: '150px' }}>
           취소

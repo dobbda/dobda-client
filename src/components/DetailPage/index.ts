@@ -1,2 +1,2 @@
-export { default as QDetail } from './QDetail';
-export { default as ODetail } from './ODetail';
+export { default as QuestionPage } from './question';
+export { default as SourcingPage } from './sourcing';

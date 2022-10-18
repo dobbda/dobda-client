@@ -15,6 +15,7 @@ import ReplyCp from './Reply';
 import { useRouter } from 'next/router';
 import { Button } from 'src/components/common';
 import Edit from './Edit';
+import { on } from 'events';
 type Props = {
   out: OutsourceDetail;
   enquiry: Enquiry;
@@ -24,7 +25,7 @@ type Props = {
 const EnquiryCp = ({ enquiry, out }: Props) => {
   const [showEdit, setShowEdit] = useState(false);
   const router = useRouter();
-  const { id: oid } = router.query;
+  const { id: oid } = router.query as { id: string };
   const { errMsg } = useErrMsg();
   const [html, setHtml] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
@@ -51,13 +52,16 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
       m.error(errMsg);
     }
   }, [addReply.isError, addReply.isSuccess, del.error?.response, del.isError, errMsg]);
-  const showAcceptButton = auth.id === out.authorId && out.progress === 'Pending' && enquiry.authorId !== auth.id;
+  const showAcceptButton = auth?.id === out?.authorId && out.progress == 'Pending' && enquiry?.authorId !== auth.id;
   const removeHandler = useCallback(() => {
     if (confirm('삭제시 복구가 불가능 합니다')) {
       del.mutate(o.delEnquiry);
     }
   }, [del]);
 
+  const picked = useCallback(() => {
+    o.pick(oid, enquiry.id);
+  }, []);
   return (
     <S.CommentWrapper>
       {enquiry ? (
@@ -65,13 +69,17 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
           <S.Header className="header">
             <Avatar nickname={enquiry?.author.nickname} url={enquiry?.author.avatar} id={enquiry?.author.id} />
             <atom.Flex>
-              {showAcceptButton && <Button types="primary">pick</Button>}
+              {showAcceptButton && (
+                <Button types="primary" onClick={picked} css={{ height: '25px' }}>
+                  선택
+                </Button>
+              )}
               <>
                 <Popover
                   trigger="click"
                   placement="bottom"
                   content={
-                    auth.id === enquiry?.author.id ? (
+                    auth?.id === enquiry?.author.id ? (
                       <>
                         <Button types="primary" key="_edit" onClick={() => setShowEdit(true)} $block>
                           수정
@@ -81,7 +89,7 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
                         </Button>
                       </>
                     ) : (
-                      <Button types="danger" onClick={removeHandler} key="_delete" $block>
+                      <Button types="danger" onClick={() => {}} key="_delete" $block>
                         신고
                       </Button>
                     )

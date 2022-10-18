@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
-export const Div = styled.div<{ checked: boolean }>`
+export const Div = styled.div<{ checked: boolean; bg?: string }>`
   position: relative;
   overflow: hidden;
-  overflow: hidden;
-  /* background-color: #fff; */
-  /* border-bottom: solid 1px #eee; */
+  margin: -1px;
+  ${({ bg }) => bg && `background-color: ${bg}`}
 `;
 
-export const Label = styled.label`
+export const Label = styled.label<{ color?: string }>`
   color: rgba(0, 0, 0, 0.6);
   overflow: hidden;
   display: flex;
@@ -21,7 +20,7 @@ export const Label = styled.label`
   cursor: pointer;
 
   h1 {
-    color: rgba(0, 0, 0, 0.6);
+    color: ${({ color }) => (color ? color : `rgba(0, 0, 0, 0.6)`)};
     margin: 0;
     font-size: 15px;
     font-weight: bold;
@@ -38,12 +37,23 @@ export const ChildMenu = styled.div`
   color: rgba(0, 0, 0, 0.8);
   overflow: hidden;
   transition: height 0.3s;
-  /* background-color: #fff; */
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-  > * {
-    text-align: center;
-    padding-top: 5px;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
   }
+  scrollbar-width: none; /* Firefox 64 */
+  /* 
+  ::-webkit-scrollbar {
+    width: 10px;
+    background: #cecece;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #929191;
+    border-radius: 1rem;
+    border: 2px solid transparent;
+  } */
 `;
 
 export const CheckBox = styled.input.attrs({

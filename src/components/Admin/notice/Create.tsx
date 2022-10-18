@@ -16,8 +16,7 @@ export default function CreateNoti({}: Props) {
     const data = {
       content: html,
       title: title,
-      image: url,
-      main: check,
+      link: url,
     };
     await axios.post('/api/notis', data).then((res) => console.log(res.data));
   }, [html, title, url, check]);
@@ -28,9 +27,7 @@ export default function CreateNoti({}: Props) {
       {auth?.role == 1 ? (
         <S>
           <div className="group">
-            <Checkbox onChange={(e) => setCheck(e.target.checked)}>메인 여부</Checkbox>
-
-            <p>image url</p>
+            <p>notion? url</p>
 
             <Input placeholder="image url" value={url} onChange={onChangeUrl}></Input>
             <p>제목</p>

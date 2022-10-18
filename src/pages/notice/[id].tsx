@@ -37,13 +37,11 @@ const NotiList: NextPage<Props> = ({ id }) => {
 export default NotiList;
 
 const S = styled.div`
-  background-color: #fff;
-  border-radius: 1em;
-  border: 2px solid ${theme.color.border(0.1)};
+  background-color: #fafafa;
   position: relative;
   width: 100%;
   min-height: 800px;
-  padding: 25px 15px;
+  padding: 30px 20px;
 
   .createdAt {
     position: absolute;

@@ -8,12 +8,22 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
 		margin: 0 ;
 		padding:0;
-		height: 100%;
+		height: auto;
 	}
 	body{
     background-color: ${theme.color.bg};
-		font-family: "Helvetica Neue", "Noto Sans KR", Inter, Helvetica, sans-serif;
+		font-family:  "Helvetica Neue", Helvetica,'Noto Sans KR', sans-serif,  Inter ;
     font-size: 14px;
+		overflow-y: scroll;
+
+		::-webkit-scrollbar {
+			width: 10px;
+			background-color: #e7e7e7;
+		}
+		::-webkit-scrollbar-thumb {
+			background: #a7a7a7;
+			border-radius: 1rem;
+		}
   }
 
 	.ant-popover-inner-content{

@@ -29,7 +29,7 @@ const QCard = ({ data }: data) => {
           {/* cotent */}
           <S.BodyWrapper>
             <Lib.Link href={`/questions/${q.id}`}>
-              <c.Title>{q.title}</c.Title>
+              <c.Title css={{ fontSize: '17px' }}>{q.title}</c.Title>
               <br />
             </Lib.Link>
             <atom.TagWrapper>

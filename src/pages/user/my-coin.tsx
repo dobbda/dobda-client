@@ -1,22 +1,31 @@
-import React from 'react';
-import { GetServerSideProps, NextPage } from 'next';
-
-import { Layout } from 'src/Layout';
-import { MyPost } from 'src/components/MyPoster';
 import { AxiosRequestConfig } from 'axios';
+import { GetServerSideProps, NextPage } from 'next';
+import Link from 'next/link';
+import React from 'react';
 import { QueryClient, dehydrate } from 'react-query';
 import { ssr } from 'src/api';
 import { errorHandler } from 'src/api/errorHandler';
 import { keys } from 'src/hooks';
-const PosterList: NextPage = () => {
+
+const coinhistory: NextPage = () => {
   return (
-    <Layout sideLeft>
-      <MyPost />
-    </Layout>
+    <div>
+      coinhistory
+      <p>
+        <Link href="/payment/deposit" passHref>
+          충전하기
+        </Link>
+      </p>
+      <h3>
+        <Link href="/payment/withdrawal" passHref>
+          충전하기
+        </Link>
+      </h3>
+    </div>
   );
 };
 
-export default PosterList;
+export default coinhistory;
 
 export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
   const queryClient = new QueryClient();

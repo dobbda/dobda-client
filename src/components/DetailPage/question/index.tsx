@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { message } from 'antd';
-import { atom, Loading, Tag } from '../common';
-import * as S from './style/Detail.style';
-import { Avatar } from '../common';
+import { atom, Loading, Tag } from '../../common';
+import * as S from '../style/Detail.style';
+import { Avatar } from '../../common';
 import { AnswerCp } from 'src/components/Comment/';
 import getDate from 'src/lib/utils/dateForm';
 
@@ -13,7 +13,7 @@ import { Question, QuestionDetail } from 'src/types';
 import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { keys, useAddAnswer, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
-import { WriteQuestion } from '../Write';
+import { WriteQuestion } from '../../Write';
 import { Button } from 'src/components/common';
 import { useRouter } from 'next/router';
 type Props = {
@@ -21,7 +21,7 @@ type Props = {
   data: QuestionDetail;
 };
 
-const QDetail = ({ children, data }: Props) => {
+const QuestionPage = ({ children, data }: Props) => {
   const { setCount, setInfCount } = useQueryCount();
   useEffect(() => {
     /**조회수 */
@@ -29,7 +29,6 @@ const QDetail = ({ children, data }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const queryClient = useQueryClient();
   const router = useRouter();
   const { auth, refetch } = useAuth();
   const [html, setHtml] = useState('');
@@ -86,7 +85,7 @@ const QDetail = ({ children, data }: Props) => {
               <atom.TagWrapper>
                 <S.CoinWrapper>
                   <i.Coin />
-                  <p>{data?.coin}</p>
+                  <p>{data?.coin.toLocaleString()}</p>
                 </S.CoinWrapper>
                 {data?.tagNames && data?.tagNames.map((tag) => <Tag key={tag.name}>{tag.name}</Tag>)}
               </atom.TagWrapper>
@@ -109,7 +108,7 @@ const QDetail = ({ children, data }: Props) => {
           <S.EditorWrapper>
             <h3>답변을 작성해주세요</h3>
             <Editor html={html} setHtml={setHtml} onClickShow={true} height="400px" />
-            <Button onClick={onSubmitAnswer} types="secondary" $block $fill>
+            <Button onClick={onSubmitAnswer} types="secondary" $block $fill css={{ marginTop: '10px' }}>
               <Loading loading={add.isLoading} /> 등록
             </Button>
           </S.EditorWrapper>
@@ -127,4 +126,4 @@ const QDetail = ({ children, data }: Props) => {
   );
 };
 
-export default QDetail;
+export default QuestionPage;

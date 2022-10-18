@@ -94,7 +94,7 @@ const AnswerCp = ({ answer, question }: Props) => {
                     </Btn>
                   </>
                 ) : (
-                  <Btn onClick={removeHandler} key="delete" types="danger" css={{ width: '100%' }}>
+                  <Btn onClick={() => {}} key="delete" types="danger" css={{ width: '100%' }}>
                     신고
                   </Btn>
                 )
@@ -126,7 +126,7 @@ const AnswerCp = ({ answer, question }: Props) => {
         </div>
         <atom.Flex>
           {showAcceptButton && (
-            <Button onClick={accept} types="primary">
+            <Button onClick={accept} types="primary" css={{ marginRight: '10px' }}>
               채택하기
             </Button>
           )}
@@ -148,13 +148,18 @@ const AnswerCp = ({ answer, question }: Props) => {
         </motion.div>
       )}
       <S.CommentEditor>
-        <Editor html={html} setHtml={setHtml} onClickShow={true} height="200px" />
-        {html && (
-          <Button onClick={onSubmitComment} types="black" $block $fill css={{ marginBottom: '5px' }}>
-            <Loading loading={addReply.isLoading} />
-            등록
-          </Button>
-        )}
+        <Editor
+          html={html}
+          setHtml={setHtml}
+          onClickShow={true}
+          height="200px"
+          submitBtn={
+            <Button onClick={onSubmitComment} types="black" $block $fill>
+              <Loading loading={addReply.isLoading} />
+              등록
+            </Button>
+          }
+        />
       </S.CommentEditor>
     </S.CommentWrapper>
   );

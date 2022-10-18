@@ -5,8 +5,8 @@ import { Layout } from 'src/Layout';
 import { useQuery } from 'react-query';
 import { noti } from 'src/api';
 import { Divider, List, Typography } from 'antd';
-import { Link } from 'src/components/common';
 import { Noti } from 'src/types';
+import Link from 'next/link';
 
 const NotiList: NextPage = () => {
   const { data } = useQuery('notis', noti.getNotis);
@@ -23,13 +23,16 @@ const NotiList: NextPage = () => {
           </Header>
         }
         bordered
-        // dataSource={data}
+        dataSource={data}
         renderItem={(item: Noti) => (
           <List.Item>
-            <Link href={`/notice/` + item.id}>
+            <Link href={item.link ? item.link : `/notice/` + item.id}>
               <Item>
-                <h4>{item.title}</h4>
-                <span>{item.createdAt.substring(0, 10)}</span>
+                <div>
+                  {item.link && <Notion>[Notion] </Notion>}
+                  {item.title}
+                </div>
+                <span css={{ color: '#a7a7a7' }}>{item.createdAt.substring(0, 10)}</span>
               </Item>
             </Link>
           </List.Item>
@@ -42,16 +45,18 @@ const NotiList: NextPage = () => {
 export default NotiList;
 
 const Item = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   width: 100%;
 
-  h3,
-  h4 {
-    color: #333333;
-  }
-  span {
-    color: #575757;
+  div {
+    color: #444444;
+    :hover {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-color: #666666;
+    }
   }
 `;
 
@@ -63,6 +68,11 @@ const Header = styled.div`
   width: 100%;
 
   > * {
-    color: #7c7c7c;
+    font-weight: bold;
+    color: #686868;
   }
+`;
+
+const Notion = styled.span`
+  color: #ffbc65;
 `;

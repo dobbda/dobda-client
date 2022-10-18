@@ -1,5 +1,5 @@
 import { Layout } from 'src/Layout';
-import { QDetail } from 'src/components/DetailPage';
+import { QuestionPage } from 'src/components/DetailPage';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { QuestionDetail } from 'src/types';
@@ -12,7 +12,7 @@ import { errorHandler } from 'src/api/errorHandler';
 import { setLocalStorage } from 'src/lib/utils/localStorage';
 import { Exp } from 'src/types/content-type';
 
-const QuestionDetailPage: NextPage<{ exp: Exp; id: string }> = (props) => {
+const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
   setLocalStorage('exp', JSON.stringify(props.exp));
 
   const router = useRouter();
@@ -26,9 +26,9 @@ const QuestionDetailPage: NextPage<{ exp: Exp; id: string }> = (props) => {
       router.push('/404', router.asPath, { shallow: true });
     }
   }, [router, isError]);
-  return <Layout sideRight>{data && <QDetail data={data} />}</Layout>;
+  return <Layout sideRight>{data && <QuestionPage data={data} />}</Layout>;
 };
-export default QuestionDetailPage;
+export default Page;
 
 export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
   const queryClient = new QueryClient();

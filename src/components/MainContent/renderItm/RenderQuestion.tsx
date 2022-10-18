@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { q } from 'src/api';
 import { InfinityProps, Question } from 'src/types';
 import { motion } from 'framer-motion';
+import { theme } from 'src/styles/Theme';
 
 function RenderQuestion() {
   const [shearchTitle, setShearchTitle] = useState<string>();
@@ -60,11 +61,16 @@ const ContentCardList = styled(motion.div)`
   display: grid;
   place-items: center;
   overflow: hidden;
-  gap: 15px;
   transition: all 0.2s;
   margin-bottom: 10px;
   padding: 5px 0;
 `;
 const RefCard = styled.div`
   width: 100%;
+  border-bottom: 1px solid #c3c3c3;
+  padding: 10px 15px;
+  :hover {
+    box-shadow: 0 0 0 1px #8d8d8d inset;
+    transition: all 0.2s;
+  }
 `;

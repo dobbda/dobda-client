@@ -1,5 +1,5 @@
 import { Layout } from 'src/Layout';
-import { ODetail } from 'src/components/DetailPage';
+import { SourcingPage } from 'src/components/DetailPage';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { o, q, reqAuth, ssr } from 'src/api';
@@ -26,7 +26,7 @@ const RequestDetailPage: NextPage<{ exp: Exp; id: string }> = (props) => {
       router.push('/404', router.asPath, { shallow: true });
     }
   }, [router, isError]);
-  return <Layout sideRight>{data && <ODetail data={data} />}</Layout>;
+  return <Layout sideRight>{data && <SourcingPage data={data} />}</Layout>;
 };
 export default RequestDetailPage;
 

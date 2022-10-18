@@ -14,8 +14,8 @@ export const useLoginModalhandler = () => {
 export const useWriteModalhandler = () => {
   const queryClient = useQueryClient();
   const writeModal = useClientValue(['writeModal'], false);
-  const setWriteModal = () => {
-    queryClient.setQueryData(['writeModal'], !writeModal);
+  const setWriteModal = (value?: boolean) => {
+    queryClient.setQueryData(['writeModal'], value || !writeModal);
   };
   return { writeModal, setWriteModal };
 };

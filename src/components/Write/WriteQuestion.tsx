@@ -8,11 +8,12 @@ import { Input as AntInput, Input, message } from 'antd';
 import 'antd/dist/antd.css';
 
 import Hashtags from './atom/Hashtags';
-import { atom, Button, Link, Loading } from 'src/components/common';
+import { atom, Button, Loading } from 'src/components/common';
 import { useAddOutsource, useAddQuestion, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
 import { CreateQuestion, QuestionDetail } from 'src/types';
 import { q } from 'src/api';
 import { o } from 'src/api';
+import Link from 'next/link';
 
 type Props = {
   data?: QuestionDetail;
@@ -110,17 +111,17 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
         <EditorContainer>
           <Editor html={html} setHtml={setHtml} height="600px" />
         </EditorContainer>
-
+        <br />
         <atom.Flex>
-          {/* {data?.id && (
+          {data?.id && (
             <Button onClick={cancelHandler} css={{ width: '150px', marginRight: '5px' }} types="danger">
               취소
             </Button>
           )}
           <Button onClick={onSubmitCheck} css={{ width: '150px' }} types="secondary" $fill>
             <Loading loading={saveLoading} />
-            등록
-          </Button> */}
+            저장
+          </Button>
         </atom.Flex>
       </Write_Wrapper>
     </>

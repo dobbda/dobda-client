@@ -55,6 +55,6 @@ export const getReply = async (eid: number | string): Promise<Reply[]> => {
 
 // pick enquiry
 
-export const pick = async (eid: number | string): Promise<Reply[]> => {
-  return (await axios.get(`/api/enquiry/${eid}`)).data.response.replies;
+export const pick = async (oid: number | string, eid: number | string): Promise<Reply[]> => {
+  return (await axios.patch(`/api/enquiry/pick?eid=${eid}&oid=${oid}`)).data.response;
 };

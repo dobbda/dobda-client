@@ -23,7 +23,7 @@ export const SideContentLeft = ({ folderOpenFalse }: Props) => {
   const { logout } = useLogout();
   return (
     <SideContainer>
-      {auth?.id ? (
+      {/* {auth?.id ? (
         <FolderMenu
           icon={
             <Link href="/user/profile" passHref>
@@ -58,7 +58,7 @@ export const SideContentLeft = ({ folderOpenFalse }: Props) => {
           <div>로그인이 필요합니다.</div>
         </FolderMenu>
       )}
-      <br />
+      <br /> */}
       <br />
       <FolderMenu icon={<i.Notice size="20px" />} childOpen={!folderOpenFalse} title="공지사항" href="/notice">
         <NotiList />

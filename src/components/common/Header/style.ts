@@ -1,3 +1,4 @@
+import { Text } from './../../SocialLogin/style/LogoBtn.style';
 import { logout } from './../../../api/apis/user';
 import styled from 'styled-components';
 import { Button } from 'antd';
@@ -40,13 +41,14 @@ export const MenuWrapper = styled.div`
 `;
 
 export const UserModalWrapper = styled.div`
+  user-select: none;
   position: relative;
   background-color: #fff;
   width: 150px;
   min-height: 200px;
-  padding: 15px 5px;
+  padding: 15px 0;
   border-radius: 4px;
-  border: solid 1px ${theme.color.prRgb(0.3)};
+  border: solid 1px ${theme.color.text1(0.1)};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,15 +56,20 @@ export const UserModalWrapper = styled.div`
   > div {
     cursor: pointer;
     white-space: nowrap;
-    margin-bottom: 5px;
-    background-color: ${theme.color.prRgb(0.4)};
-    color: ${theme.color.secondary};
-    padding: 5px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 9px 10px;
     width: 100%;
     text-align: center;
-    border-radius: 2rem;
+    transition: all 0.2s;
+    border-bottom: solid 1px ${theme.color.text1(0.1)};
+    svg {
+      margin-right: 10px;
+    }
     :hover {
-      text-decoration: underline;
+      background-color: ${theme.color.prRgb(0.4)};
+      color: ${theme.color.secondary};
     }
   }
 

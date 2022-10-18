@@ -24,7 +24,7 @@ export default function BnCard(props: Props) {
     <s.PrWrapper url={props.image}>
       <s.Content secondImg={props.secondImg}>
         {props.button && (
-          <Button onClick={setWriteModal} color={props.color} bg={props.bg}>
+          <Button onClick={() => setWriteModal} color={props.color} bg={props.bg}>
             {props.button}
           </Button>
         )}

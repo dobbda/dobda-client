@@ -5,14 +5,16 @@ import { Link } from 'src/components/common';
 import { i } from 'src/icons';
 
 type Props = {
-  title: any;
+  title: React.ReactNode;
   icon?: React.ReactNode /**title icon */;
   children?: React.ReactNode;
   childOpen?: boolean;
   href?: string;
+  bg?: string;
+  color?: string;
 };
 
-export const FolderMenu = ({ title, icon, children, childOpen = false }: React.PropsWithChildren<Props>) => {
+export const FolderMenu = ({ color, title, icon, children, childOpen = false, bg, href }: React.PropsWithChildren<Props>) => {
   const [checked, setchecked] = useState(childOpen);
   const [checkId, setcheckId] = useState('');
   useEffect(() => {
@@ -20,12 +22,12 @@ export const FolderMenu = ({ title, icon, children, childOpen = false }: React.P
   }, []);
 
   return (
-    <Div checked={checked}>
+    <Div checked={checked} bg={bg}>
       <CheckBox defaultChecked={childOpen} id={checkId} onChange={(e) => setchecked(!checked)} />
-      <Label htmlFor={checkId}>
+      <Label htmlFor={checkId} color={color}>
         {icon && <Icon>{icon}</Icon>}
         <h1>{title}</h1>
-        <i.MainArrow className="rotate" />
+        <i.MainArrow className="rotate" color={color} />
       </Label>
       <ChildMenu>{children}</ChildMenu>
     </Div>

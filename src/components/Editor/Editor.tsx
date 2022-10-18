@@ -29,8 +29,10 @@ const Editor = ({ html, setHtml, onClickShow = false, height, submitBtn }: Props
   }, [auth?.id, setLoginModal, showEditor]);
 
   useEffect(() => {
-    setshowSubmit(html?.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length >= 2);
-  }, [html]);
+    let text = html?.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length >= 2;
+    setshowSubmit(text);
+    console.log(text);
+  }, [html, setshowSubmit, showSubmit]);
   return (
     <S.EditorStyle>
       {onClickShow && !showEditor && (
@@ -42,8 +44,9 @@ const Editor = ({ html, setHtml, onClickShow = false, height, submitBtn }: Props
       {showEditor && <QuillEditor html={html} setHtml={setHtml} height={height} setFocus={focus} />}
       {onClickShow && showEditor && (
         <>
+          {<S.SubmitWrap>{showSubmit && submitBtn}</S.SubmitWrap>}
+
           <S.CloseEditor onClick={() => setShowEditor(false)}>Editor 접기</S.CloseEditor>
-          {showSubmit && <S.SubmitWrap>{submitBtn}</S.SubmitWrap>}
         </>
       )}
     </S.EditorStyle>
