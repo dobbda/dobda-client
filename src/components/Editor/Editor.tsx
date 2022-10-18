@@ -31,7 +31,6 @@ const Editor = ({ html, setHtml, onClickShow = false, height, submitBtn }: Props
   useEffect(() => {
     let text = html?.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length >= 2;
     setshowSubmit(text);
-    console.log(text);
   }, [html, setshowSubmit, showSubmit]);
   return (
     <S.EditorStyle>

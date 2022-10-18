@@ -42,7 +42,7 @@ const HeaderNav = () => {
                 <Popover trigger="click" content={<UserModalContent />} top={16} right={0}>
                   <AvatarImg src={auth.avatar} size={23} css={{ marginRight: '5px', border: 'solid 1px #000' }} />
                 </Popover>
-                <Popover trigger="click" content={<Alarms />} top={16} right={0}>
+                <Popover trigger="click" content={<Alarms data={data} />} top={16} right={0}>
                   <i.Bell size={'18px'} css={{ marginTop: '4px', cursor: 'pointer' }} />
                 </Popover>
               </>

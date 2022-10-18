@@ -8,11 +8,20 @@ export interface Author {
 
 export interface Default {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 export interface Alarm extends Default {
   type: string;
+  checked: boolean;
+  content: {
+    questionId?: number;
+    answerId?: number;
+    outSourcingId?: number;
+    enquiryId?: number;
+    replyId?: number;
+    content: string;
+  };
 }
 
 export interface Noti {

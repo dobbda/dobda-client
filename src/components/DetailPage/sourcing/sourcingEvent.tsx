@@ -31,13 +31,12 @@ export const ProgressState = ({ data }: Props) => {
             {p == 1 && <Text>🙋 메이커 선택 전 입니다. </Text>}
             {p >= 2 && (
               <Flex>
-                <span>
-                  🐹 결제 전입니다. 👌 {data.coin.toLocaleString()}
-                  원이 결제 되었습니다.
-                </span>
-                <Button types="secondary" $fill>
-                  결제하기
-                </Button>
+                <span>🐹 결제 전입니다. 결제후 다음단계가 진행됩니다</span>
+                {p == 2 && (
+                  <Button types="secondary" $fill>
+                    결제하기
+                  </Button>
+                )}
               </Flex>
             )}
 

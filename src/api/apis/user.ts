@@ -24,6 +24,6 @@ export const logout = async () => {
   return await axios.delete('/api/auth/logout');
 };
 
-export const alarms = async (): Promise<Alarm> => {
-  return await axios.delete('/api/alarms').then((res) => res.data?.response.result);
+export const alarms = async (): Promise<Alarm[]> => {
+  return await axios.get('/api/alarms').then((res) => res.data?.response.result);
 };

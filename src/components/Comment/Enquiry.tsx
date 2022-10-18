@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { Popover, message as m } from 'antd';
 import { keys, useAddReply, useAuth, useDelete, useDidMountEffect, useErrMsg } from 'src/hooks';
 import { o } from 'src/api';
-import { useQuery } from 'react-query';
+import { QueryClient, useQuery, useQueryClient } from 'react-query';
 import ReplyCp from './Reply';
 import { useRouter } from 'next/router';
 import { Button } from 'src/components/common';
@@ -32,7 +32,7 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
   const { auth } = useAuth();
   const del = useDelete(enquiry?.id, keys.enquiry(enquiry?.outSourcingId));
   const addReply = useAddReply(enquiry?.id);
-
+  const queryClient = useQueryClient();
   const { data: reply } = useQuery(keys.reply(Number(oid), enquiry?.id), () => o.getReply(enquiry?.id), {
     enabled: enquiry?.repliesCount > 0 && viewChild,
   });
@@ -59,8 +59,10 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
     }
   }, [del]);
 
-  const picked = useCallback(() => {
-    o.pick(oid, enquiry.id);
+  const picked = useCallback(async () => {
+    if (await o.pick(oid, enquiry.id)) {
+      queryClient.invalidateQueries(keys.oDetail(enquiry.outSourcingId));
+    }
   }, []);
   return (
     <S.CommentWrapper>
