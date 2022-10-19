@@ -1,4 +1,4 @@
-import { Reply } from './../../types/index';
+import { Reply } from '../../types/index';
 import { OutsourceDetail, Answer, Comment, CreateComment, Enquiry } from 'src/types/index';
 import { InfinityProps, CreateOutsource, Outsource } from 'src/types/index';
 import axios, { AxiosResponse } from 'axios';

@@ -14,10 +14,11 @@ export const NotiList = () => {
       {data ? (
         <ul css={{ padding: '0 10px 0' }}>
           {' '}
-          {data?.map((noti) => (
-            <Link href={noti.link ? noti.link : `/notice/` + noti.id} key={noti.id}>
+          {data?.map((noti, i) => (
+            <Link href={noti.link ? noti.link : `/notice/` + noti.id} key={i}>
               <a>
                 <Item>
+                  <Index>{i}. </Index>
                   {noti.link && <span css={{ color: '#ffbc65' }}> [Notion] </span>}
                   {noti.title}
                 </Item>
@@ -41,7 +42,9 @@ const Item = styled.li`
   text-overflow: ellipsis;
   white-space: nowrap;
   display: block;
-  color: #4a4a4a;
+  color: #333333df;
+  font-size: 13px;
+  font-weight: bold;
   text-align: left;
   padding: 6px 10px 3px;
   transition: all 0.2s;
@@ -58,4 +61,10 @@ const More = styled.li`
   margin: 10px 0 0 10px;
   font-size: 12px;
   color: #2555ad;
+`;
+
+const Index = styled.span`
+  color: #33333394;
+  font-size: 13;
+  font-weight: bold;
 `;

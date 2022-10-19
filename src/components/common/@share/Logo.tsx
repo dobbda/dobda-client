@@ -1,11 +1,9 @@
 import React, { useCallback } from 'react';
 import { useQueryClient } from 'react-query';
 import styled from 'styled-components';
-import { i } from 'src/icons';
-import Image from 'next/image';
-import Link from 'next/link';
 import { keys } from 'src/hooks';
 import { useRouter } from 'next/router';
+import { NameB, NameW } from 'src/icons/Icon';
 
 type Props = {
   b?: boolean;
@@ -28,8 +26,6 @@ export const Logo = ({ b, height }: Props) => {
   }, [queryClient, router]);
 
   return (
-    <Div onClick={goHome}>
-      {b ? <i.LogoBBB height={height ? height : '35px'} /> : <i.LogoW height={height ? height : '35px'} />}
-    </Div>
+    <Div onClick={goHome}>{b ? <NameB height={height ? height : '35px'} /> : <NameW height={height ? height : '35px'} />}</Div>
   );
 };

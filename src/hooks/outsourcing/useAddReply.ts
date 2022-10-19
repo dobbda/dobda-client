@@ -1,4 +1,4 @@
-import { addReply } from '../../api/apis/outsourcing';
+import { addReply } from '../../api/apis/sourcing';
 import { Answer } from '../../types/index';
 import { AxiosError, AxiosResponse } from 'axios';
 import { useMutation, UseMutationResult, useQueryClient } from 'react-query';

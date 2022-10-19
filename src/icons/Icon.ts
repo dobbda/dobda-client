@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import LogoW from 'public/svg/NAME_W.svg';
-import LogoBBB from 'public/svg/NAME_BBB.svg';
-import Logo from 'public/svg/logo.svg';
+import NameW from 'public/svg/NAME_W.svg';
+// import NameB from 'public/svg/NAME_B.svg';
+import NameB from 'public/svg/dobda2.svg';
 import Won from 'public/svg/won.svg';
 import Q from 'public//svg/Q.svg';
 import Accepted from 'public/svg/accepted.svg';
-export { Q, Accepted, Won, LogoW as LogoW, LogoBBB as LogoBBB, Logo as Logo };
+export { Q, Accepted, Won, NameW, NameB };
 
 export { BiHash as Hash } from 'react-icons/bi';
 // export { RiBitCoinFill as Coin} from 'react-icons/ri';

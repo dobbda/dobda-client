@@ -67,7 +67,7 @@ const ContentCardList = styled(motion.div)`
 `;
 const RefCard = styled.div`
   width: 100%;
-  border-bottom: 1px solid #c3c3c3;
+  border-bottom: 1px solid #e3e6e8;
   padding: 10px 15px;
   :hover {
     box-shadow: 0 0 0 1px #8d8d8d inset;

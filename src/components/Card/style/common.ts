@@ -26,16 +26,18 @@ export const Gap = styled.div`
 
 export const Title = styled.h2`
   overflow: hidden;
+  line-clamp: 2;
   text-overflow: ellipsis;
   word-break: break-word;
-  line-clamp: 2;
   padding: 3px 0;
+  font-size: 17px;
+  color: #2362ab;
   display: -webkit-box;
   -webkit-line-clamp: 2; // 원하는 라인수
   -webkit-box-orient: vertical;
   :hover {
     text-decoration: underline;
     text-underline-offset: 5px;
-    text-decoration-color: #a1a1a1;
+    text-decoration-color: #2362ab;
   }
 `;
