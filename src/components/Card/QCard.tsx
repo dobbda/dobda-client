@@ -30,7 +30,6 @@ const QCard = ({ data }: data) => {
           <S.BodyWrapper>
             <Lib.Link href={`/questions/${q.id}`}>
               <c.Title>{q.title}</c.Title>
-              <br />
             </Lib.Link>
             <atom.TagWrapper>
               {q.tagNames?.map((tag, i) => (
@@ -52,7 +51,7 @@ const QCard = ({ data }: data) => {
 
               <c.Group>
                 <c.P>Comment</c.P>
-                <c.P>( {q.watch} )</c.P>
+                <c.P>( {q.answersCount * 2} )</c.P>
               </c.Group>
 
               <c.Gap>|</c.Gap>

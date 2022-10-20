@@ -56,6 +56,7 @@ module.exports = withPlugins([withBundleAnalyzer], {
         },
       ],
     });
+    nextConfig.resolve.modules.push(__dirname);
     return {
       ...nextConfig,
       mode: prod ? 'production' : 'development',

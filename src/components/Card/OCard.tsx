@@ -38,7 +38,7 @@ const OCard = ({ data }: Props) => {
                   <S.Progress>[ 매치중... ]</S.Progress>
                 </c.Group>
                 <c.Group>
-                  <p>작성 : </p>{' '}
+                  <c.P>작성 : </c.P>{' '}
                   <atom.CreatedAt className="createdAt">
                     {getDate(data.createdAt, true)}
                     <c.Gap></c.Gap>{' '}

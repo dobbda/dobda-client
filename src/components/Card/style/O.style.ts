@@ -16,6 +16,9 @@ export const ContentWrapper = styled.div`
       text-decoration-color: #a1a1a1;
     }
   }
+  * p {
+    margin: 0;
+  }
 `;
 
 export const Title = styled.h2`
@@ -50,7 +53,7 @@ export const Info = styled.div`
   align-items: flex-start;
   padding: 20px 15px;
   gap: 5px;
-  margin: 10px -1px;
+  margin: 0 -1px;
   margin-bottom: 0;
 `;
 

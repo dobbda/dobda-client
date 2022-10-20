@@ -11,12 +11,14 @@ export const Group = styled.div`
   -ms-user-select: none;
   user-select: none;
   height: fit-content;
+  line-height: inherit;
 `;
 
 export const P = styled.p<{ color?: string }>`
   display: inline;
   color: ${({ color }) => (color ? color : '#686868')};
   font-size: 13px;
+  /* line-height: unset; */
 `;
 
 export const Gap = styled.div`

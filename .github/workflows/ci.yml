@@ -1,9 +1,9 @@
 name: Build & Publish
 
 on:
-  # push:
-  #   branches:
-  #     - 'main'
+  push:
+    branches:
+      - 'main'
   pull_request:
     branches: [main]
   workflow_dispatch: # Manually run the workflow

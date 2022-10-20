@@ -12,8 +12,10 @@ export const GlobalStyle = createGlobalStyle`
 	}
 	body{
     background-color: ${theme.color.bg};
+		-webkit-text-size-adjust: none;
 		font-family:  "Helvetica Neue", Helvetica,'Noto Sans KR', sans-serif,  Inter ;
-    font-size: 14px;
+    font-display: fallback;
+		font-size: 14px;
 		overflow-y: scroll;
 
 		::-webkit-scrollbar {
@@ -48,11 +50,6 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-
- h1,h2,h3,p{
-    margin: 0;
-  }
-
   .navbar-dropdown {
     top: 40px !important;
   }
@@ -60,4 +57,5 @@ export const GlobalStyle = createGlobalStyle`
 	button {
 		cursor: pointer;
 	}
+
 `;

@@ -32,7 +32,9 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html key={'root'}>
-        <Head></Head>
+        <Head>
+          <meta property="og:locale" content="ko_KR" />
+        </Head>
         <body>
           <Main />
           <NextScript />

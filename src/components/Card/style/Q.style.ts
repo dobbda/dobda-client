@@ -10,6 +10,9 @@ export const ContentWrapper = styled.div<CardProps>`
   svg {
     font-size: 15px;
   }
+  * p {
+    margin: 0;
+  }
 `;
 
 // header
