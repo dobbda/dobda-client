@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  h1 {
-    font-weight: bold;
-    padding-left: 60px;
-    margin: 0;
-  }
+  width: 100%;
   .my-content {
     margin: 0;
     padding: 0;
@@ -13,4 +9,9 @@ export const Wrapper = styled.div`
     display: grid;
     place-items: center;
   }
+`;
+export const ListWrapper = styled.div`
+  max-height: 800px;
+  overflow: auto;
+  width: 100%;
 `;

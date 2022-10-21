@@ -1,8 +1,6 @@
+import { InfinityProps, Outsource, Question } from 'src/types';
 import { Alarm, Auth, UserUpdate } from 'src/types';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { http } from '../http';
-import { variable } from 'src/config/defaultValue';
-import { useQueryClient } from 'react-query';
 
 export const myInfo = async () => {
   //내정보 상세
@@ -26,4 +24,26 @@ export const logout = async () => {
 
 export const alarms = async (): Promise<Alarm[]> => {
   return await axios.get('/api/alarms').then((res) => res.data?.response.result);
+};
+
+export const question = async (pageNum: number = 1): Promise<InfinityProps<Question>> => {
+  const res = await axios.get(`/api/questions/user?page=${pageNum}`);
+  if (!res.data.success) return null;
+  return {
+    result: res.data.response.result,
+    pageNum: pageNum,
+    isLast: pageNum >= res.data.response.totalPages,
+    totalLength: res.data.response?.totalLength,
+  };
+};
+
+export const sourcing = async (pageParam: number = 1): Promise<InfinityProps<Outsource>> => {
+  const res = await axios.get(`/api/outsource/user?page=${pageParam && pageParam}`);
+  if (!res.data.success) return null;
+  return {
+    result: res.data.response.result,
+    pageNum: pageParam,
+    isLast: pageParam >= res.data.response.totalPages,
+    totalLength: res.data.response?.totalLength,
+  };
 };

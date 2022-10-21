@@ -12,9 +12,19 @@ type Props = {
   href?: string;
   bg?: string;
   color?: string;
+  height?: string;
 };
 
-export const FolderMenu = ({ color, title, icon, children, childOpen = false, bg, href }: React.PropsWithChildren<Props>) => {
+export const FolderMenu = ({
+  color,
+  title,
+  icon,
+  children,
+  childOpen = false,
+  bg,
+  href,
+  height = '150px',
+}: React.PropsWithChildren<Props>) => {
   const [checked, setchecked] = useState(childOpen);
   const [checkId, setcheckId] = useState('');
   useEffect(() => {
@@ -23,7 +33,7 @@ export const FolderMenu = ({ color, title, icon, children, childOpen = false, bg
 
   return (
     <Div checked={checked} bg={bg}>
-      <CheckBox defaultChecked={childOpen} id={checkId} onChange={(e) => setchecked(!checked)} />
+      <CheckBox height={height} defaultChecked={childOpen} id={checkId} onChange={(e) => setchecked(!checked)} />
       <Label htmlFor={checkId} color={color}>
         {icon && <Icon>{icon}</Icon>}
         <h1>{title}</h1>

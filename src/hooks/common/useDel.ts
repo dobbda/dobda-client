@@ -23,10 +23,10 @@ export const useDelete = <T extends Props>(id: number, queryKey: QueryKey, paren
             setCount({ queryKey: keys.qDetail(parentId), changeKey: 'answersCount', findId: parentId, upDown: -1 }));
 
           queryKey.includes('enquiry') &&
-            (setInfCount({ queryKey: keys.outsources(), changeKey: 'enquiryCount', findId: parentId, upDown: -1 }),
+            (setInfCount({ queryKey: keys.sourcings(), changeKey: 'enquiryCount', findId: parentId, upDown: -1 }),
             setCount({ queryKey: keys.oDetail(parentId), changeKey: 'enquiryCount', findId: parentId, upDown: -1 }));
         } else if (queryKey.includes('detail')) {
-          queryClient.setQueryData(queryKey.includes('question') ? keys.questions() : keys.outsources(), (oldData: any) =>
+          queryClient.setQueryData(queryKey.includes('question') ? keys.questions() : keys.sourcings(), (oldData: any) =>
             produce(oldData, (draft: any) => {
               draft.pages = draft.pages.map((page: any) => {
                 page.result = page.result.filter((item: any) => item.id !== id);

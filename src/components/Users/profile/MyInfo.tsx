@@ -4,6 +4,8 @@ import { useInput } from 'src/hooks';
 import * as Lib from 'src/components/common';
 import * as S from './style/myInfo.style';
 import { UserUpdateForm } from './UpdateForm';
+import { UserPage } from '../UserPage';
+import { Divider } from 'antd';
 type Props = {};
 
 export const MyInfo = (props: Props) => {
@@ -11,9 +13,11 @@ export const MyInfo = (props: Props) => {
   const [discript, onChangeDiscript] = useInput('쭈꾸미', 260);
   const [skills, setSkills] = React.useState<string[]>([]);
   return (
-    <>
+    <UserPage>
+      <Divider orientation="left">
+        <h2>내정보</h2>
+      </Divider>
       <S.InfoWrapper>
-        <h1 css={{ margin: '10px' }}>내 정보</h1>
         <UserUpdateForm />
         <br />
         <br />
@@ -45,10 +49,8 @@ export const MyInfo = (props: Props) => {
               <Lib.Button types="secondary">보기</Lib.Button>
             </Lib.Link>
           </S.Flex>
-
-          <S.Hr />
         </div>
       </S.InfoWrapper>
-    </>
+    </UserPage>
   );
 };

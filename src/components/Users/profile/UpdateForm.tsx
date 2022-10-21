@@ -54,13 +54,16 @@ export const UserUpdateForm = (props: Props) => {
         <>
           <S.EditInfoWrapper>
             <S.Culumn>
-              <S.Value>이메일 : {auth?.email}</S.Value>
+              <S.Value>
+                {' '}
+                <h3> {auth?.email}</h3>
+              </S.Value>
             </S.Culumn>
 
             <S.Hr />
 
             <S.Culumn>
-              <S.Label>닉네임</S.Label>
+              <S.Label>닉네임: 다른 유저에게 보여지는 닉네임이에요.</S.Label>
               <S.Value>
                 <Avatar src={auth?.avatar} /> <i.Refresh css={{ marginRight: '10px', cursor: 'pointer' }} />
                 <S.Input defaultValue={auth.nickname} onChange={onChangeNickname} />
@@ -68,7 +71,7 @@ export const UserUpdateForm = (props: Props) => {
             </S.Culumn>
 
             <S.Culumn>
-              <S.Label>나의 소개</S.Label>
+              <S.Label>나에 대해 간단하게 소개해봐요~</S.Label>
               <S.Value>
                 <S.Input.TextArea defaultValue={auth.description || '안녕하세요'} onChange={onChangeDescription} rows={4} />
               </S.Value>

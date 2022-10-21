@@ -107,10 +107,17 @@ const QuestionPage = ({ children, data }: Props) => {
 
           <S.EditorWrapper>
             <h3>답변을 작성해주세요</h3>
-            <Editor html={html} setHtml={setHtml} onClickShow={true} height="400px" />
-            <Button onClick={onSubmitAnswer} types="secondary" $block $fill css={{ marginTop: '10px' }}>
-              <Loading loading={add.isLoading} /> 등록
-            </Button>
+            <Editor
+              html={html}
+              setHtml={setHtml}
+              onClickShow={true}
+              height="400px"
+              submitBtn={
+                <Button onClick={onSubmitAnswer} types="secondary" $block $fill css={{ marginTop: '10px' }}>
+                  <Loading loading={add.isLoading} /> 등록
+                </Button>
+              }
+            />
           </S.EditorWrapper>
 
           <S.AnswerContainer>

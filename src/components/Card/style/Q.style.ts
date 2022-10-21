@@ -7,6 +7,8 @@ interface CardProps {
 }
 
 export const ContentWrapper = styled.div<CardProps>`
+  width: 100%;
+
   svg {
     font-size: 15px;
   }

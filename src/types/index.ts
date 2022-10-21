@@ -218,10 +218,11 @@ export interface UserProfile extends Default {
 }
 
 ////////////////////////////////////////////////////////////////
-//// 						card InfinityProps 							     							////
+//// 						Infinity Props Type 							     							////
 ////////////////////////////////////////////////////////////////
 export type InfinityProps<T> = {
-  result: T;
+  result: T[];
   pageNum: number;
   isLast: boolean;
+  totalLength?: number;
 };

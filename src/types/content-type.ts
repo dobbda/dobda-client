@@ -5,6 +5,13 @@ export const Categories = {
 export const CategoryList = Object.keys(Categories) as CategoriesType[];
 export type CategoriesType = keyof typeof Categories;
 
+export const MyPost = {
+  questions: '질문 목록',
+  outsourcing: '소・싱 목록',
+};
+export const MyPostList = Object.values(MyPost) as PostType[];
+export type PostType = keyof typeof Categories;
+
 export type EditType = 'answers' | 'comments' | 'replies' | 'enquiry';
 
 export interface Exp {

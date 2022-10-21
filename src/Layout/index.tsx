@@ -6,13 +6,15 @@ import { SideContentLeft, SideContentRight } from 'src/components/SideContent';
 import { useScroll, useWindowSize } from 'src/hooks';
 
 import BnCarousel from '../components/banner/BnCarouse';
+import { MyNavigator } from 'src/components/SideContent/MyPageNav';
 
 interface Props {
   sideRight?: boolean;
   sideLeft?: boolean;
   banner?: boolean;
+  myNavigator?: boolean;
 }
-export const Layout = ({ children, sideRight, sideLeft, banner }: PropsWithChildren<Props>) => {
+export const Layout = ({ children, sideRight, sideLeft, banner, myNavigator }: PropsWithChildren<Props>) => {
   const { width, height } = useWindowSize();
   return (
     <S.Container>
@@ -26,7 +28,9 @@ export const Layout = ({ children, sideRight, sideLeft, banner }: PropsWithChild
               <SideContentLeft />
             </S.SideNavWrapper>
           )}
+
           <S.MainWrapper>{children}</S.MainWrapper>
+
           {sideRight && (
             <S.SideNavWrapper>
               {sideLeft && width < 1060 && <SideContentLeft folderOpenFalse />}

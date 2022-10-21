@@ -1,11 +1,8 @@
 import styled from 'styled-components';
 import { Input as AntInput } from 'antd';
 export const InfoWrapper = styled.div`
-  background-color: #fff;
-  padding: 20px 0;
-  min-height: 100%;
+  width: 100%;
   border: 1px solid #eee;
-  padding-bottom: 100px;
 `;
 //// 업데이트 가능한 유저 정보 components style
 export const EditInfoWrapper = styled.div`

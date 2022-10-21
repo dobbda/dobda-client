@@ -14,14 +14,14 @@ const useAddOutsource = (mutationFn: any, qid?: number) => {
     //qid가 있을시 수정, 없을시 생성
 
     onSuccess: async (newOutsource: Outsource) => {
-      queryClient.cancelQueries([keys.outsources()]);
+      queryClient.cancelQueries([keys.sourcings()]);
 
-      const oldData = queryClient.getQueryData(keys.outsources());
+      const oldData = queryClient.getQueryData(keys.sourcings());
       const oldDetail = queryClient.getQueryData(keys.oDetail(newOutsource.id));
 
       // 메인페이지에 새로 추가
       if (oldData) {
-        queryClient.setQueryData(keys.outsources(), (oldData: any) => {
+        queryClient.setQueryData(keys.sourcings(), (oldData: any) => {
           if (newOutsource.createdAt === newOutsource.updatedAt) {
             const updatedData = produce(oldData, (draft: any) => {
               draft.pages[0].result.unshift(newOutsource);

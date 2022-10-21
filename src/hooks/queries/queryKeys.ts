@@ -12,14 +12,16 @@ export const keys = {
   ],
   qDetail: (qid: number | string): QueryKey => ['question:' + Number(qid), 'detail'],
 
-  outsources: (title?: string, tag?: string): QueryKey => ['outsourcings', { title: title && title, tag: tag && title }],
-  enquiry: (oid: number | string): QueryKey => ['outsourcing: ', Number(oid), 'enquiry'],
+  sourcings: (title?: string, tag?: string): QueryKey => ['sourcings', { title: title && title, tag: tag && title }],
+  enquiry: (oid: number | string): QueryKey => ['sourcing: ', Number(oid), 'enquiry'],
   reply: (oid: number | string, eid: number | string): QueryKey => [
-    'outsourcing: ' + Number(oid),
+    'sourcing: ' + Number(oid),
     'enquirie: ' + Number(eid),
     'reply',
   ],
   oDetail: (oid: number | string): QueryKey => ['outsourcing: ' + Number(oid), 'detail'],
 
   alarms: (userId: number | string) => ['alarms', 'user:', userId],
+  userQ: (id: number | string) => ['user: ', id, 'questions'],
+  userS: (id: number | string) => ['user: ', id, 'sourcings'],
 };

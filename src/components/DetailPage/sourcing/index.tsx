@@ -28,7 +28,7 @@ const SourcingPage = ({ children, data }: Props) => {
   const { setCount, setInfCount } = useQueryCount();
   useEffect(() => {
     /** 조회수 */
-    setInfCount({ queryKey: keys.outsources(), changeKey: 'watch', findId: data.id, countVal: data.watch });
+    setInfCount({ queryKey: keys.sourcings(), changeKey: 'watch', findId: data.id, countVal: data.watch });
   }, []);
   const router = useRouter();
 
@@ -112,11 +112,19 @@ const SourcingPage = ({ children, data }: Props) => {
 
           <S.EditorWrapper>
             <h3>🧘‍♂️글을 남겨 본인을 어필해보세요.</h3>
-            <Editor html={html} setHtml={setHtml} onClickShow={true} height="400px" />
+            <Editor
+              html={html}
+              setHtml={setHtml}
+              onClickShow={true}
+              height="400px"
+              submitBtn={
+                <Button onClick={onSubmitEnquiry} types="primary" $fill $block css={{ width: '200px', marginTop: '10px' }}>
+                  등록
+                </Button>
+              }
+            />
           </S.EditorWrapper>
-          <Button onClick={onSubmitEnquiry} types="primary" $fill $block css={{ width: '200px', marginTop: '10px' }}>
-            등록
-          </Button>
+
           <S.AnswerContainer>
             {enquiry && enquiry[0]?.id ? (
               enquiry.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} out={data} />)

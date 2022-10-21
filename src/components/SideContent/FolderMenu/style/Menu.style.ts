@@ -58,11 +58,11 @@ export const ChildMenu = styled.div`
 
 export const CheckBox = styled.input.attrs({
   type: 'checkbox',
-})`
+})<{ height: string }>`
   display: none;
 
   &:checked + ${Label} + ${ChildMenu} {
-    height: 150px;
+    height: ${({ height }) => height};
   }
 
   &:checked + ${Label} .rotate {

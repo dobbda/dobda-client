@@ -12,7 +12,7 @@ function RenderOutsource() {
   const [shearchTag, setShearchTag] = useState<string>();
   const { data, fetchNextPage, hasNextPage, isSuccess, refetch } = useGetInfinity<InfinityProps<Outsource[]>>({
     fetch: o.getInfinity,
-    queryKey: keys.outsources(),
+    queryKey: keys.sourcings(),
   });
 
   const [ref, isView] = useInView();

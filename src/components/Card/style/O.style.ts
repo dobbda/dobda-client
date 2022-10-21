@@ -8,6 +8,7 @@ export const ContentWrapper = styled.div`
   border: 1px solid ${theme.color.border2};
   box-shadow: 0 1px 6px 0 rgb(137 138 154 / 40%);
   box-sizing: border-box;
+  width: 100%;
   :hover {
     border: 1px solid ${theme.color.border1};
     .outsourcing-title {
