@@ -23,7 +23,7 @@ export const Poster = () => {
 
   const { data, nextPage } = userLoadMore<any>({
     queryKey: category == MyPostList[0] ? keys.userQ(1) : keys.userS(1),
-    fetch: category == MyPostList[0] ? () => user.question(1) : () => user.sourcing(1),
+    fetch: category == MyPostList[0] ? (page: number) => user.question(page) : (page: number) => user.sourcing(page),
   });
 
   const loadMore = !data?.isLast ? (
@@ -51,16 +51,15 @@ export const Poster = () => {
 
         <Segmented block options={MyPostList} value={category} onChange={(value: SegmentedValue) => setCategory(value)} />
         <br />
-        <ListWrapper>
-          <List
-            bordered
-            dataSource={data?.result}
-            loadMore={loadMore}
-            renderItem={(item) => (
-              <List.Item>{category == MyPostList[0] ? <QCard data={item} /> : <OCard data={item} />}</List.Item>
-            )}
-          />
-        </ListWrapper>
+        <List
+          bordered
+          dataSource={data?.result}
+          loadMore={loadMore}
+          css={{ maxHeight: '700px', overflow: 'auto', paddingBottom: '10px' }}
+          renderItem={(item) => (
+            <List.Item>{category == MyPostList[0] ? <QCard data={item} /> : <OCard data={item} />}</List.Item>
+          )}
+        />
       </Wrapper>
     </UserPage>
   );

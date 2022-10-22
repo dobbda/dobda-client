@@ -20,7 +20,7 @@ export { IoIosEye as Watch } from 'react-icons/io';
 export { RiKakaoTalkFill as Kakao } from 'react-icons/ri';
 export { BiPencil as Pen } from 'react-icons/bi';
 export { AiOutlineSearch as Search } from 'react-icons/ai';
-export { AiOutlineUser as User } from 'react-icons/ai';
+export { HiUserCircle as User } from 'react-icons/hi';
 export { AiFillNotification as Notice } from 'react-icons/ai';
 export { BsBell as Bell } from 'react-icons/bs';
 export { ImNotification as Rule } from 'react-icons/im';

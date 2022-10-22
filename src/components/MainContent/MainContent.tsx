@@ -25,7 +25,10 @@ const MainContent = ({ children }: Props) => {
   //첫 로딩시
   useEffect(() => {
     const storeCategory = getLocalStorage('mainCateogry') as CategoriesType;
-    storeCategory ? setSelect(storeCategory) : (setSelect(CategoryList[0]), setLocalStorage('mainCateogry', CategoryList[0]));
+    console.log(Categories[storeCategory], storeCategory);
+    Categories[storeCategory]
+      ? setSelect(storeCategory)
+      : (setSelect(CategoryList[0]), setLocalStorage('mainCateogry', CategoryList[0]));
   }, []);
 
   useDidMountEffect(() => {

@@ -22,6 +22,7 @@ export const keys = {
   oDetail: (oid: number | string): QueryKey => ['outsourcing: ' + Number(oid), 'detail'],
 
   alarms: (userId: number | string) => ['alarms', 'user:', userId],
+  alarmsAll: (userId: number | string) => ['alarmsAll', 'user:', userId],
   userQ: (id: number | string) => ['user: ', id, 'questions'],
   userS: (id: number | string) => ['user: ', id, 'sourcings'],
 };

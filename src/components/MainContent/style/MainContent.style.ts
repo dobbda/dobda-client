@@ -21,32 +21,33 @@ export const Main = styled.div`
     align-items: center;
     flex-wrap: wrap-reverse;
     margin: 20px 0 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    /* padding: 2px 2px 0 2px; */
+    background-color: ${theme.color.primary};
+    border-radius: 4px;
+    border-bottom-left-radius: 0;
+    /* border-bottom-left-radius: 4px */
+
+    color: #fff;
     .tap_menu {
       //카테고리 버튼
       cursor: pointer;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
       font-size: 15px;
       font-weight: 900;
       padding: 0 12px;
       line-height: 30px;
       display: flex;
-      color: #808080;
-      margin-bottom: -5px;
-      border-bottom: 2px solid rgba(0, 0, 0, 0);
+      color: #fff;
       transition: all 0.2s ease-in-out 0.05s;
-      :hover {
-        border-bottom: 2px solid ${({ theme }) => theme.color.prRgb(0.5)};
-      }
+      border-top: solid 2px ${theme.color.primary};
+      border-left: solid 2px ${theme.color.primary};
+      border-right: solid 2px ${theme.color.primary};
     }
     .selected {
-      color: ${({ theme }) => theme.color.seRgb(0.8)};
-      z-index: 1;
-      border-bottom: 2px solid ${({ theme }) => theme.color.seRgb(0.8)};
-      transition: all 0.2s ease-in-out 0s;
-      :hover {
-        border-bottom: 2px solid ${({ theme }) => theme.color.seRgb(0.8)};
-      }
+      color: #6e6e6e;
+      transition: all 0.2s;
+      background-color: #fff;
     }
   }
 `;

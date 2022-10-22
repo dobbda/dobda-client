@@ -4,18 +4,24 @@ import { Div } from './style/style';
 import { Li } from './style/Message.style';
 import { Alarm, Auth } from 'src/types';
 import axios from 'axios';
-import { useQueryClient } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { keys, useAuth } from 'src/hooks';
 import produce from 'immer';
+import { user } from 'src/api';
+import getDate from 'src/lib/utils/dateForm';
 type Props = {
   data: Alarm[];
 };
 
-export const Alarms = ({ data }: Props) => {
+export const Alarms = () => {
+  const { auth, refetch } = useAuth();
+  const { data } = useQuery(keys.alarms(auth?.id), user.alarms, {
+    enabled: !!auth?.id,
+  });
   return (
     <Div>
       <h1>최근 알림</h1>
-      <ul>{data[0] ? data?.map((x: Alarm, i) => <Message data={x} key={i} />) : <Empty />}</ul>
+      <ul>{data ? data?.map((x: Alarm, i) => <Message data={x} key={i} />) : <Empty />}</ul>
       <div className="show-all-messages">
         <Link href="#">전체알림 보기</Link>
       </div>
@@ -51,7 +57,7 @@ const Message = ({ data }: { data: Alarm }) => {
       <Link href={link}>
         <div className="message-information">
           <span>[ 댓글알림 ]</span>
-          <span>{data?.createdAt.substring(0, 11)}</span>
+          <span>{getDate(data?.createdAt, true)}</span>
         </div>
         <div className="msg-title">{data?.content.content}</div>
       </Link>
