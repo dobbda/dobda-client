@@ -88,7 +88,7 @@ export const My = styled.button`
   border: solid 1px ${theme.color.primary};
   color: ${theme.color.primary};
   padding-top: 4px;
-
+  white-space: nowrap;
   background-color: #fff;
   border-radius: 4px;
   font-weight: bold;

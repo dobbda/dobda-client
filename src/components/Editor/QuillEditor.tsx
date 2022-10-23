@@ -131,4 +131,8 @@ const QStyle = styled.div<{ minHeight?: string }>`
   img {
     cursor: default !important;
   }
+  p {
+    margin-bottom: 8px;
+    line-height: 20px;
+  }
 `;

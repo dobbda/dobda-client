@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Main, WriteHandler } from './style/MainContent.style';
+import { Border, Main, WriteHandler } from './style/MainContent.style';
 import { WirteHandlerModal } from './atom/WirteHandlerModal';
 import { i } from 'src/icons';
 import { Categories, CategoryList, CategoriesType } from 'src/types/content-type';
@@ -42,14 +42,16 @@ const MainContent = ({ children }: Props) => {
 
   return (
     <>
+      <WirteHandlerModal />
+
       <Main>
-        <div>
-          <WriteHandler onClick={checkLogin}>
-            📑 질문이나 프로젝트 요청을 해보는건 어떤가요?{' '}
-            <span>
-              <i.Pen color={theme.color.primary} />
-            </span>
-          </WriteHandler>
+        <WriteHandler onClick={checkLogin}>
+          📑 질문이나 프로젝트 요청을 해보는건 어떤가요?{' '}
+          <span>
+            <i.Pen color={theme.color.primary} />
+          </span>
+        </WriteHandler>
+        <Border>
           <div className="top-bar">
             {CategoryList.map((m, i) => (
               <div key={i} onClick={() => setSelect(m)} className={`${select === m ? 'tap_menu selected' : 'tap_menu'}`}>
@@ -57,11 +59,10 @@ const MainContent = ({ children }: Props) => {
               </div>
             ))}
           </div>
-        </div>
-        <section className="card-content outsourcing">{select == 'outsourcing' && <RenderOutsource />}</section>
-        <section className="card-content questions">{select == 'questions' && <RenderQuestion />}</section>
+          <section className="card-content outsourcing">{select == 'outsourcing' && <RenderOutsource />}</section>
+          <section className="card-content questions">{select == 'questions' && <RenderQuestion />}</section>
+        </Border>
       </Main>
-      <WirteHandlerModal />
     </>
   );
 };

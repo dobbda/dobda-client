@@ -6,11 +6,12 @@ import styled from 'styled-components';
 import { o } from 'src/api';
 import { InfinityProps, Outsource } from 'src/types';
 import { motion } from 'framer-motion';
+import { theme } from 'src/styles/Theme';
 
 function RenderOutsource() {
   const [shearchTitle, setShearchTitle] = useState<string>();
   const [shearchTag, setShearchTag] = useState<string>();
-  const { data, fetchNextPage, hasNextPage, isSuccess, refetch } = useGetInfinity<InfinityProps<Outsource[]>>({
+  const { data, fetchNextPage, hasNextPage, isSuccess, refetch } = useGetInfinity<InfinityProps<Outsource>>({
     fetch: o.getInfinity,
     queryKey: keys.sourcings(),
   });
@@ -61,4 +62,10 @@ const ContentCardList = styled(motion.div)`
 `;
 const RefCard = styled.div`
   width: 100%;
+  :hover {
+    margin-left: -1px;
+    margin-right: -1px;
+    box-shadow: 0 0 0 1px ${theme.color.prRgb(0.5)};
+    transition: all 0.2s;
+  }
 `;

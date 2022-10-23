@@ -16,7 +16,7 @@ export const UserPage = ({ children }: Props) => {
     <UserPageWrapper>
       <div css={{ width: '100%' }}>{children}</div>
       <div className="navigator">
-        <FolderMenu title="My Navigator" childOpen={true} height="160px">
+        <FolderMenu title="CATEGORIES" childOpen={true} height="160px">
           <ul css={{ margin: '0', padding: '0' }}>
             <Li $isPath={'/user/profile' == router.pathname}>
               <Link href="/user/profile">내 정보</Link>

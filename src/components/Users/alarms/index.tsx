@@ -63,6 +63,7 @@ export const AlarmPage = (props: Props) => {
             </Item>
           </Link>
         ))}
+        {data && data[0] == undefined && <span> 최근 알림이 없습니다.</span>}
       </div>
     </div>
   );

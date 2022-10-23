@@ -21,9 +21,10 @@ export const Alarms = () => {
   return (
     <Div>
       <h1>최근 알림</h1>
-      <ul>{data ? data?.map((x: Alarm, i) => <Message data={x} key={i} />) : <Empty />}</ul>
+      <ul>{data && data?.map((x: Alarm, i) => <Message data={x} key={i} />)}</ul>
+      <div>{data && data[0] == undefined && <Empty />}</div>
       <div className="show-all-messages">
-        <Link href="#">전체알림 보기</Link>
+        <Link href="/user/alarm">전체알림 보기</Link>
       </div>
     </Div>
   );

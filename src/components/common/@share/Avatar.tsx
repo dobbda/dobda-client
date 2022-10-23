@@ -16,8 +16,8 @@ type Props = {
 const SImg = styled(AntAvatar)`
   border: 1px solid ${theme.color.border2};
   :hover {
-    border: 1px solid ${theme.color.primary};
-    box-shadow: ${theme.color.prRgb(0.5)} 0px 0.5px 2px 3px;
+    border: 1px solid ${theme.color.secondary};
+    box-shadow: ${theme.color.seRgb(0.8)} 0px 0.5px 1px 2px;
   }
 `;
 const Div = styled.div`
