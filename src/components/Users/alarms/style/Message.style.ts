@@ -30,7 +30,7 @@ export const Li = styled.li<Props>`
         height: 7px;
         margin-right: 10px;
         border-radius: 100%;
-        background-color: ${({ checked }) => (checked ? '#b13805' : '#a9a9a9')};
+        background-color: ${({ checked }) => (checked ? '#ff5b16' : '#ced4da')};
       }
     }
     span:nth-last-child(1) {

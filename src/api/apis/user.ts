@@ -26,6 +26,10 @@ export const alarms = async (): Promise<Alarm[]> => {
   return await axios.get('/api/alarms').then((res) => res.data?.response.result);
 };
 
+export const alarmsAll = async (): Promise<Alarm[]> => {
+  return await axios.get('/api/alarms/all').then((res) => res.data?.response.result);
+};
+
 export const question = async (pageNum: number = 1): Promise<InfinityProps<Question>> => {
   const res = await axios.get(`/api/questions/user?page=${pageNum}`);
   if (!res.data.success) return null;

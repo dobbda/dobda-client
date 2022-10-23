@@ -58,7 +58,7 @@ const Item = styled.li`
 `;
 
 const More = styled.li`
-  margin: 10px 0 0 10px;
+  margin: 10px 0 0 20px;
   font-size: 12px;
   color: #2555ad;
 `;

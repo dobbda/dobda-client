@@ -4,9 +4,7 @@ import { HeaderNav } from 'src/components/common';
 import { GlobalStyle } from 'src/styles/GlobalStyle';
 import { SideContentLeft, SideContentRight } from 'src/components/SideContent';
 import { useScroll, useWindowSize } from 'src/hooks';
-
 import BnCarousel from '../components/banner/BnCarouse';
-import { MyNavigator } from 'src/components/SideContent/MyPageNav';
 
 interface Props {
   sideRight?: boolean;

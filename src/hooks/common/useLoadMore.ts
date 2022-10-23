@@ -15,6 +15,7 @@ export const userLoadMore = <T>({ queryKey, fetch }: Props<T>) => {
 
   const nextPage = useCallback(async () => {
     if (!data.isLast) {
+      console.log('data.pageNum', data.pageNum);
       const res = await fetch(data.pageNum + 1);
       queryClient.setQueryData(queryKey, (old: InfinityProps<T>) =>
         produce(old, (draft: InfinityProps<T>) => {

@@ -10,7 +10,6 @@ export const ContentWrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
   :hover {
-    border: 1px solid ${theme.color.border1};
     .outsourcing-title {
       text-decoration: 1px underline;
       text-underline-offset: 5px;

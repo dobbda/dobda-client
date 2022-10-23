@@ -11,7 +11,7 @@ import { theme } from 'src/styles/Theme';
 function RenderQuestion() {
   const [shearchTitle, setShearchTitle] = useState<string>();
   const [shearchTag, setShearchTag] = useState<string>();
-  const { data, fetchNextPage, hasNextPage, isSuccess, refetch } = useGetInfinity<InfinityProps<Question[]>>({
+  const { data, fetchNextPage, hasNextPage, isSuccess, refetch } = useGetInfinity<InfinityProps<Question>>({
     fetch: q.getInfinity,
     queryKey: keys.questions(),
   });
@@ -32,7 +32,7 @@ function RenderQuestion() {
         >
           {isSuccess && data?.pages
             ? data.pages.map((page) => {
-                const question = page.result as Question[];
+                const question = page.result;
                 return question?.map((q, index) => {
                   if (index == question.length - 1) {
                     return (
@@ -70,7 +70,9 @@ const RefCard = styled.div`
   border-bottom: 1px solid #e3e6e8;
   padding: 10px 15px;
   :hover {
-    box-shadow: 0 0 0 1px #8d8d8d inset;
+    margin-left: -1px;
+    margin-right: -1px;
+    box-shadow: 0 0 0 1px ${theme.color.prRgb(0.5)};
     transition: all 0.2s;
   }
 `;

@@ -7,48 +7,41 @@ export const Main = styled.div`
   flex-direction: column;
   transition: all 0.2s;
 
-  .content-list {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    place-items: center;
-    gap: 10px;
-  }
   .top-bar {
     display: flex;
     align-items: center;
     flex-wrap: wrap-reverse;
-    margin: 20px 0 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0 0 10px;
+    background-color: ${theme.color.primary};
+
     .tap_menu {
       //카테고리 버튼
       cursor: pointer;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
       font-size: 15px;
       font-weight: 900;
-      padding: 0 12px;
+      padding: 4px 14px;
       line-height: 30px;
       display: flex;
-      color: #808080;
-      margin-bottom: -5px;
-      border-bottom: 2px solid rgba(0, 0, 0, 0);
+      color: #fff;
       transition: all 0.2s ease-in-out 0.05s;
-      :hover {
-        border-bottom: 2px solid ${({ theme }) => theme.color.prRgb(0.5)};
-      }
+      /* border-top: solid 2px ${theme.color.primary};
+      border-left: solid 2px ${theme.color.primary};
+      border-right: solid 2px ${theme.color.primary}; */
     }
     .selected {
-      color: ${({ theme }) => theme.color.seRgb(0.8)};
-      z-index: 1;
-      border-bottom: 2px solid ${({ theme }) => theme.color.seRgb(0.8)};
-      transition: all 0.2s ease-in-out 0s;
-      :hover {
-        border-bottom: 2px solid ${({ theme }) => theme.color.seRgb(0.8)};
-      }
+      color: #6e6e6e;
+      transition: all 0.2s;
+      background-color: #fff;
     }
   }
+`;
+export const Border = styled.div`
+  border: solid 2px ${theme.color.primary};
+  border-bottom: none;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 `;
 
 export const WriteHandler = styled.div`
@@ -57,12 +50,12 @@ export const WriteHandler = styled.div`
   text-align: center;
   align-items: center;
   background-color: #fff;
-  padding: 7px 10px;
+  padding: 5px 10px;
   margin: 10px 5px;
   border-radius: 2rem;
   color: ${theme.color.placeholder};
   font-weight: 600;
-  border: solid 1px ${theme.color.border(0.2)};
+  border: solid 1px ${theme.color.primary};
   transition: all 0.2s ease-in-out 0s;
   user-select: none;
 
