@@ -19,16 +19,16 @@ export const UserPage = ({ children }: Props) => {
         <FolderMenu title="CATEGORIES" childOpen={true} height="160px">
           <ul css={{ margin: '0', padding: '0' }}>
             <Li $isPath={'/user/profile' == router.pathname}>
-              <Link href="/user/profile">내 정보</Link>
+              <Link href="/user/profile">내정보</Link>
             </Li>
             <Li $isPath={'/user/post' == router.pathname}>
-              <Link href={'/user/post'}> 내 글 목록</Link>
+              <Link href={'/user/post'}> 내글목록</Link>
             </Li>
             <Li $isPath={'/user/my-coin' == router.pathname}>
-              <Link href="/user/my-coin">코인 정보 </Link>
+              <Link href="/user/my-coin">코인관리 </Link>
             </Li>
             <Li $isPath={'/user/alarm' == router.pathname}>
-              <Link href="/user/alarm">전체 알림 </Link>
+              <Link href="/user/alarm">전체알림 </Link>
             </Li>
           </ul>
         </FolderMenu>
@@ -45,7 +45,7 @@ const UserPageWrapper = styled.div`
     background-color: #f8f8f8;
     height: 250px;
     width: 250px;
-    margin-top: 80px;
+    margin-top: 40px;
     border: 1px solid ${theme.color.border(0.1)};
   }
   @media screen and (max-width: 768px) {
@@ -61,8 +61,12 @@ const Li = styled.li<{ $isPath?: boolean }>`
   margin: 1px;
   font-size: 15px;
   font-weight: bold;
-  color: #666666;
+  color: #000000;
   padding: 10px 20px;
+  * {
+    letter-spacing: 3px;
+  }
 
-  ${({ $isPath }) => $isPath && `background-color: ${theme.color.prRgb(0.2)}`};
+  ${({ $isPath }) => $isPath && `background-color: ${theme.color.prRgb(0.8)}`};
+  ${({ $isPath }) => $isPath && `color: #fff`};
 `;

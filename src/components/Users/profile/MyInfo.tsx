@@ -1,6 +1,6 @@
 import 'antd/dist/antd.css';
 import React from 'react';
-import { useInput } from 'src/hooks';
+import { useAuth, useInput } from 'src/hooks';
 import * as Lib from 'src/components/common';
 import * as S from './style/myInfo.style';
 import { UserUpdateForm } from './UpdateForm';
@@ -12,6 +12,7 @@ export const MyInfo = (props: Props) => {
   const [nickname, onChangeNickname] = useInput('쭈꾸미', 10);
   const [discript, onChangeDiscript] = useInput('쭈꾸미', 260);
   const [skills, setSkills] = React.useState<string[]>([]);
+  const { auth } = useAuth();
   return (
     <UserPage>
       <Divider orientation="left">
@@ -24,9 +25,9 @@ export const MyInfo = (props: Props) => {
         <div>
           <S.Flex>
             <S.Label2>보유코인</S.Label2>
-            <S.Coin>9999</S.Coin>
+            <S.Coin>{auth?.coin.toLocaleString()}</S.Coin>
 
-            <Lib.Link href="/user/coinhistory">
+            <Lib.Link href="/user/my-coin">
               <Lib.Button types="primary">보기</Lib.Button>
             </Lib.Link>
           </S.Flex>
@@ -34,20 +35,17 @@ export const MyInfo = (props: Props) => {
 
           <S.Flex>
             <S.Label2>활동점수</S.Label2>
-            <S.Coin>99</S.Coin>
+            <S.P>준비중...</S.P>
           </S.Flex>
 
           <S.Flex>
-            <S.Label2>채택 글</S.Label2>
-            <S.Coin>99</S.Coin>
+            <S.Label2>채택 받은 답변</S.Label2>
+            <S.P>{auth?.getAcceptCount}</S.P>
           </S.Flex>
 
           <S.Flex>
-            <S.Label2>내 글 목록</S.Label2>
-            <S.Coin>99</S.Coin>
-            <Lib.Link href="/user/poster-list">
-              <Lib.Button types="secondary">보기</Lib.Button>
-            </Lib.Link>
+            <S.Label2>질문 갯수</S.Label2>
+            <S.P>{auth?.questionsCount}</S.P>
           </S.Flex>
         </div>
       </S.InfoWrapper>

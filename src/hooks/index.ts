@@ -6,6 +6,7 @@ export { useQueryCount } from './common/useQueryCount';
 export { useAuth } from './common/useAuth';
 export { useLogout } from './common/useLogout';
 export { useGetInfinity } from './common/useGetInfinity';
+export { useInfinity } from './common/useInfinity';
 
 export { default as useAddAnswer } from './qustion/useAddAnswer';
 export { default as useAddQuestion } from './qustion/useAddQuestion';

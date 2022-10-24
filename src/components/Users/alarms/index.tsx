@@ -23,7 +23,7 @@ export const AlarmPage = (props: Props) => {
   });
 
   const viewChecked = useCallback(async (item: Alarm) => {
-    if (item.checked) {
+    if (!item.checked) {
       await axios.patch('/api/alarms/' + item.id).then((res) => {
         if (res.data.success) {
           queryClient.cancelQueries(keys.alarms(auth?.id));
@@ -74,7 +74,7 @@ const Item = styled.div`
   justify-content: space-between;
   cursor: pointer;
   border-bottom: solid 1px #f0f0f0;
-  padding-bottom: 10px;
+  padding: 10px 0;
 `;
 const Content = styled.h3<{ checked: boolean }>`
   margin: 0;

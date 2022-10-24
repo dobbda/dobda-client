@@ -151,6 +151,28 @@ export enum Progress {
   Clear = 'Clear', // 캐쉬 전달 => clear
 }
 
+export const PayType = {
+  withdraw: '출금', // 입출금
+  deposit: '충전', // 입출금
+  question: '질문', // 채택
+  sourcing: '외주', // 외주
+};
+
+export interface CoinHistory extends Default {
+  coin: number;
+  type: keyof typeof PayType;
+  toUserId?: number;
+  questionId?: number;
+  outSourcingId?: number;
+}
+
+export interface CoinReserv extends Default {
+  coin: number;
+  type: keyof typeof PayType;
+  questionId?: number;
+  outSourcingId?: number;
+}
+
 export interface CreateOutsource {
   // add
   title: string;
@@ -224,5 +246,6 @@ export type InfinityProps<T> = {
   result: T[];
   pageNum: number;
   isLast: boolean;
-  totalLength?: number;
+  totalPages?: number;
+  total?: number;
 };

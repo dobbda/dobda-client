@@ -5,6 +5,7 @@ import React from 'react';
 import { QueryClient, dehydrate } from 'react-query';
 import { ssr } from 'src/api';
 import { errorHandler } from 'src/api/errorHandler';
+import { CoinPage } from 'src/components/Users';
 import { UserPage } from 'src/components/Users/UserPage';
 import { keys } from 'src/hooks';
 import { Layout } from 'src/Layout';
@@ -13,19 +14,7 @@ const coinhistory: NextPage = () => {
   return (
     <Layout myNavigator>
       <UserPage>
-        <div>
-          coinhistory
-          <p>
-            <Link href="/payment/deposit" passHref>
-              충전하기
-            </Link>
-          </p>
-          <h3>
-            <Link href="/payment/withdrawal" passHref>
-              충전하기
-            </Link>
-          </h3>
-        </div>
+        <CoinPage />
       </UserPage>
     </Layout>
   );

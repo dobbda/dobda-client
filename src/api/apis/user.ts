@@ -1,4 +1,5 @@
-import { InfinityProps, Outsource, Question } from 'src/types';
+import { CoinReserv } from './../../types/index';
+import { CoinHistory, InfinityProps, Outsource, Question } from 'src/types';
 import { Alarm, Auth, UserUpdate } from 'src/types';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
@@ -37,7 +38,8 @@ export const question = async (pageNum: number = 1): Promise<InfinityProps<Quest
     result: res.data.response.result,
     pageNum: pageNum,
     isLast: pageNum >= res.data.response.totalPages,
-    totalLength: res.data.response?.totalLength,
+    total: res.data.response?.total,
+    totalPages: res.data.response.totalPages,
   };
 };
 
@@ -48,6 +50,30 @@ export const sourcing = async (pageParam: number = 1): Promise<InfinityProps<Out
     result: res.data.response.result,
     pageNum: pageParam,
     isLast: pageParam >= res.data.response.totalPages,
-    totalLength: res.data.response?.totalLength,
+    total: res.data.response?.total,
+    totalPages: res.data.response.totalPages,
+  };
+};
+
+export const coinHistory = async (pageParam: number = 1): Promise<InfinityProps<CoinHistory>> => {
+  const res = await axios.get(`/api/payments/history?page=${pageParam && pageParam}`);
+  if (!res.data.success) return null;
+  return {
+    result: res.data.response.result,
+    pageNum: pageParam,
+    isLast: pageParam >= res.data.response.totalPages,
+    total: res.data.response?.total,
+    totalPages: res.data.response.totalPages,
+  };
+};
+export const coinReserv = async (pageParam: number = 1): Promise<InfinityProps<CoinReserv>> => {
+  const res = await axios.get(`/api/payments/reserv?page=${pageParam && pageParam}`);
+  if (!res.data.success) return null;
+  return {
+    result: res.data.response.result,
+    pageNum: pageParam,
+    isLast: pageParam >= res.data.response.totalPages,
+    totalPages: res.data.response.totalPages,
+    total: res.data.response?.total,
   };
 };

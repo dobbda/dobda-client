@@ -35,7 +35,7 @@ const Message = ({ data }: { data: Alarm }) => {
   const { auth, refetch } = useAuth();
 
   const viewChecked = useCallback(async () => {
-    if (data.checked) {
+    if (!data.checked) {
       await axios.patch('/api/alarms/' + data.id).then((res) => {
         if (res.data.success) {
           queryClient.cancelQueries(keys.alarms(data?.id));

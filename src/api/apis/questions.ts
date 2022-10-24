@@ -10,6 +10,8 @@ export const getInfinity = async (pageParam: number = 1, title?: string): Promis
     result: res.data.response.result,
     pageNum: pageParam,
     isLast: pageParam >= res.data.response.totalPages,
+    total: res.data.response?.total,
+    totalPages: res.data.response.totalPages,
   };
 };
 

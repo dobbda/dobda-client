@@ -12,8 +12,7 @@ export const ContentWrapper = styled.div`
   :hover {
     .outsourcing-title {
       text-decoration: 1px underline;
-      text-underline-offset: 5px;
-      text-decoration-color: #a1a1a1;
+      text-underline-offset: 4px;
     }
   }
   * p {
