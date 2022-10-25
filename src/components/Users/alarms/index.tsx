@@ -9,7 +9,7 @@ import { user } from 'src/api';
 import { keys, useAuth } from 'src/hooks';
 import { Layout } from 'src/Layout';
 import getDate from 'src/lib/utils/dateForm';
-import { Alarm } from 'src/types';
+import { Alarm, AlarmType } from 'src/types';
 import styled from 'styled-components';
 import { Li } from './style/Message.style';
 
@@ -24,21 +24,24 @@ export const AlarmPage = (props: Props) => {
 
   const viewChecked = useCallback(async (item: Alarm) => {
     if (!item.checked) {
-      await axios.patch('/api/alarms/' + item.id).then((res) => {
-        if (res.data.success) {
+      try {
+        const success = (await axios.patch('/api/alarms/' + item.id)).data.success;
+        if (success) {
           queryClient.cancelQueries(keys.alarms(auth?.id));
+          queryClient.cancelQueries(keys.alarmsAll(auth?.id));
           queryClient.setQueryData(keys.alarms(auth?.id), (old: Alarm[]) => {
             return produce(old, (draft) => {
               draft.find((alarm) => alarm.id === item.id).checked = true;
             });
           });
           queryClient.setQueryData(keys.alarmsAll(auth?.id), (old: Alarm[]) => {
+            console.log('old: ', old);
             return produce(old, (draft) => {
               draft.find((alarm) => alarm.id === item.id).checked = true;
             });
           });
         }
-      });
+      } catch {}
     }
   }, []);
 
@@ -58,8 +61,11 @@ export const AlarmPage = (props: Props) => {
         {data?.map((item: Alarm, i) => (
           <Link href={getLink(item)} key={i}>
             <Item onClick={() => viewChecked(item)}>
-              <Content checked={!item.checked}>{item.content.content}</Content>
-              <Date>{getDate(item.createdAt)}</Date>
+              <Info>
+                <Type checked={!item.checked}>[ {AlarmType[item.type]} ]</Type>
+                <span>{getDate(item.createdAt)}</span>
+              </Info>
+              <Content>{item.content.content}</Content>
             </Item>
           </Link>
         ))}
@@ -70,15 +76,16 @@ export const AlarmPage = (props: Props) => {
 };
 
 const Item = styled.div`
-  display: flex;
-  justify-content: space-between;
   cursor: pointer;
   border-bottom: solid 1px #f0f0f0;
   padding: 10px 0;
 `;
-const Content = styled.h3<{ checked: boolean }>`
-  margin: 0;
-  padding: 0 10px;
+const Info = styled.div`
+  padding: 3px 5px;
+  display: flex;
+  justify-content: space-between;
+`;
+const Type = styled.div<{ checked: boolean }>`
   ::before {
     content: '';
     display: inline-block;
@@ -89,4 +96,8 @@ const Content = styled.h3<{ checked: boolean }>`
     background-color: ${({ checked }) => (checked ? '#ff5b16' : '#ced4da')};
   }
 `;
-const Date = styled.span``;
+const Content = styled.h4`
+  margin: 0;
+  padding: 0 10px;
+  color: #1616ad;
+`;

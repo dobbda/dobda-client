@@ -11,8 +11,21 @@ export interface Default {
   createdAt: string;
   updatedAt: string;
 }
+
+export const AlarmType = {
+  ANSWER: 'answer', //답변
+  COMMENT: 'comment', // 댓글
+  ACCEPT: '답변채택', // 채택
+
+  ENQUIRY: '소싱 문의',
+  REPLY: 'sourcing',
+  EN_PICK: 'sourcing pick', // 외주 거래시작 (거래할 유저 선택함)
+
+  WITHDRAW: '코인출금', // 출금
+  DEPOSIT: '코인충전', // 입금
+};
 export interface Alarm extends Default {
-  type: string;
+  type: keyof typeof AlarmType;
   checked: boolean;
   content: {
     questionId?: number;

@@ -16,12 +16,6 @@ export function CoinHistoryC({}: Props) {
     fetch: (page: number) => user.coinHistory(page),
   });
 
-  const [tableParams, setTableParams] = useState<TablePaginationConfig>({
-    current: 2,
-    // pageSize: 10,
-    total: 2,
-  });
-
   const columns: ColumnsType<CoinHistory> = [
     {
       title: 'id',

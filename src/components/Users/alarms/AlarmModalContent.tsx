@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { Empty, Link } from 'src/components/common';
 import { Div } from './style/style';
 import { Li } from './style/Message.style';
-import { Alarm, Auth } from 'src/types';
+import { Alarm, AlarmType, Auth } from 'src/types';
 import axios from 'axios';
 import { useQuery, useQueryClient } from 'react-query';
 import { keys, useAuth } from 'src/hooks';
@@ -57,7 +57,7 @@ const Message = ({ data }: { data: Alarm }) => {
     <Li checked={!data.checked} onClick={viewChecked}>
       <Link href={link}>
         <div className="message-information">
-          <span>[ 댓글알림 ]</span>
+          <span>[ {AlarmType[data.type]} ]</span>
           <span>{getDate(data?.createdAt, true)}</span>
         </div>
         <div className="msg-title">{data?.content.content}</div>
