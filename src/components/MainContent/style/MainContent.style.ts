@@ -16,8 +16,8 @@ export const Main = styled.div`
     .tap_menu {
       //카테고리 버튼
       cursor: pointer;
-      border-top-right-radius: 4px;
-      border-top-left-radius: 4px;
+      /* border-top-right-radius: 4px;
+      border-top-left-radius: 4px; */
       font-size: 15px;
       font-weight: 900;
       padding: 1px 14px;
@@ -37,8 +37,8 @@ export const Border = styled.div`
   border: solid 2px ${theme.color.primary};
   min-height: 1000px;
   margin-bottom: 10px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  /* border-top-left-radius: 4px;
+  border-top-right-radius: 4px; */
 `;
 
 export const WriteHandler = styled.div`
