@@ -25,4 +25,6 @@ export const keys = {
   alarmsAll: (userId: number | string) => ['alarmsAll', 'user:', userId],
   userQ: (id: number | string) => ['user: ', id, 'questions'],
   userS: (id: number | string) => ['user: ', id, 'sourcings'],
+  coinReserv: ['coinReserv'],
+  coinHistory: ['coinHistory'],
 };

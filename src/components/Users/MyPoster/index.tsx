@@ -10,9 +10,9 @@ import QCard from 'src/components/Card/QCard';
 import { Button } from 'src/components/common';
 import { Hr } from 'src/components/common/@share/atom';
 import { keys } from 'src/hooks';
-import { userLoadMore } from 'src/hooks/common/useLoadMore';
+import { useInfinity } from 'src/hooks/common/useInfinity';
 import { OutSource } from 'src/icons/Icon';
-import { Question } from 'src/types';
+import { Outsource, Question } from 'src/types';
 import { MyPostList } from 'src/types/content-type';
 import { UserPage } from '../UserPage';
 
@@ -21,7 +21,7 @@ import { ListWrapper, Wrapper } from './style/MyPost.style';
 export const Poster = () => {
   const [category, setCategory] = useState<SegmentedValue>(MyPostList[0]);
 
-  const { data, nextPage } = userLoadMore<any>({
+  const { data, nextPage } = useInfinity<any>({
     queryKey: category == MyPostList[0] ? keys.userQ(1) : keys.userS(1),
     fetch: category == MyPostList[0] ? (page: number) => user.question(page) : (page: number) => user.sourcing(page),
   });

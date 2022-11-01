@@ -45,21 +45,18 @@ export const UserActive = styled.div`
   display: flex;
   border-top: solid 1px #d6d6d6;
   border-bottom: solid 1px #d6d6d6;
-  width: 100%;
+  margin-right: -1px;
+  margin-left: -2px;
   justify-content: center;
   text-align: center;
 `;
 
 export const Item = styled.div`
-  border: solid 1px #d6d6d6;
-  margin: -1px -0.5px;
+  border-right: solid 1px #d6d6d6;
+  border-left: solid 1px #d6d6d6;
   padding: 5px 10px;
-
-  span,
-  em {
-    font-size: 16px;
-    color: #52547e;
-  }
+  width: 25%;
+  min-width: 90px;
 `;
 
 export const UserTech = styled.div`

@@ -15,7 +15,7 @@ export function useScroll() {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', listener);
+    window.addEventListener('scroll', throttle(100, listener));
     return () => {
       window.removeEventListener('scroll', listener);
     };

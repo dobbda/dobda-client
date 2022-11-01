@@ -8,9 +8,11 @@ export const createQueryClient = () => {
         // cacheTime: 1000 * 60 * 10,
         staleTime: Infinity,
         retry: 2, //false, true,
+        useErrorBoundary: false,
       },
+
       mutations: {
-        // useErrorBoundary: true,
+        useErrorBoundary: false,
       },
     },
   });

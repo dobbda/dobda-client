@@ -38,8 +38,8 @@ export const Title = styled.h2`
   -webkit-line-clamp: 2; // 원하는 라인수
   -webkit-box-orient: vertical;
   :hover {
-    text-decoration: underline;
-    text-underline-offset: 5px;
+    text-decoration: 1px underline;
     text-decoration-color: #2362ab;
+    text-underline-offset: 4px;
   }
 `;

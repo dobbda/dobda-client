@@ -117,7 +117,7 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
           <div>
             <Label>
               작업 금액을 입력해주세요
-              <Tips />
+              <Tips content="메이커 선택 완료시 현재 입력된 금액을 결제합니다" />
             </Label>
             <CoinView className="coin-setting-group">
               <Input type="number" placeholder="지불할 코인" value={coin} onChange={onChangeCoin} />

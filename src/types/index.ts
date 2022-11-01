@@ -11,8 +11,21 @@ export interface Default {
   createdAt: string;
   updatedAt: string;
 }
+
+export const AlarmType = {
+  ANSWER: 'answer', //답변
+  COMMENT: 'comment', // 댓글
+  ACCEPT: '답변채택', // 채택
+
+  ENQUIRY: '소싱 문의',
+  REPLY: 'sourcing',
+  EN_PICK: 'sourcing pick', // 외주 거래시작 (거래할 유저 선택함)
+
+  WITHDRAW: '코인출금', // 출금
+  DEPOSIT: '코인충전', // 입금
+};
 export interface Alarm extends Default {
-  type: string;
+  type: keyof typeof AlarmType;
   checked: boolean;
   content: {
     questionId?: number;
@@ -151,6 +164,28 @@ export enum Progress {
   Clear = 'Clear', // 캐쉬 전달 => clear
 }
 
+export const PayType = {
+  withdraw: '출금', // 입출금
+  deposit: '충전', // 입출금
+  question: '질문', // 채택
+  sourcing: '외주', // 외주
+};
+
+export interface CoinHistory extends Default {
+  coin: number;
+  type: keyof typeof PayType;
+  toUserId?: number;
+  questionId?: number;
+  outSourcingId?: number;
+}
+
+export interface CoinReserv extends Default {
+  coin: number;
+  type: keyof typeof PayType;
+  questionId?: number;
+  outSourcingId?: number;
+}
+
 export interface CreateOutsource {
   // add
   title: string;
@@ -224,5 +259,6 @@ export type InfinityProps<T> = {
   result: T[];
   pageNum: number;
   isLast: boolean;
-  totalLength?: number;
+  totalPages?: number;
+  total?: number;
 };

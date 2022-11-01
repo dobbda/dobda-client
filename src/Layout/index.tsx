@@ -12,8 +12,9 @@ interface Props {
   banner?: boolean;
   myNavigator?: boolean;
 }
-export const Layout = ({ children, sideRight, sideLeft, banner, myNavigator }: PropsWithChildren<Props>) => {
+export const Layout = ({ children, sideRight = false, sideLeft = false, banner = false }: PropsWithChildren<Props>) => {
   const { width, height } = useWindowSize();
+
   return (
     <S.Container>
       <GlobalStyle />
@@ -21,20 +22,22 @@ export const Layout = ({ children, sideRight, sideLeft, banner, myNavigator }: P
       <S.HeaderContent>{banner && <BnCarousel />}</S.HeaderContent>
       <S.Position>
         <S.Wrapper>
-          {sideLeft && width > 1060 && (
-            <S.SideNavWrapper>
-              <SideContentLeft />
-            </S.SideNavWrapper>
-          )}
-
+          <div>
+            {sideLeft && width > 1060 && (
+              <S.SideNavWrapper>
+                <SideContentLeft />
+              </S.SideNavWrapper>
+            )}
+          </div>
           <S.MainWrapper>{children}</S.MainWrapper>
-
-          {sideRight && (
-            <S.SideNavWrapper>
-              {sideLeft && width < 1060 && <SideContentLeft folderOpenFalse />}
-              <SideContentRight />
-            </S.SideNavWrapper>
-          )}
+          <div>
+            {sideRight && (
+              <S.SideNavWrapper>
+                {sideLeft && width < 1060 && <SideContentLeft folderOpenFalse />}
+                <SideContentRight />
+              </S.SideNavWrapper>
+            )}
+          </div>
         </S.Wrapper>
       </S.Position>
     </S.Container>
