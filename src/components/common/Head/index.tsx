@@ -10,7 +10,7 @@ type Props = {
   tags?: Tags[];
 };
 
-export const SEO = (props: Props) => {
+const SEO = (props: Props) => {
   const keyowrds = (tags: Tags[]) => map(tags, 'name').join(', ');
   return (
     <Head>
@@ -44,3 +44,5 @@ export const SEO = (props: Props) => {
     </Head>
   );
 };
+
+export default SEO;
