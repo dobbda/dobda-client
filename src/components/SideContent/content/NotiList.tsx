@@ -16,13 +16,11 @@ export const NotiList = () => {
           {' '}
           {data?.map((noti, i) => (
             <Link href={noti.link ? noti.link : `/notice/` + noti.id} key={i}>
-              <a>
-                <Item>
-                  <Index>{i}. </Index>
-                  {noti.link && <span css={{ color: '#ffbc65' }}> [Notion] </span>}
-                  {noti.title}
-                </Item>
-              </a>
+              <Item>
+                <Index>{i}. </Index>
+                {noti.link && <span css={{ color: '#ffbc65' }}> [Notion] </span>}
+                <a>{noti.title}</a>
+              </Item>
             </Link>
           ))}
           <More>
@@ -44,7 +42,6 @@ const Item = styled.li`
   display: block;
   color: #333333df;
   font-size: 13px;
-  font-weight: bold;
   text-align: left;
   padding: 6px 10px 3px;
   transition: all 0.2s;

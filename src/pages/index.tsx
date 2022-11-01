@@ -12,13 +12,17 @@ import { cookieDecod } from 'src/lib/utils/cookieDecod';
 import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';
 import { Exp } from 'src/types/content-type';
 import { errorHandler } from 'src/api/errorHandler';
+import { MainHead } from 'src/components/common';
 
 const Home: NextPage<{ exp: Exp }> = (props) => {
   setLocalStorage('exp', JSON.stringify(props.exp));
   return (
-    <Layout sideLeft sideRight banner>
-      <MainContent />
-    </Layout>
+    <>
+      <MainHead />
+      <Layout sideLeft sideRight banner>
+        <MainContent />
+      </Layout>
+    </>
   );
 };
 export default Home;

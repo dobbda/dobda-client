@@ -11,6 +11,7 @@ import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { errorHandler } from 'src/api/errorHandler';
 import { setLocalStorage } from 'src/lib/utils/localStorage';
 import { Exp } from 'src/types/content-type';
+import { SEO } from 'src/components/common';
 
 const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
   setLocalStorage('exp', JSON.stringify(props.exp));
@@ -26,7 +27,12 @@ const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
       router.push('/404', router.asPath, { shallow: true });
     }
   }, [router, isError]);
-  return <Layout sideRight>{data && <QuestionPage data={data} />}</Layout>;
+  return (
+    <>
+      <SEO title={data.title} content={data.content} url={'/questions/' + data.id} tags={data.tagNames} image="/img/qs.png" />
+      <Layout sideRight>{data && <QuestionPage data={data} />}</Layout>;
+    </>
+  );
 };
 export default Page;
 

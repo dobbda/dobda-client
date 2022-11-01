@@ -52,3 +52,46 @@ export const SubmitWrap = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const ViewWrapper = styled.div`
+  * {
+    list-style-type: circle;
+    cursor: auto !important;
+  }
+  overflow: auto;
+  pre {
+    background-color: #263238 !important;
+    white-space: pre-wrap !important;
+    margin: 5px !important;
+    padding: 10px !important;
+    border-radius: 3px;
+  }
+  pre,
+  code {
+    color: #8f76db;
+  }
+  img {
+    object-fit: cover !important;
+  }
+
+  p {
+    margin-bottom: 8px;
+    line-height: 20px;
+  }
+
+  h1 {
+    margin-bottom: 13px;
+  }
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    margin-bottom: 8px;
+  }
+
+  h3 {
+    margin-bottom: 5px;
+  }
+`;

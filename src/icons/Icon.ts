@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import NameW from 'public/svg/NAME_W.svg';
-// import NameB from 'public/svg/NAME_B.svg';
-import NameB from 'public/svg/dobda2.svg';
+import NameW from 'public/svg/dobda1_w.svg';
+import NameB from 'public/svg/dobda1.svg';
 import Won from 'public/svg/won.svg';
 import Q from 'public//svg/Q.svg';
 import Accepted from 'public/svg/accepted.svg';

@@ -11,6 +11,7 @@ import { AxiosRequestConfig } from 'axios';
 import { errorHandler } from 'src/api/errorHandler';
 import { Exp } from 'src/types/content-type';
 import { setLocalStorage } from 'src/lib/utils/localStorage';
+import { SEO } from 'src/components/common';
 
 const RequestDetailPage: NextPage<{ exp: Exp; id: string }> = (props) => {
   const router = useRouter();
@@ -26,7 +27,18 @@ const RequestDetailPage: NextPage<{ exp: Exp; id: string }> = (props) => {
       router.push('/404', router.asPath, { shallow: true });
     }
   }, [router, isError]);
-  return <Layout sideRight>{data && <SourcingPage data={data} />}</Layout>;
+  return (
+    <>
+      <SEO
+        title={data.title}
+        content={data.content}
+        url={'/custom-project/requests/' + data.id}
+        tags={data.tagNames}
+        image={data?.cardImage}
+      />
+      <Layout sideRight>{data && <SourcingPage data={data} />}</Layout>;
+    </>
+  );
 };
 export default RequestDetailPage;
 

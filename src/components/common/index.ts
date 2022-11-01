@@ -10,3 +10,5 @@ export { A as Link } from './@share/Link';
 
 export { default as HeaderNav } from './Header';
 export { Empty } from './@share/Empty';
+export { SEO } from './SEO/SEO';
+export { MainHead } from './SEO/MainHead';
