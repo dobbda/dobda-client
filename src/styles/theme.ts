@@ -1,6 +1,6 @@
 const media = {
   minWidth: `360px`,
-  maxWidth: '1200px',
+  maxWidth: '1240px',
   large: `1080px`,
   medium: `788px`,
   tablet: `788px`,

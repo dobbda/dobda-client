@@ -7,11 +7,12 @@ import { o } from 'src/api';
 import { InfinityProps, Outsource } from 'src/types';
 import { motion } from 'framer-motion';
 import { theme } from 'src/styles/Theme';
+import { Skeleton } from 'src/components/Skeleton';
 
 function RenderOutsource() {
   const [shearchTitle, setShearchTitle] = useState<string>();
   const [shearchTag, setShearchTag] = useState<string>();
-  const { data, fetchNextPage, hasNextPage, isSuccess, refetch } = useGetInfinity<InfinityProps<Outsource>>({
+  const { data, fetchNextPage, hasNextPage, isSuccess, refetch, isLoading } = useGetInfinity<InfinityProps<Outsource>>({
     fetch: o.getInfinity,
     queryKey: keys.sourcings(),
   });
@@ -23,37 +24,43 @@ function RenderOutsource() {
     if (!data) refetch();
   }, [isView, hasNextPage, fetchNextPage, refetch, data]);
   return (
-    <ContentCardList
-      initial={{ opacity: 0, height: 0 }}
-      animate={{ opacity: [0.5, 1], height: 'auto', transition: { duration: 0.15 } }}
-    >
-      {isSuccess && data?.pages
-        ? data.pages.map((page) => {
-            const data = page.result;
-            return data?.map((o, index) => {
-              if (index == data.length - 1) {
-                return (
-                  <RefCard ref={ref} key={'outsourcing' + o.id}>
-                    <OCard data={o} />
-                  </RefCard>
-                );
-              }
-              return (
-                <RefCard key={o.id}>
-                  <OCard data={o} />
-                </RefCard>
-              );
-            });
-          })
-        : null}
-    </ContentCardList>
+    <>
+      {isLoading ? (
+        <Skeleton row={4} border title len={3} image />
+      ) : (
+        <ContentCardList
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: [0.5, 1], height: 'auto', transition: { duration: 0.15 } }}
+        >
+          {isSuccess && data?.pages
+            ? data.pages.map((page) => {
+                const data = page.result;
+                return data?.map((o, index) => {
+                  if (index == data.length - 1) {
+                    return (
+                      <RefCard ref={ref} key={'outsourcing' + o.id}>
+                        <OCard data={o} />
+                      </RefCard>
+                    );
+                  }
+                  return (
+                    <RefCard key={o.id}>
+                      <OCard data={o} />
+                    </RefCard>
+                  );
+                });
+              })
+            : null}
+        </ContentCardList>
+      )}
+    </>
   );
 }
 
 export default RenderOutsource;
 
 const ContentCardList = styled(motion.div)`
-  padding: 5px 0;
+  padding: 10px;
   display: grid;
   place-items: center;
   overflow: hidden;

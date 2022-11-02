@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { EditType } from 'src/types/content-type';
 import Edit from './Edit';
+import { Skeleton } from '../Skeleton';
 
 type Props = {
   answer: Answer;
@@ -31,9 +32,13 @@ const AnswerCp = ({ answer, question }: Props) => {
   const [isEdit, setisEdit] = useState(false);
   const [html, setHtml] = useState('');
   const [viewChild, setviewChild] = useState<boolean>(false);
-  const { data: comments } = useQuery(keys.comment(Number(qid), answer.id), () => q.getComments(answer.id), {
-    enabled: answer.commentsCount > 0 && viewChild,
-  });
+  const { data: comments, isLoading: commentLoading } = useQuery(
+    keys.comment(Number(qid), answer.id),
+    () => q.getComments(answer.id),
+    {
+      enabled: answer.commentsCount > 0 && viewChild,
+    },
+  );
 
   const addReply = useAddComment(answer?.id);
   const del = useDelete(answer?.id, keys.answers(answer?.questionId));
@@ -140,8 +145,12 @@ const AnswerCp = ({ answer, question }: Props) => {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: [0.5, 1], height: 'auto', transition: { duration: 0.15 } }}
         >
-          {comments ? (
-            comments.map((comment) => <ReplyCp key={comment.id} reply={comment} />)
+          {answer.commentsCount > 0 ? (
+            commentLoading ? (
+              <Skeleton avatar title len={answer.commentsCount} />
+            ) : (
+              comments.map((comment) => <ReplyCp key={comment.id} reply={comment} />)
+            )
           ) : (
             <atom.NoData>등록된 댓글이 없습니다. 댓글을 등록할 수 있습니다.</atom.NoData>
           )}

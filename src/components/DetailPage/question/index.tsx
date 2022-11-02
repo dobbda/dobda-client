@@ -16,6 +16,7 @@ import { keys, useAddAnswer, useAuth, useDelete, useDidMountEffect, useErrMsg, u
 import { WriteQuestion } from '../../Write';
 import { Button } from 'src/components/common';
 import { useRouter } from 'next/router';
+import { Skeleton } from 'src/components/Skeleton';
 type Props = {
   children?: React.ReactElement; // commentComponent
   data: QuestionDetail;
@@ -33,7 +34,7 @@ const QuestionPage = ({ children, data }: Props) => {
   const { auth, refetch } = useAuth();
   const [html, setHtml] = useState('');
   const [isEdit, setIsEdit] = useState(false);
-  const { data: answers } = useQuery(keys.answers(data?.id), () => q.getAnswers(data.id), {
+  const { data: answers, isLoading: answerLoading } = useQuery(keys.answers(data?.id), () => q.getAnswers(data.id), {
     enabled: data?.answersCount > 0,
   });
 
@@ -121,8 +122,12 @@ const QuestionPage = ({ children, data }: Props) => {
           </S.EditorWrapper>
 
           <S.AnswerContainer>
-            {answers && answers[0]?.id ? (
-              answers.map((answer) => <AnswerCp key={answer.id} answer={answer} question={data} />)
+            {data?.answersCount > 0 ? (
+              answerLoading ? (
+                <Skeleton border avatar title row={3} len={data.answersCount} />
+              ) : (
+                answers.map((answer) => <AnswerCp key={answer.id} answer={answer} question={data} />)
+              )
             ) : (
               <S.NodataWrapper>등록된 답변이 없습니다. 답변을 등록해보세요.</S.NodataWrapper>
             )}

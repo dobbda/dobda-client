@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 import { Button } from 'src/components/common';
 import Edit from './Edit';
 import { on } from 'events';
+import { Skeleton } from '../Skeleton';
 type Props = {
   out: OutsourceDetail;
   enquiry: Enquiry;
@@ -33,7 +34,7 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
   const del = useDelete(enquiry?.id, keys.enquiry(enquiry?.outSourcingId));
   const addReply = useAddReply(enquiry?.id);
   const queryClient = useQueryClient();
-  const { data: reply } = useQuery(keys.reply(Number(oid), enquiry?.id), () => o.getReply(enquiry?.id), {
+  const { data: reply, isLoading: replyLoading } = useQuery(keys.reply(Number(oid), enquiry?.id), () => o.getReply(enquiry?.id), {
     enabled: enquiry?.repliesCount > 0 && viewChild,
   });
 
@@ -128,8 +129,12 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
 
           {viewChild && (
             <>
-              {reply ? (
-                reply.map((r) => <ReplyCp key={r.id} reply={r} />)
+              {enquiry.repliesCount > 0 ? (
+                replyLoading ? (
+                  <Skeleton avatar title len={enquiry.repliesCount} />
+                ) : (
+                  reply.map((r) => <ReplyCp key={r.id} reply={r} />)
+                )
               ) : (
                 <atom.NoData>등록된 댓글이 없습니다. 댓글을 등록할 수 있습니다.</atom.NoData>
               )}

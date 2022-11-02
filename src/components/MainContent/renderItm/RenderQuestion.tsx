@@ -7,11 +7,12 @@ import { q } from 'src/api';
 import { InfinityProps, Question } from 'src/types';
 import { motion } from 'framer-motion';
 import { theme } from 'src/styles/Theme';
+import { Skeleton } from 'src/components/Skeleton';
 
 function RenderQuestion() {
   const [shearchTitle, setShearchTitle] = useState<string>();
   const [shearchTag, setShearchTag] = useState<string>();
-  const { data, fetchNextPage, hasNextPage, isSuccess, refetch } = useGetInfinity<InfinityProps<Question>>({
+  const { data, fetchNextPage, hasNextPage, isSuccess, refetch, isLoading } = useGetInfinity<InfinityProps<Question>>({
     fetch: q.getInfinity,
     queryKey: keys.questions(),
   });
@@ -25,7 +26,9 @@ function RenderQuestion() {
 
   return (
     <>
-      {data ? (
+      {isLoading ? (
+        <Skeleton row={3} title border avatar len={3} />
+      ) : data ? (
         <ContentCardList
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: [0.5, 1], height: 'auto', transition: { duration: 0.15 } }}
@@ -63,12 +66,16 @@ const ContentCardList = styled(motion.div)`
   overflow: hidden;
   transition: all 0.2s;
   margin-bottom: 10px;
-  padding: 5px 0;
+  padding: 10px;
+  gap: 20px;
 `;
 const RefCard = styled.div`
   width: 100%;
-  border-bottom: 1px solid #e3e6e8;
+  /* border: 1px solid #e3e6e8; */
+  box-shadow: 0 0 0 1px #e3e6e8;
+
   padding: 10px 15px;
+  border-radius: 10px;
   :hover {
     margin-left: -1px;
     margin-right: -1px;

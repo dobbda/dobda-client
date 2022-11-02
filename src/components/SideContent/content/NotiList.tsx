@@ -4,14 +4,17 @@ import { useQuery } from 'react-query';
 import { noti } from 'src/api';
 import { Empty } from 'src/components/common';
 import Link from 'next/link';
+import { Skeleton } from 'src/components/Skeleton';
 
 export const NotiList = () => {
-  const { data } = useQuery('notis', noti.getNotis, {
+  const { data, isLoading } = useQuery('notis', noti.getNotis, {
     staleTime: Infinity,
   });
   return (
     <div>
-      {data ? (
+      {isLoading ? (
+        <Skeleton row={3} />
+      ) : data ? (
         <ul css={{ padding: '0 10px 0' }}>
           {' '}
           {data?.map((noti, i) => (

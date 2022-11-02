@@ -16,6 +16,7 @@ export const useGetInfinity = <T>({ title, tag, queryKey, fetch }: Props) => {
     hasNextPage,
     isSuccess,
     refetch,
+    isLoading,
   }: UseInfiniteQueryResult = useInfiniteQuery(queryKey, ({ pageParam }) => fetch(pageParam, title), {
     getNextPageParam: (lastPage, allPages) => {
       if (!lastPage.isLast) {
@@ -31,5 +32,5 @@ export const useGetInfinity = <T>({ title, tag, queryKey, fetch }: Props) => {
     },
   });
   const data = res as InfiniteData<T>;
-  return { data, fetchNextPage, hasNextPage, isSuccess, refetch };
+  return { data, fetchNextPage, hasNextPage, isSuccess, refetch, isLoading };
 };
