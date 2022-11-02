@@ -1,3 +1,4 @@
+import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 
 export const PrWrapper = styled.div<{ url: string }>`
@@ -11,7 +12,7 @@ export const PrWrapper = styled.div<{ url: string }>`
 `;
 
 export const Content = styled.div<{ secondImg?: string }>`
-  max-width: 1200px;
+  max-width: ${theme.media.maxWidth};
   padding: 15px 10px;
   height: 100%;
   margin: 0 auto;
@@ -44,6 +45,6 @@ export const Content = styled.div<{ secondImg?: string }>`
 `;
 
 export const Area = styled.div`
-  max-width: 1200px;
+  max-width: ${theme.media.maxWidth};
   height: 50px;
 `;

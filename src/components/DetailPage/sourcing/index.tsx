@@ -18,6 +18,7 @@ import { message } from 'antd';
 import { FolderMenu } from '../../SideContent';
 import { theme } from 'src/styles/Theme';
 import { ProgressState } from './sourcingEvent';
+import { Skeleton } from 'src/components/Skeleton';
 type Props = {
   children?: React.ReactElement; // commentComponent
   data?: OutsourceDetail;
@@ -36,7 +37,7 @@ const SourcingPage = ({ children, data }: Props) => {
 
   const [html, setHtml] = useState('');
   const [isEdit, setIsEdit] = useState(false);
-  const { data: enquiry } = useQuery(keys.enquiry(data?.id), () => o.getEnquiry(data.id), {
+  const { data: enquiry, isLoading: enquiryLoading } = useQuery(keys.enquiry(data?.id), () => o.getEnquiry(data.id), {
     enabled: data?.enquiryCount > 0,
   });
   const del = useDelete(data?.id, keys.oDetail(data?.id), data.id);
@@ -126,8 +127,12 @@ const SourcingPage = ({ children, data }: Props) => {
           </S.EditorWrapper>
 
           <S.AnswerContainer>
-            {enquiry && enquiry[0]?.id ? (
-              enquiry.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} out={data} />)
+            {data.enquiryCount > 0 ? (
+              enquiryLoading ? (
+                <Skeleton border title avatar len={data.enquiryCount} row={3} />
+              ) : (
+                enquiry.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} out={data} />)
+              )
             ) : (
               <S.NodataWrapper>등록된 글이 없습니다. </S.NodataWrapper>
             )}

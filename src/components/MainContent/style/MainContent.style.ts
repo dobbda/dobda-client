@@ -2,43 +2,39 @@ import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 
 export const Main = styled.div`
-  /* margin:20px;   */
   display: flex;
   flex-direction: column;
   transition: all 0.2s;
-
   .top-bar {
     display: flex;
     align-items: center;
     flex-wrap: wrap-reverse;
-    background-color: ${theme.color.primary};
+    background-color: #f6f6f6;
+    border-bottom: solid 1px #ebebeb;
 
     .tap_menu {
       //카테고리 버튼
-      cursor: pointer;
-      /* border-top-right-radius: 4px;
-      border-top-left-radius: 4px; */
       font-size: 15px;
       font-weight: 900;
-      padding: 1px 14px;
+      padding: 1px 15px;
       line-height: 30px;
       display: flex;
-      color: #e9e9e9;
+      color: #bdbdbd;
       transition: all 0.2s ease-in-out 0.05s;
+      cursor: pointer;
     }
     .selected {
-      color: #6e6e6e;
+      color: #424242;
       transition: all 0.2s;
       background-color: #fff;
+      margin: 0;
     }
   }
 `;
 export const Border = styled.div`
-  border: solid 2px ${theme.color.primary};
+  border: solid 1px #ebebeb;
   min-height: 1000px;
   margin-bottom: 10px;
-  /* border-top-left-radius: 4px;
-  border-top-right-radius: 4px; */
 `;
 
 export const WriteHandler = styled.div`

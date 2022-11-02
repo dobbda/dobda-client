@@ -1,5 +1,5 @@
 import Item from 'antd/lib/list/Item';
-import Table, { ColumnsType, TablePaginationConfig, TableProps } from 'antd/lib/table';
+import Table, { ColumnsType, TableProps } from 'antd/lib/table';
 import Link from 'next/link';
 import React, { useCallback, useEffect, useState } from 'react';
 import { user } from 'src/api';
