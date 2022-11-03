@@ -1,7 +1,6 @@
 import { Input as AntInput, Button } from 'antd';
-import { i } from 'src/icons';
 import styled from 'styled-components';
-import { GlobalStyle } from 'src/styles/GlobalStyle';
+import { Replyi } from 'src/icons';
 
 export const EditorStyle = styled.div`
   position: relative;
@@ -17,7 +16,7 @@ export const EditorStyle = styled.div`
   }
 `;
 
-export const ReplyIconS = styled(i.Reply)`
+export const ReplyIconS = styled(Replyi)`
   fill: gray;
   transform: rotate(180deg);
   height: 20px;
@@ -54,6 +53,7 @@ export const SubmitWrap = styled.div`
 `;
 
 export const ViewWrapper = styled.div`
+  font-size: 15px;
   * {
     list-style-type: circle;
     cursor: auto !important;
@@ -70,28 +70,27 @@ export const ViewWrapper = styled.div`
   code {
     color: #8f76db;
   }
+
   img {
     object-fit: cover !important;
   }
 
   p {
-    margin-bottom: 8px;
-    line-height: 20px;
+    margin-bottom: 7px;
+    line-height: 22px;
   }
 
-  h1 {
-    margin-bottom: 13px;
+  a {
+    color: #1890ff;
   }
 
-  h2 {
-    margin-bottom: 10px;
-  }
-
-  h3 {
-    margin-bottom: 8px;
-  }
-
-  h3 {
-    margin-bottom: 5px;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0.5em 0;
+    font-weight: 600;
   }
 `;

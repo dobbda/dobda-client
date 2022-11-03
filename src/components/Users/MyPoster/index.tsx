@@ -11,7 +11,6 @@ import { Button } from 'src/components/common';
 import { Hr } from 'src/components/common/@share/atom';
 import { keys } from 'src/hooks';
 import { useInfinity } from 'src/hooks/common/useInfinity';
-import { OutSource } from 'src/icons/Icon';
 import { Outsource, Question } from 'src/types';
 import { MyPostList } from 'src/types/content-type';
 import { UserPage } from '../UserPage';

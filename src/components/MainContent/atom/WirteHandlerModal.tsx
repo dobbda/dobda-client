@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import React from 'react';
-import { i } from 'src/icons';
 import { Modal } from 'src/components/common';
 import { SocialLogin } from 'src/components/SocialLogin';
 import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 import { useWriteModalhandler } from 'src/hooks';
+import { GoArrowi, OutSourcei, Questioni, Qi } from 'src/icons';
 
 export function WirteHandlerModal() {
   const { writeModal, setWriteModal } = useWriteModalhandler();
@@ -17,18 +17,18 @@ export function WirteHandlerModal() {
           <Link href="/questions/write">
             <a>
               <Btn onClick={() => setWriteModal(false)}>
-                <i.Question color={theme.color.primary} size="20px" />
+                <Qi color={theme.color.primary} size="20px" />
                 질문하기
-                <i.GoArrow color="rgb(199, 199, 199)" />
+                <GoArrowi color="rgb(199, 199, 199)" />
               </Btn>
             </a>
           </Link>
           <Link href="/custom-project/write">
             <a>
               <Btn outSource onClick={() => setWriteModal(false)}>
-                <i.OutSource color={theme.color.secondary} size="20px" />
+                <OutSourcei color={theme.color.secondary} size="20px" />
                 프로젝트 요청하기
-                <i.GoArrow color="rgb(199, 199, 199)" />
+                <GoArrowi color="rgb(199, 199, 199)" />
               </Btn>
             </a>
           </Link>

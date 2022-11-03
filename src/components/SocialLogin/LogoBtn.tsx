@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import { i } from 'src/icons';
 import { Wrap, Item, Text } from './style/LogoBtn.style';
-import { IconBaseProps, IconType } from 'react-icons/lib';
 type Props = {
   name: string;
   icon: any;

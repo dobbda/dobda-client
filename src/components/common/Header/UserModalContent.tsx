@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { useLogout } from 'src/hooks';
-import { Bookmark, Coin, User } from 'src/icons/Icon';
+import { Bookmarki, Coini, Useri } from 'src/icons';
 import { UserModalWrapper } from './style';
 
 type Props = {};
@@ -13,17 +13,17 @@ export default function UserModalContent({}: Props) {
     <UserModalWrapper>
       <Link href="/user/profile">
         <div>
-          <User />내 정보{' '}
+          <Useri />내 정보{' '}
         </div>
       </Link>
       <Link href="/user/post">
         <div>
-          <Bookmark />글 목록{' '}
+          <Bookmarki />글 목록{' '}
         </div>
       </Link>
       <Link href={'/user/my-coin'}>
         <div>
-          <Coin />
+          <Coini />
           코인페이지{' '}
         </div>
       </Link>

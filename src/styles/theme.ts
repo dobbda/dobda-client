@@ -15,7 +15,7 @@ const media = {
 const color = {
   bg: '#fff', //"#EAEEF2",'#fafbfc',  //background color
   header: '#fff',
-  primary: '#0cc098',
+  primary: '#18baaa',
   prRgb: (per: number) => `rgba(12, 192, 152, ${per})`,
   seRgb: (per: number) => `rgba(158, 8, 218, ${per})`,
   secondary: 'rgb(158, 8, 218)',

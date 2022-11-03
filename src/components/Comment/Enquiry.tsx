@@ -1,10 +1,9 @@
 import React, { useCallback, useState, useEffect } from 'react';
 
 import { Editor, HtmlViewer } from 'src/components/Editor';
-import { atom, Avatar } from 'src/components/common';
+import { atom, Avatar, Empty } from 'src/components/common';
 import getDate from 'src/lib/utils/dateForm';
 import * as S from './style/style';
-import { i } from 'src/icons';
 import { Enquiry, OutsourceDetail, Progress } from 'src/types';
 import styled from 'styled-components';
 import { Popover, message as m } from 'antd';
@@ -17,6 +16,7 @@ import { Button } from 'src/components/common';
 import Edit from './Edit';
 import { on } from 'events';
 import { Skeleton } from '../Skeleton';
+import { Morei, ReCommenti, Arrowi } from 'src/icons';
 type Props = {
   out: OutsourceDetail;
   enquiry: Enquiry;
@@ -99,7 +99,7 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
                   }
                 >
                   <span className="moreBtn">
-                    <i.More />
+                    <Morei />
                   </span>
                 </Popover>
               </>
@@ -117,7 +117,7 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
           {/*Reply ---------------------------*/}
           <S.ChildView>
             <div className="show-replybtn">
-              <i.ReComment style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{enquiry.repliesCount} </span>
+              <ReCommenti style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{enquiry.repliesCount} </span>
               <span onClick={() => setviewChild(!viewChild)}>
                 <CommentRotate view={viewChild.toString()} />
               </span>
@@ -136,7 +136,7 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
                   reply.map((r) => <ReplyCp key={r.id} reply={r} />)
                 )
               ) : (
-                <atom.NoData>등록된 댓글이 없습니다. 댓글을 등록할 수 있습니다.</atom.NoData>
+                <Empty />
               )}
             </>
           )}
@@ -163,7 +163,7 @@ const EnquiryCp = ({ enquiry, out }: Props) => {
 
 export default EnquiryCp;
 
-const CommentRotate = styled(i.Arrow)<{ view: string }>`
+const CommentRotate = styled(Arrowi)<{ view: string }>`
   cursor: pointer;
   margin-top: 7px;
   color: rgba(0, 0, 0, 0.6);

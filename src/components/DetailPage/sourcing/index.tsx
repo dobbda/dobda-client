@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useCallback } from 'react';
-
-import { atom, Tag, Button } from '../../common';
+import dynamic from 'next/dynamic';
+import { atom, Tag, Button, Empty } from '../../common';
 import * as S from '../style/Detail.style';
 import { Avatar } from '../../common';
 import { EnquiryCp } from 'src/components/Comment';
 import getDate from 'src/lib/utils/dateForm';
-
 import { Editor } from 'src/components/Editor';
+
 import { HtmlViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
 import { keys, useAddEnquiry, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
@@ -15,8 +15,7 @@ import { WriteOutsourcing } from '../../Write';
 import { useQuery, useQueryClient } from 'react-query';
 import { useRouter } from 'next/router';
 import { message } from 'antd';
-import { FolderMenu } from '../../SideContent';
-import { theme } from 'src/styles/Theme';
+
 import { ProgressState } from './sourcingEvent';
 import { Skeleton } from 'src/components/Skeleton';
 type Props = {
@@ -112,7 +111,7 @@ const SourcingPage = ({ children, data }: Props) => {
           <ProgressState data={data} />
 
           <S.EditorWrapper>
-            <h3>🧘‍♂️글을 남겨 본인을 어필해보세요.</h3>
+            <h3>🧘‍♂️답글을 남겨보세요.</h3>
             <Editor
               html={html}
               setHtml={setHtml}
@@ -134,7 +133,7 @@ const SourcingPage = ({ children, data }: Props) => {
                 enquiry.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} out={data} />)
               )
             ) : (
-              <S.NodataWrapper>등록된 글이 없습니다. </S.NodataWrapper>
+              <Empty />
             )}
           </S.AnswerContainer>
         </>

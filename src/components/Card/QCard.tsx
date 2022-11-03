@@ -2,12 +2,12 @@ import React from 'react';
 import * as S from './style/Q.style';
 import * as c from './style/common';
 import * as Lib from 'src/components/common';
-import { i } from 'src/icons';
 
 import { Question } from 'src/types';
 import getDate from 'src/lib/utils/dateForm';
 import { atom } from '../common';
 import { theme } from 'src/styles/Theme';
+import { Coini, Watchi } from 'src/icons';
 
 type data = {
   data: Question;
@@ -57,11 +57,11 @@ const QCard = ({ data }: data) => {
               <c.Gap>|</c.Gap>
 
               <c.Group>
-                <i.Coin css={{ marginRight: '5px' }} /> <c.P>{q?.coin?.toLocaleString()}</c.P>
+                <Coini css={{ marginRight: '5px' }} /> <c.P>{q?.coin?.toLocaleString()}</c.P>
               </c.Group>
             </c.Group>
             <c.Group>
-              <i.Watch style={{ color: '#888888', fontSize: '17px', marginRight: '5px' }} /> {q.watch}
+              <Watchi style={{ color: '#888888', fontSize: '17px', marginRight: '5px' }} /> {q.watch}
             </c.Group>
           </S.FooterWrapper>
         </S.ContentWrapper>

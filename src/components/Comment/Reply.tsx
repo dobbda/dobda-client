@@ -3,9 +3,9 @@ import 'moment/locale/ko';
 import getDate from 'src/lib/utils/dateForm';
 import { ReplyItem, Header, CommentContent } from './style/Reply.style';
 import { atom, Avatar } from 'src/components/common';
-import { i } from 'src/icons';
 import { HtmlViewer } from 'src/components/Editor';
 import { Comment, Reply } from 'src/types';
+import { Replyi } from 'src/icons';
 
 type Props = {
   reply: Reply;
@@ -18,7 +18,7 @@ const ReplyCp = ({ reply }: Props) => {
         <div className="rc-left">
           <i className="reply">
             {' '}
-            <i.Reply />
+            <Replyi />
           </i>
           <Avatar nickname={reply.author.nickname} url={reply.author.avatar} id={reply.author.id} />
           <atom.CreatedAt>{getDate(reply?.createdAt, true)}</atom.CreatedAt>

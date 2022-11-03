@@ -1,6 +1,6 @@
 import React from 'react';
 import { Popover } from 'src/components/common';
-import { i } from 'src/icons';
+import { Tipi } from 'src/icons';
 import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 
@@ -12,7 +12,7 @@ export const Tips = ({ content }: Props) => {
   return (
     <>
       <Popover trigger="hover" bottom={3} left={0} content={<Message>{content}</Message>} right={0}>
-        <i.Tip css={{ color: theme.color.text1(0.5) }} />
+        <Tipi css={{ color: theme.color.text1(0.5) }} />
       </Popover>
     </>
   );

@@ -3,7 +3,7 @@ import { Carousel, CarouselProps } from 'antd';
 import React, { useRef } from 'react';
 import BnCard from './BnCard';
 import 'antd/dist/antd.css';
-import { GoArrow, BackArrow } from 'src/icons/Icon';
+import { GoArrowi, BackArrowi } from 'src/icons';
 import { CarouselRef } from 'antd/lib/carousel';
 import styled from 'styled-components';
 import { bn } from './data';
@@ -26,10 +26,10 @@ const BnCarousel = () => {
   return (
     <S>
       <Arrow css={{ right: '10px' }} onClick={next} className="right-arrow">
-        <GoArrow />
+        <GoArrowi />
       </Arrow>
       <Arrow css={{ left: '10px' }} onClick={prev} className="left-arrow">
-        <BackArrow />
+        <BackArrowi />
       </Arrow>
       <Carousel draggable ref={slicRef} autoplay autoplaySpeed={4000}>
         {/* autoplay autoplaySpeed={4000} */}

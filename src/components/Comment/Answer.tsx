@@ -3,10 +3,9 @@ import styled from 'styled-components';
 
 import ReplyCp from './Reply';
 import { Editor, HtmlViewer } from 'src/components/Editor';
-import { Avatar, atom, Loading, Button } from 'src/components/common';
+import { Avatar, atom, Loading, Button, Empty } from 'src/components/common';
 import getDate from 'src/lib/utils/dateForm';
 import * as S from './style/style';
-import { i } from 'src/icons';
 import { Answer, QuestionDetail } from 'src/types';
 import { QueryClient, useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
@@ -17,6 +16,7 @@ import { motion } from 'framer-motion';
 import { EditType } from 'src/types/content-type';
 import Edit from './Edit';
 import { Skeleton } from '../Skeleton';
+import { Acceptedi, Arrowi, Morei, ReCommenti } from 'src/icons';
 
 type Props = {
   answer: Answer;
@@ -82,7 +82,7 @@ const AnswerCp = ({ answer, question }: Props) => {
       <S.Header className="header">
         <Avatar nickname={answer?.author.nickname} url={answer?.author.avatar} id={answer?.author.id} />
         <atom.Flex>
-          {answer.accepted && <i.Accepted css={{ marginBottom: '5px' }} />}
+          {answer.accepted && <Acceptedi css={{ marginBottom: '5px' }} />}
 
           <>
             <Popover
@@ -106,7 +106,7 @@ const AnswerCp = ({ answer, question }: Props) => {
               }
             >
               <span className="moreBtn">
-                <i.More />
+                <Morei />
               </span>
             </Popover>
           </>
@@ -124,7 +124,7 @@ const AnswerCp = ({ answer, question }: Props) => {
       {/*Reply ---------------------------*/}
       <S.ChildView>
         <div className="show-replybtn">
-          <i.ReComment style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{answer.commentsCount} </span>
+          <ReCommenti style={{ color: 'rgba(0, 0, 0, 0.6)' }} /> <span>{answer.commentsCount} </span>
           <span onClick={() => setviewChild(!viewChild)}>
             <CommentRotate view={viewChild.toString()} />
           </span>
@@ -152,7 +152,7 @@ const AnswerCp = ({ answer, question }: Props) => {
               comments.map((comment) => <ReplyCp key={comment.id} reply={comment} />)
             )
           ) : (
-            <atom.NoData>등록된 댓글이 없습니다. 댓글을 등록할 수 있습니다.</atom.NoData>
+            <Empty />
           )}
         </motion.div>
       )}
@@ -176,7 +176,7 @@ const AnswerCp = ({ answer, question }: Props) => {
 
 export default AnswerCp;
 type Rotate = { view: string };
-const CommentRotate = styled(i.Arrow)<Rotate>`
+const CommentRotate = styled(Arrowi)<Rotate>`
   cursor: pointer;
   margin-top: 7px;
   color: rgba(0, 0, 0, 0.6);

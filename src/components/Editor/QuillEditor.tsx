@@ -131,8 +131,23 @@ const QStyle = styled.div<{ minHeight?: string }>`
   img {
     cursor: default !important;
   }
+
   p {
-    margin-bottom: 8px;
+    margin-bottom: 7px;
     line-height: 20px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0.5em 0;
+    font-weight: 600;
+  }
+
+  a {
+    color: #1890ff;
   }
 `;

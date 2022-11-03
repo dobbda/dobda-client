@@ -19,7 +19,7 @@ export const Main = styled.div`
       padding: 1px 15px;
       line-height: 30px;
       display: flex;
-      color: #bdbdbd;
+      color: #a3a3a3;
       transition: all 0.2s ease-in-out 0.05s;
       cursor: pointer;
     }
