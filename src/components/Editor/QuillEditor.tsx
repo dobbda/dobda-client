@@ -114,7 +114,6 @@ const QuillEditor = ({ html, setHtml, height, setFocus }: Props) => {
 export default QuillEditor;
 
 const QStyle = styled.div<{ minHeight?: string }>`
-  background-color: #fff;
   .ql-editor {
     min-height: ${({ minHeight }) => (minHeight ? minHeight : '150px')};
     padding-bottom: 30px;
@@ -127,9 +126,6 @@ const QStyle = styled.div<{ minHeight?: string }>`
   }
   pre {
     background-color: #282c34 !important;
-  }
-  img {
-    cursor: default !important;
   }
 
   p {

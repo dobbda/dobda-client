@@ -2,7 +2,7 @@ import Divider from 'antd/lib/divider';
 import Input from 'antd/lib/input/Input';
 import React from 'react';
 import { Button } from 'src/components/common';
-import { Tips } from 'src/components/Write/atom/Tips';
+import { Tips } from 'src/components/common/@share/Tips';
 import { useAuth } from 'src/hooks';
 import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';

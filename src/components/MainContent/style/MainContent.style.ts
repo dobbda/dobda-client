@@ -11,7 +11,7 @@ export const Main = styled.div`
     flex-wrap: wrap-reverse;
     background-color: #f6f6f6;
     border-bottom: solid 1px #ebebeb;
-
+    user-select: none;
     .tap_menu {
       //카테고리 버튼
       font-size: 15px;

@@ -133,7 +133,7 @@ const SourcingPage = ({ children, data }: Props) => {
                 enquiry.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} out={data} />)
               )
             ) : (
-              <Empty />
+              <Empty descript="등록된 글이 없습니다." />
             )}
           </S.AnswerContainer>
         </>

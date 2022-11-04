@@ -54,10 +54,6 @@ export const SubmitWrap = styled.div`
 
 export const ViewWrapper = styled.div`
   font-size: 15px;
-  * {
-    list-style-type: circle;
-    cursor: auto !important;
-  }
   overflow: auto;
   pre {
     background-color: #263238 !important;
@@ -72,16 +68,12 @@ export const ViewWrapper = styled.div`
   }
 
   img {
-    object-fit: cover !important;
+    max-width: 100%;
   }
 
   p {
     margin-bottom: 7px;
     line-height: 22px;
-  }
-
-  a {
-    color: #1890ff;
   }
 
   h1,

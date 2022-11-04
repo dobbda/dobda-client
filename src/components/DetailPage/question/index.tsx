@@ -130,7 +130,7 @@ const QuestionPage = ({ children, data }: Props) => {
                 answers.map((answer) => <AnswerCp key={answer.id} answer={answer} question={data} />)
               )
             ) : (
-              <Empty />
+              <Empty descript="아직 등록된 답변이 없습니다. 답변을 등록해보세요~" />
             )}
           </S.AnswerContainer>
         </>

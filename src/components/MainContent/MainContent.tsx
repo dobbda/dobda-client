@@ -46,7 +46,7 @@ const MainContent = ({ children }: Props) => {
 
       <Main>
         <WriteHandler onClick={checkLogin}>
-          📑 질문이나 프로젝트 요청을 해보는건 어떤가요?{' '}
+          📑 소싱이나 질문을 등록해봐요~{' '}
           <span>
             <Peni color={theme.color.primary} />
           </span>

@@ -5,7 +5,7 @@ import { SocialLogin } from 'src/components/SocialLogin';
 import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 import { useWriteModalhandler } from 'src/hooks';
-import { GoArrowi, OutSourcei, Questioni, Qi } from 'src/icons';
+import { GoArrowi, OutSourcei, Questioni } from 'src/icons';
 
 export function WirteHandlerModal() {
   const { writeModal, setWriteModal } = useWriteModalhandler();
@@ -17,8 +17,8 @@ export function WirteHandlerModal() {
           <Link href="/questions/write">
             <a>
               <Btn onClick={() => setWriteModal(false)}>
-                <Qi color={theme.color.primary} size="20px" />
-                질문하기
+                <Questioni color={theme.color.primary} size="20px" />
+                질문 등록
                 <GoArrowi color="rgb(199, 199, 199)" />
               </Btn>
             </a>
@@ -27,7 +27,7 @@ export function WirteHandlerModal() {
             <a>
               <Btn outSource onClick={() => setWriteModal(false)}>
                 <OutSourcei color={theme.color.secondary} size="20px" />
-                프로젝트 요청하기
+                소싱 등록
                 <GoArrowi color="rgb(199, 199, 199)" />
               </Btn>
             </a>

@@ -80,17 +80,8 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
   }, [editQuestion?.isSuccess, addQuestion.isSuccess, data?.id, addQuestion.isError, editQuestion?.isError]);
   return (
     <>
-      <h1>{data?.id ? '질문수정 페이지' : '질문작성 페이지'}</h1>
-
       <Write_Wrapper>
         <EnrQorl>
-          <div>
-            <Label>
-              태그를 추가해 주세요(최대10개)
-              <Pilsu />
-            </Label>
-            <Hashtags tags={tags} setTags={setTags} />
-          </div>
           <br />
           <div>
             <Label>코인을 입력해주세요</Label>
@@ -106,12 +97,18 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
         <Label>
           제목을 입력해주세요 <Pilsu />
         </Label>
-        <InputTitle value={contentTitle} onChange={(e) => setContentTitle(e.target.value)} />
+        <InputTitle value={contentTitle} onChange={(e) => setContentTitle(e.target.value)} placeholder="제목" />
 
         <EditorContainer>
           <Editor html={html} setHtml={setHtml} height="600px" />
         </EditorContainer>
-        <br />
+
+        <div css={{ margin: '15px 0' }}>
+          <Label>
+            태그를 추가해 주세요(필수 <Pilsu />)
+          </Label>
+          <Hashtags tags={tags} setTags={setTags} />
+        </div>
         <atom.Flex>
           {data?.id && (
             <Button onClick={cancelHandler} css={{ width: '150px', marginRight: '5px' }} types="danger">
@@ -120,7 +117,7 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
           )}
           <Button onClick={onSubmitCheck} css={{ width: '150px' }} types="secondary" $fill>
             <Loading loading={saveLoading} />
-            저장
+            {data?.id ? '저장하기' : '등록하기'}
           </Button>
         </atom.Flex>
       </Write_Wrapper>

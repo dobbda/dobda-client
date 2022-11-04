@@ -16,7 +16,7 @@ import { CreateOutsource, OutsourceDetail } from 'src/types';
 import { Button } from 'src/components/common/@share/Buttons';
 
 import { o } from 'src/api';
-import { Tips } from './atom/Tips';
+import { Tips } from '../common/@share/Tips';
 import Link from 'next/link';
 type Props = {
   data?: OutsourceDetail;
@@ -103,9 +103,10 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
 
   return (
     <>
-      <h1>{data?.id ? '프로젝트 수정 페이지' : '프로젝트 생성 페이지'}</h1>
       <Write_Wrapper>
         <EnrQorl>
+          <h1>{data?.id ? '소싱 수정 페이지' : '소싱 작성 페이지'}</h1>
+
           <div>
             <Group>
               <Label>마감기한</Label>
@@ -121,9 +122,6 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
             </Label>
             <CoinView className="coin-setting-group">
               <Input type="number" placeholder="지불할 코인" value={coin} onChange={onChangeCoin} />
-              <div className="coin-data">
-                <Link href="#">충전하기</Link> <span>보유코인: {auth?.coin}</span>{' '}
-              </div>
             </CoinView>
           </div>
           <br />
@@ -153,9 +151,9 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
               취소
             </Button>
           )}
-          <Button onClick={onSubmitCheck} css={{ width: '150px' }} types="primary">
+          <Button onClick={onSubmitCheck} css={{ width: '150px' }} types="primary" $fill>
             <Loading loading={saveLoading} />
-            등록
+            {data?.id ? '저장' : '등록'}
           </Button>
         </atom.Flex>
       </Write_Wrapper>

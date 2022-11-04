@@ -6,7 +6,7 @@ import getDate from 'src/lib/utils/dateForm';
 import { atom } from '../common';
 import { Outsource } from 'src/types';
 import { TagWrapper } from '../common/@share/atom';
-import { Bookmarki, Woni } from 'src/icons';
+import { Bookmarki, Watchi, Woni } from 'src/icons';
 type Props = {
   data?: Outsource;
 };
@@ -21,7 +21,7 @@ const OCard = ({ data }: Props) => {
           <S.ContentWrapper>
             <S.Watch>
               <c.Group>
-                <S.Watch style={{ color: '#707070', fontSize: '17px', marginRight: '5px' }} /> <c.P>{data?.watch}</c.P>
+                <Watchi style={{ color: '#707070', fontSize: '17px', marginRight: '5px' }} /> <c.P>{data?.watch}</c.P>
               </c.Group>
             </S.Watch>
             <S.Countdown>
@@ -36,9 +36,9 @@ const OCard = ({ data }: Props) => {
                   <S.Progress>[ 매치중... ]</S.Progress>
                 </c.Group>
                 <c.Group>
-                  <c.P>작성 : </c.P>{' '}
+                  {/* <c.P>작성 : </c.P>{' '} */}
                   <atom.CreatedAt className="createdAt">
-                    {getDate(data.createdAt, true)}
+                    작성 :{getDate(data.createdAt, true)}
                     <c.Gap></c.Gap>{' '}
                   </atom.CreatedAt>
                   <Bookmarki />
