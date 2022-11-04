@@ -4,11 +4,9 @@ import * as c from './style/common';
 import * as Lib from 'src/components/common';
 import getDate from 'src/lib/utils/dateForm';
 import { atom } from '../common';
-import { i } from 'src/icons';
 import { Outsource } from 'src/types';
 import { TagWrapper } from '../common/@share/atom';
-import { theme } from 'src/styles/Theme';
-import Link from 'next/link';
+import { Bookmarki, Watchi, Woni } from 'src/icons';
 type Props = {
   data?: Outsource;
 };
@@ -23,7 +21,7 @@ const OCard = ({ data }: Props) => {
           <S.ContentWrapper>
             <S.Watch>
               <c.Group>
-                <i.Watch style={{ color: '#707070', fontSize: '17px', marginRight: '5px' }} /> <c.P>{data?.watch}</c.P>
+                <Watchi style={{ color: '#707070', fontSize: '17px', marginRight: '5px' }} /> <c.P>{data?.watch}</c.P>
               </c.Group>
             </S.Watch>
             <S.Countdown>
@@ -38,12 +36,12 @@ const OCard = ({ data }: Props) => {
                   <S.Progress>[ 매치중... ]</S.Progress>
                 </c.Group>
                 <c.Group>
-                  <c.P>작성 : </c.P>{' '}
+                  {/* <c.P>작성 : </c.P>{' '} */}
                   <atom.CreatedAt className="createdAt">
-                    {getDate(data.createdAt, true)}
+                    작성 :{getDate(data.createdAt, true)}
                     <c.Gap></c.Gap>{' '}
                   </atom.CreatedAt>
-                  <i.Bookmark />
+                  <Bookmarki />
                 </c.Group>
               </S.HeaderWrapper>
               <c.Title className="outsourcing-title">{data.title}</c.Title>
@@ -60,7 +58,7 @@ const OCard = ({ data }: Props) => {
                 <c.P>금액:</c.P>
                 <c.P>
                   {data?.coin.toLocaleString()}
-                  <i.Won css={{ marginLeft: '3px' }} />
+                  <Woni css={{ marginLeft: '3px' }} />
                 </c.P>
               </c.Group>
             </S.Info>

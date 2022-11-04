@@ -1,13 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { message } from 'antd';
-import { atom, Loading, Tag } from '../../common';
+import { atom, Empty, Loading, Tag } from '../../common';
 import * as S from '../style/Detail.style';
 import { Avatar } from '../../common';
-import { AnswerCp } from 'src/components/Comment/';
 import getDate from 'src/lib/utils/dateForm';
-
-import { i } from 'src/icons';
-import { Editor } from 'src/components/Editor';
 import { HtmlViewer } from 'src/components/Editor';
 import { Question, QuestionDetail } from 'src/types';
 import { useQuery, useQueryClient } from 'react-query';
@@ -17,6 +13,11 @@ import { WriteQuestion } from '../../Write';
 import { Button } from 'src/components/common';
 import { useRouter } from 'next/router';
 import { Skeleton } from 'src/components/Skeleton';
+import { Coini, Qi } from 'src/icons';
+
+import { Editor } from 'src/components/Editor';
+import { AnswerCp } from 'src/components/Comment/';
+
 type Props = {
   children?: React.ReactElement; // commentComponent
   data: QuestionDetail;
@@ -80,12 +81,12 @@ const QuestionPage = ({ children, data }: Props) => {
                 <atom.CreatedAt>{getDate(data?.createdAt)}</atom.CreatedAt>
               </div>
               <S.Title>
-                <i.Q /> {data?.title}
+                <Qi /> {data?.title}
               </S.Title>
 
               <atom.TagWrapper>
                 <S.CoinWrapper>
-                  <i.Coin />
+                  <Coini />
                   <p>{data?.coin.toLocaleString()}</p>
                 </S.CoinWrapper>
                 {data?.tagNames && data?.tagNames.map((tag) => <Tag key={tag.name}>{tag.name}</Tag>)}
@@ -129,7 +130,7 @@ const QuestionPage = ({ children, data }: Props) => {
                 answers.map((answer) => <AnswerCp key={answer.id} answer={answer} question={data} />)
               )
             ) : (
-              <S.NodataWrapper>등록된 답변이 없습니다. 답변을 등록해보세요.</S.NodataWrapper>
+              <Empty descript="아직 등록된 답변이 없습니다. 답변을 등록해보세요~" />
             )}
           </S.AnswerContainer>
         </>

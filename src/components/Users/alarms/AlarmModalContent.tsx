@@ -18,14 +18,18 @@ export const Alarms = () => {
   const { data } = useQuery(keys.alarms(auth?.id), user.alarms, {
     enabled: !!auth?.id,
   });
+  // const data: Alarm[] = [];
   return (
     <Div>
       <h1>최근 알림</h1>
-      <ul>{data && data?.map((x: Alarm, i) => <Message data={x} key={i} />)}</ul>
-      <div>{data && data[0] == undefined && <Empty />}</div>
-      <div className="show-all-messages">
-        <Link href="/user/alarm">전체알림 보기</Link>
-      </div>
+      <ul>
+        {data && data?.length > 0 ? (
+          data?.map((x: Alarm, i) => <Message data={x} key={i} />)
+        ) : (
+          <Empty descript="최근 알림이 없습니다." />
+        )}
+      </ul>
+      <div className="show-all-messages">{data?.length > 0 && <Link href="/user/alarm">전체알림 보기</Link>}</div>
     </Div>
   );
 };

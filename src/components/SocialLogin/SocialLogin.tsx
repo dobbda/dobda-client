@@ -2,12 +2,12 @@ import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { SocialBtn } from './LogoBtn';
 
-import { i } from 'src/icons';
 import { Logo } from 'src/components/common';
 import { useQueryClient } from 'react-query';
 import { useAuth, useLoginModalhandler } from 'src/hooks';
 import { GITHUB_URL, GOOGLE_URL, KAKAO_URL, NAVER_URL } from './CDN_URL';
 import { Auth } from 'src/types';
+import { Googlei, Githubi, Naveri } from 'src/icons';
 type Props = {};
 
 export const SocialLogin = (props: Props) => {
@@ -55,14 +55,14 @@ export const SocialLogin = (props: Props) => {
       <br /> <br />
       <P>간편 로그인만 가능합니다.</P>
       <Style.LoginList>
-        <SocialBtn onClick={() => onWindow(GOOGLE_URL)} name="Login with Google" icon={i.Google} bg="#fff" color="#3c4043" />
+        <SocialBtn onClick={() => onWindow(GOOGLE_URL)} name="Login with Google" icon={Googlei} bg="#fff" color="#3c4043" />
         <br />
 
-        <SocialBtn onClick={() => onWindow(GITHUB_URL)} name="Login with Github" icon={i.Github} bg="#3c4043" color="#ebe9e9" />
+        <SocialBtn onClick={() => onWindow(GITHUB_URL)} name="Login with Github" icon={Githubi} bg="#3c4043" color="#ebe9e9" />
 
         <br />
 
-        <SocialBtn onClick={() => onWindow(NAVER_URL)} name="Login with Naver" icon={i.Naver} bg="#19c260" color="#fff" />
+        <SocialBtn onClick={() => onWindow(NAVER_URL)} name="Login with Naver" icon={Naveri} bg="#19c260" color="#fff" />
 
         <br />
 

@@ -8,7 +8,7 @@ import { UserUpdate } from 'src/types';
 import axios from 'axios';
 import * as S from './style/myInfo.style';
 import { Avatar, message } from 'antd';
-import { i } from 'src/icons';
+import { Refreshi } from 'src/icons';
 
 type Props = {};
 
@@ -65,7 +65,7 @@ export const UserUpdateForm = (props: Props) => {
             <S.Culumn>
               <S.Label>닉네임: 다른 유저에게 보여지는 닉네임이에요.</S.Label>
               <S.Value>
-                <Avatar src={auth?.avatar} /> <i.Refresh css={{ marginRight: '10px', cursor: 'pointer' }} />
+                <Avatar src={auth?.avatar} /> <Refreshi css={{ marginRight: '10px', cursor: 'pointer' }} />
                 <S.Input defaultValue={auth.nickname} onChange={onChangeNickname} />
               </S.Value>
             </S.Culumn>

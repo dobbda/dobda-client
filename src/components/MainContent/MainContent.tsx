@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Border, Main, WriteHandler } from './style/MainContent.style';
 import { WirteHandlerModal } from './atom/WirteHandlerModal';
-import { i } from 'src/icons';
 import { Categories, CategoryList, CategoriesType } from 'src/types/content-type';
 import RenderOutsource from './renderItm/RenderOutSourcing';
 import RenderQuestion from './renderItm/RenderQuestion';
@@ -9,6 +8,7 @@ import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';
 import { useAuth, useDidMountEffect, useLoginModalhandler, useWriteModalhandler } from 'src/hooks';
 import { useRouter } from 'next/router';
 import { theme } from 'src/styles/Theme';
+import { Peni } from 'src/icons';
 
 interface Props {
   children?: React.ReactNode;
@@ -46,9 +46,9 @@ const MainContent = ({ children }: Props) => {
 
       <Main>
         <WriteHandler onClick={checkLogin}>
-          📑 질문이나 프로젝트 요청을 해보는건 어떤가요?{' '}
+          📑 소싱이나 질문을 등록해봐요~{' '}
           <span>
-            <i.Pen color={theme.color.primary} />
+            <Peni color={theme.color.primary} />
           </span>
         </WriteHandler>
         <Border>

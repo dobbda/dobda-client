@@ -40,11 +40,11 @@ module.exports = withPlugins([withBundleAnalyzer], {
       destination: '/',
       permanent: true,
     },
-    // {
-    //   source: '/user/:path*',
-    //   destination: '/',
-    //   permanent: true,
-    // },
+    {
+      source: '/user/:path*',
+      destination: '/',
+      permanent: true,
+    },
   ],
   webpack(nextConfig, { dev }) {
     nextConfig.module.rules.push({

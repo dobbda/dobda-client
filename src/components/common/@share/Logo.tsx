@@ -3,7 +3,7 @@ import { useQueryClient } from 'react-query';
 import styled from 'styled-components';
 import { keys } from 'src/hooks';
 import { useRouter } from 'next/router';
-import { NameB, NameW } from 'src/icons/Icon';
+import { NameBi, NameWi } from 'src/icons';
 
 type Props = {
   b?: boolean;
@@ -26,6 +26,6 @@ export const Logo = ({ b, height }: Props) => {
   }, [queryClient, router]);
 
   return (
-    <Div onClick={goHome}>{b ? <NameB height={height ? height : '35px'} /> : <NameW height={height ? height : '35px'} />}</Div>
+    <Div onClick={goHome}>{b ? <NameBi height={height ? height : '35px'} /> : <NameWi height={height ? height : '35px'} />}</Div>
   );
 };

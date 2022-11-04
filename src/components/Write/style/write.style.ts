@@ -6,6 +6,7 @@ export const Write_Wrapper = styled.div`
   background-color: #fff;
   min-height: 600px;
   border-radius: 4px;
+  max-width: 860px;
 `;
 
 export const EnrQorl = styled.div`

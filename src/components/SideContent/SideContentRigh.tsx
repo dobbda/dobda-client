@@ -3,8 +3,6 @@ import { useQuery, useQueryClient } from 'react-query';
 
 import { P, Red, SideContainer } from './style/SideContent.style';
 import { FolderMenu } from './FolderMenu/FolderMenu';
-
-import { i } from 'src/icons'; //icon
 import { useAuth, useLoginModalhandler } from 'src/hooks';
 import { Button, Empty } from '../common';
 

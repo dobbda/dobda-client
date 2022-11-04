@@ -6,7 +6,6 @@ import { Logo, Popover, Modal, Button } from 'src/components/common';
 import { Alarms } from 'src/components/Users';
 import { SocialLogin } from 'src/components/SocialLogin';
 import { theme } from 'src/styles/Theme';
-import { i } from 'src/icons';
 import { useAuth, useLogout, useLoginModalhandler, keys } from 'src/hooks';
 import { user } from 'src/api';
 import { useRouter } from 'next/router';
@@ -15,6 +14,7 @@ import { AvatarImg } from '../@share/Avatar';
 import UserModalContent from './UserModalContent';
 import 'antd/dist/antd.css';
 import { Alarm } from 'src/types';
+import { Belli } from 'src/icons';
 
 const HeaderNav = () => {
   const queryClient = useQueryClient();
@@ -42,7 +42,7 @@ const HeaderNav = () => {
               <>
                 {' '}
                 <Popover trigger="click" content={<Alarms />} top={16} right={0}>
-                  <i.Bell size={'18px'} css={{ marginTop: '4px', cursor: 'pointer' }} />
+                  <Belli size={'18px'} css={{ marginTop: '4px', cursor: 'pointer' }} />
                 </Popover>
                 <Popover trigger="click" content={<UserModalContent />} top={16} right={0}>
                   <S.My>마이페이지</S.My>

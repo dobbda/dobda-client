@@ -29,7 +29,6 @@ export const Item = styled.div`
 `;
 
 export const Wrap = styled.button<Props>`
-  cursor: pointer;
   width: 100%;
   height: 50px;
   display: flex;

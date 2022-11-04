@@ -65,7 +65,7 @@ export const Image = styled.img`
 `;
 
 export const Content = styled.div`
-  padding: 10px 20px;
+  padding: 5px 20px;
   width: 100%;
   @media screen and (max-width: 450px) {
     padding: 20px 10px;
