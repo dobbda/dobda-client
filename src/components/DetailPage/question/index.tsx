@@ -77,7 +77,7 @@ const QuestionPage = ({ children, data }: Props) => {
           <S.ContentWrapper>
             <S.ContentHeader>
               <div className="detailInfo">
-                <Avatar nickname={data?.author.email} url={data?.author.avatar} id={data?.author.id} />
+                <Avatar nickname={data?.author.nickname} url={data?.author.avatar} id={data?.author.id} />
                 <atom.CreatedAt>{getDate(data?.createdAt)}</atom.CreatedAt>
               </div>
               <S.Title>
