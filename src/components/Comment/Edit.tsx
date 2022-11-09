@@ -5,10 +5,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { Button, Loading } from 'src/components/common';
-import { Editor } from 'src/components/Editor';
+// import { Editor } from 'src/components/Editor';
 import { keys, useQueryCount, useErrMsg, useDidMountEffect } from 'src/hooks';
 import { EditType } from 'src/types/content-type';
 import { CommentEditor } from './style/style';
+import dynamic from 'next/dynamic';
+const Editor = dynamic(() => import('src/components/Editor/Editor'));
 
 type Props = {
   content: string;

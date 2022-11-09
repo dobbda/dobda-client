@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import dynamic from 'next/dynamic';
 
 import * as S from './style/style';
 import { useAuth, useLoginModalhandler } from 'src/hooks';
-import QuillEditor from './QuillEditor';
+// import QuillEditor from './QuillEditor';
+const QuillEditor = dynamic(() => import('./QuillEditor'));
 
 interface Props {
   html: string;

@@ -5,7 +5,6 @@ import OCard from '../../Card/OCard';
 import styled from 'styled-components';
 import { o } from 'src/api';
 import { InfinityProps, Outsource } from 'src/types';
-import { motion } from 'framer-motion';
 import { theme } from 'src/styles/Theme';
 import { Skeleton } from 'src/components/Skeleton';
 
@@ -28,10 +27,7 @@ function RenderOutsource() {
       {isLoading ? (
         <Skeleton row={4} border title len={3} image />
       ) : (
-        <ContentCardList
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: [0.5, 1], height: 'auto', transition: { duration: 0.15 } }}
-        >
+        <ContentCardList>
           {isSuccess && data?.pages
             ? data.pages.map((page) => {
                 const data = page.result;
@@ -59,7 +55,7 @@ function RenderOutsource() {
 
 export default RenderOutsource;
 
-const ContentCardList = styled(motion.div)`
+const ContentCardList = styled.div`
   padding: 10px;
   display: grid;
   place-items: center;

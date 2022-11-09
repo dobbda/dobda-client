@@ -14,7 +14,7 @@ interface Props {
 }
 export const Skeleton = ({ image = false, border = false, len = 1, row = 3, avatar = false, title = false }: Props) => {
   const listData = Array.from({ length: len }).map((_, i) => (
-    <div key={i} css={border && { border: 'solid 3px #d1d1d1ea', padding: '10px', margin: '20px 10px', borderRadius: '4px' }}>
+    <div key={i} css={border && { border: 'solid 3px #e4e4e4ea', padding: '10px', margin: '20px 10px', borderRadius: '4px' }}>
       {image && <Image />}
       <AntSkeleton avatar={avatar} active title={title} paragraph={{ rows: row }} />
     </div>

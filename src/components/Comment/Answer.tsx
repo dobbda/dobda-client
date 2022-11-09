@@ -12,7 +12,6 @@ import { q } from 'src/api';
 import { keys, useDelete, useAddComment, useErrMsg, useDidMountEffect, useAuth } from 'src/hooks';
 import { Popover, message as m } from 'antd';
 import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
 import { EditType } from 'src/types/content-type';
 import Edit from './Edit';
 import { Skeleton } from '../Skeleton';
@@ -141,10 +140,7 @@ const AnswerCp = ({ answer, question }: Props) => {
       </S.ChildView>
 
       {viewChild && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: [0.5, 1], height: 'auto', transition: { duration: 0.15 } }}
-        >
+        <div>
           {answer.commentsCount > 0 ? (
             commentLoading ? (
               <Skeleton avatar title len={answer.commentsCount} />
@@ -154,7 +150,7 @@ const AnswerCp = ({ answer, question }: Props) => {
           ) : (
             <Empty />
           )}
-        </motion.div>
+        </div>
       )}
       <S.CommentEditor>
         <Editor
@@ -188,5 +184,3 @@ const Btn = styled(Button)`
   display: block;
   width: 55px;
 `;
-
-const Transition = styled(motion.div)``;

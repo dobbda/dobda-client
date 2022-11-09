@@ -1,14 +1,12 @@
 import type { NextPage } from 'next';
 import React, { useEffect } from 'react';
-import { dehydrate, QueryClient, useQuery, useQueryClient } from 'react-query';
+import { dehydrate, QueryClient } from 'react-query';
 import { Layout } from 'src/Layout';
 import { MainContent } from 'src/components/MainContent';
-import { NextPageContext } from 'next';
 import { GetServerSideProps } from 'next';
 import axios, { AxiosRequestConfig } from 'axios';
 import { ssr } from 'src/api';
 import { keys } from 'src/hooks';
-import { cookieDecod } from 'src/lib/utils/cookieDecod';
 import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';
 import { Exp } from 'src/types/content-type';
 import { errorHandler } from 'src/api/errorHandler';

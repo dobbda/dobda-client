@@ -1,4 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+
 import { message } from 'antd';
 import { atom, Empty, Loading, Tag } from '../../common';
 import * as S from '../style/Detail.style';
@@ -9,21 +11,19 @@ import { Question, QuestionDetail } from 'src/types';
 import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { keys, useAddAnswer, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
-import { WriteQuestion } from '../../Write';
+// import { WriteQuestion } from '../../Write';
 import { Button } from 'src/components/common';
 import { useRouter } from 'next/router';
 import { Skeleton } from 'src/components/Skeleton';
 import { Coini, Qi } from 'src/icons';
-
 import { Editor } from 'src/components/Editor';
-import { AnswerCp } from 'src/components/Comment/';
+const AnswerCp = dynamic(() => import('src/components/Comment/Answer'));
+const WriteQuestion = dynamic(() => import('src/components/Write/WriteQuestion'));
 
 type Props = {
-  children?: React.ReactElement; // commentComponent
   data: QuestionDetail;
 };
-
-const QuestionPage = ({ children, data }: Props) => {
+const QuestionPage = ({ data }: Props) => {
   const { setCount, setInfCount } = useQueryCount();
   useEffect(() => {
     /**조회수 */
@@ -77,7 +77,7 @@ const QuestionPage = ({ children, data }: Props) => {
           <S.ContentWrapper>
             <S.ContentHeader>
               <div className="detailInfo">
-                <Avatar nickname={data?.author.email} url={data?.author.avatar} id={data?.author.id} />
+                <Avatar nickname={data?.author.nickname} url={data?.author.avatar} id={data?.author.id} />
                 <atom.CreatedAt>{getDate(data?.createdAt)}</atom.CreatedAt>
               </div>
               <S.Title>

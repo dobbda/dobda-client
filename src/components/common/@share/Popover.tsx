@@ -1,4 +1,3 @@
-import { animate, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import styled, { css, CSSProp } from 'styled-components';
 
@@ -75,14 +74,7 @@ export function Popover({
         {children}
       </span>
       {isShow && (
-        <PopoverContainer
-          top={top}
-          left={left}
-          bottom={bottom}
-          right={right}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { duration: 0.2 } }}
-        >
+        <PopoverContainer top={top} left={left} bottom={bottom} right={right}>
           <div className="top-area"> </div>
           {content}
 
@@ -100,7 +92,7 @@ type StyleProps = {
   bottom?: number;
 };
 // popover container style
-const PopoverContainer = styled(motion.div)<StyleProps>`
+const PopoverContainer = styled.div<StyleProps>`
   ${(props) => {
     return css`
       z-index: 9999;

@@ -3,21 +3,23 @@ import dynamic from 'next/dynamic';
 import { atom, Tag, Button, Empty } from '../../common';
 import * as S from '../style/Detail.style';
 import { Avatar } from '../../common';
-import { EnquiryCp } from 'src/components/Comment';
 import getDate from 'src/lib/utils/dateForm';
-import { Editor } from 'src/components/Editor';
 
 import { HtmlViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
 import { keys, useAddEnquiry, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
 import { o, q } from 'src/api';
-import { WriteOutsourcing } from '../../Write';
 import { useQuery, useQueryClient } from 'react-query';
 import { useRouter } from 'next/router';
 import { message } from 'antd';
 
 import { ProgressState } from './sourcingEvent';
 import { Skeleton } from 'src/components/Skeleton';
+import { Editor } from 'src/components/Editor';
+
+const WriteOutsourcing = dynamic(() => import('src/components/Write/WriteOutsourcing'));
+const EnquiryCp = dynamic(() => import('src/components/Comment/Enquiry'));
+
 type Props = {
   children?: React.ReactElement; // commentComponent
   data?: OutsourceDetail;
