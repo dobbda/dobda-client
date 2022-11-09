@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 import { Tags } from 'src/types';
-import { map } from 'lodash';
+import map from 'lodash/map';
 type Props = {
   title?: string;
   url?: string;

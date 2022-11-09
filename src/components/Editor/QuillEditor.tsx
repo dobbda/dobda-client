@@ -3,6 +3,7 @@ import { useRef, useState, useMemo, useCallback, useEffect, Dispatch, SetStateAc
 import 'react-quill/dist/quill.snow.css';
 import styled from 'styled-components';
 import { uploadS3 } from './utils/upload-s3';
+// const uploadS3 = dynamic(() => import('./QuillEditor'));
 
 import 'highlight.js/styles/monokai-sublime.css';
 import javascript from 'highlight.js/lib/languages/javascript';
