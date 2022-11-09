@@ -4,6 +4,7 @@ import { atom, Tag, Button, Empty } from '../../common';
 import * as S from '../style/Detail.style';
 import { Avatar } from '../../common';
 import getDate from 'src/lib/utils/dateForm';
+
 import { HtmlViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
 import { keys, useAddEnquiry, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
@@ -11,6 +12,7 @@ import { o, q } from 'src/api';
 import { useQuery, useQueryClient } from 'react-query';
 import { useRouter } from 'next/router';
 import { message } from 'antd';
+
 import { ProgressState } from './sourcingEvent';
 import { Skeleton } from 'src/components/Skeleton';
 import { Editor } from 'src/components/Editor';
