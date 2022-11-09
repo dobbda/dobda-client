@@ -30,7 +30,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html key={'root'} lang="ko_KR">
+      <Html key={'root'}>
         <Head>
           <meta property="og:locale" content="ko_KR" />
         </Head>
