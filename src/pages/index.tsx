@@ -11,6 +11,7 @@ import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';
 import { Exp } from 'src/types/content-type';
 import { errorHandler } from 'src/api/errorHandler';
 import { MainHead } from 'src/components/common';
+import { ssrQuery } from 'src/hooks/queries/defaultQueryClient';
 
 const Home: NextPage<{ exp: Exp }> = (props) => {
   setLocalStorage('exp', JSON.stringify(props.exp));
@@ -26,10 +27,12 @@ const Home: NextPage<{ exp: Exp }> = (props) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
-  const queryClient = new QueryClient();
+  const queryClient = ssrQuery(1000 * 60 * 5);
   if (exp?.access_exp) {
     await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
   }
+  // await queryClient.prefetchQuery(keys.questions(), () => ssr.questions());
+  // await queryClient.prefetchQuery(keys.sourcings(), () => ssr.sourcings());
   return {
     props: {
       dehydratedState: dehydrate(queryClient),

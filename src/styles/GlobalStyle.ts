@@ -1,5 +1,5 @@
 import { theme } from 'src/styles/Theme';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   html,
@@ -13,7 +13,9 @@ export const GlobalStyle = createGlobalStyle`
 	body{
     background-color: ${theme.color.bg};
 		-webkit-text-size-adjust: none;
-		font-family:  "Helvetica Neue", Helvetica,'Noto Sans KR', sans-serif,  Inter ;
+		/* font-family:  "Helvetica Neue", Helvetica,'Noto Sans KR', sans-serif,  Inter ; */
+		font-family: Pretendard, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-display: fallback;
 		font-size: 14px;
 		overflow-y: scroll;
@@ -32,12 +34,6 @@ export const GlobalStyle = createGlobalStyle`
 			padding:5px ;
 		}
 
-  .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
-    color: #fff;
-    background: #000;
-    border-color: #000;
-	}
-
 
 	a, a:hover, a:focus, a:active {
      text-decoration: none;
@@ -51,12 +47,8 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  .navbar-dropdown {
-    top: 40px !important;
-  }
   
 	button {
 		cursor: pointer;
 	}
-
 `;

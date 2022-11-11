@@ -12,6 +12,7 @@ import { errorHandler } from 'src/api/errorHandler';
 import { Exp } from 'src/types/content-type';
 import { setLocalStorage } from 'src/lib/utils/localStorage';
 import { SEO } from 'src/components/common';
+import { ssrQuery } from 'src/hooks/queries/defaultQueryClient';
 
 const RequestDetailPage: NextPage<{ exp: Exp; id: string }> = (props) => {
   const router = useRouter();
@@ -43,10 +44,12 @@ const RequestDetailPage: NextPage<{ exp: Exp; id: string }> = (props) => {
 export default RequestDetailPage;
 
 export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
-  const queryClient = new QueryClient();
   const { id } = query as { id: string };
-
-  await queryClient.prefetchQuery(keys.oDetail(id), () => ssr.outsourcing(req as AxiosRequestConfig, id));
+  const queryClient = ssrQuery();
+  if (exp?.access_exp) {
+    await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
+  }
+  await queryClient.prefetchQuery(keys.oDetail(id), () => ssr.sourcing(req as AxiosRequestConfig, id));
 
   return {
     props: {

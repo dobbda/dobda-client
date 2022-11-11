@@ -12,6 +12,7 @@ import { errorHandler } from 'src/api/errorHandler';
 import { setLocalStorage } from 'src/lib/utils/localStorage';
 import { Exp } from 'src/types/content-type';
 import { SEO } from 'src/components/common';
+import { ssrQuery } from 'src/hooks/queries/defaultQueryClient';
 
 const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
   setLocalStorage('exp', JSON.stringify(props.exp));
@@ -37,9 +38,11 @@ const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
 export default Page;
 
 export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
-  const queryClient = new QueryClient();
   const { id } = query as { id: string };
-
+  const queryClient = ssrQuery();
+  if (exp?.access_exp) {
+    await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
+  }
   await queryClient.prefetchQuery(keys.qDetail(id), () => ssr.question(req as AxiosRequestConfig, id));
 
   return {

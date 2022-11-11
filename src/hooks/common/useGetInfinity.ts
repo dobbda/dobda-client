@@ -24,7 +24,7 @@ export const useGetInfinity = <T>({ title, tag, queryKey, fetch }: Props) => {
       }
       return undefined;
     },
-    staleTime: Infinity,
+    staleTime: 1000 * 60 * 30,
 
     onError: (error: any) => {
       let message = typeof error.response !== 'undefined' ? error.response.data?.error?.message : error.message;

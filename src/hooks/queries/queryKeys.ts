@@ -3,7 +3,7 @@ import { QueryKey } from 'react-query';
 const Props = Number || String;
 export const keys = {
   auth: ['auth'],
-  questions: (title?: string, tag?: string): QueryKey => ['questions', { title: title && title, tag: tag && title }],
+  questions: (): QueryKey => ['questions'],
   answers: (qid: number | string): QueryKey => ['question:' + Number(qid), 'answers'],
   comment: (qid: number | string, aid: number | string): QueryKey => [
     'question: ' + Number(qid),
@@ -12,7 +12,7 @@ export const keys = {
   ],
   qDetail: (qid: number | string): QueryKey => ['question:' + Number(qid), 'detail'],
 
-  sourcings: (title?: string, tag?: string): QueryKey => ['sourcings', { title: title && title, tag: tag && title }],
+  sourcings: (): QueryKey => ['sourcings'],
   enquiry: (oid: number | string): QueryKey => ['sourcing: ', Number(oid), 'enquiry'],
   reply: (oid: number | string, eid: number | string): QueryKey => [
     'sourcing: ' + Number(oid),
