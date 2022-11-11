@@ -27,15 +27,14 @@ const Home: NextPage<{ exp: Exp }> = (props) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
-  const queryClient = ssrQuery(1000 * 60 * 5);
   if (exp?.access_exp) {
-    await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
+    await ssrQuery.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
   }
-  // await queryClient.prefetchQuery(keys.questions(), () => ssr.questions());
-  // await queryClient.prefetchQuery(keys.sourcings(), () => ssr.sourcings());
+  // await ssrQuery.prefetchQuery(keys.questions(), () => ssr.questions());
+  // await ssrQuery.prefetchQuery(keys.sourcings(), () => ssr.sourcings());
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
+      dehydratedState: dehydrate(ssrQuery),
       exp: exp,
     },
   };
