@@ -10,7 +10,7 @@ export const MainHead = (props: Props) => {
       <meta charSet="utf-8" />
       <meta property="og:locale" content="ko_KR" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link href="https://www.dobda.io" />
+      <link href="https://dobda.io" />
       <meta property="og:image" content="/img/main.png" />
       <meta property="og:type" content="website" />
       <meta

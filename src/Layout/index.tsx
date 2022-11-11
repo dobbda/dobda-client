@@ -4,6 +4,7 @@ import { HeaderNav } from 'src/components/common';
 import { SideContentLeft, SideContentRight } from 'src/components/SideContent';
 import { useWindowSize } from 'src/hooks';
 import BnCarousel from '../components/banner/BnCarouse';
+import Suport from 'src/components/Admin/suport';
 
 interface Props {
   sideRight?: boolean;
@@ -33,6 +34,7 @@ export const Layout = ({ children, sideRight = false, sideLeft = false, banner =
               <S.SideNavWrapper>
                 {sideLeft && width < 1060 && <SideContentLeft folderOpenFalse />}
                 <SideContentRight />
+                <Suport />
               </S.SideNavWrapper>
             )}
           </div>

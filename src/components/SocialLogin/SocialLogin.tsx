@@ -8,6 +8,7 @@ import { useAuth, useLoginModalhandler } from 'src/hooks';
 import { GITHUB_URL, GOOGLE_URL, KAKAO_URL, NAVER_URL } from './CDN_URL';
 import { Auth } from 'src/types';
 import { Googlei, Githubi, Naveri } from 'src/icons';
+import Suport from '../Admin/suport';
 type Props = {};
 
 export const SocialLogin = (props: Props) => {
@@ -68,6 +69,7 @@ export const SocialLogin = (props: Props) => {
 
         {/* <SocialBtn onClick={() => onWindow(KAKAO_URL)} name="Login with Kakao" icon={Kakao} bg="#fee500" color="#000" /> */}
       </Style.LoginList>
+      <Suport onlyPolicy css={{ marginTop: '10px' }} />
     </Style.LoginWrapper>
   );
 };

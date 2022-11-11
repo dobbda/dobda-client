@@ -30,9 +30,16 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html key={'root'} lang="ko_KR">
+      <Html key={'root'} lang="ko">
         <Head>
-          <meta property="og:locale" content="ko_KR" />
+          <link
+            rel="stylesheet preload prefetch"
+            as="style"
+            type="text/css"
+            crossOrigin="anonymous"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+          />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>
           <Main />
