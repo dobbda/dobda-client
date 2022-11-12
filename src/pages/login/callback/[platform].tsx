@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 
 import { useRouter } from 'next/router';
-import { Loading } from 'src/components/common';
+import { Loading, LoadingPage } from 'src/components/common';
 
 type Props = {};
 
@@ -23,7 +23,7 @@ const Lodding = (props: Props) => {
     }
   }, [code, platform]);
 
-  return <Loading loading many />;
+  return <LoadingPage />;
 };
 
 export default Lodding;
