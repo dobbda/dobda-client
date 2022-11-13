@@ -37,7 +37,7 @@ export const useQueryCount = () => {
     queryClient.setQueryData(queryKey, (oldData: any) => {
       if (oldData) {
         const updatedData = produce(oldData, (draft: any) => {
-          draft.pages.map((pages: any) =>
+          draft.pages?.map((pages: any) =>
             pages.result.map((page: any) => {
               if (page.id === findId) return (page[changeKey] = countVal ? countVal : page[changeKey] + upDown);
               return page;

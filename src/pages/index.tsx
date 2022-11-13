@@ -12,9 +12,13 @@ import { Exp } from 'src/types/content-type';
 import { errorHandler } from 'src/api/errorHandler';
 import { MainHead } from 'src/components/common';
 import { ssrQuery } from 'src/hooks/queries/defaultQueryClient';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Home: NextPage<{ exp: Exp }> = (props) => {
   setLocalStorage('exp', JSON.stringify(props.exp));
+  const router = useRouter();
+  // console.log('index query: ', router.query);
   return (
     <>
       <MainHead />

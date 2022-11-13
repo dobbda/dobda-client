@@ -8,14 +8,10 @@ import { AxiosError } from 'axios';
 // 요청량이 많으면 커스텀 업데이트, 페이지 단위일시 invalidate사용
 const useAddQuestion = (mutationFn: any, qid?: number) => {
   const queryClient = useQueryClient();
-  const router = useRouter();
   return useMutation((data: CreateQuestion) => mutationFn(data, qid ? qid : null), {
     onSuccess: async (newQuestion: Question) => {
-      queryClient.cancelQueries(keys.questions());
-      const oldData = queryClient.getQueryData(keys.questions());
-
       // 메인페이지에 새로 추가
-      if (oldData) {
+      if (!qid) {
         // post
         queryClient.setQueryData(keys.questions(), (oldData: any) => {
           if (newQuestion.createdAt === newQuestion.updatedAt) {
@@ -42,26 +38,23 @@ const useAddQuestion = (mutationFn: any, qid?: number) => {
       // patch
       if (qid) {
         // infinityQuery data 커스텀 업데이트
-
+        queryClient.cancelQueries(keys.questions());
         queryClient.cancelQueries(keys.qDetail(newQuestion.id));
         queryClient.invalidateQueries(keys.qDetail(newQuestion.id));
 
-        queryClient.setQueryData(keys.questions(), (oldData: any) => {
-          if (oldData) {
-            const updatedData = produce(oldData, (draft: any) => {
-              draft.pages.map((pages: any) =>
-                pages.result.map((page: any) => {
-                  if (page.id === qid) return (page = { ...newQuestion });
-                  return page;
-                }),
-              );
-            });
-
-            return updatedData;
-          }
-        });
+        queryClient.setQueryData(keys.questions(), (oldData: any) =>
+          produce(oldData, (draft: any) => {
+            oldData?.pages.forEach((pages: any, i: number) =>
+              pages.result.forEach((v: any, j: number) => {
+                if (v.id === newQuestion.id) {
+                  draft.pages[i].result[j] = newQuestion;
+                  return false;
+                }
+              }),
+            );
+          }),
+        );
       }
-      router.push(`/questions/` + newQuestion.id);
     },
 
     onError: (error: any) => {

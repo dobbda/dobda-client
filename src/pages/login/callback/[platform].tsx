@@ -23,7 +23,7 @@ const Lodding = (props: Props) => {
     }
   }, [code, platform]);
 
-  return <LoadingPage />;
+  return <LoadingPage size={70} descript="Loading user information..." />;
 };
 
 export default Lodding;

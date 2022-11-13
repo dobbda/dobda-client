@@ -8,20 +8,20 @@ import { Input as AntInput, Input, message } from 'antd';
 import 'antd/dist/antd.css';
 
 import Hashtags from './atom/Hashtags';
-import { atom, Loading } from 'src/components/common';
+import { atom, Loading, LoadingPage } from 'src/components/common';
 import { Button } from 'src/components/common/@share/Buttons';
 import { useAddQuestion, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
-import { CreateQuestion, QuestionDetail } from 'src/types';
+import { CreateQuestion, Question, QuestionDetail } from 'src/types';
 import { q } from 'src/api';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 type Props = {
   data?: QuestionDetail;
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const WriteQuestion = ({ data, setIsEdit }: Props) => {
-  const queryClient = useQueryClient();
-  const [saveLoading, setSaveLoading] = useState(false);
+  const router = useRouter();
   const [contentTitle, setContentTitle] = useState<string>(data?.title);
   const [tags, setTags] = useState<string[] | null>(data?.tagNames.map((tags: any) => tags.name));
   const [html, setHtml] = React.useState<string>(data?.content);
@@ -32,13 +32,23 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
 
   const { errMsg } = useErrMsg();
   const { auth } = useAuth();
+  useEffect(() => {
+    if (!auth.id) {
+      router.push('/');
+    }
+  }, []);
+  useDidMountEffect(() => {
+    if (addQuestion.isError || editQuestion?.isError) {
+      message.error(errMsg);
+    }
+  }, [errMsg, addQuestion.isError, editQuestion?.isError]);
 
   const onChangeCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCoin(Number(`${e.target.value}`));
   };
 
   const onSubmit = useCallback(() => {
-    if (!confirm(`등록하시겠습니까? `)) return;
+    if (!confirm(data?.id ? '수정된 정보를 저장합니다.' : '질문을 등록합니다.')) return;
     const newData: CreateQuestion = {
       title: contentTitle,
       content: html,
@@ -46,21 +56,51 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
       coin: coin,
     };
     if (data?.id) {
-      editQuestion.mutate(newData);
+      editQuestion.mutateAsync(newData).then((v: Question) => {
+        if (v.id) {
+          if (confirm(`질문이 업데이트 되었습니다. 페이지로 이동하시겠습니까? `)) {
+            setCoin(0);
+            setHtml('');
+            setContentTitle('');
+            setTags(['']);
+            setIsEdit(false);
+          }
+        }
+      });
     } else {
-      addQuestion.mutate(newData);
+      addQuestion.mutateAsync(newData).then((v: any) => {
+        if (v.id) {
+          setCoin(0);
+          setHtml('');
+          setContentTitle('');
+          setTags(['']);
+          if (confirm(`새로운 질문이 등록되었습니다. 페이지로 이동하시겠습니까? `)) {
+            router.push(`/questions/` + v.id);
+          }
+        }
+      });
     }
-    setSaveLoading(true);
-  }, [contentTitle, html, tags, coin, data?.id, editQuestion, addQuestion]);
+  }, [contentTitle, html, tags, coin, data?.id, editQuestion, addQuestion, router]);
 
   const onSubmitCheck = useCallback(() => {
-    if (!(html && contentTitle && tags[0])) {
-      message.error('비어있는 항목이 있습니다.');
-      return;
-    }
     if (coin > 0) {
       if (coin > auth?.coin) message.error('보유코인이 부족합니다');
     }
+
+    if (!contentTitle) {
+      message.error('제목을 추가해주세요');
+      return;
+    }
+    if (!html) {
+      message.error('내용을 추가해주세요');
+      return;
+    }
+
+    if (!tags?.length) {
+      message.error('태그를 추가해주세요');
+      return;
+    }
+
     onSubmit();
   }, [auth?.coin, coin, contentTitle, html, onSubmit, tags]);
 
@@ -68,16 +108,6 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
     if (confirm('수정된 정보는 저장되지 않습니다.')) setIsEdit(false);
   }, [setIsEdit]);
 
-  useDidMountEffect(() => {
-    if (addQuestion.isSuccess || editQuestion?.isSuccess) {
-      setHtml('');
-      setSaveLoading(false);
-      data?.id && setIsEdit(false);
-    }
-    if (addQuestion.isError || editQuestion?.isError) {
-      message.error(errMsg);
-    }
-  }, [editQuestion?.isSuccess, addQuestion.isSuccess, data?.id, addQuestion.isError, editQuestion?.isError]);
   return (
     <>
       <Write_Wrapper>
@@ -115,9 +145,8 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
               취소
             </Button>
           )}
-          <Button onClick={onSubmitCheck} css={{ width: '150px' }} types="secondary" $fill>
-            <Loading loading={saveLoading} />
-            {data?.id ? '저장하기' : '등록하기'}
+          <Button onClick={onSubmitCheck} css={{ width: '150px', padding: '5px auto' }} types="secondary" $fill>
+            {addQuestion?.isLoading || editQuestion?.isLoading ? <Loading loading={true} /> : data?.id ? '저장하기' : '등록하기'}
           </Button>
         </atom.Flex>
       </Write_Wrapper>

@@ -21,7 +21,7 @@ export const Logo = ({ b, height }: Props) => {
   const queryClient = useQueryClient();
   const router = useRouter();
   const goHome = useCallback(() => {
-    queryClient.invalidateQueries(keys.auth);
+    // queryClient.invalidateQueries(keys.auth);
     router.push('/');
   }, [queryClient, router]);
 

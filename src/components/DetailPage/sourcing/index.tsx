@@ -17,7 +17,7 @@ import { ProgressState } from './sourcingEvent';
 import { Skeleton } from 'src/components/Skeleton';
 import { Editor } from 'src/components/Editor';
 
-const WriteOutsourcing = dynamic(() => import('src/components/Write/WriteOutsourcing'));
+const WriteOutsourcing = dynamic(() => import('src/components/Write/WriteSourcing'));
 const EnquiryCp = dynamic(() => import('src/components/Comment/Enquiry'));
 
 type Props = {

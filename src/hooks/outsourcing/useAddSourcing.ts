@@ -7,20 +7,16 @@ import { useRouter } from 'next/router';
 
 //this hooks, used when creating and updating servers and queries
 // 요청량이 많으면 커스텀 업데이트, 페이지 단위일시 invalidate사용
-const useAddOutsource = (mutationFn: any, qid?: number) => {
+const useAddSourcing = (mutationFn: any, sid?: number) => {
   const queryClient = useQueryClient();
   const router = useRouter();
-  return useMutation((data: CreateOutsource) => mutationFn(data, qid ? qid : null), {
-    //qid가 있을시 수정, 없을시 생성
+  return useMutation((data: CreateOutsource) => mutationFn(data, sid ? sid : null), {
+    //sid가 있을시 수정, 없을시 생성
 
     onSuccess: async (newOutsource: Outsource) => {
       queryClient.cancelQueries([keys.sourcings()]);
-
-      const oldData = queryClient.getQueryData(keys.sourcings());
-      const oldDetail = queryClient.getQueryData(keys.oDetail(newOutsource.id));
-
       // 메인페이지에 새로 추가
-      if (oldData) {
+      if (!sid) {
         queryClient.setQueryData(keys.sourcings(), (oldData: any) => {
           if (newOutsource.createdAt === newOutsource.updatedAt) {
             const updatedData = produce(oldData, (draft: any) => {
@@ -45,27 +41,25 @@ const useAddOutsource = (mutationFn: any, qid?: number) => {
       }
 
       //  patch
-      if (qid) {
+      if (sid) {
         // infinityQuery data 커스텀 업데이트
         queryClient.cancelQueries(keys.oDetail(newOutsource.id));
         queryClient.invalidateQueries(keys.oDetail(newOutsource.id));
 
-        queryClient.setQueryData(keys.questions(), (oldData: any) => {
-          if (oldData) {
-            const updatedData = produce(oldData, (draft: any) => {
-              draft.pages.map((pages: any) =>
-                pages.result.map((page: any) => {
-                  if (page.id === qid) return (page = { ...newOutsource });
-                  return page;
-                }),
-              );
-            });
-
-            return updatedData;
-          }
-        });
+        queryClient.cancelQueries(keys.sourcings());
+        queryClient.setQueryData(keys.sourcings(), (oldData: any) =>
+          produce(oldData, (draft: any) => {
+            oldData?.pages.forEach((pages: any, i: number) =>
+              pages.result.forEach((v: any, j: number) => {
+                if (v.id === newOutsource.id) {
+                  draft.pages[i].result[j] = newOutsource;
+                  return false;
+                }
+              }),
+            );
+          }),
+        );
       }
-      router.push(`/custom-project/requests/` + newOutsource.id);
     },
 
     onError: (error: any) => {
@@ -75,4 +69,4 @@ const useAddOutsource = (mutationFn: any, qid?: number) => {
   });
 };
 
-export default useAddOutsource;
+export default useAddSourcing;

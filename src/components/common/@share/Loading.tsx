@@ -22,15 +22,17 @@ export const Loading = ({ loading, large }: Props) => {
   );
 };
 
-export const LoadingPage = () => {
-  const antIconL = <LoadingOutlined style={{ fontSize: 100 }} spin />;
-
+interface LoadingPage {
+  size?: number;
+  descript?: string;
+}
+export const LoadingPage = ({ size, descript }: LoadingPage) => {
   return (
     <Bg>
       <Wr>
-        <Space size="large">
-          <Spin size="large" indicator={antIconL} />
-        </Space>
+        <Spin size="large" indicator={<LoadingOutlined style={{ fontSize: size | 100 }} spin />} />
+        <br />
+        <div className="descript">{descript}</div>
       </Wr>
     </Bg>
   );
@@ -54,4 +56,6 @@ const Wr = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 20px;
 `;

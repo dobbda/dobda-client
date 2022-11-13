@@ -9,7 +9,7 @@ import { useAuth, useDidMountEffect, useLoginModalhandler, useWriteModalhandler 
 import { useRouter } from 'next/router';
 import { theme } from 'src/styles/Theme';
 import { Peni } from 'src/icons';
-
+import Link from 'next/link';
 interface Props {
   children?: React.ReactNode;
 }
@@ -18,16 +18,14 @@ const MainContent = ({ children }: Props) => {
   const [visible, setVisible] = useState(false);
   const { auth } = useAuth();
   const router = useRouter();
+  const { cg } = router.query as { cg: CategoriesType };
   const [select, setSelect] = useState<CategoriesType>();
   const { setLoginModal } = useLoginModalhandler();
   const { setWriteModal } = useWriteModalhandler();
-
-  //첫 로딩시
   useEffect(() => {
     const storeCategory = getLocalStorage('mainCateogry') as CategoriesType;
-    console.log(Categories[storeCategory], storeCategory);
-    Categories[storeCategory]
-      ? setSelect(storeCategory)
+    Categories[cg || storeCategory]
+      ? setSelect(cg || storeCategory)
       : (setSelect(CategoryList[0]), setLocalStorage('mainCateogry', CategoryList[0]));
   }, []);
 
@@ -40,6 +38,10 @@ const MainContent = ({ children }: Props) => {
     setWriteModal();
   }, [auth?.id, setLoginModal, setWriteModal]);
 
+  const onClickMenu = useCallback((m: CategoriesType) => {
+    setSelect(m);
+    router.push({ pathname: '/', query: { cg: m } });
+  }, []);
   return (
     <>
       <WirteHandlerModal />
@@ -54,7 +56,7 @@ const MainContent = ({ children }: Props) => {
         <Border>
           <div className="top-bar">
             {CategoryList.map((m, i) => (
-              <div key={i} onClick={() => setSelect(m)} className={`${select === m ? 'tap_menu selected' : 'tap_menu'}`}>
+              <div key={i} onClick={() => onClickMenu(m)} className={`${select === m ? 'tap_menu selected' : 'tap_menu'}`}>
                 <span>{Categories[m]}</span>
               </div>
             ))}

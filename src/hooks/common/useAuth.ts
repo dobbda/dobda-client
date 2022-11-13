@@ -14,9 +14,11 @@ export function useAuth(): { auth: Auth; refetch: any } {
     // refetchOnMount: true,
     staleTime: Infinity,
   });
+  useEffect(() => {
+    if (getLocalStorage('exp', true)?.access_exp < Date.now() && getLocalStorage('exp', true)?.refresh_exp > Date.now()) {
+      refetch;
+    }
+  }, []);
 
-  if (getLocalStorage('exp', true)?.access_exp < Date.now()) {
-    refetch;
-  }
   return { auth, refetch };
 }

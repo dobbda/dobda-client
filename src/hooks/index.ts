@@ -13,7 +13,7 @@ export { default as useAddQuestion } from './qustion/useAddQuestion';
 export { default as useAddComment } from './qustion/useAddComment';
 
 export { default as useAddEnquiry } from './outsourcing/useAddEnquiry';
-export { default as useAddOutsource } from './outsourcing/useAddOutsource';
+export { default as useAddSourcing } from './outsourcing/useAddSourcing';
 export { default as useAddReply } from './outsourcing/useAddReply';
 
 export { useDelete } from './common/useDel';
