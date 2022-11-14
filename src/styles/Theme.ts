@@ -9,7 +9,7 @@ const media = {
   cardMaxWidth: '450px',
   navbarWidth: '240px',
   navbarMobiHeight: '50px',
-  headerHeight: '50px',
+  headerHeight: '60px',
 };
 
 const color = {

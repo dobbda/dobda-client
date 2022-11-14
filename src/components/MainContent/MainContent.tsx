@@ -23,15 +23,16 @@ const MainContent = ({ children }: Props) => {
   const { setLoginModal } = useLoginModalhandler();
   const { setWriteModal } = useWriteModalhandler();
   useEffect(() => {
+    setSelect(cg);
     const storeCategory = getLocalStorage('mainCateogry') as CategoriesType;
     Categories[cg || storeCategory]
       ? setSelect(cg || storeCategory)
       : (setSelect(CategoryList[0]), setLocalStorage('mainCateogry', CategoryList[0]));
-  }, []);
+  }, [cg]);
 
   useDidMountEffect(() => {
     setLocalStorage('mainCateogry', select);
-  }, [select]);
+  }, [select, cg]);
 
   const checkLogin = useCallback(() => {
     if (!auth?.id) return setLoginModal();

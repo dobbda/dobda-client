@@ -28,7 +28,7 @@ export const Button = styled.button<Props>`
   white-space: nowrap;
   user-select: none;
   transition: all 0.2s ease-in-out 0s;
-  padding: 3px 20px;
+  padding: 5px 20px;
   display: ${({ $block }) => ($block ? 'block' : 'inline-block')};
   margin: ${({ $block }) => $block && '0 auto'};
   :hover {

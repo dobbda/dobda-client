@@ -18,10 +18,11 @@ export const createQueryClient = () => {
   });
 };
 
-export const ssrQuery = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5,
+export const ssrQuery = () =>
+  new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 5,
+      },
     },
-  },
-});
+  });

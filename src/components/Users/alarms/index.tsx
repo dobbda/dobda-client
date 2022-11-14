@@ -35,7 +35,6 @@ export const AlarmPage = (props: Props) => {
             });
           });
           queryClient.setQueryData(keys.alarmsAll(auth?.id), (old: Alarm[]) => {
-            console.log('old: ', old);
             return produce(old, (draft) => {
               draft.find((alarm) => alarm.id === item.id).checked = true;
             });

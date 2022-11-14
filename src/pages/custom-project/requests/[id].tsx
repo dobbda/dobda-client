@@ -45,14 +45,15 @@ export default RequestDetailPage;
 
 export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
   const { id } = query as { id: string };
+  const queryClient = ssrQuery();
   if (exp?.access_exp) {
-    await ssrQuery.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
+    await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
   }
-  await ssrQuery.prefetchQuery(keys.oDetail(id), () => ssr.sourcing(req as AxiosRequestConfig, id));
+  await queryClient.prefetchQuery(keys.oDetail(id), () => ssr.sourcing(req as AxiosRequestConfig, id));
 
   return {
     props: {
-      dehydratedState: dehydrate(ssrQuery),
+      dehydratedState: dehydrate(queryClient),
       exp,
       id: id,
     },

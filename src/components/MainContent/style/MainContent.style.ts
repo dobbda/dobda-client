@@ -9,17 +9,18 @@ export const Main = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap-reverse;
-    background-color: #f6f6f6;
-    border-bottom: solid 1px #ebebeb;
+    background-color: #f1f1f1;
     user-select: none;
     .tap_menu {
       //카테고리 버튼
+      border-right: solid 1px #ebebeb;
+
       font-size: 15px;
-      font-weight: 900;
+      font-weight: 700;
       padding: 1px 15px;
-      line-height: 30px;
+      line-height: 33px;
       display: flex;
-      color: #a3a3a3;
+      color: #797979;
       transition: all 0.2s ease-in-out 0.05s;
       cursor: pointer;
     }
@@ -28,6 +29,7 @@ export const Main = styled.div`
       transition: all 0.2s;
       background-color: #fff;
       margin: 0;
+      box-shadow: inset #95abd5 0px 4px 1px 0px;
     }
   }
 `;
