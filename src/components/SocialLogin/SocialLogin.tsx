@@ -59,12 +59,10 @@ export const SocialLogin = (props: Props) => {
         <SocialBtn onClick={() => onWindow(GOOGLE_URL)} name="Login with Google" icon={Googlei} bg="#fff" color="#3c4043" />
         <br />
 
-        <SocialBtn onClick={() => onWindow(GITHUB_URL)} name="Login with Github" icon={Githubi} bg="#3c4043" color="#ebe9e9" />
-
+        <SocialBtn onClick={() => onWindow(NAVER_URL)} name="Login with Naver" icon={Naveri} bg="#19c260" color="#fff" />
         <br />
 
-        <SocialBtn onClick={() => onWindow(NAVER_URL)} name="Login with Naver" icon={Naveri} bg="#19c260" color="#fff" />
-
+        <SocialBtn onClick={() => onWindow(GITHUB_URL)} name="Login with Github" icon={Githubi} bg="#3c4043" color="#ebe9e9" />
         <br />
 
         {/* <SocialBtn onClick={() => onWindow(KAKAO_URL)} name="Login with Kakao" icon={Kakao} bg="#fee500" color="#000" /> */}

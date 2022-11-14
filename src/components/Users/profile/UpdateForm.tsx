@@ -1,5 +1,5 @@
 import 'antd/dist/antd.css';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useAuth, useInput } from 'src/hooks';
 import { Hashtags } from 'src/components/Write';
 import { Button } from 'src/components/common';
@@ -9,6 +9,7 @@ import axios from 'axios';
 import * as S from './style/myInfo.style';
 import { Avatar, message } from 'antd';
 import { Refreshi } from 'src/icons';
+import UploadAvatar from './UploadAvatar';
 
 type Props = {};
 
@@ -17,7 +18,7 @@ export const UserUpdateForm = (props: Props) => {
   const { auth, refetch } = useAuth();
   const [nickname, onChangeNickname] = useInput<string>(auth?.id && auth?.nickname, 15);
   const [name, onChangeName] = useInput<string>(auth?.name, 10);
-  const [avatar, onChangeAvatar] = useInput<string>(auth?.avatar);
+  const [avatar, setAvatar] = useState<string>(auth?.avatar);
   const [description, onChangeDescription] = useInput<string>(auth?.description, 260);
   const [skills, setSkills] = React.useState<string[]>((auth?.skill && auth.skill) || []);
   // const update = useQuery("auth",user.myInfoUpdate({""}), )
@@ -65,7 +66,7 @@ export const UserUpdateForm = (props: Props) => {
             <S.Culumn>
               <S.Label>닉네임: 다른 유저에게 보여지는 닉네임이에요.</S.Label>
               <S.Value>
-                <Avatar src={auth?.avatar} /> <Refreshi css={{ marginRight: '10px', cursor: 'pointer' }} />
+                <UploadAvatar avatar={avatar} setAvatar={setAvatar} />
                 <S.Input defaultValue={auth.nickname} onChange={onChangeNickname} />
               </S.Value>
             </S.Culumn>

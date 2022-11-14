@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import { useRef, useState, useMemo, useCallback, useEffect, Dispatch, SetStateAction } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import styled from 'styled-components';
-import { uploadS3 } from './utils/upload-s3';
+import { uploadS3 } from '../../lib/service/upload-s3';
 // const uploadS3 = dynamic(() => import('./QuillEditor'));
 
 import 'highlight.js/styles/monokai-sublime.css';

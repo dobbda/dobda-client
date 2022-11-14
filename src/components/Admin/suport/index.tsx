@@ -22,10 +22,10 @@ const Suport = ({ onlyPolicy = false }: Props) => {
 
       <Flex>
         <Link href={`/suport/service-terms`}>
-          <Text>개인정보처리방침</Text>
+          <Text>서비스이용약관 </Text>
         </Link>
         <Link href={`/suport/privacy-policy`}>
-          <Text $before>서비스이용약관</Text>
+          <Text $before>개인정보처리방침</Text>
         </Link>
       </Flex>
     </div>
