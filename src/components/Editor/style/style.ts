@@ -54,17 +54,29 @@ export const SubmitWrap = styled.div`
 
 export const ViewWrapper = styled.div`
   font-size: 15px;
-  overflow: auto;
   pre {
+    cursor: default;
+    code {
+      cursor: text;
+    }
+    /* padding: */
     background-color: #263238 !important;
-    white-space: pre-wrap !important;
+    white-space: pre;
+    white-space: -webkit-nowrap;
     margin: 5px !important;
-    padding: 10px !important;
+    padding: 10px 15px !important;
     border-radius: 3px;
-  }
-  pre,
-  code {
+    overflow-x: auto;
     color: #8f76db;
+
+    ::-webkit-scrollbar {
+      height: 10px;
+      background-color: #3b3939;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #b3b3b3;
+      border-radius: 10px;
+    }
   }
 
   img {

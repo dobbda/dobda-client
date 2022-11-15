@@ -41,14 +41,16 @@ export const ChildView = styled.div`
 
 export const Viewer = styled.div<Props>`
   background-color: #fff;
-  padding: 0 25px 25px;
+  padding: 0 10px;
 `;
 
 export const Header = styled.div<Props>`
-  padding: 20px 25px;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px #e6e6e6aa solid;
+
   .gc-left {
     display: flex;
     align-items: center;

@@ -16,8 +16,8 @@ type Props = {
 const SImg = styled(AntAvatar)`
   border: 1px solid ${theme.color.border2};
   :hover {
-    border: 1px solid ${theme.color.secondary};
-    box-shadow: ${theme.color.seRgb(0.8)} 0px 0.5px 1px 2px;
+    box-shadow: ${theme.color.prRgb(0.5)} 0px 0.5px 1px 2px;
+    transition: all 0.2s;
   }
 `;
 const Div = styled.div`
@@ -33,8 +33,10 @@ const Div = styled.div`
     font-size: 15px;
     color: #707070;
     :hover {
-      text-decoration: underline;
-      text-underline-offset: 3px;
+      /* text-decoration: underline;
+      text-underline-offset: 3px; */
+      box-shadow: inset ${theme.color.prRgb(0.5)} 0px -2px 0px 0px;
+      transition: all 0.2s;
     }
   }
 `;

@@ -3,7 +3,7 @@ import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 
 const headerFont = '20px';
-const wrapperPadding = '30px';
+const wrapperPadding = '20px';
 export const DetailContainer = styled.div`
   max-width: 860px;
   padding: 3px;
@@ -32,8 +32,7 @@ export const CoinWrapper = styled.span`
   }
 `;
 export const ContentHeader = styled.header`
-  /* background-color: #fbfbfb; */
-  padding: ${wrapperPadding};
+  padding: 20px;
   border-bottom: 1px solid #ccc;
   position: relative;
 
@@ -56,7 +55,7 @@ export const OnyUser = styled.div`
   }
 `;
 export const ContentViewWrapper = styled.div`
-  padding: 10px 20px;
+  padding: 10px 0;
   height: 100%;
 `;
 

@@ -1,7 +1,10 @@
-import moment from 'moment';
-import 'moment/locale/ko';
+import 'dayjs/locale/ko';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import dayjs from 'dayjs';
+dayjs.locale('ko');
+dayjs.extend(relativeTime);
 const getDate = (date: Date | string, fromNow: boolean = false) => {
-  return fromNow ? moment(date).fromNow() : moment(date).format('YYYY-MM-DD MM:SS');
+  return fromNow ? dayjs(date).fromNow() : dayjs(date).format('YYYY-MM-DD MM:SS');
 };
 
 export default getDate;

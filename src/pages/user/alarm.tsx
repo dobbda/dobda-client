@@ -6,9 +6,9 @@ import { Layout } from 'src/Layout';
 
 type Props = {};
 
-const Dingdong: NextPage = (props: Props) => {
+const Index: NextPage = (props: Props) => {
   return (
-    <Layout myNavigator>
+    <Layout>
       <UserPage>
         <AlarmPage />
       </UserPage>
@@ -16,4 +16,4 @@ const Dingdong: NextPage = (props: Props) => {
   );
 };
 
-export default Dingdong;
+export default Index;

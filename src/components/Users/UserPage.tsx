@@ -16,7 +16,7 @@ export const UserPage = ({ children }: Props) => {
     <UserPageWrapper>
       <div css={{ width: '100%' }}>{children}</div>
       <div className="navigator">
-        <FolderMenu title="CATEGORIES" childOpen={true} height="160px">
+        <FolderMenu title="CATEGORIES" childOpen={true} height="200px">
           <ul css={{ margin: '0', padding: '0' }}>
             <Li $isPath={'/user/profile' == router.pathname}>
               <Link href="/user/profile">내정보</Link>
@@ -30,6 +30,9 @@ export const UserPage = ({ children }: Props) => {
             <Li $isPath={'/user/alarm' == router.pathname}>
               <Link href="/user/alarm">전체알림 </Link>
             </Li>
+            <Li $isPath={'/user/portfolio' == router.pathname}>
+              <Link href="/user/portfolio">공개프로필 </Link>
+            </Li>
           </ul>
         </FolderMenu>
       </div>
@@ -42,7 +45,7 @@ const UserPageWrapper = styled.div`
   display: flex;
   gap: 20px;
   .navigator {
-    background-color: #f8f8f8;
+    background-color: #fff;
     height: 250px;
     width: 250px;
     margin-top: 40px;
@@ -60,9 +63,9 @@ const UserPageWrapper = styled.div`
 const Li = styled.li<{ $isPath?: boolean }>`
   margin: 1px;
   font-size: 15px;
-  font-weight: bold;
-  color: #000000;
+  font-weight: 500;
   padding: 10px 20px;
+  color: #000000d9;
   * {
     letter-spacing: 3px;
   }

@@ -10,9 +10,9 @@ import { UserPage } from 'src/components/Users/UserPage';
 import { keys } from 'src/hooks';
 import { Layout } from 'src/Layout';
 
-const coinhistory: NextPage = () => {
+const Index: NextPage = () => {
   return (
-    <Layout myNavigator>
+    <Layout>
       <UserPage>
         <CoinPage />
       </UserPage>
@@ -20,17 +20,4 @@ const coinhistory: NextPage = () => {
   );
 };
 
-export default coinhistory;
-
-// export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
-//   const queryClient = new QueryClient();
-//   if (exp?.access_exp) {
-//     await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
-//   }
-//   return {
-//     props: {
-//       dehydratedState: dehydrate(queryClient),
-//       exp: exp,
-//     },
-//   };
-// });
+export default Index;

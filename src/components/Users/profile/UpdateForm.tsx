@@ -69,6 +69,7 @@ export const UserUpdateForm = (props: Props) => {
                 <UploadAvatar avatar={avatar} setAvatar={setAvatar} />
                 <S.Input defaultValue={auth.nickname} onChange={onChangeNickname} />
               </S.Value>
+              <S.Msg> 저장하지 않으면 적용되지 않습니다.</S.Msg>
             </S.Culumn>
 
             <S.Culumn>

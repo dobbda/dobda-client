@@ -11,24 +11,11 @@ import { keys } from 'src/hooks';
 
 type Props = {};
 
-const MyProfile: NextPage = (props: Props) => {
+const Index: NextPage = (props: Props) => {
   return (
-    <Layout myNavigator>
+    <Layout>
       <MyInfo />
     </Layout>
   );
 };
-export default MyProfile;
-
-// export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
-//   const queryClient = new QueryClient();
-//   if (exp?.access_exp) {
-//     await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
-//   }
-//   return {
-//     props: {
-//       dehydratedState: dehydrate(queryClient),
-//       exp: exp,
-//     },
-//   };
-// });
+export default Index;

@@ -7,9 +7,8 @@ export const ReplyItem = styled.div<Props>`
   background-color: #f8f9fa;
   border: 1px solid rgba(217, 217, 217, 1);
   margin: -1px;
-  padding-left: 25px;
   .content-viewer {
-    padding: 10px 25px;
+    padding: 10px;
   }
   i.reply {
     // icons
@@ -23,6 +22,7 @@ export const Header = styled.div<Props>`
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px #e6e6e6aa solid;
   /* padding: 10px; */
   .rc-left {
     display: flex;
@@ -45,5 +45,5 @@ export const Header = styled.div<Props>`
 `;
 
 export const CommentContent = styled.div`
-  padding: 0 25px 25px;
+  padding: 0 10px;
 `;

@@ -4,3 +4,4 @@ export { Alarms } from './alarms/AlarmModalContent';
 export { AlarmPage } from './alarms';
 export { Poster } from './MyPoster';
 export { CoinPage } from './coin';
+export { Portfolio } from './portfolio';

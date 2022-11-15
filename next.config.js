@@ -60,7 +60,6 @@ module.exports = withPlugins([withBundleAnalyzer], {
     return {
       ...nextConfig,
       mode: prod ? 'production' : 'development',
-      plugins: [...nextConfig.plugins, new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /^\.\/ko$/)],
     };
   },
 });

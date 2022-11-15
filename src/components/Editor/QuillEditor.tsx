@@ -1,20 +1,16 @@
+import 'react-quill/dist/quill.snow.css';
+import 'highlight.js/styles/monokai-sublime.css';
+
 import dynamic from 'next/dynamic';
 import { useRef, useState, useMemo, useCallback, useEffect, Dispatch, SetStateAction } from 'react';
-import 'react-quill/dist/quill.snow.css';
 import styled from 'styled-components';
 import { uploadS3 } from '../../lib/service/upload-s3';
-// const uploadS3 = dynamic(() => import('./QuillEditor'));
 
-import 'highlight.js/styles/monokai-sublime.css';
 import javascript from 'highlight.js/lib/languages/javascript';
-import bash from 'highlight.js/lib/languages/bash';
-import yaml from 'highlight.js/lib/languages/yaml';
 import hljs from 'highlight.js/lib/core';
 
 // Register languages
 hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('bash', bash);
-hljs.registerLanguage('yaml', yaml);
 const ReactQuill = dynamic(
   async () => {
     const { default: RQ } = await import('react-quill');
@@ -120,11 +116,7 @@ const QStyle = styled.div<{ minHeight?: string }>`
     padding-bottom: 30px;
     max-height: 800px;
   }
-  .ql-toolbar {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+
   pre {
     background-color: #282c34 !important;
   }

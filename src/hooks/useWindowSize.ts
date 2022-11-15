@@ -1,5 +1,5 @@
+import throttle from 'lodash/throttle';
 import { useState, useEffect } from 'react';
-import { throttle } from 'throttle-debounce';
 
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
@@ -20,7 +20,7 @@ export const useWindowSize = () => {
     // Call handler right away so state gets updated with initial window size
     handleResize();
     // Remove event listener on cleanup
-    return () => window.removeEventListener('resize', throttle(100, handleResize));
+    return () => window.removeEventListener('resize', throttle(handleResize, 100));
   }, []); // Empty array ensures that effect is only run on mount
   const width = windowSize.width;
   const height = windowSize.height;

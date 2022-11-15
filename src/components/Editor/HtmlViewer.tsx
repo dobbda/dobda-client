@@ -1,39 +1,44 @@
 import 'react-quill/dist/quill.snow.css';
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
-import styled from 'styled-components';
 import 'highlight.js/styles/monokai-sublime.css';
+
+import React from 'react';
 import javascript from 'highlight.js/lib/languages/javascript';
-import bash from 'highlight.js/lib/languages/bash';
-import yaml from 'highlight.js/lib/languages/yaml';
+
 import hljs from 'highlight.js/lib/core';
 import { ViewWrapper } from './style/style';
+import parse, { domToReact } from 'html-react-parser';
 // Register languages
 hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('bash', bash);
-hljs.registerLanguage('yaml', yaml);
 
 interface MarkdownViewProps {
   content: string;
 }
 const HtmlViewer = ({ content }: MarkdownViewProps) => {
-  const transform = (node: any, index: number | string) => {
-    if (node.name === 'pre') {
-      if (node.children?.length == 1) {
-        let code = node.children[0]?.data;
-        let color = hljs.highlightAuto(`${code}`).value;
-        return <pre key={index}>{ReactHtmlParser(color, transform)}</pre>;
+  const options = {
+    replace: (domNode: any) => {
+      if (domNode.attribs && domNode.name === 'pre') {
+        if (domNode.children.length == 1) {
+          let code = domNode.children[0]?.data;
+          let color = hljs.highlightAuto(`${code}`).value;
+          return (
+            <pre>
+              <code>{parse(color, options)}</code>
+            </pre>
+          );
+        } else {
+          return (
+            <pre>
+              <code>{domToReact(domNode.children, options)}</code>
+            </pre>
+          );
+        }
       }
-    }
+    },
   };
 
-  const options = {
-    decodeEntities: true,
-    transform,
-  };
   return (
     <>
-      <ViewWrapper className="view ql-editor">{ReactHtmlParser(content, options)}</ViewWrapper>
+      <ViewWrapper className="view ql-editor">{parse(content, options)}</ViewWrapper>
     </>
   );
 };

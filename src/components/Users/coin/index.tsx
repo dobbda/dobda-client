@@ -6,6 +6,7 @@ import { Tips } from 'src/components/common/@share/Tips';
 import { useAuth } from 'src/hooks';
 import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
+import { UserPage } from '../UserPage';
 import { CoinHistoryC } from './CoinHistory';
 import { CoinReservC } from './CoinReserv';
 

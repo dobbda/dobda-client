@@ -1,5 +1,5 @@
+import throttle from 'lodash/throttle';
 import { useState, useEffect } from 'react';
-import { throttle, debounce } from 'throttle-debounce';
 
 export function useScroll() {
   const [scrollY, setScrollY] = useState(window.scrollY + document.documentElement.clientHeight);
@@ -15,7 +15,7 @@ export function useScroll() {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', throttle(100, listener));
+    window.addEventListener('scroll', throttle(listener, 100));
     return () => {
       window.removeEventListener('scroll', listener);
     };

@@ -8,25 +8,16 @@ import { ssr } from 'src/api';
 import { errorHandler } from 'src/api/errorHandler';
 import { keys } from 'src/hooks';
 import { Poster } from 'src/components/Users';
-const PosterList: NextPage = () => {
+import { UserPage } from 'src/components/Users/UserPage';
+
+const Index: NextPage = () => {
   return (
-    <Layout myNavigator>
-      <Poster />
+    <Layout>
+      <UserPage>
+        <Poster />
+      </UserPage>
     </Layout>
   );
 };
 
-export default PosterList;
-
-// export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
-//   const queryClient = new QueryClient();
-//   if (exp?.access_exp) {
-//     await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
-//   }
-//   return {
-//     props: {
-//       dehydratedState: dehydrate(queryClient),
-//       exp: exp,
-//     },
-//   };
-// });
+export default Index;

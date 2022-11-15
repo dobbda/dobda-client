@@ -41,25 +41,21 @@ export const Poster = () => {
   ) : null;
 
   return (
-    <UserPage>
-      <Wrapper>
-        <Divider orientation="left">
-          <h2>내 글 목록</h2>
-        </Divider>
-        <br />
+    <Wrapper>
+      <Divider orientation="left">
+        <h2>내 글 목록</h2>
+      </Divider>
+      <br />
 
-        <Segmented block options={MyPostList} value={category} onChange={(value: SegmentedValue) => setCategory(value)} />
-        <br />
-        <List
-          bordered
-          dataSource={data?.result}
-          loadMore={loadMore}
-          css={{ maxHeight: '700px', overflow: 'auto', paddingBottom: '10px' }}
-          renderItem={(item) => (
-            <List.Item>{category == MyPostList[0] ? <QCard data={item} /> : <OCard data={item} />}</List.Item>
-          )}
-        />
-      </Wrapper>
-    </UserPage>
+      <Segmented block options={MyPostList} value={category} onChange={(value: SegmentedValue) => setCategory(value)} />
+      <br />
+      <List
+        bordered
+        dataSource={data?.result}
+        loadMore={loadMore}
+        css={{ maxHeight: '700px', overflow: 'auto', paddingBottom: '10px' }}
+        renderItem={(item) => <List.Item>{category == MyPostList[0] ? <QCard data={item} /> : <OCard data={item} />}</List.Item>}
+      />
+    </Wrapper>
   );
 };
