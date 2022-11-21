@@ -8,7 +8,7 @@ import { useAuth, useLoginModalhandler } from 'src/hooks';
 import { GITHUB_URL, GOOGLE_URL, KAKAO_URL, NAVER_URL } from './CDN_URL';
 import { Auth } from 'src/types';
 import { Googlei, Githubi, Naveri } from 'src/icons';
-import Suport from '../Admin/suport';
+import Suport from '../Admin/support';
 type Props = {};
 
 export const SocialLogin = (props: Props) => {

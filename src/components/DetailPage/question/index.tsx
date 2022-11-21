@@ -43,7 +43,7 @@ const QuestionPage = ({ data }: Props) => {
   const add = useAddAnswer(data?.id);
 
   const onSubmitAnswer = useCallback(async () => {
-    let len = html.substring(0, 14).replace(/\<p\>|\<\/p\>|\<br\>/g, '').length;
+    let len = html?.replace(/<(.|\n)*?>/g, '').trim().length;
     if (len < 5) return message.error('5글자 이상 작성 하여야 합니다.');
     const answerData = { content: html, qid: data.id };
     add.mutate(answerData);

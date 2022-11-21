@@ -1,21 +1,21 @@
-import { LoadingOutlined } from '@ant-design/icons';
 import { Space, Spin } from 'antd';
 import React from 'react';
+import { LoadingIcon } from 'src/icons';
 import styled from 'styled-components';
 interface Props {
-  loading: boolean;
+  loading?: boolean;
   large?: boolean;
+  size?: number;
 }
-export const Loading = ({ loading, large }: Props) => {
-  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-  const antIconL = <LoadingOutlined style={{ fontSize: 50 }} spin />;
+export const Loading = ({ loading = true, large, size }: Props) => {
+  const antIconL = <LoadingIcon style={{ fontSize: 50 }} spin />;
 
   return (
     <>
-      {!large && loading && <Spin indicator={antIcon} />}
+      {!large && loading && <LoadingIcon style={{ fontSize: size || 24 }} spin />}
       {large && loading && (
         <Space size="large">
-          <Spin size="large" indicator={antIconL} />
+          <LoadingIcon style={{ fontSize: size || 50 }} spin />
         </Space>
       )}
     </>
@@ -30,7 +30,7 @@ export const LoadingPage = ({ size, descript }: LoadingPage) => {
   return (
     <Bg>
       <Wr>
-        <Spin size="large" indicator={<LoadingOutlined style={{ fontSize: size | 100 }} spin />} />
+        <Spin size="large" indicator={<LoadingIcon style={{ fontSize: size | 100 }} spin />} />
         <br />
         <div className="descript">{descript}</div>
       </Wr>

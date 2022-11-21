@@ -1,3 +1,5 @@
+import { RcFile, UploadFile, UploadFileStatus } from 'antd/lib/upload/interface';
+
 export interface Author {
   nickname: string;
   id: number; //
@@ -262,3 +264,24 @@ export type InfinityProps<T> = {
   totalPages?: number;
   total?: number;
 };
+
+////////////////////////////
+export interface Image {
+  uid?: string;
+  name: string;
+  fileName?: string;
+  url?: string;
+}
+export interface ContentProps {
+  content?: string;
+  images?: Image[];
+}
+export interface PortfolioType {
+  card: {
+    bgImg?: string | Image;
+    bgColor?: string;
+    title?: string;
+    titleColor?: string;
+  };
+  content: ContentProps[];
+}

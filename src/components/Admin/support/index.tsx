@@ -6,7 +6,7 @@ type Props = {
   onlyPolicy?: boolean;
 };
 
-const Suport = ({ onlyPolicy = false }: Props) => {
+const Support = ({ onlyPolicy = false }: Props) => {
   return (
     <div css={{ marginTop: '20px' }}>
       {!onlyPolicy && (
@@ -21,10 +21,10 @@ const Suport = ({ onlyPolicy = false }: Props) => {
       )}
 
       <Flex>
-        <Link href={`/suport/service-terms`}>
+        <Link href={`/support/service-terms`}>
           <Text>서비스이용약관 </Text>
         </Link>
-        <Link href={`/suport/privacy-policy`}>
+        <Link href={`/support/privacy-policy`}>
           <Text $before>개인정보처리방침</Text>
         </Link>
       </Flex>
@@ -32,7 +32,7 @@ const Suport = ({ onlyPolicy = false }: Props) => {
   );
 };
 
-export default Suport;
+export default Support;
 
 const Text = styled.span<{ $before?: boolean }>`
   color: #777777;

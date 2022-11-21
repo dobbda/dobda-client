@@ -5,6 +5,5 @@ declare module '*.svg' {
   export default svg;
 }
 
-declare module 'react-html-parser';
 declare module 'react-quill';
 declare module 'quill-image-resize-module-react';

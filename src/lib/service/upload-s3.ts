@@ -1,13 +1,12 @@
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 export const uploadS3 = async (file: File, folder?: string) => {
-  let type = file.name.split('.').pop().toLowerCase();
-  let orgName = file.name.split('.')[0];
+  let type = file?.name.split('.').pop().toLowerCase();
+  let orgName = file?.name.split('.')[0];
   const can = ['jpg', 'png', 'gif', 'svg', 'jpeg', 'webp'];
 
-  if (can.indexOf(type)) {
-    const fileName = (folder ? folder : 'img') + `/${orgName}_${Date.now().toString().substring(0, 10)}.` + type;
-    console.log('upload: ', fileName, type, file);
+  if (can.includes(type)) {
+    const fileName = (folder ? folder : 'img') + `/${orgName}_${Date.now().toString().slice(-10)}.` + type;
     // 업로드 성공시
     const url = `https://dobda.s3.${process.env?.NEXT_PUBLIC_REGION}.amazonaws.com/${fileName}`;
     const s3 = new S3Client({
@@ -29,7 +28,7 @@ export const uploadS3 = async (file: File, folder?: string) => {
     try {
       const res = await s3.send(uploadParams);
       if (res.$metadata.httpStatusCode == 200) {
-        return url;
+        return { url, fileName };
       }
     } catch {
       alert('업로드 실패');

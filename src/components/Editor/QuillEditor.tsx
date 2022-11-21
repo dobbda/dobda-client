@@ -48,7 +48,7 @@ const QuillEditor = ({ html, setHtml, height, setFocus }: Props) => {
         quillRef.current.getEditor().insertEmbed(range.index, 'image', '/img/loading.gif');
         quillRef.current.getEditor().setSelection(range.index + 1); // 커서 한칸 앞으로
         try {
-          const url = await uploadS3(file[0]); //aws 이미지 업로드
+          const { url } = await uploadS3(file[0]); //aws 이미지 업로드
           // const url = 'https://dobda.s3.ap-northeast-2.amazonaws.com/content-images/dobda-1665391720714.png';
           quillRef.current.getEditor().deleteText(range.index, 1);
           quillRef.current.getEditor().insertEmbed(range.index, 'image', url);
@@ -98,9 +98,9 @@ const QuillEditor = ({ html, setHtml, height, setFocus }: Props) => {
         <ReactQuill
           forwardedRef={quillRef}
           value={html}
-          onChange={setHtml}
+          onChange={(v: string) => setHtml(v)}
           modules={modules}
-          placeholder="내용을 입력해주세요."
+          // placeholder="내용을 입력해주세요."
           theme="snow"
         />
       </QStyle>

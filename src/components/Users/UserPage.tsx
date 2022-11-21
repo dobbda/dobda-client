@@ -16,7 +16,7 @@ export const UserPage = ({ children }: Props) => {
     <UserPageWrapper>
       <div css={{ width: '100%' }}>{children}</div>
       <div className="navigator">
-        <FolderMenu title="CATEGORIES" childOpen={true} height="200px">
+        <FolderMenu title="CATEGORIES" childOpen={true} height="197px">
           <ul css={{ margin: '0', padding: '0' }}>
             <Li $isPath={'/user/profile' == router.pathname}>
               <Link href="/user/profile">내정보</Link>
@@ -46,7 +46,7 @@ const UserPageWrapper = styled.div`
   gap: 20px;
   .navigator {
     background-color: #fff;
-    height: 250px;
+    height: fit-content;
     width: 250px;
     margin-top: 40px;
     border: 1px solid ${theme.color.border(0.1)};
@@ -61,6 +61,7 @@ const UserPageWrapper = styled.div`
 `;
 
 const Li = styled.li<{ $isPath?: boolean }>`
+  user-select: none;
   margin: 1px;
   font-size: 15px;
   font-weight: 500;

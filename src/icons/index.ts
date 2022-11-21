@@ -32,6 +32,8 @@ export { FaHandsHelping as OutSourcei } from 'react-icons/fa';
 export { BiRightArrow as GoArrowi } from 'react-icons/bi';
 export { BiLeftArrow as BackArrowi } from 'react-icons/bi';
 export { MdOutlineHelp as Tipi } from 'react-icons/md';
+export { AiOutlineUpload } from 'react-icons/ai';
+export { LoadingOutlined as LoadingIcon } from '@ant-design/icons';
 
 import { RiArrowDownSLine } from 'react-icons/ri';
 export const MainArrowi = styled(RiArrowDownSLine)`

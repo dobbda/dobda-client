@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { CSSProperties } from 'styled-components';
+import styled, { css, CSSProperties } from 'styled-components';
 import { theme } from 'src/styles/Theme';
 import { ButtonProps, ButtonType } from 'antd/lib/button';
 
@@ -9,6 +9,7 @@ interface Props {
   $block?: boolean;
   $fill?: boolean;
   onClick?: React.MouseEventHandler<HTMLElement>;
+  disabled?: boolean;
 }
 
 const color = {
@@ -34,4 +35,5 @@ export const Button = styled.button<Props>`
   :hover {
     box-shadow: ${theme.color.prRgb(0.4) + '0px 0px 0px 3px'};
   }
+  pointer-events: ${(props) => (props.disabled ? 'none' : null)};
 `;
