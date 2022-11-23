@@ -1,5 +1,5 @@
 import React from 'react';
-import { Portfolio } from 'src/components/Users';
+import { MyPortfolio } from 'src/components/Users';
 import { UserPage } from 'src/components/Users/UserPage';
 import { Layout } from 'src/Layout';
 
@@ -9,7 +9,7 @@ const Index = (props: Props) => {
   return (
     <Layout>
       <UserPage>
-        <Portfolio />
+        <MyPortfolio />
       </UserPage>
     </Layout>
   );

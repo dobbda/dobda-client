@@ -276,12 +276,15 @@ export interface ContentProps {
   content?: string;
   images?: Image[];
 }
-export interface PortfolioType {
+export interface Portfolio {
   card: {
-    bgImg?: string | Image;
+    bgImg?: Image;
     bgColor?: string;
     title?: string;
     titleColor?: string;
   };
-  content: ContentProps[];
+  content: {
+    content?: string;
+    images?: Image[];
+  }[];
 }

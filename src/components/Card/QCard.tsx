@@ -28,7 +28,7 @@ const QCard = ({ data }: data) => {
           </S.HeaderWrapper>
           {/* cotent */}
           <S.BodyWrapper>
-            <Lib.Link href={`/questions/${q.id}`}>
+            <Lib.Link href={`/questions/${q.id}`} scroll={false}>
               <c.Title>{q.title}</c.Title>
             </Lib.Link>
             <atom.TagWrapper>

@@ -18,7 +18,6 @@ export const SideContentLeft = ({ folderOpenFalse }: Props) => {
   const { logout } = useLogout();
   return (
     <SideContainer>
-      <br />
       <FolderMenu icon={<Noticei size="20px" />} childOpen={!folderOpenFalse} title="공지사항" href="/notice">
         <NotiList />
       </FolderMenu>

@@ -24,7 +24,7 @@ export const Button = styled.button<Props>`
   color: ${({ types, $fill }) => ($fill ? '#fff' : color[types])};
   border: 1px solid ${({ types }) => color[types]};
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
   border-radius: 4px;
   white-space: nowrap;
   user-select: none;

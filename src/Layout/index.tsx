@@ -21,23 +21,19 @@ export const Layout = ({ children, sideRight = false, sideLeft = false, banner =
       <S.HeaderContent>{banner && <BnCarousel />}</S.HeaderContent>
       <S.Position>
         <S.Wrapper>
-          <div>
-            {sideLeft && width > 1060 && (
-              <S.SideNavWrapper>
-                <SideContentLeft />
-              </S.SideNavWrapper>
-            )}
-          </div>
+          {sideLeft && width > 1060 && (
+            <S.SideNavWrapper>
+              <SideContentLeft />
+            </S.SideNavWrapper>
+          )}
           <S.MainWrapper>{children}</S.MainWrapper>
-          <div>
-            {sideRight && (
-              <S.SideNavWrapper>
-                {sideLeft && width < 1060 && <SideContentLeft folderOpenFalse />}
-                <SideContentRight />
-                <Suport />
-              </S.SideNavWrapper>
-            )}
-          </div>
+          {sideRight && (
+            <S.SideNavWrapper>
+              {sideLeft && width < 1060 && <SideContentLeft folderOpenFalse />}
+              <SideContentRight />
+              <Suport />
+            </S.SideNavWrapper>
+          )}
         </S.Wrapper>
       </S.Position>
     </S.Container>

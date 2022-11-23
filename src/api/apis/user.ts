@@ -1,4 +1,4 @@
-import { CoinReserv } from './../../types/index';
+import { CoinReserv, Portfolio } from './../../types/index';
 import { CoinHistory, InfinityProps, Outsource, Question } from 'src/types';
 import { Alarm, Auth, UserUpdate } from 'src/types';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
@@ -76,4 +76,13 @@ export const coinReserv = async (pageParam: number = 1): Promise<InfinityProps<C
     totalPages: res.data.response.totalPages,
     total: res.data.response?.total,
   };
+};
+
+export const patchPf = async (data: Portfolio) => {
+  let strData = { card: JSON.stringify(data.card), content: JSON.stringify(data.content) };
+  return await axios.patch(`/api/users/pf`, strData);
+};
+export const getPf = async (userId: number) => {
+  const data = (await axios.get(`/api/users/pf?userId=` + userId)).data;
+  console.log(data);
 };

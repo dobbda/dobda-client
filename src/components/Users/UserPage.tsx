@@ -42,6 +42,7 @@ export const UserPage = ({ children }: Props) => {
 
 const UserPageWrapper = styled.div`
   width: 100%;
+  min-height: 100%;
   display: flex;
   gap: 20px;
   .navigator {

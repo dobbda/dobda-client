@@ -55,11 +55,11 @@ export const SubmitWrap = styled.div`
 export const ViewWrapper = styled.div`
   font-size: 15px;
   pre {
-    cursor: default;
+    cursor: auto;
     code {
       cursor: text;
     }
-    /* padding: */
+
     background-color: #263238 !important;
     white-space: pre;
     white-space: -webkit-nowrap;
@@ -86,6 +86,9 @@ export const ViewWrapper = styled.div`
   p {
     margin-bottom: 7px;
     line-height: 22px;
+  }
+  a {
+    color: #1890ff;
   }
 
   h1,

@@ -3,23 +3,20 @@ import Divider from 'antd/lib/divider';
 import { UploadFile } from 'antd/lib/upload/interface';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Editor, HtmlViewer } from 'src/components/Editor';
-import { useInput } from 'src/hooks';
 import styled from 'styled-components';
 import { ProfileCardSet } from './WritePortfolio/ProfileCardSet';
 import { PfEditor } from './WritePortfolio/PfEditor';
-import { UploadSlider } from './WritePortfolio/UploadSlider';
 import { useQueryClient, useQuery } from 'react-query';
 import { uploadS3 } from 'src/lib/service/upload-s3';
 import { Image } from 'src/types';
 import { resizeImage } from 'src/lib/service/resizeImg';
-import { RcFile } from 'antd/es/upload';
-
+import { Button as CustomButton } from 'src/components/common/@share/Buttons';
 type Props = {};
 interface Content {
   content?: string;
   images?: Image[];
 }
-export const Portfolio = (props: Props) => {
+export const MyPortfolio = (props: Props) => {
   const queryClient = useQueryClient();
   const [html, setHtml] = useState('');
   const [contents, setContents] = useState<Content[]>([]);
@@ -47,7 +44,17 @@ export const Portfolio = (props: Props) => {
     // },
   ]);
   const { data } = useQuery('profileCardSetData');
-
+  console.log(fileList);
+  const [isAdd, setIsAdd] = useState(false);
+  useEffect(() => {
+    console.log(
+      html?.replace(/<(.|\n)*?>/g, '').trim().length,
+      fileList.length,
+      html?.replace(/<(.|\n)*?>/g, '').trim().length !== 0,
+      fileList.length !== 0,
+    );
+    setIsAdd(html?.replace(/<(.|\n)*?>/g, '').trim().length !== 0 || fileList.length !== 0);
+  }, [html, fileList]);
   const addContent = useCallback(async () => {
     if (fileList || html?.replace(/<(.|\n)*?>/g, '').trim().length !== 0) {
       const images = fileList?.map(async (v: UploadFile) => {
@@ -80,7 +87,7 @@ export const Portfolio = (props: Props) => {
           {contents.map((v, i: number) => {
             return (
               <li key={i}>
-                <div>{v?.images[0].url}</div>
+                <div>{v?.images[0]?.url}</div>
                 <HtmlViewer content={v.content} />
               </li>
             );
@@ -91,17 +98,24 @@ export const Portfolio = (props: Props) => {
           <Button
             type="primary"
             onClick={addContent}
-            css={{ width: '100%', marginTop: '5px', borderRadius: '0' }}
-            disabled={false}
+            css={{ width: '100%', marginTop: '5px', borderRadius: '4px' }}
+            disabled={!isAdd}
           >
-            추가
+            추 가
           </Button>
         </EditorCt>
+        <br />
+        <CustomButton types="primary" $fill onClick={addContent} css={{ width: '100%', borderRadius: '0' }} disabled={!isAdd}>
+          {!isAdd ? '수정내용 없음' : '변경내용 저장'}
+        </CustomButton>
+        <br />
       </Wrapper>
     </>
   );
 };
 const Wrapper = styled.div`
+  position: relative;
+  min-height: 99vh;
   padding-bottom: 30px;
   ul {
     margin: 10px 0;

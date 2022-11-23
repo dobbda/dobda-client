@@ -14,8 +14,9 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${theme.color.bg};
 		-webkit-text-size-adjust: none;
 		/* font-family:  "Helvetica Neue", Helvetica,'Noto Sans KR', sans-serif,  Inter ; */
-		font-family: Pretendard, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+		/* font-family: Pretendard, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
+		font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     font-display: fallback;
 		font-size: 14px;
 		overflow-y: scroll;

@@ -100,7 +100,7 @@ const QuillEditor = ({ html, setHtml, height, setFocus }: Props) => {
           value={html}
           onChange={(v: string) => setHtml(v)}
           modules={modules}
-          // placeholder="내용을 입력해주세요."
+          placeholder="내용을 입력해주세요."
           theme="snow"
         />
       </QStyle>
