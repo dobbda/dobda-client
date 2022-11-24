@@ -20,20 +20,18 @@ const useAddSourcing = (mutationFn: any, sid?: number) => {
         queryClient.setQueryData(keys.sourcings(), (oldData: any) => {
           if (newOutsource.createdAt === newOutsource.updatedAt) {
             const updatedData = produce(oldData, (draft: any) => {
-              draft.pages[0].result.unshift(newOutsource);
+              draft.result.unshift(newOutsource);
             });
             return updatedData;
           }
 
           if (oldData) {
             const updatedData = produce(oldData, (draft: any) => {
-              draft.pages[0].result.unshift(newOutsource);
-              draft.pages.map((pages: any) =>
-                pages.result.map((page: Outsource) => {
-                  if (page.id === newOutsource.id) return newOutsource;
-                  return page;
-                }),
-              );
+              draft.result.unshift(newOutsource);
+              draft.result.map((page: Outsource) => {
+                if (page.id === newOutsource.id) return newOutsource;
+                return page;
+              });
             });
             return updatedData;
           }
@@ -49,14 +47,12 @@ const useAddSourcing = (mutationFn: any, sid?: number) => {
         queryClient.cancelQueries(keys.sourcings());
         queryClient.setQueryData(keys.sourcings(), (oldData: any) =>
           produce(oldData, (draft: any) => {
-            oldData?.pages.forEach((pages: any, i: number) =>
-              pages.result.forEach((v: any, j: number) => {
-                if (v.id === newOutsource.id) {
-                  draft.pages[i].result[j] = newOutsource;
-                  return false;
-                }
-              }),
-            );
+            oldData?.result.forEach((v: any, j: number) => {
+              if (v.id === newOutsource.id) {
+                draft.result[j] = newOutsource;
+                return false;
+              }
+            });
           }),
         );
       }

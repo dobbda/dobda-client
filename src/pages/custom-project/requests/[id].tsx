@@ -43,9 +43,9 @@ const RequestDetailPage: NextPage<{ exp: Exp; id: string }> = (props) => {
 };
 export default RequestDetailPage;
 
+const queryClient = ssrQuery();
 export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
   const { id } = query as { id: string };
-  const queryClient = ssrQuery();
   if (exp?.access_exp) {
     await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
   }

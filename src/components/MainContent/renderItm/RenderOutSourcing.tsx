@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useGetInfinity, keys } from 'src/hooks';
+import { keys, useInfinity } from 'src/hooks';
 import { useInView } from 'react-intersection-observer';
 import OCard from '../../Card/OCard';
 import styled from 'styled-components';
@@ -11,7 +11,7 @@ import { Skeleton } from 'src/components/Skeleton';
 function RenderOutsource() {
   const [shearchTitle, setShearchTitle] = useState<string>();
   const [shearchTag, setShearchTag] = useState<string>();
-  const { data, fetchNextPage, hasNextPage, isSuccess, refetch, isLoading } = useGetInfinity<InfinityProps<Outsource>>({
+  const { data, nextPage, refetch, isLoading } = useInfinity<Outsource>({
     fetch: o.getInfinity,
     queryKey: keys.sourcings(),
   });
@@ -19,34 +19,29 @@ function RenderOutsource() {
   const [ref, isView] = useInView();
   useEffect(() => {
     // 무한 스크롤
-    if (isView && hasNextPage) fetchNextPage();
+    if (isView && !data.isLast) nextPage();
     if (!data) refetch();
-  }, [isView, hasNextPage, fetchNextPage, refetch, data]);
+  }, [isView, data, nextPage, , refetch]);
   return (
     <>
       {isLoading ? (
         <Skeleton row={4} border title len={3} image />
       ) : (
         <ContentCardList>
-          {isSuccess && data?.pages
-            ? data.pages.map((page) => {
-                const data = page.result;
-                return data?.map((o, index) => {
-                  if (index == data.length - 1) {
-                    return (
-                      <RefCard ref={ref} key={'outsourcing' + o.id}>
-                        <OCard data={o} />
-                      </RefCard>
-                    );
-                  }
-                  return (
-                    <RefCard key={o.id}>
-                      <OCard data={o} />
-                    </RefCard>
-                  );
-                });
-              })
-            : null}
+          {data?.result.map((v, i) => {
+            if (data.result.length == i + 1) {
+              return (
+                <RefCard ref={ref} key={v.id}>
+                  <OCard data={v} />
+                </RefCard>
+              );
+            }
+            return (
+              <RefCard key={v.id}>
+                <OCard data={v} />
+              </RefCard>
+            );
+          })}
         </ContentCardList>
       )}
     </>

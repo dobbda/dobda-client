@@ -26,16 +26,11 @@ export const questions = async (pageParam: number = 1, title?: string): Promise<
   const res = await http.get(`/questions?page=${pageParam && pageParam}&title=${title && title}`);
   if (!res.data.success) return null;
   return {
-    pages: [
-      {
-        result: res.data.response.result,
-        pageNum: pageParam,
-        isLast: pageParam >= res.data.response.totalPages,
-        total: res.data.response?.total,
-        totalPages: res.data.response.totalPages,
-      },
-    ],
-    pageParams: [0],
+    result: res.data.response.result,
+    pageNum: pageParam,
+    isLast: pageParam >= res.data.response.totalPages,
+    total: res.data.response?.total,
+    totalPages: res.data.response.totalPages,
   };
 };
 
@@ -53,15 +48,10 @@ export const sourcings = async (pageParam: number = 1, title?: string): Promise<
   const res = await http.get(`/outSource?page=${pageParam && pageParam}&title=${title && title}`);
   if (!res.data.success) return null;
   return {
-    pages: [
-      {
-        result: res.data.response.result,
-        pageNum: pageParam,
-        isLast: pageParam >= res.data.response.totalPages,
-        total: res.data.response?.total,
-        totalPages: res.data.response.totalPages,
-      },
-    ],
-    pageParams: [0],
+    result: res.data.response.result,
+    pageNum: pageParam,
+    isLast: pageParam >= res.data.response.totalPages,
+    total: res.data.response?.total,
+    totalPages: res.data.response.totalPages,
   };
 };

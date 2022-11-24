@@ -11,7 +11,7 @@ type Props<T> = {
 
 export const useInfinity = <T>({ queryKey, fetch }: Props<T>) => {
   const queryClient = useQueryClient();
-  const { data, refetch } = useQuery(queryKey, () => fetch(1));
+  const { data, refetch, isLoading } = useQuery(queryKey, () => fetch(1), { retry: 2, staleTime: 1000 * 60 * 10 });
 
   const nextPage = useCallback(async () => {
     if (!data.isLast) {
@@ -29,5 +29,5 @@ export const useInfinity = <T>({ queryKey, fetch }: Props<T>) => {
   const apply = () => {
     queryClient.fetchQuery(queryKey);
   };
-  return { data, refetch, nextPage };
+  return { data, refetch, nextPage, isLoading };
 };

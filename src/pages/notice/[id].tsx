@@ -19,16 +19,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 const NotiList: NextPage<Props> = ({ id }) => {
-  const { data } = useQuery(['noti:', id], () => noti.getNoti(id));
+  console.log(id);
 
+  const { data, isSuccess } = useQuery(['noti:', id], () => noti.getNoti(id));
   return (
     <Layout sideLeft sideRight banner>
       <S>
         <h2 className="title">{data?.title}</h2>
         <span className="createdAt">작성 : {data?.createdAt.substring(0, 10)}</span>
-        <div className="notice-content">
-          <HtmlViewer content={data?.content} />
-        </div>
+        <div className="notice-content">{isSuccess && <HtmlViewer content={data?.content} />}</div>
       </S>
     </Layout>
   );

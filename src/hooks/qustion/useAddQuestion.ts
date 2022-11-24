@@ -16,19 +16,17 @@ const useAddQuestion = (mutationFn: any, qid?: number) => {
         queryClient.setQueryData(keys.questions(), (oldData: any) => {
           if (newQuestion.createdAt === newQuestion.updatedAt) {
             const updatedData = produce(oldData, (draft: any) => {
-              draft.pages[0].result.unshift(newQuestion);
+              draft.result.unshift(newQuestion);
             });
             return updatedData;
           }
           if (oldData) {
             const updatedData = produce(oldData, (draft: any) => {
-              draft.pages[0].result.unshift(newQuestion);
-              draft.pages.map((pages: any) =>
-                pages.result.map((page: Question) => {
-                  if (page.id === newQuestion.id) return newQuestion;
-                  return page;
-                }),
-              );
+              draft.result.unshift(newQuestion);
+              draft.result.map((page: Question) => {
+                if (page.id === newQuestion.id) return newQuestion;
+                return page;
+              });
             });
             return updatedData;
           }
@@ -44,14 +42,12 @@ const useAddQuestion = (mutationFn: any, qid?: number) => {
 
         queryClient.setQueryData(keys.questions(), (oldData: any) =>
           produce(oldData, (draft: any) => {
-            oldData?.pages.forEach((pages: any, i: number) =>
-              pages.result.forEach((v: any, j: number) => {
-                if (v.id === newQuestion.id) {
-                  draft.pages[i].result[j] = newQuestion;
-                  return false;
-                }
-              }),
-            );
+            oldData?.result.forEach((v: any, j: number) => {
+              if (v.id === newQuestion.id) {
+                draft.result[j] = newQuestion;
+                return false;
+              }
+            });
           }),
         );
       }

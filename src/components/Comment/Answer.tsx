@@ -40,7 +40,7 @@ const AnswerCp = ({ answer, question }: Props) => {
   );
 
   const addReply = useAddComment(answer?.id);
-  const del = useDelete(answer?.id, keys.answers(answer?.questionId));
+  const del = useDelete(answer?.id, keys.answers(answer?.questionId), Number(qid));
   const { auth } = useAuth();
   const onSubmitComment = useCallback(() => {
     addReply.mutate({ content: html, aid: answer.id });

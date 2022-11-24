@@ -30,8 +30,8 @@ const Home: NextPage<{ exp: Exp }> = (props) => {
 };
 export default Home;
 
+const queryClient = ssrQuery();
 export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
-  const queryClient = ssrQuery();
   if (exp?.access_exp) {
     await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
   }

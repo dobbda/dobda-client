@@ -20,14 +20,7 @@ export const useQueryCount = () => {
     if (!provider) return;
     queryClient.setQueryData(queryKey, (oldData: any) => {
       const updateData = produce(oldData, (draft: any) => {
-        if (findId) {
-          draft?.map((data: any) => {
-            if (data.id === findId) {
-              return (data[changeKey] = countVal ? countVal : data[changeKey] + upDown);
-            }
-            return data;
-          });
-        } else draft[changeKey] = countVal ? countVal : draft[changeKey] + upDown;
+        draft[changeKey] = countVal ? countVal : draft[changeKey] + upDown;
       });
       return updateData;
     });
@@ -37,12 +30,13 @@ export const useQueryCount = () => {
     queryClient.setQueryData(queryKey, (oldData: any) => {
       if (oldData) {
         const updatedData = produce(oldData, (draft: any) => {
-          draft.pages?.map((pages: any) =>
-            pages.result.map((page: any) => {
-              if (page.id === findId) return (page[changeKey] = countVal ? countVal : page[changeKey] + upDown);
+          draft.result = draft.result.map((page: any) => {
+            if (page.id === findId) {
+              page[changeKey] = countVal ? countVal : page[changeKey] + upDown;
               return page;
-            }),
-          );
+            }
+            return page;
+          });
         });
         return updatedData;
       } else {
