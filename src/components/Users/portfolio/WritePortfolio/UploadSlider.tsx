@@ -1,11 +1,10 @@
 import { PlusOutlined } from '@ant-design/icons';
-import type { RcFile, UploadProps } from 'antd/es/upload';
+import type { UploadProps } from 'antd/es/upload';
 import type { UploadFile } from 'antd/es/upload/interface';
-import Upload from 'antd/lib/upload/Upload';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { AiOutlineUpload, LoadingIcon } from 'src/icons';
-import styled from 'styled-components';
+import { ShowBtn, UploadS } from './style';
 
 interface Props {
   fileList: UploadFile[];
@@ -68,26 +67,3 @@ const uploadButton = (
     <div style={{ marginTop: 8 }}>Upload</div>
   </div>
 );
-
-const UploadS = styled(Upload)`
-  background-color: #fff;
-  padding: 8px 8px 0 8px;
-  border-radius: 4px;
-  overflow-y: hidden;
-  margin-top: 10px;
-`;
-
-const ShowBtn = styled.div`
-  padding: 5px;
-  background-color: #fff;
-  margin: 10px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-  span {
-    color: #929292;
-    font-weight: bold;
-  }
-`;

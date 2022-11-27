@@ -19,7 +19,7 @@ function MyApp({ Component, initialAuth, pageProps: { session, ...pageProps } }:
 
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    const showRoute = ['/questions', 'custom-project/', 'notice/'];
+    const showRoute = ['/questions', '/custom-project/', 'notice/', '/user/portfolio'];
     const start = (url: string) => {
       if (showRoute.find((route) => String(url).includes(route))) {
         setLoading(true);

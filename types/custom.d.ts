@@ -7,3 +7,4 @@ declare module '*.svg' {
 
 declare module 'react-quill';
 declare module 'quill-image-resize-module-react';
+declare module 'react-virtual-drag-list';

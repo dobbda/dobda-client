@@ -1,13 +1,14 @@
 import { UploadFile } from 'antd/lib/upload/interface';
 import React from 'react';
 import { Editor } from 'src/components/Editor';
+import { Image } from 'src/types';
 import { UploadSlider } from './UploadSlider';
 
 interface Props {
   html: string;
   setHtml: React.Dispatch<React.SetStateAction<string>>;
-  fileList: UploadFile<any>[];
-  setFileList: React.Dispatch<React.SetStateAction<UploadFile<any>[]>>;
+  fileList: UploadFile<Image>[];
+  setFileList: React.Dispatch<React.SetStateAction<UploadFile<Image>[]>>;
 }
 
 export const PfEditor = ({ html, setHtml, fileList, setFileList }: Props) => {
@@ -19,3 +20,5 @@ export const PfEditor = ({ html, setHtml, fileList, setFileList }: Props) => {
     </div>
   );
 };
+
+export default PfEditor;

@@ -8,7 +8,7 @@ export function getLocalStorage(key: string, obj?: boolean) {
   if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const objString = window.localStorage.getItem(key); // null 체크
     const decod = Buffer.from(String(objString), 'base64').toString('utf8');
-    if (objString && obj) {
+    if (decod && objString && obj) {
       return JSON.parse(decod);
     } else if (objString) {
       return decod;

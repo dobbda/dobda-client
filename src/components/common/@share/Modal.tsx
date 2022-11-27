@@ -1,5 +1,6 @@
 import { type } from 'os';
 import React, { useState, useRef, PropsWithChildren } from 'react';
+import { theme } from 'src/styles/Theme';
 import styled, { keyframes } from 'styled-components';
 
 type Props = {
@@ -40,7 +41,7 @@ const Container = styled.div`
   animation: ${boxFade} 0.25s ease-in-out;
   z-index: 999999;
   position: fixed;
-  top: 0;
+  top: ${theme.media.headerHeight};
   left: 0;
   bottom: 0;
   right: 0;
@@ -50,7 +51,7 @@ const Wrap = styled.div`
   height: 100%;
   position: absolute;
   left: 50%;
-  top: 40%;
+  top: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
   color: black;

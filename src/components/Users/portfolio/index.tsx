@@ -1,98 +1,85 @@
 import Button from 'antd/lib/button';
 import Divider from 'antd/lib/divider';
-import { UploadFile } from 'antd/lib/upload/interface';
+import { UploadFile } from 'antd';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Editor, HtmlViewer } from 'src/components/Editor';
-import styled from 'styled-components';
-import { ProfileCardSet } from './WritePortfolio/ProfileCardSet';
-import { PfEditor } from './WritePortfolio/PfEditor';
+// import { ProfileCardSet } from './WritePortfolio/ProfileCardSet';
+// import { PfEditor } from './WritePortfolio/PfEditor';
 import { useQueryClient, useQuery } from 'react-query';
 import { uploadS3 } from 'src/lib/service/upload-s3';
-import { Image } from 'src/types';
+import { CreatePortfolio, Image, Portfolio, PortfolioContent } from 'src/types';
 import { resizeImage } from 'src/lib/service/resizeImg';
 import { Button as CustomButton } from 'src/components/common/@share/Buttons';
-type Props = {};
-interface Content {
-  content?: string;
-  images?: Image[];
-}
-export const MyPortfolio = (props: Props) => {
+import { user } from 'src/api';
+import { keys, useAuth } from 'src/hooks';
+import produce from 'immer';
+import { message } from 'antd';
+import { EditorCt, Wrapper } from './style';
+import dynamic from 'next/dynamic';
+import { listFileUpload } from './lib/listFileUpload';
+const ProfileCardSet = dynamic(() => import('./WritePortfolio/ProfileCardSet'), {
+  suspense: true,
+});
+const AdminViewer = dynamic(() => import('./AdminViewer'));
+const PfEditor = dynamic(() => import('./WritePortfolio/PfEditor'));
+
+type Props = {
+  data: Portfolio;
+};
+
+export const MyPortfolio = ({ data }: Props) => {
   const queryClient = useQueryClient();
+  const { auth, refetch } = useAuth();
+  const { data: cardData } = useQuery<typeof data.card>('profileCardSetData', { initialData: data.card });
   const [html, setHtml] = useState('');
-  const [contents, setContents] = useState<Content[]>([]);
-  const [fileList, setFileList] = useState<UploadFile[]>([
-    // {
-    //   uid: '1',
-    //   name: 'image.png',
-    //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    // },
-    // {
-    //   uid: '2',
-    //   name: 'image.png',
-    //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    // },
-    // {
-    //   uid: '3',
-    //   name: 'image.png',
-    //   status: 'done',
-    //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    // },
-    // {
-    //   uid: '4',
-    //   name: 'image.png',
-    //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    // },
-  ]);
-  const { data } = useQuery('profileCardSetData');
-  console.log(fileList);
+  const [contents, setContents] = useState<PortfolioContent[]>(data?.content);
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+
   const [isAdd, setIsAdd] = useState(false);
+  const [isChange, setIsChange] = useState(false);
   useEffect(() => {
-    console.log(
-      html?.replace(/<(.|\n)*?>/g, '').trim().length,
-      fileList.length,
-      html?.replace(/<(.|\n)*?>/g, '').trim().length !== 0,
-      fileList.length !== 0,
-    );
     setIsAdd(html?.replace(/<(.|\n)*?>/g, '').trim().length !== 0 || fileList.length !== 0);
-  }, [html, fileList]);
+  }, [html, fileList, data, contents]);
+
   const addContent = useCallback(async () => {
     if (fileList || html?.replace(/<(.|\n)*?>/g, '').trim().length !== 0) {
-      const images = fileList?.map(async (v: UploadFile) => {
-        if (v.originFileObj) {
-          let resize =
-            v.size / 1023 ** 2 > 1 &&
-            ((await resizeImage({ file: v.originFileObj, reformat: 'file', width: 1080, height: 1080 })) as File);
-          let { url, fileName } = await uploadS3(resize || v.originFileObj);
-          return { url, uid: fileName.substring(0, 10), name: fileName } as Image;
-        } else {
-          return v as Image;
-        }
-      });
-      Promise.all([...images]).then((v) => {
-        setContents([...contents, { content: html, images: v }]);
-      });
+      const images = await listFileUpload(fileList);
+      setContents([...contents, { content: html, images: images, key: Math.random().toString(36).slice(2, 11) }]);
       setHtml('');
       setFileList([]);
     }
   }, [html, contents, fileList]);
 
+  const onSubmint = useCallback(async () => {
+    let isChecked = JSON.stringify({ ...cardData, ...contents }) == JSON.stringify({ ...data.card, ...data.content });
+    if (isChecked) {
+      return message.warning('변경된 내용이 없습니다.');
+    }
+
+    let res = await user.updatePf({
+      public: true,
+      card: cardData,
+      content: contents,
+    } as CreatePortfolio);
+
+    if (res.success) {
+      message.success('저장되었습니다.');
+      queryClient.setQueriesData(keys.pf(auth.id), (old: Portfolio) =>
+        produce(old, (draft) => {
+          draft.card = cardData;
+          draft.content = contents;
+        }),
+      );
+    }
+  }, [cardData, contents, data]);
   return (
     <>
       <Wrapper>
         <Divider orientation="left">
-          <h2>공개 프로필</h2>
+          <h2>포트폴리오</h2>
         </Divider>
-        <ProfileCardSet />
-        <ul className="pf-listView">
-          {contents.map((v, i: number) => {
-            return (
-              <li key={i}>
-                <div>{v?.images[0]?.url}</div>
-                <HtmlViewer content={v.content} />
-              </li>
-            );
-          })}
-        </ul>
+        <ProfileCardSet data={data} />
+        <AdminViewer contents={contents} setContents={setContents} />
         <EditorCt>
           <PfEditor setHtml={setHtml} html={html} fileList={fileList} setFileList={setFileList} />
           <Button
@@ -105,27 +92,11 @@ export const MyPortfolio = (props: Props) => {
           </Button>
         </EditorCt>
         <br />
-        <CustomButton types="primary" $fill onClick={addContent} css={{ width: '100%', borderRadius: '0' }} disabled={!isAdd}>
-          {!isAdd ? '수정내용 없음' : '변경내용 저장'}
+        <CustomButton types="primary" $fill onClick={onSubmint} css={{ width: '100%', borderRadius: '0' }} disabled={isChange}>
+          {'변경내용 저장'}
         </CustomButton>
         <br />
       </Wrapper>
     </>
   );
 };
-const Wrapper = styled.div`
-  position: relative;
-  min-height: 99vh;
-  padding-bottom: 30px;
-  ul {
-    margin: 10px 0;
-    padding: 0;
-  }
-`;
-
-const EditorCt = styled.div`
-  border-radius: 4px;
-  border: solid 1px #bcd4ff;
-  padding: 5px;
-  background-color: #cadaf8;
-`;

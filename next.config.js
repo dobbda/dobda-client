@@ -17,7 +17,7 @@ module.exports = withPlugins([withBundleAnalyzer], {
   inlineImageLimit: false,
 
   images: {
-    domains: ['source.unsplash.com', 'joeschmoe.io', 'avatars.dicebear.com'],
+    domains: ['source.unsplash.com', 'joeschmoe.io', 'avatars.dicebear.com', 'dobda.s3.ap-northeast-2.amazonaws.com'],
   },
   rewrites: () => [
     {

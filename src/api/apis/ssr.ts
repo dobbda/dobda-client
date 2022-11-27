@@ -55,3 +55,13 @@ export const sourcings = async (pageParam: number = 1, title?: string): Promise<
     totalPages: res.data.response.totalPages,
   };
 };
+
+export const portfolio = async (userId: number | string, req: AxiosRequestConfig): Promise<QuestionDetail> => {
+  try {
+    return (
+      await http.get(`/users/pf?userId=` + userId, {
+        headers: req?.headers,
+      })
+    ).data?.response;
+  } catch (e) {}
+};

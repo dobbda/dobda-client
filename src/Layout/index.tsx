@@ -3,7 +3,7 @@ import * as S from './style/Layout.style';
 import { HeaderNav } from 'src/components/common';
 import { SideContentLeft, SideContentRight } from 'src/components/SideContent';
 import { useWindowSize } from 'src/hooks';
-import BnCarousel from '../components/banner/BnCarouse';
+import BnCarousel from '../components/banner/BnCarousel';
 import Suport from 'src/components/Admin/support';
 
 interface Props {

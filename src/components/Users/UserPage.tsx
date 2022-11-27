@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
+import { useAuth } from 'src/hooks';
 import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 import { Link } from '../common';
@@ -10,6 +11,7 @@ type Props = {
 };
 
 export const UserPage = ({ children }: Props) => {
+  const { auth } = useAuth();
   const router = useRouter();
 
   return (
@@ -31,7 +33,7 @@ export const UserPage = ({ children }: Props) => {
               <Link href="/user/alarm">전체알림 </Link>
             </Li>
             <Li $isPath={'/user/portfolio' == router.pathname}>
-              <Link href="/user/portfolio">공개프로필 </Link>
+              <Link href={{ pathname: '/user/portfolio', query: { num: auth?.id } }}>포트폴리오 </Link>
             </Li>
           </ul>
         </FolderMenu>
@@ -68,10 +70,15 @@ const Li = styled.li<{ $isPath?: boolean }>`
   font-weight: 500;
   padding: 10px 20px;
   color: #000000d9;
+  cursor: pointer;
   * {
     letter-spacing: 3px;
   }
 
   ${({ $isPath }) => $isPath && `background-color: ${theme.color.prRgb(0.8)}`};
   ${({ $isPath }) => $isPath && `color: #fff`};
+  :hover {
+    transition: all 200ms;
+    background-color: ${theme.color.prRgb(0.8)};
+  }
 `;

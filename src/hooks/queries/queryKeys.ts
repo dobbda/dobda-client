@@ -27,4 +27,6 @@ export const keys = {
   userS: (id: number | string) => ['user: ', id, 'sourcings'],
   coinReserv: ['coinReserv'],
   coinHistory: ['coinHistory'],
+
+  pf: (userId: number) => ['portpolio user:' + userId],
 };

@@ -1,5 +1,5 @@
-import Item from 'antd/lib/list/Item';
-import Table, { ColumnsType, TableProps } from 'antd/lib/table';
+import { TableProps, Table } from 'antd';
+import { ColumnsType } from 'antd/lib/table/interface';
 import Link from 'next/link';
 import React, { useCallback, useEffect, useState } from 'react';
 import { user } from 'src/api';
@@ -15,6 +15,7 @@ export function CoinReservC({}: Props) {
     queryKey: keys.coinReserv,
     fetch: (page: number) => user.coinReserv(page),
   });
+
   const columns: ColumnsType<CoinReserv> = [
     {
       title: 'id',

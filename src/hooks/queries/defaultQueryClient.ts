@@ -7,7 +7,7 @@ export const createQueryClient = () => {
         refetchOnWindowFocus: false,
         // cacheTime: 1000 * 60 * 10,
         staleTime: 1000 * 60 * 10,
-        retry: 2, //false, true,
+        retry: false, //false, true,
         useErrorBoundary: false,
       },
 
@@ -22,7 +22,7 @@ export const ssrQuery = () => {
   return new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 1000 * 60 * 5,
+        staleTime: 1000 * 60 * 10,
       },
     },
   });

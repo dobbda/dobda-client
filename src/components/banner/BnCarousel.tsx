@@ -3,18 +3,11 @@ import { Carousel, CarouselProps } from 'antd';
 import React, { useRef } from 'react';
 import BnCard from './BnCard';
 import 'antd/dist/antd.css';
-import { GoArrowi, BackArrowi } from 'src/icons';
+import { Nexti, Previ } from 'src/icons';
 import { CarouselRef } from 'antd/lib/carousel';
 import styled from 'styled-components';
 import { bn } from './data';
 
-const contentStyle = {
-  height: '160px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#364d79',
-};
 const BnCarousel = () => {
   const slicRef = useRef<CarouselRef | null>();
   const next = () => {
@@ -25,11 +18,11 @@ const BnCarousel = () => {
   };
   return (
     <S>
-      <Arrow css={{ right: '10px' }} onClick={next} className="right-arrow">
-        <GoArrowi />
+      <Arrow css={{ right: '10px' }} onClick={next} className="arrow">
+        <Nexti />
       </Arrow>
-      <Arrow css={{ left: '10px' }} onClick={prev} className="left-arrow">
-        <BackArrowi />
+      <Arrow css={{ left: '10px' }} onClick={prev} className="arrow">
+        <Previ />
       </Arrow>
       <Carousel draggable ref={slicRef} autoplay autoplaySpeed={4000}>
         {/* autoplay autoplaySpeed={4000} */}
@@ -45,34 +38,26 @@ export default BnCarousel;
 
 const Arrow = styled.div`
   position: absolute;
-  bottom: 5%;
+  bottom: 45%;
   z-index: 1;
-  color: #fff;
   cursor: pointer;
-  font-size: 20px;
-  opacity: 0.1;
+  font-size: 50px;
+  opacity: 0.6;
   transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
+  svg {
+    fill: #fff !important;
+  }
 `;
 
 const S = styled.div`
   position: relative;
   :hover {
-    .right-arrow {
-      opacity: 0.9;
-      padding: 5px 5px 5px 7px;
-      border-radius: 1rem;
-      background-color: #9f1ab996;
-      bottom: 3%;
-    }
-    .left-arrow {
-      opacity: 0.9;
-      padding: 5px 7px 5px 5px;
-      border-radius: 1rem;
-      background-color: #9f1ab996;
-      bottom: 3%;
+    .arrow {
+      opacity: 1;
+      bottom: 45%;
     }
   }
 `;

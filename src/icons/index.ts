@@ -29,10 +29,12 @@ export { IoIosClose as TagClosei } from 'react-icons/io';
 export { RiRefreshLine as Refreshi } from 'react-icons/ri';
 export { RiQuestionnaireFill as Questioni } from 'react-icons/ri';
 export { FaHandsHelping as OutSourcei } from 'react-icons/fa';
-export { BiRightArrow as GoArrowi } from 'react-icons/bi';
-export { BiLeftArrow as BackArrowi } from 'react-icons/bi';
+export { FcPrevious as Previ } from 'react-icons/fc';
+export { FcNext as Nexti } from 'react-icons/fc';
 export { MdOutlineHelp as Tipi } from 'react-icons/md';
 export { AiOutlineUpload } from 'react-icons/ai';
+export { MdOutlineDragIndicator as Dragi } from 'react-icons/md';
+export { BsArrowsFullscreen as Fulli } from 'react-icons/bs';
 export { LoadingOutlined as LoadingIcon } from '@ant-design/icons';
 
 import { RiArrowDownSLine } from 'react-icons/ri';

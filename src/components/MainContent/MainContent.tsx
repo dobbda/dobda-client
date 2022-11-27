@@ -23,12 +23,14 @@ const MainContent = ({ children }: Props) => {
   const { setLoginModal } = useLoginModalhandler();
   const { setWriteModal } = useWriteModalhandler();
   useEffect(() => {
+    //첫 렌더링에만
     setSelect(cg);
     const storeCategory = getLocalStorage('mainCateogry') as CategoriesType;
     Categories[cg || storeCategory]
       ? setSelect(cg || storeCategory)
       : (setSelect(CategoryList[0]), setLocalStorage('mainCateogry', CategoryList[0]));
-  }, [cg]);
+    router.push({ pathname: '/', query: { cg: storeCategory || CategoryList[0] } });
+  }, []);
 
   useDidMountEffect(() => {
     setLocalStorage('mainCateogry', select);

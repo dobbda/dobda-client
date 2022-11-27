@@ -272,19 +272,33 @@ export interface Image {
   fileName?: string;
   url?: string;
 }
-export interface ContentProps {
+
+///////////////// Portfolio //////////////////////////////
+export interface PortfolioContent {
   content?: string;
   images?: Image[];
+  key: string;
 }
-export interface Portfolio {
+export interface Portfolio extends Default {
   card: {
     bgImg?: Image;
     bgColor?: string;
     title?: string;
     titleColor?: string;
+    isImg?: boolean;
   };
-  content: {
-    content?: string;
-    images?: Image[];
-  }[];
+  content: PortfolioContent[];
+  publick?: boolean;
+  user: Author;
+}
+
+export interface CreatePortfolio {
+  card: {
+    bgImg?: Image;
+    bgColor?: string;
+    title?: string;
+    titleColor?: string;
+    isImg?: boolean;
+  };
+  content: PortfolioContent[];
 }

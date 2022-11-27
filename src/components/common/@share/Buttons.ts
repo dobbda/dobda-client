@@ -4,7 +4,7 @@ import { theme } from 'src/styles/Theme';
 import { ButtonProps, ButtonType } from 'antd/lib/button';
 
 interface Props {
-  types: 'primary' | 'secondary' | 'secondary' | 'danger' | 'black';
+  types?: 'primary' | 'secondary' | 'secondary' | 'danger' | 'black';
   color?: string;
   $block?: boolean;
   $fill?: boolean;
@@ -20,9 +20,9 @@ const color = {
 };
 
 export const Button = styled.button<Props>`
-  background-color: ${({ types, $fill }) => ($fill ? color[types] : 'rgba(0,0,0,0)')};
-  color: ${({ types, $fill }) => ($fill ? '#fff' : color[types])};
-  border: 1px solid ${({ types }) => color[types]};
+  background-color: ${({ types, $fill }) => ($fill ? color[types || 'primary'] : 'rgba(0,0,0,0)')};
+  color: ${({ types, $fill }) => ($fill ? '#fff' : color[types || 'primary'])};
+  border: 1px solid ${({ types }) => color[types || 'primary']};
   font-size: 14px;
   font-weight: 500;
   border-radius: 4px;
