@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000 ",
-    "build": "cross-env NODE_ENV=production dedupe && next build",
+    "build": "cross-env NODE_ENV=production && next build",
     "build:analyze": "cross-env NODE_ENV=production ANALYZE=true next build",
     "start": "cross-env NODE_ENV=production next start",
     "lint": "next lint",
@@ -43,6 +43,7 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^12.3.0",
     "@svgr/webpack": "^6.2.1",
+    "@types/lodash": "^4.14.190",
     "@types/node": "^18.7.14",
     "@types/prismjs": "^1.26.0",
     "@types/qs": "^6.9.7",
