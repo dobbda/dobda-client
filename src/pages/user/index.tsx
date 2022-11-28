@@ -1,7 +1,6 @@
 import { NextPage } from 'next';
 import React from 'react';
-import { AlarmPage } from 'src/components/Users';
-import { UserPage } from 'src/components/Users/UserPage';
+import { AdminUser } from 'src/components/Users/AdminUser';
 import { Layout } from 'src/Layout';
 
 type Props = {};
@@ -9,9 +8,7 @@ type Props = {};
 const Index: NextPage = (props: Props) => {
   return (
     <Layout>
-      <UserPage>
-        <AlarmPage />
-      </UserPage>
+      <AdminUser />
     </Layout>
   );
 };

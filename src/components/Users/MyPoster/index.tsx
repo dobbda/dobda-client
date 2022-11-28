@@ -13,7 +13,6 @@ import { keys } from 'src/hooks';
 import { useInfinity } from 'src/hooks/common/useInfinity';
 import { Outsource, Question } from 'src/types';
 import { MyPostList } from 'src/types/content-type';
-import { UserPage } from '../UserPage';
 
 import { ListWrapper, Wrapper } from './style/MyPost.style';
 
@@ -59,3 +58,5 @@ export const Poster = () => {
     </Wrapper>
   );
 };
+
+export default Poster;

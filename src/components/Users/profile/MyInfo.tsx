@@ -4,7 +4,6 @@ import { useAuth, useInput } from 'src/hooks';
 import * as Lib from 'src/components/common';
 import * as S from './style/myInfo.style';
 import { UserUpdateForm } from './UpdateForm';
-import { UserPage } from '../UserPage';
 import { Divider } from 'antd';
 type Props = {};
 
@@ -14,7 +13,7 @@ export const MyInfo = (props: Props) => {
   const [skills, setSkills] = React.useState<string[]>([]);
   const { auth } = useAuth();
   return (
-    <UserPage>
+    <div css={{ paddingBottom: '15px' }}>
       <Divider orientation="left">
         <h2>내정보</h2>
       </Divider>
@@ -49,6 +48,8 @@ export const MyInfo = (props: Props) => {
           </S.Flex>
         </div>
       </S.InfoWrapper>
-    </UserPage>
+    </div>
   );
 };
+
+export default MyInfo;

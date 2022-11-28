@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const withPlugins = require('next-compose-plugins');
+const CompressionPlugin = require('compression-webpack-plugin');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -12,7 +13,6 @@ module.exports = withPlugins([withBundleAnalyzer], {
   reactStrictMode: true,
   historyApiFallback: true,
   output: 'standalone',
-
   experimental: { fallbackNodePolyfills: false, scrollRestoration: 'manual' },
   inlineImageLimit: false,
 
@@ -56,6 +56,11 @@ module.exports = withPlugins([withBundleAnalyzer], {
         },
       ],
     });
+    nextConfig.plugins.push(
+      new CompressionPlugin({
+        test: /\.js$|\.css$|\.ts$|\.html$/,
+      }),
+    );
     nextConfig.resolve.modules.push(__dirname);
     return {
       ...nextConfig,

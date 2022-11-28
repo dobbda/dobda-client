@@ -11,7 +11,7 @@ import { Image, Portfolio } from 'src/types';
 import { LoadingIcon } from 'src/icons';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import { CardWrapper, Flex, Color } from './style';
-import { Colorpicker } from 'antd-colorpicker';
+import { Colorpicker } from './Colorpicker';
 interface Props {
   data: Portfolio;
 }
@@ -68,14 +68,14 @@ const ProfileCardSet = ({ data }: Props) => {
           </div>
           <Color>
             <span>배경색:</span>
-            <Colorpicker value={bgColor} onChange={(v) => setBgColor(v.hex)} popup />
+            <Colorpicker color={bgColor} setColor={setBgColor} />
           </Color>
         </Flex>
         <Flex>
           <input placeholder="메인에 들어갈 제목" value={title} onChange={onChangeTitle} />
           <Color>
             글자색:
-            <Colorpicker value={titleColor} onChange={(v) => setTitleColor(v.hex)} popup />
+            <Colorpicker color={titleColor} setColor={setTitleColor} />
           </Color>
         </Flex>
       </div>

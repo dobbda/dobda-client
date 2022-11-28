@@ -15,7 +15,7 @@ import { Li } from './style/Message.style';
 
 type Props = {};
 
-export const AlarmPage = (props: Props) => {
+export const MyAlarm = (props: Props) => {
   const queryClient = useQueryClient();
   const { auth, refetch } = useAuth();
   const { data } = useQuery(keys.alarmsAll(auth?.id), user.alarmsAll, {
@@ -100,3 +100,5 @@ const Content = styled.h4`
   padding: 0 10px;
   color: #1616ad;
 `;
+
+export default MyAlarm;

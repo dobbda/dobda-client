@@ -8,6 +8,7 @@ export const Div = styled.div`
   font-size: 12px;
   border-radius: 8px;
   position: relative;
+  overflow-y: auto;
   ul {
     margin: 0;
     padding: 0 10px;
@@ -27,10 +28,10 @@ export const Div = styled.div`
     color: #0074cc;
     text-decoration: underline;
     text-underline-offset: 2px;
-    position: absolute;
+    /* position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 50%; */
+    /* transform: translate(-50%, -50%); */
     span:hover {
     }
   }

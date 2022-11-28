@@ -6,13 +6,12 @@ import { Tips } from 'src/components/common/@share/Tips';
 import { useAuth } from 'src/hooks';
 import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
-import { UserPage } from '../UserPage';
 import { CoinHistoryC } from './CoinHistory';
 import { CoinReservC } from './CoinReserv';
 
 type Props = {};
 
-export function CoinPage({}: Props) {
+export function MyCoin({}: Props) {
   const { auth } = useAuth();
   return (
     <div css={{ paddingBottom: '15px' }}>
@@ -81,3 +80,5 @@ const WithdrawWrapper = styled.div`
     font-size: 15px;
   }
 `;
+
+export default MyCoin;
