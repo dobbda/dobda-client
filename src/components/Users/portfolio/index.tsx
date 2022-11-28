@@ -100,3 +100,5 @@ export const MyPortfolio = ({ data }: Props) => {
     </>
   );
 };
+
+export default MyPortfolio;

@@ -29,7 +29,9 @@ export const Alarms = () => {
           <Empty descript="최근 알림이 없습니다." />
         )}
       </ul>
-      <div className="show-all-messages">{data?.length > 0 && <Link href="/user/alarm">전체알림 보기</Link>}</div>
+      <div className="show-all-messages">
+        {data?.length > 0 && <Link href={`/user?id=${auth?.id}&cg=alarm`}>전체알림 보기</Link>}
+      </div>
     </Div>
   );
 };
