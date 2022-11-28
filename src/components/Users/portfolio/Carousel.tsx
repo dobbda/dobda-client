@@ -13,11 +13,10 @@ type Props = {
 
 const CarouselsImages = ({ images }: Props) => {
   const settings = {
-    className: 'center',
+    // className: 'center',
     centerMode: true,
     centerPadding: '10%',
     slidesToShow: 1,
-    speed: 500,
     draggable: true,
   };
 
@@ -78,7 +77,6 @@ const ImgWrap = styled.div`
   min-height: 330px;
   overflow: hidden;
   box-shadow: 0px 0px 2px 3px #c4c8d0;
-
   margin: 5px 15px;
 `;
 
@@ -86,6 +84,7 @@ const SlideContainer = styled.div`
   position: relative;
   padding: 8px;
   box-shadow: inset 0px 0px 3px 3px #c4c8d0;
+  max-width: 910px;
 `;
 const Arrow = styled.div`
   position: absolute;
@@ -111,13 +110,13 @@ const ModalImage = styled.div`
 
 const ModalCloase = styled.div`
   position: absolute;
-  top: 10px;
+  top: 0;
   right: 0;
   z-index: 1;
-  width: 10px;
-  height: 10px;
+  /* width: 10px;
+  height: 10px; */
   color: gray;
-  font-size: 100px;
+  font-size: 80px;
   cursor: pointer;
 `;
 

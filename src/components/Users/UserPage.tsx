@@ -50,7 +50,7 @@ const UserPageWrapper = styled.div`
   .navigator {
     background-color: #fff;
     height: fit-content;
-    width: 250px;
+    min-width: 250px;
     margin-top: 40px;
     border: 1px solid ${theme.color.border(0.1)};
   }

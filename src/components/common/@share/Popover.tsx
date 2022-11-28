@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import styled, { css, CSSProp } from 'styled-components';
+import styled, { css, CSSProp, keyframes } from 'styled-components';
 
 type Props = {
   children: React.ReactNode;
@@ -101,7 +101,7 @@ const PopoverContainer = styled.div<StyleProps>`
       bottom: ${props.bottom != null ? '100%' : 'auto'};
       left: ${props.left != null ? props.left + 'px' : 'auto'};
       right: ${props.right != null ? props.right + 'px' : 'auto'};
-
+      animation: ${boxFade} 0.25s ease-in-out;
       .top-area {
         //
         height: ${props.top != null ? props.top + 'px' : 0};
@@ -123,4 +123,15 @@ const Span = styled.span`
   overflow: visible !important;
 
   position: relative;
+`;
+
+const boxFade = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+
 `;
