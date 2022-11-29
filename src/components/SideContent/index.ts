@@ -1,3 +1,3 @@
 export { SideContentRight } from './SideContentRigh';
-export { SideContentLeft } from './SideContentLeft';
+export { Keyword } from './Keyword';
 export { FolderMenu } from './FolderMenu/FolderMenu';

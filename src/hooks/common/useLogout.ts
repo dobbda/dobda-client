@@ -18,7 +18,7 @@ export const useLogout = () => {
       } catch (e) {}
       queryClient.invalidateQueries(keys.auth);
       queryClient.removeQueries(keys.auth);
-      router.replace(router.asPath);
+      router.replace('/');
     }
   };
   return { logout };

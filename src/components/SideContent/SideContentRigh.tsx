@@ -5,6 +5,8 @@ import { P, Red, SideContainer } from './style/SideContent.style';
 import { FolderMenu } from './FolderMenu/FolderMenu';
 import { useAuth, useLoginModalhandler } from 'src/hooks';
 import { Button, Empty } from '../common';
+import { Noticei } from 'src/icons';
+import { NotiList } from './content/NotiList';
 
 interface Props {
   folderOpenFalse?: boolean;
@@ -37,6 +39,9 @@ export const SideContentRight = ({ folderOpenFalse }: Props) => {
       <FolderMenu childOpen={!folderOpenFalse} icon={<Red>🔢 </Red>} title={<>Tag Cloud</>}>
         <Empty />
       </FolderMenu>{' '}
+      <FolderMenu icon={<Noticei size="20px" />} childOpen={!folderOpenFalse} title="공지사항" href="/notice">
+        <NotiList />
+      </FolderMenu>
     </SideContainer>
   );
 };

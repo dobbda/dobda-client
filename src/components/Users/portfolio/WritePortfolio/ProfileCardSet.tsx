@@ -13,17 +13,18 @@ import Checkbox from 'antd/lib/checkbox/Checkbox';
 import { CardWrapper, Flex, Color } from './style';
 import { Colorpicker } from './Colorpicker';
 interface Props {
-  data: Portfolio;
+  data?: Portfolio;
 }
 
 const ProfileCardSet = ({ data }: Props) => {
   //data
   const { auth, refetch } = useAuth();
-  const { card } = data;
-  const [bgColor, setBgColor] = useState<string>(card?.bgColor);
-  const [titleColor, setTitleColor] = useState<string>(card?.titleColor);
-  const [title, onChangeTitle] = useInput<string>(card?.title && card?.title);
-  const [bgImg, setImage] = useState<Image>(card?.bgImg);
+  const [bgColor, setBgColor] = useState<string>(data?.card?.bgColor || '#bd339a');
+  const [titleColor, setTitleColor] = useState<string>(data?.card?.titleColor || '#ffffff');
+  const [title, onChangeTitle] = useInput<string>(
+    (data?.card?.title && data?.card?.title) || '카드 이미지를 추가하거나 색상을 변경할수 있습니다. ',
+  );
+  const [bgImg, setImage] = useState<Image>(data?.card?.bgImg);
   const [isImg, setIsImg] = useState<boolean>(true);
   //
   const queryClient = useQueryClient();
@@ -35,19 +36,19 @@ const ProfileCardSet = ({ data }: Props) => {
     setImage({ url, name: fileName, uid: fileName.substring(0, 10) });
     setLoading(false);
   }, []);
-  const save = useCallback(() => {
+  useEffect(() => {
     queryClient.setQueryData('profileCardSetData', {
-      bgColor: bgColor || card.bgColor,
-      titleColor: titleColor || card.titleColor,
-      title: title || card.title,
-      bgImg: bgImg || card.bgImg,
+      bgColor: bgColor || data?.card.bgColor,
+      titleColor: titleColor || data?.card.titleColor,
+      title: title || data?.card?.title,
+      bgImg: bgImg || data?.card?.bgImg,
     });
   }, [bgColor, titleColor, title, bgImg]);
 
   return (
     <CardWrapper titleColor={titleColor} bgColor={bgColor} bgImg={bgImg?.url} isImg={isImg}>
       <div className="title">
-        <h1 css={{ textAlign: 'center' }}>{title || card?.title}</h1>
+        <h1 css={{ textAlign: 'center' }}>{title || data?.card?.title}</h1>
       </div>
       <div className="card_content">
         <Flex>
@@ -79,9 +80,6 @@ const ProfileCardSet = ({ data }: Props) => {
           </Color>
         </Flex>
       </div>
-      <button onClick={save} css={{ border: 'solid 1px #809dff54' }}>
-        임시저장
-      </button>
     </CardWrapper>
   );
 };

@@ -9,13 +9,14 @@ import { keys, useAuth } from 'src/hooks';
 import produce from 'immer';
 import { user } from 'src/api';
 import getDate from 'src/lib/utils/dateForm';
+import { Skeleton } from 'src/components/Skeleton';
 type Props = {
   data: Alarm[];
 };
 
 export const Alarms = () => {
   const { auth, refetch } = useAuth();
-  const { data } = useQuery(keys.alarms(auth?.id), user.alarms, {
+  const { data, isLoading } = useQuery(keys.alarms(auth?.id), user.alarms, {
     enabled: !!auth?.id,
   });
   // const data: Alarm[] = [];
@@ -23,6 +24,8 @@ export const Alarms = () => {
     <Div>
       <h1>최근 알림</h1>
       <ul>
+        {isLoading && <Skeleton row={4} />}
+
         {data && data?.length > 0 ? (
           data?.map((x: Alarm, i) => <Message data={x} key={i} />)
         ) : (

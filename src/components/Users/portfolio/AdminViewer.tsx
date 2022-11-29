@@ -93,7 +93,7 @@ const AdminViewer = ({ contents, setContents }: Props) => {
                 </Button>
               </span>
             </div>
-            <HtmlViewer content={item.content} />
+            {item.content && <HtmlViewer content={item.content} />}
             {item.images.length > 0 && <CarouselsImages images={item.images} />}
           </>
         )}
@@ -102,7 +102,7 @@ const AdminViewer = ({ contents, setContents }: Props) => {
   };
 
   return (
-    <div ref={containerRef} css={{ touchAction: 'pan-y', paddingTop: '20px' }}>
+    <div ref={containerRef} css={{ touchAction: 'pan-y', paddingTop: '20px', position: 'relative', zIndex: 1 }}>
       <DraggableList
         itemKey="key"
         template={Item}
@@ -126,7 +126,8 @@ const ItemStyle = styled.div`
     top: -25px;
     right: 0;
     left: 0;
-    box-shadow: 0px -2px 0px 0px #e9e9e9 inset;
+    box-shadow: 0px -2px 0px 0px #c9c9c9 inset;
+    z-index: 1;
   }
   .disable-select,
   .dragHandle {
@@ -153,7 +154,7 @@ const ItemStyle = styled.div`
 
     .item_header {
       transition: all 200ms;
-      background-color: #f3f3f3;
+      background-color: #eeeeee;
       display: flex;
     }
   }

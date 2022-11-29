@@ -2,16 +2,13 @@ import { Segmented } from 'antd';
 import Divider from 'antd/lib/divider';
 import List from 'antd/lib/list';
 import { SegmentedValue } from 'antd/lib/segmented';
-import Link from 'next/link';
 import React, { useState } from 'react';
 import { user } from 'src/api';
 import OCard from 'src/components/Card/OCard';
 import QCard from 'src/components/Card/QCard';
 import { Button } from 'src/components/common';
-import { Hr } from 'src/components/common/@share/atom';
 import { keys } from 'src/hooks';
 import { useInfinity } from 'src/hooks/common/useInfinity';
-import { Outsource, Question } from 'src/types';
 import { MyPostList } from 'src/types/content-type';
 
 import { ListWrapper, Wrapper } from './style/MyPost.style';
@@ -19,7 +16,7 @@ import { ListWrapper, Wrapper } from './style/MyPost.style';
 export const Poster = () => {
   const [category, setCategory] = useState<SegmentedValue>(MyPostList[0]);
 
-  const { data, nextPage } = useInfinity<any>({
+  const { data, nextPage, isLoading } = useInfinity<any>({
     queryKey: category == MyPostList[0] ? keys.userQ(1) : keys.userS(1),
     fetch: category == MyPostList[0] ? (page: number) => user.question(page) : (page: number) => user.sourcing(page),
   });
@@ -54,6 +51,7 @@ export const Poster = () => {
         loadMore={loadMore}
         css={{ maxHeight: '700px', overflow: 'auto', paddingBottom: '10px' }}
         renderItem={(item) => <List.Item>{category == MyPostList[0] ? <QCard data={item} /> : <OCard data={item} />}</List.Item>}
+        loading={isLoading}
       />
     </Wrapper>
   );

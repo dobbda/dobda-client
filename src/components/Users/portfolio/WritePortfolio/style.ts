@@ -40,6 +40,7 @@ export const CardWrapper = styled.div<StypeProps>`
   background-color: ${({ bgColor }) => (bgColor ? bgColor : '#bd339a')};
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
   .title {
     height: 100%;
     display: flex;

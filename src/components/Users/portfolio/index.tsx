@@ -30,9 +30,9 @@ type Props = {
 export const MyPortfolio = ({ data }: Props) => {
   const queryClient = useQueryClient();
   const { auth, refetch } = useAuth();
-  const { data: cardData } = useQuery<typeof data.card>('profileCardSetData', { initialData: data.card });
+  const { data: cardData } = useQuery<typeof data.card>('profileCardSetData', { initialData: data?.card || null });
   const [html, setHtml] = useState('');
-  const [contents, setContents] = useState<PortfolioContent[]>(data?.content);
+  const [contents, setContents] = useState<PortfolioContent[]>(data?.content || []);
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const [isAdd, setIsAdd] = useState(false);
@@ -42,16 +42,20 @@ export const MyPortfolio = ({ data }: Props) => {
   }, [html, fileList, data, contents]);
 
   const addContent = useCallback(async () => {
-    if (fileList || html?.replace(/<(.|\n)*?>/g, '').trim().length !== 0) {
+    const isContent = html?.replace(/<(.|\n)*?>/g, '').trim().length !== 0;
+    if (fileList || isContent) {
       const images = await listFileUpload(fileList);
-      setContents([...contents, { content: html, images: images, key: Math.random().toString(36).slice(2, 11) }]);
+      setContents([
+        ...contents,
+        { content: isContent ? html : null, images: images, key: Math.random().toString(36).slice(2, 11) },
+      ]);
       setHtml('');
       setFileList([]);
     }
   }, [html, contents, fileList]);
 
   const onSubmint = useCallback(async () => {
-    let isChecked = JSON.stringify({ ...cardData, ...contents }) == JSON.stringify({ ...data.card, ...data.content });
+    let isChecked = JSON.stringify({ ...cardData, ...contents }) == JSON.stringify({ ...data?.card, ...data?.content });
     if (isChecked) {
       return message.warning('변경된 내용이 없습니다.');
     }

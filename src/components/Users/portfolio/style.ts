@@ -15,4 +15,5 @@ export const EditorCt = styled.div`
   border: solid 1px #bcd4ff;
   padding: 5px;
   background-color: #cadaf8;
+  position: relative;
 `;

@@ -38,7 +38,7 @@ export { BsArrowsFullscreen as Fulli } from 'react-icons/bs';
 export { LoadingOutlined as LoadingIcon } from '@ant-design/icons';
 
 import { RiArrowDownSLine } from 'react-icons/ri';
-export const MainArrowi = styled(RiArrowDownSLine)`
+export const ArrowDown = styled(RiArrowDownSLine)`
   transform: rotate(-180deg);
 `;
 

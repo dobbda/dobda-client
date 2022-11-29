@@ -2,7 +2,22 @@ import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 // ({theme})=> theme.color
 
+export const Image = styled.img`
+  max-height: 200px;
+  min-height: 160px;
+  width: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease 0s, transform 0.3s ease 0s;
+`;
+export const ImageWrap = styled.div`
+  width: 100%;
+  max-height: 200px;
+  min-height: 160px;
+  overflow: hidden;
+  display: inline-block;
+`;
 export const ContentWrapper = styled.div`
+  overflow: hidden;
   position: relative;
   background-color: #fff;
   border: 1px solid ${theme.color.border2};
@@ -13,6 +28,10 @@ export const ContentWrapper = styled.div`
     .outsourcing-title {
       text-decoration: 1px underline;
       text-underline-offset: 4px;
+    }
+    ${Image} {
+      transform: scale(1.1);
+      overflow: hidden;
     }
   }
   * p {
@@ -56,20 +75,12 @@ export const Info = styled.div`
   margin-bottom: 0;
 `;
 
-export const Image = styled.img`
-  width: 100%;
-  max-height: 170px;
-  object-fit: cover;
-  padding: 5px;
-  border-radius: 8px;
-`;
-
 export const Content = styled.div`
-  padding: 5px 20px;
+  padding: 0 20px;
   width: 100%;
-  @media screen and (max-width: 450px) {
+  /* @media screen and (max-width: 450px) {
     padding: 20px 10px;
-  }
+  } */
 `;
 
 export const Watch = styled.div`
@@ -77,11 +88,13 @@ export const Watch = styled.div`
   top: 0;
   right: 0;
   background-color: #fff;
+  z-index: 1;
   padding: 5px 10px;
   /* border-top-right-radius: 4px; */
   border-bottom-left-radius: 4px;
 `;
 export const Countdown = styled.div`
+  z-index: 1;
   position: absolute;
   top: 0;
   left: 0;

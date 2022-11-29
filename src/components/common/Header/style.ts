@@ -87,11 +87,14 @@ export const UserModalWrapper = styled.div`
 export const My = styled.button`
   border: solid 1px ${theme.color.primary};
   color: ${theme.color.primary};
-  padding-top: 4px;
+  padding: 4px 8px;
   white-space: nowrap;
   background-color: #fff;
   border-radius: 4px;
-  font-weight: bold;
-  line-height: 20px;
-  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+  gap: 3px;
 `;

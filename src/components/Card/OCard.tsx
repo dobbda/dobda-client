@@ -29,7 +29,9 @@ const OCard = ({ data }: Props) => {
                 {CountDown <= 0 ? '마감' : 'D' + ' - ' + CountDown}
               </p>
             </S.Countdown>
-            <S.Image src={data.cardImage} alt="" />
+            <S.ImageWrap>
+              <S.Image src={data.cardImage} alt="" />
+            </S.ImageWrap>
             <S.Content>
               <S.HeaderWrapper>
                 <c.Group>

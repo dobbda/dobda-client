@@ -60,10 +60,10 @@ const ContentCardList = styled.div`
 `;
 const RefCard = styled.div`
   width: 100%;
-  :hover {
+  /* :hover {
     margin-left: -1px;
     margin-right: -1px;
     box-shadow: 0 0 0 1px ${theme.color.prRgb(0.5)};
     transition: all 0.2s;
-  }
+  } */
 `;

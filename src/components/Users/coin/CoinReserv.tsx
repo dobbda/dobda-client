@@ -11,7 +11,7 @@ import styled from 'styled-components';
 type Props = {};
 
 export function CoinReservC({}: Props) {
-  const { data, nextPage } = useInfinity<CoinReserv>({
+  const { data, nextPage, isLoading } = useInfinity<CoinReserv>({
     queryKey: keys.coinReserv,
     fetch: (page: number) => user.coinReserv(page),
   });
@@ -103,6 +103,7 @@ export function CoinReservC({}: Props) {
       onChange={onChange}
       rowKey={(item) => item.id}
       pagination={{ pageSize: 10, total: total, hideOnSinglePage: true }}
+      loading={isLoading}
     />
   );
 }

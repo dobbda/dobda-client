@@ -29,7 +29,7 @@ const Div = styled.div`
   margin: 0 10px;
   display: flex;
   justify-content: space-around;
-  border-radius: 2rem;
+  /* border-radius: 2rem; */
   transition: all 0.2s ease-in-out 0s;
 
   :hover {
@@ -54,6 +54,10 @@ const Div = styled.div`
         color: ${theme.color.primary};
       }
     }
+  }
+  :focus-within {
+    border: 1px solid ${theme.color.primary};
+    box-shadow: ${theme.color.prRgb(0.5)} 0px 0px 0px 3px;
   }
 
   button {

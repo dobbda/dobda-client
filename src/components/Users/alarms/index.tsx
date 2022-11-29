@@ -6,6 +6,7 @@ import Link from 'next/link';
 import React, { useCallback } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import { user } from 'src/api';
+import { Skeleton } from 'src/components/Skeleton';
 import { keys, useAuth } from 'src/hooks';
 import { Layout } from 'src/Layout';
 import getDate from 'src/lib/utils/dateForm';
@@ -18,7 +19,7 @@ type Props = {};
 export const MyAlarm = (props: Props) => {
   const queryClient = useQueryClient();
   const { auth, refetch } = useAuth();
-  const { data } = useQuery(keys.alarmsAll(auth?.id), user.alarmsAll, {
+  const { data, isLoading } = useQuery(keys.alarmsAll(auth?.id), user.alarmsAll, {
     enabled: !!auth?.id,
   });
 
@@ -57,6 +58,7 @@ export const MyAlarm = (props: Props) => {
         <h3>전체 알림</h3>
       </Divider>
       <div>
+        {isLoading && <Skeleton row={4} />}
         {data?.map((item: Alarm, i) => (
           <Link href={getLink(item)} key={i}>
             <Item onClick={() => viewChecked(item)}>

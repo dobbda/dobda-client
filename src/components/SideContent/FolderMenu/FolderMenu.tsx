@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Div, Label, CheckBox, ChildMenu, Icon } from './style/Menu.style';
-import { MainArrowi } from 'src/icons';
+import { ArrowDown } from 'src/icons';
 
 type Props = {
   title: React.ReactNode;
@@ -35,7 +35,7 @@ export const FolderMenu = ({
       <Label htmlFor={checkId} color={color}>
         {icon && <Icon>{icon}</Icon>}
         <h1>{title}</h1>
-        <MainArrowi className="rotate" color={color} />
+        <ArrowDown className="rotate" color={color} />
       </Label>
       <ChildMenu>{children}</ChildMenu>
     </Div>

@@ -12,6 +12,7 @@ import { FolderMenu } from '../SideContent';
 // import { MyPortfolio } from './portfolio';
 // import { MyInfo } from './profile/MyInfo';
 import dynamic from 'next/dynamic';
+import { Skeleton } from '../Skeleton';
 
 const MyCoin = dynamic(() => import('./coin'));
 const Poster = dynamic(() => import('./MyPoster'));
@@ -27,30 +28,32 @@ export const AdminUser = ({ children }: Props) => {
   const { auth } = useAuth();
   const router = useRouter();
   const { id, cg } = router.query;
-  console.log(id, cg);
   const setQueryPath = (cg: string) => {
-    router.push({ pathname: 'user/', query: { id: 1, cg: cg } });
+    router.push({ pathname: 'user/', query: { id: auth?.id, cg: cg } });
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [cg]);
+    if (!auth?.id) {
+      router.push('/');
+    }
+  }, [cg, auth]);
 
-  const { data: pfData, isSuccess: pfSuccess } = useQuery(keys.pf(3), () => getPf(3), {
+  const { data: pfData, isLoading: pfLoading } = useQuery(keys.pf(auth?.id), () => getPf(auth?.id), {
     staleTime: 1000 * 60 * 10,
     enabled: cg == 'portfolio',
   });
   return (
     <UserPageWrapper>
-      <div css={{ width: '100%' }}>
+      <div css={{ width: '100%', position: 'relative', zIndex: '1' }}>
         {(!cg || cg == 'info') && <MyInfo />}
         {cg == 'alarm' && <MyAlarm />}
         {cg == 'coin' && <MyCoin />}
-        {cg == 'portfolio' && pfSuccess && <MyPortfolio data={pfData} />}
+        {cg == 'portfolio' && (pfLoading ? <Skeleton image title row={5} /> : <MyPortfolio data={pfData} />)}
         {cg == 'post' && <Poster />}
       </div>
       <div className="navigator">
-        <FolderMenu title="CATEGORIES" childOpen={true} height="197px">
+        <FolderMenu title="CATEGORIES" childOpen={true} height="199px">
           <ul css={{ margin: '0', padding: '0' }}>
             <Li $isPath={'info' == cg} onClick={() => setQueryPath('info')}>
               내정보

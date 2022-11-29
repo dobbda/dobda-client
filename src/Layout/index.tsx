@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import * as S from './style/Layout.style';
 import { HeaderNav } from 'src/components/common';
-import { SideContentLeft, SideContentRight } from 'src/components/SideContent';
+import { Keyword, SideContentRight } from 'src/components/SideContent';
 import { useWindowSize } from 'src/hooks';
 import BnCarousel from '../components/banner/BnCarousel';
 import Suport from 'src/components/Admin/support';
@@ -23,13 +23,13 @@ export const Layout = ({ children, sideRight = false, sideLeft = false, banner =
         <S.Wrapper>
           {sideLeft && width > 1060 && (
             <S.SideNavWrapper>
-              <SideContentLeft />
+              <Keyword />
             </S.SideNavWrapper>
           )}
           <S.MainWrapper>{children}</S.MainWrapper>
           {sideRight && (
             <S.SideNavWrapper>
-              {sideLeft && width < 1060 && <SideContentLeft folderOpenFalse />}
+              {sideLeft && width < 1060 && <Keyword folderOpenFalse />}
               <SideContentRight />
               <Suport />
             </S.SideNavWrapper>

@@ -113,8 +113,6 @@ const ModalCloase = styled.div`
   top: 0;
   right: 0;
   z-index: 1;
-  /* width: 10px;
-  height: 10px; */
   color: gray;
   font-size: 80px;
   cursor: pointer;

@@ -14,7 +14,8 @@ import { AvatarImg } from '../@share/Avatar';
 import UserModalContent from './UserModalContent';
 import 'antd/dist/antd.css';
 import { Alarm } from 'src/types';
-import { Belli } from 'src/icons';
+import { ArrowDown, Belli } from 'src/icons';
+import { RiArrowDownSLine } from 'react-icons/ri';
 
 const HeaderNav = () => {
   const queryClient = useQueryClient();
@@ -29,7 +30,6 @@ const HeaderNav = () => {
         <S.Headercontainer className="top-navigation">
           <div css={{ display: 'flex', alignItems: 'center' }}>
             <Logo b={true} height="25px" />
-            <SearchBox />
           </div>
           <S.MenuWrapper>
             {!auth?.id && (
@@ -45,7 +45,9 @@ const HeaderNav = () => {
                   <Belli size={'18px'} css={{ marginTop: '4px', cursor: 'pointer' }} />
                 </Popover>
                 <Popover trigger="click" content={<UserModalContent />} top={16} right={0}>
-                  <S.My>마이페이지</S.My>
+                  <S.My>
+                    마이페이지 <RiArrowDownSLine color="gray" css={{ fontSize: '15px' }} />
+                  </S.My>
                 </Popover>
               </>
             )}

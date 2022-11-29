@@ -8,7 +8,7 @@ type Props = {
 
 const Support = ({ onlyPolicy = false }: Props) => {
   return (
-    <div css={{ marginTop: '20px' }}>
+    <div css={{ marginTop: '40px' }}>
       {!onlyPolicy && (
         <Flex>
           <Link href="#">
@@ -21,6 +21,7 @@ const Support = ({ onlyPolicy = false }: Props) => {
       )}
 
       <Flex>
+        <span />
         <Link href={`/support/service-terms`}>
           <Text>서비스이용약관 </Text>
         </Link>

@@ -3,6 +3,7 @@ import { ColumnsType } from 'antd/lib/table/interface';
 import Link from 'next/link';
 import React, { useCallback, useEffect, useState } from 'react';
 import { user } from 'src/api';
+import { Skeleton } from 'src/components/Skeleton';
 import { keys, useInfinity } from 'src/hooks';
 import getDate from 'src/lib/utils/dateForm';
 import { CoinHistory, CoinReserv, PayType } from 'src/types';
@@ -11,7 +12,7 @@ import styled from 'styled-components';
 type Props = {};
 
 export function CoinHistoryC({}: Props) {
-  const { data, nextPage } = useInfinity<CoinHistory>({
+  const { data, nextPage, isLoading } = useInfinity<CoinHistory>({
     queryKey: keys.coinHistory,
     fetch: (page: number) => user.coinHistory(page),
   });
@@ -108,6 +109,7 @@ export function CoinHistoryC({}: Props) {
       onChange={onChange}
       rowKey={(item) => item.id}
       pagination={{ pageSize: 10, total: total, hideOnSinglePage: true }}
+      loading={isLoading}
     />
   );
 }
