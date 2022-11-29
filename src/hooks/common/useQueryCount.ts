@@ -20,7 +20,12 @@ export const useQueryCount = () => {
     if (!provider) return;
     queryClient.setQueryData(queryKey, (oldData: any) => {
       const updateData = produce(oldData, (draft: any) => {
-        draft[changeKey] = countVal ? countVal : draft[changeKey] + upDown;
+        if (findId) {
+          let found = draft.find((v: any) => v.id == findId);
+          found[changeKey] = countVal ? countVal : found[changeKey] + upDown;
+        } else {
+          draft[changeKey] = countVal ? countVal : draft[changeKey] + upDown;
+        }
       });
       return updateData;
     });

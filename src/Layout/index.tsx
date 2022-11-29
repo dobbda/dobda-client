@@ -39,3 +39,5 @@ export const Layout = ({ children, sideRight = false, sideLeft = false, banner =
     </S.Container>
   );
 };
+
+export default Layout;

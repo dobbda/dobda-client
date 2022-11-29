@@ -16,7 +16,8 @@ import { Button } from 'src/components/common';
 import { useRouter } from 'next/router';
 import { Skeleton } from 'src/components/Skeleton';
 import { Coini, Qi } from 'src/icons';
-import { Editor } from 'src/components/Editor';
+// import { Editor } from 'src/components/Editor';
+const Editor = dynamic(() => import('src/components/Editor/Editor'));
 const AnswerCp = dynamic(() => import('src/components/Comment/Answer'));
 const WriteQuestion = dynamic(() => import('src/components/Write/WriteQuestion'));
 
