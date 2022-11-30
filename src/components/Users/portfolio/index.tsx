@@ -17,6 +17,7 @@ import { message } from 'antd';
 import { EditorCt, Wrapper } from './style';
 import dynamic from 'next/dynamic';
 import { listFileUpload } from './lib/listFileUpload';
+import { getPf } from 'src/api/apis/user';
 const ProfileCardSet = dynamic(() => import('./WritePortfolio/ProfileCardSet'), {
   suspense: true,
 });
@@ -27,16 +28,24 @@ type Props = {
   data: Portfolio;
 };
 
-export const MyPortfolio = ({ data }: Props) => {
+export const MyPortfolio = ({}: Props) => {
+  const { auth } = useAuth();
+
   const queryClient = useQueryClient();
-  const { auth, refetch } = useAuth();
+  const {
+    data,
+    isLoading: pfLoading,
+    refetch,
+  } = useQuery(keys.pf(auth?.id), () => getPf(auth?.id), {
+    staleTime: 1000 * 60 * 10,
+  });
   const { data: cardData } = useQuery<typeof data.card>('profileCardSetData', { initialData: data?.card || null });
   const [html, setHtml] = useState('');
   const [contents, setContents] = useState<PortfolioContent[]>(data?.content || []);
   const [fileList, setFileList] = useState<UploadFile[]>([]);
-
   const [isAdd, setIsAdd] = useState(false);
   const [isChange, setIsChange] = useState(false);
+
   useEffect(() => {
     setIsAdd(html?.replace(/<(.|\n)*?>/g, '').trim().length !== 0 || fileList.length !== 0);
   }, [html, fileList, data, contents]);
@@ -67,13 +76,19 @@ export const MyPortfolio = ({ data }: Props) => {
     } as CreatePortfolio);
 
     if (res.success) {
-      message.success('저장되었습니다.');
-      queryClient.setQueriesData(keys.pf(auth.id), (old: Portfolio) =>
-        produce(old, (draft) => {
-          draft.card = cardData;
-          draft.content = contents;
-        }),
-      );
+      const old = queryClient.getQueryData(keys.pf(auth.id));
+      if (!old) {
+        refetch;
+        message.success('저장되었습니다.');
+      } else {
+        queryClient.setQueriesData(keys.pf(auth.id), (old: Portfolio) =>
+          produce(old, (draft) => {
+            draft.card = cardData;
+            draft.content = contents;
+          }),
+        );
+        message.success('저장되었습니다.');
+      }
     }
   }, [cardData, contents, data]);
   return (
