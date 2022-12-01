@@ -17,6 +17,8 @@ const useAddSourcing = (mutationFn: any, sid?: number) => {
       queryClient.cancelQueries([keys.sourcings()]);
       // 메인페이지에 새로 추가
       if (!sid) {
+        const old = queryClient.getQueryData(keys.sourcings());
+        if (!old) return;
         queryClient.setQueryData(keys.sourcings(), (oldData: any) => {
           if (newOutsource.createdAt === newOutsource.updatedAt) {
             const updatedData = produce(oldData, (draft: any) => {

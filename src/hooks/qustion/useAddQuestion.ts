@@ -12,6 +12,8 @@ const useAddQuestion = (mutationFn: any, qid?: number) => {
     onSuccess: async (newQuestion: Question) => {
       // 메인페이지에 새로 추가
       if (!qid) {
+        const old = queryClient.getQueryData(keys.questions());
+        if (!old) return;
         // post
         queryClient.setQueryData(keys.questions(), (oldData: any) => {
           if (newQuestion.createdAt === newQuestion.updatedAt) {
