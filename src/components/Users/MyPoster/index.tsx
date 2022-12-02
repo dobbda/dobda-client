@@ -30,7 +30,7 @@ export const Poster = () => {
         lineHeight: '32px',
       }}
     >
-      <Button onClick={nextPage} types="primary">
+      <Button onClick={() => nextPage} types="primary">
         loading more
       </Button>
     </div>

@@ -1,121 +1,79 @@
-import { TableProps, Table } from 'antd';
-import { ColumnsType } from 'antd/lib/table/interface';
+import { createColumnHelper } from '@tanstack/react-table';
 import Link from 'next/link';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { user } from 'src/api';
 import { Skeleton } from 'src/components/Skeleton';
 import { keys, useInfinity } from 'src/hooks';
 import getDate from 'src/lib/utils/dateForm';
 import { CoinHistory, CoinReserv, PayType } from 'src/types';
-import styled from 'styled-components';
+import { Pagenation } from '../../Table/Pagenation';
+import Table from '../../Table/Table';
 
 type Props = {};
 
 export function CoinHistoryC({}: Props) {
   const { data, nextPage, isLoading } = useInfinity<CoinHistory>({
     queryKey: keys.coinHistory,
-    fetch: (page: number) => user.coinHistory(page),
+    fetch: user.coinHistory,
   });
 
-  const columns: ColumnsType<CoinHistory> = [
-    {
-      title: 'id',
-      dataIndex: 'id',
-      key: 'id',
-    },
-    {
-      title: '유형',
-      dataIndex: 'type',
-      key: 'id',
-      render: (text: keyof typeof PayType, record: CoinHistory) => {
-        if (text === 'question') {
-          return (
-            <A>
-              {' '}
-              <Link href={`/questions/` + record.questionId}>{PayType[text]}</Link>
-            </A>
-          );
-        } else if (text === 'sourcing') {
-          return (
-            <A>
-              <Link href={`/custom-project/requests/` + record.outSourcingId} css={{ color: 'red' }}>
-                {PayType[text]}
-              </Link>
-            </A>
-          );
-        } else {
-          return <span>{PayType[text]}</span>;
-        }
-      },
-      filters: [
-        {
-          text: '질문',
-          value: 'question',
-        },
-        {
-          text: '외주',
-          value: 'sourcing',
-        },
-        {
-          text: '출금',
-          value: 'withdraw',
-        },
-        {
-          text: '충전',
-          value: 'deposit',
-        },
-      ],
-      // filterMode: 'tree',
-      filterSearch: true,
-      onFilter: (value: any, record) => record.type.startsWith(value),
-    },
-    {
-      title: '코인',
-      dataIndex: 'coin',
-      sorter: (a, b) => a.coin - b.coin,
-      render: (coin: number) => <span>{coin.toLocaleString()}</span>,
-    },
-
-    {
-      title: '날짜',
-      dataIndex: 'createdAt',
-      render: (date) => <span>{getDate(date)}</span>,
-    },
-  ];
-
-  const [total, setTotal] = useState(data?.result.length);
-
-  const onChange: TableProps<CoinReserv>['onChange'] = useCallback(
-    async (pagination, filters, sorter, extra) => {
-      if (pagination.current > data?.pageNum) {
-        await nextPage();
-      }
-    },
-    [data],
-  );
+  const [render, setRender] = useState([]);
 
   useEffect(() => {
-    if (data?.result.length + 1 < data?.total) {
-      setTotal(data?.result.length + 10);
-    } else {
-      setTotal(data?.total);
+    if (data?.pageNum == 1) {
+      setRender(data.result);
     }
-  }, [setTotal, data]);
+  }, [data]);
 
+  useEffect(() => {
+    if (data?.pageNum == 1) {
+      setRender(data.result);
+    }
+  }, [data]);
+
+  const getLink = (props: any): JSX.Element | undefined => {
+    if (props.renderValue() == 'question') {
+      return (
+        <Link href={'/questions/' + props.cell.row.original.id}>
+          <a>{props.renderValue()}</a>
+        </Link>
+      );
+    } else if (props.renderValue() == 'sourcing') {
+      return (
+        <Link href={'/custom-project/requests/' + props.cell.row.original.id}>
+          {' '}
+          <a>{props.renderValue()}</a>
+        </Link>
+      );
+    }
+  };
+
+  const columnHelper = createColumnHelper<any>();
+  const columns = [
+    columnHelper.accessor('id', {
+      header: 'ID',
+      size: 40,
+    }),
+    columnHelper.accessor('type', {
+      header: 'Type',
+      size: 70,
+      cell: (props) => getLink(props),
+      enableSorting: false,
+    }),
+    columnHelper.accessor('coin', {
+      header: 'Coin',
+      size: 80,
+    }),
+    columnHelper.accessor('createdAt', {
+      header: '거래날짜',
+      size: 120,
+      cell: ({ renderValue }) => getDate(renderValue()),
+    }),
+  ];
   return (
-    <Table
-      columns={columns}
-      dataSource={data?.result}
-      onChange={onChange}
-      rowKey={(item) => item.id}
-      pagination={{ pageSize: 10, total: total, hideOnSinglePage: true }}
-      loading={isLoading}
-    />
+    <>
+      <Table columns={columns} data={render} />
+      <Pagenation {...data} render={render} setRender={setRender} nextPage={nextPage} row={10} />
+    </>
   );
 }
-
-const A = styled.div`
-  color: blue;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-`;

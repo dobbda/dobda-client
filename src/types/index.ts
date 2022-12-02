@@ -258,9 +258,9 @@ export interface UserProfile extends Default {
 //// 						Infinity Props Type 							     							////
 ////////////////////////////////////////////////////////////////
 export type InfinityProps<T> = {
-  result: T[];
-  pageNum: number;
-  isLast: boolean;
+  result?: T[];
+  pageNum?: number;
+  isLast?: boolean;
   totalPages?: number;
   total?: number;
 };

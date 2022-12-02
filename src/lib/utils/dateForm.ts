@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 dayjs.locale('ko');
 dayjs.extend(relativeTime);
 const getDate = (date: Date | string, fromNow: boolean = false) => {
-  return fromNow ? dayjs(date).fromNow() : dayjs(date).format('YYYY-MM-DD MM:SS');
+  return fromNow ? dayjs(date).fromNow() : dayjs(date).format('YYYY-MM-DD mm:ss');
 };
 
 export default getDate;
