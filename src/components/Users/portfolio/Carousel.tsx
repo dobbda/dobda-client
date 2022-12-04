@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 import { Modal } from 'src/components/common/@share/Modal';
 import { Fulli, Nexti, Previ, TagClosei } from 'src/icons';
-import { Image as ImageType } from 'src/types';
+import { Image as ImageType } from 'src/interface';
 import styled from 'styled-components';
 
 type Props = {

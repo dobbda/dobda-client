@@ -1,6 +1,6 @@
-import { InfinityProps, Question, QuestionDetail } from './../../types/index';
+import { InfinityProps, Question, QuestionDetail } from '../../interface/index';
 import { AxiosRequestConfig } from 'axios';
-import { Auth } from 'src/types';
+import { Auth } from 'src/interface';
 import { http } from '../http';
 
 export const auth = async (req: AxiosRequestConfig): Promise<Auth> => {

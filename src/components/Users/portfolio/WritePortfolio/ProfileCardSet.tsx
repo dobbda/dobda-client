@@ -7,7 +7,7 @@ import { uploadS3 } from 'src/lib/service/upload-s3';
 import { resizeImage } from 'src/lib/service/resizeImg';
 import { useQueryClient } from 'react-query';
 import { keys, useAuth, useInput } from 'src/hooks';
-import { Image, Portfolio } from 'src/types';
+import { Image, Portfolio } from 'src/interface';
 import { LoadingIcon } from 'src/icons';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import { CardWrapper, Flex, Color } from './style';
@@ -22,10 +22,10 @@ const ProfileCardSet = ({ data }: Props) => {
   const [bgColor, setBgColor] = useState<string>(data?.card?.bgColor || '#bd339a');
   const [titleColor, setTitleColor] = useState<string>(data?.card?.titleColor || '#ffffff');
   const [title, onChangeTitle] = useInput<string>(
-    (data?.card?.title && data?.card?.title) || '카드 이미지를 추가하거나 색상을 변경할수 있습니다. ',
+    (data?.card?.title && data?.card?.title) || ' 이미지를 추가하거나 색상을 변경할수 있어요~ ',
   );
   const [bgImg, setImage] = useState<Image>(data?.card?.bgImg);
-  const [isImg, setIsImg] = useState<boolean>(true);
+  const [isImg, setIsImg] = useState<boolean>(data?.card?.isImg || false);
   //
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
@@ -42,8 +42,9 @@ const ProfileCardSet = ({ data }: Props) => {
       titleColor: titleColor || data?.card.titleColor,
       title: title || data?.card?.title,
       bgImg: bgImg || data?.card?.bgImg,
+      isImg: isImg,
     });
-  }, [bgColor, titleColor, title, bgImg]);
+  }, [bgColor, titleColor, title, bgImg, isImg]);
 
   return (
     <CardWrapper titleColor={titleColor} bgColor={bgColor} bgImg={bgImg?.url} isImg={isImg}>

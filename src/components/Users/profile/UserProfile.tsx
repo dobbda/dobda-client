@@ -4,7 +4,7 @@ import { Tag } from 'src/components/common';
 import { useQuery } from 'react-query';
 import { user } from 'src/api';
 import { TagWrapper } from 'src/components/common/@share/atom';
-import { Auth } from 'src/types';
+import { Auth } from 'src/interface';
 import { Avatar } from 'antd';
 import { theme } from 'src/styles/Theme';
 import { useAuth } from 'src/hooks';

@@ -1,4 +1,4 @@
-import { Image } from 'src/types/index';
+import { Image } from 'src/interface/index';
 import { UploadFile } from 'antd';
 import { resizeImage } from 'src/lib/service/resizeImg';
 import { uploadS3 } from 'src/lib/service/upload-s3';

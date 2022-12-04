@@ -7,7 +7,7 @@ import { Editor, HtmlViewer } from 'src/components/Editor';
 // import { PfEditor } from './WritePortfolio/PfEditor';
 import { useQueryClient, useQuery } from 'react-query';
 import { uploadS3 } from 'src/lib/service/upload-s3';
-import { CreatePortfolio, Image, Portfolio, PortfolioContent } from 'src/types';
+import { CreatePortfolio, Image, Portfolio, PortfolioContent } from 'src/interface';
 import { resizeImage } from 'src/lib/service/resizeImg';
 import { Button as CustomButton } from 'src/components/common/@share/Buttons';
 import { user } from 'src/api';

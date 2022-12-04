@@ -1,7 +1,7 @@
 import { UploadFile } from 'antd/lib/upload/interface';
 import React from 'react';
 import { Editor } from 'src/components/Editor';
-import { Image } from 'src/types';
+import { Image } from 'src/interface';
 import { UploadSlider } from './UploadSlider';
 
 interface Props {

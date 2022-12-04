@@ -4,7 +4,7 @@ import * as c from './style/common';
 import * as Lib from 'src/components/common';
 import getDate from 'src/lib/utils/dateForm';
 import { atom } from '../common';
-import { Outsource } from 'src/types';
+import { Outsource } from 'src/interface';
 import { TagWrapper } from '../common/@share/atom';
 import { Bookmarki, Watchi, Woni } from 'src/icons';
 type Props = {

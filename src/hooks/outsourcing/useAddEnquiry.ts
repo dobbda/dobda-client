@@ -1,8 +1,8 @@
-import { Enquiry } from '../../types/index';
+import { Enquiry } from '../../interface/index';
 import { AxiosError, AxiosResponse } from 'axios';
 import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
 import { o, q } from 'src/api';
-import { CreateComment, CreateQuestion, Question, QuestionDetail } from 'src/types';
+import { CreateComment, CreateQuestion, Question, QuestionDetail } from 'src/interface';
 import { keys } from '../queries/queryKeys';
 import produce from 'immer';
 import { useQueryCount } from '../common/useQueryCount';

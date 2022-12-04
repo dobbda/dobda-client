@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Border, Main, WriteHandler } from './style/MainContent.style';
 import { WirteHandlerModal } from './atom/WirteHandlerModal';
-import { Categories, CategoryList, CategoriesType } from 'src/types/content-type';
+import { Categories, CategoryList, CategoriesType } from 'src/interface/content-type';
 import RenderOutsource from './renderItm/RenderOutSourcing';
 import RenderQuestion from './renderItm/RenderQuestion';
 import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';

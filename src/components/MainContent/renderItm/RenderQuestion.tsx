@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import QCard from '../../Card/QCard';
 import styled from 'styled-components';
 import { q } from 'src/api';
-import { Question } from 'src/types';
+import { Question } from 'src/interface';
 import { theme } from 'src/styles/Theme';
 import { Skeleton } from 'src/components/Skeleton';
 

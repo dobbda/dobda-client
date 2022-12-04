@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { Tags } from 'src/types';
+import { Tags } from 'src/interface';
 import { Tag } from 'src/components/common';
 import { Hashi } from 'src/icons';
 type Props = {

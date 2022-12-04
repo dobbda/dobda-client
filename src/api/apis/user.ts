@@ -1,6 +1,6 @@
-import { CoinReserv, CreatePortfolio, Portfolio } from './../../types/index';
-import { CoinHistory, InfinityProps, Outsource, Question } from 'src/types';
-import { Alarm, Auth, UserUpdate } from 'src/types';
+import { CoinReserv, CreatePortfolio, Portfolio } from '../../interface/index';
+import { CoinHistory, InfinityProps, Outsource, Question } from 'src/interface';
+import { Alarm, Auth, UserUpdate } from 'src/interface';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 export const myInfo = async () => {

@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { Empty, Link } from 'src/components/common';
 import { Div } from './style/style';
 import { Li } from './style/Message.style';
-import { Alarm, AlarmType, Auth } from 'src/types';
+import { Alarm, AlarmType, Auth } from 'src/interface';
 import axios from 'axios';
 import { useQuery, useQueryClient } from 'react-query';
 import { keys, useAuth } from 'src/hooks';

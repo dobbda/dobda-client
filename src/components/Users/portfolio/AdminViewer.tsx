@@ -1,6 +1,6 @@
 import React, { Component, useCallback, useRef, useState } from 'react';
 import HtmlViewer from 'src/components/Editor/HtmlViewer';
-import { CreatePortfolio, Image, Portfolio, PortfolioContent } from 'src/types';
+import { CreatePortfolio, Image, Portfolio, PortfolioContent } from 'src/interface';
 import styled from 'styled-components';
 import DraggableList, { TemplateProps } from 'react-draggable-list';
 import { Dragi } from 'src/icons';
@@ -20,7 +20,6 @@ interface Props {
 const AdminViewer = ({ contents, setContents }: Props) => {
   const containerRef = useRef<any>();
   const _onListChange = (newList: PortfolioContent[]) => {
-    console.log(newList);
     setContents([...newList]);
   };
 

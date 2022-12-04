@@ -11,7 +11,7 @@ import Hashtags from './atom/Hashtags';
 import { atom, Loading, LoadingPage } from 'src/components/common';
 import { Button } from 'src/components/common/@share/Buttons';
 import { useAddQuestion, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
-import { CreateQuestion, Question, QuestionDetail } from 'src/types';
+import { CreateQuestion, Question, QuestionDetail } from 'src/interface';
 import { q } from 'src/api';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

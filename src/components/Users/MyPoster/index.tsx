@@ -9,7 +9,7 @@ import QCard from 'src/components/Card/QCard';
 import { Button } from 'src/components/common';
 import { keys } from 'src/hooks';
 import { useInfinity } from 'src/hooks/common/useInfinity';
-import { MyPostList } from 'src/types/content-type';
+import { MyPostList } from 'src/interface/content-type';
 
 import { ListWrapper, Wrapper } from './style/MyPost.style';
 

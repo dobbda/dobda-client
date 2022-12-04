@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import OCard from '../../Card/OCard';
 import styled from 'styled-components';
 import { o } from 'src/api';
-import { InfinityProps, Outsource } from 'src/types';
+import { InfinityProps, Outsource } from 'src/interface';
 import { theme } from 'src/styles/Theme';
 import { Skeleton } from 'src/components/Skeleton';
 
