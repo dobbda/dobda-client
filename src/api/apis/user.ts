@@ -90,13 +90,14 @@ export const getPf = async (userId: number): Promise<Portfolio> => {
   return res.data.response;
 };
 
-export const getPfs = async (pageNum: number): Promise<InfinityProps<Portfolio>> => {
-  const res = (await axios.get(`/api/users/pfs?page=` + pageNum)).data.response;
+export const getPfs = async (pageParam?: number): Promise<InfinityProps<Portfolio>> => {
+  const res = await axios.get(`/api/users/pfs?page=` + pageParam);
+  if (!res.data.success) return null;
   return {
-    result: res.result,
-    pageNum: pageNum,
-    isLast: pageNum >= res?.totalPages,
-    totalPages: res?.totalPages,
-    total: res?.total,
+    result: res.data.response.result,
+    pageNum: pageParam,
+    isLast: pageParam >= res.data.response.totalPages,
+    total: res.data.response?.total,
+    totalPages: res.data.response.totalPages,
   };
 };

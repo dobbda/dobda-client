@@ -7,7 +7,7 @@ import { Editor, HtmlViewer } from 'src/components/Editor';
 // import { PfEditor } from './WritePortfolio/PfEditor';
 import { useQueryClient, useQuery } from 'react-query';
 import { uploadS3 } from 'src/lib/service/upload-s3';
-import { CreatePortfolio, Image, Portfolio, PortfolioContent } from 'src/interface';
+import { CreatePortfolio, ImageProp, Portfolio, PortfolioContent } from 'src/interface';
 import { resizeImage } from 'src/lib/service/resizeImg';
 import { Button as CustomButton } from 'src/components/common/@share/Buttons';
 import { user } from 'src/api';
@@ -16,7 +16,7 @@ import produce from 'immer';
 import { message } from 'antd';
 import { EditorCt, Wrapper } from './style';
 import dynamic from 'next/dynamic';
-import { listFileUpload } from './lib/listFileUpload';
+import { listFileUpload } from '../lib/listFileUpload';
 import { getPf } from 'src/api/apis/user';
 const ProfileCardSet = dynamic(() => import('./WritePortfolio/ProfileCardSet'), {
   suspense: true,
@@ -99,6 +99,9 @@ export const MyPortfolio = ({}: Props) => {
         </Divider>
         <ProfileCardSet data={data} />
         <AdminViewer contents={contents} setContents={setContents} />
+        <br />
+        <br />
+        <br />
         <EditorCt>
           <PfEditor setHtml={setHtml} html={html} fileList={fileList} setFileList={setFileList} />
           <Button

@@ -8,7 +8,7 @@ import { InfinityProps, Outsource } from 'src/interface';
 import { theme } from 'src/styles/Theme';
 import { Skeleton } from 'src/components/Skeleton';
 
-function RenderOutsource() {
+function RenderSourcing() {
   const [shearchTitle, setShearchTitle] = useState<string>();
   const [shearchTag, setShearchTag] = useState<string>();
   const { data, nextPage, refetch, isLoading } = useInfinity<Outsource>({
@@ -29,7 +29,7 @@ function RenderOutsource() {
       ) : (
         <ContentCardList>
           {data?.result.map((v, i) => {
-            if (data.result.length == i + 1) {
+            if (data.result.length == i) {
               return (
                 <RefCard ref={ref} key={v.id}>
                   <OCard data={v} />
@@ -48,7 +48,7 @@ function RenderOutsource() {
   );
 }
 
-export default RenderOutsource;
+export default RenderSourcing;
 
 const ContentCardList = styled.div`
   padding: 10px;

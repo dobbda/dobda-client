@@ -1,6 +1,6 @@
 import React, { Component, useCallback, useRef, useState } from 'react';
 import HtmlViewer from 'src/components/Editor/HtmlViewer';
-import { CreatePortfolio, Image, Portfolio, PortfolioContent } from 'src/interface';
+import { CreatePortfolio, ImageProp, Portfolio, PortfolioContent } from 'src/interface';
 import styled from 'styled-components';
 import DraggableList, { TemplateProps } from 'react-draggable-list';
 import { Dragi } from 'src/icons';
@@ -9,8 +9,8 @@ import PfEditor from './WritePortfolio/PfEditor';
 import { EditorCt } from './style';
 import { UploadFile } from 'antd';
 import produce from 'immer';
-import { listFileUpload } from './lib/listFileUpload';
-import CarouselsImages from './Carousel';
+import { listFileUpload } from '../lib/listFileUpload';
+import CarouselsImages from '../Carousel';
 
 interface Props {
   contents?: PortfolioContent[];
@@ -122,7 +122,7 @@ const ItemStyle = styled.div`
     padding: 5px 10px;
     display: none;
     position: absolute;
-    top: -25px;
+    top: -30px;
     right: 0;
     left: 0;
     box-shadow: 0px -2px 0px 0px #c9c9c9 inset;

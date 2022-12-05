@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 import { Modal } from 'src/components/common/@share/Modal';
 import { Fulli, Nexti, Previ, TagClosei } from 'src/icons';
-import { Image as ImageType } from 'src/interface';
+import { ImageProp as ImageType } from 'src/interface';
 import styled from 'styled-components';
 
 type Props = {
@@ -44,10 +44,10 @@ const CarouselsImages = ({ images }: Props) => {
           <Previ />
         </Arrow>
         <Carousel {...settings} ref={slicRef}>
-          {images?.map((v) => {
+          {images?.map((v, i) => {
             return (
               <div>
-                <ImgWrap>
+                <ImgWrap key={i}>
                   <FullIcon onClick={() => onClickZoom(v)}>
                     <Fulli />
                   </FullIcon>
@@ -74,7 +74,7 @@ const CarouselsImages = ({ images }: Props) => {
 
 const ImgWrap = styled.div`
   position: relative;
-  min-height: 330px;
+  min-height: 250px;
   overflow: hidden;
   box-shadow: 0px 0px 2px 3px #c4c8d0;
   margin: 5px 15px;
@@ -83,7 +83,7 @@ const ImgWrap = styled.div`
 const SlideContainer = styled.div`
   position: relative;
   padding: 8px;
-  box-shadow: inset 0px 0px 3px 3px #c4c8d0;
+  /* box-shadow: inset 0px 0px 3px 3px #c4c8d0; */
   max-width: 910px;
 `;
 const Arrow = styled.div`

@@ -3,17 +3,17 @@ import { keys, useInfinity } from 'src/hooks';
 import { useInView } from 'react-intersection-observer';
 import QCard from '../../Card/QCard';
 import styled from 'styled-components';
-import { q } from 'src/api';
-import { Question } from 'src/interface';
+
+import { Portfolio, Question } from 'src/interface';
 import { theme } from 'src/styles/Theme';
 import { Skeleton } from 'src/components/Skeleton';
+import { PortfolioCard } from 'src/components/Users/portfolio/public/Card';
+import { getPfs } from 'src/api/apis/user';
 
-function RenderQuestion() {
-  const [shearchTitle, setShearchTitle] = useState<string>();
-  const [shearchTag, setShearchTag] = useState<string>();
-  const { data, nextPage, refetch, isLoading } = useInfinity<Question>({
-    fetch: q.getInfinity,
-    queryKey: keys.questions(),
+function RenderPortfolio() {
+  const { data, nextPage, refetch, isLoading } = useInfinity<Portfolio>({
+    fetch: getPfs,
+    queryKey: keys.pfs,
   });
 
   const [ref, isView] = useInView();
@@ -26,20 +26,20 @@ function RenderQuestion() {
   return (
     <>
       {isLoading ? (
-        <Skeleton row={3} title border avatar len={3} />
+        <Skeleton row={3} image border avatar len={3} />
       ) : (
         <ContentCardList>
           {data?.result.map((v, i) => {
             if (data.result.length == i + 1) {
               return (
                 <RefCard ref={ref} key={v.id}>
-                  <QCard data={v} />
+                  <PortfolioCard data={v} />
                 </RefCard>
               );
             }
             return (
               <RefCard key={v.id}>
-                <QCard data={v} />
+                <PortfolioCard data={v} />
               </RefCard>
             );
           })}
@@ -49,26 +49,22 @@ function RenderQuestion() {
   );
 }
 
-export default RenderQuestion;
+export default RenderPortfolio;
 
 const ContentCardList = styled.div`
   display: grid;
-  place-items: center;
-  overflow: hidden;
+  grid-template-columns: repeat(2, 1fr);
+
   transition: all 0.2s;
   margin-bottom: 10px;
   padding: 10px;
   gap: 20px;
+  height: 100%;
+  @media screen and (max-width: 512px) {
+    transition: all 0.2s;
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 const RefCard = styled.div`
   width: 100%;
-  box-shadow: 0 0 0 1px #e3e6e8;
-  padding: 10px 15px;
-  border-radius: 7px;
-  :hover {
-    margin-left: -1px;
-    margin-right: -1px;
-    box-shadow: 0 0 0 1px ${theme.color.prRgb(0.5)};
-    transition: all 0.2s;
-  }
 `;

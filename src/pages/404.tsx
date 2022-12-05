@@ -21,7 +21,6 @@ const Error404: NextPage = () => {
       <br />
       <br />
       <span className="info">Page not found</span>
-      <img src="http://images2.layoutsparks.com/1/160030/too-much-tv-static.gif" className="static" />
     </Wrap>
   );
 };

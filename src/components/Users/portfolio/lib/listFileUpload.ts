@@ -1,14 +1,15 @@
-import { Image } from 'src/interface/index';
+import { ImageProp } from 'src/interface/index';
 import { UploadFile } from 'antd';
 import { resizeImage } from 'src/lib/service/resizeImg';
 import { uploadS3 } from 'src/lib/service/upload-s3';
 
 export const listFileUpload = async (fileList: UploadFile[]) => {
-  let images: Image[] = [];
+  let images: ImageProp[] = [];
 
   for (const v of fileList) {
     if (v.originFileObj) {
       let resize =
+        v.type != 'image/gif' &&
         v.size / 1023 ** 2 > 1 &&
         ((await resizeImage({ file: v.originFileObj, reformat: 'file', width: 1080, height: 1080 })) as File);
       let { url, fileName } = await uploadS3(resize || v.originFileObj);
