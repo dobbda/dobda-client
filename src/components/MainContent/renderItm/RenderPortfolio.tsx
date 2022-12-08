@@ -53,16 +53,16 @@ export default RenderPortfolio;
 
 const ContentCardList = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-
+  grid-template-columns: repeat(3, 2fr);
   transition: all 0.2s;
   margin-bottom: 10px;
   padding: 10px;
-  gap: 20px;
+  row-gap: 20px;
+  column-gap: 10px;
   height: 100%;
   @media screen and (max-width: 512px) {
     transition: all 0.2s;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 2fr);
   }
 `;
 const RefCard = styled.div`

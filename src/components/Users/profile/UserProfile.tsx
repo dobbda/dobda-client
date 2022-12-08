@@ -1,6 +1,6 @@
 import React from 'react';
 import { Div, BaseInfo, UserActive, Item, P, UserTech } from './style/userInfo.style';
-import { Tag } from 'src/components/common';
+import { Button, Link, Tag } from 'src/components/common';
 import { useQuery } from 'react-query';
 import { user } from 'src/api';
 import { TagWrapper } from 'src/components/common/@share/atom';
@@ -23,7 +23,7 @@ export function UserProfile({ id }: Props) {
           <BaseInfo>
             <Avatar src={data.avatar} style={{ width: '35px' }} alt="" />
             <br />
-            <p className="e-mail">{data.email}</p>
+            <p className="e-nickname">{data.nickname}</p>
             <P>{data.description}</P>
           </BaseInfo>
 
@@ -47,14 +47,9 @@ export function UserProfile({ id }: Props) {
             </Item>
           </UserActive>
           <UserTech>
-            <h3>Tech Stacks</h3>
-            <TagWrapper>
-              {data.skill?.map((tag) => (
-                <Tag key={tag} bg={theme.color.prRgb(0.3)}>
-                  {tag}
-                </Tag>
-              ))}
-            </TagWrapper>
+            <Button $fill types="secondary">
+              <Link href={'/maker/' + id}> 메이커 프로필 방문하기</Link>
+            </Button>
           </UserTech>
         </Div>
       )}

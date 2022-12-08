@@ -29,7 +29,6 @@ const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
     if (isError || !data.id) {
       router.push('/404', router.asPath, { shallow: true });
     }
-    console.log(data);
   }, [router, error, data]);
   return (
     <>

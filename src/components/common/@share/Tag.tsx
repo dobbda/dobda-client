@@ -7,6 +7,7 @@ type Props = {
   closable?: boolean;
   onClose?: (e: React.MouseEvent<HTMLElement>) => void;
   bg?: string;
+  color?: string;
 };
 
 interface StyleProps {
@@ -32,9 +33,9 @@ const Div = styled.div<StyleProps>`
   }
 `;
 
-export const Tag = ({ children, closable, onClose, bg }: Props) => {
+export const Tag = ({ children, closable, onClose, bg, color }: Props) => {
   return (
-    <Div bg={bg}>
+    <Div bg={bg} color={color}>
       {children}{' '}
       {closable && (
         <span onClick={onClose}>

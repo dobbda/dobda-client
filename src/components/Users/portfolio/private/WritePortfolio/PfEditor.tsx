@@ -15,7 +15,7 @@ export const PfEditor = ({ html, setHtml, fileList, setFileList }: Props) => {
   return (
     <div>
       {' '}
-      <Editor setHtml={setHtml} html={html} />
+      <Editor setHtml={setHtml} html={html} height="100px" />
       <UploadSlider fileList={fileList} setFileList={setFileList} />
     </div>
   );

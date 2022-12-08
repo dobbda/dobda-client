@@ -35,7 +35,7 @@ export const BaseInfo = styled.div`
     font-size: 18px;
     font-weight: bold;
   }
-  .e-mail {
+  .e-nickname {
     color: #52547e;
     font-size: 15px;
   }
@@ -60,13 +60,10 @@ export const Item = styled.div`
 `;
 
 export const UserTech = styled.div`
-  min-height: 50px;
   text-align: center;
-  margin: 10px 0;
-  div {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
+  padding: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 `;

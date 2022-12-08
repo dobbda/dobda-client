@@ -116,6 +116,9 @@ const AdminViewer = ({ contents, setContents }: Props) => {
 export default AdminViewer;
 
 const ItemStyle = styled.div`
+  .ql-editor {
+    padding: 0;
+  }
   .item_header {
     transition: all 200ms;
     justify-content: space-between;

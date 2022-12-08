@@ -53,10 +53,15 @@ export default RenderSourcing;
 const ContentCardList = styled.div`
   padding: 10px;
   display: grid;
+  grid-template-columns: repeat(2, 2fr);
   place-items: center;
   overflow: hidden;
   gap: 15px;
   margin-bottom: 10px;
+  @media screen and (max-width: 512px) {
+    transition: all 0.2s;
+    grid-template-columns: repeat(1, 2fr);
+  }
 `;
 const RefCard = styled.div`
   width: 100%;

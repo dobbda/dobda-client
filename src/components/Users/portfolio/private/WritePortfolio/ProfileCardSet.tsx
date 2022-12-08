@@ -19,7 +19,7 @@ interface Props {
 const ProfileCardSet = ({ data }: Props) => {
   //data
   const { auth, refetch } = useAuth();
-  const [bgColor, setBgColor] = useState<string>(data?.card?.bgColor || '#bd339a');
+  const [bgColor, setBgColor] = useState<string>(data?.card?.bgColor || '#5c27bd');
   const [titleColor, setTitleColor] = useState<string>(data?.card?.titleColor || '#ffffff');
   const [title, onChangeTitle] = useInput<string>(
     (data?.card?.title && data?.card?.title) || ' 이미지를 추가하거나 색상을 변경할수 있어요~ ',
@@ -83,8 +83,7 @@ const ProfileCardSet = ({ data }: Props) => {
           </Flex>
         </div>
       </BackgroundImg>
-      <div css={{ fontSize: '13px', color: 'darkcyan' }}>이미지를 디자인하여 사용가능합니다..</div>
-      <div css={{ fontSize: '13px', color: 'darkcyan' }}>이미지 여러장을 슬라이드로 보여줍니다.</div>
+      <div css={{ fontSize: '13px', color: 'darkcyan' }}>이미지나 색상 변경 가능합니다.</div>
     </div>
   );
 };

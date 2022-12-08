@@ -23,20 +23,17 @@ const MainContent = ({ children }: Props) => {
   const [select, setSelect] = useState<CategoriesType>();
   const { setLoginModal } = useLoginModalhandler();
   const { setWriteModal } = useWriteModalhandler();
-  useEffect(() => {
-    //첫 렌더링에만
-    setSelect(cg);
-    const storeCategory = getLocalStorage('mainCateogry') as CategoriesType;
-    Categories[cg || storeCategory]
-      ? setSelect(cg || storeCategory)
-      : (setSelect(CategoryList[0]), setLocalStorage('mainCateogry', CategoryList[0]));
-    router.push({ pathname: '/', query: { cg: storeCategory || CategoryList[0] } }, undefined, { scroll: false });
-  }, []);
 
   useDidMountEffect(() => {
     if (cg != undefined) {
       setLocalStorage('mainCateogry', cg);
       setSelect(cg);
+    } else {
+      const storeCategory = getLocalStorage('mainCateogry') as CategoriesType;
+      Categories[cg || storeCategory]
+        ? setSelect(cg || storeCategory)
+        : (setSelect(CategoryList[0]), setLocalStorage('mainCateogry', CategoryList[0]));
+      router.push({ pathname: '/', query: { cg: storeCategory || CategoryList[0] } }, undefined, { scroll: false });
     }
   }, [cg]);
 
@@ -47,7 +44,7 @@ const MainContent = ({ children }: Props) => {
 
   const onClickMenu = useCallback((m: CategoriesType) => {
     router.push({ pathname: '/', query: { cg: m } }, undefined, { scroll: false });
-    setSelect(cg);
+    setSelect(m);
   }, []);
   return (
     <>

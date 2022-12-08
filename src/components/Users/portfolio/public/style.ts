@@ -12,31 +12,30 @@ export const Wrap = styled.div`
     padding: 10px 8px;
   }
   #field {
-    padding: 0 5px;
   }
   .work_field {
-    overflow: hidden;
-    font-size: 14px;
-    color: #585858;
+    display: flex;
+    flex-flow: wrap;
+    max-height: 25px;
+    gap: 4px;
     margin-bottom: 10px;
+    overflow: hidden;
   }
   .work_skill {
-    overflow: hidden;
-    font-size: 13px;
-    color: #707070;
     display: flex;
+    flex-flow: wrap;
     gap: 4px;
+    max-height: 50px;
     overflow: hidden;
 
     span {
       align-items: center;
       display: flex;
       justify-content: center;
-      padding: 0 12px;
+      padding: 0 10px;
       background: #fff;
-      border-radius: 19.5px;
-      height: 35px;
-      font-size: 13px;
+      border-radius: 19px;
+      font-size: 11px;
       color: #555969;
     }
   }

@@ -73,6 +73,7 @@ export const Info = styled.div`
   gap: 5px;
   margin: 0 -1px;
   margin-bottom: 0;
+  overflow: hidden;
 `;
 
 export const Content = styled.div`
