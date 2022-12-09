@@ -24,31 +24,39 @@ const PortfolioPage = ({ data }: Props) => {
         <br />
         <div>
           <TagsWrap>
-            <h2>전문분야</h2>
-            <div>
-              {data?.workField?.map((v, i) => {
-                let num = Math.floor(Math.random() * color.length);
-                return (
-                  <Tag color={color[num]} style={{ marginRight: 3 }} key={i}>
-                    {v}
-                  </Tag>
-                );
-              })}
-            </div>
+            {data?.workField.length > 0 && (
+              <>
+                <h2>전문분야</h2>
+                <div>
+                  {data?.workField?.map((v, i) => {
+                    let num = Math.floor(Math.random() * color.length);
+                    return (
+                      <Tag color={color[num]} style={{ marginRight: 3 }} key={i}>
+                        {v}
+                      </Tag>
+                    );
+                  })}
+                </div>
+              </>
+            )}
           </TagsWrap>
 
           <TagsWrap>
-            <h2>기술스택</h2>
-            <div>
-              {data?.skill?.map((v, i) => {
-                let num = Math.floor(Math.random() * color.length);
-                return (
-                  <Tag color={color[num]} style={{ marginRight: 3 }} key={i}>
-                    {v}
-                  </Tag>
-                );
-              })}
-            </div>
+            {data?.skill.length > 0 && (
+              <>
+                <h2>기술스택</h2>
+                <div>
+                  {data?.skill?.map((v, i) => {
+                    let num = Math.floor(Math.random() * color.length);
+                    return (
+                      <Tag color={color[num]} style={{ marginRight: 3 }} key={i}>
+                        {v}
+                      </Tag>
+                    );
+                  })}
+                </div>
+              </>
+            )}
           </TagsWrap>
         </div>
         {data.content?.map((v, i) => {
@@ -104,4 +112,9 @@ const Container = styled.div`
   .userinf {
     width: 250px;
   }
+  @media screen and (max-width: 786px) {
+    .userinf {
+      display: none;
+    }
+  } ;
 `;

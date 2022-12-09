@@ -16,7 +16,13 @@ module.exports = withPlugins([withBundleAnalyzer], {
   experimental: { fallbackNodePolyfills: false, scrollRestoration: 'manual' },
   inlineImageLimit: false,
   images: {
-    domains: ['source.unsplash.com', 'joeschmoe.io', 'avatars.dicebear.com', 'dobda.s3.ap-northeast-2.amazonaws.com'],
+    domains: [
+      'source.unsplash.com',
+      'joeschmoe.io',
+      'avatars.dicebear.com',
+      'dobda.s3.ap-northeast-2.amazonaws.com',
+      's3.amazonaws.com',
+    ],
   },
   rewrites: () => [
     {

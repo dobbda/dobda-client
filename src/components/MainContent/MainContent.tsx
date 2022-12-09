@@ -24,18 +24,19 @@ const MainContent = ({ children }: Props) => {
   const { setLoginModal } = useLoginModalhandler();
   const { setWriteModal } = useWriteModalhandler();
   useEffect(() => {
-    if (cg == undefined) {
+    if (Categories[cg]) {
+      Categories[cg] ? setSelect(cg) : (setSelect(CategoryList[0]), setLocalStorage('mainCateogry', CategoryList[0]));
+    } else {
       const storeCategory = getLocalStorage('mainCateogry') as CategoriesType;
       Categories[storeCategory]
-        ? setSelect(storeCategory)
-        : (setSelect(CategoryList[0]), setLocalStorage('mainCateogry', CategoryList[0]));
-      router.push({ pathname: '/', query: { cg: storeCategory || CategoryList[0] } }, undefined, { scroll: false });
+        ? (setSelect(storeCategory), router.push({ pathname: '/', query: { cg: storeCategory } }, undefined, { scroll: false }))
+        : (setSelect(CategoryList[0]),
+          setLocalStorage('mainCateogry', CategoryList[0]),
+          router.push({ pathname: '/', query: { cg: CategoryList[0] } }, undefined, { scroll: false }));
     }
-    setSelect(cg);
   }, []);
 
   useDidMountEffect(() => {
-    console.log(cg);
     if (cg != undefined) {
       setLocalStorage('mainCateogry', cg);
       setSelect(cg);

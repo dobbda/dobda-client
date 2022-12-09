@@ -27,23 +27,22 @@ const AdminViewer = dynamic(() => import('./AdminViewer'));
 const PfEditor = dynamic(() => import('./WritePortfolio/PfEditor'));
 
 type Props = {
-  data: Portfolio;
+  // data: Portfolio;
 };
 
 export const MyPortfolio = ({}: Props) => {
   const { auth } = useAuth();
-
   const queryClient = useQueryClient();
   const { data, refetch } = useQuery(keys.pf(auth?.id), () => getPf(auth?.id), {
     staleTime: 1000 * 60 * 10,
+    retry: 0,
   });
   const { data: cardData } = useQuery<typeof data.card>('profileCardSetData', { initialData: data?.card || null });
   const [html, setHtml] = useState('');
   const [contents, setContents] = useState<PortfolioContent[]>(data?.content || []);
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [isAdd, setIsAdd] = useState(false);
-  const [isChange, setIsChange] = useState(false);
-  const [job, setJob] = useState(data?.job);
+  const [job, setJob] = useState(data?.job || '');
   const [workField, setWorkField] = useState<string[] | string>(data?.workField || []);
   const [skill, setSkill] = useState<string[] | string>(data?.skill || []);
 
@@ -65,12 +64,6 @@ export const MyPortfolio = ({}: Props) => {
   }, [html, contents, fileList]);
 
   const onSubmint = useCallback(async () => {
-    let isChecked =
-      JSON.stringify({ ...cardData, ...contents, job: job, workField: workField, skill: skill }) ==
-      JSON.stringify({ ...data?.card, ...data?.content, job: data.job, workField: data.workField, skill: data.skill });
-    if (isChecked) {
-      return message.warning('변경된 내용이 없습니다.');
-    }
     let res = await user.updatePf({
       public: true,
       card: cardData,
@@ -135,7 +128,7 @@ export const MyPortfolio = ({}: Props) => {
           </Button>
         </EditorCt>
         <br />
-        <CustomButton types="primary" $fill onClick={onSubmint} css={{ width: '100%', borderRadius: '0' }} disabled={isChange}>
+        <CustomButton types="primary" $fill onClick={onSubmint} css={{ width: '100%', borderRadius: '0' }}>
           {'변경내용 저장'}
         </CustomButton>
         <br />

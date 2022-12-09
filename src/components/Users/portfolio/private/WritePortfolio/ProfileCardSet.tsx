@@ -21,11 +21,9 @@ const ProfileCardSet = ({ data }: Props) => {
   const { auth, refetch } = useAuth();
   const [bgColor, setBgColor] = useState<string>(data?.card?.bgColor || '#5c27bd');
   const [titleColor, setTitleColor] = useState<string>(data?.card?.titleColor || '#ffffff');
-  const [title, onChangeTitle] = useInput<string>(
-    (data?.card?.title && data?.card?.title) || ' 이미지를 추가하거나 색상을 변경할수 있어요~ ',
-  );
+  const [title, onChangeTitle] = useInput<string>(data?.card?.title);
   const [bgImg, setImage] = useState<ImageProp>(data?.card?.bgImg);
-  const [isImg, setIsImg] = useState<boolean>(data?.card?.isImg || false);
+  const [isImg, setIsImg] = useState<boolean>(data?.card?.isImg);
   //
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
@@ -38,10 +36,10 @@ const ProfileCardSet = ({ data }: Props) => {
   }, []);
   useEffect(() => {
     queryClient.setQueryData('profileCardSetData', {
-      bgColor: bgColor || data?.card.bgColor,
-      titleColor: titleColor || data?.card.titleColor,
-      title: title || data?.card?.title,
-      bgImg: bgImg || data?.card?.bgImg,
+      bgColor: bgColor,
+      titleColor: titleColor,
+      title: title,
+      bgImg: bgImg,
       isImg: isImg,
     });
   }, [bgColor, titleColor, title, bgImg, isImg]);

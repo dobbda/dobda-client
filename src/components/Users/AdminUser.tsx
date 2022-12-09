@@ -49,7 +49,7 @@ export const AdminUser = ({ children }: Props) => {
         {(!cg || cg == 'info') && <MyInfo />}
         {cg == 'alarm' && <MyAlarm />}
         {cg == 'coin' && <MyCoin />}
-        {cg == 'portfolio' && (pfLoading ? <Skeleton image title row={5} /> : <MyPortfolio data={pfData} />)}
+        {cg == 'portfolio' && (pfLoading ? <Skeleton image title row={5} /> : <MyPortfolio />)}
         {cg == 'post' && <Poster />}
       </div>
       <div className="navigator">
@@ -83,6 +83,7 @@ const UserPageWrapper = styled.div`
   min-height: 100%;
   display: flex;
   gap: 20px;
+  padding: 0 5px;
   .navigator {
     background-color: #fff;
     height: fit-content;

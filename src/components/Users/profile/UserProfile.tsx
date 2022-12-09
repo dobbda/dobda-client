@@ -12,7 +12,7 @@ type Props = { id: number };
 
 export function UserProfile({ id }: Props) {
   const { data } = useQuery(['users', id], () => user.getUserInfo(id));
-  const acceptedRate = Math.ceil((data?.setAcceptCount / data?.questionsCount) * 100) + '%';
+  const acceptedRate = Math.ceil((data?.setAcceptCount / data?.questionsCount) * 100) || 0 + '%';
   const {
     data: pf,
     error,
