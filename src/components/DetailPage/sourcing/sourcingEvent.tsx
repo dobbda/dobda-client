@@ -3,7 +3,7 @@ import { Steps } from 'antd';
 import { Button } from 'src/components/common';
 import { FolderMenu } from 'src/components/SideContent';
 import { theme } from 'src/styles/Theme';
-import { OutsourceDetail, Progress, ProgressStatus } from 'src/types';
+import { OutsourceDetail, Progress, ProgressStatus } from 'src/interface';
 import styled from 'styled-components';
 import { ProjectProgress } from '../style/Detail.style';
 type Props = {

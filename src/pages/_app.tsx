@@ -1,5 +1,5 @@
 import type { AppContext, AppProps } from 'next/app';
-import Cookies from 'cookies';
+
 import React, { useEffect, useState } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider, useQueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';

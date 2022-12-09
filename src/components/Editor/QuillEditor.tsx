@@ -30,9 +30,10 @@ interface Props {
   setHtml: Dispatch<SetStateAction<string>>;
   height?: string;
   setFocus?: boolean;
+  placeholder?: string;
 }
 
-const QuillEditor = ({ html, setHtml, height, setFocus }: Props) => {
+const QuillEditor = ({ html, setHtml, height, setFocus, placeholder }: Props) => {
   const quillRef = useRef<any>();
 
   const imageHandler = useCallback(() => {
@@ -100,7 +101,7 @@ const QuillEditor = ({ html, setHtml, height, setFocus }: Props) => {
           value={html}
           onChange={(v: string) => setHtml(v)}
           modules={modules}
-          placeholder="내용을 입력해주세요."
+          placeholder={placeholder || '내용을 입력해주세요.'}
           theme="snow"
         />
       </QStyle>

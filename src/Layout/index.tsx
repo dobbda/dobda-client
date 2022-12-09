@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, ReactNode } from 'react';
 import * as S from './style/Layout.style';
 import { HeaderNav } from 'src/components/common';
 import { Keyword, SideContentRight } from 'src/components/SideContent';
@@ -11,6 +11,7 @@ interface Props {
   sideLeft?: boolean;
   banner?: boolean;
   myNavigator?: boolean;
+  sideContent?: ReactNode;
 }
 export const Layout = ({ children, sideRight = false, sideLeft = false, banner = false }: PropsWithChildren<Props>) => {
   const { width, height } = useWindowSize();
@@ -30,7 +31,7 @@ export const Layout = ({ children, sideRight = false, sideLeft = false, banner =
           {sideRight && (
             <S.SideNavWrapper>
               {sideLeft && width < 1060 && <Keyword folderOpenFalse />}
-              <SideContentRight />
+              {sideRight && <SideContentRight />}
               <Suport />
             </S.SideNavWrapper>
           )}

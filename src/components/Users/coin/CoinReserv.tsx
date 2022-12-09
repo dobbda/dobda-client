@@ -6,7 +6,7 @@ import { Pagenation } from 'src/components/Table/Pagenation';
 import { Table } from 'src/components/Table/Table';
 import { keys, useInfinity } from 'src/hooks';
 import getDate from 'src/lib/utils/dateForm';
-import { CoinReserv, PayType } from 'src/types';
+import { CoinReserv, PayType } from 'src/interface';
 
 type Props = {};
 
@@ -30,7 +30,7 @@ export function CoinReservC({}: Props) {
     }
   }, [data]);
 
-  const getLink = (props: any): JSX.Element | undefined => {
+  const getLink = (props: any): JSX.Element | undefined | string => {
     if (props.renderValue() == 'question') {
       return (
         <Link href={'/questions/' + props.cell.row.original.id}>
@@ -43,6 +43,8 @@ export function CoinReservC({}: Props) {
           <a>{props.renderValue()}</a>
         </Link>
       );
+    } else {
+      return props.renderValue();
     }
   };
 
@@ -51,12 +53,12 @@ export function CoinReservC({}: Props) {
     columnHelper.accessor('id', {
       header: 'ID',
       size: 40,
+      enableSorting: false,
     }),
     columnHelper.accessor('type', {
       header: 'Type',
       size: 70,
       cell: (props) => getLink(props),
-      enableSorting: false,
     }),
     columnHelper.accessor('coin', {
       header: 'Coin',

@@ -19,7 +19,6 @@ export const Pagenation = (props: Props) => {
   const { nextPage, pageNum, result } = props;
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    console.log(pageNum, page);
     const run = async () => {
       if (props.totalPages >= page) {
         if (page > pageNum) {
@@ -35,7 +34,6 @@ export const Pagenation = (props: Props) => {
     if (lenderData?.length > 0) {
       setIsLoading(false);
 
-      console.log(lenderData);
       props.setRender(lenderData);
     } else {
       setIsLoading(true);
@@ -47,8 +45,7 @@ export const Pagenation = (props: Props) => {
         <i></i>
         <i></i>
       </button>
-      <span>
-        {' '}
+      <span className="counting">
         {page}/{props.totalPages}
       </span>
       <button onClick={() => setPage(page + 1)} disabled={isLoading || page == props.totalPages} className="next">
@@ -108,6 +105,11 @@ const Div = styled.div<{ prev: boolean; next: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .counting {
+    font-size: 15px;
+    font-weight: bold;
+    color: #4f4e50;
+  }
   cursor: default;
   button {
     position: relative;

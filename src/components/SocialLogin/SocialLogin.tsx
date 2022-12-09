@@ -6,7 +6,7 @@ import { Logo } from 'src/components/common';
 import { useQueryClient } from 'react-query';
 import { useAuth, useLoginModalhandler } from 'src/hooks';
 import { GITHUB_URL, GOOGLE_URL, KAKAO_URL, NAVER_URL } from './CDN_URL';
-import { Auth } from 'src/types';
+import { Auth } from 'src/interface';
 import { Googlei, Githubi, Naveri } from 'src/icons';
 import Suport from '../Admin/support';
 type Props = {};

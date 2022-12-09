@@ -4,11 +4,11 @@ import { useInView } from 'react-intersection-observer';
 import OCard from '../../Card/OCard';
 import styled from 'styled-components';
 import { o } from 'src/api';
-import { InfinityProps, Outsource } from 'src/types';
+import { InfinityProps, Outsource } from 'src/interface';
 import { theme } from 'src/styles/Theme';
 import { Skeleton } from 'src/components/Skeleton';
 
-function RenderOutsource() {
+function RenderSourcing() {
   const [shearchTitle, setShearchTitle] = useState<string>();
   const [shearchTag, setShearchTag] = useState<string>();
   const { data, nextPage, refetch, isLoading } = useInfinity<Outsource>({
@@ -29,7 +29,7 @@ function RenderOutsource() {
       ) : (
         <ContentCardList>
           {data?.result.map((v, i) => {
-            if (data.result.length == i + 1) {
+            if (data.result.length == i) {
               return (
                 <RefCard ref={ref} key={v.id}>
                   <OCard data={v} />
@@ -48,15 +48,20 @@ function RenderOutsource() {
   );
 }
 
-export default RenderOutsource;
+export default RenderSourcing;
 
 const ContentCardList = styled.div`
   padding: 10px;
   display: grid;
+  grid-template-columns: repeat(2, 2fr);
   place-items: center;
   overflow: hidden;
   gap: 15px;
   margin-bottom: 10px;
+  @media screen and (max-width: 512px) {
+    transition: all 0.2s;
+    grid-template-columns: repeat(1, 2fr);
+  }
 `;
 const RefCard = styled.div`
   width: 100%;

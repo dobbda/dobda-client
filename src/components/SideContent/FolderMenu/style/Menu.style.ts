@@ -16,7 +16,7 @@ export const Label = styled.label<{ color?: string }>`
   padding: 13px 10px;
   height: 45px;
   margin: 0 10px;
-
+  user-select: none;
   cursor: pointer;
 
   h1 {

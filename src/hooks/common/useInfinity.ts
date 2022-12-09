@@ -1,4 +1,4 @@
-import { InfinityProps } from '../../types/index';
+import { InfinityProps } from '../../interface/index';
 import { AxiosError } from 'axios';
 import produce from 'immer';
 import { useCallback } from 'react';
@@ -16,7 +16,6 @@ export const useInfinity = <T>({ queryKey, fetch }: Props<T>) => {
   const nextPage = useCallback(
     async (page?: number) => {
       if (!data.isLast) {
-        console.log(page, data.pageNum);
         const res = await fetch(page ? page : data.pageNum + 1);
         queryClient.setQueryData(queryKey, (old: InfinityProps<T>) =>
           produce(old, (draft: InfinityProps<T>) => {

@@ -3,7 +3,7 @@ import * as S from './style/Q.style';
 import * as c from './style/common';
 import * as Lib from 'src/components/common';
 
-import { Question } from 'src/types';
+import { Question } from 'src/interface';
 import getDate from 'src/lib/utils/dateForm';
 import { atom } from '../common';
 import { theme } from 'src/styles/Theme';

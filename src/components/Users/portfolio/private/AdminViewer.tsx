@@ -1,6 +1,6 @@
 import React, { Component, useCallback, useRef, useState } from 'react';
 import HtmlViewer from 'src/components/Editor/HtmlViewer';
-import { CreatePortfolio, Image, Portfolio, PortfolioContent } from 'src/types';
+import { CreatePortfolio, ImageProp, Portfolio, PortfolioContent } from 'src/interface';
 import styled from 'styled-components';
 import DraggableList, { TemplateProps } from 'react-draggable-list';
 import { Dragi } from 'src/icons';
@@ -9,8 +9,8 @@ import PfEditor from './WritePortfolio/PfEditor';
 import { EditorCt } from './style';
 import { UploadFile } from 'antd';
 import produce from 'immer';
-import { listFileUpload } from './lib/listFileUpload';
-import CarouselsImages from './Carousel';
+import { listFileUpload } from '../lib/listFileUpload';
+import CarouselsImages from '../Carousel';
 
 interface Props {
   contents?: PortfolioContent[];
@@ -20,7 +20,6 @@ interface Props {
 const AdminViewer = ({ contents, setContents }: Props) => {
   const containerRef = useRef<any>();
   const _onListChange = (newList: PortfolioContent[]) => {
-    console.log(newList);
     setContents([...newList]);
   };
 
@@ -117,13 +116,16 @@ const AdminViewer = ({ contents, setContents }: Props) => {
 export default AdminViewer;
 
 const ItemStyle = styled.div`
+  .ql-editor {
+    padding: 0;
+  }
   .item_header {
     transition: all 200ms;
     justify-content: space-between;
     padding: 5px 10px;
     display: none;
     position: absolute;
-    top: -25px;
+    top: -30px;
     right: 0;
     left: 0;
     box-shadow: 0px -2px 0px 0px #c9c9c9 inset;

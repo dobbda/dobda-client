@@ -11,7 +11,7 @@ import { DatePicker, DatePickerProps, Input as AntInput, message, Input } from '
 import Hashtags from './atom/Hashtags';
 import { atom, Loading, Popover } from 'src/components/common';
 import { useAddSourcing as useAddSourcing, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
-import { CreateOutsource, Outsource, OutsourceDetail } from 'src/types';
+import { CreateOutsource, Outsource, OutsourceDetail } from 'src/interface';
 
 import { Button } from 'src/components/common/@share/Buttons';
 

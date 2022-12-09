@@ -1,17 +1,16 @@
 import styled from 'styled-components';
 
 export const Div = styled.div`
-  background-color: #fbf8f8;
   border: solid 1.5px ${({ theme }) => theme.color.border1};
   border-radius: 4px;
   min-height: 200px;
-  width: 100%;
+  width: 250px;
 
   align-items: center;
   justify-content: center;
 `;
 export const P = styled.p`
-  font-size: 13px;
+  font-size: 12px;
   color: #828282;
   text-align: center;
   margin: 0;
@@ -35,9 +34,10 @@ export const BaseInfo = styled.div`
     font-size: 18px;
     font-weight: bold;
   }
-  .e-mail {
+  .e-nickname {
     color: #52547e;
     font-size: 15px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -45,28 +45,37 @@ export const UserActive = styled.div`
   display: flex;
   border-top: solid 1px #d6d6d6;
   border-bottom: solid 1px #d6d6d6;
-  margin-right: -1px;
-  margin-left: -2px;
+
   justify-content: center;
   text-align: center;
+  background-color: #fbf8f8;
 `;
 
 export const Item = styled.div`
-  border-right: solid 1px #d6d6d6;
-  border-left: solid 1px #d6d6d6;
-  padding: 5px 10px;
+  padding: 5px;
   width: 25%;
-  min-width: 90px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  span {
+    font-size: 12px;
+    color: #8f8f8f;
+  }
+  span:last-child {
+    color: #6e6e6e;
+  }
 `;
 
 export const UserTech = styled.div`
-  min-height: 50px;
   text-align: center;
-  margin: 10px 0;
-  div {
+  padding: 20px 10px;
+  p {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #262626;
+    overflow: hidden;
+    gap: 15px;
   }
 `;
