@@ -1,5 +1,5 @@
-import { QuestionDetail, Answer, Comment, CreateComment } from 'src/types/index';
-import { InfinityProps, CreateQuestion, Question } from 'src/types/index';
+import { QuestionDetail, Answer, Comment, CreateComment } from 'src/interface/index';
+import { InfinityProps, CreateQuestion, Question } from 'src/interface/index';
 import axios, { AxiosResponse } from 'axios';
 
 // 질문글 전체조회 infinity

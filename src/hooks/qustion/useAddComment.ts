@@ -1,8 +1,8 @@
-import { Answer } from '../../types/index';
+import { Answer } from '../../interface/index';
 import { AxiosError, AxiosResponse } from 'axios';
 import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
 import { q } from 'src/api';
-import { CreateComment, CreateQuestion, Question } from 'src/types';
+import { CreateComment, CreateQuestion, Question } from 'src/interface';
 import { keys } from '../queries/queryKeys';
 import produce from 'immer';
 import { useRouter } from 'next/router';

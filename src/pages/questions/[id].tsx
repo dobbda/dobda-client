@@ -2,7 +2,7 @@ import { Layout } from 'src/Layout';
 import { QuestionPage } from 'src/components/DetailPage';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { QuestionDetail } from 'src/types';
+import { QuestionDetail } from 'src/interface';
 import { q, reqAuth, ssr } from 'src/api';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { keys } from 'src/hooks';
@@ -10,7 +10,7 @@ import { useEffect, useLayoutEffect } from 'react';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { errorHandler } from 'src/api/errorHandler';
 import { setLocalStorage } from 'src/lib/utils/localStorage';
-import { Exp } from 'src/types/content-type';
+import { Exp } from 'src/interface/content-type';
 import { SEO } from 'src/components/common';
 import { ssrQuery } from 'src/hooks/queries/defaultQueryClient';
 

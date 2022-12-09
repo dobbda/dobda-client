@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { GetServerSideProps } from 'next';
 import { cookieDecod } from 'src/lib/utils/cookieDecod';
-import { Exp } from 'src/types/content-type';
+import { Exp } from 'src/interface/content-type';
 
 let arr: any[] = [];
 

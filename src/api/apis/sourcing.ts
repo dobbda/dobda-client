@@ -1,6 +1,6 @@
-import { Reply } from '../../types/index';
-import { OutsourceDetail, Answer, Comment, CreateComment, Enquiry } from 'src/types/index';
-import { InfinityProps, CreateOutsource, Outsource } from 'src/types/index';
+import { Reply } from '../../interface/index';
+import { OutsourceDetail, Answer, Comment, CreateComment, Enquiry } from 'src/interface/index';
+import { InfinityProps, CreateOutsource, Outsource } from 'src/interface/index';
 import axios, { AxiosResponse } from 'axios';
 
 // 질문글 전체조회 infinity

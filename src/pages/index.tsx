@@ -8,7 +8,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { ssr } from 'src/api';
 import { keys } from 'src/hooks';
 import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';
-import { Exp } from 'src/types/content-type';
+import { Exp } from 'src/interface/content-type';
 import { errorHandler } from 'src/api/errorHandler';
 import { MainHead } from 'src/components/common';
 import { ssrQuery } from 'src/hooks/queries/defaultQueryClient';

@@ -4,7 +4,7 @@ export const bn = [
   {
     title: '전문가에게 맞겨보세요',
     sub: '___________________________・',
-    buttonName: '소싱팀 빌딩하기',
+    buttonName: '소싱팀 모집하기',
     bg: theme.color.secondary,
     image: '/banner/banner_bg2.png',
   },
