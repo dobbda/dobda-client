@@ -14,20 +14,15 @@ export const Main = styled.div`
     .tap_menu {
       //카테고리 버튼
       border-right: solid 1px #ebebeb;
+
       font-size: 15px;
       font-weight: 700;
       padding: 1px 15px;
       line-height: 33px;
       display: flex;
       color: #797979;
-      overflow: hidden;
       transition: all 0.2s ease-in-out 0.05s;
-      width: 77px;
-      justify-content: center;
       cursor: pointer;
-      :hover {
-        box-shadow: inset #95abd5 0px 4px 1px 0px;
-      }
     }
     .selected {
       color: #424242;

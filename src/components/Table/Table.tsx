@@ -8,7 +8,6 @@ import {
 } from '@tanstack/react-table';
 import { FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
 import styled from 'styled-components';
-import { Empty } from '../common';
 
 interface Props {
   columns: ColumnDef<any, any>[];
@@ -51,7 +50,6 @@ export const Table = ({ columns, data, manualPagination = false }: Props) => {
             </tr>
           ))}
         </thead>
-        {data.length == 0 && <Empty border />}
         <tbody>
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>

@@ -1,6 +1,6 @@
 import produce from 'immer';
 import { QueryKey, useInfiniteQuery, useQueryClient } from 'react-query';
-import { Question } from 'src/interface';
+import { Question } from 'src/types';
 import { keys } from '../queries/queryKeys';
 
 interface Props {

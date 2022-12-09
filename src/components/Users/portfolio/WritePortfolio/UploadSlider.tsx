@@ -56,7 +56,7 @@ export const UploadSlider = ({ fileList, setFileList }: Props) => {
           {loading ? <LoadingIcon size={21} /> : uploadButton}
         </UploadS>
       )}
-      <span css={{ fontSize: '13px', color: 'darkcyan' }}>이미지 여러장을 슬라이드로 보여줍니다.</span>
+      <span css={{ fontSize: '13px', color: 'darkcyan' }}>이미지만 업로드 가능합니다.</span>
     </>
   );
 };

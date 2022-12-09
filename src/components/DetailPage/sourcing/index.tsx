@@ -6,7 +6,7 @@ import { Avatar } from '../../common';
 import getDate from 'src/lib/utils/dateForm';
 
 import { HtmlViewer } from 'src/components/Editor';
-import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/interface';
+import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/types';
 import { keys, useAddEnquiry, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
 import { o, q } from 'src/api';
 import { useQuery, useQueryClient } from 'react-query';

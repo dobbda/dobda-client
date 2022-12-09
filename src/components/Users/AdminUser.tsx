@@ -16,7 +16,7 @@ import { Skeleton } from '../Skeleton';
 
 const MyCoin = dynamic(() => import('./coin'));
 const Poster = dynamic(() => import('./MyPoster'));
-const MyPortfolio = dynamic(() => import('./portfolio/private'));
+const MyPortfolio = dynamic(() => import('./portfolio'));
 const MyInfo = dynamic(() => import('./profile/MyInfo'));
 const MyAlarm = dynamic(() => import('./alarms'));
 

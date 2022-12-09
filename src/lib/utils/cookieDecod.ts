@@ -3,7 +3,7 @@ import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import Cookies from 'cookies';
 import { IncomingMessage, ServerResponse } from 'http';
 import { QueryClient } from 'react-query';
-import { Exp } from 'src/interface/content-type';
+import { Exp } from 'src/types/content-type';
 
 export const cookieDecod = (req: IncomingMessage, res: ServerResponse) => {
   const cookies = new Cookies(req, res);

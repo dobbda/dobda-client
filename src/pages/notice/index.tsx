@@ -5,7 +5,7 @@ import { Layout } from 'src/Layout';
 import { useQuery } from 'react-query';
 import { noti } from 'src/api';
 import { Divider, List, Typography } from 'antd';
-import { Noti } from 'src/interface';
+import { Noti } from 'src/types';
 import Link from 'next/link';
 
 const NotiList: NextPage = () => {

@@ -33,9 +33,11 @@ export default class MyDocument extends Document {
       <Html key={'root'} lang="ko">
         <Head>
           <link
-            rel="stylesheet"
+            rel="stylesheet preload prefetch"
             as="style"
-            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-dynamic-subset.css"
+            type="text/css"
+            crossOrigin="anonymous"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>

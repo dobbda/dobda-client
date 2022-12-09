@@ -4,7 +4,7 @@ import * as c from './style/common';
 import * as Lib from 'src/components/common';
 import getDate from 'src/lib/utils/dateForm';
 import { atom } from '../common';
-import { Outsource } from 'src/interface';
+import { Outsource } from 'src/types';
 import { TagWrapper } from '../common/@share/atom';
 import { Bookmarki, Watchi, Woni } from 'src/icons';
 type Props = {
@@ -46,20 +46,18 @@ const OCard = ({ data }: Props) => {
                   <Bookmarki />
                 </c.Group>
               </S.HeaderWrapper>
-              <c.Title className="outsourcing-title" css={{ height: '47px' }}>
-                {data.title}
-              </c.Title>
+              <c.Title className="outsourcing-title">{data.title}</c.Title>
             </S.Content>
             <S.Info>
               <TagWrapper>
-                <c.P>필요기술스택:</c.P>
+                <c.P>need skills:</c.P>
                 {data.tagNames?.map((tag, i) => (
                   <Lib.Tag key={data.id + i}>{tag.name}</Lib.Tag>
                 ))}
               </TagWrapper>
               <c.Group>
                 <c.P>마감일자 : {data?.deadline}</c.P> <c.Gap>|</c.Gap>
-                <c.P>예상금액:</c.P>
+                <c.P>금액:</c.P>
                 <c.P>
                   {data?.coin.toLocaleString()}
                   <Woni css={{ marginLeft: '3px' }} />

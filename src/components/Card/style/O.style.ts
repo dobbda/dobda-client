@@ -21,7 +21,7 @@ export const ContentWrapper = styled.div`
   position: relative;
   background-color: #fff;
   border: 1px solid ${theme.color.border2};
-  /* box-shadow: 0 1px 6px 0 rgb(137 138 154 / 40%); */
+  box-shadow: 0 1px 6px 0 rgb(137 138 154 / 40%);
   box-sizing: border-box;
   width: 100%;
   :hover {
@@ -30,7 +30,7 @@ export const ContentWrapper = styled.div`
       text-underline-offset: 4px;
     }
     ${Image} {
-      transform: scale(1.05);
+      transform: scale(1.1);
       overflow: hidden;
     }
   }
@@ -73,7 +73,6 @@ export const Info = styled.div`
   gap: 5px;
   margin: 0 -1px;
   margin-bottom: 0;
-  overflow: hidden;
 `;
 
 export const Content = styled.div`

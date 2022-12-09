@@ -1,6 +1,6 @@
-import { CoinReserv, CreatePortfolio, Portfolio } from '../../interface/index';
-import { CoinHistory, InfinityProps, Outsource, Question } from 'src/interface';
-import { Alarm, Auth, UserUpdate } from 'src/interface';
+import { CoinReserv, CreatePortfolio, Portfolio } from './../../types/index';
+import { CoinHistory, InfinityProps, Outsource, Question } from 'src/types';
+import { Alarm, Auth, UserUpdate } from 'src/types';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 export const myInfo = async () => {
@@ -13,7 +13,7 @@ export const myInfoUpdate = async (data: UserUpdate) => {
   return await axios.patch('/api/users/myinfo', data).then((res) => res.data?.response);
 };
 
-export const getUserInfo = async (id: number): Promise<Auth> => {
+export const getUserInfo = async (id: number) => {
   //내정보 상세
 
   return await axios.get(`/api/users/${id}`).then((res) => res.data?.response);
@@ -90,14 +90,13 @@ export const getPf = async (userId: number): Promise<Portfolio> => {
   return res.data.response;
 };
 
-export const getPfs = async (pageParam?: number): Promise<InfinityProps<Portfolio>> => {
-  const res = await axios.get(`/api/users/pfs?page=` + pageParam);
-  if (!res.data.success) return null;
+export const getPfs = async (pageNum: number): Promise<InfinityProps<Portfolio>> => {
+  const res = (await axios.get(`/api/users/pfs?page=` + pageNum)).data.response;
   return {
-    result: res.data.response.result,
-    pageNum: pageParam,
-    isLast: pageParam >= res.data.response.totalPages,
-    total: res.data.response?.total,
-    totalPages: res.data.response.totalPages,
+    result: res.result,
+    pageNum: pageNum,
+    isLast: pageNum >= res?.totalPages,
+    totalPages: res?.totalPages,
+    total: res?.total,
   };
 };

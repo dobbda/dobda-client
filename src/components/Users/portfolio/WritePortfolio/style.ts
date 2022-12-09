@@ -30,7 +30,7 @@ interface StypeProps {
   bgImg?: string;
   isImg?: boolean;
 }
-export const BackgroundImg = styled.div<StypeProps>`
+export const CardWrapper = styled.div<StypeProps>`
   position: relative;
   height: 400px;
   background-image: url(${({ bgImg, isImg }) => isImg && bgImg});

@@ -3,7 +3,7 @@ import getDate from 'src/lib/utils/dateForm';
 import { ReplyItem, Header, CommentContent } from './style/Reply.style';
 import { atom, Avatar } from 'src/components/common';
 import { HtmlViewer } from 'src/components/Editor';
-import { Comment, Reply } from 'src/interface';
+import { Comment, Reply } from 'src/types';
 import { Replyi } from 'src/icons';
 
 type Props = {

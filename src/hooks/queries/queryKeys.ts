@@ -28,6 +28,5 @@ export const keys = {
   coinReserv: ['coinReserv'],
   coinHistory: ['coinHistory'],
 
-  pf: (userId: number | string) => ['portpolio user:' + userId],
-  pfs: ['all portpolio'],
+  pf: (userId: number) => ['portpolio user:' + userId],
 };

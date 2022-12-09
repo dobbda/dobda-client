@@ -4,7 +4,7 @@ import { useAuth, useInput } from 'src/hooks';
 import { Hashtags } from 'src/components/Write';
 import { Button } from 'src/components/common';
 import { useQuery, useQueryClient } from 'react-query';
-import { UserUpdate } from 'src/interface';
+import { UserUpdate } from 'src/types';
 import axios from 'axios';
 import * as S from './style/myInfo.style';
 import { Avatar, message } from 'antd';

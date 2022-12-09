@@ -2,7 +2,7 @@ import { getLocalStorage } from 'src/lib/utils/localStorage';
 import { QueryClient, useQueryClient } from 'react-query';
 import { http } from 'src/api';
 import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
-import { Auth } from 'src/interface';
+import { Auth } from 'src/types';
 
 export const auth = async (): Promise<Auth> => {
   if (getLocalStorage('exp', true)?.access_exp > Date.now()) {

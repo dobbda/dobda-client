@@ -18,6 +18,7 @@ export const resizeImage = ({ file, retype, reformat, width, height }: ResizePro
       100,
       0,
       (url) => {
+        console.log(url);
         resolve(url || file);
       },
       reformat || 'url',
