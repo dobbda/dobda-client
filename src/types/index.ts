@@ -266,7 +266,7 @@ export type InfinityProps<T> = {
 };
 
 ////////////////////////////
-export interface ImageProp {
+export interface Image {
   uid?: string;
   name: string;
   fileName?: string;
@@ -276,36 +276,29 @@ export interface ImageProp {
 ///////////////// Portfolio //////////////////////////////
 export interface PortfolioContent {
   content?: string;
-  images?: ImageProp[];
+  images?: Image[];
   key: string;
 }
 export interface Portfolio extends Default {
   card: {
-    bgImg?: ImageProp;
+    bgImg?: Image;
     bgColor?: string;
     title?: string;
     titleColor?: string;
     isImg?: boolean;
   };
   content: PortfolioContent[];
-  workField?: string[];
-  skill: string[];
-  public: boolean;
+  publick?: boolean;
   user: Author;
-  userId: number | string;
-  job: string;
 }
 
 export interface CreatePortfolio {
   card: {
-    bgImg?: ImageProp;
+    bgImg?: Image;
     bgColor?: string;
     title?: string;
     titleColor?: string;
     isImg?: boolean;
   };
   content: PortfolioContent[];
-  workField?: string[];
-  skill?: string[];
-  job?: string;
 }

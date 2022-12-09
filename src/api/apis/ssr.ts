@@ -1,6 +1,6 @@
-import { InfinityProps, Portfolio, Question, QuestionDetail } from '../../interface/index';
+import { InfinityProps, Question, QuestionDetail } from './../../types/index';
 import { AxiosRequestConfig } from 'axios';
-import { Auth } from 'src/interface';
+import { Auth } from 'src/types';
 import { http } from '../http';
 
 export const auth = async (req: AxiosRequestConfig): Promise<Auth> => {
@@ -64,9 +64,4 @@ export const portfolio = async (userId: number | string, req: AxiosRequestConfig
       })
     ).data?.response;
   } catch (e) {}
-};
-
-export const getPf = async (userId: string | number): Promise<Portfolio> => {
-  const res = await http.get(`/users/pf?userId=` + userId);
-  return res.data.response;
 };

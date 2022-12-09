@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import QCard from '../../Card/QCard';
 import styled from 'styled-components';
 import { q } from 'src/api';
-import { Question } from 'src/interface';
+import { Question } from 'src/types';
 import { theme } from 'src/styles/Theme';
 import { Skeleton } from 'src/components/Skeleton';
 
@@ -62,9 +62,11 @@ const ContentCardList = styled.div`
 `;
 const RefCard = styled.div`
   width: 100%;
+  /* border: 1px solid #e3e6e8; */
   box-shadow: 0 0 0 1px #e3e6e8;
+
   padding: 10px 15px;
-  border-radius: 7px;
+  border-radius: 10px;
   :hover {
     margin-left: -1px;
     margin-right: -1px;

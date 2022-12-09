@@ -38,11 +38,13 @@ export const Wrapper = styled.div`
 export const MainWrapper = styled.div`
   min-height: 100%;
   width: 100%;
-  padding: 10 20px;
+  padding: 0 20px;
   position: relative;
+  padding-top: 10px;
   transition: all 0.1s;
   @media screen and (max-width: 1060px) {
     padding: 0;
+    padding: 0 10px;
   }
   @media screen and (max-width: 768px) {
     padding: 0;

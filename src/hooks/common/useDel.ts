@@ -18,9 +18,12 @@ export const useDelete = <T extends Props>(id: number, queryKey: QueryKey, paren
         queryClient.cancelQueries(queryKey);
         if (queryKey.toString().includes('answers') || queryKey.includes('enquiry')) {
           queryClient.invalidateQueries(queryKey);
+          console.log('답변삭제 1');
           queryKey.includes('answers') &&
             (setInfCount({ queryKey: keys.questions(), changeKey: 'answersCount', findId: parentId, upDown: -1 }),
             setCount({ queryKey: keys.qDetail(parentId), changeKey: 'answersCount', findId: parentId, upDown: -1 }));
+
+          console.log('답변삭제 2');
 
           queryKey.includes('enquiry') &&
             (setInfCount({ queryKey: keys.sourcings(), changeKey: 'enquiryCount', findId: parentId, upDown: -1 }),

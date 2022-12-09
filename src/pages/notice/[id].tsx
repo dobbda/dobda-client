@@ -19,6 +19,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 const NotiList: NextPage<Props> = ({ id }) => {
+  console.log(id);
+
   const { data, isSuccess } = useQuery(['noti:', id], () => noti.getNoti(id));
   return (
     <Layout sideLeft sideRight banner>

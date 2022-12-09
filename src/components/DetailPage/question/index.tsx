@@ -7,7 +7,7 @@ import * as S from '../style/Detail.style';
 import { Avatar } from '../../common';
 import getDate from 'src/lib/utils/dateForm';
 import { HtmlViewer } from 'src/components/Editor';
-import { Question, QuestionDetail } from 'src/interface';
+import { Question, QuestionDetail } from 'src/types';
 import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
 import { keys, useAddAnswer, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';

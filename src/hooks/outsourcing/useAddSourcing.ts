@@ -1,5 +1,5 @@
 import { useMutation, UseMutationResult, useQueryClient } from 'react-query';
-import { CreateOutsource, Outsource } from 'src/interface';
+import { CreateOutsource, Outsource } from 'src/types';
 import { keys } from '../queries/queryKeys';
 import produce from 'immer';
 import { AxiosError } from 'axios';

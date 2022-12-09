@@ -5,7 +5,7 @@ import { user } from 'src/api';
 import { Skeleton } from 'src/components/Skeleton';
 import { keys, useInfinity } from 'src/hooks';
 import getDate from 'src/lib/utils/dateForm';
-import { CoinHistory, CoinReserv, PayType } from 'src/interface';
+import { CoinHistory, CoinReserv, PayType } from 'src/types';
 import { Pagenation } from '../../Table/Pagenation';
 import Table from '../../Table/Table';
 
@@ -31,7 +31,7 @@ export function CoinHistoryC({}: Props) {
     }
   }, [data]);
 
-  const getLink = (props: any): JSX.Element | undefined | string => {
+  const getLink = (props: any): JSX.Element | undefined => {
     if (props.renderValue() == 'question') {
       return (
         <Link href={'/questions/' + props.cell.row.original.id}>
@@ -41,11 +41,10 @@ export function CoinHistoryC({}: Props) {
     } else if (props.renderValue() == 'sourcing') {
       return (
         <Link href={'/custom-project/requests/' + props.cell.row.original.id}>
+          {' '}
           <a>{props.renderValue()}</a>
         </Link>
       );
-    } else {
-      return props.renderValue();
     }
   };
 
@@ -54,12 +53,12 @@ export function CoinHistoryC({}: Props) {
     columnHelper.accessor('id', {
       header: 'ID',
       size: 40,
-      enableSorting: false,
     }),
     columnHelper.accessor('type', {
       header: 'Type',
       size: 70,
       cell: (props) => getLink(props),
+      enableSorting: false,
     }),
     columnHelper.accessor('coin', {
       header: 'Coin',

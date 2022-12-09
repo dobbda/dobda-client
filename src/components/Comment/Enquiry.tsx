@@ -4,7 +4,7 @@ import { Editor, HtmlViewer } from 'src/components/Editor';
 import { atom, Avatar, Empty } from 'src/components/common';
 import getDate from 'src/lib/utils/dateForm';
 import * as S from './style/style';
-import { Enquiry, OutsourceDetail, Progress } from 'src/interface';
+import { Enquiry, OutsourceDetail, Progress } from 'src/types';
 import styled from 'styled-components';
 import { Popover, message as m } from 'antd';
 import { keys, useAddReply, useAuth, useDelete, useDidMountEffect, useErrMsg } from 'src/hooks';

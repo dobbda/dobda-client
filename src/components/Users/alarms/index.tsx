@@ -10,7 +10,7 @@ import { Skeleton } from 'src/components/Skeleton';
 import { keys, useAuth } from 'src/hooks';
 import { Layout } from 'src/Layout';
 import getDate from 'src/lib/utils/dateForm';
-import { Alarm, AlarmType } from 'src/interface';
+import { Alarm, AlarmType } from 'src/types';
 import styled from 'styled-components';
 import { Li } from './style/Message.style';
 

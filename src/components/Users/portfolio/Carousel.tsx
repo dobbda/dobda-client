@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 import { Modal } from 'src/components/common/@share/Modal';
 import { Fulli, Nexti, Previ, TagClosei } from 'src/icons';
-import { ImageProp as ImageType } from 'src/interface';
+import { Image as ImageType } from 'src/types';
 import styled from 'styled-components';
 
 type Props = {
@@ -14,12 +14,10 @@ type Props = {
 const CarouselsImages = ({ images }: Props) => {
   const settings = {
     // className: 'center',
-    dots: true,
     centerMode: true,
     centerPadding: '10%',
     slidesToShow: 1,
     draggable: true,
-    variableWidth: true,
   };
 
   const slicRef = useRef<CarouselRef | null>();
@@ -39,16 +37,16 @@ const CarouselsImages = ({ images }: Props) => {
   return (
     <>
       <SlideContainer>
-        {/* <Arrow css={{ right: '10px' }} onClick={next} className="arrow">
+        <Arrow css={{ right: '10px' }} onClick={next} className="arrow">
           <Nexti />
         </Arrow>
         <Arrow css={{ left: '10px' }} onClick={prev} className="arrow">
           <Previ />
-        </Arrow> */}
+        </Arrow>
         <Carousel {...settings} ref={slicRef}>
-          {images?.map((v, i) => {
+          {images?.map((v) => {
             return (
-              <div key={i}>
+              <div>
                 <ImgWrap>
                   <FullIcon onClick={() => onClickZoom(v)}>
                     <Fulli />
@@ -76,8 +74,7 @@ const CarouselsImages = ({ images }: Props) => {
 
 const ImgWrap = styled.div`
   position: relative;
-  height: 200px;
-  width: 300px;
+  min-height: 330px;
   overflow: hidden;
   box-shadow: 0px 0px 2px 3px #c4c8d0;
   margin: 5px 15px;
@@ -85,20 +82,13 @@ const ImgWrap = styled.div`
 
 const SlideContainer = styled.div`
   position: relative;
-  padding: 8px 10px;
-  /* box-shadow: inset 0px 0px 3px 3px #c4c8d0; */
+  padding: 8px;
+  box-shadow: inset 0px 0px 3px 3px #c4c8d0;
   max-width: 910px;
-  .slick-list {
-    height: 210px;
-    width: 100%;
-  }
-  .ant-carousel .slick-list .slick-slide {
-    pointer-events: auto;
-  }
 `;
 const Arrow = styled.div`
   position: absolute;
-  top: 45%;
+  bottom: 45%;
   z-index: 1;
   cursor: pointer;
   font-size: 50px;

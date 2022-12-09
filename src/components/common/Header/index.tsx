@@ -13,7 +13,7 @@ import { SearchBox } from './SearchBox';
 import { AvatarImg } from '../@share/Avatar';
 import UserModalContent from './UserModalContent';
 import 'antd/dist/antd.css';
-import { Alarm } from 'src/interface';
+import { Alarm } from 'src/types';
 import { ArrowDown, Belli } from 'src/icons';
 import { RiArrowDownSLine } from 'react-icons/ri';
 

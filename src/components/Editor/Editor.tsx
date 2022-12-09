@@ -12,10 +12,9 @@ interface Props {
   onClickShow?: boolean;
   height?: string;
   submitBtn?: React.ReactNode;
-  placeholder?: string;
 }
 
-const Editor = ({ html, setHtml, onClickShow = false, height, submitBtn, placeholder }: Props) => {
+const Editor = ({ html, setHtml, onClickShow = false, height, submitBtn }: Props) => {
   const { auth, refetch } = useAuth();
   const { setLoginModal } = useLoginModalhandler();
   const [showSubmit, setshowSubmit] = useState(false);
@@ -43,9 +42,7 @@ const Editor = ({ html, setHtml, onClickShow = false, height, submitBtn, placeho
         </div>
       )}
 
-      {showEditor && (
-        <QuillEditor placeholder={placeholder} html={html} setHtml={setHtml} height={height} setFocus={showEditor} />
-      )}
+      {showEditor && <QuillEditor html={html} setHtml={setHtml} height={height} setFocus={showEditor} />}
       {onClickShow && showEditor && (
         <>
           {<S.SubmitWrap>{showSubmit && submitBtn}</S.SubmitWrap>}
