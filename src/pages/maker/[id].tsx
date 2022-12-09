@@ -33,7 +33,7 @@ const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
   return (
     <>
       {/* <SEO title={data.title} content={data.content} url={'/questions/' + data.id} tags={data.tagNames} image="/img/qs.png" /> */}
-      <Layout sideRight>{data && <PortfolioPage data={data} />}</Layout>;
+      <Layout>{data && <PortfolioPage data={data} />}</Layout>;
     </>
   );
 };

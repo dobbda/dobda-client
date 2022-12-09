@@ -13,7 +13,7 @@ export const myInfoUpdate = async (data: UserUpdate) => {
   return await axios.patch('/api/users/myinfo', data).then((res) => res.data?.response);
 };
 
-export const getUserInfo = async (id: number) => {
+export const getUserInfo = async (id: number): Promise<Auth> => {
   //내정보 상세
 
   return await axios.get(`/api/users/${id}`).then((res) => res.data?.response);

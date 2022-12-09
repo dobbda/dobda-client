@@ -86,11 +86,14 @@ const ImgWrap = styled.div`
 const SlideContainer = styled.div`
   position: relative;
   padding: 8px 10px;
-  overflow: hidden;
   /* box-shadow: inset 0px 0px 3px 3px #c4c8d0; */
   max-width: 910px;
   .slick-list {
-    height: 200px;
+    height: 210px;
+    width: 100%;
+  }
+  .ant-carousel .slick-list .slick-slide {
+    pointer-events: auto;
   }
 `;
 const Arrow = styled.div`

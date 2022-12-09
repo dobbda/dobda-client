@@ -13,13 +13,7 @@ interface Props {
   myNavigator?: boolean;
   sideContent?: ReactNode;
 }
-export const Layout = ({
-  children,
-  sideRight = false,
-  sideLeft = false,
-  banner = false,
-  sideContent,
-}: PropsWithChildren<Props>) => {
+export const Layout = ({ children, sideRight = false, sideLeft = false, banner = false }: PropsWithChildren<Props>) => {
   const { width, height } = useWindowSize();
 
   return (
@@ -37,7 +31,7 @@ export const Layout = ({
           {sideRight && (
             <S.SideNavWrapper>
               {sideLeft && width < 1060 && <Keyword folderOpenFalse />}
-              {sideContent ? sideContent : <SideContentRight />}
+              {sideRight && <SideContentRight />}
               <Suport />
             </S.SideNavWrapper>
           )}

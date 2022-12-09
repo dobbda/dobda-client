@@ -33,7 +33,7 @@ export const Flex = styled.div`
 export const TagWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 10px;
   align-items: center;
   overflow: hidden;
 `;
