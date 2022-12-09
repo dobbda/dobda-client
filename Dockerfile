@@ -30,7 +30,7 @@ WORKDIR /app
 
 COPY package.json ./
 COPY --from=build /build/public ./public
-COPY --from=build /app/next.config.js ./
+COPY --from=build /build/next.config.js ./
 
 COPY --from=build /build/.next ./.next
 COPY --from=node_modules /modules/node_modules ./node_modules
