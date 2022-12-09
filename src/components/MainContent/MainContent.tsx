@@ -23,8 +23,19 @@ const MainContent = ({ children }: Props) => {
   const [select, setSelect] = useState<CategoriesType>();
   const { setLoginModal } = useLoginModalhandler();
   const { setWriteModal } = useWriteModalhandler();
+  useEffect(() => {
+    if (cg == undefined) {
+      const storeCategory = getLocalStorage('mainCateogry') as CategoriesType;
+      Categories[storeCategory]
+        ? setSelect(storeCategory)
+        : (setSelect(CategoryList[0]), setLocalStorage('mainCateogry', CategoryList[0]));
+      router.push({ pathname: '/', query: { cg: storeCategory || CategoryList[0] } }, undefined, { scroll: false });
+    }
+    setSelect(cg);
+  }, []);
 
   useDidMountEffect(() => {
+    console.log(cg);
     if (cg != undefined) {
       setLocalStorage('mainCateogry', cg);
       setSelect(cg);

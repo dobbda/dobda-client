@@ -42,9 +42,6 @@ export const PortfolioCard = ({ data }: Props) => {
                 {v}
               </Tag>
             ))}
-            <Tag color={color[num]} style={{ marginRight: 3 }} key={'i'}>
-              workField
-            </Tag>
           </div>
           <div className="work_skill">
             {data?.skill?.map((v, i) => (
@@ -52,13 +49,6 @@ export const PortfolioCard = ({ data }: Props) => {
                 {v}
               </Tag>
             ))}
-
-            <Tag color={color[num]} style={{ marginRight: 3 }}>
-              skill
-            </Tag>
-            <Tag color={color[num]} style={{ marginRight: 3 }}>
-              skill
-            </Tag>
           </div>
         </div>
       </div>
