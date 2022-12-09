@@ -24,8 +24,9 @@ export const PortfolioCard = ({ data }: Props) => {
       </Link>
       <div className="contents">
         <UserInfo>
-          <span>
-            <Avatar size={25} src={data.user?.avatar} /> <span id="nickname">{data?.user?.nickname}</span>{' '}
+          <span css={{ display: 'flex', overflow: 'hidden', alignItems: 'center' }}>
+            <Avatar css={{ minWidth: '25px' }} size={25} src={data.user?.avatar} />{' '}
+            <span id="nickname">{data?.user?.nickname}</span>{' '}
           </span>
           <span id="job">
             {data?.job && (

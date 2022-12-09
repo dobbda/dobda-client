@@ -9,12 +9,13 @@ const webpack = require('webpack');
 const prod = process.env.NODE_ENV === 'production';
 
 module.exports = withPlugins([withBundleAnalyzer], {
-  productionBrowserSourceMaps: false,
-  reactStrictMode: true,
-  historyApiFallback: true,
   output: 'standalone',
-  experimental: { fallbackNodePolyfills: false, scrollRestoration: 'manual' },
+  productionBrowserSourceMaps: false,
+  reactStrictMode: false,
+  historyApiFallback: true,
+  experimental: { outputStandalone: true, fallbackNodePolyfills: false, scrollRestoration: 'manual' },
   inlineImageLimit: false,
+
   images: {
     domains: [
       'source.unsplash.com',

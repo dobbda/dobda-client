@@ -25,15 +25,19 @@ const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
     retry: 0,
     staleTime: Infinity,
   });
-  useEffect(() => {
-    if (isError || !data.id) {
-      router.push('/404', router.asPath, { shallow: true });
-    }
-  }, [router, error, data]);
+
+  console.log(data);
   return (
     <>
       {/* <SEO title={data.title} content={data.content} url={'/questions/' + data.id} tags={data.tagNames} image="/img/qs.png" /> */}
-      <Layout>{data && <PortfolioPage data={data} />}</Layout>;
+      <Layout>
+        {data.id ? (
+          <PortfolioPage data={data} />
+        ) : (
+          <h1 css={{ marginTop: '20px', textAlign: 'center', color: '#747474' }}> 프로필 업데이트 전입니다.</h1>
+        )}
+      </Layout>
+      ;
     </>
   );
 };

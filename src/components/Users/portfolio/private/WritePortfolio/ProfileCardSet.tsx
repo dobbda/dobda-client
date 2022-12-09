@@ -29,7 +29,7 @@ const ProfileCardSet = ({ data }: Props) => {
   const [loading, setLoading] = useState(false);
   // handler
   const handleChange = useCallback(async (file: File) => {
-    const resizeFile = (await resizeImage({ file: file, reformat: 'file', width: 910, height: 400 })) as RcFile;
+    const resizeFile = (await resizeImage({ file: file, reformat: 'file', width: 950, height: 250 })) as RcFile;
     const { url, fileName } = await uploadS3(resizeFile, 'portfolio');
     setImage({ url, name: fileName, uid: fileName.substring(0, 10) });
     setLoading(false);
