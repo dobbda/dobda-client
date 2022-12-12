@@ -89,7 +89,7 @@ const SourcingPage = ({ children, data }: Props) => {
               <br />
               <atom.TagWrapper>
                 {data.tagNames.map((tag: Tags) => (
-                  <Tag key={data.id + tag.id}>{tag.name}</Tag>
+                  <Tag key={tag.id}>{tag.name}</Tag>
                 ))}
               </atom.TagWrapper>
 

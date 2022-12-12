@@ -44,7 +44,7 @@ export const question = async (pageNum: number = 1): Promise<InfinityProps<Quest
 };
 
 export const sourcing = async (pageNum: number = 1): Promise<InfinityProps<Outsource>> => {
-  const res = await axios.get(`/api/outsource/user?page=${pageNum && pageNum}`);
+  const res = await axios.get(`/api/sourcing/user?page=${pageNum && pageNum}`);
   if (!res.data.success) return null;
   return {
     result: res.data.response.result,
@@ -90,8 +90,8 @@ export const getPf = async (userId: number): Promise<Portfolio> => {
   return res.data.response;
 };
 
-export const getPfs = async (pageParam?: number): Promise<InfinityProps<Portfolio>> => {
-  const res = await axios.get(`/api/users/pfs?page=` + pageParam);
+export const getPfs = async (pageParam?: number, keyword?: string): Promise<InfinityProps<Portfolio>> => {
+  const res = await axios.get(`/api/users/pfs?page=${pageParam}${keyword ? '&keyword=' + keyword : ''}`);
   if (!res.data.success) return null;
   return {
     result: res.data.response.result,

@@ -1,9 +1,7 @@
 import { Layout } from 'src/Layout';
-import { QuestionPage } from 'src/components/DetailPage';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { QuestionDetail } from 'src/interface';
-import { q, reqAuth, ssr } from 'src/api';
+import { ssr } from 'src/api';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { keys } from 'src/hooks';
 import { useEffect, useLayoutEffect } from 'react';
@@ -31,10 +29,13 @@ const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
     <>
       {/* <SEO title={data.title} content={data.content} url={'/questions/' + data.id} tags={data.tagNames} image="/img/qs.png" /> */}
       <Layout>
-        {data.id ? (
+        {data?.id ? (
           <PortfolioPage data={data} />
         ) : (
-          <h1 css={{ marginTop: '20px', textAlign: 'center', color: '#747474' }}> 프로필 업데이트 전입니다.</h1>
+          <h1 css={{ marginTop: '20px', textAlign: 'center', color: '#747474' }}>
+            {' '}
+            프로필 업데이트 전이거나 존재하지 않는 메이커입니다.
+          </h1>
         )}
       </Layout>
       ;

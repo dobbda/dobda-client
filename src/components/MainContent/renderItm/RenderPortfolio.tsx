@@ -9,24 +9,39 @@ import { theme } from 'src/styles/Theme';
 import { Skeleton } from 'src/components/Skeleton';
 import { PortfolioCard } from 'src/components/Users/portfolio/public/Card';
 import { getPfs } from 'src/api/apis/user';
+import { useRouter } from 'next/router';
+import { NoData } from 'src/components/common/@share/Empty';
 
 function RenderPortfolio() {
-  const { data, nextPage, refetch, isLoading } = useInfinity<Portfolio>({
-    fetch: getPfs,
-    queryKey: keys.pfs,
+  const router = useRouter();
+  const { keyword } = router.query as { keyword: string };
+  const { data, nextPage, refetch, isLoading, isSuccess } = useInfinity<Portfolio>({
+    fetch: (page: number, _?: string) => getPfs(page, keyword?.toLocaleLowerCase()),
+    queryKey: keys.pfs(keyword?.toLocaleLowerCase()),
   });
 
   const [ref, isView] = useInView();
   useEffect(() => {
+    console.log('us', data);
     // 무한 스크롤
-    if (isView && !data.isLast) nextPage();
     if (!data) refetch();
-  }, [isView, data, nextPage, , refetch]);
+    if (data && isView && !data.isLast) nextPage();
+  }, [isView, data, data?.isLast, nextPage, , refetch]);
 
   return (
     <>
+      {isSuccess && keyword && data.result.length == 0 && (
+        <>
+          <NoData>
+            <h1>
+              <strong>"{keyword}"</strong>
+              키워드를 가진 메이커를 찾지 못했어요!.
+            </h1>
+          </NoData>
+        </>
+      )}
       {isLoading ? (
-        <Skeleton row={3} image border avatar len={3} />
+        <Skeleton row={3} image border len={1} />
       ) : (
         <ContentCardList>
           {data?.result.map((v, i) => {

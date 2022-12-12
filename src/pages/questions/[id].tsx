@@ -13,13 +13,14 @@ import { setLocalStorage } from 'src/lib/utils/localStorage';
 import { Exp } from 'src/interface/content-type';
 import { SEO } from 'src/components/common';
 import { ssrQuery } from 'src/hooks/queries/defaultQueryClient';
+import { questionDetail } from 'src/api/apis/questions';
 
 const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
   setLocalStorage('exp', JSON.stringify(props.exp));
 
   const router = useRouter();
   const { id } = props;
-  const { data, error, isError, isSuccess } = useQuery(keys.qDetail(id), () => q.questionDetail<QuestionDetail>(id), {
+  const { data, error, isError, isSuccess } = useQuery(keys.qDetail(id), () => questionDetail<QuestionDetail>(id), {
     retry: 0,
     staleTime: Infinity,
   });

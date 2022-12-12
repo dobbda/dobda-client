@@ -7,26 +7,36 @@ import { q } from 'src/api';
 import { Question } from 'src/interface';
 import { theme } from 'src/styles/Theme';
 import { Skeleton } from 'src/components/Skeleton';
-
+import { useRouter } from 'next/router';
+import { NoData } from 'src/components/common/@share/Empty';
 function RenderQuestion() {
-  const [shearchTitle, setShearchTitle] = useState<string>();
-  const [shearchTag, setShearchTag] = useState<string>();
+  const router = useRouter();
+  const { keyword } = router.query as { keyword: string };
   const { data, nextPage, refetch, isLoading } = useInfinity<Question>({
-    fetch: q.getInfinity,
-    queryKey: keys.questions(),
+    fetch: (page, _?: string) => q.getInfinity(page, keyword?.toLocaleLowerCase()),
+    queryKey: keys.questions(keyword?.toLocaleLowerCase()),
   });
 
   const [ref, isView] = useInView();
   useEffect(() => {
     // 무한 스크롤
-    if (isView && !data.isLast) nextPage();
     if (!data) refetch();
+    if (isView && !data?.isLast) nextPage();
   }, [isView, data, nextPage, , refetch]);
 
   return (
     <>
+      {keyword && data?.result.length == 0 && (
+        <>
+          <NoData>
+            <h1>
+              <strong>"{keyword}"</strong>에 대한 검색결과가 없습니다.
+            </h1>
+          </NoData>
+        </>
+      )}
       {isLoading ? (
-        <Skeleton row={3} title border avatar len={3} />
+        <Skeleton row={3} title border avatar len={1} />
       ) : (
         <ContentCardList>
           {data?.result.map((v, i) => {

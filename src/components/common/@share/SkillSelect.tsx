@@ -1,5 +1,5 @@
 import { Select as AntSelect, Tag, TreeSelect } from 'antd';
-import { jobData, skillsData, workFieldData } from 'src/config/defaultValue';
+import { jobData, skillsData, workFieldData } from 'src/config/keyword';
 import type { CustomTagProps } from 'rc-select/lib/BaseSelect';
 import { useMemo } from 'react';
 const TagRender = (props: CustomTagProps) => {

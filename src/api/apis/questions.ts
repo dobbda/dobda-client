@@ -3,8 +3,11 @@ import { InfinityProps, CreateQuestion, Question } from 'src/interface/index';
 import axios, { AxiosResponse } from 'axios';
 
 // 질문글 전체조회 infinity
-export const getInfinity = async (pageParam: number = 1, title?: string): Promise<InfinityProps<Question>> => {
-  const res = await axios.get(`/api/questions?page=${pageParam && pageParam}&title=${title && title}`);
+export const getInfinity = async (pageParam: number = 1, keyword?: string): Promise<InfinityProps<Question>> => {
+  if (keyword) {
+    console.log('keyword: ', keyword);
+  }
+  const res = await axios.get(`/api/questions?page=${pageParam}${keyword ? '&keyword=' + keyword : ''}`);
   if (!res.data.success) return null;
   return {
     result: res.data.response.result,

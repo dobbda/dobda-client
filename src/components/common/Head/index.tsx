@@ -2,6 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 import { Tags } from 'src/interface';
 import map from 'lodash/map';
+import { htmlToText } from 'src/lib/utils/htmlToText';
 type Props = {
   title?: string;
   url?: string;
@@ -12,6 +13,8 @@ type Props = {
 
 const SEO = (props: Props) => {
   const keyowrds = (tags: Tags[]) => map(tags, 'name').join(', ');
+  const keywordList = keyowrds(props.tags);
+  const descript = htmlToText(props.content);
   return (
     <Head>
       <meta charSet="utf-8" />
@@ -25,22 +28,17 @@ const SEO = (props: Props) => {
       <meta property="og:type" content="website" />
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-      <meta
-        key={'default'}
-        name="keywords"
-        content="개발자 Q&A, development community, outsourcint, 외주, 간단한 외주 프로젝트, sourcing, design, development"
-      />
-      <meta
-        key={'og:default'}
-        property="og:keywords"
-        content="개발자 Q&A, development community, outsourcint, 외주, 간단한 외주 프로젝트, sourcing, design, development"
-      />
-      <meta key={'og:content-keywords'} property="og:keywords" content={keyowrds(props.tags)} />
-      <meta key={'content-keywords'} name="keywords" content={keyowrds(props.tags)} />
+      <meta key={'og:content-keywords'} property="og:keywords" content={keywordList} />
+      <meta key={'content-keywords'} name="keywords" content={keywordList} />
+      <meta key={'content-keywords'} name="twitter:keywords" content={keywordList} />
+
       <meta property="og:title" content={props.title + ' - dobda'} />
       <meta name="title" content={props.title + ' - dobda'} />
-      <meta property="og:description" content={props.title} />
-      <meta name="description" content={props.title} />
+      <meta name="twitter:title" content={props.title + ' - dobda'} />
+
+      <meta property="og:description" content={descript} />
+      <meta name="description" content={descript} />
+      <meta name="twitter:description" content={descript} />
     </Head>
   );
 };

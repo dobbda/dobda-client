@@ -13,12 +13,13 @@ import { Exp } from 'src/interface/content-type';
 import { setLocalStorage } from 'src/lib/utils/localStorage';
 import { SEO } from 'src/components/common';
 import { ssrQuery } from 'src/hooks/queries/defaultQueryClient';
+import { outsourceDetail } from 'src/api/apis/sourcing';
 
 const RequestDetailPage: NextPage<{ exp: Exp; id: string }> = (props) => {
   const router = useRouter();
   setLocalStorage('exp', JSON.stringify(props.exp));
   const { id } = props;
-  const { data, error, isError, isSuccess } = useQuery(keys.oDetail(id), () => o.outsourceDetail<OutsourceDetail>(Number(id)), {
+  const { data, error, isError, isSuccess } = useQuery(keys.oDetail(id), () => outsourceDetail<OutsourceDetail>(Number(id)), {
     retry: 0,
     staleTime: Infinity,
   });

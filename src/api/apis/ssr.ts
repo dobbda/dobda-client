@@ -37,7 +37,7 @@ export const questions = async (pageParam: number = 1, title?: string): Promise<
 export const sourcing = async (req: AxiosRequestConfig, id: string): Promise<QuestionDetail> => {
   try {
     return (
-      await http.get(`/outsource/` + id, {
+      await http.get(`/sourcing/` + id, {
         headers: req?.headers,
       })
     ).data?.response;
@@ -45,7 +45,7 @@ export const sourcing = async (req: AxiosRequestConfig, id: string): Promise<Que
 };
 
 export const sourcings = async (pageParam: number = 1, title?: string): Promise<any> => {
-  const res = await http.get(`/outSource?page=${pageParam && pageParam}&title=${title && title}`);
+  const res = await http.get(`/sourcing?page=${pageParam && pageParam}&title=${title && title}`);
   if (!res.data.success) return null;
   return {
     result: res.data.response.result,

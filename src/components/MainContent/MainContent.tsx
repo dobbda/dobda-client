@@ -43,7 +43,7 @@ const MainContent = ({ children }: Props) => {
     } else {
       const storeCategory = getLocalStorage('mainCateogry') as CategoriesType;
       Categories[cg || storeCategory]
-        ? setSelect(cg || storeCategory)
+        ? (setSelect(cg || storeCategory), setLocalStorage('mainCateogry', cg))
         : (setSelect(CategoryList[0]), setLocalStorage('mainCateogry', CategoryList[0]));
       router.push({ pathname: '/', query: { cg: storeCategory || CategoryList[0] } }, undefined, { scroll: false });
     }
@@ -56,7 +56,7 @@ const MainContent = ({ children }: Props) => {
 
   const onClickMenu = useCallback((m: CategoriesType) => {
     router.push({ pathname: '/', query: { cg: m } }, undefined, { scroll: false });
-    setSelect(m);
+    // setSelect(m);
   }, []);
   return (
     <>

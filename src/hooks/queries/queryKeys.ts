@@ -3,7 +3,7 @@ import { QueryKey } from 'react-query';
 const Props = Number || String;
 export const keys = {
   auth: ['auth'],
-  questions: (): QueryKey => ['questions'],
+  questions: (keyword?: string): QueryKey => ['questions', 'keyword:' + keyword],
   answers: (qid: number | string): QueryKey => ['question:' + Number(qid), 'answers'],
   comment: (qid: number | string, aid: number | string): QueryKey => [
     'question: ' + Number(qid),
@@ -12,7 +12,7 @@ export const keys = {
   ],
   qDetail: (qid: number | string): QueryKey => ['question:' + Number(qid), 'detail'],
 
-  sourcings: (): QueryKey => ['sourcings'],
+  sourcings: (keyword?: string): QueryKey => ['sourcings', 'keyword:' + keyword],
   enquiry: (oid: number | string): QueryKey => ['sourcing: ', Number(oid), 'enquiry'],
   reply: (oid: number | string, eid: number | string): QueryKey => [
     'sourcing: ' + Number(oid),
@@ -28,6 +28,6 @@ export const keys = {
   coinReserv: ['coinReserv'],
   coinHistory: ['coinHistory'],
 
-  pf: (userId: number | string) => ['portpolio user:' + userId],
-  pfs: ['all portpolio'],
+  pf: (userId: number | string): QueryKey => ['portpolio user:' + userId],
+  pfs: (keyword?: string): QueryKey => ['all portpolio', 'keyword:' + keyword],
 };

@@ -22,16 +22,15 @@ export const Layout = ({ children, sideRight = false, sideLeft = false, banner =
       <S.HeaderContent>{banner && <BnCarousel />}</S.HeaderContent>
       <S.Position>
         <S.Wrapper>
-          {sideLeft && width > 1060 && (
-            <S.SideNavWrapper>
+          {sideLeft && (
+            <S.SideNavWrapper width="180px">
               <Keyword />
             </S.SideNavWrapper>
           )}
           <S.MainWrapper>{children}</S.MainWrapper>
-          {sideRight && (
+          {sideRight && width > 1060 && (
             <S.SideNavWrapper>
-              {sideLeft && width < 1060 && <Keyword folderOpenFalse />}
-              {sideRight && <SideContentRight />}
+              <SideContentRight />
               <Suport />
             </S.SideNavWrapper>
           )}

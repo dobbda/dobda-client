@@ -1,4 +1,3 @@
-import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 // height: ${({theme})=>theme.media.size};
 const padding = '';
@@ -26,12 +25,11 @@ export const Wrapper = styled.div`
   height: 100%;
   padding: 0;
   margin: 0 10px;
+  gap: 17px;
   @media screen and (max-width: 1060px) {
-    margin: 0;
-    margin-right: 0 5px;
   }
   @media screen and (max-width: 768px) {
-    margin: 0;
+    margin: 0 5px;
   } ;
 `;
 
@@ -49,11 +47,11 @@ export const MainWrapper = styled.div`
   } ;
 `;
 
-export const SideNavWrapper = styled.div<{ bg?: string }>`
+export const SideNavWrapper = styled.div<{ width?: string }>`
   flex: 0 0 auto;
   position: sticky;
   top: 50px;
-  width: 250px;
+  width: ${(props) => props.width || '250px'};
   height: calc(100vh - 50px);
   box-sizing: border-box;
   overflow-y: scroll;
@@ -63,8 +61,7 @@ export const SideNavWrapper = styled.div<{ bg?: string }>`
   }
   scrollbar-width: none; /* Firefox 64 */
   @media screen and (max-width: 1060px) {
-    background-color: #fff;
-    border: 1px solid ${theme.color.border(0.1)};
+    /* background-color: #fff; */
   }
 
   @media screen and (max-width: 768px) {

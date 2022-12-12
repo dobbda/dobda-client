@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { theme } from 'src/styles/Theme';
 import { Searchi } from 'src/icons';
+import { useRouter } from 'next/router';
+import { useInput } from 'src/hooks';
 type Props = {};
 
 export const SearchBox = (props: Props) => {
+  const router = useRouter();
+  const [value, onChange] = useInput('');
+  const onSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      router.push({ pathname: '/', query: { ...router.query, keyword: value } }, undefined, { scroll: false });
+    },
+    [value, router],
+  );
   return (
-    <Div className="search-box">
-      <input type="text" placeholder="키워드 찾기" />
-      <button>
+    <Form className="search-box" onSubmit={onSubmit}>
+      <input type="text" placeholder="키워드 검색" value={value} onChange={onChange} />
+      <button type="submit">
         <Shearch />
       </button>
-    </Div>
+    </Form>
   );
 };
 
@@ -21,7 +32,7 @@ const Shearch = styled(Searchi)`
   color: ${theme.color.primary};
 `;
 
-const Div = styled.div`
+const Form = styled.form`
   height: 30px;
   background-color: #fff;
   border: 1px solid ${theme.color.border2};

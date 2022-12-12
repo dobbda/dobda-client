@@ -90,7 +90,7 @@ const QuestionPage = ({ data }: Props) => {
                   <Coini />
                   <p>{data?.coin.toLocaleString()}</p>
                 </S.CoinWrapper>
-                {data?.tagNames && data?.tagNames.map((tag) => <Tag key={tag.name}>{tag.name}</Tag>)}
+                {data?.tagNames && data?.tagNames.map((tag) => <Tag key={tag.id}>{tag.name}</Tag>)}
               </atom.TagWrapper>
               {auth?.id == data.author?.id && (
                 <S.OnyUser className="only-author">

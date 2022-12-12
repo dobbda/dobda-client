@@ -4,8 +4,8 @@ import { InfinityProps, CreateOutsource, Outsource } from 'src/interface/index';
 import axios, { AxiosResponse } from 'axios';
 
 // 질문글 전체조회 infinity
-export const getInfinity = async (pageParam = 1, title?: string): Promise<InfinityProps<Outsource>> => {
-  const res = await axios.get(`/api/outsource?page=${pageParam && pageParam}&title=${title && title}`);
+export const getInfinity = async (pageParam = 1, keyword?: string): Promise<InfinityProps<Outsource>> => {
+  const res = await axios.get(`/api/sourcing?page=${pageParam && pageParam}${keyword ? '&keyword=' + keyword : ''}`);
   if (!res.data.success) return null;
   return {
     result: res.data.response.result,
@@ -18,18 +18,18 @@ export const getInfinity = async (pageParam = 1, title?: string): Promise<Infini
 
 //질문글 상세조회
 export const outsourceDetail = async <T>(id: number | string): Promise<T> => {
-  return (await axios.get(`/api/outsource/${id}`)).data?.response;
+  return (await axios.get(`/api/sourcing/${id}`)).data?.response;
 };
 
 export const addOutsource = async (question: CreateOutsource): Promise<Outsource> => {
-  return (await axios.post('/api/outsource', question)).data.response;
+  return (await axios.post('/api/sourcing', question)).data.response;
 };
 
 export const updateOutsource = async (data: CreateOutsource, id: number | string): Promise<Outsource> => {
-  return (await axios.patch(`/api/outsource/${id}`, data)).data.response;
+  return (await axios.patch(`/api/sourcing/${id}`, data)).data.response;
 };
 export const delOutsource = async <T>(id: number | string): Promise<T> => {
-  return (await axios.delete(`/api/outsource/${id}`)).data;
+  return (await axios.delete(`/api/sourcing/${id}`)).data;
 };
 
 // 답변

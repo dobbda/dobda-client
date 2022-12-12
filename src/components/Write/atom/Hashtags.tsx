@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Tags } from 'src/interface';
 import { Tag } from 'src/components/common';
 import { Hashi } from 'src/icons';
+import { message } from 'antd';
 type Props = {
   tags?: string[];
   initial?: Tags[];
@@ -44,9 +45,11 @@ function Hashtags({ tags, setTags, tagColor }: Props) {
   const formHandler = useCallback(
     (e: any) => {
       e.preventDefault();
-      if (tag) {
-        setTags((all) => (all ? [...all, tag] : [tag]));
+      if (tag && !tags.includes(tag.toLowerCase())) {
+        setTags((all) => (all ? [...all, tag.toLowerCase()] : [tag]));
         setTag('');
+      } else if (tag.toLowerCase()) {
+        message.warning(tag + '는 이미추가된 태그 입니다.');
       }
     },
     [setTags, tag],

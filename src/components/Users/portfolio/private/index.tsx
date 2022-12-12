@@ -15,7 +15,7 @@ import { EditorCt, Wrapper } from './style';
 import dynamic from 'next/dynamic';
 import { listFileUpload } from '../lib/listFileUpload';
 import { getPf } from 'src/api/apis/user';
-import { jobData } from 'src/config/defaultValue';
+import { jobData } from 'src/config/keyword';
 import { Select as AntSelect, Tag, TreeSelect as AntTreeSelect } from 'antd';
 import { SelectSkill, SelectWorkField } from 'src/components/common/@share/SkillSelect';
 import styled from 'styled-components';

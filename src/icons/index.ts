@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import NameWi from 'public/svg/dobda1_w.svg';
 import NameBi from 'public/svg/dobda1.svg';
 import Woni from 'public/svg/won.svg';
-import Qi from 'public//svg/Q.svg';
+import Qi from 'public/svg/Q.svg';
 import Acceptedi from 'public/svg/accepted.svg';
 export { Qi, Acceptedi, Woni, NameWi, NameBi };
 

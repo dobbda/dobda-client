@@ -11,12 +11,12 @@ type Props<T> = {
 
 export const useInfinity = <T>({ queryKey, fetch }: Props<T>) => {
   const queryClient = useQueryClient();
-  const { data, refetch, isLoading } = useQuery(queryKey, () => fetch(1), { retry: 2, staleTime: 1000 * 60 * 10 });
+  const { data, refetch, isLoading, isSuccess } = useQuery(queryKey, () => fetch(1), { retry: 2, staleTime: 1000 * 60 * 10 });
 
   const nextPage = useCallback(
     async (page?: number) => {
-      if (!data.isLast) {
-        const res = await fetch(page ? page : data.pageNum + 1);
+      if (!data?.isLast) {
+        const res = await fetch(page ? page : data?.pageNum + 1);
         queryClient.setQueryData(queryKey, (old: InfinityProps<T>) =>
           produce(old, (draft: InfinityProps<T>) => {
             draft.result.push(...res.result);
@@ -32,5 +32,5 @@ export const useInfinity = <T>({ queryKey, fetch }: Props<T>) => {
   const apply = () => {
     queryClient.fetchQuery(queryKey);
   };
-  return { data, refetch, nextPage, isLoading };
+  return { data, refetch, nextPage, isLoading, isSuccess };
 };
