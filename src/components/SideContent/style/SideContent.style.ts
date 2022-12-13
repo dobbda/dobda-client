@@ -33,7 +33,7 @@ export const Ul = styled.ul`
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-
+  /* touch-action: pan-y; */
   padding: 0 9px;
   ::-webkit-scrollbar {
     width: 6px;

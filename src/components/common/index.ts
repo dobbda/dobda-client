@@ -1,7 +1,7 @@
 export { Avatar } from './@share/Avatar';
 export * as atom from './@share/atom';
 export * from './@share/atom';
-export { Tag } from './@share/Tag';
+export { default as Tag } from './@share/Tag';
 export { Popover } from './@share/Popover';
 export { Modal } from './@share/Modal';
 export { Button } from './@share/Buttons';

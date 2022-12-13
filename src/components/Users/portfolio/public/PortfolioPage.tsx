@@ -1,21 +1,21 @@
-import { Tag } from 'antd';
 import React, { useMemo } from 'react';
+// import Tag from 'src/components/common/@share/Tag';
+import { TagColorKey, TagColorType } from 'src/components/common/color';
 import { HtmlViewer } from 'src/components/Editor';
 import { Portfolio } from 'src/interface';
 import styled from 'styled-components';
 import { UserProfile } from '../../profile/UserProfile';
 import CarouselsImages from '../Carousel';
 import { MainImage } from './MainImage';
+import dynamic from 'next/dynamic';
 
+const Tag = dynamic(() => import('src/components/common/@share/Tag'));
 type Props = {
   data: Portfolio;
 };
 
 const PortfolioPage = ({ data }: Props) => {
-  const color = useMemo(
-    () => ['magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue', 'geekblue', 'purple'],
-    [],
-  );
+  console.log(TagColorKey);
   return (
     <Container>
       <div className="wrap">
@@ -26,12 +26,12 @@ const PortfolioPage = ({ data }: Props) => {
           <TagsWrap>
             {data?.workField.length > 0 && (
               <>
-                <h2>전문분야</h2>
+                <h2>활동 분야</h2>
                 <div>
                   {data?.workField?.map((v, i) => {
-                    let num = Math.floor(Math.random() * color.length);
+                    let num = Math.floor(Math.random() * TagColorKey.length);
                     return (
-                      <Tag color={color[num]} style={{ marginRight: 3 }} key={i}>
+                      <Tag color={TagColorKey[num] as any} key={i}>
                         {v}
                       </Tag>
                     );
@@ -47,9 +47,9 @@ const PortfolioPage = ({ data }: Props) => {
                 <h2>기술스택</h2>
                 <div>
                   {data?.skill?.map((v, i) => {
-                    let num = Math.floor(Math.random() * color.length);
+                    let num = Math.floor(Math.random() * TagColorKey.length);
                     return (
-                      <Tag color={color[num]} style={{ marginRight: 3 }} key={i}>
+                      <Tag color={TagColorKey[num] as any} key={i}>
                         {v}
                       </Tag>
                     );
@@ -101,6 +101,9 @@ const TagsWrap = styled.div`
 `;
 
 const Container = styled.div`
+  button#maker_page_link {
+    display: none;
+  }
   padding-top: 20px;
   display: flex;
   justify-content: space-around;

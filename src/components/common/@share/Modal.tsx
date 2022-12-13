@@ -1,7 +1,8 @@
 import { type } from 'os';
 import React, { useState, useRef, PropsWithChildren } from 'react';
+import { GlobalStyle } from 'src/styles/GlobalStyle';
 import { theme } from 'src/styles/Theme';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, createGlobalStyle } from 'styled-components';
 
 type Props = {
   visible: boolean;
@@ -14,12 +15,16 @@ export function Modal({ children, visible, onClickHandler }: PropsWithChildren<P
       onClickHandler();
     }
   };
+
   return (
     <>
       {visible && (
-        <Container {...boxFade}>
-          <Wrap onClick={onClickSide}>{children}</Wrap>
-        </Container>
+        <>
+          <GlobalStyle noScroll />
+          <Container {...boxFade}>
+            <Wrap onClick={onClickSide}>{children}</Wrap>
+          </Container>
+        </>
       )}
     </>
   );

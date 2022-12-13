@@ -1,6 +1,8 @@
-import { Avatar, Tag } from 'antd';
+import { Avatar } from 'antd';
 import Link from 'next/link';
 import React, { useMemo } from 'react';
+import { Tag } from 'src/components/common';
+import { TagColorKey, TagColorType } from 'src/components/common/color';
 import { Portfolio, ImageProp } from 'src/interface';
 import { MainImage } from './MainImage';
 import { UserInfo, Wrap } from './style';
@@ -10,11 +12,7 @@ type Props = {
 };
 
 export const PortfolioCard = ({ data }: Props) => {
-  const color = useMemo(
-    () => ['magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue', 'geekblue', 'purple'],
-    [],
-  );
-  let num = Math.floor(Math.random() * color.length);
+  let num = Math.floor(Math.random() * TagColorKey?.length - 1);
   return (
     <Wrap>
       <Link href={'/maker/' + data.userId}>
@@ -30,7 +28,7 @@ export const PortfolioCard = ({ data }: Props) => {
           </span>
           <span id="job">
             {data?.job && (
-              <Tag color={'blue'} style={{ marginRight: 3 }}>
+              <Tag color={'blue'} css={{ marginRight: 3 }}>
                 {data?.job}
               </Tag>
             )}
@@ -39,14 +37,14 @@ export const PortfolioCard = ({ data }: Props) => {
         <div id="field">
           <div className="work_field">
             {data?.workField?.map((v, i) => (
-              <Tag color={color[num]} style={{ marginRight: 3 }} key={i}>
+              <Tag color={TagColorKey[num + 1] as TagColorType} css={{ marginRight: 3 }} key={i}>
                 {v}
               </Tag>
             ))}
           </div>
           <div className="work_skill">
             {data?.skill?.map((v, i) => (
-              <Tag color={color[num]} style={{ marginRight: 3 }} key={i}>
+              <Tag color={TagColorKey[num] as TagColorType} css={{ marginRight: 3 }} key={i}>
                 {v}
               </Tag>
             ))}

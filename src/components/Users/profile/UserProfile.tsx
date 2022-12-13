@@ -1,13 +1,14 @@
 import React, { useMemo } from 'react';
 import { Div, BaseInfo, UserActive, Item, P, UserTech } from './style/userInfo.style';
 import { Button, Link } from 'src/components/common';
+import Tag from 'src/components/common/@share/Tag';
 import { useQuery } from 'react-query';
 import { user } from 'src/api';
-import { TagWrapper } from 'src/components/common/@share/atom';
-import { Avatar, Tag } from 'antd';
+import { Avatar } from 'antd';
 
 import { keys, useAuth } from 'src/hooks';
 import { getPf } from 'src/api/apis/user';
+import { TagColorKey } from 'src/components/common/color';
 type Props = { id: number };
 
 export function UserProfile({ id }: Props) {
@@ -23,11 +24,7 @@ export function UserProfile({ id }: Props) {
     staleTime: Infinity,
   });
 
-  const color = useMemo(
-    () => ['magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue', 'geekblue', 'purple'],
-    [],
-  );
-  let num = Math.floor(Math.random() * color.length);
+  let num = Math.floor(Math.random() * TagColorKey.length);
   return (
     <>
       {data && (
@@ -58,23 +55,23 @@ export function UserProfile({ id }: Props) {
             </Item>
           </UserActive>
           <UserTech>
-            <div css={{ display: 'flex', overflow: 'hidden', marginBottom: '10px' }}>
+            <div css={{ display: 'flex', overflow: 'hidden', marginBottom: '10px', gap: '5px' }}>
               {pf?.workField?.map((v, i) => (
-                <Tag color={'green'} style={{ marginRight: 3, fontSize: '12px' }} key={i}>
+                <Tag color={'green'} css={{ marginRight: 3, fontSize: '12px' }} key={i}>
                   {v}
                 </Tag>
               ))}
             </div>
 
-            <div css={{ display: 'flex', flexWrap: 'wrap' }}>
+            <div css={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
               {pf?.skill?.map((v, i) => (
-                <Tag color={'gold'} style={{ marginRight: 3, fontSize: '12px' }} key={i}>
+                <Tag color={'gold'} css={{ marginRight: 3, fontSize: '12px' }} key={i}>
                   {v}
                 </Tag>
               ))}
             </div>
             <br />
-            <Button $fill types="secondary">
+            <Button $fill types="secondary" id="maker_page_link">
               <Link href={'/maker/' + id}> 메이커 프로필 방문하기</Link>
             </Button>
           </UserTech>

@@ -1,7 +1,7 @@
 import { theme } from 'src/styles/Theme';
 import { createGlobalStyle, css } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle<{ noScroll?: boolean }>`
   html,
   body,
   #__next {
@@ -31,6 +31,17 @@ export const GlobalStyle = createGlobalStyle`
 			background: #a7a7a7;
 			border-radius: 1rem;
 		}
+		${(props) => {
+      if (props.noScroll) {
+        return css`
+          header {
+            padding-right: 10px;
+          }
+          overflow-y: hidden;
+          width: calc(100% - 10px);
+        `;
+      }
+    }}
   }
 
 	.ant-popover-inner-content{

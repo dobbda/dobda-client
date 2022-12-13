@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { GlobalStyle } from 'src/styles/GlobalStyle';
 import styled, { css, CSSProp, keyframes } from 'styled-components';
 
 type Props = {
@@ -11,6 +12,7 @@ type Props = {
   bottom?: number;
   right?: number;
   visible?: boolean; //내용완료시 자동 닫기를 원할시 close로 boolean 전달; true일시 모달close
+  noScroll?: boolean;
 };
 export function Popover({
   children,
@@ -22,6 +24,7 @@ export function Popover({
   left = null,
   bottom = null,
   right = null,
+  noScroll,
 }: Props) {
   const setUseRef = useRef<HTMLDivElement>(null);
   const [isShow, setIsShow] = useState(false);
@@ -74,12 +77,15 @@ export function Popover({
         {children}
       </span>
       {isShow && (
-        <PopoverContainer top={top} left={left} bottom={bottom} right={right}>
-          <div className="top-area"> </div>
-          {content}
+        <>
+          {noScroll && <GlobalStyle noScroll />}
+          <PopoverContainer top={top} left={left} bottom={bottom} right={right}>
+            <div className="top-area"> </div>
+            {content}
 
-          <div className="bottom-area"> </div>
-        </PopoverContainer>
+            <div className="bottom-area"> </div>
+          </PopoverContainer>
+        </>
       )}
     </Span>
   );
@@ -125,7 +131,7 @@ const Span = styled.span`
   position: relative;
 `;
 
-const boxFade = keyframes`
+export const boxFade = keyframes`
   0% {
     opacity: 0;
   }

@@ -19,6 +19,7 @@
     "@types/cookies": "^0.7.7",
     "antd": "^4.21.3",
     "axios": "^0.27.2",
+    "babel-preset-next": "^1.4.0",
     "cookies": "^0.8.0",
     "cross-env": "^7.0.3",
     "dayjs": "^1.11.6",

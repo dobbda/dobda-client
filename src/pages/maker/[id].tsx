@@ -24,11 +24,10 @@ const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
     staleTime: Infinity,
   });
 
-  console.log(data);
   return (
     <>
       {/* <SEO title={data.title} content={data.content} url={'/questions/' + data.id} tags={data.tagNames} image="/img/qs.png" /> */}
-      <Layout>
+      <Layout sideLeft>
         {data?.id ? (
           <PortfolioPage data={data} />
         ) : (

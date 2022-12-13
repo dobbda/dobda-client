@@ -35,6 +35,7 @@ export { MdOutlineHelp as Tipi } from 'react-icons/md';
 export { AiOutlineUpload } from 'react-icons/ai';
 export { MdOutlineDragIndicator as Dragi } from 'react-icons/md';
 export { BsArrowsFullscreen as Fulli } from 'react-icons/bs';
+export { FcMenu } from 'react-icons/fc';
 export { LoadingOutlined as LoadingIcon } from '@ant-design/icons';
 
 import { RiArrowDownSLine } from 'react-icons/ri';

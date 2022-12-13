@@ -54,7 +54,9 @@ const OCard = ({ data }: Props) => {
               <TagWrapper>
                 <c.P>필요기술스택:</c.P>
                 {data.tagNames?.map((tag, i) => (
-                  <Lib.Tag key={data.id + i}>{tag.name}</Lib.Tag>
+                  <Lib.Tag key={data.id + i} color="cyan">
+                    {tag.name}
+                  </Lib.Tag>
                 ))}
               </TagWrapper>
               <c.Group>

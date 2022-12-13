@@ -3,6 +3,7 @@ import { logout } from './../../../api/apis/user';
 import styled from 'styled-components';
 import { Button } from 'antd';
 import { theme } from 'src/styles/Theme';
+import { FcMenu } from 'react-icons/fc';
 export const Header = styled.header`
   z-index: 999;
   width: 100%;
@@ -97,4 +98,23 @@ export const My = styled.button`
 
   align-items: center;
   gap: 3px;
+`;
+
+export const MobileMemuWrap = styled.div`
+  width: 300px;
+  background-color: #fafafa;
+  border: solid 1px #f0e4e4;
+`;
+
+export const LogoWrap = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const MenuIcon = styled(FcMenu)`
+  font-size: 28px;
+  stroke-width: 0.8%;
+  font-weight: bold;
+  cursor: pointer;
 `;

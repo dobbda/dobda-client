@@ -14,8 +14,11 @@ module.exports = withPlugins([withBundleAnalyzer], {
   reactStrictMode: false,
   historyApiFallback: true,
   experimental: { outputStandalone: true, fallbackNodePolyfills: false, scrollRestoration: 'manual' },
-  inlineImageLimit: false,
-
+  inlineImageLimit: true,
+  compiler: {
+    // Enables the styled-components SWC transform
+    styledComponents: true,
+  },
   images: {
     domains: [
       'source.unsplash.com',

@@ -22,7 +22,6 @@ function RenderPortfolio() {
 
   const [ref, isView] = useInView();
   useEffect(() => {
-    console.log('us', data);
     // 무한 스크롤
     if (!data) refetch();
     if (data && isView && !data.isLast) nextPage();
