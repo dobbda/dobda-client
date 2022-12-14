@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
 import { Layout } from 'src/Layout';
 import { MainContent } from 'src/components/MainContent';
@@ -18,10 +18,15 @@ import Link from 'next/link';
 const Home: NextPage<{ exp: Exp }> = (props) => {
   setLocalStorage('exp', JSON.stringify(props.exp));
   const router = useRouter();
-  // console.log('index query: ', router.query);
+  const { cg, keyword } = router.query as { cg: string; keyword: string };
+  const [title, setTitle] = useState('');
+  useEffect(() => {
+    setTitle(` ${cg && keyword ? cg.toUpperCase() + ' | ' + keyword.toUpperCase() : cg && cg.toUpperCase()}`);
+  }, [cg, keyword]);
+
   return (
     <>
-      <MainHead />
+      <MainHead title={title} />
       <Layout sideLeft sideRight banner>
         <MainContent />
       </Layout>

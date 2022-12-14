@@ -1,12 +1,14 @@
 import Head from 'next/head';
 import React from 'react';
 
-type Props = {};
+type Props = {
+  title?: string;
+};
 
-export const MainHead = (props: Props) => {
+export const MainHead = ({ title }: Props) => {
   return (
     <Head>
-      <title>DOBDA</title>
+      <title>DOBDA{title && ' -' + title}</title>
       <meta charSet="utf-8" />
       <meta property="og:locale" content="ko_KR" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
