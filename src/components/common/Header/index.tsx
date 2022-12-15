@@ -12,6 +12,7 @@ import { Belli, FcMenu } from 'src/icons';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { Keyword } from 'src/components/SideContent';
 import { MobileMemuWrap } from './style';
+import { SearchBox } from './SearchBox';
 
 const HeaderNav = () => {
   const queryClient = useQueryClient();
@@ -41,7 +42,9 @@ const HeaderNav = () => {
               </Popover>
             )}
             <Logo b={true} height="25px" />
+            <SearchBox placeholder="제목 | 태그 검색" />
           </S.LogoWrap>
+
           <S.MenuWrapper>
             {!auth?.id && (
               <Button types="primary" onClick={setLoginModal}>

@@ -1,12 +1,14 @@
 import React, { useCallback } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme } from 'src/styles/Theme';
 import { Searchi } from 'src/icons';
 import { useRouter } from 'next/router';
 import { useInput } from 'src/hooks';
-type Props = {};
+type Props = {
+  placeholder?: string;
+};
 
-export const SearchBox = (props: Props) => {
+export const SearchBox = ({ placeholder }: Props) => {
   const router = useRouter();
   const [value, onChange] = useInput('');
   const onSubmit = useCallback(
@@ -18,7 +20,7 @@ export const SearchBox = (props: Props) => {
   );
   return (
     <Form className="search-box" onSubmit={onSubmit}>
-      <input type="text" placeholder="키워드 검색" value={value} onChange={onChange} />
+      <input type="text" placeholder={placeholder ? placeholder : '키워드 검색'} value={value} onChange={onChange} />
       <button type="submit">
         <Shearch />
       </button>
@@ -26,6 +28,12 @@ export const SearchBox = (props: Props) => {
   );
 };
 
+const Transition = css`
+  /* -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out; */
+  transition: all 0.2s ease-in-out;
+`;
 const Shearch = styled(Searchi)`
   height: 18px;
   width: 18px;
@@ -33,15 +41,15 @@ const Shearch = styled(Searchi)`
 `;
 
 const Form = styled.form`
+  max-width: 600px;
   height: 30px;
   background-color: #fff;
   border: 1px solid ${theme.color.border2};
-  max-width: 600px;
+  width: 160px;
   margin: 0 10px;
   display: flex;
   justify-content: space-around;
-  /* border-radius: 2rem; */
-  transition: all 0.2s ease-in-out 0s;
+  ${Transition}
 
   :hover {
     border: 1px solid ${theme.color.primary};
@@ -49,8 +57,9 @@ const Form = styled.form`
   }
 
   input {
-    width: 100%;
+    ${Transition}
     font-size: 14px;
+    width: 100%;
     border: none;
     background: none;
     outline: none;
@@ -67,6 +76,8 @@ const Form = styled.form`
     }
   }
   :focus-within {
+    ${Transition}
+    width: 90%;
     border: 1px solid ${theme.color.primary};
     box-shadow: ${theme.color.prRgb(0.5)} 0px 0px 0px 3px;
   }

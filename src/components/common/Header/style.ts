@@ -107,6 +107,8 @@ export const MobileMemuWrap = styled.div`
 `;
 
 export const LogoWrap = styled.div`
+  position: relative;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 10px;
