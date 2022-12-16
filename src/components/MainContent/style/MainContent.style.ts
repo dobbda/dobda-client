@@ -22,7 +22,6 @@ export const Main = styled.div`
       color: #797979;
       overflow: hidden;
       transition: all 0.2s ease-in-out 0.05s;
-      width: 77px;
       justify-content: center;
       cursor: pointer;
       :hover {

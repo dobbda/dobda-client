@@ -33,10 +33,10 @@ export const AdminUser = ({ children }: Props) => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     if (!auth?.id) {
       router.push('/');
     }
+    window.scrollTo(0, 0);
   }, [cg, auth]);
 
   const { data: pfData, isLoading: pfLoading } = useQuery(keys.pf(auth?.id), () => getPf(auth?.id), {

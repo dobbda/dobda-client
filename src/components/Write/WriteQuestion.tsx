@@ -33,10 +33,10 @@ const WriteQuestion = ({ data, setIsEdit }: Props) => {
   const { errMsg } = useErrMsg();
   const { auth } = useAuth();
   useEffect(() => {
-    if (!auth.id) {
+    if (!auth?.id) {
       router.push('/');
     }
-  }, []);
+  }, [auth]);
   useDidMountEffect(() => {
     if (addQuestion.isError || editQuestion?.isError) {
       message.error(errMsg);

@@ -39,10 +39,10 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
   const { errMsg } = useErrMsg();
   const { auth } = useAuth();
   useEffect(() => {
-    if (!auth.id) {
+    if (!auth?.id) {
       router.push('/');
     }
-  }, []);
+  }, [auth]);
   useDidMountEffect(() => {
     if (addSourcing.isError || editOutsource?.isError) {
       message.error(errMsg);

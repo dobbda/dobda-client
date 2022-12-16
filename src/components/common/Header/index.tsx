@@ -42,7 +42,7 @@ const HeaderNav = () => {
               </Popover>
             )}
             <Logo b={true} height="25px" />
-            <SearchBox placeholder="제목 | 태그 검색" />
+            {width > 768 && <SearchBox placeholder="제목 | 태그 검색" />}
           </S.LogoWrap>
 
           <S.MenuWrapper>

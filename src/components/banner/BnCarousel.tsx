@@ -18,12 +18,12 @@ const BnCarousel = () => {
   };
   return (
     <S>
-      <Arrow css={{ right: '10px' }} onClick={next} className="arrow">
+      {/* <Arrow css={{ right: '10px' }} onClick={next} className="arrow">
         <Nexti />
       </Arrow>
       <Arrow css={{ left: '10px' }} onClick={prev} className="arrow">
         <Previ />
-      </Arrow>
+      </Arrow> */}
       <Carousel draggable ref={slicRef} autoplay autoplaySpeed={4000}>
         {/* autoplay autoplaySpeed={4000} */}
         <BnCard {...bn[0]} />
