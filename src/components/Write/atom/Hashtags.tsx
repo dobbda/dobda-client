@@ -45,7 +45,7 @@ function Hashtags({ tags, setTags, tagColor }: Props) {
   const formHandler = useCallback(
     (e: any) => {
       e.preventDefault();
-      if (tag && !tags.includes(tag.toLowerCase())) {
+      if (tag && !tags?.includes(tag.toLowerCase())) {
         setTags((all) => (all ? [...all, tag.toLowerCase()] : [tag]));
         setTag('');
       } else if (tag.toLowerCase()) {
