@@ -53,10 +53,10 @@ const HeaderNav = () => {
             )}
             {auth?.id && (
               <>
-                <Popover trigger="click" content={<Alarms />} top={18} right={-100}>
+                <Popover trigger="click" content={<Alarms />} top={15} right={-100}>
                   <Belli size={'18px'} css={{ marginTop: '4px', cursor: 'pointer' }} />
                 </Popover>
-                <Popover trigger="click" content={<UserModalContent />} top={16} right={0}>
+                <Popover trigger="click" content={<UserModalContent />} top={15} right={0}>
                   <S.My>
                     마이페이지 <RiArrowDownSLine color="gray" css={{ fontSize: '15px' }} />
                   </S.My>

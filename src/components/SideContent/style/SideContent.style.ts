@@ -52,7 +52,7 @@ export const Ul = styled.ul`
     overflow: hidden;
     padding: 7px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
   }
   li {
     border-radius: 8px;

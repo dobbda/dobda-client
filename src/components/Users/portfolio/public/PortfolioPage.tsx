@@ -15,7 +15,6 @@ type Props = {
 };
 
 const PortfolioPage = ({ data }: Props) => {
-  console.log(TagColorKey);
   return (
     <Container>
       <div className="wrap">

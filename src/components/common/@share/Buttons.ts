@@ -33,7 +33,7 @@ export const Button = styled.button<Props>`
   display: ${({ $block }) => ($block ? 'block' : 'inline-block')};
   margin: ${({ $block }) => $block && '0 auto'};
   :hover {
-    box-shadow: ${theme.color.prRgb(0.4) + '0px 0px 0px 3px'};
+    box-shadow: ${theme.color.prRgb(0.5) + '0px 0px 0px 2px'};
   }
   pointer-events: ${(props) => (props.disabled ? 'none' : null)};
 `;

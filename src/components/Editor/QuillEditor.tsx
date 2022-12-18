@@ -68,7 +68,7 @@ const QuillEditor = ({ html, setHtml, height, setFocus, placeholder }: Props) =>
       syntax: { highlight: (code: string) => hljs.highlightAuto(code).value },
       toolbar: {
         container: [
-          [{ header: [1, 2, 3, 4, 5, 6, 7, false] }, { font: [] }],
+          [{ header: [1, 2, 3, 4, 5, 6, 7, false] }],
           ['link', 'image', 'video'],
           ['blockquote', 'code-block'],
           [{ list: 'ordered' }, { list: 'bullet' }],

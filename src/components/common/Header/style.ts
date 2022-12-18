@@ -49,7 +49,7 @@ export const UserModalWrapper = styled.div`
   min-height: 200px;
   padding: 15px 0;
   border-radius: 4px;
-  border: solid 1px ${theme.color.text1(0.1)};
+  border: solid 1px ${theme.color.border3};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +64,6 @@ export const UserModalWrapper = styled.div`
     width: 100%;
     text-align: center;
     transition: all 0.2s;
-    border-bottom: solid 1px ${theme.color.text1(0.1)};
     svg {
       margin-right: 10px;
     }
@@ -80,7 +79,7 @@ export const UserModalWrapper = styled.div`
     text-underline-offset: 5px;
     text-decoration-color: #8a8a8a;
     bottom: 10px;
-    left: 50px;
+    left: 15px;
     color: #8a8a8a;
   }
 `;

@@ -53,7 +53,7 @@ const Form = styled.form`
 
   :hover {
     border: 1px solid ${theme.color.primary};
-    box-shadow: ${theme.color.prRgb(0.5)} 0px 0px 0px 3px;
+    box-shadow: ${theme.color.prRgb(0.5)} 0px 0px 0px 2px;
   }
 
   input {
@@ -66,13 +66,8 @@ const Form = styled.form`
     line-height: 20px;
     padding: 0 15px;
     ::placeholder {
-      color: ${theme.color.text1(0.5)};
-      font-weight: 500;
-    }
-    :hover {
-      ::placeholder {
-        color: ${theme.color.primary};
-      }
+      color: #969696;
+      font-weight: 400;
     }
   }
   :focus-within {

@@ -23,6 +23,7 @@ export const Main = styled.div`
       overflow: hidden;
       transition: all 0.2s ease-in-out 0.05s;
       justify-content: center;
+      min-width: 70px;
       cursor: pointer;
       :hover {
         box-shadow: inset #95abd5 0px 4px 1px 0px;
@@ -74,7 +75,7 @@ export const WriteHandler = styled.div`
     border-radius: 32px;
   }
   :hover {
-    box-shadow: ${theme.color.prRgb(0.5)} 0px 0px 0px 3px;
+    box-shadow: ${theme.color.prRgb(0.5)} 0px 0px 0px 2px;
     transition: all 0.3s ease-in-out 0s;
   }
 

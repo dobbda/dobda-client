@@ -37,14 +37,14 @@ export const PortfolioCard = ({ data }: Props) => {
         <div id="field">
           <div className="work_field">
             {data?.workField?.map((v, i) => (
-              <Tag color={TagColorKey[num + 1] as TagColorType} css={{ marginRight: 3 }} key={i}>
+              <Tag color={TagColorKey[num + 1] as TagColorType} css={{ marginRight: 3 }} key={i} clickEvent>
                 {v}
               </Tag>
             ))}
           </div>
           <div className="work_skill">
             {data?.skill?.map((v, i) => (
-              <Tag color={TagColorKey[num] as TagColorType} css={{ marginRight: 3 }} key={i}>
+              <Tag color={TagColorKey[num] as TagColorType} css={{ marginRight: 3 }} key={i} clickEvent>
                 {v}
               </Tag>
             ))}

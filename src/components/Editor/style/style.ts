@@ -56,10 +56,6 @@ export const ViewWrapper = styled.div`
   font-size: 15px;
   pre {
     cursor: auto;
-    code {
-      cursor: text;
-    }
-
     background-color: #263238 !important;
     white-space: pre;
     white-space: -webkit-nowrap;
@@ -75,7 +71,6 @@ export const ViewWrapper = styled.div`
     }
     ::-webkit-scrollbar-thumb {
       background: #b3b3b3;
-      border-radius: 10px;
     }
   }
 

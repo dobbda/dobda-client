@@ -17,8 +17,8 @@ const OCard = ({ data }: Props) => {
   return (
     <>
       {data && data ? (
-        <Lib.Link href={`/custom-project/requests/${data.id}`} scroll={false}>
-          <S.ContentWrapper>
+        <S.ContentWrapper>
+          <Lib.Link href={`/custom-project/requests/${data.id}`} scroll={false}>
             <S.Watch>
               <c.Group>
                 <Watchi style={{ color: '#707070', fontSize: '17px', marginRight: '5px' }} /> <c.P>{data?.watch}</c.P>
@@ -50,26 +50,26 @@ const OCard = ({ data }: Props) => {
                 {data.title}
               </c.Title>
             </S.Content>
-            <S.Info>
-              <TagWrapper>
-                <c.P>필요기술스택:</c.P>
-                {data.tagNames?.map((tag, i) => (
-                  <Lib.Tag key={data.id + i} color="cyan">
-                    {tag.name}
-                  </Lib.Tag>
-                ))}
-              </TagWrapper>
-              <c.Group>
-                <c.P>마감일자 : {data?.deadline}</c.P> <c.Gap>|</c.Gap>
-                <c.P>예상금액:</c.P>
-                <c.P>
-                  {data?.coin.toLocaleString()}
-                  <Woni css={{ marginLeft: '3px' }} />
-                </c.P>
-              </c.Group>
-            </S.Info>
-          </S.ContentWrapper>
-        </Lib.Link>
+          </Lib.Link>
+          <S.Info>
+            <TagWrapper>
+              <c.P>필요기술스택:</c.P>
+              {data.tagNames?.map((tag, i) => (
+                <Lib.Tag key={data.id + i} color="cyan" clickEvent>
+                  {tag.name}
+                </Lib.Tag>
+              ))}
+            </TagWrapper>
+            <c.Group>
+              <c.P>마감일자 : {data?.deadline}</c.P> <c.Gap>|</c.Gap>
+              <c.P>예상금액:</c.P>
+              <c.P>
+                {data?.coin.toLocaleString()}
+                <Woni css={{ marginLeft: '3px' }} />
+              </c.P>
+            </c.Group>
+          </S.Info>
+        </S.ContentWrapper>
       ) : null}
     </>
   );

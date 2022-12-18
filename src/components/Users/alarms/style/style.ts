@@ -1,14 +1,25 @@
+import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 
 export const Div = styled.div`
   background-color: #fff !important;
-  border: 1px solid ${({ theme }) => theme.color.prRgb(0.3)};
+  border: solid 1px ${theme.color.border3};
   width: 300px;
   height: 400px;
   font-size: 12px;
   border-radius: 8px;
   position: relative;
   overflow-y: auto;
+  ::-webkit-scrollbar {
+    width: 6px;
+    background: #dbdbdb;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #bdbdbd;
+    border-radius: 1rem;
+    border: 2px solid transparent;
+  }
   ul {
     margin: 0;
     padding: 0 10px;

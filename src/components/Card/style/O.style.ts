@@ -74,6 +74,7 @@ export const Info = styled.div`
   margin: 0 -1px;
   margin-bottom: 0;
   overflow: hidden;
+  cursor: default;
 `;
 
 export const Content = styled.div`
