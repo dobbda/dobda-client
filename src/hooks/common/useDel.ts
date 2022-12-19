@@ -20,11 +20,11 @@ export const useDelete = <T extends Props>(id: number, queryKey: QueryKey, paren
           queryClient.invalidateQueries(queryKey);
           queryKey.includes('answers') &&
             (setInfCount({ queryKey: keys.questions(), changeKey: 'answersCount', findId: parentId, upDown: -1 }),
-            setCount({ queryKey: keys.qDetail(parentId), changeKey: 'answersCount', findId: parentId, upDown: -1 }));
+            setCount({ queryKey: keys.qDetail(parentId), changeKey: 'answersCount', upDown: -1 }));
 
           queryKey.includes('enquiry') &&
             (setInfCount({ queryKey: keys.sourcings(), changeKey: 'enquiryCount', findId: parentId, upDown: -1 }),
-            setCount({ queryKey: keys.oDetail(parentId), changeKey: 'enquiryCount', findId: parentId, upDown: -1 }));
+            setCount({ queryKey: keys.oDetail(parentId), changeKey: 'enquiryCount', upDown: -1 }));
         } else if (queryKey.toString().includes('detail')) {
           queryClient.setQueryData(
             queryKey.toString().includes('question') ? keys.questions() : keys.sourcings(),

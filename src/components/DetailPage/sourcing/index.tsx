@@ -34,8 +34,6 @@ const SourcingPage = ({ children, data }: Props) => {
   }, []);
   const router = useRouter();
 
-  const queryClient = useQueryClient();
-
   const [html, setHtml] = useState('');
   const [isEdit, setIsEdit] = useState(false);
   const { data: enquiry, isLoading: enquiryLoading } = useQuery(keys.enquiry(data?.id), () => o.getEnquiry(data.id), {
@@ -128,7 +126,7 @@ const SourcingPage = ({ children, data }: Props) => {
           </S.EditorWrapper>
 
           <S.AnswerContainer>
-            {data.enquiryCount > 0 ? (
+            {enquiry?.length > 0 ? (
               enquiryLoading ? (
                 <Skeleton border title avatar len={data.enquiryCount} row={3} />
               ) : (

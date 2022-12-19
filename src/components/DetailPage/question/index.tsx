@@ -36,10 +36,7 @@ const QuestionPage = ({ data }: Props) => {
   const { auth, refetch } = useAuth();
   const [html, setHtml] = useState('');
   const [isEdit, setIsEdit] = useState(false);
-  const { data: answers, isLoading: answerLoading } = useQuery(keys.answers(data?.id), () => q.getAnswers(data.id), {
-    enabled: data?.answersCount > 0,
-  });
-
+  const { data: answers, isLoading: answerLoading } = useQuery(keys.answers(data?.id), () => q.getAnswers(data.id));
   const del = useDelete<Question>(data?.id, keys.qDetail(data.id), data?.id);
   const add = useAddAnswer(data?.id);
 
@@ -124,7 +121,7 @@ const QuestionPage = ({ data }: Props) => {
           </S.EditorWrapper>
 
           <S.AnswerContainer>
-            {data?.answersCount > 0 ? (
+            {answers?.length > 0 ? (
               answerLoading ? (
                 <Skeleton border avatar title row={3} len={data.answersCount} />
               ) : (
