@@ -8,6 +8,9 @@ import { UserProfile } from '../../profile/UserProfile';
 import CarouselsImages from '../Carousel';
 import { MainImage } from './MainImage';
 import dynamic from 'next/dynamic';
+import { Button } from 'src/components/common';
+import Link from 'next/link';
+import { useAuth } from 'src/hooks';
 
 const Tag = dynamic(() => import('src/components/common/@share/Tag'));
 type Props = {
@@ -15,11 +18,20 @@ type Props = {
 };
 
 const PortfolioPage = ({ data }: Props) => {
+  const { auth } = useAuth();
   return (
     <Container>
       <div className="wrap">
         <MainImage {...data.card} height="250px" />
         <br />
+        {data.userId == auth?.id && (
+          <div css={{ textAlign: 'right' }}>
+            <Button>
+              <Link href={{ pathname: '/user', query: { id: auth?.id, cg: 'portfolio' } }}>정보 수정</Link>
+            </Button>
+          </div>
+        )}
+
         <br />
         <div>
           <TagsWrap>

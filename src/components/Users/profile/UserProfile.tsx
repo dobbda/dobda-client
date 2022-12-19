@@ -55,17 +55,17 @@ export function UserProfile({ id }: Props) {
             </Item>
           </UserActive>
           <UserTech>
-            <div css={{ display: 'flex', overflow: 'hidden', marginBottom: '10px', gap: '5px' }}>
+            <div className="tagWrap">
               {pf?.workField?.map((v, i) => (
-                <Tag color={'green'} css={{ marginRight: 3, fontSize: '12px' }} key={i}>
+                <Tag color={'green'} key={i}>
                   {v}
                 </Tag>
               ))}
             </div>
 
-            <div css={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
+            <div className="tagWrap">
               {pf?.skill?.map((v, i) => (
-                <Tag color={'gold'} css={{ marginRight: 3, fontSize: '12px' }} key={i}>
+                <Tag color={'gold'} key={i}>
                   {v}
                 </Tag>
               ))}

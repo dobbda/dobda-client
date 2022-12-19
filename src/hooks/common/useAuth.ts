@@ -8,8 +8,6 @@ import { Auth } from 'src/interface';
 import { keys } from '../queries/queryKeys';
 
 export function useAuth(): { auth: Auth; refetch: any } {
-  const queryClient = useQueryClient();
-
   const { data: auth, refetch } = useQuery(keys.auth, () => reqAuth.auth(), {
     // refetchOnMount: true,
     staleTime: Infinity,

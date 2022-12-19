@@ -78,4 +78,10 @@ export const UserTech = styled.div`
     overflow: hidden;
     gap: 15px;
   }
+  div.tagWrap {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
 `;
