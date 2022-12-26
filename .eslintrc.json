@@ -1,17 +1,25 @@
 {
-  "plugins": ["unused-imports"],
-  "extends": "next/core-web-vitals",
-  "ignoreDuringBuilds": true,
-  "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+  "plugins": ["react", "react-hooks"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "airbnb"],
 
   "rules": {
     "@next/next/no-document-import-in-page": "off",
     "@next/next/no-img-element": "off",
-    "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": [
+    "react/self-closing-comp": [
       "warn",
-      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
-    ]
+      {
+        "component": true,
+        "html": true
+      }
+    ],
+    "react-hooks/exhaustive-deps": [
+      "warn"
+      //, {
+      //   "enableDangerousAutofixThisMayCauseInfiniteLoops": true
+      // }
+    ],
+    "import/no-extraneous-dependencies": false,
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "warn"
   }
 }

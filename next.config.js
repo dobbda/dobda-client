@@ -4,7 +4,6 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
-const webpack = require('webpack');
 
 const prod = process.env.NODE_ENV === 'production';
 
@@ -27,6 +26,9 @@ module.exports = withPlugins([withBundleAnalyzer], {
       'dobda.s3.ap-northeast-2.amazonaws.com',
       's3.amazonaws.com',
     ],
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
   rewrites: () => [
     {

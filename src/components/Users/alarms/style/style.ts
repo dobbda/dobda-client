@@ -3,13 +3,14 @@ import styled from 'styled-components';
 
 export const Div = styled.div`
   background-color: #fff !important;
-  border: solid 1px ${theme.color.border3};
+  box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%), 0 9px 28px 8px rgb(0 0 0 / 5%);
   width: 300px;
   height: 400px;
   font-size: 12px;
   border-radius: 8px;
   position: relative;
   overflow-y: auto;
+  padding: 5px 5px;
   ::-webkit-scrollbar {
     width: 6px;
     background: #dbdbdb;

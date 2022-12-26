@@ -49,7 +49,8 @@ export const UserModalWrapper = styled.div`
   min-height: 200px;
   padding: 15px 0;
   border-radius: 4px;
-  border: solid 1px ${theme.color.border3};
+  /* border: solid 1px ${theme.color.border3}; */
+  box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%), 0 9px 28px 8px rgb(0 0 0 / 5%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,8 +102,8 @@ export const My = styled.button`
 
 export const MobileMemuWrap = styled.div`
   width: 300px;
-  background-color: #fafafa;
-  border: solid 1px #f0e4e4;
+  background-color: #fff;
+  box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%), 0 9px 28px 8px rgb(0 0 0 / 5%);
 `;
 
 export const LogoWrap = styled.div`
