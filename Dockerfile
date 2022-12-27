@@ -3,7 +3,7 @@ FROM node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --force
+RUN npm install --force
 
 # Rebuild the source code only when needed
 FROM node:16-alpine AS builder
