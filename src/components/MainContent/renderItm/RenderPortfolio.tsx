@@ -74,7 +74,7 @@ const ContentCardList = styled.div`
   row-gap: 20px;
   column-gap: 10px;
   height: 100%;
-  @media screen and (max-width: 512px) {
+  @media screen and (max-width: ${theme.media.small}) {
     transition: all 0.2s;
     grid-template-columns: repeat(2, 2fr);
   }

@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic';
 import { Button } from 'src/components/common';
 import Link from 'next/link';
 import { useAuth } from 'src/hooks';
+import { theme } from 'src/styles/Theme';
 
 const Tag = dynamic(() => import('src/components/common/@share/Tag'));
 type Props = {
@@ -126,7 +127,7 @@ const Container = styled.div`
   .userinf {
     width: 250px;
   }
-  @media screen and (max-width: 786px) {
+  @media screen and (max-width: ${theme.media.medium}) {
     .userinf {
       display: none;
     }

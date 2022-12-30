@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 // height: ${({theme})=>theme.media.size};
-const padding = '';
+import { theme } from 'src/styles/Theme';
 type Props = {};
 export const Container = styled.div`
   min-width: 100%;
@@ -26,9 +26,9 @@ export const Wrapper = styled.div`
   padding: 0;
   margin: 0 10px;
   gap: 17px;
-  @media screen and (max-width: 1060px) {
+  @media screen and (max-width: ${theme.media.large}) {
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${theme.media.medium}) {
     margin: 0 5px;
   } ;
 `;
@@ -39,10 +39,10 @@ export const MainWrapper = styled.div`
   padding: 10 20px;
   position: relative;
   transition: all 0.1s;
-  @media screen and (max-width: 1060px) {
+  @media screen and (max-width: ${theme.media.large}) {
     padding: 0;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${theme.media.medium}) {
     padding: 0;
   } ;
 `;
@@ -60,11 +60,11 @@ export const SideNavWrapper = styled.div<{ width?: string }>`
     display: none;
   }
   scrollbar-width: none; /* Firefox 64 */
-  @media screen and (max-width: 1060px) {
+  @media screen and (max-width: ${theme.media.large}) {
     /* background-color: #fff; */
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${theme.media.medium}) {
     display: none;
   } ;
 `;
@@ -80,7 +80,7 @@ export const AsideContent = styled.div`
   background-color: #dedede;
   text-align: center;
 
-  @media screen and (max-width: 1080px) {
+  @media screen and (max-width: ${theme.media.large}) {
     display: none;
   } ;
 `;

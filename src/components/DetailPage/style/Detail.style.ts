@@ -65,7 +65,7 @@ export const AnswerContainer = styled.div`
   gap: 25px;
   padding: ${wrapperPadding} 0;
   border-radius: 4px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${theme.media.medium}) {
     padding: 0;
   }
 `;
@@ -80,7 +80,7 @@ export const EditorWrapper = styled.div`
     color: #383838;
     font-weight: bold;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${theme.media.medium}) {
     padding: 10px 0;
   }
 `;

@@ -80,7 +80,7 @@ export const Info = styled.div`
 export const Content = styled.div`
   padding: 0 20px;
   width: 100%;
-  /* @media screen and (max-width: 450px) {
+  /* @media screen and (max-width: ${theme.media.small}) {
     padding: 20px 10px;
   } */
 `;

@@ -94,7 +94,7 @@ const UserPageWrapper = styled.div`
     top: 80px;
     left: 0;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${theme.media.medium}) {
     flex-direction: column-reverse;
     .navigator {
       position: static;

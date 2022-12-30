@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Input as AntInput } from 'antd';
+import { theme } from 'src/styles/Theme';
 export const InfoWrapper = styled.div`
   width: 100%;
   border: 1px solid #eee;
@@ -16,7 +17,7 @@ export const Culumn = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
 
-  /* @media screen and (max-width: 768px) {
+  /* @media screen and (max-width: ${theme.media.medium}) {
     flex-wrap: wrap;
   } */
 `;

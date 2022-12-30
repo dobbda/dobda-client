@@ -79,7 +79,7 @@ export const WriteHandler = styled.div`
     transition: all 0.3s ease-in-out 0s;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: ${theme.media.small}) {
     font-size: 0.9em;
   }
 `;

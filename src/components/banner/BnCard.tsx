@@ -37,7 +37,7 @@ export default function BnCard(props: Props) {
 }
 
 const Button = styled.button<ButtonProps>`
-  padding: 5px;
+  padding: 5px 25px;
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -49,5 +49,11 @@ const Button = styled.button<ButtonProps>`
   transition: all 150ms;
   :hover {
     box-shadow: #ebebeb9f 0px 0px 0px 3px;
+  }
+
+  @media screen and (max-width: ${theme.media.small}) {
+    max-width: 170px;
+    font-size: 14px;
+    font-weight: 500;
   }
 `;

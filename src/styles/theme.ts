@@ -3,7 +3,6 @@ const media = {
   maxWidth: '1240px',
   large: `1080px`,
   medium: `788px`,
-  tablet: `788px`,
   small: `574px`, //card culumn
   cardMinWidth: '320px',
   cardMaxWidth: '450px',

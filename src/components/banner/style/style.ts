@@ -34,7 +34,7 @@ export const Content = styled.div<{ secondImg?: string }>`
 		background-size: contain;
 	`}
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: ${theme.media.small}) {
     h1 {
       font-size: 1.3rem;
     }
