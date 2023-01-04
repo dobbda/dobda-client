@@ -1,14 +1,15 @@
 import React, { useCallback } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, CSSObject, CSSProp } from 'styled-components';
 import { theme } from 'src/styles/Theme';
 import { Searchi } from 'src/icons';
 import { useRouter } from 'next/router';
 import { useInput } from 'src/hooks';
 type Props = {
   placeholder?: string;
+  style?: CSSProp | CSSObject;
 };
 
-export const SearchBox = ({ placeholder }: Props) => {
+export const SearchBox = ({ placeholder, style }: Props) => {
   const router = useRouter();
   const [value, onChange] = useInput('');
   const onSubmit = useCallback(
@@ -19,7 +20,7 @@ export const SearchBox = ({ placeholder }: Props) => {
     [value, router],
   );
   return (
-    <Form className="search-box" onSubmit={onSubmit}>
+    <Form className="search-box" onSubmit={onSubmit} css={style}>
       <input type="text" placeholder={placeholder ? placeholder : '키워드 검색'} value={value} onChange={onChange} />
       <button type="submit">
         <Shearch />

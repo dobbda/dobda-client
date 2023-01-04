@@ -76,6 +76,7 @@ export const ViewWrapper = styled.div`
 
   img {
     max-width: 100%;
+    cursor: default;
   }
 
   p {

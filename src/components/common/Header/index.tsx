@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useQuery, useQueryClient } from 'react-query';
 import * as S from './style';
 import { Logo, Popover, Modal, Button } from 'src/components/common';
 import { Alarms } from 'src/components/Users';
 import { SocialLogin } from 'src/components/SocialLogin';
 import { useAuth, useLogout, useLoginModalhandler, keys, useWindowSize } from 'src/hooks';
-import { useRouter } from 'next/router';
 import UserModalContent from './UserModalContent';
 import 'antd/dist/antd.css';
 import { Belli, FcMenu } from 'src/icons';
@@ -15,13 +13,10 @@ import { MobileMemuWrap } from './style';
 import { SearchBox } from './SearchBox';
 
 const HeaderNav = () => {
-  const queryClient = useQueryClient();
   const { auth, refetch } = useAuth();
   const { loginModal, setLoginModal } = useLoginModalhandler();
-
-  const router = useRouter();
-  const { logout } = useLogout();
   const { width, height } = useWindowSize();
+
   return (
     <>
       <S.Header>
@@ -42,7 +37,7 @@ const HeaderNav = () => {
               </Popover>
             )}
             <Logo b={true} height="25px" />
-            {width > 768 && <SearchBox placeholder="제목 | 태그 검색" />}
+            {width > 768 && <SearchBox placeholder="제목 | 태그 검색" style={{ borderRadius: '1rem' }} />}
           </S.LogoWrap>
 
           <S.MenuWrapper>

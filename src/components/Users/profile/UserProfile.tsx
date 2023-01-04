@@ -8,7 +8,7 @@ import { Avatar } from 'antd';
 
 import { keys, useAuth } from 'src/hooks';
 import { getPf } from 'src/api/apis/user';
-import { TagColorKey } from 'src/components/common/color';
+import { TagColorKey } from 'src/components/common/tagColor';
 type Props = { id: number };
 
 export function UserProfile({ id }: Props) {

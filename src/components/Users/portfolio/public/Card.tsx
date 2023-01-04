@@ -2,7 +2,7 @@ import { Avatar } from 'antd';
 import Link from 'next/link';
 import React, { useMemo } from 'react';
 import { Tag } from 'src/components/common';
-import { TagColorKey, TagColorType } from 'src/components/common/color';
+import { TagColorKey, TagColorType } from 'src/components/common/tagColor';
 import { Portfolio, ImageProp } from 'src/interface';
 import { MainImage } from './MainImage';
 import { UserInfo, Wrap } from './style';

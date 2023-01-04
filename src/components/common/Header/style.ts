@@ -1,7 +1,4 @@
-import { Text } from './../../SocialLogin/style/LogoBtn.style';
-import { logout } from './../../../api/apis/user';
 import styled from 'styled-components';
-import { Button } from 'antd';
 import { theme } from 'src/styles/Theme';
 import { FcMenu } from 'react-icons/fc';
 export const Header = styled.header`

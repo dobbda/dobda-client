@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 // import Tag from 'src/components/common/@share/Tag';
-import { TagColorKey, TagColorType } from 'src/components/common/color';
+import { TagColorKey, TagColorType } from 'src/components/common/tagColor';
 import { HtmlViewer } from 'src/components/Editor';
 import { Portfolio } from 'src/interface';
 import styled from 'styled-components';

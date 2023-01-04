@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
 import { TagClosei } from 'src/icons';
 import styled from 'styled-components';
-import { TagColorKey, tagColors, TagColorType } from '../color';
+import { TagColorKey, tagColors, TagColorType } from '../tagColor';
 
 type Props = {
   children: string;

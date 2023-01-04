@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
 import { FaAudioDescription } from 'react-icons/fa';
-import { MdOutlineDescription } from 'react-icons/md';
 import { useAuth, useLogout } from 'src/hooks';
 import { Bookmarki, Coini, Useri } from 'src/icons';
 import { UserModalWrapper } from './style';
