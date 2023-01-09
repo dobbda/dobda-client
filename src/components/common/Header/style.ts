@@ -75,7 +75,7 @@ export const UserModalWrapper = styled.div`
     position: absolute;
     text-decoration: underline;
     text-underline-offset: 5px;
-    text-decoration-color: #8a8a8a;
+    text-decoration-color: currentColor;
     bottom: 10px;
     left: 15px;
     color: #8a8a8a;

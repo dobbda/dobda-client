@@ -56,9 +56,10 @@ export const Ul = styled.ul`
   }
   li {
     border-radius: 8px;
-    color: rgb(112, 112, 112);
+    color: rgb(58, 58, 58);
     transition: all 0.2s;
     margin: 1px 0;
+    text-transform: uppercase;
   }
   li:hover {
     background-color: ${theme.color.prRgb(0.3)};

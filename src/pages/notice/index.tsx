@@ -55,7 +55,7 @@ const Item = styled.div`
     :hover {
       text-decoration: underline;
       text-underline-offset: 5px;
-      text-decoration-color: #666666;
+      text-decoration-color: currentColor;
     }
   }
 `;

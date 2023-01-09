@@ -7,8 +7,12 @@ export const PrWrapper = styled.div<{ url: string }>`
   background-position: center;
   background-size: cover;
 
-  height: 250px;
+  height: 350px;
   width: 100%;
+  transition: all 100ms;
+  @media screen and (max-width: ${theme.media.small}) {
+    height: 250px;
+  }
 `;
 
 export const Content = styled.div<{ secondImg?: string }>`

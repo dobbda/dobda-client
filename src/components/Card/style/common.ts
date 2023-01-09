@@ -33,13 +33,12 @@ export const Title = styled.h2`
   word-break: break-word;
   padding: 3px 0;
   font-size: 17px;
-  color: #2362ab;
   display: -webkit-box;
   -webkit-line-clamp: 2; // 원하는 라인수
   -webkit-box-orient: vertical;
   :hover {
     text-decoration: 1px underline;
-    text-decoration-color: #2362ab;
+    text-decoration-color: currentColor;
     text-underline-offset: 4px;
   }
 `;

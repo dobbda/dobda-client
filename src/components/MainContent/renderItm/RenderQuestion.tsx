@@ -68,13 +68,14 @@ const ContentCardList = styled.div`
   transition: all 0.2s;
   margin-bottom: 10px;
   padding: 10px;
-  gap: 20px;
+  /* gap: 20px; */
 `;
 const RefCard = styled.div`
   width: 100%;
-  box-shadow: 0 0 0 1px #e3e6e8;
+  /* box-shadow: 0 0 0 1px #e3e6e8; */
   padding: 10px 15px;
-  border-radius: 7px;
+  /* border-radius: 7px; */
+  border-bottom: solid 1px #e1e1e1;
   :hover {
     margin-left: -1px;
     margin-right: -1px;

@@ -52,7 +52,7 @@ const Button = styled.button<ButtonProps>`
   }
 
   @media screen and (max-width: ${theme.media.small}) {
-    max-width: 170px;
+    width: fit-content;
     font-size: 14px;
     font-weight: 500;
   }

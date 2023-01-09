@@ -53,7 +53,7 @@ const Item = styled.li`
     color: #222091;
     text-decoration: underline;
     text-underline-offset: 4px;
-    text-decoration-color: #808080;
+    text-decoration-color: currentColor;
   }
 `;
 

@@ -19,14 +19,7 @@ export const SideContentRight = ({ folderOpenFalse }: Props) => {
   return (
     <SideContainer>
       {/* <P>최신 글</P> */}
-      <FolderMenu
-        childOpen={!folderOpenFalse}
-        title={
-          <>
-            🔥 <Red>New </Red> Questions
-          </>
-        }
-      >
+      <FolderMenu childOpen={!folderOpenFalse} icon={<Red>🔥</Red>} title={<> New Questions</>}>
         <Empty />
       </FolderMenu>
       <br />
