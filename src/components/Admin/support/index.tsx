@@ -10,12 +10,12 @@ const Support = ({ onlyPolicy = false }: Props) => {
   return (
     <div css={{ marginTop: '40px' }}>
       {!onlyPolicy && (
-        <Flex>
+        <Flex css={{ marginBottom: '5px' }}>
           <Link href="#">
             <Text>Discord</Text>
           </Link>
-          <Link href="dkd">
-            <Text $before>카카오문의</Text>
+          <Link href="#">
+            <Text $before>카카오 문의</Text>
           </Link>
         </Flex>
       )}

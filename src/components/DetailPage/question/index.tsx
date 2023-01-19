@@ -10,7 +10,15 @@ import { HtmlViewer } from 'src/components/Editor';
 import { Question, QuestionDetail } from 'src/interface';
 import { useQuery, useQueryClient } from 'react-query';
 import { q } from 'src/api';
-import { keys, useAddAnswer, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
+import {
+  keys,
+  useAddAnswer,
+  useAuth,
+  useDelete,
+  useDidMountEffect,
+  useErrMsg,
+  useQueryCount,
+} from 'src/hooks';
 // import { WriteQuestion } from '../../Write';
 import { Button } from 'src/components/common';
 import { useRouter } from 'next/router';
@@ -19,7 +27,9 @@ import { Coini, Qi } from 'src/icons';
 // import { Editor } from 'src/components/Editor';
 const Editor = dynamic(() => import('src/components/Editor/Editor'));
 const AnswerCp = dynamic(() => import('src/components/Comment/Answer'));
-const WriteQuestion = dynamic(() => import('src/components/Write/WriteQuestion'));
+const WriteQuestion = dynamic(
+  () => import('src/components/Write/WriteQuestion'),
+);
 
 type Props = {
   data: QuestionDetail;
@@ -28,7 +38,12 @@ const QuestionPage = ({ data }: Props) => {
   const { setCount, setInfCount } = useQueryCount();
   useEffect(() => {
     /**조회수 */
-    setInfCount({ queryKey: keys.questions(), changeKey: 'watch', findId: data.id, countVal: data.watch });
+    setInfCount({
+      queryKey: keys.questions(),
+      changeKey: 'watch',
+      findId: data.id,
+      countVal: data.watch,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -36,7 +51,10 @@ const QuestionPage = ({ data }: Props) => {
   const { auth, refetch } = useAuth();
   const [html, setHtml] = useState('');
   const [isEdit, setIsEdit] = useState(false);
-  const { data: answers, isLoading: answerLoading } = useQuery(keys.answers(data?.id), () => q.getAnswers(data.id));
+  const { data: answers, isLoading: answerLoading } = useQuery(
+    keys.answers(data?.id),
+    () => q.getAnswers(data.id),
+  );
   const del = useDelete<Question>(data?.id, keys.qDetail(data.id), data?.id);
   const add = useAddAnswer(data?.id);
 
@@ -61,11 +79,13 @@ const QuestionPage = ({ data }: Props) => {
       message.error(errMsg);
     }
   }, [add.isError, add.isSuccess, del.isError, del.isSuccess, errMsg, router]);
+
   const removeHandler = useCallback(() => {
     if (confirm('삭제시 복구가 불가능 합니다')) {
       del.mutate(q.delQuestion);
     }
   }, [del]);
+
   return (
     <S.DetailContainer>
       {isEdit && data ? (
@@ -75,7 +95,11 @@ const QuestionPage = ({ data }: Props) => {
           <S.ContentWrapper>
             <S.ContentHeader>
               <div className="detailInfo">
-                <Avatar nickname={data?.author.nickname} url={data?.author.avatar} id={data?.author.id} />
+                <Avatar
+                  nickname={data?.author.nickname}
+                  url={data?.author.avatar}
+                  id={data?.author.id}
+                />
                 <atom.CreatedAt>{getDate(data?.createdAt)}</atom.CreatedAt>
               </div>
               <S.Title>
@@ -87,7 +111,10 @@ const QuestionPage = ({ data }: Props) => {
                   <Coini />
                   <p>{data?.coin.toLocaleString()}</p>
                 </S.CoinWrapper>
-                {data?.tagNames && data?.tagNames.map((tag) => <Tag key={tag.id}>{tag.name}</Tag>)}
+                {data?.tagNames &&
+                  data?.tagNames.map((tag) => (
+                    <Tag key={tag.id}>{tag.name}</Tag>
+                  ))}
               </atom.TagWrapper>
               {auth?.id == data.author?.id && (
                 <S.OnyUser className="only-author">
@@ -113,7 +140,13 @@ const QuestionPage = ({ data }: Props) => {
               onClickShow={true}
               height="400px"
               submitBtn={
-                <Button onClick={onSubmitAnswer} types="secondary" $block $fill css={{ marginTop: '10px' }}>
+                <Button
+                  onClick={onSubmitAnswer}
+                  types="secondary"
+                  $block
+                  $fill
+                  css={{ marginTop: '10px' }}
+                >
                   <Loading loading={add.isLoading} /> 등록
                 </Button>
               }
@@ -125,7 +158,9 @@ const QuestionPage = ({ data }: Props) => {
               answerLoading ? (
                 <Skeleton border avatar title row={3} len={data.answersCount} />
               ) : (
-                answers.map((answer) => <AnswerCp key={answer.id} answer={answer} question={data} />)
+                answers.map((answer) => (
+                  <AnswerCp key={answer.id} answer={answer} question={data} />
+                ))
               )
             ) : (
               <Empty descript="아직 등록된 답변이 없습니다. 답변을 등록해보세요~" />
