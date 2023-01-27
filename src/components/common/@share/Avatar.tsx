@@ -11,10 +11,12 @@ type Props = {
   nickname: string;
   id: number;
   url: string;
+  size?: number;
 };
 
 const SImg = styled(AntAvatar)`
-  border: 1px solid ${theme.color.border2};
+  border: 1px solid ${theme.color.border1};
+  /* border-radius: 2px; */
   :hover {
     box-shadow: ${theme.color.prRgb(0.5)} 0px 0.5px 1px 2px;
     transition: all 0.2s;
@@ -22,30 +24,35 @@ const SImg = styled(AntAvatar)`
 `;
 const Div = styled.div`
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
+  align-items: center;
   height: 30px;
 
   h3 {
     margin: 0;
-    padding-top: 5px;
-    margin-left: 20px;
+    margin-left: 10px;
     text-align: center;
     font-size: 15px;
     color: #707070;
     :hover {
       /* text-decoration: underline;
       text-underline-offset: 3px; */
-      box-shadow: inset ${theme.color.prRgb(0.5)} 0px -2px 0px 0px;
+      text-decoration: underline;
+      text-decoration-color: inherit;
       transition: all 0.2s;
     }
   }
 `;
 
-const Avatar = ({ nickname, url, id }: Props) => {
+const Avatar = ({ nickname, url, id, size }: Props) => {
   return (
-    <Popover trigger="click" placement="bottomLeft" content={<UserProfile id={id} />}>
+    <Popover
+      trigger="click"
+      placement="bottomLeft"
+      content={<UserProfile id={id} />}
+    >
       <Div>
-        <SImg src={url}></SImg>
+        <SImg src={url} size={20}></SImg>
         <h3>{nickname}</h3>
       </Div>
     </Popover>

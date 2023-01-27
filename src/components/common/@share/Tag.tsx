@@ -19,7 +19,7 @@ const Div = styled.div`
   padding: 3px 10px;
   border: solid 1px #d3adf7;
   background-color: '#d3adf710';
-  border-radius: 10px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -34,10 +34,20 @@ const Div = styled.div`
   }
 `;
 
-const Tag = ({ children, closable, onClose, color, random, clickEvent }: Props) => {
+const Tag = ({
+  children,
+  closable,
+  onClose,
+  color,
+  random,
+  clickEvent,
+}: Props) => {
   const router = useRouter();
   const onClick = useCallback(() => {
-    router.push({ pathname: router.locale, query: { ...router.query, keyword: children } });
+    router.push({
+      pathname: router.locale,
+      query: { ...router.query, keyword: children },
+    });
   }, []);
 
   return (

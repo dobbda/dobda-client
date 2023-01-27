@@ -28,7 +28,6 @@ export const HeaderWrapper = styled.header`
 //body
 export const BodyWrapper = styled.div`
   width: 100%;
-  padding-left: 45px;
 `;
 
 export const Title = styled.h3`
@@ -55,5 +54,4 @@ export const FooterWrapper = styled.div`
   text-align: center;
   align-items: center;
   margin-top: 10px;
-  padding-left: 45px;
 `;

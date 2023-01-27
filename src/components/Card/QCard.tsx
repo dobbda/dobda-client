@@ -21,7 +21,12 @@ const QCard = ({ data }: data) => {
       {q ? (
         <S.ContentWrapper className="card-items">
           <S.HeaderWrapper>
-            <Lib.Avatar nickname={q.author?.nickname} url={q.author?.avatar} id={q.author?.id} />
+            <Lib.Avatar
+              size={20}
+              nickname={q.author?.nickname}
+              url={q.author?.avatar}
+              id={q.author?.id}
+            />
             <c.Group>
               <atom.CreatedAt>{getDate(q.createdAt, true)}</atom.CreatedAt>
             </c.Group>
@@ -57,11 +62,19 @@ const QCard = ({ data }: data) => {
               <c.Gap>|</c.Gap>
 
               <c.Group>
-                <Coini css={{ marginRight: '5px' }} /> <c.P>{q?.coin?.toLocaleString()}</c.P>
+                <Coini css={{ marginRight: '5px' }} />{' '}
+                <c.P>{q?.coin?.toLocaleString()}</c.P>
               </c.Group>
             </c.Group>
             <c.Group>
-              <Watchi style={{ color: '#888888', fontSize: '17px', marginRight: '5px' }} /> {q.watch}
+              <Watchi
+                style={{
+                  color: '#888888',
+                  fontSize: '17px',
+                  marginRight: '5px',
+                }}
+              />{' '}
+              {q.watch}
             </c.Group>
           </S.FooterWrapper>
         </S.ContentWrapper>
