@@ -7,8 +7,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import { UserUpdate } from 'src/interface';
 import axios from 'axios';
 import * as S from './style/myInfo.style';
-import { Avatar, message } from 'antd';
-import { Refreshi } from 'src/icons';
+import { message } from 'antd';
 import UploadAvatar from './UploadAvatar';
 
 type Props = {};
@@ -16,11 +15,19 @@ type Props = {};
 export const UserUpdateForm = (props: Props) => {
   const queryClient = useQueryClient();
   const { auth, refetch } = useAuth();
-  const [nickname, onChangeNickname] = useInput<string>(auth?.id && auth?.nickname, 15);
+  const [nickname, onChangeNickname] = useInput<string>(
+    auth?.id && auth?.nickname,
+    15,
+  );
   const [name, onChangeName] = useInput<string>(auth?.name, 10);
   const [avatar, setAvatar] = useState<string>(auth?.avatar);
-  const [description, onChangeDescription] = useInput<string>(auth?.description, 260);
-  const [skills, setSkills] = React.useState<string[]>((auth?.skill && auth.skill) || []);
+  const [description, onChangeDescription] = useInput<string>(
+    auth?.description,
+    260,
+  );
+  const [skills, setSkills] = React.useState<string[]>(
+    (auth?.skill && auth.skill) || [],
+  );
   // const update = useQuery("auth",user.myInfoUpdate({""}), )
 
   const onSubmitUserUpdate = useCallback(async () => {
@@ -67,7 +74,10 @@ export const UserUpdateForm = (props: Props) => {
               <S.Label>닉네임: 다른 유저에게 보여지는 닉네임이에요.</S.Label>
               <S.Value>
                 <UploadAvatar avatar={avatar} setAvatar={setAvatar} />
-                <S.Input defaultValue={auth.nickname} onChange={onChangeNickname} />
+                <S.Input
+                  defaultValue={auth.nickname}
+                  onChange={onChangeNickname}
+                />
               </S.Value>
               <S.Msg> 저장하지 않으면 적용되지 않습니다.</S.Msg>
             </S.Culumn>
@@ -75,7 +85,11 @@ export const UserUpdateForm = (props: Props) => {
             <S.Culumn>
               <S.Label>나에 대해 간단하게 소개해봐요~</S.Label>
               <S.Value>
-                <S.Input.TextArea defaultValue={auth.description || '안녕하세요'} onChange={onChangeDescription} rows={4} />
+                <S.Input.TextArea
+                  defaultValue={auth.description || '안녕하세요'}
+                  onChange={onChangeDescription}
+                  rows={4}
+                />
               </S.Value>
             </S.Culumn>
 
@@ -83,7 +97,11 @@ export const UserUpdateForm = (props: Props) => {
               <S.Label>{'해시태그(10)'}</S.Label>
 
               <S.Value>
-                <Hashtags tagColor="#465666" tags={skills} setTags={setSkills} />
+                <Hashtags
+                  tagColor="#465666"
+                  tags={skills}
+                  setTags={setSkills}
+                />
               </S.Value>
             </S.Culumn>
             <S.Hr />

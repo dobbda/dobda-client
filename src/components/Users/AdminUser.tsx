@@ -13,13 +13,6 @@ import { MyPortfolio } from './portfolio/private';
 import { MyInfo } from './profile/MyInfo';
 import { Skeleton } from '../Skeleton';
 
-// import dynamic from 'next/dynamic';
-// const MyCoin = dynamic(() => import('./coin'));
-// const Poster = dynamic(() => import('./MyPoster'));
-// const MyPortfolio = dynamic(() => import('./portfolio/private'));
-// const MyInfo = dynamic(() => import('./profile/MyInfo'));
-// const MyAlarm = dynamic(() => import('./alarms'));
-
 type Props = {
   children?: React.ReactNode;
 };

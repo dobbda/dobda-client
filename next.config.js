@@ -12,8 +12,12 @@ module.exports = withPlugins([withBundleAnalyzer], {
   productionBrowserSourceMaps: false,
   reactStrictMode: false,
   historyApiFallback: true,
-  experimental: { outputStandalone: true, fallbackNodePolyfills: false, scrollRestoration: 'manual' },
-  inlineImageLimit: true,
+  experimental: {
+    outputStandalone: true,
+    fallbackNodePolyfills: false,
+    scrollRestoration: 'manual',
+  },
+  inlineImageLimit: false,
   compiler: {
     // Enables the styled-components SWC transform
     styledComponents: true,
@@ -33,11 +37,15 @@ module.exports = withPlugins([withBundleAnalyzer], {
   rewrites: () => [
     {
       source: '/api/:path*',
-      destination: `${prod ? process.env.API_KEY : process.env.API_KEY_DEV}/:path*`,
+      destination: `${
+        prod ? process.env.API_KEY : process.env.API_KEY_DEV
+      }/:path*`,
     },
     {
       source: '/admin',
-      destination: `${prod ? process.env.API_KEY : process.env.API_KEY_DEV}/redirect/admin`,
+      destination: `${
+        prod ? process.env.API_KEY : process.env.API_KEY_DEV
+      }/redirect/admin`,
     },
   ],
   redirects: () => [

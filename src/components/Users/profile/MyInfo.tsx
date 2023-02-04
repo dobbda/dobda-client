@@ -8,9 +8,6 @@ import { Divider } from 'antd';
 type Props = {};
 
 export const MyInfo = (props: Props) => {
-  const [nickname, onChangeNickname] = useInput('쭈꾸미', 10);
-  const [discript, onChangeDiscript] = useInput('쭈꾸미', 260);
-  const [skills, setSkills] = React.useState<string[]>([]);
   const { auth } = useAuth();
   return (
     <div css={{ paddingBottom: '15px' }}>
