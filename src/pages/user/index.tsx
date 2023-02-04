@@ -5,9 +5,7 @@ import { AdminUser } from 'src/components/Users/AdminUser';
 import { useAuth } from 'src/hooks';
 import { Layout } from 'src/Layout';
 
-type Props = {};
-
-const Index: NextPage = (props: Props) => {
+const Index: NextPage = () => {
   const { auth } = useAuth();
   const router = useRouter();
   useEffect(() => {

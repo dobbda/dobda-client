@@ -43,7 +43,7 @@ export const MyInfo = (props: Props) => {
           </S.Flex>
 
           <S.Flex>
-            <S.Label2>질문 갯수</S.Label2>
+            <S.Label2>질문 수</S.Label2>
             <S.P>{auth?.questionsCount}</S.P>
           </S.Flex>
         </div>

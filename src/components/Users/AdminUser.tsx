@@ -6,19 +6,19 @@ import { keys, useAuth } from 'src/hooks';
 import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 import { FolderMenu } from '../SideContent';
-// import { MyAlarm } from './alarms';
-// import { MyCoin } from './coin';
-// import { Poster } from './MyPoster';
-// import { MyPortfolio } from './portfolio';
-// import { MyInfo } from './profile/MyInfo';
-import dynamic from 'next/dynamic';
+import { MyAlarm } from './alarms';
+import { MyCoin } from './coin';
+import { Poster } from './MyPoster';
+import { MyPortfolio } from './portfolio/private';
+import { MyInfo } from './profile/MyInfo';
 import { Skeleton } from '../Skeleton';
 
-const MyCoin = dynamic(() => import('./coin'));
-const Poster = dynamic(() => import('./MyPoster'));
-const MyPortfolio = dynamic(() => import('./portfolio/private'));
-const MyInfo = dynamic(() => import('./profile/MyInfo'));
-const MyAlarm = dynamic(() => import('./alarms'));
+// import dynamic from 'next/dynamic';
+// const MyCoin = dynamic(() => import('./coin'));
+// const Poster = dynamic(() => import('./MyPoster'));
+// const MyPortfolio = dynamic(() => import('./portfolio/private'));
+// const MyInfo = dynamic(() => import('./profile/MyInfo'));
+// const MyAlarm = dynamic(() => import('./alarms'));
 
 type Props = {
   children?: React.ReactNode;
@@ -39,17 +39,22 @@ export const AdminUser = ({ children }: Props) => {
     window.scrollTo(0, 0);
   }, [cg, auth]);
 
-  const { data: pfData, isLoading: pfLoading } = useQuery(keys.pf(auth?.id), () => getPf(auth?.id), {
-    staleTime: 1000 * 60 * 10,
-    enabled: cg == 'portfolio',
-  });
+  const { data: pfData, isLoading: pfLoading } = useQuery(
+    keys.pf(auth?.id),
+    () => getPf(auth?.id),
+    {
+      staleTime: 1000 * 60 * 10,
+      enabled: cg == 'portfolio',
+    },
+  );
   return (
     <UserPageWrapper>
       <div css={{ width: '100%', position: 'relative', zIndex: '1' }}>
         {(!cg || cg == 'info') && <MyInfo />}
         {cg == 'alarm' && <MyAlarm />}
         {cg == 'coin' && <MyCoin />}
-        {cg == 'portfolio' && (pfLoading ? <Skeleton image title row={5} /> : <MyPortfolio />)}
+        {cg == 'portfolio' &&
+          (pfLoading ? <Skeleton image title row={5} /> : <MyPortfolio />)}
         {cg == 'post' && <Poster />}
       </div>
       <div className="navigator">
@@ -67,7 +72,10 @@ export const AdminUser = ({ children }: Props) => {
             <Li $isPath={'alarm' == cg} onClick={() => setQueryPath('alarm')}>
               전체알림
             </Li>
-            <Li $isPath={'portfolio' == cg} onClick={() => setQueryPath('portfolio')}>
+            <Li
+              $isPath={'portfolio' == cg}
+              onClick={() => setQueryPath('portfolio')}
+            >
               포트폴리오
             </Li>
           </ul>
