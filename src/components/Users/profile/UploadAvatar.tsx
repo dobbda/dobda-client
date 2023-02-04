@@ -18,26 +18,17 @@ const UploadAvatar = ({ avatar, setAvatar }: Props) => {
   const handleChange: UploadProps['onChange'] = async (
     info: UploadChangeParam<UploadFile>,
   ) => {
-    console.log('info.file.status:', info.file.status);
     if (info.file.status === 'uploading') {
       setLoading(true);
       return;
     }
     if (info.file.status === 'done') {
-      console.log('info.file.status: done:', info.file.status);
-
       if (info.file.size > 2500) {
-        console.log('info.file.size > 2500', info.file.originFileObj);
-
         const reSizeData = (await resizeImage({
           file: info.file.originFileObj,
           reformat: 'file',
         })) as File;
-        console.log('reSizeData', reSizeData);
-
         const { url } = await uploadS3(reSizeData, 'avatar');
-        console.log('url', url && url);
-
         setLoading(false);
         setAvatar(url);
       } else {

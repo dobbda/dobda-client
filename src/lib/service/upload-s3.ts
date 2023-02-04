@@ -30,10 +30,6 @@ export const uploadS3 = async (file: File, folder?: string) => {
 
     try {
       const res = await s3.send(uploadParams);
-      console.log(
-        'res.$metadata.httpStatusCode ',
-        res.$metadata.httpStatusCode,
-      );
       if (res.$metadata.httpStatusCode == 200) {
         return { url, fileName };
       }
