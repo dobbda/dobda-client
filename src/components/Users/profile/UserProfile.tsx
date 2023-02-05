@@ -1,5 +1,12 @@
 import React, { useMemo } from 'react';
-import { Div, BaseInfo, UserActive, Item, P, UserTech } from './style/userInfo.style';
+import {
+  Div,
+  BaseInfo,
+  UserActive,
+  Item,
+  P,
+  UserTech,
+} from './style/userInfo.style';
 import { Button, Link } from 'src/components/common';
 import Tag from 'src/components/common/@share/Tag';
 import { useQuery } from 'react-query';
@@ -13,7 +20,8 @@ type Props = { id: number };
 
 export function UserProfile({ id }: Props) {
   const { data } = useQuery(['users', id], () => user.getUserInfo(id));
-  const acceptedRate = Math.ceil((data?.setAcceptCount / data?.questionsCount) * 100) || 0 + '%';
+  const acceptedRate =
+    Math.ceil((data?.setAcceptCount / data?.questionsCount) * 100) || 0 + '%';
   const {
     data: pf,
     error,
@@ -56,7 +64,7 @@ export function UserProfile({ id }: Props) {
           </UserActive>
           <UserTech>
             <div className="tagWrap">
-              {pf?.workField?.map((v, i) => (
+              {pf?.position?.map((v, i) => (
                 <Tag color={'green'} key={i}>
                   {v}
                 </Tag>

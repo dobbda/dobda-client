@@ -1,4 +1,8 @@
-import { RcFile, UploadFile, UploadFileStatus } from 'antd/lib/upload/interface';
+import {
+  RcFile,
+  UploadFile,
+  UploadFileStatus,
+} from 'antd/lib/upload/interface';
 
 export interface Author {
   nickname: string;
@@ -113,7 +117,7 @@ export interface CreateQuestion {
   title: string;
   content: string;
   coin: number;
-  tagNames: string[] | Tags[];
+  tagNames: string[] | Tags[] | string;
 }
 
 export interface Question extends Default {
@@ -193,7 +197,7 @@ export interface CreateOutsource {
   title: string;
   content: string;
   coin: number;
-  tagNames: string[];
+  tagNames: string[] | string;
   deadline: string;
   cardImage?: string;
 }
@@ -288,7 +292,7 @@ export interface Portfolio extends Default {
     isImg?: boolean;
   };
   content: PortfolioContent[];
-  workField?: string[];
+  position?: string[];
   skill: string[];
   public: boolean;
   user: Author;
@@ -305,7 +309,7 @@ export interface CreatePortfolio {
     isImg?: boolean;
   };
   content: PortfolioContent[];
-  workField?: string[];
+  position?: string[];
   skill?: string[];
   job?: string;
 }

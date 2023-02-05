@@ -5,12 +5,30 @@ import styled from 'styled-components';
 import { useQuery, useQueryClient } from 'react-query';
 
 import { Editor } from 'src/components/Editor';
-import { Write_Wrapper, EnrQorl, Label, Group, Pilsu, CoinView } from './style/write.style';
-import { DatePicker, DatePickerProps, Input as AntInput, message, Input } from 'antd';
+import {
+  Write_Wrapper,
+  EnrQorl,
+  Label,
+  Group,
+  Pilsu,
+  CoinView,
+} from './style/write.style';
+import {
+  DatePicker,
+  DatePickerProps,
+  Input as AntInput,
+  message,
+  Input,
+} from 'antd';
 
 import Hashtags from './atom/Hashtags';
 import { atom, Loading, Popover } from 'src/components/common';
-import { useAddSourcing as useAddSourcing, useAuth, useDidMountEffect, useErrMsg } from 'src/hooks';
+import {
+  useAddSourcing as useAddSourcing,
+  useAuth,
+  useDidMountEffect,
+  useErrMsg,
+} from 'src/hooks';
 import { CreateOutsource, Outsource, OutsourceDetail } from 'src/interface';
 
 import { Button } from 'src/components/common/@share/Buttons';
@@ -19,6 +37,7 @@ import { o } from 'src/api';
 import { Tips } from '../common/@share/Tips';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { SelectSkill } from '../common/@share/SkillSelect';
 type Props = {
   data?: OutsourceDetail;
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -29,10 +48,19 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
   const router = useRouter();
   const [deadline, setDeadline] = useState<string | null>(data?.deadline);
   const [contentTitle, setContentTitle] = useState<string>(data?.title);
-  const [tags, setTags] = useState<string[]>(data?.tagNames.map((tags: any) => tags.name));
+  const [tags, setTags] = useState<string[] | string>(
+    data?.tagNames.map((tags: any) => tags.name),
+  );
   const [html, setHtml] = React.useState<string>(data?.content);
   const [coin, setCoin] = useState<number>(data?.coin);
   const [image, setImage] = useState(data?.cardImage);
+
+  const [position, setPosition] = useState<string[] | string>(
+    data?.tagNames.map((tags: any) => tags.name) || [],
+  );
+  const [skill, setSkill] = useState<string[] | string>(
+    data?.tagNames.map((tags: any) => tags.name) || [],
+  );
 
   const addSourcing = useAddSourcing(o.addOutsource);
   const editOutsource = useAddSourcing(o.updateOutsource, data?.id);
@@ -51,21 +79,27 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
 
   useEffect(() => {
     if (!image) {
-      fetch('https://source.unsplash.com/800x200/?computer').then((response) => {
-        setImage(response.url);
-      });
+      fetch('https://source.unsplash.com/800x200/?computer').then(
+        (response) => {
+          setImage(response.url);
+        },
+      );
     }
   }, []);
 
   const onChangeCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCoin(Number(`${e.target.value}`));
   };
-  const onCangeData: DatePickerProps['onChange'] = useCallback((date, dateString) => {
-    setDeadline(dateString);
-  }, []);
+  const onCangeData: DatePickerProps['onChange'] = useCallback(
+    (date, dateString) => {
+      setDeadline(dateString);
+    },
+    [],
+  );
 
   const onSubmit = useCallback(() => {
-    if (!confirm(data?.id ? '수정된 정보를 저장합니다. ' : `등록합니다. `)) return;
+    if (!confirm(data?.id ? '수정된 정보를 저장합니다. ' : `등록합니다. `))
+      return;
 
     const newData: CreateOutsource = {
       title: contentTitle,
@@ -79,7 +113,9 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
     if (data?.id) {
       editOutsource.mutateAsync(newData).then((v: Outsource) => {
         if (v.id) {
-          if (confirm(`정상적으로 저장되었습니다. 페이지로 이동하시겠습니까? `)) {
+          if (
+            confirm(`정상적으로 저장되었습니다. 페이지로 이동하시겠습니까? `)
+          ) {
             setCoin(0);
             setHtml('');
             setContentTitle('');
@@ -95,13 +131,25 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
           setHtml('');
           setContentTitle('');
           setTags(['']);
-          if (confirm(`정상적으로 등록되었습니다. 페이지로 이동하시겠습니까? `)) {
+          if (
+            confirm(`정상적으로 등록되었습니다. 페이지로 이동하시겠습니까? `)
+          ) {
             router.push(`/custom-project/requests/` + v.id);
           }
         }
       });
     }
-  }, [contentTitle, html, tags, coin, deadline, image, data?.id, addSourcing, editOutsource]);
+  }, [
+    contentTitle,
+    html,
+    tags,
+    coin,
+    deadline,
+    image,
+    data?.id,
+    addSourcing,
+    editOutsource,
+  ]);
 
   const onSubmitCheck = useCallback(() => {
     if (!html) {
@@ -136,7 +184,11 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
           <div>
             <Group>
               <Label>마감기한</Label>
-              <DatePicker onChange={onCangeData} placeholder="마감기한" disabledDate={(e) => e.valueOf() < Date.now()} />
+              <DatePicker
+                onChange={onCangeData}
+                placeholder="마감기한"
+                disabledDate={(e) => e.valueOf() < Date.now()}
+              />
             </Group>{' '}
           </div>
           <br />
@@ -147,17 +199,22 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
               <Tips content="메이커 선택 완료시 현재 입력된 금액을 결제합니다" />
             </Label>
             <CoinView className="coin-setting-group">
-              <Input type="number" placeholder="지불할 코인" value={coin} onChange={onChangeCoin} />
+              <Input
+                type="number"
+                placeholder="지불할 코인"
+                value={coin}
+                onChange={onChangeCoin}
+              />
             </CoinView>
           </div>
           <br />
           <div>
             <Label>
-              필요료하는 기술스택을 추가해주세요
+              사용가능한 스킬을 추가해주세요
               <Pilsu /> Ex. photoshop, react
             </Label>
 
-            <Hashtags tags={tags} setTags={setTags} />
+            <SelectSkill value={tags} setValue={setTags} />
           </div>
           <br />
         </EnrQorl>
@@ -165,7 +222,10 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
         <Label>
           제목을 입력해주세요 <Pilsu />
         </Label>
-        <InputTitle value={contentTitle} onChange={(e) => setContentTitle(e.target.value)} />
+        <InputTitle
+          value={contentTitle}
+          onChange={(e) => setContentTitle(e.target.value)}
+        />
 
         <EditorContainer>
           <Editor html={html} setHtml={setHtml} height="600px" />
@@ -173,12 +233,27 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
         <br />
         <atom.Flex>
           {data?.id && (
-            <Button types="primary" onClick={cancelHandler} css={{ width: '150px', marginRight: '5px' }}>
+            <Button
+              types="primary"
+              onClick={cancelHandler}
+              css={{ width: '150px', marginRight: '5px' }}
+            >
               취소
             </Button>
           )}
-          <Button onClick={onSubmitCheck} css={{ width: '150px' }} types="primary" $fill>
-            {editOutsource.isSuccess || addSourcing.isSuccess ? <Loading loading={true} /> : data?.id ? '저장' : '등록'}
+          <Button
+            onClick={onSubmitCheck}
+            css={{ width: '150px' }}
+            types="primary"
+            $fill
+          >
+            {editOutsource.isSuccess || addSourcing.isSuccess ? (
+              <Loading loading={true} />
+            ) : data?.id ? (
+              '저장'
+            ) : (
+              '등록'
+            )}
           </Button>
         </atom.Flex>
       </Write_Wrapper>

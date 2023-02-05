@@ -28,7 +28,14 @@ const PortfolioPage = ({ data }: Props) => {
         {data.userId == auth?.id && (
           <div css={{ textAlign: 'right' }}>
             <Button>
-              <Link href={{ pathname: '/user', query: { id: auth?.id, cg: 'portfolio' } }}>정보 수정</Link>
+              <Link
+                href={{
+                  pathname: '/user',
+                  query: { id: auth?.id, cg: 'portfolio' },
+                }}
+              >
+                정보 수정
+              </Link>
             </Button>
           </div>
         )}
@@ -36,11 +43,11 @@ const PortfolioPage = ({ data }: Props) => {
         <br />
         <div>
           <TagsWrap>
-            {data?.workField.length > 0 && (
+            {data?.position.length > 0 && (
               <>
                 <h2>활동 분야</h2>
                 <div>
-                  {data?.workField?.map((v, i) => {
+                  {data?.position?.map((v, i) => {
                     let num = Math.floor(Math.random() * TagColorKey.length);
                     return (
                       <Tag color={TagColorKey[num] as any} key={i}>
@@ -75,7 +82,9 @@ const PortfolioPage = ({ data }: Props) => {
           return (
             <div key={i}>
               {v.content && <HtmlViewer content={v.content} key={i} />}{' '}
-              {v.images.length > 0 && <CarouselsImages images={v.images} key={i} />}
+              {v.images.length > 0 && (
+                <CarouselsImages images={v.images} key={i} />
+              )}
             </div>
           );
         })}

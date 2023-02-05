@@ -1,5 +1,5 @@
 import { Select as AntSelect, Tag, TreeSelect } from 'antd';
-import { jobData, skillsData, workFieldData } from 'src/config/keyword';
+import { jobList, skillsData, positionList } from 'src/config/keyword';
 import type { CustomTagProps } from 'rc-select/lib/BaseSelect';
 import { useMemo } from 'react';
 const TagRender = (props: CustomTagProps) => {
@@ -9,12 +9,30 @@ const TagRender = (props: CustomTagProps) => {
     event.stopPropagation();
   };
   const color = useMemo(
-    () => ['magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue', 'geekblue', 'purple'],
+    () => [
+      'magenta',
+      'red',
+      'volcano',
+      'orange',
+      'gold',
+      'lime',
+      'green',
+      'cyan',
+      'blue',
+      'geekblue',
+      'purple',
+    ],
     [],
   );
   let num = Math.floor(Math.random() * color.length);
   return (
-    <Tag color={color[num]} onMouseDown={onPreventMouseDown} closable={closable} onClose={onClose} style={{ marginRight: 3 }}>
+    <Tag
+      color={color[num]}
+      onMouseDown={onPreventMouseDown}
+      closable={closable}
+      onClose={onClose}
+      style={{ marginRight: 3 }}
+    >
       {label}
     </Tag>
   );
@@ -32,7 +50,7 @@ export const SelectSkill = ({ value, setValue }: SelectSkillProps) => {
       style={{ width: '100%' }}
       value={value}
       // dropdownStyle={{ maxHeight: 800, overflow: 'auto' }}
-      placeholder="사용가능한 스킬"
+      placeholder="ex: aws"
       allowClear
       onChange={(v) => setValue(v)}
       treeData={skillsData}
@@ -56,7 +74,7 @@ export const SelectWorkField = ({ value, setValue }: SelectWorkFieldPorps) => {
       onChange={(v) => setValue(v)}
       listHeight={500}
       value={value}
-      options={workFieldData}
+      options={positionList}
       tagRender={TagRender}
     />
   );

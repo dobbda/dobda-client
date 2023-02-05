@@ -22,8 +22,14 @@ export const PortfolioCard = ({ data }: Props) => {
       </Link>
       <div className="contents">
         <UserInfo>
-          <span css={{ display: 'flex', overflow: 'hidden', alignItems: 'center' }}>
-            <Avatar css={{ minWidth: '25px' }} size={25} src={data.user?.avatar} />{' '}
+          <span
+            css={{ display: 'flex', overflow: 'hidden', alignItems: 'center' }}
+          >
+            <Avatar
+              css={{ minWidth: '25px' }}
+              size={25}
+              src={data.user?.avatar}
+            />{' '}
             <span id="nickname">{data?.user?.nickname}</span>{' '}
           </span>
           <span id="job">
@@ -36,7 +42,7 @@ export const PortfolioCard = ({ data }: Props) => {
         </UserInfo>
         <div id="field">
           <div className="work_field">
-            {data?.workField?.map((v, i) => (
+            {data?.position?.map((v, i) => (
               <Tag color="volcano" css={{ marginRight: 3 }} key={i} clickEvent>
                 {v}
               </Tag>
@@ -44,7 +50,12 @@ export const PortfolioCard = ({ data }: Props) => {
           </div>
           <div className="work_skill">
             {data?.skill?.map((v, i) => (
-              <Tag color={TagColorKey[num] as TagColorType} css={{ marginRight: 3 }} key={i} clickEvent>
+              <Tag
+                color={TagColorKey[num] as TagColorType}
+                css={{ marginRight: 3 }}
+                key={i}
+                clickEvent
+              >
                 {v}
               </Tag>
             ))}
