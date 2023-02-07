@@ -138,7 +138,7 @@ const QuestionPage = ({ data }: Props) => {
               html={html}
               setHtml={setHtml}
               onClickShow={true}
-              height="400px"
+              height="300px"
               submitBtn={
                 <Button
                   onClick={onSubmitAnswer}

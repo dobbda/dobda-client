@@ -43,7 +43,7 @@ const PortfolioPage = ({ data }: Props) => {
         <br />
         <div>
           <TagsWrap>
-            {data?.position.length > 0 && (
+            {data?.position?.length > 0 && (
               <>
                 <h2>활동 분야</h2>
                 <div>

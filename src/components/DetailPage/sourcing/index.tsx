@@ -7,7 +7,15 @@ import getDate from 'src/lib/utils/dateForm';
 
 import { HtmlViewer } from 'src/components/Editor';
 import { Enquiry, OutsourceDetail, QuestionDetail, Tags } from 'src/interface';
-import { keys, useAddEnquiry, useAuth, useDelete, useDidMountEffect, useErrMsg, useQueryCount } from 'src/hooks';
+import {
+  keys,
+  useAddEnquiry,
+  useAuth,
+  useDelete,
+  useDidMountEffect,
+  useErrMsg,
+  useQueryCount,
+} from 'src/hooks';
 import { o, q } from 'src/api';
 import { useQuery, useQueryClient } from 'react-query';
 import { useRouter } from 'next/router';
@@ -17,7 +25,9 @@ import { ProgressState } from './sourcingEvent';
 import { Skeleton } from 'src/components/Skeleton';
 import { Editor } from 'src/components/Editor';
 
-const WriteOutsourcing = dynamic(() => import('src/components/Write/WriteSourcing'));
+const WriteOutsourcing = dynamic(
+  () => import('src/components/Write/WriteSourcing'),
+);
 const EnquiryCp = dynamic(() => import('src/components/Comment/Enquiry'));
 
 type Props = {
@@ -30,15 +40,24 @@ const SourcingPage = ({ children, data }: Props) => {
   const { setCount, setInfCount } = useQueryCount();
   useEffect(() => {
     /** 조회수 */
-    setInfCount({ queryKey: keys.sourcings(), changeKey: 'watch', findId: data.id, countVal: data.watch });
+    setInfCount({
+      queryKey: keys.sourcings(),
+      changeKey: 'watch',
+      findId: data.id,
+      countVal: data.watch,
+    });
   }, []);
   const router = useRouter();
 
   const [html, setHtml] = useState('');
   const [isEdit, setIsEdit] = useState(false);
-  const { data: enquiry, isLoading: enquiryLoading } = useQuery(keys.enquiry(data?.id), () => o.getEnquiry(data.id), {
-    enabled: data?.enquiryCount > 0,
-  });
+  const { data: enquiry, isLoading: enquiryLoading } = useQuery(
+    keys.enquiry(data?.id),
+    () => o.getEnquiry(data.id),
+    {
+      enabled: data?.enquiryCount > 0,
+    },
+  );
   const del = useDelete(data?.id, keys.oDetail(data?.id), data.id);
   const add = useAddEnquiry(data?.id);
 
@@ -64,7 +83,14 @@ const SourcingPage = ({ children, data }: Props) => {
     if (add.isError || del.isError) {
       message.error(errMsg);
     }
-  }, [add?.isError, add?.isSuccess, del?.isError, del.isSuccess, errMsg, router]);
+  }, [
+    add?.isError,
+    add?.isSuccess,
+    del?.isError,
+    del.isSuccess,
+    errMsg,
+    router,
+  ]);
 
   const removeHandler = useCallback(() => {
     if (confirm('삭제시 복구가 불가능 합니다')) {
@@ -80,7 +106,11 @@ const SourcingPage = ({ children, data }: Props) => {
           <S.ContentWrapper>
             <S.ContentHeader>
               <div className="detailInfo">
-                <Avatar nickname={data.author.nickname} url={data.author.avatar} id={data.author.id} />
+                <Avatar
+                  nickname={data.author.nickname}
+                  url={data.author.avatar}
+                  id={data.author.id}
+                />
                 <atom.CreatedAt>{getDate(data.createdAt)}</atom.CreatedAt>
               </div>
               <S.Title> {data.title}</S.Title>
@@ -116,9 +146,15 @@ const SourcingPage = ({ children, data }: Props) => {
               html={html}
               setHtml={setHtml}
               onClickShow={true}
-              height="400px"
+              height="300px"
               submitBtn={
-                <Button onClick={onSubmitEnquiry} types="primary" $fill $block css={{ width: '200px', marginTop: '10px' }}>
+                <Button
+                  onClick={onSubmitEnquiry}
+                  types="primary"
+                  $fill
+                  $block
+                  css={{ width: '200px', marginTop: '10px' }}
+                >
                   등록
                 </Button>
               }
@@ -130,7 +166,9 @@ const SourcingPage = ({ children, data }: Props) => {
               enquiryLoading ? (
                 <Skeleton border title avatar len={data.enquiryCount} row={3} />
               ) : (
-                enquiry.map((answer) => <EnquiryCp key={answer.id} enquiry={answer} out={data} />)
+                enquiry.map((answer) => (
+                  <EnquiryCp key={answer.id} enquiry={answer} out={data} />
+                ))
               )
             ) : (
               <Empty descript="등록된 글이 없습니다." />
