@@ -24,6 +24,7 @@ import { Button } from 'src/components/common';
 import { useRouter } from 'next/router';
 import { Skeleton } from 'src/components/Skeleton';
 import { Coini, Qi } from 'src/icons';
+import { DetailBottom } from '../style/Detail.style';
 // import { Editor } from 'src/components/Editor';
 const Editor = dynamic(() => import('src/components/Editor/Editor'));
 const AnswerCp = dynamic(() => import('src/components/Comment/Answer'));
@@ -131,41 +132,48 @@ const QuestionPage = ({ data }: Props) => {
               <HtmlViewer content={data?.content} />
             </S.ContentViewWrapper>
           </S.ContentWrapper>
+          <DetailBottom>
+            <S.EditorWrapper>
+              <h3>답변을 작성해주세요</h3>
+              <Editor
+                html={html}
+                setHtml={setHtml}
+                onClickShow={true}
+                height="300px"
+                submitBtn={
+                  <Button
+                    onClick={onSubmitAnswer}
+                    types="secondary"
+                    $block
+                    $fill
+                    css={{ marginTop: '10px' }}
+                  >
+                    <Loading loading={add.isLoading} /> 등록
+                  </Button>
+                }
+              />
+            </S.EditorWrapper>
 
-          <S.EditorWrapper>
-            <h3>답변을 작성해주세요</h3>
-            <Editor
-              html={html}
-              setHtml={setHtml}
-              onClickShow={true}
-              height="300px"
-              submitBtn={
-                <Button
-                  onClick={onSubmitAnswer}
-                  types="secondary"
-                  $block
-                  $fill
-                  css={{ marginTop: '10px' }}
-                >
-                  <Loading loading={add.isLoading} /> 등록
-                </Button>
-              }
-            />
-          </S.EditorWrapper>
-
-          <S.AnswerContainer>
-            {answers?.length > 0 ? (
-              answerLoading ? (
-                <Skeleton border avatar title row={3} len={data.answersCount} />
+            <S.AnswerContainer>
+              {answers?.length > 0 ? (
+                answerLoading ? (
+                  <Skeleton
+                    border
+                    avatar
+                    title
+                    row={3}
+                    len={data.answersCount}
+                  />
+                ) : (
+                  answers.map((answer) => (
+                    <AnswerCp key={answer.id} answer={answer} question={data} />
+                  ))
+                )
               ) : (
-                answers.map((answer) => (
-                  <AnswerCp key={answer.id} answer={answer} question={data} />
-                ))
-              )
-            ) : (
-              <Empty descript="아직 등록된 답변이 없습니다. 답변을 등록해보세요~" />
-            )}
-          </S.AnswerContainer>
+                <Empty descript="아직 등록된 답변이 없습니다. 답변을 등록해보세요~" />
+              )}
+            </S.AnswerContainer>
+          </DetailBottom>
         </>
       )}
     </S.DetailContainer>

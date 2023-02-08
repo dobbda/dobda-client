@@ -4,14 +4,20 @@ import styled from 'styled-components';
 
 const headerFont = '20px';
 const wrapperPadding = '20px';
+
+export const DetailBottom = styled.div`
+  padding: 5px;
+`;
 export const DetailContainer = styled.div`
   max-width: 860px;
-  padding: 3px;
+  margin: 10px auto;
   padding-bottom: 30px;
+  @media screen and (max-width: ${theme.media.small}) {
+    margin: 0;
+  }
 `;
 
 export const ContentWrapper = styled.div`
-  border-radius: 4px;
   width: 100%;
   min-height: 600px;
   background-color: #fff;

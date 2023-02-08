@@ -24,13 +24,9 @@ export const Wrapper = styled.div`
   position: relative;
   height: 100%;
   padding: 0;
-  margin: 0 10px;
   gap: 17px;
   @media screen and (max-width: ${theme.media.large}) {
   }
-  @media screen and (max-width: ${theme.media.medium}) {
-    margin: 0 5px;
-  } ;
 `;
 
 export const MainWrapper = styled.div`

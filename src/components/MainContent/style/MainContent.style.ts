@@ -2,6 +2,7 @@ import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 
 export const Main = styled.div`
+  margin: 5px;
   display: flex;
   flex-direction: column;
   transition: all 0.2s;

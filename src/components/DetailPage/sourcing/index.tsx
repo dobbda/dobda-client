@@ -24,6 +24,7 @@ import { message } from 'antd';
 import { ProgressState } from './sourcingEvent';
 import { Skeleton } from 'src/components/Skeleton';
 import { Editor } from 'src/components/Editor';
+import { DetailBottom } from '../style/Detail.style';
 
 const WriteOutsourcing = dynamic(
   () => import('src/components/Write/WriteSourcing'),
@@ -140,40 +141,48 @@ const SourcingPage = ({ children, data }: Props) => {
 
           <ProgressState data={data} />
 
-          <S.EditorWrapper>
-            <h3>🧘‍♂️답글을 남겨보세요.</h3>
-            <Editor
-              html={html}
-              setHtml={setHtml}
-              onClickShow={true}
-              height="300px"
-              submitBtn={
-                <Button
-                  onClick={onSubmitEnquiry}
-                  types="primary"
-                  $fill
-                  $block
-                  css={{ width: '200px', marginTop: '10px' }}
-                >
-                  등록
-                </Button>
-              }
-            />
-          </S.EditorWrapper>
+          <DetailBottom>
+            <S.EditorWrapper>
+              <h3>🧘‍♂️답글을 남겨보세요.</h3>
+              <Editor
+                html={html}
+                setHtml={setHtml}
+                onClickShow={true}
+                height="300px"
+                submitBtn={
+                  <Button
+                    onClick={onSubmitEnquiry}
+                    types="primary"
+                    $fill
+                    $block
+                    css={{ width: '200px', marginTop: '10px' }}
+                  >
+                    등록
+                  </Button>
+                }
+              />
+            </S.EditorWrapper>
 
-          <S.AnswerContainer>
-            {enquiry?.length > 0 ? (
-              enquiryLoading ? (
-                <Skeleton border title avatar len={data.enquiryCount} row={3} />
+            <S.AnswerContainer>
+              {enquiry?.length > 0 ? (
+                enquiryLoading ? (
+                  <Skeleton
+                    border
+                    title
+                    avatar
+                    len={data.enquiryCount}
+                    row={3}
+                  />
+                ) : (
+                  enquiry.map((answer) => (
+                    <EnquiryCp key={answer.id} enquiry={answer} out={data} />
+                  ))
+                )
               ) : (
-                enquiry.map((answer) => (
-                  <EnquiryCp key={answer.id} enquiry={answer} out={data} />
-                ))
-              )
-            ) : (
-              <Empty descript="등록된 글이 없습니다." />
-            )}
-          </S.AnswerContainer>
+                <Empty descript="등록된 글이 없습니다." />
+              )}
+            </S.AnswerContainer>
+          </DetailBottom>
         </>
       )}
     </S.DetailContainer>
