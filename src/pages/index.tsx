@@ -21,7 +21,13 @@ const Home: NextPage<{ exp: Exp }> = (props) => {
   const { cg, keyword } = router.query as { cg: string; keyword: string };
   const [title, setTitle] = useState('');
   useEffect(() => {
-    setTitle(` ${cg && keyword ? cg.toUpperCase() + ' | ' + keyword.toUpperCase() : cg && cg.toUpperCase()}`);
+    setTitle(
+      ` ${
+        cg && keyword
+          ? cg.toUpperCase() + ' | ' + keyword.toUpperCase()
+          : cg && cg.toUpperCase()
+      }`,
+    );
   }, [cg, keyword]);
 
   return (
@@ -36,16 +42,21 @@ const Home: NextPage<{ exp: Exp }> = (props) => {
 export default Home;
 
 const queryClient = ssrQuery();
-export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
-  if (exp?.access_exp) {
-    await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
-  }
-  // await ssrQuery.prefetchQuery(keys.questions(), () => ssr.questions());
-  // await ssrQuery.prefetchQuery(keys.sourcings(), () => ssr.sourcings());
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-      exp: exp,
-    },
-  };
-});
+export const getServerSideProps: GetServerSideProps = errorHandler(
+  async ({ ctx: { req, query }, cookie, exp }) => {
+    queryClient.invalidateQueries(keys.auth);
+    if (exp?.access_exp) {
+      await queryClient.prefetchQuery(keys.auth, () =>
+        ssr.auth(req as AxiosRequestConfig),
+      );
+    }
+    // await ssrQuery.prefetchQuery(keys.questions(), () => ssr.questions());
+    // await ssrQuery.prefetchQuery(keys.sourcings(), () => ssr.sourcings());
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+        exp: exp,
+      },
+    };
+  },
+);

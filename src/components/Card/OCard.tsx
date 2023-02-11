@@ -18,14 +18,28 @@ const OCard = ({ data }: Props) => {
     <>
       {data && data ? (
         <S.ContentWrapper>
-          <Lib.Link href={`/custom-project/requests/${data.id}`} scroll={false}>
+          <Lib.Link href={`/custom-project/requests/${data.id}`}>
             <S.Watch>
               <c.Group>
-                <Watchi style={{ color: '#707070', fontSize: '17px', marginRight: '5px' }} /> <c.P>{data?.watch}</c.P>
+                <Watchi
+                  style={{
+                    color: '#707070',
+                    fontSize: '17px',
+                    marginRight: '5px',
+                  }}
+                />{' '}
+                <c.P>{data?.watch}</c.P>
               </c.Group>
             </S.Watch>
             <S.Countdown>
-              <p css={{ color: '#494949', fontSize: '13px', fontWeight: 'bold', fontFamily: 'Nanum ' }}>
+              <p
+                css={{
+                  color: '#494949',
+                  fontSize: '13px',
+                  fontWeight: 'bold',
+                  fontFamily: 'Nanum ',
+                }}
+              >
                 {CountDown <= 0 ? '마감' : 'D' + ' - ' + CountDown}
               </p>
             </S.Countdown>
