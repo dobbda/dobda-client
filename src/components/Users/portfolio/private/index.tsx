@@ -7,7 +7,7 @@ import { uploadS3 } from 'src/lib/service/upload-s3';
 import {
   CreatePortfolio,
   ImageProp,
-  Portfolio,
+  Maker,
   PortfolioContent,
 } from 'src/interface';
 import { resizeImage } from 'src/lib/service/resizeImg';
@@ -38,16 +38,20 @@ const AdminViewer = dynamic(() => import('./AdminViewer'));
 const PfEditor = dynamic(() => import('./WritePortfolio/PfEditor'));
 
 type Props = {
-  // data: Portfolio;
+  // data: Makers;
 };
 
 export const MyPortfolio = ({}: Props) => {
   const { auth } = useAuth();
   const queryClient = useQueryClient();
-  const { data, refetch } = useQuery(keys.pf(auth?.id), () => getPf(auth?.id), {
-    staleTime: 1000 * 60 * 10,
-    retry: 0,
-  });
+  const { data, refetch } = useQuery(
+    keys.maker(auth?.id),
+    () => getPf(auth?.id),
+    {
+      staleTime: 1000 * 60 * 10,
+      retry: 0,
+    },
+  );
   const { data: cardData } = useQuery<typeof data.card>('profileCardSetData', {
     initialData: data?.card || null,
   });
@@ -99,12 +103,12 @@ export const MyPortfolio = ({}: Props) => {
     } as CreatePortfolio);
 
     if (res.success) {
-      const old = queryClient.getQueryData(keys.pf(auth.id));
+      const old = queryClient.getQueryData(keys.maker(auth.id));
       if (!old) {
         refetch;
         message.success('저장되었습니다.');
       } else {
-        queryClient.setQueriesData(keys.pf(auth.id), (old: Portfolio) =>
+        queryClient.setQueriesData(keys.maker(auth.id), (old: Maker) =>
           produce(old, (draft) => {
             draft.card = cardData;
             draft.content = contents;

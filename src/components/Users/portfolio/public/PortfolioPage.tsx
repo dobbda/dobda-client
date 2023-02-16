@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 // import Tag from 'src/components/common/@share/Tag';
 import { TagColorKey, TagColorType } from 'src/components/common/tagColor';
 import { HtmlViewer } from 'src/components/Editor';
-import { Portfolio } from 'src/interface';
+import { Maker } from 'src/interface';
 import styled from 'styled-components';
 import { UserProfile } from '../../profile/UserProfile';
 import CarouselsImages from '../Carousel';
@@ -15,7 +15,7 @@ import { theme } from 'src/styles/Theme';
 
 const Tag = dynamic(() => import('src/components/common/@share/Tag'));
 type Props = {
-  data: Portfolio;
+  data: Maker;
 };
 
 const PortfolioPage = ({ data }: Props) => {

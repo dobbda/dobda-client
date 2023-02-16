@@ -5,6 +5,8 @@ import { keys } from 'src/hooks';
 import { useRouter } from 'next/router';
 import { NameBi, NameWi } from 'src/icons';
 import { theme } from 'src/styles/Theme';
+import { getLocalStorage } from 'src/lib/utils/localStorage';
+import { CategoriesType } from 'src/interface/content-type';
 
 type Props = {
   b?: boolean;
@@ -25,7 +27,13 @@ const Div = styled.div`
 export const Logo = ({ b, height }: Props) => {
   const queryClient = useQueryClient();
   const router = useRouter();
+
   const goHome = useCallback(() => {
+    const cg = getLocalStorage('mainCateogry');
+    console.log('cg:', cg);
+    if (cg != 'undefined') {
+      queryClient.invalidateQueries(keys[`${cg as CategoriesType}`]());
+    }
     // queryClient.invalidateQueries(keys.auth);
     router.push('/');
   }, [queryClient, router]);

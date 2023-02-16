@@ -19,10 +19,14 @@ const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
 
   const router = useRouter();
   const { id } = props;
-  const { data, error, isError, isSuccess } = useQuery(keys.pf(id), () => getPf(Number(id)), {
-    retry: 0,
-    staleTime: Infinity,
-  });
+  const { data, error, isError, isSuccess } = useQuery(
+    keys.maker(id),
+    () => getPf(Number(id)),
+    {
+      retry: 0,
+      staleTime: Infinity,
+    },
+  );
 
   return (
     <>
@@ -31,7 +35,9 @@ const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
         {data?.id ? (
           <PortfolioPage data={data} />
         ) : (
-          <h1 css={{ marginTop: '20px', textAlign: 'center', color: '#747474' }}>
+          <h1
+            css={{ marginTop: '20px', textAlign: 'center', color: '#747474' }}
+          >
             {' '}
             프로필 업데이트 전이거나 존재하지 않는 메이커입니다.
           </h1>
@@ -44,18 +50,22 @@ const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
 export default Page;
 
 const queryClient = ssrQuery();
-export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
-  const { id } = query as { id: string };
-  if (exp?.access_exp) {
-    await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
-  }
-  await queryClient.prefetchQuery(keys.pf(id), () => ssr.getPf(id));
+export const getServerSideProps: GetServerSideProps = errorHandler(
+  async ({ ctx: { req, query }, cookie, exp }) => {
+    const { id } = query as { id: string };
+    if (exp?.access_exp) {
+      await queryClient.prefetchQuery(keys.auth, () =>
+        ssr.auth(req as AxiosRequestConfig),
+      );
+    }
+    await queryClient.prefetchQuery(keys.maker(id), () => ssr.getPf(id));
 
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-      id: id,
-      exp,
-    },
-  };
-});
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+        id: id,
+        exp,
+      },
+    };
+  },
+);

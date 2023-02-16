@@ -9,6 +9,7 @@ import { Skeleton } from 'src/components/Skeleton';
 export const NotiList = () => {
   const { data, isLoading } = useQuery('notis', noti.getNotis, {
     staleTime: Infinity,
+    cacheTime: Infinity,
   });
   return (
     <div>
@@ -21,7 +22,9 @@ export const NotiList = () => {
             <Link href={noti.link ? noti.link : `/notice/` + noti.id} key={i}>
               <Item>
                 <Index>{i}. </Index>
-                {noti.link && <span css={{ color: '#ffbc65' }}> [Notion] </span>}
+                {noti.link && (
+                  <span css={{ color: '#ffbc65' }}> [Notion] </span>
+                )}
                 <a>{noti.title}</a>
               </Item>
             </Link>

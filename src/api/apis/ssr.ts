@@ -1,4 +1,9 @@
-import { InfinityProps, Portfolio, Question, QuestionDetail } from '../../interface/index';
+import {
+  InfinityProps,
+  Maker,
+  Question,
+  QuestionDetail,
+} from '../../interface/index';
 import { AxiosRequestConfig } from 'axios';
 import { Auth } from 'src/interface';
 import { http } from '../http';
@@ -13,7 +18,10 @@ export const auth = async (req: AxiosRequestConfig): Promise<Auth> => {
   } catch (e) {}
 };
 
-export const question = async (req: AxiosRequestConfig, id: string): Promise<QuestionDetail> => {
+export const question = async (
+  req: AxiosRequestConfig,
+  id: string,
+): Promise<QuestionDetail> => {
   try {
     return (
       await http.get(`/questions/` + id, {
@@ -22,8 +30,13 @@ export const question = async (req: AxiosRequestConfig, id: string): Promise<Que
     ).data?.response;
   } catch (e) {}
 };
-export const questions = async (pageParam: number = 1, title?: string): Promise<any> => {
-  const res = await http.get(`/questions?page=${pageParam && pageParam}&title=${title && title}`);
+export const questions = async (
+  pageParam: number = 1,
+  title?: string,
+): Promise<any> => {
+  const res = await http.get(
+    `/questions?page=${pageParam && pageParam}&title=${title && title}`,
+  );
   if (!res.data.success) return null;
   return {
     result: res.data.response.result,
@@ -34,7 +47,10 @@ export const questions = async (pageParam: number = 1, title?: string): Promise<
   };
 };
 
-export const sourcing = async (req: AxiosRequestConfig, id: string): Promise<QuestionDetail> => {
+export const sourcing = async (
+  req: AxiosRequestConfig,
+  id: string,
+): Promise<QuestionDetail> => {
   try {
     return (
       await http.get(`/sourcing/` + id, {
@@ -44,8 +60,13 @@ export const sourcing = async (req: AxiosRequestConfig, id: string): Promise<Que
   } catch (e) {}
 };
 
-export const sourcings = async (pageParam: number = 1, title?: string): Promise<any> => {
-  const res = await http.get(`/sourcing?page=${pageParam && pageParam}&title=${title && title}`);
+export const sourcings = async (
+  pageParam: number = 1,
+  title?: string,
+): Promise<any> => {
+  const res = await http.get(
+    `/sourcing?page=${pageParam && pageParam}&title=${title && title}`,
+  );
   if (!res.data.success) return null;
   return {
     result: res.data.response.result,
@@ -56,7 +77,10 @@ export const sourcings = async (pageParam: number = 1, title?: string): Promise<
   };
 };
 
-export const portfolio = async (userId: number | string, req: AxiosRequestConfig): Promise<QuestionDetail> => {
+export const portfolio = async (
+  userId: number | string,
+  req: AxiosRequestConfig,
+): Promise<QuestionDetail> => {
   try {
     return (
       await http.get(`/users/pf?userId=` + userId, {
@@ -66,7 +90,7 @@ export const portfolio = async (userId: number | string, req: AxiosRequestConfig
   } catch (e) {}
 };
 
-export const getPf = async (userId: string | number): Promise<Portfolio> => {
+export const getPf = async (userId: string | number): Promise<Maker> => {
   const res = await http.get(`/users/pf?userId=` + userId);
   return res.data.response;
 };

@@ -27,7 +27,7 @@ export function UserProfile({ id }: Props) {
     error,
     isError,
     isSuccess,
-  } = useQuery(keys.pf(id), () => getPf(Number(id)), {
+  } = useQuery(keys.maker(id), () => getPf(Number(id)), {
     retry: 0,
     staleTime: Infinity,
   });

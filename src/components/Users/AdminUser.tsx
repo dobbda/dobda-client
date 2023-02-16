@@ -33,7 +33,7 @@ export const AdminUser = ({ children }: Props) => {
   }, [cg, auth]);
 
   const { data: pfData, isLoading: pfLoading } = useQuery(
-    keys.pf(auth?.id),
+    keys.maker(auth?.id),
     () => getPf(auth?.id),
     {
       staleTime: 1000 * 60 * 10,

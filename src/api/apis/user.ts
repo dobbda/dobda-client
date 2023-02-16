@@ -1,4 +1,4 @@
-import { CoinReserv, CreatePortfolio, Portfolio } from '../../interface/index';
+import { CoinReserv, CreatePortfolio, Maker } from '../../interface/index';
 import { CoinHistory, InfinityProps, Outsource, Question } from 'src/interface';
 import { Alarm, Auth, UserUpdate } from 'src/interface';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
@@ -10,7 +10,9 @@ export const myInfo = async () => {
 
 export const myInfoUpdate = async (data: UserUpdate) => {
   //내정보 업데이트
-  return await axios.patch('/api/users/myinfo', data).then((res) => res.data?.response);
+  return await axios
+    .patch('/api/users/myinfo', data)
+    .then((res) => res.data?.response);
 };
 
 export const getUserInfo = async (id: number): Promise<Auth> => {
@@ -24,14 +26,20 @@ export const logout = async () => {
 };
 
 export const alarms = async (): Promise<Alarm[]> => {
-  return await axios.get('/api/alarms').then((res) => res.data?.response.result);
+  return await axios
+    .get('/api/alarms')
+    .then((res) => res.data?.response.result);
 };
 
 export const alarmsAll = async (): Promise<Alarm[]> => {
-  return await axios.get('/api/alarms/all').then((res) => res.data?.response.result);
+  return await axios
+    .get('/api/alarms/all')
+    .then((res) => res.data?.response.result);
 };
 
-export const question = async (pageNum: number = 1): Promise<InfinityProps<Question>> => {
+export const question = async (
+  pageNum: number = 1,
+): Promise<InfinityProps<Question>> => {
   const res = await axios.get(`/api/questions/user?page=${pageNum}`);
   if (!res.data.success) return null;
   return {
@@ -43,7 +51,9 @@ export const question = async (pageNum: number = 1): Promise<InfinityProps<Quest
   };
 };
 
-export const sourcing = async (pageNum: number = 1): Promise<InfinityProps<Outsource>> => {
+export const sourcing = async (
+  pageNum: number = 1,
+): Promise<InfinityProps<Outsource>> => {
   const res = await axios.get(`/api/sourcing/user?page=${pageNum && pageNum}`);
   if (!res.data.success) return null;
   return {
@@ -55,8 +65,12 @@ export const sourcing = async (pageNum: number = 1): Promise<InfinityProps<Outso
   };
 };
 
-export const coinHistory = async (pageNum: number = 1): Promise<InfinityProps<CoinHistory>> => {
-  const res = await axios.get(`/api/payments/history?page=${pageNum && pageNum}`);
+export const coinHistory = async (
+  pageNum: number = 1,
+): Promise<InfinityProps<CoinHistory>> => {
+  const res = await axios.get(
+    `/api/payments/history?page=${pageNum && pageNum}`,
+  );
   if (!res.data.success) return null;
   return {
     result: res.data.response.result,
@@ -66,8 +80,12 @@ export const coinHistory = async (pageNum: number = 1): Promise<InfinityProps<Co
     totalPages: res.data.response.totalPages,
   };
 };
-export const coinReserv = async (pageNum: number = 1): Promise<InfinityProps<CoinReserv>> => {
-  const res = await axios.get(`/api/payments/reserv?page=${pageNum && pageNum}`);
+export const coinReserv = async (
+  pageNum: number = 1,
+): Promise<InfinityProps<CoinReserv>> => {
+  const res = await axios.get(
+    `/api/payments/reserv?page=${pageNum && pageNum}`,
+  );
   if (!res.data.success) return null;
   return {
     result: res.data.response.result,
@@ -84,14 +102,19 @@ export const updatePf = async (data: CreatePortfolio) => {
   ).data;
 };
 
-export const getPf = async (userId: number): Promise<Portfolio> => {
+export const getPf = async (userId: number): Promise<Maker> => {
   const res = await axios.get(`/api/users/pf?userId=` + userId);
   // const res = (await axios.get(`/api/users/pf?userId=` + userId)).data.response;
   return res.data.response;
 };
 
-export const getPfs = async (pageParam?: number, keyword?: string): Promise<InfinityProps<Portfolio>> => {
-  const res = await axios.get(`/api/users/pfs?page=${pageParam}${keyword ? '&keyword=' + keyword : ''}`);
+export const getPfs = async (
+  pageParam?: number,
+  keyword?: string,
+): Promise<InfinityProps<Maker>> => {
+  const res = await axios.get(
+    `/api/users/pfs?page=${pageParam}${keyword ? '&keyword=' + keyword : ''}`,
+  );
   if (!res.data.success) return null;
   return {
     result: res.data.response.result,

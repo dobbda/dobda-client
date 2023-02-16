@@ -3,12 +3,12 @@ import Link from 'next/link';
 import React, { useMemo } from 'react';
 import { Tag } from 'src/components/common';
 import { TagColorKey, TagColorType } from 'src/components/common/tagColor';
-import { Portfolio, ImageProp } from 'src/interface';
+import { Maker, ImageProp } from 'src/interface';
 import { MainImage } from './MainImage';
 import { UserInfo, Wrap } from './style';
 
 type Props = {
-  data: Portfolio;
+  data: Maker;
 };
 
 export const PortfolioCard = ({ data }: Props) => {

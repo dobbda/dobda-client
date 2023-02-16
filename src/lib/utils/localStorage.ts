@@ -1,6 +1,9 @@
 export function setLocalStorage(key: string, value: any) {
   if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-    window.localStorage.setItem(key, Buffer.from(String(value), 'utf8').toString('base64'));
+    window.localStorage.setItem(
+      key,
+      Buffer.from(String(value), 'utf8').toString('base64'),
+    );
   }
 }
 

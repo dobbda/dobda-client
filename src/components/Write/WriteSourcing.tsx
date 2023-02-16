@@ -43,7 +43,7 @@ type Props = {
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
+const WriteSourcing = ({ data, setIsEdit }: Props) => {
   const queryClient = useQueryClient();
   const router = useRouter();
   const [deadline, setDeadline] = useState<string | null>(data?.deadline);
@@ -261,7 +261,7 @@ const WriteOutsourcing = ({ data, setIsEdit }: Props) => {
   );
 };
 
-export default React.memo(WriteOutsourcing);
+export default React.memo(WriteSourcing);
 
 const InputTitle = styled(AntInput)`
   min-height: 46px;

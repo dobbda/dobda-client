@@ -277,13 +277,13 @@ export interface ImageProp {
   url?: string;
 }
 
-///////////////// Portfolio //////////////////////////////
+///////////////// Makers //////////////////////////////
 export interface PortfolioContent {
   content?: string;
   images?: ImageProp[];
   key: string;
 }
-export interface Portfolio extends Default {
+export interface Maker extends Default {
   card: {
     bgImg?: ImageProp;
     bgColor?: string;
