@@ -151,6 +151,7 @@ export const questionTag = [
   'Redux',
   'AWS',
   'GCP',
+  'java',
   'Typescript',
   'Typeorm',
   'React-Query',

@@ -1,4 +1,10 @@
-import React, { useState, Dispatch, ElementType, useEffect, useCallback } from 'react';
+import React, {
+  useState,
+  Dispatch,
+  ElementType,
+  useEffect,
+  useCallback,
+} from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 
 import { P, Red, SideContainer } from './style/SideContent.style';
@@ -19,20 +25,37 @@ export const SideContentRight = ({ folderOpenFalse }: Props) => {
   return (
     <SideContainer>
       {/* <P>최신 글</P> */}
-      <FolderMenu childOpen={!folderOpenFalse} icon={<Red>🔥</Red>} title={<> New Questions</>}>
+      <FolderMenu
+        childOpen={!folderOpenFalse}
+        icon={<Red>🔥</Red>}
+        title={<> 최근 질문</>}
+      >
         <Empty />
       </FolderMenu>
       <br />
       {/* <P>최신 글</P> */}
-      <FolderMenu childOpen={!folderOpenFalse} icon={<Red>🌱</Red>} title="신규 프로젝트 ">
+      <FolderMenu
+        childOpen={!folderOpenFalse}
+        icon={<Red>🌱</Red>}
+        title="신규 프로젝트 "
+      >
         <Empty />
       </FolderMenu>{' '}
       <br />
       <br />
-      <FolderMenu childOpen={!folderOpenFalse} icon={<Red>🔢 </Red>} title={<>Tag Cloud</>}>
+      <FolderMenu
+        childOpen={!folderOpenFalse}
+        icon={<Red>🔢 </Red>}
+        title={<>태그 모음</>}
+      >
         <Empty />
       </FolderMenu>{' '}
-      <FolderMenu icon={<Noticei size="20px" />} childOpen={!folderOpenFalse} title="공지사항" href="/notice">
+      <FolderMenu
+        icon={<Noticei size="20px" />}
+        childOpen={!folderOpenFalse}
+        title="공지사항"
+        href="/notice"
+      >
         <NotiList />
       </FolderMenu>
     </SideContainer>
