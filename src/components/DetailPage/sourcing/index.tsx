@@ -26,7 +26,7 @@ import { Skeleton } from 'src/components/Skeleton';
 import { Editor } from 'src/components/Editor';
 import { DetailBottom } from '../style/Detail.style';
 
-const WriteOutsourcing = dynamic(
+const WriteSourcing = dynamic(
   () => import('src/components/Write/WriteSourcing'),
 );
 const EnquiryCp = dynamic(() => import('src/components/Comment/Enquiry'));
@@ -101,7 +101,7 @@ const SourcingPage = ({ children, data }: Props) => {
   return (
     <S.DetailContainer>
       {isEdit && data ? (
-        <WriteOutsourcing data={data} setIsEdit={setIsEdit} />
+        <WriteSourcing data={data} setIsEdit={setIsEdit} />
       ) : (
         <>
           <S.ContentWrapper>
