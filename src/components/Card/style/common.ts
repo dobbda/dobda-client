@@ -33,6 +33,7 @@ export const Title = styled.h2`
   word-break: break-word;
   padding: 3px 0;
   font-size: 17px;
+	color:#303441;
   display: -webkit-box;
   -webkit-line-clamp: 2; // 원하는 라인수
   -webkit-box-orient: vertical;

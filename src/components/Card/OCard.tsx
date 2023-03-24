@@ -24,24 +24,15 @@ const OCard = ({ data }: Props) => {
                 <Watchi
                   style={{
                     color: '#707070',
-                    fontSize: '17px',
-                    marginRight: '5px',
+                    fontSize: '12px',
+                    marginRight: '4px',
                   }}
                 />{' '}
-                <c.P>{data?.watch}</c.P>
+                {data?.watch}
               </c.Group>
             </S.Watch>
-            <S.Countdown>
-              <p
-                css={{
-                  color: '#494949',
-                  fontSize: '13px',
-                  fontWeight: 'bold',
-                  fontFamily: 'Nanum ',
-                }}
-              >
-                {CountDown <= 0 ? '마감' : 'D' + ' - ' + CountDown}
-              </p>
+            <S.Countdown end={CountDown >= 0}>
+                <span>{CountDown >= 0 ? 'D' + CountDown : '마감'}</span>
             </S.Countdown>
             <S.ImageWrap>
               <S.Image src={data.cardImage} alt="" />
@@ -49,7 +40,7 @@ const OCard = ({ data }: Props) => {
             <S.Content>
               <S.HeaderWrapper>
                 <c.Group>
-                  <S.Progress>[ 매치중... ]</S.Progress>
+                  <S.Progress>[ ... ]</S.Progress>
                 </c.Group>
                 <c.Group>
                   {/* <c.P>작성 : </c.P>{' '} */}

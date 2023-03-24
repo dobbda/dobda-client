@@ -51,22 +51,23 @@ export const Ul = styled.ul`
     max-width: 140px;
     overflow: hidden;
     padding: 7px;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 13px;
+    font-weight: 500;
   }
   li {
     border-radius: 8px;
-    color: rgb(58, 58, 58);
+    color: #555969;
     transition: all 0.2s;
     margin: 1px 0;
     text-transform: lowercase;
+		font-weight: bold;
   }
   li:hover {
     background-color: ${theme.color.prRgb(0.3)};
     color: ${theme.color.secondary};
   }
 
-  .active {
+  li.active {
     background-color: ${theme.color.prRgb(0.4)};
     color: ${theme.color.secondary};
   }

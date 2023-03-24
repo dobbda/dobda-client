@@ -33,7 +33,7 @@ const Div = styled.div`
     margin-left: 10px;
     text-align: center;
     font-size: 15px;
-    color: #707070;
+    color: rgb(29 29 29);
     :hover {
       /* text-decoration: underline;
       text-underline-offset: 3px; */
