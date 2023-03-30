@@ -32,7 +32,7 @@ const OCard = ({ data }: Props) => {
               </c.Group>
             </S.Watch>
             <S.Countdown end={CountDown >= 0}>
-                <span>{CountDown >= 0 ? 'D' + CountDown : '마감'}</span>
+                <span>{CountDown >= 0 ? 'D-' + CountDown : '마감'}</span>
             </S.Countdown>
             <S.ImageWrap>
               <S.Image src={data.cardImage} alt="" />
