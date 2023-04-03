@@ -66,8 +66,8 @@ const ContentCardList = styled.div`
   place-items: center;
   overflow: hidden;
   transition: all 0.2s;
-  margin-bottom: 10px;
   padding: 10px;
+	padding-bottom:0;
   /* gap: 20px; */
 `;
 const RefCard = styled.div`

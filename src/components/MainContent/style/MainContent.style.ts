@@ -41,8 +41,7 @@ export const Main = styled.div`
 `;
 export const Border = styled.div`
   border: solid 1px #ebebeb;
-  min-height: 1000px;
-  margin-bottom: 10px;
+	padding-bottom:10px;
 `;
 
 export const WriteHandler = styled.div`

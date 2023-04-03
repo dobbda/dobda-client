@@ -70,7 +70,6 @@ const ContentCardList = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 2fr);
   transition: all 0.2s;
-  margin-bottom: 10px;
   padding: 10px;
   row-gap: 20px;
   column-gap: 10px;
