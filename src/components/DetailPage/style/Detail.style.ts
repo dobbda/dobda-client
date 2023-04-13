@@ -21,7 +21,7 @@ export const ContentWrapper = styled.div`
   width: 100%;
   min-height: 600px;
   background-color: #fff;
-  border: 1px solid #eeee;
+  /* border: 1px solid #eeee; */
 `;
 
 export const CoinWrapper = styled.span`
