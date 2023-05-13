@@ -5,7 +5,7 @@ import { Exp } from 'src/interface/content-type';
 
 let arr: any[] = [];
 
-export const errorHandler =
+export const ssrHandler =
   (
     getServerSideProps: ({
       ctx,
@@ -22,7 +22,8 @@ export const errorHandler =
 
     try {
       const exp = cookieDecod(ctx.req, ctx.res);
-      const result = await getServerSideProps({
+      console.log(ctx.req, ctx.res);
+      const result = getServerSideProps({
         ctx,
         cookie,
         exp,

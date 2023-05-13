@@ -9,7 +9,7 @@ import { ssr } from 'src/api';
 import { keys } from 'src/hooks';
 import { getLocalStorage, setLocalStorage } from 'src/lib/utils/localStorage';
 import { Exp } from 'src/interface/content-type';
-import { errorHandler } from 'src/api/errorHandler';
+import { ssrHandler } from 'src/api/errorHandler';
 import { MainHead } from 'src/components/common';
 import { ssrQuery } from 'src/hooks/queries/defaultQueryClient';
 import { useRouter } from 'next/router';
@@ -42,7 +42,7 @@ const Home: NextPage<{ exp: Exp }> = (props) => {
 export default Home;
 
 const queryClient = ssrQuery();
-export const getServerSideProps: GetServerSideProps = errorHandler(
+export const getServerSideProps: GetServerSideProps = ssrHandler(
   async ({ ctx: { req, query }, cookie, exp }) => {
     queryClient.invalidateQueries(keys.auth);
     if (exp?.access_exp) {

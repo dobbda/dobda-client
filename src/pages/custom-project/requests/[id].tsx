@@ -8,7 +8,7 @@ import { useEffect, useLayoutEffect } from 'react';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { keys } from 'src/hooks';
 import { AxiosRequestConfig } from 'axios';
-import { errorHandler } from 'src/api/errorHandler';
+import { ssrHandler } from 'src/api/errorHandler';
 import { Exp } from 'src/interface/content-type';
 import { setLocalStorage } from 'src/lib/utils/localStorage';
 import { SEO } from 'src/components/common';
@@ -19,10 +19,14 @@ const RequestDetailPage: NextPage<{ exp: Exp; id: string }> = (props) => {
   const router = useRouter();
   setLocalStorage('exp', JSON.stringify(props.exp));
   const { id } = props;
-  const { data, error, isError, isSuccess } = useQuery(keys.oDetail(id), () => outsourceDetail<OutsourceDetail>(Number(id)), {
-    retry: 0,
-    staleTime: Infinity,
-  });
+  const { data, error, isError, isSuccess } = useQuery(
+    keys.oDetail(id),
+    () => outsourceDetail<OutsourceDetail>(Number(id)),
+    {
+      retry: 0,
+      staleTime: Infinity,
+    },
+  );
 
   useEffect(() => {
     if (isError) {
@@ -45,18 +49,24 @@ const RequestDetailPage: NextPage<{ exp: Exp; id: string }> = (props) => {
 export default RequestDetailPage;
 
 const queryClient = ssrQuery();
-export const getServerSideProps: GetServerSideProps = errorHandler(async ({ ctx: { req, query }, cookie, exp }) => {
-  const { id } = query as { id: string };
-  if (exp?.access_exp) {
-    await queryClient.prefetchQuery(keys.auth, () => ssr.auth(req as AxiosRequestConfig));
-  }
-  await queryClient.prefetchQuery(keys.oDetail(id), () => ssr.sourcing(req as AxiosRequestConfig, id));
+export const getServerSideProps: GetServerSideProps = ssrHandler(
+  async ({ ctx: { req, query }, cookie, exp }) => {
+    const { id } = query as { id: string };
+    if (exp?.access_exp) {
+      await queryClient.prefetchQuery(keys.auth, () =>
+        ssr.auth(req as AxiosRequestConfig),
+      );
+    }
+    await queryClient.prefetchQuery(keys.oDetail(id), () =>
+      ssr.sourcing(req as AxiosRequestConfig, id),
+    );
 
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-      exp,
-      id: id,
-    },
-  };
-});
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+        exp,
+        id: id,
+      },
+    };
+  },
+);

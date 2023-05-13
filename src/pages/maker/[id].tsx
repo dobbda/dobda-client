@@ -6,7 +6,7 @@ import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { keys } from 'src/hooks';
 import { useEffect, useLayoutEffect } from 'react';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { errorHandler } from 'src/api/errorHandler';
+import { ssrHandler } from 'src/api/errorHandler';
 import { setLocalStorage } from 'src/lib/utils/localStorage';
 import { Exp } from 'src/interface/content-type';
 import { SEO } from 'src/components/common';
@@ -50,7 +50,7 @@ const Page: NextPage<{ exp: Exp; id: string }> = (props) => {
 export default Page;
 
 const queryClient = ssrQuery();
-export const getServerSideProps: GetServerSideProps = errorHandler(
+export const getServerSideProps: GetServerSideProps = ssrHandler(
   async ({ ctx: { req, query }, cookie, exp }) => {
     const { id } = query as { id: string };
     if (exp?.access_exp) {
