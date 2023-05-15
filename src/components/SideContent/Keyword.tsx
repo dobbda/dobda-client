@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 
 import { SideContainer, Ul, Wrap } from './style/SideContent.style';
-import { FolderMenu } from './FolderMenu/FolderMenu';
+import { FolderMenu } from '../common/FolderMenu/FolderMenu';
 import { CgListTree } from 'react-icons/cg';
 
 import { useRouter } from 'next/router';

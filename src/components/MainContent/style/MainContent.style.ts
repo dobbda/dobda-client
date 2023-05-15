@@ -2,9 +2,9 @@ import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 
 export const Main = styled.div`
-  margin: 5px;
   display: flex;
   flex-direction: column;
+  gap: 20px;
   transition: all 0.2s;
   .top-bar {
     display: flex;
@@ -41,7 +41,7 @@ export const Main = styled.div`
 `;
 export const Border = styled.div`
   border: solid 1px #ebebeb;
-	padding-bottom:10px;
+  padding-bottom: 10px;
 `;
 
 export const WriteHandler = styled.div`
@@ -51,7 +51,6 @@ export const WriteHandler = styled.div`
   align-items: center;
   background-color: #fff;
   padding: 5px 10px;
-  margin: 10px 5px;
   border-radius: 2rem;
   color: ${theme.color.placeholder};
   font-weight: 600;

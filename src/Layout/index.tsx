@@ -13,7 +13,12 @@ interface Props {
   myNavigator?: boolean;
   sideContent?: ReactNode;
 }
-export const Layout = ({ children, sideRight = false, sideLeft = false, banner = false }: PropsWithChildren<Props>) => {
+export const Layout = ({
+  children,
+  sideRight = false,
+  sideLeft = false,
+  banner = false,
+}: PropsWithChildren<Props>) => {
   const { width, height } = useWindowSize();
 
   return (

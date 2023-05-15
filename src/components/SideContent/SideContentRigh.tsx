@@ -1,16 +1,7 @@
-import React, {
-  useState,
-  Dispatch,
-  ElementType,
-  useEffect,
-  useCallback,
-} from 'react';
-import { useQuery, useQueryClient } from 'react-query';
-
-import { P, Red, SideContainer } from './style/SideContent.style';
-import { FolderMenu } from './FolderMenu/FolderMenu';
+import React, { useState } from 'react';
+import { Red, SideContainer } from './style/SideContent.style';
 import { useAuth, useLoginModalhandler } from 'src/hooks';
-import { Button, Empty } from '../common';
+import { Empty, FolderMenu } from '../common';
 import { Noticei } from 'src/icons';
 import { NotiList } from './content/NotiList';
 
@@ -42,7 +33,6 @@ export const SideContentRight = ({ folderOpenFalse }: Props) => {
         <Empty />
       </FolderMenu>{' '}
       <br />
-      <br />
       <FolderMenu
         childOpen={!folderOpenFalse}
         icon={<Red>🔢 </Red>}
@@ -50,6 +40,7 @@ export const SideContentRight = ({ folderOpenFalse }: Props) => {
       >
         <Empty />
       </FolderMenu>{' '}
+      <br />
       <FolderMenu
         icon={<Noticei size="20px" />}
         childOpen={!folderOpenFalse}

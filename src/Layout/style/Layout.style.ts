@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   position: relative;
   height: 100%;
-  padding: 0;
+  padding: 20px 5px;
   gap: 17px;
   @media screen and (max-width: ${theme.media.large}) {
   }
@@ -32,7 +32,6 @@ export const Wrapper = styled.div`
 export const MainWrapper = styled.div`
   min-height: 100%;
   width: 100%;
-  padding: 10 20px;
   position: relative;
   transition: all 0.1s;
   @media screen and (max-width: ${theme.media.large}) {
@@ -46,11 +45,10 @@ export const MainWrapper = styled.div`
 export const SideNavWrapper = styled.div<{ width?: string }>`
   flex: 0 0 auto;
   position: sticky;
-  top: 50px;
+  top: 60px;
   width: ${(props) => props.width || '250px'};
   height: calc(100vh - 50px);
   box-sizing: border-box;
-  padding-top: 20px;
   /* overflow-y: scroll; */
   /* 
   ::-webkit-scrollbar {

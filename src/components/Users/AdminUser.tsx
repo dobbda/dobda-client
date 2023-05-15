@@ -5,13 +5,13 @@ import { getPf } from 'src/api/apis/user';
 import { keys, useAuth } from 'src/hooks';
 import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
-import { FolderMenu } from '../SideContent';
 import { MyAlarm } from './alarms';
 import { MyCoin } from './coin';
 import { Poster } from './MyPoster';
 import { MyPortfolio } from './portfolio/private';
 import { MyInfo } from './profile/MyInfo';
 import { Skeleton } from '../Skeleton';
+import { FolderMenu } from '../common';
 
 type Props = {
   children?: React.ReactNode;

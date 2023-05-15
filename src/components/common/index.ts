@@ -13,3 +13,4 @@ export { default as HeaderNav } from './Header';
 export { Empty } from './@share/Empty';
 export { default as SEO } from './SEO';
 export { MainHead } from './SEO/MainHead';
+export { FolderMenu } from './FolderMenu/FolderMenu';
