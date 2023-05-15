@@ -14,6 +14,7 @@ import { useRouter } from 'next/router';
 import { SearchBox } from '../common/Header/SearchBox';
 import { sourcingtag, questionTag } from 'src/config/keyword';
 import Link from 'next/link';
+import { theme } from 'src/styles/Theme';
 
 interface Props {
   folderOpenFalse?: boolean;
@@ -53,7 +54,7 @@ export const Keyword = ({ folderOpenFalse }: Props) => {
         childOpen={!folderOpenFalse}
         title={cotegory}
         href="/notice"
-        height="900px"
+        height={`calc(100vh - ${theme.media.headerHeight})`}
       >
         <Wrap>
           <SearchBox />

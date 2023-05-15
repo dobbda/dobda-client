@@ -44,7 +44,7 @@ export const Title = styled.h2`
   text-overflow: ellipsis;
   word-break: break-word;
   line-clamp: 2;
-	color:#303441;
+  color: #303441;
   display: -webkit-box;
   -webkit-line-clamp: 2; // 원하는 라인수
   -webkit-box-orient: vertical;
@@ -94,20 +94,18 @@ export const Watch = styled.div`
   background-color: #ffffffe3;
   padding: 3px 6px;
   border-bottom-left-radius: 4px;
-	font-size: 12px;
-	font-weight: 500;
-
+  font-size: 12px;
+  font-weight: 500;
 `;
-export const Countdown = styled.div<{ end?: boolean }>`
+export const Countdown = styled.div<{ $end?: boolean }>`
   z-index: 1;
   position: absolute;
   top: 0;
   left: 0;
   padding: 3px 7px;
   border-bottom-right-radius: 4px;
-	font-size: 12px;
-	background-color: ${({ end }) => end ? '#ff7262' : '#f2f3f7'};
-	color: ${({ end }) => end ? 'white' : '#9a9ba7'};
-	font-weight: bold;
-	
+  font-size: 12px;
+  background-color: ${({ $end: end }) => (end ? '#ff7262' : '#f2f3f7')};
+  color: ${({ $end: end }) => (end ? 'white' : '#9a9ba7')};
+  font-weight: bold;
 `;

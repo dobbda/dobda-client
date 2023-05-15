@@ -1,3 +1,4 @@
+import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 
 export const Div = styled.div<{ checked: boolean; bg?: string }>`

@@ -31,7 +31,12 @@ export const FolderMenu = ({
 
   return (
     <Div checked={checked} bg={bg}>
-      <CheckBox height={height} defaultChecked={childOpen} id={checkId} onChange={(e) => setchecked(!checked)} />
+      <CheckBox
+        height={height}
+        defaultChecked={childOpen}
+        id={checkId}
+        onChange={(e) => setchecked(!checked)}
+      />
       <Label htmlFor={checkId} color={color}>
         {icon && <Icon>{icon}</Icon>}
         <h1>{title}</h1>

@@ -29,12 +29,11 @@ export const Wrap = styled.div`
 `;
 
 export const Ul = styled.ul`
-  height: 800px;
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  /* touch-action: pan-y; */
-  padding: 0 9px;
+  touch-action: pan-y;
+  padding: 0 9px 50px;
   ::-webkit-scrollbar {
     width: 6px;
     background: #dbdbdb;
@@ -56,11 +55,11 @@ export const Ul = styled.ul`
   }
   li {
     border-radius: 8px;
-    color: #555969;
+    color: #1b1c21;
     transition: all 0.2s;
     margin: 1px 0;
     text-transform: lowercase;
-		font-weight: bold;
+    font-weight: bold;
   }
   li:hover {
     background-color: ${theme.color.prRgb(0.3)};

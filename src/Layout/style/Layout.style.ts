@@ -50,11 +50,12 @@ export const SideNavWrapper = styled.div<{ width?: string }>`
   width: ${(props) => props.width || '250px'};
   height: calc(100vh - 50px);
   box-sizing: border-box;
-  overflow-y: scroll;
   padding-top: 20px;
+  /* overflow-y: scroll; */
+  /* 
   ::-webkit-scrollbar {
     display: none;
-  }
+  } */
   scrollbar-width: none; /* Firefox 64 */
   @media screen and (max-width: ${theme.media.large}) {
     /* background-color: #fff; */

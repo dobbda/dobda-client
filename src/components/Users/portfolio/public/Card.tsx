@@ -51,7 +51,7 @@ export const PortfolioCard = ({ data }: Props) => {
           <div className="work_skill">
             {data?.skill?.map((v, i) => (
               <Tag
-                color={TagColorKey[num] as TagColorType}
+                color={'primary'}
                 css={{ marginRight: 3 }}
                 key={i}
                 clickEvent

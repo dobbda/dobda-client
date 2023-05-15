@@ -30,7 +30,6 @@ export const Logo = ({ b, height }: Props) => {
 
   const goHome = useCallback(() => {
     const cg = getLocalStorage('mainCateogry');
-    console.log('cg:', cg);
     if (cg != 'undefined') {
       queryClient.invalidateQueries(keys[`${cg as CategoriesType}`]());
     }

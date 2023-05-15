@@ -26,7 +26,6 @@ export const CoinDeposit = () => {
   };
 
   const onPaymentAccepted = (response: RequestPayResponse) => {
-    console.log(response);
     setResult(response);
   };
 
@@ -48,19 +47,27 @@ export const CoinDeposit = () => {
             className={styles.input}
             type="number"
             value={params.amount}
-            onChange={(e) => setParams({ ...params, amount: e.target.valueAsNumber })}
+            onChange={(e) =>
+              setParams({ ...params, amount: e.target.valueAsNumber })
+            }
           />
         </div>
         <div className={styles.form}>
           <label className={styles.label}>주문명</label>
-          <input className={styles.input} value={params.name} onChange={(e) => setParams({ ...params, name: e.target.value })} />
+          <input
+            className={styles.input}
+            value={params.name}
+            onChange={(e) => setParams({ ...params, name: e.target.value })}
+          />
         </div>
         <div className={styles.form}>
           <label className={styles.label}>전화번호</label>
           <input
             className={styles.input}
             value={params.buyer_tel}
-            onChange={(e) => setParams({ ...params, buyer_tel: e.target.value })}
+            onChange={(e) =>
+              setParams({ ...params, buyer_tel: e.target.value })
+            }
           />
         </div>
         <button className={styles.button} onClick={onClickPayment}>

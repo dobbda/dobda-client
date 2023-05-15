@@ -74,6 +74,11 @@ export const tagColors = {
     background: '#f8ffeb5d',
     borderColor: '#caf378',
   },
+  primary: {
+    color: 'rgba(28,154,206,1)',
+    background: 'rgba(28,154,206,0.1)',
+    borderColor: 'rgba(28,154,206,0.3)',
+  },
 };
 
 export type TagColorType = keyof typeof tagColors;

@@ -22,7 +22,6 @@ export const ssrHandler =
 
     try {
       const exp = cookieDecod(ctx.req, ctx.res);
-      console.log(ctx.req, ctx.res);
       const result = getServerSideProps({
         ctx,
         cookie,
