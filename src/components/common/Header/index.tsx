@@ -3,7 +3,13 @@ import * as S from './style';
 import { Logo, Popover, Modal, Button } from 'src/components/common';
 import { Alarms } from 'src/components/Users';
 import { SocialLogin } from 'src/components/SocialLogin';
-import { useAuth, useLogout, useLoginModalhandler, keys, useWindowSize } from 'src/hooks';
+import {
+  useAuth,
+  useLogout,
+  useLoginModalhandler,
+  keys,
+  useWindowSize,
+} from 'src/hooks';
 import UserModalContent from './UserModalContent';
 import 'antd/dist/antd.css';
 import { Belli, FcMenu } from 'src/icons';
@@ -37,7 +43,12 @@ const HeaderNav = () => {
               </Popover>
             )}
             <Logo b={true} height="25px" />
-            {width > 768 && <SearchBox placeholder="제목 | 태그 검색" style={{ borderRadius: '1rem' }} />}
+            {width > 768 && (
+              <SearchBox
+                placeholder="제목 | 태그 검색"
+                style={{ borderRadius: '1rem' }}
+              />
+            )}
           </S.LogoWrap>
 
           <S.MenuWrapper>
@@ -48,12 +59,26 @@ const HeaderNav = () => {
             )}
             {auth?.id && (
               <>
-                <Popover trigger="click" content={<Alarms />} top={16} right={-100}>
-                  <Belli size={'18px'} css={{ marginTop: '4px', cursor: 'pointer' }} />
+                <Popover
+                  trigger="click"
+                  content={<Alarms />}
+                  top={16}
+                  right={-100}
+                >
+                  <Belli
+                    size={'18px'}
+                    css={{ marginTop: '4px', cursor: 'pointer' }}
+                  />
                 </Popover>
-                <Popover trigger="click" content={<UserModalContent />} top={15} right={0}>
+                <Popover
+                  trigger="click"
+                  content={<UserModalContent />}
+                  top={15}
+                  right={0}
+                >
                   <S.My>
-                    마이페이지 <RiArrowDownSLine color="gray" css={{ fontSize: '15px' }} />
+                    마이페이지{' '}
+                    <RiArrowDownSLine color="gray" css={{ fontSize: '15px' }} />
                   </S.My>
                 </Popover>
               </>

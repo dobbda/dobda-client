@@ -20,6 +20,6 @@
     "baseUrl": "."
   },
   "files": ["next-env.d.ts"],
-  "include": ["types/**.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["types/**.d.ts", "**/*.ts", "**/*.tsx", "babel.config.js"],
   "exclude": ["node_modules"]
 }
