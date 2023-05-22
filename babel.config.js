@@ -1,4 +1,3 @@
-console.log('status:', process.env.NODE_ENV);
 module.exports = {
   presets: ['next/babel'],
   plugins: [
