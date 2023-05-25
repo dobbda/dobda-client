@@ -1,6 +1,5 @@
-import { type } from 'os';
-import React, { useState, useRef, PropsWithChildren } from 'react';
-import { GlobalStyle } from 'src/styles/GlobalStyle';
+import React, { useState, useRef, PropsWithChildren, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { theme } from 'src/styles/Theme';
 import styled, { keyframes, createGlobalStyle } from 'styled-components';
 
@@ -10,6 +9,11 @@ type Props = {
 };
 
 export function Modal({ children, visible, onClickHandler }: PropsWithChildren<Props>) {
+  const [portal, setPortal] = useState<Element>();
+  useEffect(() => {
+    setPortal(document.querySelector('#__modal'));
+  }, []);
+
   const onClickSide = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget === e.target) {
       onClickHandler();
@@ -18,14 +22,16 @@ export function Modal({ children, visible, onClickHandler }: PropsWithChildren<P
 
   return (
     <>
-      {visible && (
-        <>
-          <GlobalStyle noScroll />
-          <Container {...boxFade}>
-            <Wrap onClick={onClickSide}>{children}</Wrap>
-          </Container>
-        </>
-      )}
+      {portal &&
+        visible &&
+        createPortal(
+          <>
+            <Container {...boxFade}>
+              <Wrap onClick={onClickSide}>{children}</Wrap>
+            </Container>
+          </>,
+          portal,
+        )}
     </>
   );
 }
