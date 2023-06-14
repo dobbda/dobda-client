@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Div, Label, CheckBox, ChildMenu, Icon } from './style/Menu.style';
 import { ArrowDown } from 'src/icons';
+import { CheckBox, ChildMenu, Div, Icon, Label } from './style/Menu.style';
 
 type Props = {
   title: React.ReactNode;
@@ -31,12 +31,7 @@ export const FolderMenu = ({
 
   return (
     <Div checked={checked} bg={bg}>
-      <CheckBox
-        height={height}
-        defaultChecked={childOpen}
-        id={checkId}
-        onChange={(e) => setchecked(!checked)}
-      />
+      <CheckBox height={height} defaultChecked={childOpen} id={checkId} onChange={(e) => setchecked(!checked)} />
       <Label htmlFor={checkId} color={color}>
         {icon && <Icon>{icon}</Icon>}
         <h1>{title}</h1>

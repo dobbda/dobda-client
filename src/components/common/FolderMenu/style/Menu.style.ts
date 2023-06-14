@@ -1,4 +1,3 @@
-import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 
 export const Div = styled.div<{ checked: boolean; bg?: string }>`
@@ -19,6 +18,7 @@ export const Label = styled.label<{ color?: string }>`
   height: 45px;
   margin: 0 10px;
   user-select: none;
+  gap: 5px;
   cursor: pointer;
 
   h1 {
@@ -26,6 +26,8 @@ export const Label = styled.label<{ color?: string }>`
     margin: 0;
     font-size: 15px;
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
   }
   .rotate {
     transition: all 0.3s;

@@ -1,20 +1,14 @@
-import React, {
-  useState,
-  Dispatch,
-  ElementType,
-  useEffect,
-  useCallback,
-} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-import { SideContainer, Ul, Wrap } from './style/SideContent.style';
-import { FolderMenu } from '../common/FolderMenu/FolderMenu';
 import { CgListTree } from 'react-icons/cg';
+import { FolderMenu } from '../common/FolderMenu/FolderMenu';
+import { SideContainer, Ul, Wrap } from './style/SideContent.style';
 
-import { useRouter } from 'next/router';
-import { SearchBox } from '../common/Header/SearchBox';
-import { sourcingtag, questionTag } from 'src/config/keyword';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { questionTag, sourcingtag } from 'src/config/keyword';
 import { theme } from 'src/styles/Theme';
+import { SearchBox } from '../common/Header/SearchBox';
 
 interface Props {
   folderOpenFalse?: boolean;
@@ -26,14 +20,18 @@ export const Keyword = ({ folderOpenFalse }: Props) => {
   const { cg, keyword } = router.query;
 
   useEffect(() => {
-    if (cg == 'questions') {
+    if (cg === 'questions') {
       setKeywords(questionTag);
       setCotegory('질문 주요 키워드');
-    } else if (cg == 'sourcings') {
+    } else if (cg === 'sourcings') {
       setKeywords(sourcingtag);
       setCotegory('소싱 주요 키워드');
+    } else if (cg === 'makers') {
+      setKeywords(questionTag);
+      setCotegory('메이커 키워드');
     } else {
       setKeywords(questionTag);
+      setCotegory('팀빌딩 키워드');
     }
   }, [cg]);
   const setClassName = useCallback(
@@ -64,8 +62,7 @@ export const Keyword = ({ folderOpenFalse }: Props) => {
                 <Link
                   href={{
                     pathname: '/',
-                    query:
-                      v == '전체' ? { cg } : { ...router.query, keyword: v },
+                    query: v == '전체' ? { cg } : { ...router.query, keyword: v },
                   }}
                   scroll={false}
                 >

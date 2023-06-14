@@ -47,7 +47,7 @@ export const SideNavWrapper = styled.div<{ width?: string }>`
   position: sticky;
   top: 60px;
   width: ${(props) => props.width || '250px'};
-  height: calc(100vh - 50px);
+  height: calc(100vh - 100px);
   box-sizing: border-box;
   /* overflow-y: scroll; */
   /* 
