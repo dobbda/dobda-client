@@ -2,16 +2,16 @@ import { Segmented } from 'antd';
 import Divider from 'antd/lib/divider';
 import List from 'antd/lib/list';
 import { SegmentedValue } from 'antd/lib/segmented';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { user } from 'src/api';
 import OCard from 'src/components/Card/OCard';
 import QCard from 'src/components/Card/QCard';
 import { Button } from 'src/components/common';
 import { keys } from 'src/hooks';
-import { useInfinity } from 'src/hooks/common/useInfinity';
+import { useInfinity } from 'src/hooks/queries/common/useInfinity';
 import { MyPostList } from 'src/interface/content-type';
 
-import { ListWrapper, Wrapper } from './style/MyPost.style';
+import { Wrapper } from './style/MyPost.style';
 
 export const Poster = () => {
   const [category, setCategory] = useState<SegmentedValue>(MyPostList[0]);
