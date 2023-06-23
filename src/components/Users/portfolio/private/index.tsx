@@ -4,12 +4,7 @@ import { UploadFile } from 'antd';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useQueryClient, useQuery } from 'react-query';
 import { uploadS3 } from 'src/lib/service/upload-s3';
-import {
-  CreatePortfolio,
-  ImageProp,
-  Maker,
-  PortfolioContent,
-} from 'src/interface';
+import { CreatePortfolio, ImageProp, Maker, PortfolioContent } from 'src/interface';
 import { resizeImage } from 'src/lib/service/resizeImg';
 import { Button as CustomButton } from 'src/components/common/@share/Buttons';
 import { user } from 'src/api';
@@ -22,18 +17,12 @@ import { listFileUpload } from '../lib/listFileUpload';
 import { getPf } from 'src/api/apis/user';
 import { jobList } from 'src/config/keyword';
 import { Select as AntSelect, Tag, TreeSelect as AntTreeSelect } from 'antd';
-import {
-  SelectSkill,
-  SelectWorkField,
-} from 'src/components/common/@share/SkillSelect';
+import { SelectSkill, SelectWorkField } from 'src/components/common/@share/SkillSelect';
 import styled from 'styled-components';
 
-const ProfileCardSet = dynamic(
-  () => import('./WritePortfolio/ProfileCardSet'),
-  {
-    suspense: true,
-  },
-);
+const ProfileCardSet = dynamic(() => import('./WritePortfolio/ProfileCardSet'), {
+  suspense: true,
+});
 const AdminViewer = dynamic(() => import('./AdminViewer'));
 const PfEditor = dynamic(() => import('./WritePortfolio/PfEditor'));
 
@@ -44,35 +33,24 @@ type Props = {
 export const MyPortfolio = ({}: Props) => {
   const { auth } = useAuth();
   const queryClient = useQueryClient();
-  const { data, refetch } = useQuery(
-    keys.maker(auth?.id),
-    () => getPf(auth?.id),
-    {
-      staleTime: 1000 * 60 * 10,
-      retry: 0,
-    },
-  );
+  const { data, refetch } = useQuery(keys.maker(auth?.id), () => getPf(auth?.id), {
+    staleTime: 1000 * 60 * 10,
+    retry: 0,
+  });
   const { data: cardData } = useQuery<typeof data.card>('profileCardSetData', {
     initialData: data?.card || null,
   });
   const [html, setHtml] = useState('');
-  const [contents, setContents] = useState<PortfolioContent[]>(
-    data?.content || [],
-  );
+  const [contents, setContents] = useState<PortfolioContent[]>(data?.content || []);
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [isAdd, setIsAdd] = useState(false);
   const [job, setJob] = useState(data?.job || '');
 
-  const [position, setPosition] = useState<string[] | string>(
-    data?.position || [],
-  );
+  const [position, setPosition] = useState<string[] | string>(data?.position || []);
   const [skill, setSkill] = useState<string[] | string>(data?.skill || []);
 
   useEffect(() => {
-    setIsAdd(
-      html?.replace(/<(.|\n)*?>/g, '').trim().length !== 0 ||
-        fileList.length !== 0,
-    );
+    setIsAdd(html?.replace(/<(.|\n)*?>/g, '').trim().length !== 0 || fileList.length !== 0);
   }, [html, fileList, data, contents]);
 
   const addContent = useCallback(async () => {
@@ -137,11 +115,10 @@ export const MyPortfolio = ({}: Props) => {
           <AntSelect
             placeholder="현재 직업"
             defaultValue={job}
-            style={{ width: 120 }}
+            style={{ width: 120, marginBottom: '1.4rem' }}
             options={jobList}
             onChange={(v) => setJob(v)}
           />
-          <br />
           <Label>전문분야</Label>
           <SelectWorkField value={position} setValue={setPosition} />
           <br />
@@ -149,16 +126,9 @@ export const MyPortfolio = ({}: Props) => {
           <SelectSkill value={skill} setValue={setSkill} />
         </div>
         <AdminViewer contents={contents} setContents={setContents} />
-        <br />
-        <br />
-        <br />
+
         <EditorCt>
-          <PfEditor
-            setHtml={setHtml}
-            html={html}
-            fileList={fileList}
-            setFileList={setFileList}
-          />
+          <PfEditor setHtml={setHtml} html={html} fileList={fileList} setFileList={setFileList} />
           <Button
             type="primary"
             onClick={addContent}
@@ -169,12 +139,7 @@ export const MyPortfolio = ({}: Props) => {
           </Button>
         </EditorCt>
         <br />
-        <CustomButton
-          types="primary"
-          $fill
-          onClick={onSubmint}
-          css={{ width: '100%', borderRadius: '0' }}
-        >
+        <CustomButton types="primary" $fill onClick={onSubmint} css={{ width: '100%', borderRadius: '0' }}>
           {'변경내용 저장'}
         </CustomButton>
         <br />

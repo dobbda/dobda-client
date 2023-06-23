@@ -1,4 +1,3 @@
-import { Avatar as AntAvatr } from 'antd';
 import { theme } from 'src/styles/Theme';
 import styled from 'styled-components';
 interface StyleProps {
@@ -8,6 +7,7 @@ interface StyleProps {
 export const SideContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 1.4rem;
   /* margin-top: 100px; */
   width: 100%;
 `;

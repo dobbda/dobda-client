@@ -1,5 +1,4 @@
 import { Space, Spin } from 'antd';
-import React from 'react';
 import { LoadingIcon } from 'src/icons';
 import styled from 'styled-components';
 interface Props {
@@ -30,8 +29,8 @@ export const LoadingPage = ({ size, descript }: LoadingPage) => {
   return (
     <Bg>
       <Wr>
-        <Spin size="large" indicator={<LoadingIcon style={{ fontSize: size | 100 }} spin />} />
-        <br />
+        <Spin size="large" indicator={<LoadingIcon style={{ marginBottom: '1.4rem', fontSize: size | 100 }} spin />} />
+
         <div className="descript">{descript}</div>
       </Wr>
     </Bg>

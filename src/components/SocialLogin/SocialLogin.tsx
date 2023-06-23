@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { SocialBtn } from './LogoBtn';
 
-import { Logo } from 'src/components/common';
 import { useQueryClient } from 'react-query';
+import { Logo } from 'src/components/common';
 import { useAuth, useLoginModalhandler } from 'src/hooks';
-import { GITHUB_URL, GOOGLE_URL, KAKAO_URL, NAVER_URL } from './CDN_URL';
+import { Githubi, Googlei, Naveri } from 'src/icons';
 import { Auth } from 'src/interface';
-import { Googlei, Githubi, Naveri } from 'src/icons';
 import Suport from '../Admin/support';
+import { GITHUB_URL, GOOGLE_URL, NAVER_URL } from './CDN_URL';
 type Props = {};
 
 export const SocialLogin = (props: Props) => {
@@ -52,18 +52,17 @@ export const SocialLogin = (props: Props) => {
   });
   return (
     <Style.LoginWrapper>
-      <Logo b={true} height="28px" />
-      <br /> <br />
+      <div css={{ marginBottom: '2rem' }}>
+        <Logo b={true} height="28px" />
+      </div>
+
       <P>간편 로그인만 가능합니다.</P>
       <Style.LoginList>
         <SocialBtn onClick={() => onWindow(GOOGLE_URL)} name="Login with Google" icon={Googlei} bg="#fff" color="#3c4043" />
-        <br />
 
         <SocialBtn onClick={() => onWindow(NAVER_URL)} name="Login with Naver" icon={Naveri} bg="#19c260" color="#fff" />
-        <br />
 
         <SocialBtn onClick={() => onWindow(GITHUB_URL)} name="Login with Github" icon={Githubi} bg="#3c4043" color="#ebe9e9" />
-        <br />
 
         {/* <SocialBtn onClick={() => onWindow(KAKAO_URL)} name="Login with Kakao" icon={Kakao} bg="#fee500" color="#000" /> */}
       </Style.LoginList>
@@ -84,14 +83,14 @@ const Style = {
     border-radius: 1em;
   `,
   LoginList: styled.div`
-    display: flex -webkit-flex;
+    display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
-    gap: 10px;
+    gap: 1.4rem;
   `,
 };
 
 const P = styled.p`
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 `;

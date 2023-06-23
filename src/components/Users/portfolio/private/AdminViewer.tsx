@@ -1,11 +1,6 @@
 import React, { Component, useCallback, useRef, useState } from 'react';
 import HtmlViewer from 'src/components/Editor/HtmlViewer';
-import {
-  CreatePortfolio,
-  ImageProp,
-  Maker,
-  PortfolioContent,
-} from 'src/interface';
+import { CreatePortfolio, ImageProp, Maker, PortfolioContent } from 'src/interface';
 import styled from 'styled-components';
 import DraggableList, { TemplateProps } from 'react-draggable-list';
 import { Dragi } from 'src/icons';
@@ -28,13 +23,7 @@ const AdminViewer = ({ contents, setContents }: Props) => {
     setContents([...newList]);
   };
 
-  const Item: any = ({
-    item,
-    dragHandleProps,
-  }: {
-    item: PortfolioContent;
-    dragHandleProps: any;
-  }) => {
+  const Item: any = ({ item, dragHandleProps }: { item: PortfolioContent; dragHandleProps: any }) => {
     const { onMouseDown, onTouchStart } = dragHandleProps;
     const [isEdit, setIsEdit] = useState(false);
     const [fileList, setFileList] = useState([]);
@@ -65,25 +54,12 @@ const AdminViewer = ({ contents, setContents }: Props) => {
       <ItemStyle className="disable-select">
         {isEdit ? (
           <EditorCt>
-            <PfEditor
-              setHtml={setHtml}
-              html={html}
-              fileList={fileList}
-              setFileList={setFileList}
-            />
+            <PfEditor setHtml={setHtml} html={html} fileList={fileList} setFileList={setFileList} />
             <div className="edit_btn_group">
-              <Button
-                types="danger"
-                onClick={() => setIsEdit(false)}
-                css={{ marginTop: '5px', borderRadius: '4px' }}
-              >
+              <Button types="danger" onClick={() => setIsEdit(false)} css={{ marginTop: '5px', borderRadius: '4px' }}>
                 취소
               </Button>
-              <Button
-                onClick={onSave}
-                css={{ marginTop: '5px', borderRadius: '4px' }}
-                $fill
-              >
+              <Button onClick={onSave} css={{ marginTop: '5px', borderRadius: '4px' }} $fill>
                 저장
               </Button>
             </div>
@@ -148,6 +124,7 @@ const AdminViewer = ({ contents, setContents }: Props) => {
 export default AdminViewer;
 
 const ItemStyle = styled.div`
+  margin-bottom: 2rem;
   .ql-editor {
     padding: 0;
   }

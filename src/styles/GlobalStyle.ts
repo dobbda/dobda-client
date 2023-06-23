@@ -44,11 +44,6 @@ export const GlobalStyle = createGlobalStyle<{ noScroll?: boolean }>`
     }}
   }
 
-	.ant-popover-inner-content{
-			padding:5px ;
-		}
-
-
 	a, a:hover, a:focus, a:active {
      text-decoration: none;
      color: inherit;

@@ -22,7 +22,7 @@ export const SearchBox = ({ placeholder, style }: Props) => {
   return (
     <Form className="search-box" onSubmit={onSubmit} css={style}>
       <input type="text" placeholder={placeholder ? placeholder : '키워드 검색'} value={value} onChange={onChange} />
-      <button type="submit">
+      <button type="submit" aria-label="검색">
         <Shearch />
       </button>
     </Form>

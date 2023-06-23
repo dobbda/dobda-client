@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Red, SideContainer } from './style/SideContent.style';
+import { useState } from 'react';
 import { useAuth, useLoginModalhandler } from 'src/hooks';
-import { Empty, FolderMenu } from '../common';
 import { Noticei } from 'src/icons';
+import { Empty, FolderMenu } from '../common';
 import { NotiList } from './content/NotiList';
+import { Red, SideContainer } from './style/SideContent.style';
 
 interface Props {
   folderOpenFalse?: boolean;
@@ -16,37 +16,17 @@ export const SideContentRight = ({ folderOpenFalse }: Props) => {
   return (
     <SideContainer>
       {/* <P>최신 글</P> */}
-      <FolderMenu
-        childOpen={!folderOpenFalse}
-        icon={<Red>🔥</Red>}
-        title={<> 최근 질문</>}
-      >
+      <FolderMenu childOpen={!folderOpenFalse} icon={<Red>🔥</Red>} title={<> 최근 질문</>}>
         <Empty />
       </FolderMenu>
-      <br />
       {/* <P>최신 글</P> */}
-      <FolderMenu
-        childOpen={!folderOpenFalse}
-        icon={<Red>🌱</Red>}
-        title="신규 프로젝트 "
-      >
+      <FolderMenu childOpen={!folderOpenFalse} icon={<Red>🌱</Red>} title="신규 프로젝트 ">
         <Empty />
       </FolderMenu>{' '}
-      <br />
-      <FolderMenu
-        childOpen={!folderOpenFalse}
-        icon={<Red>🔢 </Red>}
-        title={<>태그 모음</>}
-      >
+      <FolderMenu childOpen={!folderOpenFalse} icon={<Red>🔢 </Red>} title={<>태그 모음</>}>
         <Empty />
       </FolderMenu>{' '}
-      <br />
-      <FolderMenu
-        icon={<Noticei size="20px" />}
-        childOpen={!folderOpenFalse}
-        title="공지사항"
-        href="/notice"
-      >
+      <FolderMenu icon={<Noticei size="20px" />} childOpen={!folderOpenFalse} title="공지사항" href="/notice">
         <NotiList />
       </FolderMenu>
     </SideContainer>

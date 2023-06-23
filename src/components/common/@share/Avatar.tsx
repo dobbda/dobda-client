@@ -1,9 +1,7 @@
-import Image from 'next/image';
-import React, { useState } from 'react';
 import 'antd/dist/antd.min.css';
 import styled from 'styled-components';
 
-import { Popover, Avatar as AntAvatar } from 'antd';
+import { Avatar as AntAvatar, Popover } from 'antd';
 import { UserProfile } from 'src/components/Users';
 import { theme } from 'src/styles/Theme';
 
@@ -46,17 +44,13 @@ const Div = styled.div`
 
 const Avatar = ({ nickname, url, id, size }: Props) => {
   return (
-    <Popover
-      trigger="click"
-      placement="bottomLeft"
-      content={<UserProfile id={id} />}
-    >
+    <Popover trigger="click" placement="bottomLeft" content={<UserProfile id={id} />}>
       <Div>
-        <SImg src={url} size={20}></SImg>
+        <SImg src={url} size={20} alt={`avartar:${nickname}`}></SImg>
         <h3>{nickname}</h3>
       </Div>
     </Popover>
   );
 };
 
-export { SImg as AvatarImg, Avatar };
+export { Avatar, SImg as AvatarImg };
